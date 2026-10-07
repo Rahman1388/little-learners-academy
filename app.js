@@ -1,6 +1,6 @@
 const C=window.LLA_CURRICULUM;
 const STATE_KEY="lla-progress-v2";
-let currentSubject=null,currentLesson=null,hiddenMemory=false,remembered=new Set(),deferredInstall=null;
+let currentSubject=null,currentLesson=null,hiddenMemory=false,remembered=new Set(),deferredInstall=null,gameTarget=0;
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 
 function loadState(){
@@ -62,7 +62,7 @@ function openLesson(id){
   $("#items").innerHTML=currentLesson.items.map(itemMarkup).join("");
   $("#items").querySelectorAll(".speakBtn.en").forEach(b=>b.onclick=()=>{const x=currentLesson.items[+b.dataset.i];speak(x[1],state.voice,"en");$("#feedback").textContent="🌟 Great listening! ممتاز — "+x[1]});
   $("#items").querySelectorAll(".speakBtn.arBtn").forEach(b=>b.onclick=()=>{const x=currentLesson.items[+b.dataset.i];speak(x[2],state.voice,"ar");$("#feedback").textContent="🔊 العربية — "+x[2]});
-  renderMemory();renderQuiz();window.scrollTo({top:0,behavior:"smooth"});
+  renderMemory();renderGame();renderQuiz();window.scrollTo({top:0,behavior:"smooth"});
 }
 function renderMemory(){
   hiddenMemory=false;remembered=new Set();
@@ -80,6 +80,32 @@ function remember(i,b){
   if(remembered.has(i))return;remembered.add(i);b.classList.add("good");b.innerHTML='⭐<br><b>I remembered!</b><small class="ar">تذكرت!</small>';
   $("#memoryScore").textContent="Memory stars: "+remembered.size+" / "+Math.min(4,currentLesson.items.length)+" • نجوم الذاكرة";
 }
+function renderGame(){
+  if(!currentLesson)return;
+  gameTarget=Math.floor(Math.random()*currentLesson.items.length);
+  const target=currentLesson.items[gameTarget];
+  const order=currentLesson.items.map((x,i)=>i).sort(()=>Math.random()-.5);
+  $("#gamePrompt").innerHTML='Find: <b>'+target[1]+'</b> <span class="ar">• '+target[2]+'</span>';
+  $("#gameFeedback").textContent="";
+  $("#gameChoices").innerHTML=order.map(i=>{
+    const x=currentLesson.items[i];
+    return '<button class="gameChoice" data-i="'+i+'"><span>'+x[0]+'</span><b>'+x[1]+'</b><small class="ar">'+x[2]+'</small></button>';
+  }).join("");
+  $("#gameChoices").querySelectorAll(".gameChoice").forEach(b=>b.onclick=()=>{
+    const i=+b.dataset.i;
+    $("#gameChoices").querySelectorAll(".gameChoice").forEach(x=>x.disabled=true);
+    const correct=$("#gameChoices").querySelector('[data-i="'+gameTarget+'"]');
+    if(i===gameTarget){
+      b.classList.add("good");
+      $("#gameFeedback").textContent="🎉 Great job! أحسنت — you found it!";
+      speak("Great job! You found "+target[1],state.voice,"en");
+    }else{
+      b.classList.add("try");if(correct)correct.classList.add("good");
+      $("#gameFeedback").textContent="🌱 Nice try! محاولة جيدة — look at the green answer.";
+    }
+  });
+}
+function replayGame(){renderGame();speak(currentLesson.items[gameTarget][1],state.voice,"en")}
 function completeLesson(){
   const key=lessonKey(currentSubject.id,currentLesson.id);
   if(!state.completed[key]){state.completed[key]=true;state.stars+=3;saveState();renderSubjects()}
@@ -102,7 +128,7 @@ window.addEventListener("appinstalled",()=>{$("#installBtn").classList.add("hidd
 
 document.addEventListener("DOMContentLoaded",()=>{
   renderProgress();renderSubjects();
-  $("#memoryToggle").onclick=toggleMemory;$("#homeBtn").onclick=backHome;$("#subjectBack").onclick=backHome;$("#lessonBack").onclick=backSubject;$("#quizRetry").onclick=renderQuiz;
+  $("#memoryToggle").onclick=toggleMemory;$("#homeBtn").onclick=backHome;$("#subjectBack").onclick=backHome;$("#lessonBack").onclick=backSubject;$("#quizRetry").onclick=renderQuiz;$("#gameReplay").onclick=replayGame;$("#gameSpeak").onclick=()=>{if(currentLesson)speak(currentLesson.items[gameTarget][1],state.voice,"en")};
   $("#girlVoice").onclick=()=>{state.voice="girl";saveState();speak("Hello! Let us learn together!","girl","en")};
   $("#boyVoice").onclick=()=>{state.voice="boy";saveState();speak("Hello! Let us learn and play!","boy","en")};
   $("#installBtn").onclick=async()=>{if(!deferredInstall)return;deferredInstall.prompt();await deferredInstall.userChoice;deferredInstall=null;$("#installBtn").classList.add("hidden")};
