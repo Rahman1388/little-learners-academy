@@ -6,6 +6,7 @@
   <meta name="theme-color" content="#79d8ff">
   <meta name="description" content="Little Learners Academy — bilingual English-Arabic primary learning for children in Qatar.">
   <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="styles.css">
   <title>Little Learners Academy</title>
 </head>
@@ -13,7 +14,10 @@
   <main class="wrap">
     <header class="top">
       <div class="brand">🌟 Little Learners Academy</div>
-      <div class="pill">Primary Level 1 • المستوى الأول 🇶🇦</div>
+      <div class="topRight">
+        <span id="starCount" class="pill">⭐ 0</span>
+        <span class="pill">Primary Level 1 • المستوى الأول 🇶🇦</span>
+      </div>
     </header>
 
     <section id="home">
@@ -26,6 +30,7 @@
         <div class="quick">
           <button id="girlVoice" class="btn">👧 Girl voice • صوت طفلة</button>
           <button id="boyVoice" class="btn">👦 Boy voice • صوت طفل</button>
+          <button id="installBtn" class="btn secondary hidden">📱 Install App • تثبيت التطبيق</button>
           <input id="voice" type="hidden" value="girl">
         </div>
         <div class="notice">For Arabic-speaking children learning in English-medium or bilingual schools: short instructions, clear audio, pictures, repetition and active recall.</div>
@@ -79,6 +84,7 @@
       <section class="memoryPanel" style="margin-top:18px">
         <h2>🧠 Memory Garden • حديقة الذاكرة</h2>
         <p>Look carefully. Link the pictures in a funny story. Then hide them and recall.</p>
+        <p class="ar">انظر جيدًا. اربط الصور في قصة مرحة، ثم أخفها وحاول تذكرها.</p>
         <div id="memoryGrid" class="memoryGrid"></div>
         <button id="memoryToggle" class="btn secondary">🙈 Hide & recall • أخفِ وتذكر</button>
         <p id="memoryScore" class="feedback"></p>
@@ -89,6 +95,7 @@
         <h3 id="quizQ"></h3>
         <div id="answers" class="answers"></div>
         <p id="quizFeedback" class="feedback"></p>
+        <button id="quizRetry" class="btn secondary hidden">🔁 Try again • حاول مرة أخرى</button>
       </section>
     </section>
 
