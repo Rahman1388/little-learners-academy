@@ -4,6 +4,11 @@ on:
   push:
     branches: [main]
   pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
 
 jobs:
   validate:
@@ -11,15 +16,18 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
+
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
           node-version: "20"
+
       - name: Check JavaScript syntax
         run: |
           node --check app.js
           node --check curriculum.js
           node --check sw.js
+
       - name: Verify required PWA files
         run: |
           test -f index.html
@@ -28,3 +36,32 @@ jobs:
           test -f curriculum.js
           test -f manifest.webmanifest
           test -f sw.js
+
+      - name: Verify core app wiring
+        run: |
+          grep -q 'curriculum.js' index.html
+          grep -q 'app.js' index.html
+          grep -q 'styles.css' index.html
+          grep -q 'LLA_CURRICULUM' curriculum.js
+          grep -q 'serviceWorker' app.js
+
+      - name: Report validation failure as GitHub issue
+        if: failure() && github.event_name == 'push'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          RUN_URL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          SHA: ${{ github.sha }}
+        run: |
+          title="Automated validation failure"
+          existing=$(gh issue list --repo "$REPO" --state open --search "$title in:title" --json number --jq '.[0].number // empty')
+          body="The automatic Little Learners Academy validation failed after commit \`$SHA\`.
+
+          Workflow run: $RUN_URL
+
+          This issue is created automatically so the problem is not missed. Review the failed workflow steps before making further releases."
+          if [ -n "$existing" ]; then
+            gh issue comment "$existing" --repo "$REPO" --body "$body"
+          else
+            gh issue create --repo "$REPO" --title "$title" --body "$body"
+          fi
