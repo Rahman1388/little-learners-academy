@@ -1,6 +1,6 @@
 const C=window.LLA_CURRICULUM;
 const STATE_KEY="lla-progress-v2";
-let currentSubject=null,currentLesson=null,hiddenMemory=false,remembered=new Set(),deferredInstall=null,gameTarget=0;
+let currentSubject=null,currentLesson=null,hiddenMemory=false,remembered=new Set(),deferredInstall=null,gameTarget=0,activeUtterance=null,voiceCache=[];
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 
 function loadState(){
@@ -17,17 +17,42 @@ function renderProgress(){
 function cleanSpeech(text,lang){
   return lang==="ar"?text.replace(/[^\u0600-\u06FF0-9،؛؟.! ]/g," ").replace(/\s+/g," ").trim():text.replace(/[^A-Za-z0-9,.!?+' -]/g," ").replace(/\s+/g," ").trim();
 }
-function chooseVoice(lang,kind){
+function refreshVoices(){
+  if(!("speechSynthesis" in window))return [];
   const voices=speechSynthesis.getVoices();
-  const local=voices.filter(v=>lang==="ar"?/^ar(-|$)/i.test(v.lang):/^en(-|$)/i.test(v.lang));
-  const preferred=local.filter(v=>kind==="girl"?/natural|neural|enhanced|premium|female|samantha|zira|google/i.test(v.name):/natural|neural|enhanced|premium|male|daniel|david|google/i.test(v.name));
-  return preferred[0]||local[0]||null;
+  if(voices.length)voiceCache=voices;
+  return voiceCache;
+}
+function chooseVoice(lang,kind){
+  const voices=refreshVoices();
+  const local=voices.filter(v=>lang==="ar"?/^ar([_-]|$)/i.test(v.lang):/^en([_-]|$)/i.test(v.lang));
+  const regional=lang==="ar"
+    ?local.filter(v=>/ar[-_](qa|sa|ae|eg)/i.test(v.lang))
+    :local.filter(v=>/en[-_](gb|us|au)/i.test(v.lang));
+  const pool=regional.length?regional:local;
+  const preferred=pool.filter(v=>kind==="girl"
+    ?/natural|neural|enhanced|premium|female|samantha|zira|google|maged|laila|salma/i.test(v.name)
+    :/natural|neural|enhanced|premium|male|daniel|david|google|tarik|hamed/i.test(v.name));
+  return preferred[0]||pool[0]||null;
 }
 function speak(text,kind=state.voice,lang="en"){
-  if(!("speechSynthesis" in window))return;
-  const u=new SpeechSynthesisUtterance(cleanSpeech(text,lang));
-  u.lang=lang==="ar"?"ar-QA":"en-GB";u.rate=lang==="ar"?.7:.72;u.pitch=kind==="girl"?1.16:1.02;u.volume=1;
-  const v=chooseVoice(lang,kind);if(v)u.voice=v;speechSynthesis.cancel();speechSynthesis.speak(u);
+  if(!("speechSynthesis" in window))return false;
+  const spoken=cleanSpeech(text,lang);if(!spoken)return false;
+  const u=new SpeechSynthesisUtterance(spoken);
+  const v=chooseVoice(lang,kind);
+  u.lang=v?.lang||(lang==="ar"?"ar-SA":"en-GB");
+  u.rate=lang==="ar"?.68:.72;u.pitch=kind==="girl"?(lang==="ar"?1.08:1.16):1.0;u.volume=1;
+  if(v)u.voice=v;
+  u.onerror=()=>{if(lang==="ar")showAudioHelp()};
+  activeUtterance=u;
+  speechSynthesis.cancel();
+  speechSynthesis.resume();
+  speechSynthesis.speak(u);
+  return true;
+}
+function showAudioHelp(){
+  const box=$("#feedback");
+  if(box)box.innerHTML='🔊 Arabic voice is not available on this device yet. جرّب تحديث الصفحة أو تفعيل صوت عربي في إعدادات الجهاز.';
 }
 function renderSubjects(){
   const box=$("#subjects");
@@ -126,7 +151,7 @@ function backSubject(){$("#lessonView").classList.add("hidden");$("#subjectView"
 window.addEventListener("beforeinstallprompt",event=>{event.preventDefault();deferredInstall=event;$("#installBtn").classList.remove("hidden")});
 window.addEventListener("appinstalled",()=>{$("#installBtn").classList.add("hidden");deferredInstall=null});
 
-document.addEventListener("DOMContentLoaded",()=>{
+document.addEventListener("DOMContentLoaded",()=>{refreshVoices();if("speechSynthesis" in window)speechSynthesis.onvoiceschanged=refreshVoices;
   renderProgress();renderSubjects();
   $("#memoryToggle").onclick=toggleMemory;$("#homeBtn").onclick=backHome;$("#subjectBack").onclick=backHome;$("#lessonBack").onclick=backSubject;$("#quizRetry").onclick=renderQuiz;$("#gameReplay").onclick=replayGame;$("#gameSpeak").onclick=()=>{if(currentLesson)speak(currentLesson.items[gameTarget][1],state.voice,"en")};
   $("#girlVoice").onclick=()=>{state.voice="girl";saveState();speak("Hello! Let us learn together!","girl","en")};
