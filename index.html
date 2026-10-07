@@ -1,1 +1,102 @@
-<!doctype html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><meta name="theme-color" content="#6cccf4"/><link rel="manifest" href="manifest.webmanifest"/><title>Little Learners Academy</title><style>body{margin:0;font-family:Arial,sans-serif;background:linear-gradient(#7bd8ff,#fff7d6);color:#174b78}.wrap{max-width:1000px;margin:auto;padding:22px}.top,.hero,.card{background:#ffffffdd;border:4px solid white;border-radius:28px;box-shadow:0 7px 0 #70bdd8}.top{display:flex;justify-content:space-between;padding:12px 18px}.hero{text-align:center;margin:22px 0;padding:28px}.hero h1{font-size:clamp(34px,6vw,60px);margin:5px}.ar{direction:rtl}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:16px}.card{padding:22px;text-align:center;cursor:pointer}.card b{display:block;font-size:20px}.icon{font-size:54px}.memory{margin-top:22px;background:linear-gradient(135deg,#fff6ba,#e3ffdd);padding:22px;border-radius:28px;border:4px solid white;text-align:center}.btn{border:0;border-radius:18px;padding:12px 18px;font-weight:800;background:#167bd5;color:white;cursor:pointer}.friend{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}.friend button{font-size:18px}</style></head><body><main class="wrap"><header class="top"><b>🌟 Little Learners Academy</b><span>Grade 1 • الصف الأول 🇶🇦</span></header><section class="hero"><div>🎓 🎨 🧠 🎮</div><h1>My Learning World</h1><h2 class="ar">عالمي التعليمي</h2><p>Learn • Explore • Grow</p><div class="friend"><button class="btn" onclick="speak('Hello! Let us learn together!',1.2)">👧 Girl • طفلة</button><button class="btn" onclick="speak('Hello! Let us learn and play!',1.02)">👦 Boy • طفل</button></div></section><section class="grid"><div class="card"><span class="icon">🔤</span><b>English</b><span>الإنجليزية</span></div><div class="card"><span class="icon">🔢</span><b>Mathematics</b><span>الرياضيات</span></div><div class="card"><span class="icon">🔬</span><b>Science</b><span>العلوم</span></div><div class="card"><span class="icon">🌱</span><b>Life Skills</b><span>المهارات الحياتية</span></div><div class="card"><span class="icon">🎨</span><b>Creative Arts</b><span>الفنون الإبداعية</span></div></section><section class="memory"><h2>🧠 Memory Garden • حديقة الذاكرة</h2><p>👀 See → 🎨 Colour → 🔗 Link → 🙈 Hide → 💭 Recall → 🔁 Review → ⭐ Reward</p><p>Pictures + key words + association + active recall.</p><button class="btn" onclick="memory()">🌱 Try Memory Practice • جرب تدريب الذاكرة</button><p id="memoryText"></p></section><p style="text-align:center"><small>Independent educational application. Practice activities are not official school/MOEHE grades.</small></p></main><script>function speak(t,p){if(!('speechSynthesis'in window))return;const u=new SpeechSynthesisUtterance(t);u.lang='en-GB';u.rate=.72;u.pitch=p;speechSynthesis.cancel();speechSynthesis.speak(u)}function memory(){const e=document.getElementById('memoryText');e.textContent=e.textContent?'':'🐪 Camel  •  🐟 Fish  •  🐦 Bird  •  🐱 Cat — look, link them in a funny story, then hide and recall!'}if('serviceWorker'in navigator)navigator.serviceWorker.register('./sw.js');</script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#79d8ff">
+  <meta name="description" content="Little Learners Academy — bilingual English-Arabic primary learning for children in Qatar.">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="styles.css">
+  <title>Little Learners Academy</title>
+</head>
+<body>
+  <main class="wrap">
+    <header class="top">
+      <div class="brand">🌟 Little Learners Academy</div>
+      <div class="pill">Primary Level 1 • المستوى الأول 🇶🇦</div>
+    </header>
+
+    <section id="home">
+      <section class="hero">
+        <div class="scene">🎓 🐪 🌴 🧠 🎮</div>
+        <h1>My Learning World</h1>
+        <h2>عالمي التعليمي</h2>
+        <p><b>Learn • Explore • Grow</b></p>
+        <p>Target: age 6–7 • Qatar Grade 1 • British Year 2 core • US Grade 1</p>
+        <div class="quick">
+          <button id="girlVoice" class="btn">👧 Girl voice • صوت طفلة</button>
+          <button id="boyVoice" class="btn">👦 Boy voice • صوت طفل</button>
+          <input id="voice" type="hidden" value="girl">
+        </div>
+        <div class="notice">For Arabic-speaking children learning in English-medium or bilingual schools: short instructions, clear audio, pictures, repetition and active recall.</div>
+      </section>
+
+      <h2 class="sectionTitle">🎓 Learning World • عالم التعلم</h2>
+      <section id="subjects" class="grid"></section>
+
+      <h2 class="sectionTitle">🇶🇦 Qatar Core • المواد الأساسية في قطر</h2>
+      <p class="notice">Arabic, Islamic Studies and Qatar History are important compulsory areas in Qatar private education. These modules remain review-locked until qualified specialist review.</p>
+      <section id="qatarCore" class="grid"></section>
+
+      <section class="memoryPanel" style="margin-top:26px">
+        <h2>🧠 Memory Garden • حديقة الذاكرة</h2>
+        <p><b>SEE → COLOUR → LINK → HIDE → RECALL → REVIEW → REWARD</b></p>
+        <p>Pictures + key words + association + active recall. Colour supports attention and organisation; recall practice does the memory work.</p>
+      </section>
+    </section>
+
+    <section id="subjectView" class="panel hidden">
+      <div class="lessonHead">
+        <button id="subjectBack" class="btn secondary">← Home • الرئيسية</button>
+        <span class="pill">Curriculum bridge • مسار مشترك</span>
+      </div>
+      <h1 id="subjectTitle"></h1>
+      <p id="standards"></p>
+      <p>Choose a learning adventure • اختر مغامرة تعليمية</p>
+      <div id="lessonList" class="grid"></div>
+    </section>
+
+    <section id="lessonView" class="panel hidden">
+      <div class="lessonHead">
+        <button id="lessonBack" class="btn secondary">← Lessons • الدروس</button>
+        <button id="homeBtn" class="btn secondary">🏠 Home • الرئيسية</button>
+      </div>
+      <h1 id="lessonTitle"></h1>
+      <p id="lessonIntro"></p>
+      <div class="steps">
+        <span class="step">👀 SEE • شاهد</span><span class="step">🎧 LISTEN • استمع</span>
+        <span class="step">🗣️ SAY • قل</span><span class="step">💡 LEARN • تعلم</span>
+        <span class="step">🎮 DO • طبق</span><span class="step">🧠 RECALL • تذكر</span>
+        <span class="step">❓ QUIZ • اختبار</span><span class="step">⭐ REWARD • مكافأة</span>
+      </div>
+
+      <section class="stage">
+        <h2>👀 Listen, repeat and learn • استمع وكرر وتعلم</h2>
+        <div id="items" class="items"></div>
+        <p id="feedback" class="feedback"></p>
+      </section>
+
+      <section class="memoryPanel" style="margin-top:18px">
+        <h2>🧠 Memory Garden • حديقة الذاكرة</h2>
+        <p>Look carefully. Link the pictures in a funny story. Then hide them and recall.</p>
+        <div id="memoryGrid" class="memoryGrid"></div>
+        <button id="memoryToggle" class="btn secondary">🙈 Hide & recall • أخفِ وتذكر</button>
+        <p id="memoryScore" class="feedback"></p>
+      </section>
+
+      <section class="stage">
+        <h2>❓ Quick Quiz • اختبار سريع</h2>
+        <h3 id="quizQ"></h3>
+        <div id="answers" class="answers"></div>
+        <p id="quizFeedback" class="feedback"></p>
+      </section>
+    </section>
+
+    <footer class="footer">
+      Independent supplementary educational application. Not affiliated with or endorsed by Qatar MOEHE or any particular school. Practice results are not official grades.
+    </footer>
+  </main>
+  <script src="curriculum.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
