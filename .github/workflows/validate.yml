@@ -1,0 +1,30 @@
+name: Validate app
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Check JavaScript syntax
+        run: |
+          node --check app.js
+          node --check curriculum.js
+          node --check sw.js
+      - name: Verify required PWA files
+        run: |
+          test -f index.html
+          test -f styles.css
+          test -f app.js
+          test -f curriculum.js
+          test -f manifest.webmanifest
+          test -f sw.js
