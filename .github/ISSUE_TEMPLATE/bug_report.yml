@@ -1,0 +1,42 @@
+name: Bug report
+description: Report something that is not working in Little Learners Academy
+title: "[Bug] "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for helping improve Little Learners Academy. Please do not include children's names, account credentials, passwords, OTP codes, or other private information.
+  - type: textarea
+    id: problem
+    attributes:
+      label: What happened?
+      description: Describe the problem in simple words.
+      placeholder: Example: The English audio did not play when I tapped Cat.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect?
+      placeholder: Example: I expected the word Cat to be spoken clearly.
+  - type: dropdown
+    id: device
+    attributes:
+      label: Device
+      options:
+        - Android phone/tablet
+        - iPhone/iPad
+        - Windows computer
+        - Mac
+        - Other
+  - type: input
+    id: browser
+    attributes:
+      label: Browser
+      placeholder: Chrome, Safari, Edge, etc.
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: "1. Open English\n2. Open Sounds & Phonics\n3. Tap Cat"
