@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <rect width="512" height="512" rx="110" fill="#79d8ff"/>
+  <circle cx="256" cy="250" r="172" fill="#fff7cf"/>
+  <path d="M150 206c0-30 24-54 54-54h104c30 0 54 24 54 54v118c0 20-16 36-36 36H186c-20 0-36-16-36-36z" fill="#ffffff"/>
+  <path d="M175 214h162v22H175z" fill="#1184e8"/>
+  <path d="M196 257h120v20H196zm0 43h86v20h-86z" fill="#ffcf4d"/>
+  <circle cx="363" cy="147" r="46" fill="#ffffff"/>
+  <text x="363" y="164" text-anchor="middle" font-size="52" font-family="Arial" font-weight="700">★</text>
+  <text x="256" y="410" text-anchor="middle" font-size="58" font-family="Arial" font-weight="900" fill="#173f76">LLA</text>
+</svg>
