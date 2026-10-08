@@ -43,7 +43,14 @@ jobs:
           curl --fail --location --retry 3 --silent --show-error "$base/ar_JO-kareem-medium.onnx.json" -o /tmp/lla-neural-voice/ar_JO-kareem-medium.onnx.json
           test $(stat -c%s /tmp/lla-neural-voice/ar_JO-kareem-medium.onnx) -gt 10000000
 
-      - name: Replace robotic audio with neural boy/girl-style MP3s
+          # A different, authentic female synthetic speaker replaces pitch-shifting
+          # the male voice into an artificial girl-like tone.
+          female="https://huggingface.co/vadimbelsky/arabic-emirati-female-piper/resolve/main"
+          curl --fail --location --retry 3 --silent --show-error "$female/arabic-emirati-female-model.onnx" -o /tmp/lla-neural-voice/arabic-emirati-female-model.onnx
+          curl --fail --location --retry 3 --silent --show-error "$female/arabic-emirati-female-model.onnx.json" -o /tmp/lla-neural-voice/arabic-emirati-female-model.onnx.json
+          test $(stat -c%s /tmp/lla-neural-voice/arabic-emirati-female-model.onnx) -gt 10000000
+
+      - name: Generate clean Arabic recordings with distinct male and female speakers
         run: python scripts/generate_neural_arabic.py
 
       - name: Validate generated recordings
@@ -66,7 +73,7 @@ jobs:
           if git diff --cached --quiet; then
             echo "Audio already current"
           else
-            git commit -m "Replace robotic audio with clearer neural lesson narration"
+            git commit -m "Replace distorted Arabic speech with clearer natural-pitch recordings"
             git pull --rebase origin main
             git push origin main
           fi
