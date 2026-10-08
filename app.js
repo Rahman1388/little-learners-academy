@@ -4,8 +4,8 @@ let currentSubject=null,currentLesson=null,hiddenMemory=false,remembered=new Set
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 
 function loadState(){
-  try{return Object.assign({voice:"girl",slow:true,stars:0,completed:{}},JSON.parse(localStorage.getItem(STATE_KEY)||"{}"))}
-  catch{return{voice:"girl",slow:true,stars:0,completed:{}}}
+  try{return Object.assign({voice:"girl",slow:false,stars:0,completed:{}},JSON.parse(localStorage.getItem(STATE_KEY)||"{}"))}
+  catch{return{voice:"girl",slow:false,stars:0,completed:{}}}
 }
 let state=loadState();
 function saveState(){localStorage.setItem(STATE_KEY,JSON.stringify(state));renderProgress()}
@@ -19,7 +19,7 @@ function renderProgress(){
     const homeBtn=$("#"+kind+"Voice");
     if(homeBtn)homeBtn.setAttribute("aria-pressed",String(state.voice===kind));
   });
-  const slow=$("#slowVoice");if(slow)slow.checked=state.slow!==false;
+  const slow=$("#slowVoice");if(slow)slow.checked=state.slow===true;
 }
 function cleanSpeech(text,lang){
   return lang==="ar"?text.replace(/[^\u0600-\u06FF0-9،؛؟.! ]/g," ").replace(/\s+/g," ").trim():text.replace(/[^A-Za-z0-9,.!?+' -]/g," ").replace(/\s+/g," ").trim();
@@ -59,8 +59,8 @@ function speak(text,kind=state.voice,lang="en"){
   const u=new SpeechSynthesisUtterance(spoken);
   const v=chooseVoice(lang,kind);
   u.lang=v?.lang||(lang==="ar"?"ar-SA":"en-GB");
-  u.rate=state.slow!==false?(lang==="ar"?.70:.73):(lang==="ar"?.85:.88);
-  u.pitch=kind==="girl"?(lang==="ar"?1.2:1.24):1.07;
+  u.rate=state.slow===true?.86:1.0;
+  u.pitch=1;
   u.volume=1;
   if(v)u.voice=v;
   u.onerror=()=>{if(lang==="ar")showAudioHelp()};
@@ -79,13 +79,13 @@ function playRecordedItem(lang,index,text,feedbackSelector="#feedback"){
   const generation=audioGeneration;
   const box=$(feedbackSelector);
   const file=new URL("audio/"+lang+"/"+currentLesson.id+"-"+index+"-"+state.voice+".mp3",document.baseURI);
-  file.searchParams.set("v",lang==="ar"?"ar-neural-1":"en-neural-1");
+  file.searchParams.set("v",lang==="ar"?"ar-clean-v3":"en-clean-v3");
   const audio=new Audio(file.href);
   activeAudio=audio;
   audio.preload="auto";
   audio.playsInline=true;
   audio.preservesPitch=true;
-  audio.playbackRate=state.slow!==false?.93:1;
+  audio.playbackRate=state.slow===true?.97:1;
   if(box)box.textContent="🎧 Your learning voice is starting… • يبدأ الصوت";
   let failed=false;
   function fallback(){
