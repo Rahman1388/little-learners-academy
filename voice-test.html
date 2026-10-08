@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#79d8ff">
+<title>Voice listening test • Little Learners Academy</title>
+<link rel="stylesheet" href="./styles.css">
+<style>
+.testWrap{max-width:900px;margin:12px auto;padding:10px}
+.testHero{padding:20px;border-radius:30px;background:#fffbe9;border:4px solid white;box-shadow:0 7px #a9d9e9;text-align:center}
+.testCards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin:26px 0}
+.testCard{background:white;border:4px solid #d8eef8;border-radius:25px;padding:20px;box-shadow:0 5px #c4dfe6}
+.testCard h2{margin:3px 0 9px;font-size:22px}.testCard p{font-size:19px}
+.testCard audio{width:100%;margin:12px 0 8px}.testCard small{color:#55728c}
+.instructions{background:#fff;border-radius:24px;padding:18px;line-height:1.55}
+a.back{display:inline-block;margin:12px 0;padding:12px 19px;text-decoration:none;border-radius:16px;background:#146cb3;color:white;font-weight:700}
+</style>
+</head>
+<body>
+<main class="testWrap">
+<a class="back" href="./">← Back to Little Learners Academy • العودة إلى التطبيق</a>
+<section class="testHero">
+<h1>🎧 Voice listening test</h1>
+<h2 lang="ar" dir="rtl">تجربة وضوح الأصوات</h2>
+<p>Hear the audio recordings directly at normal speed. These are synthetic female and male voice styles, not real children's recordings.</p>
+</section>
+<section class="testCards" aria-label="Arabic and English voice samples">
+<article class="testCard"><h2>👧 English • Girl</h2><p>I can read.</p>
+<audio controls preload="metadata" src="./audio/en/sentences-0-girl.mp3?v=clean-v3">Your browser does not support audio.</audio>
+<small>British English synthetic female speaker • Normal speed</small></article>
+<article class="testCard"><h2>👦 English • Boy</h2><p>I can read.</p>
+<audio controls preload="metadata" src="./audio/en/sentences-0-boy.mp3?v=clean-v3">Your browser does not support audio.</audio>
+<small>British English synthetic male speaker • Normal speed</small></article>
+<article class="testCard"><h2>👧 Arabic • Girl</h2><p lang="ar" dir="rtl">أستطيع القراءة.</p>
+<audio controls preload="metadata" src="./audio/ar/sentences-0-girl.mp3?v=clean-v3">Your browser does not support audio.</audio>
+<small>Gulf Arabic female synthetic speaker • Normal speed</small></article>
+<article class="testCard"><h2>👦 Arabic • Boy</h2><p lang="ar" dir="rtl">أستطيع القراءة.</p>
+<audio controls preload="metadata" src="./audio/ar/sentences-0-boy.mp3?v=clean-v3">Your browser does not support audio.</audio>
+<small>Jordanian Arabic male synthetic speaker • Normal speed</small></article>
+</section>
+<section class="instructions">
+<h2>How to check • كيف نختبر؟</h2>
+<p>Press ▶ on each recording and compare clarity, pace and pronunciation. These players bypass the app's speech controls, so they help distinguish a recording-quality problem from an app playback problem.</p>
+<p>If these are still unclear, please tell us which language and voice. We will not approve any recording for release without human review of Arabic and early-English pronunciation.</p>
+</section>
+</main>
+</body>
+</html>
