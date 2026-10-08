@@ -73,6 +73,26 @@
       </div>
       <h1 id="lessonTitle"></h1>
       <p id="lessonIntro"></p>
+      <section class="voiceStudio" aria-label="Learning voice settings">
+        <div class="voiceStudioHeading">
+          <span class="voiceStudioMascot" aria-hidden="true">🎙️</span>
+          <div>
+            <h2>Choose your learning buddy • اختر صوت صديقك</h2>
+            <p>Pick a playful voice for all the lessons. • اختر صوتًا مرحًا لكل الدروس</p>
+          </div>
+        </div>
+        <div class="voiceOptions" role="group" aria-label="Choose voice style">
+          <button type="button" id="lessonGirlVoice" class="voiceOption" aria-pressed="false">👧 Girl-style voice <span class="ar">صوت بأسلوب طفلة</span></button>
+          <button type="button" id="lessonBoyVoice" class="voiceOption" aria-pressed="false">👦 Boy-style voice <span class="ar">صوت بأسلوب طفل</span></button>
+        </div>
+        <div class="voiceTools">
+          <button type="button" id="previewEnglishVoice" class="voicePreview">▶ Hear English • استمع للإنجليزية</button>
+          <button type="button" id="previewArabicVoice" class="voicePreview">▶ Hear Arabic • استمع للعربية</button>
+          <label class="speedToggle"><input type="checkbox" id="slowVoice" checked> 🐢 Slow & clear • ببطء ووضوح</label>
+        </div>
+        <p id="voiceStatus" class="voiceStatus" role="status" aria-live="polite"></p>
+        <small class="voiceDisclosure">These are synthetic, child-like voice styles, not recordings of real children. Arabic pronunciation is undergoing review.</small>
+      </section>
       <div class="steps">
         <span class="step">👀 SEE • شاهد</span><span class="step">🎧 LISTEN • استمع</span>
         <span class="step">🗣️ SAY • قل</span><span class="step">💡 LEARN • تعلم</span>
