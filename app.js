@@ -37,10 +37,15 @@ function chooseVoice(lang,kind){
     ?local.filter(v=>/ar[-_](qa|sa|ae|eg)/i.test(v.lang))
     :local.filter(v=>/en[-_](gb|us|au)/i.test(v.lang));
   const pool=regional.length?regional:local;
-  const preferred=pool.filter(v=>kind==="girl"
-    ?/natural|neural|enhanced|premium|female|samantha|zira|google|maged|laila|salma/i.test(v.name)
-    :/natural|neural|enhanced|premium|male|daniel|david|google|tarik|hamed/i.test(v.name));
-  return preferred[0]||pool[0]||null;
+  const score=(voice)=>{
+    const name=voice.name.toLowerCase();
+    const female=/female|samantha|zira|aria|jenny|amelia|victoria|susan|sara|laila|salma/.test(name);
+    const male=/(^|[^a-z])male([^a-z]|$)|daniel|david|george|oliver|thomas|tarik|hamed/.test(name) && !female;
+    return (kind==="girl"?(female?10:male?-8:0):(male?10:female?-8:0))
+      +(/natural|neural|enhanced|premium/.test(name)?3:0)
+      +(voice.localService?1:0);
+  };
+  return pool.slice().sort((a,b)=>score(b)-score(a))[0]||null;
 }
 function stopAllAudio(){
   audioGeneration++;
