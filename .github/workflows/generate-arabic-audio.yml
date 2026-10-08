@@ -58,6 +58,7 @@ jobs:
           if git diff --cached --quiet; then
             echo "No audio changes"
           else
-            git commit -m "Generate offline Arabic phonics audio"
-            git push
+            git commit -m "Generate offline Arabic lesson audio"
+            git pull --rebase origin main
+            git push origin main
           fi
