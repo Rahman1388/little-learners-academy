@@ -45,6 +45,11 @@ jobs:
           grep -q 'LLA_CURRICULUM' curriculum.js
           grep -q 'serviceWorker' app.js
 
+      - name: Check both languages' recorded audio
+        run: |
+          python3 -m py_compile scripts/check_audio_assets.py
+          python3 scripts/check_audio_assets.py
+
       - name: Report validation failure as GitHub issue
         if: failure() && github.event_name == 'push'
         env:
