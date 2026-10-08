@@ -73,37 +73,44 @@ function showAudioHelp(){
   const box=$("#feedback");
   if(box)box.innerHTML='🔊 Arabic voice is not available on this device yet. جرّب تحديث الصفحة أو تفعيل صوت عربي في إعدادات الجهاز.';
 }
-function playArabicItem(index,text,feedbackSelector="#feedback"){
-  if(!currentLesson)return speak(text,state.voice,"ar");
+function playRecordedItem(lang,index,text,feedbackSelector="#feedback"){
+  if(!currentLesson)return speak(text,state.voice,lang);
   stopAllAudio();
   const generation=audioGeneration;
   const box=$(feedbackSelector);
-  const file=new URL("audio/ar/"+currentLesson.id+"-"+index+"-"+state.voice+".mp3",document.baseURI);
-  file.searchParams.set("v","neural-1");
+  const file=new URL("audio/"+lang+"/"+currentLesson.id+"-"+index+"-"+state.voice+".mp3",document.baseURI);
+  file.searchParams.set("v",lang==="ar"?"ar-neural-1":"en-neural-1");
   const audio=new Audio(file.href);
   activeAudio=audio;
   audio.preload="auto";
   audio.playsInline=true;
   audio.preservesPitch=true;
   audio.playbackRate=state.slow!==false?.93:1;
-  if(box)box.textContent="🎧 Starting your Arabic voice… • يبدأ الصوت العربي";
+  if(box)box.textContent="🎧 Your learning voice is starting… • يبدأ الصوت";
   let failed=false;
   function fallback(){
     if(failed||generation!==audioGeneration)return;
     failed=true;
-    if(box)box.textContent="This recording is unavailable. Trying your device voice • نجرب صوت الجهاز";
-    speak(text,state.voice,"ar");
+    if(box)box.textContent="Using the device voice • نجرب صوت الجهاز";
+    speak(text,state.voice,lang);
   }
   audio.addEventListener("playing",()=>{
-    if(box&&generation===audioGeneration)box.textContent="🔊 Clear Arabic listening • استمع للعربية";
+    if(box&&generation===audioGeneration)box.textContent=(lang==="ar"?"🔊 Arabic":"🔊 English")+" — Listen carefully and repeat • استمع وكرر";
   });
   audio.addEventListener("ended",()=>{
-    if(box&&generation===audioGeneration)box.textContent="🌟 Listen and say it again! • استمع وكرر: "+text;
+    if(box&&generation===audioGeneration)box.textContent="🌟 Listen again and say it! • استمع وكرر: "+text;
   });
   audio.addEventListener("error",fallback,{once:true});
   const pending=audio.play();
   if(pending&&typeof pending.catch==="function")pending.catch(fallback);
 }
+function playArabicItem(index,text,feedbackSelector="#feedback"){
+  return playRecordedItem("ar",index,text,feedbackSelector);
+}
+function playEnglishItem(index,text,feedbackSelector="#feedback"){
+  return playRecordedItem("en",index,text,feedbackSelector);
+}
+
 function setVoice(kind,preview=false){
   if(kind!=="girl"&&kind!=="boy")return;
   state.voice=kind;
@@ -117,8 +124,7 @@ function setVoice(kind,preview=false){
 }
 function previewEnglish(){
   const text=currentLesson?.items[0]?.[1]||"Hello! Let us learn and play!";
-  speak(text,state.voice,"en");
-  const box=$("#voiceStatus");if(box)box.textContent="🔊 English voice preview • تجربة الصوت الإنجليزي";
+  if(currentLesson)playEnglishItem(0,text,"#voiceStatus");else speak(text,state.voice,"en");
 }
 function previewArabic(){
   if(!currentLesson)return;
@@ -156,8 +162,8 @@ function openLesson(id){
   $("#lessonTitle").innerHTML=currentSubject.icon+' '+currentLesson.title+' <span class="ar">• '+currentLesson.ar+'</span>';
   $("#lessonIntro").innerHTML=currentLesson.intro+'<br><span class="ar">'+currentLesson.arIntro+'</span>';
   $("#items").innerHTML=currentLesson.items.map(itemMarkup).join("");
-  $("#items").querySelectorAll(".speakBtn.en").forEach(b=>b.onclick=()=>{const x=currentLesson.items[+b.dataset.i];speak(x[1],state.voice,"en");$("#feedback").textContent="🌟 Great listening! ممتاز — "+x[1]});
-  $("#items").querySelectorAll(".speakBtn.arBtn").forEach(b=>b.onclick=()=>{const i=+b.dataset.i;const x=currentLesson.items[i];playArabicItem(i,x[2]);$("#feedback").textContent="🔊 العربية — "+x[2]});
+  $("#items").querySelectorAll(".speakBtn.en").forEach(b=>b.onclick=()=>{const i=+b.dataset.i;playEnglishItem(i,currentLesson.items[i][1])});
+  $("#items").querySelectorAll(".speakBtn.arBtn").forEach(b=>b.onclick=()=>{const i=+b.dataset.i;playArabicItem(i,currentLesson.items[i][2])});
   renderProgress();renderMemory();renderGame();renderQuiz();window.scrollTo({top:0,behavior:"smooth"});
 }
 function renderMemory(){
@@ -201,7 +207,7 @@ function renderGame(){
     }
   });
 }
-function replayGame(){renderGame();speak(currentLesson.items[gameTarget][1],state.voice,"en")}
+function replayGame(){renderGame();playEnglishItem(gameTarget,currentLesson.items[gameTarget][1],"#gameFeedback")}
 function completeLesson(){
   const key=lessonKey(currentSubject.id,currentLesson.id);
   if(!state.completed[key]){state.completed[key]=true;state.stars+=3;saveState();renderSubjects()}
@@ -224,7 +230,7 @@ window.addEventListener("appinstalled",()=>{$("#installBtn").classList.add("hidd
 
 document.addEventListener("DOMContentLoaded",()=>{refreshVoices();if("speechSynthesis" in window)speechSynthesis.onvoiceschanged=refreshVoices;
   renderProgress();renderSubjects();
-  $("#memoryToggle").onclick=toggleMemory;$("#homeBtn").onclick=backHome;$("#subjectBack").onclick=backHome;$("#lessonBack").onclick=backSubject;$("#quizRetry").onclick=renderQuiz;$("#gameReplay").onclick=replayGame;$("#gameSpeak").onclick=()=>{if(currentLesson)speak(currentLesson.items[gameTarget][1],state.voice,"en")};
+  $("#memoryToggle").onclick=toggleMemory;$("#homeBtn").onclick=backHome;$("#subjectBack").onclick=backHome;$("#lessonBack").onclick=backSubject;$("#quizRetry").onclick=renderQuiz;$("#gameReplay").onclick=replayGame;$("#gameSpeak").onclick=()=>{if(currentLesson)playEnglishItem(gameTarget,currentLesson.items[gameTarget][1],"#gameFeedback")};
   $("#girlVoice").onclick=()=>setVoice("girl",true);
   $("#boyVoice").onclick=()=>setVoice("boy",true);
   $("#lessonGirlVoice").onclick=()=>setVoice("girl",true);
