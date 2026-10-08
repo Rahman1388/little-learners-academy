@@ -55,10 +55,9 @@ function showAudioHelp(){
   if(box)box.innerHTML='🔊 Arabic voice is not available on this device yet. جرّب تحديث الصفحة أو تفعيل صوت عربي في إعدادات الجهاز.';
 }
 function playArabicItem(index,text){
-  const isRecorded=currentSubject?.id==="english"&&currentLesson?.id==="phonics";
-  if(!isRecorded){speak(text,state.voice,"ar");return}
-  const file=new URL("audio/ar/phonics-"+index+"-"+state.voice+".mp3",document.baseURI);
-  file.searchParams.set("v","7");
+  if(!currentLesson){speak(text,state.voice,"ar");return}
+  const file=new URL("audio/ar/"+currentLesson.id+"-"+index+"-"+state.voice+".mp3",document.baseURI);
+  file.searchParams.set("v","8");
   const audio=new Audio(file.href);
   audio.preload="auto";
   audio.playsInline=true;
