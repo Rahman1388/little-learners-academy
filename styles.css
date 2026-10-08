@@ -46,3 +46,11 @@ linear-gradient(145deg,#fffdf7,#f4fbff 46%,#fff3f8);border-color:#fff;box-shadow
 @media(max-width:550px){.voiceOptions{gap:8px}.voiceOption{font-size:14px;padding:10px 8px}.voiceStudio{padding:12px}
  .voiceStudioHeading{flex-direction:column;text-align:center;gap:2px}.voiceStudioMascot{font-size:34px}
  .voiceOption .ar{font-size:12px}}
+
+/* Keep the chosen character visible on both Home and lesson pages. */
+.quick .btn[aria-pressed="true"]{
+  background:linear-gradient(135deg,#087f9a,#116ccf);
+  outline:4px solid #ffe66f;outline-offset:2px;
+  box-shadow:0 5px 0 #07567c;
+}
+.quick .btn[aria-pressed="true"]:after{content:" ✓";font-weight:900}
