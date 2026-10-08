@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fce9a8">
+  <meta name="description" content="Little Learners Academy Reading Adventure: bilingual early reading practice with original games.">
+  <link rel="icon" type="image/svg+xml" href="./icon.svg">
+  <link rel="stylesheet" href="./phonics-adventure.css">
+  <title>Reading Adventure | Little Learners Academy</title>
+</head>
+<body>
+<main class="adventure" id="adventure">
+  <header class="adventureTop">
+    <a class="backHome" href="./index.html" aria-label="Return to Little Learners Academy">← Home <span lang="ar" dir="rtl">الرئيسية</span></a>
+    <div class="brandMini">🌟 Little Learners Academy</div>
+    <div class="questStars" id="questStars" aria-live="polite">⭐ 0</div>
+  </header>
+
+  <section class="adventureHero">
+    <div class="heroWords">
+      <div class="eyebrow">MY READING ADVENTURE • مغامرة القراءة</div>
+      <h1>Read, Play, Grow! <span lang="ar" dir="rtl">اقرأ والعب وتعلّم</span></h1>
+      <p>Follow the stars through four little English words. <span lang="ar" dir="rtl">لنتعلم أربع كلمات إنجليزية ممتعة!</span></p>
+    </div>
+    <div class="storyland" aria-hidden="true">
+      <div class="sun">☀️</div><div class="cloud">☁️</div><div class="dunes">🌴 🐪</div>
+      <div class="skyline">🏙️</div>
+      <svg class="qatarFlag" width="68" height="44" viewBox="0 0 68 44" role="img" aria-label="Qatar flag">
+        <rect width="68" height="44" rx="3" fill="#8A1538"/>
+        <path d="M0 0H25L32 2.444L25 4.888L32 7.332L25 9.776L32 12.22L25 14.664L32 17.108L25 19.552L32 21.996L25 24.44L32 26.884L25 29.328L32 31.772L25 34.216L32 36.66L25 39.104L32 41.548L25 44H0Z" fill="#fff"/>
+      </svg>
+    </div>
+  </section>
+
+  <section class="journeyPanel" aria-label="Reading journey progress">
+    <div class="journeyHeading"><strong>⭐ My word trail <span lang="ar" dir="rtl">طريق الكلمات</span></strong><span id="journeyCount">1 / 4</span></div>
+    <div class="wordTrail" id="wordTrail" role="group" aria-label="Choose a word"></div>
+  </section>
+
+  <section class="playPanel" aria-label="Interactive early reading activity">
+    <div class="buddyBar">
+      <div class="buddy" aria-hidden="true">🦊</div>
+      <div class="buddySpeech">
+        <strong id="buddyTitle">Hello, reading star! 🌟</strong>
+        <p id="buddyMessage" aria-live="polite">Look, listen and make a word!</p>
+      </div>
+    </div>
+
+    <div class="wordFocus">
+      <div class="pictureFrame" id="wordPicture" aria-label="Picture for the target word">🐱</div>
+      <div class="wordDisplay">
+        <div class="labelSmall">ENGLISH WORD • الكلمة الإنجليزية</div>
+        <div id="wordText" class="wordText" aria-live="polite">cat</div>
+        <div id="wordArabic" class="wordArabic" lang="ar" dir="rtl">قطة</div>
+        <div class="audioRow">
+          <button type="button" id="hearEnglish" class="audioBtn blue">🔊 Hear word <span lang="ar" dir="rtl">استمع للكلمة</span></button>
+          <button type="button" id="hearArabic" class="audioBtn gold">🔊 Arabic meaning <span lang="ar" dir="rtl">المعنى بالعربية</span></button>
+        </div>
+        <p class="voiceExplanation">Arabic says the <strong>meaning</strong>, not the sound of the English letters. <span lang="ar" dir="rtl">العربية تشرح معنى الكلمة.</span></p>
+        <p id="audioStatus" class="audioStatus" role="status" aria-live="polite"></p>
+      </div>
+    </div>
+
+    <div class="stepNav" aria-label="Activity steps">
+      <span class="stepPill" id="stepOne">1. 👀 Look</span>
+      <span class="stepPill" id="stepTwo">2. 🧩 Build</span>
+      <span class="stepPill" id="stepThree">3. 🎯 Find</span>
+    </div>
+
+    <div class="challengePanel">
+      <div class="challengeHead">
+        <h2>🧩 Build the word <span lang="ar" dir="rtl">كوّن الكلمة</span></h2>
+        <p>Tap the letter groups in order. Say the sounds with your teacher or grown-up. <span lang="ar" dir="rtl">رتّب الحروف وقل أصواتها مع معلمك.</span></p>
+      </div>
+      <div class="buildTarget" id="buildTarget" aria-live="polite"></div>
+      <div class="letterOptions" id="letterOptions" aria-label="Letter group choices"></div>
+      <div class="challengeActions">
+        <button id="startOver" type="button" class="outlineBtn">🔄 Try again <span lang="ar" dir="rtl">حاول مجددًا</span></button>
+        <button id="blendWord" type="button" class="blendBtn" disabled>🔊 Blend & hear <span lang="ar" dir="rtl">ادمج واستمع</span></button>
+      </div>
+      <p id="buildFeedback" class="miniFeedback" aria-live="polite">Tap each tile to build the word.</p>
+    </div>
+
+    <div class="findPanel" id="findPanel" hidden>
+      <h2>🎯 Find the picture! <span lang="ar" dir="rtl">اختر الصورة الصحيحة</span></h2>
+      <p>Listen to the English word, then tap the matching picture.</p>
+      <div class="findActions"><button id="repeatWord" type="button" class="audioBtn blue">🔊 Listen again</button></div>
+      <div id="pictureChoices" class="pictureChoices" aria-label="Choose the matching picture"></div>
+      <p id="findFeedback" class="miniFeedback" aria-live="polite"></p>
+    </div>
+
+    <div class="successPanel" id="successPanel" hidden>
+      <div class="successEmoji" aria-hidden="true">🎉 ⭐ 🌈</div>
+      <h2>Wonderful reading! <span lang="ar" dir="rtl">أحسنت القراءة!</span></h2>
+      <p>You listened, built and found the word. <span lang="ar" dir="rtl">استمعت وكونت الكلمة واخترت الصورة!</span></p>
+      <button id="nextWord" type="button" class="nextBtn">Next adventure ➜ <span lang="ar" dir="rtl">المغامرة التالية</span></button>
+    </div>
+  </section>
+
+  <aside class="adultNotice">
+    <strong>For parents & teachers • للأهل والمعلمين</strong>
+    <p>Inspired by effective early-reading activities, but this is an original supplementary activity. The letter tiles support <em>visual word-building</em>; isolated phoneme voiceovers are intentionally not provided until reviewed by a qualified phonics teacher. Recorded whole-word pronunciations also need listening checks.</p>
+    <p>English word audio follows your saved app voice choice. Arabic uses the clearer male recording for this demo while the female Arabic voice is reviewed. No account, adverts or tracking.</p>
+  </aside>
+
+  <footer class="footerMini">Made for curious little learners in Qatar • Independent educational project</footer>
+</main>
+<script src="./phonics-adventure.js" defer></script>
+</body>
+</html>
