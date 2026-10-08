@@ -1,0 +1,60 @@
+name: Generate Arabic audio
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "audio/ar/source.json"
+      - ".github/workflows/generate-arabic-audio.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install speech generator
+        run: pip install edge-tts==7.0.2
+
+      - name: Generate clear Arabic prototype audio
+        run: |
+          python - <<'PY'
+          import asyncio, json, pathlib
+          import edge_tts
+
+          source = json.loads(pathlib.Path("audio/ar/source.json").read_text(encoding="utf-8"))
+          out = pathlib.Path("audio/ar")
+          out.mkdir(parents=True, exist_ok=True)
+
+          async def make(text, path, voice, rate, pitch):
+              communicate = edge_tts.Communicate(text=text, voice=voice, rate=rate, pitch=pitch)
+              await communicate.save(str(path))
+
+          async def main():
+              for lesson_id, items in source.items():
+                  for item in items:
+                      base = f"{lesson_id}-{item['id']}"
+                      await make(item["text"], out / f"{base}-girl.mp3", "ar-SA-ZariyahNeural", "-12%", "+12Hz")
+                      await make(item["text"], out / f"{base}-boy.mp3", "ar-SA-HamedNeural", "-10%", "+6Hz")
+
+          asyncio.run(main())
+          PY
+
+      - name: Commit generated audio
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add audio/ar/*.mp3
+          if git diff --cached --quiet; then
+            echo "No audio changes"
+          else
+            git commit -m "Generate Arabic phonics audio"
+            git push
+          fi
