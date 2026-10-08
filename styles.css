@@ -20,3 +20,29 @@ linear-gradient(145deg,#fffdf7,#f4fbff 46%,#fff3f8);border-color:#fff;box-shadow
 #lessonView .stage{position:relative;box-shadow:0 7px 0 #d4e6ec,0 14px 28px #173f7612}
 #lessonView .stage:before{content:"✦";position:absolute;right:18px;top:12px;color:#ffbf2f;font-size:24px}
 @media(max-width:720px){.qatarLessonScene{grid-template-columns:auto 1fr;padding:12px}.qatarSceneIcons{grid-column:1/-1;text-align:center;white-space:normal;letter-spacing:4px}.qatarSceneText{font-size:12px}.qatarFlag{font-size:46px}.qatarLessonScene:after{left:24%}}
+/* Playful, accessible voice choice visible inside every lesson */
+.voiceStudio{max-width:880px;margin:20px auto 10px;padding:18px;border:4px solid #fff;border-radius:30px;
+  background:linear-gradient(125deg,#fff4c3 0%,#fff 42%,#dff4ff 100%);
+  box-shadow:0 7px 0 #a9d8df,0 13px 30px #15345f13}
+.voiceStudioHeading{display:flex;gap:14px;justify-content:center;align-items:center;text-align:left;max-width:650px;margin:0 auto 12px}
+.voiceStudioHeading h2{font-size:clamp(19px,3vw,25px);margin:0 0 5px;line-height:1.2}
+.voiceStudioHeading p{margin:0;font-size:14px}
+.voiceStudioMascot{font-size:45px}
+.voiceOptions{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:14px auto;max-width:680px}
+.voiceOption{cursor:pointer;background:#fff;border:3px solid #cce9f7;border-radius:21px;
+  box-shadow:0 5px 0 #b5dce8;color:var(--ink);padding:14px 12px;font-size:18px;font-weight:900}
+.voiceOption .ar{display:block;font-size:14px;margin-top:5px}
+.voiceOption[aria-pressed="true"]{background:linear-gradient(145deg,#defbf0,#bcebf9);border-color:#12a2b9;
+  box-shadow:0 4px 0 #13a1aa;transform:translateY(1px)}
+.voiceOption[aria-pressed="true"]:after{content:" ✓";color:#087862}
+.voiceTools{display:flex;gap:9px;justify-content:center;align-items:center;flex-wrap:wrap}
+.voicePreview{cursor:pointer;color:#064e81;border:2px solid #abd9f6;border-radius:16px;
+  background:#eaf8ff;padding:10px 13px;font-weight:800}
+.speedToggle{border-radius:16px;background:#fff7db;padding:10px 12px;font-weight:800;cursor:pointer}
+.speedToggle input{width:17px;height:17px;vertical-align:middle;accent-color:#0f95ad}
+.voiceStatus{font-weight:800;min-height:1.25em;margin:12px 0 5px}
+.voiceDisclosure{display:block;font-size:12px;color:#526b81;line-height:1.4;max-width:700px;margin:0 auto}
+.voiceOption:focus-visible,.voicePreview:focus-visible,.speakBtn:focus-visible{outline:4px solid #d19409;outline-offset:2px}
+@media(max-width:550px){.voiceOptions{gap:8px}.voiceOption{font-size:14px;padding:10px 8px}.voiceStudio{padding:12px}
+ .voiceStudioHeading{flex-direction:column;text-align:center;gap:2px}.voiceStudioMascot{font-size:34px}
+ .voiceOption .ar{font-size:12px}}
