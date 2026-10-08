@@ -1,0 +1,78 @@
+name: Generate English lesson audio
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "curriculum.js"
+      - "scripts/generate_neural_english.py"
+      - ".github/workflows/generate-english-audio.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: generate-english-audio
+  cancel-in-progress: true
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install free neural speech tools
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq espeak-ng ffmpeg
+          python -m pip install "piper-tts==1.7.0"
+
+      - name: Download separate British girl and boy neural voice models
+        run: |
+          mkdir -p /tmp/lla-english-voices
+          source="https://huggingface.co/rhasspy/piper-voices/resolve/main/en/en_GB"
+          for voice in cori alan; do
+            base="$source/$voice/medium/en_GB-$voice-medium.onnx"
+            curl --fail --location --retry 3 --silent --show-error "$base" -o "/tmp/lla-english-voices/en_GB-$voice-medium.onnx"
+            curl --fail --location --retry 3 --silent --show-error "$base.json" -o "/tmp/lla-english-voices/en_GB-$voice-medium.onnx.json"
+            test $(stat -c%s "/tmp/lla-english-voices/en_GB-$voice-medium.onnx") -gt 10000000
+          done
+
+      - name: Generate two clear lesson voice profiles
+        run: python scripts/generate_neural_english.py
+
+      - name: Verify every active lesson item has two English recordings
+        run: |
+          python - <<'PY'
+          import json,pathlib,subprocess
+          data=subprocess.check_output(["node","-e",
+            "global.window={};require('./curriculum.js');process.stdout.write(JSON.stringify(window.LLA_CURRICULUM.subjects))"])
+          subs=json.loads(data)
+          paths=[pathlib.Path(f"audio/en/{l['id']}-{i}-{kind}.mp3")
+            for s in subs for l in s["lessons"] for i,_ in enumerate(l["items"])
+            for kind in ("girl","boy")]
+          missing=[str(p) for p in paths if not p.exists() or p.stat().st_size<512]
+          if missing:raise RuntimeError(f"Missing English audio: {missing}")
+          print("Verified",len(paths),"English recordings")
+          PY
+
+      - name: Commit new recordings to the app
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add audio/en/*.mp3
+          if git diff --cached --quiet; then
+            echo "English recordings already up to date"
+          else
+            git commit -m "Add separate natural British English girl and boy lesson audio"
+            git pull --rebase origin main
+            git push origin main
+          fi
