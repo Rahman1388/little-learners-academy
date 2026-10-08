@@ -45,6 +45,11 @@ jobs:
           grep -q 'LLA_CURRICULUM' curriculum.js
           grep -q 'serviceWorker' app.js
 
+      - name: Install audio inspector
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg
+
       - name: Check both languages' recorded audio
         run: |
           python3 -m py_compile scripts/check_audio_assets.py
