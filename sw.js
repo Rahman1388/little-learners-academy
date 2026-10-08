@@ -1,5 +1,5 @@
-const CACHE="lla-v7";
-const CORE=["./","./index.html","./styles.css","./curriculum.js","./app.js","./manifest.webmanifest","./icon.svg"];
+const CACHE="lla-v8";
+const CORE=["./","./index.html","./styles.css","./curriculum.js","./app.js","./manifest.webmanifest","./icon.svg","./phonics-adventure.html","./phonics-adventure.css","./phonics-adventure.js"];
 
 self.addEventListener("install",event=>{
   event.waitUntil(
