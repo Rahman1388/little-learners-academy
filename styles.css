@@ -54,3 +54,19 @@ linear-gradient(145deg,#fffdf7,#f4fbff 46%,#fff3f8);border-color:#fff;box-shadow
   box-shadow:0 5px 0 #07567c;
 }
 .quick .btn[aria-pressed="true"]:after{content:" ✓";font-weight:900}
+
+/* Original Reading Adventure discovery, inspired by age-appropriate gameplay */
+.questPromo{display:flex;align-items:center;gap:16px;flex-wrap:wrap;background:linear-gradient(118deg,#e7ffe2,#fff1bd 50%,#e3f5ff);
+ border:5px solid #fff;border-radius:28px;box-shadow:0 7px #9fcfc7;margin:20px 0 30px;padding:19px}
+.questPromoIcon{font-size:42px;min-width:135px;text-align:center}
+.questPromoBody{flex:1;min-width:210px}
+.questPromo h2{margin:0 0 5px;font-size:clamp(21px,3vw,28px)}
+.questPromo h2 span{display:block;font-size:.8em;margin-top:3px}
+.questPromo p{margin:5px 0;font-weight:750;line-height:1.6}
+.questGo,.questBanner{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:14px 19px;
+ border:3px solid #fff;border-radius:18px;text-decoration:none;color:#fff;font-weight:900;
+ background:linear-gradient(120deg,#2cb996,#0c8b82);box-shadow:0 5px #086659;text-align:center}
+.questGo:focus-visible,.questBanner:focus-visible{outline:4px solid #8a1538;outline-offset:4px}
+.questBanner{display:flex;max-width:720px;margin:16px auto;padding:16px;font-size:17px;background:linear-gradient(120deg,#b346b2,#218bc1);box-shadow:0 5px #25719e}
+@media(max-width:650px){.questPromo{justify-content:center;text-align:center;padding:14px}
+.questPromoIcon{min-width:100%;font-size:37px}.questPromoBody{min-width:100%}.questGo{width:100%}}
