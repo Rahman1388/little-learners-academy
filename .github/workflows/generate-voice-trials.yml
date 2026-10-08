@@ -1,0 +1,85 @@
+name: Generate child-friendly voice trials
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/generate_voice_trials.py"
+      - ".github/workflows/generate-voice-trials.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: generate-voice-trials
+  cancel-in-progress: true
+
+jobs:
+  audition:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install voice generation tools
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg espeak-ng
+          python -m pip install "piper-tts==1.7.0"
+
+      - name: Download three voice models into temporary runner directory
+        run: |
+          mkdir -p /tmp/lla-voice-trials
+          female="https://huggingface.co/vadimbelsky/arabic-emirati-female-piper/resolve/main"
+          for suffix in onnx onnx.json; do
+            curl -fsSL --retry 3 "$female/arabic-emirati-female-model.$suffix" -o "/tmp/lla-voice-trials/arabic-emirati-female-model.$suffix"
+          done
+
+          english="https://huggingface.co/rhasspy/piper-voices/resolve/main/en"
+          for pair in "en_GB alba" "en_US bryce"; do
+            set -- $pair
+            region="$1"
+            name="$2"
+            model="$region-$name-medium"
+            base="$english/$region/$name/medium/$model"
+            for suffix in onnx onnx.json; do
+              curl -fsSL --retry 3 "$base.$suffix" -o "/tmp/lla-voice-trials/$model.$suffix"
+            done
+          done
+          test $(stat -c%s /tmp/lla-voice-trials/arabic-emirati-female-model.onnx) -gt 10000000
+          test $(stat -c%s /tmp/lla-voice-trials/en_GB-alba-medium.onnx) -gt 10000000
+          test $(stat -c%s /tmp/lla-voice-trials/en_US-bryce-medium.onnx) -gt 10000000
+
+      - name: Generate alternative Arabic and English clips
+        run: python scripts/generate_voice_trials.py
+
+      - name: Verify demo clips and playable format
+        run: |
+          python - <<'PY'
+          import pathlib, subprocess, json
+          files=sorted(pathlib.Path("audio/trials").glob("*.mp3"))
+          assert len(files)==20, f"Expected 20 demos, found {len(files)}"
+          for file in files:
+              assert file.stat().st_size>700, f"Empty: {file}"
+              check=subprocess.run(["ffprobe","-v","error","-show_entries","format=duration",
+                  "-of","default=noprint_wrappers=1:nokey=1",str(file)],capture_output=True,text=True,check=True)
+              assert float(check.stdout)>0.2, f"Not playable: {file}"
+          print("Verified",len(files),"voice audition clips")
+          PY
+
+      - name: Commit trial clips without overwriting live lesson narration
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add audio/trials/*.mp3
+          if git diff --cached --quiet; then
+            echo "Trial clips are unchanged"
+          else
+            git commit -m "Add optional child-friendly voice listening candidates"
+            git pull --rebase origin main
+            git push origin main
+          fi
