@@ -2,19 +2,20 @@
 
 ## Current listening experience
 - Every active lesson shows a choice of **Girl-style** or **Boy-style** voice and two playable previews, one English and one Arabic.
-- The selected style and **Slow & clear** preference are stored only in the browser.
+- The selected style and optional **Slightly slower** preference are stored only in the browser. Natural speed is the default; slowdown is minimal to avoid artifacts.
 - Audio is pre-generated into local `audio/en/` and `audio/ar/` MP3 files; the child-facing site does not contact a speech API.
 - Where an MP3 is unavailable, the browser's speech synthesizer is a fallback.
 - These voices are **synthetic youthful-style narrations**, not recordings of real children. Never market them as actual child speakers or a voice clone.
 
 ## Free speech technology
 - English uses separate British English neural models from Piper: female `en_GB-cori-medium` and male `en_GB-alan-medium`.
-- Arabic uses Piper `ar_JO-kareem-medium` with two subtly different youth-oriented acoustic treatments. **The Arabic voice styles share the same underlying speaker**, and differ in tone/pitch rather than speaker identity.
+- Arabic now uses **two distinct synthetic speaker models**: female `vadimbelsky/arabic-emirati-female-piper` and male `ar_JO-kareem-medium`. The former is Emirati/Gulf-accented; the latter is Jordanian. Arabic pronunciation and suitability for the intended Qatar classroom context must be reviewed.
 - Piper project/models: https://huggingface.co/rhasspy/piper-voices
-- Individual model cards:
+- The original pitch/time stretching and aggressive audio filtering have been removed to improve clarity. Source recordings are encoded at their natural pitch with high-quality MP3 settings.\n- A direct audio review page is available at `voice-test.html`.\n- Individual model cards:
   - https://huggingface.co/rhasspy/piper-voices/blob/main/en/en_GB/cori/medium/MODEL_CARD
   - https://huggingface.co/rhasspy/piper-voices/blob/main/en/en_GB/alan/medium/MODEL_CARD
   - https://huggingface.co/rhasspy/piper-voices/blob/main/ar/ar_JO/kareem/medium/MODEL_CARD
+  - https://huggingface.co/vadimbelsky/arabic-emirati-female-piper
 - Model downloads happen only in the temporary GitHub Actions runner; weights are not distributed with the child-facing app.
 
 ## Quality and publication checks
