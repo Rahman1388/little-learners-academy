@@ -39,6 +39,90 @@ a.back{display:inline-block;margin:12px 0;padding:12px 19px;text-decoration:none
 <audio controls preload="metadata" src="./audio/ar/sentences-0-boy.mp3?v=clean-v3">Your browser does not support audio.</audio>
 <small>Jordanian Arabic male synthetic speaker • Normal speed</small></article>
 </section>
+<section id="voiceAuditions" class="instructions" aria-labelledby="auditionTitle" style="margin:28px 0;background:#e8f8ff;border:4px solid #fff;box-shadow:0 7px #a9d9e9">
+  <h2 id="auditionTitle">🎧 New phonics voice auditions • تجربة الأصوات الجديدة</h2>
+  <p><strong>Try the new voice choices before we change any lessons.</strong> These are clear, natural-pitch synthetic voices—<strong>not recordings of actual children</strong>. The Arabic boy voice you approved remains unchanged.</p>
+  <label for="arabicTestWord"><strong>Choose an Arabic word • اختر كلمة بالعربية</strong></label>
+  <select id="arabicTestWord" style="display:block;margin:8px 0 14px;padding:12px;border-radius:14px;font-size:19px;max-width:100%">
+    <option value="0">قطة — cat</option><option value="1">سمكة — fish</option><option value="2">شمس — sun</option><option value="3">حافلة — bus</option>
+  </select>
+  <div class="testCards" style="margin:12px 0 22px">
+    <article class="testCard">
+      <h2>👧 Arabic Girl • Option A</h2>
+      <p>Natural pronunciation, without written vowel marks</p>
+      <audio id="arabicA" controls preload="metadata" src="./audio/trials/ar-phonics-0-female-natural.mp3">Audio is not supported.</audio>
+      <small>Experimental female synthetic voice; check clarity, not only tone</small>
+    </article>
+    <article class="testCard">
+      <h2>👧 Arabic Girl • Option B</h2>
+      <p>Original word with vowel marks</p>
+      <audio id="arabicB" controls preload="metadata" src="./audio/trials/ar-phonics-0-female-vowelled.mp3">Audio is not supported.</audio>
+      <small>Same female model with different Arabic text input; compare pronunciation</small>
+    </article>
+    <article class="testCard">
+      <h2>👦 Arabic Boy • Approved reference</h2>
+      <p>Current clear boy voice — unchanged</p>
+      <audio id="arabicBoyReference" controls preload="metadata" src="./audio/ar/phonics-0-boy.mp3">Audio is not supported.</audio>
+      <small>Compare A and B against the Arabic male voice you liked</small>
+    </article>
+  </div>
+  <label for="englishTestWord"><strong>Choose an English word • اختر كلمة بالإنجليزية</strong></label>
+  <select id="englishTestWord" style="display:block;margin:8px 0 14px;padding:12px;border-radius:14px;font-size:19px">
+    <option value="0">cat</option><option value="1">fish</option><option value="2">sun</option><option value="3">bus</option>
+  </select>
+  <div class="testCards" style="margin:12px 0 12px">
+    <article class="testCard">
+      <h2>👧 English Girl • New option</h2>
+      <p>Alba — British English</p>
+      <audio id="englishGirlTrial" controls preload="metadata" src="./audio/trials/en-phonics-0-alba.mp3">Audio is not supported.</audio>
+      <small>Natural synthetic female voice, no artificial pitch shift</small>
+    </article>
+    <article class="testCard">
+      <h2>👧 English Girl • Current</h2>
+      <p>Cori — British English</p>
+      <audio id="englishGirlReference" controls preload="metadata" src="./audio/en/phonics-0-girl.mp3">Audio is not supported.</audio>
+      <small>Existing synthetic voice</small>
+    </article>
+    <article class="testCard">
+      <h2>👦 English Boy • New option</h2>
+      <p>Bryce — American English</p>
+      <audio id="englishBoyTrial" controls preload="metadata" src="./audio/trials/en-phonics-0-bryce.mp3">Audio is not supported.</audio>
+      <small>Natural synthetic male voice; American pronunciation differs from British</small>
+    </article>
+    <article class="testCard">
+      <h2>👦 English Boy • Current</h2>
+      <p>Alan — British English</p>
+      <audio id="englishBoyReference" controls preload="metadata" src="./audio/en/phonics-0-boy.mp3">Audio is not supported.</audio>
+      <small>Existing synthetic voice</small>
+    </article>
+  </div>
+  <p style="background:#fff8df;padding:14px;border-radius:16px"><strong>Which sound is clearest?</strong> Please tell me Arabic Girl A or B, and whether the newer English voices sound better. We will keep the app unchanged until you choose. Phoneme-by-phoneme teaching will still need a qualified phonics teacher's review.</p>
+</section>
+<script>
+(function(){
+  var a=document.getElementById("arabicTestWord");
+  var e=document.getElementById("englishTestWord");
+  function changeAudio(id,path){
+    var player=document.getElementById(id);
+    player.pause();
+    player.src=path+"?trial=1";
+    player.load();
+  }
+  a.addEventListener("change",function(){
+    var n=a.value;
+    changeAudio("arabicA","./audio/trials/ar-phonics-"+n+"-female-natural.mp3");
+    changeAudio("arabicB","./audio/trials/ar-phonics-"+n+"-female-vowelled.mp3");
+    changeAudio("arabicBoyReference","./audio/ar/phonics-"+n+"-boy.mp3");
+  });
+  e.addEventListener("change",function(){
+    var n=e.value;
+    changeAudio("englishGirlTrial","./audio/trials/en-phonics-"+n+"-alba.mp3");
+    changeAudio("englishGirlReference","./audio/en/phonics-"+n+"-girl.mp3");
+    changeAudio("englishBoyTrial","./audio/trials/en-phonics-"+n+"-bryce.mp3");
+    changeAudio("englishBoyReference","./audio/en/phonics-"+n+"-boy.mp3");
+  });
+})();
+</script>
 <section class="instructions">
 <h2>How to check • كيف نختبر؟</h2>
 <p>Press ▶ on each recording and compare clarity, pace and pronunciation. These players bypass the app's speech controls, so they help distinguish a recording-quality problem from an app playback problem.</p>
