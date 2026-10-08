@@ -27,7 +27,7 @@
   if (!saved || typeof saved !== "object" || !Array.isArray(saved.done)) saved = {done:[]};
   saved.done = [...new Set(saved.done.filter(x => Number.isInteger(x) && x >= 0 && x < WORDS.length))];
   const main = read(MAIN_KEY) || {};
-  const chosenEnglish = main.voice === "girl" ? "girl" : "boy";
+  const chosenEnglish = main.voice === "boy" ? "boy" : "girl";
   let current = WORDS.findIndex((_w,i) => !saved.done.includes(i));
   if (current < 0) current = 0;
   let correctPieces = 0;
@@ -196,11 +196,11 @@
     saved.done.push(current);
     write(QUEST_KEY,saved);
     // Award just one total app star per newly completed quest word.
-    const full = read(MAIN_KEY);
-    if (full && typeof full === "object") {
-      full.stars = Math.max(0,Number(full.stars) || 0) + 1;
-      write(MAIN_KEY,full);
-    }
+    const storedMain = read(MAIN_KEY);
+    const full = storedMain && typeof storedMain === "object" && !Array.isArray(storedMain)
+      ? storedMain : {voice:chosenEnglish, stars:0, completed:{}};
+    full.stars = Math.max(0,Number(full.stars) || 0) + 1;
+    write(MAIN_KEY,full);
     updateTrail();
   }
 
