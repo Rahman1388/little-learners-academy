@@ -53,7 +53,8 @@ function speak(text,kind=state.voice,lang="en"){
 function showAudioHelp(){
   const box=$("#feedback");
   if(box)box.innerHTML='🔊 Arabic voice is not available on this device yet. جرّب تحديث الصفحة أو تفعيل صوت عربي في إعدادات الجهاز.';
-}\nfunction playArabicItem(index,text){
+}
+function playArabicItem(index,text){
   const isRecorded=currentSubject?.id==="english"&&currentLesson?.id==="phonics";
   if(!isRecorded){speak(text,state.voice,"ar");return}
   const audio=new Audio("./audio/ar/phonics-"+index+"-"+state.voice+".mp3");
