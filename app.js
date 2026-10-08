@@ -57,9 +57,24 @@ function showAudioHelp(){
 function playArabicItem(index,text){
   const isRecorded=currentSubject?.id==="english"&&currentLesson?.id==="phonics";
   if(!isRecorded){speak(text,state.voice,"ar");return}
-  const audio=new Audio("./audio/ar/phonics-"+index+"-"+state.voice+".mp3");
+  const file=new URL("audio/ar/phonics-"+index+"-"+state.voice+".mp3",document.baseURI);
+  file.searchParams.set("v","7");
+  const audio=new Audio(file.href);
   audio.preload="auto";
-  audio.play().catch(()=>speak(text,state.voice,"ar"));
+  audio.playsInline=true;
+  const box=$("#feedback");
+  if(box)box.textContent="🔊 Loading Arabic audio… جاري تشغيل الصوت العربي";
+  audio.addEventListener("playing",()=>{if(box)box.textContent="✅ Arabic audio playing • الصوت العربي يعمل"});
+  audio.addEventListener("ended",()=>{if(box)box.textContent="🌟 Great listening! ممتاز — "+text});
+  audio.addEventListener("error",()=>{
+    if(box)box.textContent="🔁 Recorded audio unavailable — using device Arabic voice.";
+    speak(text,state.voice,"ar");
+  },{once:true});
+  const p=audio.play();
+  if(p&&typeof p.catch==="function")p.catch(()=>{
+    if(box)box.textContent="🔁 Trying the device Arabic voice…";
+    speak(text,state.voice,"ar");
+  });
 }
 
 function renderSubjects(){
@@ -165,5 +180,5 @@ document.addEventListener("DOMContentLoaded",()=>{refreshVoices();if("speechSynt
   $("#girlVoice").onclick=()=>{state.voice="girl";saveState();speak("Hello! Let us learn together!","girl","en")};
   $("#boyVoice").onclick=()=>{state.voice="boy";saveState();speak("Hello! Let us learn and play!","boy","en")};
   $("#installBtn").onclick=async()=>{if(!deferredInstall)return;deferredInstall.prompt();await deferredInstall.userChoice;deferredInstall=null;$("#installBtn").classList.add("hidden")};
-  if("serviceWorker" in navigator)navigator.serviceWorker.register("./sw.js");
+  if("serviceWorker" in navigator)navigator.serviceWorker.register("./sw.js",{updateViaCache:"none"});
 });
