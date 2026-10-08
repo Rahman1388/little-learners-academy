@@ -5,60 +5,68 @@ on:
     branches: [main]
     paths:
       - "audio/ar/source.json"
+      - "scripts/generate_neural_arabic.py"
       - ".github/workflows/generate-arabic-audio.yml"
+  workflow_dispatch:
 
 permissions:
   contents: write
 
+concurrency:
+  group: generate-arabic-audio
+  cancel-in-progress: true
+
 jobs:
   generate:
     runs-on: ubuntu-latest
+    timeout-minutes: 25
     steps:
-      - uses: actions/checkout@v4
+      - name: Check out repository
+        uses: actions/checkout@v4
 
-      - name: Install Arabic speech tools
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install free neural speech tools
         run: |
-          sudo apt-get update
-          sudo apt-get install -y espeak-ng ffmpeg
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq espeak-ng ffmpeg
+          python -m pip install "piper-tts==1.7.0"
 
-      - name: Generate offline Arabic phonics audio
+      - name: Download Arabic neural voice model (temporary on runner)
+        run: |
+          mkdir -p /tmp/lla-neural-voice
+          base="https://huggingface.co/rhasspy/piper-voices/resolve/main/ar/ar_JO/kareem/medium"
+          curl --fail --location --retry 3 --silent --show-error "$base/ar_JO-kareem-medium.onnx" -o /tmp/lla-neural-voice/ar_JO-kareem-medium.onnx
+          curl --fail --location --retry 3 --silent --show-error "$base/ar_JO-kareem-medium.onnx.json" -o /tmp/lla-neural-voice/ar_JO-kareem-medium.onnx.json
+          test $(stat -c%s /tmp/lla-neural-voice/ar_JO-kareem-medium.onnx) -gt 10000000
+
+      - name: Replace robotic audio with neural boy/girl-style MP3s
+        run: python scripts/generate_neural_arabic.py
+
+      - name: Validate generated recordings
         run: |
           python - <<'PY'
-          import json, pathlib, subprocess, tempfile
-
-          source = json.loads(pathlib.Path("audio/ar/source.json").read_text(encoding="utf-8"))
-          out = pathlib.Path("audio/ar")
-          out.mkdir(parents=True, exist_ok=True)
-
-          def make(text, target, speed, pitch):
-              with tempfile.NamedTemporaryFile(suffix=".wav", delete=False) as tmp:
-                  wav = pathlib.Path(tmp.name)
-              subprocess.run([
-                  "espeak-ng","-v","ar","-s",str(speed),"-p",str(pitch),
-                  "-a","180","-w",str(wav),text
-              ], check=True)
-              subprocess.run([
-                  "ffmpeg","-y","-loglevel","error","-i",str(wav),
-                  "-codec:a","libmp3lame","-q:a","4",str(target)
-              ], check=True)
-              wav.unlink(missing_ok=True)
-
-          for lesson_id, items in source.items():
-              for item in items:
-                  base = f"{lesson_id}-{item['id']}"
-                  make(item["text"], out / f"{base}-girl.mp3", 118, 66)
-                  make(item["text"], out / f"{base}-boy.mp3", 116, 48)
+          import json,pathlib
+          data=json.loads(pathlib.Path("audio/ar/source.json").read_text(encoding="utf-8"))
+          paths=[pathlib.Path(f"audio/ar/{lesson}-{item['id']}-{gender}.mp3")
+                 for lesson,items in data.items() for item in items for gender in ("girl","boy")]
+          missing=[str(p) for p in paths if not p.is_file() or p.stat().st_size < 512]
+          if missing:raise RuntimeError(f"Missing Arabic recordings: {missing}")
+          print("Checked",len(paths),"neural Arabic recordings")
           PY
 
-      - name: Commit generated audio
+      - name: Commit changed lesson audio
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add audio/ar/*.mp3
           if git diff --cached --quiet; then
-            echo "No audio changes"
+            echo "Audio already current"
           else
-            git commit -m "Generate offline Arabic lesson audio"
+            git commit -m "Replace robotic audio with clearer neural lesson narration"
             git pull --rebase origin main
             git push origin main
           fi
