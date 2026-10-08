@@ -161,6 +161,8 @@ function openLesson(id){
   $("#subjectView").classList.add("hidden");$("#lessonView").classList.remove("hidden");
   $("#lessonTitle").innerHTML=currentSubject.icon+' '+currentLesson.title+' <span class="ar">• '+currentLesson.ar+'</span>';
   $("#lessonIntro").innerHTML=currentLesson.intro+'<br><span class="ar">'+currentLesson.arIntro+'</span>';
+  const adventureLink=$("#questLessonLink");
+  if(adventureLink)adventureLink.classList.toggle("hidden",!(currentSubject.id==="english"&&currentLesson.id==="phonics"));
   $("#items").innerHTML=currentLesson.items.map(itemMarkup).join("");
   $("#items").querySelectorAll(".speakBtn.en").forEach(b=>b.onclick=()=>{const i=+b.dataset.i;playEnglishItem(i,currentLesson.items[i][1])});
   $("#items").querySelectorAll(".speakBtn.arBtn").forEach(b=>b.onclick=()=>{const i=+b.dataset.i;playArabicItem(i,currentLesson.items[i][2])});
