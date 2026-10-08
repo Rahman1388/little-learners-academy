@@ -53,7 +53,14 @@ function speak(text,kind=state.voice,lang="en"){
 function showAudioHelp(){
   const box=$("#feedback");
   if(box)box.innerHTML='🔊 Arabic voice is not available on this device yet. جرّب تحديث الصفحة أو تفعيل صوت عربي في إعدادات الجهاز.';
+}\nfunction playArabicItem(index,text){
+  const isRecorded=currentSubject?.id==="english"&&currentLesson?.id==="phonics";
+  if(!isRecorded){speak(text,state.voice,"ar");return}
+  const audio=new Audio("./audio/ar/phonics-"+index+"-"+state.voice+".mp3");
+  audio.preload="auto";
+  audio.play().catch(()=>speak(text,state.voice,"ar"));
 }
+
 function renderSubjects(){
   const box=$("#subjects");
   box.innerHTML=C.subjects.map(s=>{
@@ -86,7 +93,7 @@ function openLesson(id){
   $("#lessonIntro").innerHTML=currentLesson.intro+'<br><span class="ar">'+currentLesson.arIntro+'</span>';
   $("#items").innerHTML=currentLesson.items.map(itemMarkup).join("");
   $("#items").querySelectorAll(".speakBtn.en").forEach(b=>b.onclick=()=>{const x=currentLesson.items[+b.dataset.i];speak(x[1],state.voice,"en");$("#feedback").textContent="🌟 Great listening! ممتاز — "+x[1]});
-  $("#items").querySelectorAll(".speakBtn.arBtn").forEach(b=>b.onclick=()=>{const x=currentLesson.items[+b.dataset.i];speak(x[2],state.voice,"ar");$("#feedback").textContent="🔊 العربية — "+x[2]});
+  $("#items").querySelectorAll(".speakBtn.arBtn").forEach(b=>b.onclick=()=>{const i=+b.dataset.i;const x=currentLesson.items[i];playArabicItem(i,x[2]);$("#feedback").textContent="🔊 العربية — "+x[2]});
   renderMemory();renderGame();renderQuiz();window.scrollTo({top:0,behavior:"smooth"});
 }
 function renderMemory(){
