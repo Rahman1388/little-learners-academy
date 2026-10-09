@@ -1,5 +1,16 @@
-const CACHE="lla-v9";
-const CORE=["./","./index.html","./styles.css","./curriculum.js","./app.js","./manifest.webmanifest","./icon.svg","./phonics-adventure.html","./phonics-adventure.css","./phonics-adventure.js"];
+const CACHE="lla-v10";
+// Download essential three-repeat words once on installation so phonics lessons
+// can play from cache even on a patchy mobile connection.
+const PHONICS_PRACTICE=Array.from({length:4},(_,i)=>[
+  "./audio/practice/en-phonics-"+i+"-girl.mp3",
+  "./audio/practice/en-phonics-"+i+"-boy.mp3",
+  "./audio/practice/ar-phonics-"+i+"-boy.mp3"
+]).flat();
+const SENTENCE_PRACTICE=["en","ar"].flatMap(lang=>["girl","boy"].map(kind=>
+  "./audio/practice/"+lang+"-sentences-0-"+kind+".mp3"));
+const CORE=["./","./index.html","./styles.css","./curriculum.js","./app.js","./manifest.webmanifest","./icon.svg",
+  "./phonics-adventure.html","./phonics-adventure.css","./phonics-adventure.js","./voice-test.html",
+  ...PHONICS_PRACTICE,...SENTENCE_PRACTICE];
 
 self.addEventListener("install",event=>{
   event.waitUntil(
