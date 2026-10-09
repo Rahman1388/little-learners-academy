@@ -1,0 +1,56 @@
+name: Build longer listening practice audio
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/build_practice_audio.py"
+      - ".github/workflows/build-practice-audio.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-practice-audio
+  cancel-in-progress: true
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout approved source audio
+        uses: actions/checkout@v4
+      - name: Install ffmpeg and Python
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg
+      - name: Build longer three-repeat recordings
+        run: python3 scripts/build_practice_audio.py
+      - name: Validate total duration and distinct audio sources
+        run: |
+          python3 - <<'PY'
+          import json,pathlib,subprocess
+          root=pathlib.Path("audio/practice")
+          manifest=json.loads((root/"manifest.json").read_text(encoding="utf-8"))
+          assert len(manifest["clips"])==44, "Missing practice clips"
+          for x in manifest["clips"]:
+              p=root/(x["name"]+".mp3")
+              assert p.is_file() and p.stat().st_size>1000,str(p)
+              assert x["practice_seconds"]>2.1,str(p)
+              assert x["practice_seconds"]>x["original_seconds"]*2.8,str(p)
+          print("All 44 clips are present, longer and have valid MP3 duration.")
+          PY
+      - name: Publish practice copies only
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add audio/practice/
+          if git diff --cached --quiet; then
+            echo "No changes to practice audio"
+          else
+            git commit -m "Add longer three-repeat English and Arabic practice audio"
+            git pull --rebase origin main
+            git push origin main
+          fi
