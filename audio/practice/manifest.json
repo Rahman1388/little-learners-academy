@@ -1,0 +1,225 @@
+{
+  "description": "Original recording repeated 3 times with short pauses; not new phoneme audio.",
+  "clips": [
+    {
+      "name": "en-sentences-0-girl",
+      "original_seconds": 0.967,
+      "practice_seconds": 4.389
+    },
+    {
+      "name": "en-phonics-0-girl",
+      "original_seconds": 0.575,
+      "practice_seconds": 3.187
+    },
+    {
+      "name": "en-phonics-1-girl",
+      "original_seconds": 0.575,
+      "practice_seconds": 3.161
+    },
+    {
+      "name": "en-phonics-2-girl",
+      "original_seconds": 0.758,
+      "practice_seconds": 3.709
+    },
+    {
+      "name": "en-phonics-3-girl",
+      "original_seconds": 0.888,
+      "practice_seconds": 4.101
+    },
+    {
+      "name": "en-sentences-0-boy",
+      "original_seconds": 1.228,
+      "practice_seconds": 5.172
+    },
+    {
+      "name": "en-phonics-0-boy",
+      "original_seconds": 0.601,
+      "practice_seconds": 3.291
+    },
+    {
+      "name": "en-phonics-1-boy",
+      "original_seconds": 0.575,
+      "practice_seconds": 3.239
+    },
+    {
+      "name": "en-phonics-2-boy",
+      "original_seconds": 0.627,
+      "practice_seconds": 3.344
+    },
+    {
+      "name": "en-phonics-3-boy",
+      "original_seconds": 0.549,
+      "practice_seconds": 3.135
+    },
+    {
+      "name": "ar-sentences-0-girl",
+      "original_seconds": 0.967,
+      "practice_seconds": 4.336
+    },
+    {
+      "name": "ar-phonics-0-girl",
+      "original_seconds": 0.418,
+      "practice_seconds": 2.717
+    },
+    {
+      "name": "ar-phonics-1-girl",
+      "original_seconds": 0.313,
+      "practice_seconds": 2.403
+    },
+    {
+      "name": "ar-phonics-2-girl",
+      "original_seconds": 0.366,
+      "practice_seconds": 2.56
+    },
+    {
+      "name": "ar-phonics-3-girl",
+      "original_seconds": 0.47,
+      "practice_seconds": 2.873
+    },
+    {
+      "name": "ar-sentences-0-boy",
+      "original_seconds": 1.959,
+      "practice_seconds": 7.34
+    },
+    {
+      "name": "ar-phonics-0-boy",
+      "original_seconds": 0.549,
+      "practice_seconds": 3.082
+    },
+    {
+      "name": "ar-phonics-1-boy",
+      "original_seconds": 0.679,
+      "practice_seconds": 3.553
+    },
+    {
+      "name": "ar-phonics-2-boy",
+      "original_seconds": 0.679,
+      "practice_seconds": 3.474
+    },
+    {
+      "name": "ar-phonics-3-boy",
+      "original_seconds": 1.123,
+      "practice_seconds": 4.833
+    },
+    {
+      "name": "ar-phonics-0-female-natural",
+      "original_seconds": 0.418,
+      "practice_seconds": 2.743
+    },
+    {
+      "name": "ar-phonics-0-female-vowelled",
+      "original_seconds": 0.366,
+      "practice_seconds": 2.612
+    },
+    {
+      "name": "ar-phonics-0-female-calm",
+      "original_seconds": 0.705,
+      "practice_seconds": 3.579
+    },
+    {
+      "name": "ar-phonics-0-female-careful",
+      "original_seconds": 0.731,
+      "practice_seconds": 3.657
+    },
+    {
+      "name": "en-phonics-0-alba",
+      "original_seconds": 0.627,
+      "practice_seconds": 3.344
+    },
+    {
+      "name": "en-phonics-0-bryce",
+      "original_seconds": 0.549,
+      "practice_seconds": 3.082
+    },
+    {
+      "name": "ar-phonics-1-female-natural",
+      "original_seconds": 0.313,
+      "practice_seconds": 2.403
+    },
+    {
+      "name": "ar-phonics-1-female-vowelled",
+      "original_seconds": 0.34,
+      "practice_seconds": 2.456
+    },
+    {
+      "name": "ar-phonics-1-female-calm",
+      "original_seconds": 0.575,
+      "practice_seconds": 3.213
+    },
+    {
+      "name": "ar-phonics-1-female-careful",
+      "original_seconds": 0.601,
+      "practice_seconds": 3.239
+    },
+    {
+      "name": "en-phonics-1-alba",
+      "original_seconds": 0.627,
+      "practice_seconds": 3.37
+    },
+    {
+      "name": "en-phonics-1-bryce",
+      "original_seconds": 0.679,
+      "practice_seconds": 3.474
+    },
+    {
+      "name": "ar-phonics-2-female-natural",
+      "original_seconds": 0.313,
+      "practice_seconds": 2.429
+    },
+    {
+      "name": "ar-phonics-2-female-vowelled",
+      "original_seconds": 0.235,
+      "practice_seconds": 2.142
+    },
+    {
+      "name": "ar-phonics-2-female-calm",
+      "original_seconds": 0.653,
+      "practice_seconds": 3.448
+    },
+    {
+      "name": "ar-phonics-2-female-careful",
+      "original_seconds": 0.549,
+      "practice_seconds": 3.109
+    },
+    {
+      "name": "en-phonics-2-alba",
+      "original_seconds": 0.575,
+      "practice_seconds": 3.239
+    },
+    {
+      "name": "en-phonics-2-bryce",
+      "original_seconds": 0.731,
+      "practice_seconds": 3.657
+    },
+    {
+      "name": "ar-phonics-3-female-natural",
+      "original_seconds": 0.418,
+      "practice_seconds": 2.743
+    },
+    {
+      "name": "ar-phonics-3-female-vowelled",
+      "original_seconds": 0.444,
+      "practice_seconds": 2.821
+    },
+    {
+      "name": "ar-phonics-3-female-calm",
+      "original_seconds": 0.731,
+      "practice_seconds": 3.683
+    },
+    {
+      "name": "ar-phonics-3-female-careful",
+      "original_seconds": 0.862,
+      "practice_seconds": 4.049
+    },
+    {
+      "name": "en-phonics-3-alba",
+      "original_seconds": 0.679,
+      "practice_seconds": 3.474
+    },
+    {
+      "name": "en-phonics-3-bryce",
+      "original_seconds": 0.601,
+      "practice_seconds": 3.265
+    }
+  ]
+}
