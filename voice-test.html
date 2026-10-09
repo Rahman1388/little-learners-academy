@@ -19,6 +19,8 @@ a.back{display:inline-block;margin:12px 0;padding:12px 19px;text-decoration:none
 .audioLoadStatus[data-status="error"]{color:#98292b;background:#fff0f0;border:2px solid #f2adb1;padding:10px;border-radius:12px}
 .audioLoadStatus[data-status="ready"]{color:#166b55}
 .testCard audio{display:block}
+.repeatClipBtn{width:100%;border:0;background:#d9f5ff;border-radius:13px;padding:10px 13px;color:#17486d;font-weight:900;cursor:pointer;margin:6px 0}
+.repeatClipBtn:focus-visible{outline:3px solid #8A1538}
 </style>
 </head>
 <body>
@@ -27,25 +29,26 @@ a.back{display:inline-block;margin:12px 0;padding:12px 19px;text-decoration:none
 <section class="testHero">
 <h1>🎧 Voice listening test</h1>
 <h2 lang="ar" dir="rtl">تجربة وضوح الأصوات</h2>
-<p>Compare recorded voices at normal speed. <strong>These are synthetic adult speakers—not real children.</strong> No recording on this page has passed Grade 1 pronunciation review.</p>
+<p><strong>NEW: every sample repeats 3 times with a clear pause between repetitions.</strong> You can listen, pause and repeat. • <span lang="ar" dir="rtl">كل تسجيل يتكرر ثلاث مرات مع توقف قصير بين كل مرة.</span></p>
+<p>These are synthetic adult speakers—not real child recordings. Repetition helps children hear words but does <strong>not</strong> correct a mispronounced word. None of the female Arabic trials is approved for Grade 1.</p>
 </section>
 <section class="testCards" aria-label="Arabic and English voice samples">
 <article class="testCard"><h2>👩 English female-style trial</h2><p>I can read.</p>
-<audio controls preload="metadata" src="./audio/en/sentences-0-girl.mp3?v=clean-v3">Your browser does not support audio.</audio>
+<audio controls preload="metadata" src="./audio/practice/en-sentences-0-girl.mp3?v=three-repeat-1">Your browser does not support audio.</audio>
 <small>British English synthetic female speaker • Normal speed</small></article>
 <article class="testCard"><h2>👨 English male-style trial</h2><p>I can read.</p>
-<audio controls preload="metadata" src="./audio/en/sentences-0-boy.mp3?v=clean-v3">Your browser does not support audio.</audio>
+<audio controls preload="metadata" src="./audio/practice/en-sentences-0-boy.mp3?v=three-repeat-1">Your browser does not support audio.</audio>
 <small>British English synthetic male speaker • Normal speed</small></article>
 <article class="testCard"><h2>🎧 Arabic female trial — Not approved</h2><p lang="ar" dir="rtl">أستطيع القراءة.</p>
-<audio controls preload="metadata" src="./audio/ar/sentences-0-girl.mp3?v=clean-v3">Your browser does not support audio.</audio>
+<audio controls preload="metadata" src="./audio/practice/ar-sentences-0-girl.mp3?v=three-repeat-1">Your browser does not support audio.</audio>
 <small>Synthetic adult Gulf-Arabic female speaker. Reported unclear; not suitable for Grade 1 until independently reviewed.</small></article>
 <article class="testCard"><h2>👨 Arabic male reference</h2><p lang="ar" dir="rtl">أستطيع القراءة.</p>
-<audio controls preload="metadata" src="./audio/ar/sentences-0-boy.mp3?v=clean-v3">Your browser does not support audio.</audio>
+<audio controls preload="metadata" src="./audio/practice/ar-sentences-0-boy.mp3?v=three-repeat-1">Your browser does not support audio.</audio>
 <small>Comparatively clearer male reference, not a child recording. Arabic specialist review still needed.</small></article>
 </section>
 <section id="voiceAuditions" class="instructions" aria-labelledby="auditionTitle" style="margin:28px 0;background:#e8f8ff;border:4px solid #fff;box-shadow:0 7px #a9d9e9">
   <h2 id="auditionTitle">🎧 New phonics voice auditions • تجربة الأصوات الجديدة</h2>
-  <p><strong>Try the new voice choices before we change any lessons.</strong> These are clear, natural-pitch synthetic voices—<strong>not recordings of actual children</strong>. The Arabic boy voice you approved remains unchanged.</p>
+  <p><strong>Listen to each candidate THREE times with pauses before we change any lesson voice.</strong> These are clear, natural-pitch synthetic voices—<strong>not recordings of actual children</strong>. The Arabic boy voice you approved remains unchanged.</p>
   <label for="arabicTestWord"><strong>Choose an Arabic word • اختر كلمة بالعربية</strong></label>
   <select id="arabicTestWord" style="display:block;margin:8px 0 14px;padding:12px;border-radius:14px;font-size:19px;max-width:100%">
     <option value="0">قطة — cat</option><option value="1">سمكة — fish</option><option value="2">شمس — sun</option><option value="3">حافلة — bus</option>
@@ -54,31 +57,31 @@ a.back{display:inline-block;margin:12px 0;padding:12px 19px;text-decoration:none
     <article class="testCard">
       <h2>Arabic female • Trial A</h2>
       <p>Natural pronunciation, without written vowel marks</p>
-      <audio id="arabicA" controls preload="metadata" src="./audio/trials/ar-phonics-0-female-natural.mp3">Audio is not supported.</audio>
+      <audio id="arabicA" controls preload="metadata" src="./audio/practice/ar-phonics-0-female-natural.mp3">Audio is not supported.</audio>
       <small>Experimental female synthetic voice; check clarity, not only tone</small>
     </article>
     <article class="testCard">
       <h2>Arabic female • Trial B</h2>
       <p>Original word with vowel marks</p>
-      <audio id="arabicB" controls preload="metadata" src="./audio/trials/ar-phonics-0-female-vowelled.mp3">Audio is not supported.</audio>
+      <audio id="arabicB" controls preload="metadata" src="./audio/practice/ar-phonics-0-female-vowelled.mp3">Audio is not supported.</audio>
       <small>Same female model with different Arabic text input; compare pronunciation</small>
     </article>
     <article class="testCard">
       <h2>🎧 Arabic female • Calm trial C</h2>
       <p>Softer recording with a short lead-in for easier playback</p>
-      <audio id="arabicC" controls preload="metadata" src="./audio/trials/ar-phonics-0-female-calm.mp3">Audio is not supported.</audio>
+      <audio id="arabicC" controls preload="metadata" src="./audio/practice/ar-phonics-0-female-calm.mp3">Audio is not supported.</audio>
       <small>Not approved. Listen for the actual word; added silence does not guarantee clearer speech</small>
     </article>
     <article class="testCard">
       <h2>🎧 Arabic female • Careful trial D</h2>
       <p>Alternative synthesis settings with a quieter level; no pitch shifting</p>
-      <audio id="arabicD" controls preload="metadata" src="./audio/trials/ar-phonics-0-female-careful.mp3">Audio is not supported.</audio>
+      <audio id="arabicD" controls preload="metadata" src="./audio/practice/ar-phonics-0-female-careful.mp3">Audio is not supported.</audio>
       <small>Not approved. Same adult female voice model; suitability for children remains unverified</small>
     </article>
     <article class="testCard">
       <h2>Arabic male • Clearer reference</h2>
       <p>Current clear boy voice — unchanged</p>
-      <audio id="arabicBoyReference" controls preload="metadata" src="./audio/ar/phonics-0-boy.mp3">Audio is not supported.</audio>
+      <audio id="arabicBoyReference" controls preload="metadata" src="./audio/practice/ar-phonics-0-boy.mp3">Audio is not supported.</audio>
       <small>Compare A and B against the Arabic male voice you liked</small>
     </article>
   </div>
@@ -90,25 +93,25 @@ a.back{display:inline-block;margin:12px 0;padding:12px 19px;text-decoration:none
     <article class="testCard">
       <h2>English female • Trial option</h2>
       <p>Alba — British English</p>
-      <audio id="englishGirlTrial" controls preload="metadata" src="./audio/trials/en-phonics-0-alba.mp3">Audio is not supported.</audio>
+      <audio id="englishGirlTrial" controls preload="metadata" src="./audio/practice/en-phonics-0-alba.mp3">Audio is not supported.</audio>
       <small>Natural synthetic female voice, no artificial pitch shift</small>
     </article>
     <article class="testCard">
       <h2>👧 English Girl • Current</h2>
       <p>Cori — British English</p>
-      <audio id="englishGirlReference" controls preload="metadata" src="./audio/en/phonics-0-girl.mp3">Audio is not supported.</audio>
+      <audio id="englishGirlReference" controls preload="metadata" src="./audio/practice/en-phonics-0-girl.mp3">Audio is not supported.</audio>
       <small>Existing synthetic voice</small>
     </article>
     <article class="testCard">
       <h2>English male • Trial option</h2>
       <p>Bryce — American English</p>
-      <audio id="englishBoyTrial" controls preload="metadata" src="./audio/trials/en-phonics-0-bryce.mp3">Audio is not supported.</audio>
+      <audio id="englishBoyTrial" controls preload="metadata" src="./audio/practice/en-phonics-0-bryce.mp3">Audio is not supported.</audio>
       <small>Natural synthetic male voice; American pronunciation differs from British</small>
     </article>
     <article class="testCard">
       <h2>👦 English Boy • Current</h2>
       <p>Alan — British English</p>
-      <audio id="englishBoyReference" controls preload="metadata" src="./audio/en/phonics-0-boy.mp3">Audio is not supported.</audio>
+      <audio id="englishBoyReference" controls preload="metadata" src="./audio/practice/en-phonics-0-boy.mp3">Audio is not supported.</audio>
       <small>Existing synthetic voice</small>
     </article>
   </div>
@@ -121,29 +124,29 @@ a.back{display:inline-block;margin:12px 0;padding:12px 19px;text-decoration:none
   function changeAudio(id,path){
     var player=document.getElementById(id);
     player.pause();
-    player.src=path+"?trial=1";
+    player.src=path+"?v=three-repeat-1";
     player.load();
   }
   a.addEventListener("change",function(){
     var n=a.value;
-    changeAudio("arabicA","./audio/trials/ar-phonics-"+n+"-female-natural.mp3");
-    changeAudio("arabicB","./audio/trials/ar-phonics-"+n+"-female-vowelled.mp3");
-    changeAudio("arabicC","./audio/trials/ar-phonics-"+n+"-female-calm.mp3");
-    changeAudio("arabicD","./audio/trials/ar-phonics-"+n+"-female-careful.mp3");
-    changeAudio("arabicBoyReference","./audio/ar/phonics-"+n+"-boy.mp3");
+    changeAudio("arabicA","./audio/practice/ar-phonics-"+n+"-female-natural.mp3");
+    changeAudio("arabicB","./audio/practice/ar-phonics-"+n+"-female-vowelled.mp3");
+    changeAudio("arabicC","./audio/practice/ar-phonics-"+n+"-female-calm.mp3");
+    changeAudio("arabicD","./audio/practice/ar-phonics-"+n+"-female-careful.mp3");
+    changeAudio("arabicBoyReference","./audio/practice/ar-phonics-"+n+"-boy.mp3");
   });
   e.addEventListener("change",function(){
     var n=e.value;
-    changeAudio("englishGirlTrial","./audio/trials/en-phonics-"+n+"-alba.mp3");
-    changeAudio("englishGirlReference","./audio/en/phonics-"+n+"-girl.mp3");
-    changeAudio("englishBoyTrial","./audio/trials/en-phonics-"+n+"-bryce.mp3");
-    changeAudio("englishBoyReference","./audio/en/phonics-"+n+"-boy.mp3");
+    changeAudio("englishGirlTrial","./audio/practice/en-phonics-"+n+"-alba.mp3");
+    changeAudio("englishGirlReference","./audio/practice/en-phonics-"+n+"-girl.mp3");
+    changeAudio("englishBoyTrial","./audio/practice/en-phonics-"+n+"-bryce.mp3");
+    changeAudio("englishBoyReference","./audio/practice/en-phonics-"+n+"-boy.mp3");
   });
 })();
 </script>
 <section class="instructions">
 <h2>How to check • كيف نختبر؟</h2>
-<p>Press ▶ on each recording and compare clarity, pace and pronunciation. These players bypass the app's speech controls, so they help distinguish a recording-quality problem from an app playback problem.</p>
+<p>Press ▶ once to hear each example three times, with pauses between words. Tap the new <strong>🔁 Replay</strong> button to start again. On a mobile browser, the native timer should show several seconds rather than 0:00 once loaded. Audio files remain at their original speaking pitch and pace.</p>
 <p>If these are still unclear, please tell us which language and voice. We will not approve any recording for release without human review of Arabic and early-English pronunciation.</p>
 </section>
 </main>
@@ -163,6 +166,23 @@ a.back{display:inline-block;margin:12px 0;padding:12px 19px;text-decoration:none
     info.setAttribute("role","status");
     info.setAttribute("aria-live","polite");
     player.insertAdjacentElement("afterend",info);
+    var replay=document.createElement("button");
+    replay.type="button";
+    replay.className="repeatClipBtn";
+    replay.textContent="🔁 Play 3 times again • استمع ثلاث مرات";
+    replay.setAttribute("aria-label","Replay this recording three times");
+    info.insertAdjacentElement("afterend",replay);
+    replay.addEventListener("click",function(){
+      players.forEach(function(other){if(other!==player)other.pause()});
+      player.pause();
+      player.currentTime=0;
+      var pending=player.play();
+      if(pending&&typeof pending.catch==="function"){
+        pending.catch(function(){
+          setStatus(player,"Playback blocked or unavailable. Tap ▶ on the player and check your connection. • تعذر التشغيل","error");
+        });
+      }
+    });
     setStatus(player,"Checking audio file… • يجري تحميل التسجيل","loading");
     player.addEventListener("loadedmetadata",function(){
       if(Number.isFinite(player.duration)&&player.duration>0){
@@ -172,7 +192,8 @@ a.back{display:inline-block;margin:12px 0;padding:12px 19px;text-decoration:none
       }
     });
     player.addEventListener("playing",function(){
-      setStatus(player,"Audio is playing • الصوت يعمل","ready");
+      players.forEach(function(other){if(other!==player)other.pause()});
+      setStatus(player,"🔊 Playing three repeats. Listen, pause and say the word! • استمع وكرر","ready");
     });
     player.addEventListener("waiting",function(){
       setStatus(player,"Loading audio… please wait • يرجى الانتظار","loading");
