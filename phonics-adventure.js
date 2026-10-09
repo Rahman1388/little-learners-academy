@@ -54,13 +54,13 @@
     // Arabic boy is currently the parent-preferred intelligible reference.
     // Female Arabic trial audio stays on voice-test.html until approved.
     const speaker = language === "ar" ? "boy" : chosenEnglish;
-    const file = "./audio/" + language + "/phonics-" + current + "-" + speaker + ".mp3?v=reading-quest-1";
+    const file = "./audio/practice/" + language + "-phonics-" + current + "-" + speaker + ".mp3?v=three-repeat-1";
     const audio = new Audio(file);
     const requestId = ++attempt;
     activeAudio = audio;
     audio.preload = "auto";
     audio.playbackRate = 1;
-    status(language === "ar" ? "🔊 Arabic meaning • الاستماع للمعنى" : "🔊 Hear the word and repeat!");
+    status(language === "ar" ? "🔊 Arabic meaning repeated 3 times • استمع ثلاث مرات" : "🔊 The English word plays 3 times — listen and repeat!");
     audio.addEventListener("error",() => {
       if (attempt === requestId) status("Audio unavailable. Please reconnect and try again. • الصوت غير متاح");
     },{once:true});
