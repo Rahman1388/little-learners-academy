@@ -327,6 +327,28 @@ const fs=require("node:fs");
  await page.setViewportSize({width:768,height:1024});
  await assertMobile();
  await page.setViewportSize({width:390,height:844});
+ // Guided five-step journey: five playable questions in the chosen subject.
+ await goto("activity-library.html");
+ await page.locator("#areaSelect").selectOption("english");
+ await page.locator("#guidedStart").click();
+ assert.equal(await page.locator("#playView").isVisible(),true);
+ assert.match(await page.locator("#skillBadge").textContent(),/Step 1 of 5/);
+ for(let step=0;step<5;step++){
+   const answer=await page.evaluate(()=>{
+     const q=document.querySelector("#questionText").textContent;
+     return window.LLA_MINI_ACTIVITIES.find(a=>a.question===q)?.answer;
+   });
+   assert(Number.isInteger(answer),"A guided question has no correct answer");
+   await page.locator("#answerOptions button").nth(answer).click();
+   assert.equal(await page.locator("#nextChallenge").isVisible(),true);
+   await page.locator("#nextChallenge").click();
+   if(step<4)assert.match(await page.locator("#skillBadge").textContent(),new RegExp("Step "+(step+2)+" of 5"));
+ }
+ assert.equal(await page.locator("#overview").isVisible(),true);
+ assert.match(await page.locator("#guidedStatus").textContent(),/Five steps finished/);
+ const savedCount=await page.evaluate(()=>Object.values(JSON.parse(localStorage.getItem("lla-activity-library-v1"))).filter(Boolean).length);
+ assert(savedCount>=6,"Guided steps did not record completed challenges");
+ await assertMobile();
  await goto("voice-test.html");
  await page.locator("audio").first().waitFor();
  const numPlayers=await page.locator("audio").count();
