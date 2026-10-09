@@ -65,4 +65,25 @@ for language, lesson, index in (
         if not streams or streams[0].get("codec_name") != "mp3":
             raise ValueError(f"Invalid MP3 stream in {path}")
 
-print(f"Verified {count} MP3 files; 8 sample recordings decoded as valid MP3. Human language review still required.")
+# The phonics app now serves repeat-friendly copies, not sub-second files.
+practice_dir = ROOT / "audio" / "practice"
+manifest = json.loads((practice_dir / "manifest.json").read_text(encoding="utf-8"))
+if len(manifest.get("clips", [])) != 44:
+    raise RuntimeError("Expected 44 listening practice clips")
+for entry in manifest["clips"]:
+    path = practice_dir / (entry["name"] + ".mp3")
+    if not path.is_file() or path.stat().st_size < 1000:
+        raise FileNotFoundError(f"Listening practice MP3 is missing: {path}")
+    if float(entry["practice_seconds"]) < 2.1:
+        raise ValueError(f"Listening practice is still too short: {path}")
+for name in ("en-phonics-0-girl", "ar-phonics-0-boy", "ar-sentences-0-girl"):
+    sample = practice_dir / (name + ".mp3")
+    duration = subprocess.check_output(
+        ["ffprobe", "-v", "error", "-show_entries", "format=duration",
+         "-of", "default=nokey=1:noprint_wrappers=1", str(sample)],
+        text=True
+    )
+    if float(duration.strip()) <= 2.1:
+        raise ValueError(f"Practice file must have 2+ seconds of playable audio: {sample}")
+
+print(f"Verified {count} original lesson MP3s plus all 44 three-repeat practice recordings; human review of pronunciation still required.")
