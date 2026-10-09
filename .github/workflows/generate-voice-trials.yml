@@ -62,7 +62,7 @@ jobs:
           python - <<'PY'
           import pathlib, subprocess, json
           files=sorted(pathlib.Path("audio/trials").glob("*.mp3"))
-          assert len(files)==20, f"Expected 20 demos, found {len(files)}"
+          assert len(files)==30, f"Expected 30 demos, found {len(files)}"
           for file in files:
               assert file.stat().st_size>700, f"Empty: {file}"
               check=subprocess.run(["ffprobe","-v","error","-show_entries","format=duration",
