@@ -13,6 +13,7 @@ on:
       - "phonics-adventure.css"
       - "phonics-adventure.js"
       - "sound-detective.js"
+      - "match-learn.html"
       - "scripts/test-mobile-ui.cjs"
       - ".github/workflows/test-mobile-ui.yml"
   workflow_dispatch:
