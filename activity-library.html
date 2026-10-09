@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#d2efff"><meta name="description" content="151 interactive Grade 1 skill activities in English with Arabic support.">
+<title>151 Learning Activities • Little Learners Academy</title><link rel="icon" href="./icon.svg" type="image/svg+xml">
+<style>
+:root{font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif;color:#173e65}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:linear-gradient(135deg,#b8eeff,#fcf5cb 46%,#ecddff)}
+main{max-width:980px;margin:auto;padding:13px 13px 45px}
+button,a,select{font:inherit}button{cursor:pointer}a:focus-visible,button:focus-visible,select:focus-visible{outline:4px solid #8a1538;outline-offset:4px}
+.back{display:inline-flex;align-items:center;text-decoration:none;color:#17496d;background:#fff;border-radius:16px;padding:12px 17px;min-height:49px;font-weight:850}
+.hero,.filters,.play,.overview,.parent{background:#fffd;border:4px solid #fff;border-radius:27px;box-shadow:0 6px #b0d8e5;padding:clamp(15px,3vw,25px);margin:15px 0}
+.hero{text-align:center;background:linear-gradient(130deg,#fff8cb,#fff,#dcf4ff)}
+h1{font-size:clamp(28px,6vw,45px);line-height:1.15;margin:10px 0}h1 span{display:block;font-size:.65em;margin-top:8px}
+h2{font-size:clamp(21px,4vw,27px);margin:0 0 11px}
+p{line-height:1.55}.tagline{font-size:13px;font-weight:900;color:#8a1538}.progress{font-weight:950;font-size:17px;border-radius:16px;padding:13px;background:#fff1bd;display:inline-block}
+.progressbar{height:15px;border-radius:25px;background:#e3edf5;overflow:hidden;margin:10px 0}
+.progressbar span{display:block;height:100%;background:#2aa477;width:0%;transition:width .2s}
+.filters{display:flex;gap:12px;flex-wrap:wrap;align-items:center}.filters label{font-weight:850}
+.filters select{flex:1;min-width:150px;max-width:380px;background:#fff;color:#173f65;border:2px solid #add3e5;border-radius:15px;padding:12px;min-height:50px}
+.choices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.activity{display:flex;flex-direction:column;justify-content:space-between;gap:7px;text-align:left;min-height:134px;border:3px solid #c7dfea;border-radius:19px;background:white;color:#174465;padding:13px}
+.activity .num{font-size:13px;color:#6b607d;font-weight:950}
+.activity strong{font-size:clamp(15px,3vw,19px)}.activity small{font-size:12px;line-height:1.3}
+.activity.done{border-color:#5aba89;background:#e6ffeb}
+.activity.current{border-color:#ecac3a;background:#fff6da}
+.activity .check{font-size:13px;font-weight:950}
+.question{padding:18px 12px;text-align:center;border-radius:20px;background:#e8f8ff;margin:16px 0;overflow-wrap:anywhere}
+.question .big{font-size:clamp(24px,5vw,35px);font-weight:950;line-height:1.35}
+.question .ar{font-size:17px;direction:rtl;margin-top:9px}
+.visual{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:15px auto;font-size:30px;line-height:1.5;max-width:680px}
+.answerGrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px}
+.answerGrid button{background:white;border:3px solid #99cbe4;border-radius:18px;color:#13436d;font-size:clamp(17px,3vw,24px);font-weight:950;min-height:74px;padding:12px 5px;overflow-wrap:anywhere}
+.answerGrid button.correct{background:#d9ffe5;border-color:#28a46f}
+.answerGrid button.wrong{background:#fff0eb;border-color:#da8c78}
+.answerGrid button:disabled{cursor:default;opacity:1}
+#response{background:#fff8d3;min-height:63px;padding:15px;border-radius:17px;margin:14px 0;font-weight:850}
+#response.good{background:#ddffe5}#response.try{background:#fff0e2}
+.actions{display:flex;flex-wrap:wrap;gap:10px}
+.actions button{border:0;border-radius:15px;min-height:50px;padding:12px 17px;font-size:16px;font-weight:900;background:#087fab;color:white}
+.actions .secondary{background:#eff9ff;color:#12527a;border:2px solid #a5d2e8}
+.pill{display:inline-block;font-size:13px;font-weight:900;border-radius:15px;padding:8px 13px;background:#f9e9ff}
+[hidden]{display:none!important}
+.note{font-size:13px;color:#4f6b7e}.parent{font-size:13px}
+@media(max-width:480px){.answerGrid{grid-template-columns:1fr}.choices{grid-template-columns:repeat(2,minmax(0,1fr))}.activity{min-height:125px;padding:10px}.answerGrid button{min-height:59px}.visual{font-size:26px}}
+@media(prefers-reduced-motion:reduce){.progressbar span{transition:none}}
+</style></head><body>
+<main>
+<a class="back" href="./index.html">← Home • الرئيسية</a>
+<header class="hero"><div class="tagline">🌟 GRADE 1 SKILL EXPLORER • مستكشف المهارات</div>
+<h1>🎮 151 Fun Activities <span lang="ar" dir="rtl">١٥١ نشاطاً ممتعاً</span></h1>
+<p>Little steps, big discoveries! Explore five subjects with short, colourful challenges.</p>
+<p lang="ar" dir="rtl">تعلّم واستكشف من خلال أنشطة قصيرة وممتعة في خمسة مجالات.</p>
+<div class="progress" id="overallProgress" role="status" aria-live="polite">0 / 151 completed</div>
+<div class="progressbar" aria-hidden="true"><span id="overallBar"></span></div>
+<p class="note">Progress is stored only on this device. Your existing game stars and voice recordings are not changed.</p>
+</header>
+<section class="filters" aria-label="Select activities"><label for="areaSelect">Choose a subject • اختر المادة</label>
+<select id="areaSelect"><option value="all">🌈 All activities • كل الأنشطة</option><option value="math">🔢 Mathematics • الرياضيات</option><option value="english">🔤 English • الإنجليزية</option><option value="science">🔬 Science • العلوم</option><option value="life">🌱 Life skills • المهارات الحياتية</option><option value="arts">🎨 Creative patterns • الأنماط الإبداعية</option></select>
+<label for="skillSelect">Skill • المهارة</label><select id="skillSelect"><option value="all">All skills • كل المهارات</option></select>
+</section>
+<section class="overview" id="overview"><h2 id="listTitle">Choose your next adventure</h2>
+<p>Tap a card to begin. Green cards are already completed. • اختر بطاقة للبدء.</p>
+<div class="choices" id="activityGrid"></div></section>
+<section class="play" id="playView" hidden aria-label="Active challenge">
+<div class="actions"><button class="secondary" type="button" id="backToList">← Activity list • قائمة الأنشطة</button><span class="pill" id="skillBadge"></span></div>
+<h2 id="challengeTitle" style="margin-top:18px"></h2>
+<div class="question"><div class="big" id="questionText"></div><div class="ar" id="questionArabic" lang="ar"></div><div class="visual" id="questionVisual" aria-label="Counting objects"></div></div>
+<div class="answerGrid" id="answerOptions" role="group" aria-label="Answer choices"></div>
+<div id="response" role="status" aria-live="polite">Choose the best answer. • اختر الإجابة الصحيحة.</div>
+<div class="actions"><button id="nextChallenge" type="button" hidden>Next activity ➜ • النشاط التالي</button><button id="retryQuestion" class="secondary" type="button">🔄 Try again • حاول مجدداً</button></div>
+</section>
+<aside class="parent"><strong>👨‍👩‍👧 Parents & teachers • للأهل والمعلمين</strong>
+<p>These 151 original mini-challenges introduce supplementary learning objectives from early primary maths, English literacy, science, life skills and visual patterns. They are organised around themes overlapping British KS1 and US Grade 1; actual classroom sequence and difficulty vary. They are <strong>not an official Qatar Grade 1 curriculum, school syllabus, or assessment</strong>. Arabic is supportive text, not an approved Arabic-language curriculum module. For formal pronunciation instruction, qualified educator review remains needed.</p>
+<p>Encourage short sessions and conversation about the answers. Every challenge is free and works without an account, microphone, advertising or external APIs.</p></aside>
+</main>
+<script src="./activity-data.js?v=activities-151a"></script><script src="./activity-library.js?v=activities-151a"></script>
+</body></html>
