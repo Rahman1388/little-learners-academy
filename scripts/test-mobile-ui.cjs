@@ -85,7 +85,15 @@ const fs=require("node:fs");
    await page.locator("#detectiveChoices .detectiveChoice[aria-label='Picture of "+word+"']").click();
    assert.equal(await page.locator("#detectiveProgressText").textContent(),(i+1)+" / 4");
    assert.equal(await page.locator("#detectiveNext").isDisabled(),false);
-   if(i+1<sounds.length)await page.locator("#detectiveNext").click();
+   if(i+1<sounds.length){
+     await page.locator("#detectiveNext").click();
+     assert.equal(await page.locator("#detectiveLetter").textContent(),sounds[i+1][1],
+       "Next clue did not visibly advance to the next letter");
+     assert.equal(await page.locator("#detectiveNext").isDisabled(),true,
+       "Next question did not reset its answer state");
+     assert.match(await page.locator("#detectiveFeedback").textContent(),/New clue/,
+       "Next question gave no visible confirmation");
+   }
  }
  assert.equal(await page.locator("#detectiveWin").isVisible(),true);
  assert.equal(await page.locator(".detectiveSticker.collected").count(),4);
