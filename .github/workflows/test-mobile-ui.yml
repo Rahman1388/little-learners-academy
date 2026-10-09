@@ -18,6 +18,9 @@ on:
       - "audio-review.html"
       - "picture-memory.html"
       - "star-journey.html"
+      - "activity-library.html"
+      - "activity-data.js"
+      - "activity-library.js"
       - "scripts/test-mobile-ui.cjs"
       - ".github/workflows/test-mobile-ui.yml"
   workflow_dispatch:
