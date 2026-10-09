@@ -20,6 +20,7 @@ on:
       - "star-journey.html"
       - "activity-library.html"
       - "grades-roadmap.html"
+      - "parent-progress.html"
       - "activity-data.js"
       - "activity-library.js"
       - "scripts/test-mobile-ui.cjs"
