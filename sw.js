@@ -1,4 +1,4 @@
-const CACHE="lla-v24";
+const CACHE="lla-v25";
 // Download essential three-repeat words once on installation so phonics lessons
 // can play from cache even on a patchy mobile connection.
 const PHONICS_PRACTICE=Array.from({length:4},(_,i)=>[
@@ -10,7 +10,7 @@ const SENTENCE_PRACTICE=["en","ar"].flatMap(lang=>["girl","boy"].map(kind=>
   "./audio/practice/"+lang+"-sentences-0-"+kind+".mp3"));
 const BUS_ALTERNATIVES=["alba","bryce"].map(name=>"./audio/practice/en-phonics-3-"+name+".mp3");
 const CORE=["./","./index.html","./styles.css","./curriculum.js","./app.js","./manifest.webmanifest","./icon.svg",
-  "./phonics-adventure.html","./phonics-adventure.css","./phonics-adventure.js","./sound-detective.js","./voice-test.html","./match-learn.html","./bus-voice-check.html","./audio-review.html","./picture-memory.html","./star-journey.html","./activity-library.html","./activity-data.js","./activity-library.js","./grades-roadmap.html","./parent-progress.html",
+  "./phonics-adventure.html","./phonics-adventure.css","./phonics-adventure.js","./sound-detective.js","./voice-test.html","./match-learn.html","./bus-voice-check.html","./audio-review.html","./picture-memory.html","./star-journey.html","./activity-library.html","./activity-data.js","./activity-library.js","./grades-roadmap.html","./parent-progress.html","./ten-frame-lab.html",
   ...PHONICS_PRACTICE,...SENTENCE_PRACTICE,...BUS_ALTERNATIVES];
 
 self.addEventListener("install",event=>{
