@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#a6e3fa">
+<meta name="description" content="Free English-Arabic picture and word matching game for Grade 1 children.">
+<title>Match & Learn • Little Learners Academy</title>
+<link rel="icon" href="./icon.svg" type="image/svg+xml">
+<style>
+:root{font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif;color:#193e63;background:#e8faff}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:radial-gradient(circle at top left,#fff7bc,transparent 38%),linear-gradient(#9de8ff,#ebfaff 42%,#fff9e8)}
+main{max-width:860px;margin:0 auto;padding:14px 14px 45px}
+a,button{font:inherit}
+button{cursor:pointer}
+button:focus-visible,a:focus-visible{outline:4px solid #8a1538;outline-offset:4px}
+a.back{display:inline-flex;text-decoration:none;color:#193e63;font-weight:900;background:white;padding:12px 16px;border-radius:17px;border:2px solid #e4f0f5;min-height:48px;align-items:center}
+header{text-align:center;padding:20px 14px;background:linear-gradient(125deg,#fff,#fff4bf);border:4px solid white;border-radius:28px;box-shadow:0 5px #bcdde7;margin:14px 0 18px}
+.eyebrow{font-size:13px;color:#8a1538;font-weight:900;letter-spacing:.06em}
+h1{font-size:clamp(30px,7vw,43px);line-height:1.15;margin:12px 0 8px}
+h1 span{display:block;font-size:.65em;margin-top:9px}
+header p{line-height:1.6;font-weight:650;font-size:15px}
+section{background:#ffffffed;border:4px solid white;border-radius:29px;padding:clamp(15px,3.5vw,25px);box-shadow:0 6px #b5e0e8;margin:15px 0}
+.gameIntro{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;font-weight:900}
+.progress{background:#fff1b2;padding:10px 15px;border-radius:14px;white-space:nowrap}
+.instructions{font-size:16px;font-weight:750;line-height:1.6;margin:12px 0 20px}
+.instructions span{display:block}
+.board{display:grid;grid-template-columns:1fr 1fr;gap:clamp(12px,3vw,20px)}
+.columnTitle{text-align:center;font-size:clamp(16px,3.3vw,19px);font-weight:950;margin:0 0 12px}
+.columnTitle small{display:block;font-size:12px;margin-top:5px;color:#506a81}
+.tiles{display:grid;grid-template-rows:repeat(4,minmax(89px,auto));gap:12px}
+.tile{border:3px solid #c4e7f3;border-radius:20px;background:linear-gradient(#ffffff,#eaf8ff);padding:12px 6px;min-height:90px;width:100%;color:#153c68;font-size:clamp(19px,5vw,28px);font-weight:950;box-shadow:0 4px #adccda}
+.tile.picture{background:linear-gradient(#fff8dc,#fff0dd)}
+.tile .emoji{display:block;font-size:clamp(33px,7vw,47px)}
+.tile .translation{display:block;font-size:clamp(12px,3.3vw,15px);font-weight:800;color:#6d4d24;margin-top:2px}
+.tile.selected{background:#fff2aa;border-color:#e1a025;box-shadow:0 4px #bd922d}
+.tile.matched{background:#dcffe4;border-color:#58b77c;box-shadow:0 3px #7cb992;color:#1b6851}
+.tile[disabled]{cursor:default;opacity:1}
+.tile.matched:after{content:" ✓";color:#1b7f49}
+.announce{min-height:56px;padding:13px 15px;background:#e8f8ff;border-radius:17px;border:2px solid #c6e5f2;font-size:15px;font-weight:850;line-height:1.6;margin:19px 0 0;text-align:center}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px;justify-content:center}
+.actions button,.actions a{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;min-height:51px;border-radius:16px;padding:12px 15px;font-size:15px;font-weight:900}
+.primary{background:#0b85be;color:white;border:0;box-shadow:0 4px #075b82}
+.secondary{background:white;color:#194d71;border:2px solid #b5d8eb}
+.success{text-align:center;background:linear-gradient(120deg,#e8ffe4,#fff5c4);border:3px solid #9fd5a3;padding:17px;border-radius:21px;margin-top:16px}
+.success h2{margin:7px 0;font-size:23px}
+.success p{margin:6px 0;font-weight:700}
+.notice{color:#506b80;font-size:12px;line-height:1.6;margin:20px 0}
+[hidden]{display:none!important}
+@media(max-width:365px){main{padding:9px}.tile{min-height:78px;padding:8px 4px}.tiles{gap:9px}.board{gap:9px}}
+</style>
+</head>
+<body>
+<main>
+<a class="back" href="./index.html">← Home • الرئيسية</a>
+<header>
+  <div class="eyebrow">🌟 LITTLE LEARNERS ACADEMY • GRADE 1 🇶🇦</div>
+  <h1>🧩 Match & Learn <span lang="ar" dir="rtl">طابق وتعلّم</span></h1>
+  <p>Match each English word to its picture and Arabic meaning.<span lang="ar" dir="rtl" style="display:block">طابق كل كلمة إنجليزية بالصورة ومعناها بالعربية.</span></p>
+</header>
+<section aria-labelledby="gameTitle">
+ <div class="gameIntro"><strong id="gameTitle">🎮 My Matching Game • لعبة المطابقة</strong><div class="progress" id="matchProgress" aria-live="polite">⭐ 0 / 4</div></div>
+ <p class="instructions">1. Tap an English word to hear it 3 times. 2. Tap its matching picture.<span lang="ar" dir="rtl">١. اضغط على الكلمة الإنجليزية واستمع. ٢. اضغط على صورتها المناسبة.</span></p>
+ <div class="board">
+  <div><h2 class="columnTitle">🔤 English<small>Tap and listen • استمع</small></h2><div id="wordCards" class="tiles" role="group" aria-label="English words"></div></div>
+  <div><h2 class="columnTitle">🖼️ Pictures<small>Arabic meaning • المعنى بالعربية</small></h2><div id="pictureCards" class="tiles" role="group" aria-label="Pictures with Arabic meanings"></div></div>
+ </div>
+ <div class="announce" id="matchFeedback" role="status" aria-live="polite">Choose an English word to start. • اختر كلمة إنجليزية للبدء.</div>
+ <div class="success" id="matchSuccess" hidden>
+  <div aria-hidden="true" style="font-size:48px">🎉 🏆 ⭐</div>
+  <h2>Four perfect matches! <span lang="ar" dir="rtl">أحسنت! أربع مطابقات!</span></h2>
+  <p>Wonderful effort! You can practise again.</p>
+ </div>
+ <div class="actions">
+  <button class="primary" id="listenAgain" type="button">🔊 Repeat selected word 3×</button>
+  <button class="secondary" id="restartMatch" type="button">🔁 Play again • العب مجددًا</button>
+  <a class="secondary" href="./phonics-adventure.html">📚 Reading Adventure</a>
+ </div>
+</section>
+<p class="notice">For parents and teachers: this supplementary activity practises whole English words and Arabic meanings; it does not provide independently reviewed isolated phonemes. All audio is saved as existing three-repeat MP3s. The Arabic female voice remains under review. No ads, registration or microphone needed.</p>
+</main>
+<script>
+(()=>{
+"use strict";
+const WORDS=[
+ {en:"cat",ar:"قطة",icon:"🐱",index:0},
+ {en:"fish",ar:"سمكة",icon:"🐟",index:1},
+ {en:"sun",ar:"شمس",icon:"☀️",index:2},
+ {en:"bus",ar:"حافلة",icon:"🚌",index:3},
+];
+const KEY="lla-match-pairs-v1",MAIN="lla-progress-v2";
+const $=s=>document.querySelector(s);
+const load=k=>{try{return JSON.parse(localStorage.getItem(k)||"null")}catch{return null}};
+const save=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch{}};
+const initial=load(KEY);
+const hasEarned=Boolean(initial&&initial.rewarded);
+let selected=null,correct=new Set(),audio=null;
+function shuffle(items){
+ const arr=items.slice();
+ for(let i=arr.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[arr[i],arr[j]]=[arr[j],arr[i]];}
+ return arr;
+}
+function feedback(msg){$("#matchFeedback").textContent=msg}
+function stopAudio(){if(audio){audio.pause();audio.removeAttribute("src");audio.load();audio=null;}}
+function playWord(index){
+ stopAudio();
+ const profile=load(MAIN);
+ const speaker=profile&&profile.voice==="boy"?"boy":"girl";
+ audio=new Audio("./audio/practice/en-phonics-"+index+"-"+speaker+".mp3?v=three-repeat-1");
+ audio.preload="auto";
+ audio.playbackRate=profile&&profile.slow?0.85:1;
+ audio.preservesPitch=true;
+ audio.addEventListener("error",()=>feedback("Audio couldn't load. Check connection and try again. • تعذر تحميل الصوت"),{once:true});
+ const p=audio.play();
+ if(p&&typeof p.catch==="function")p.catch(()=>feedback("Tap the word again to hear the recording. • اضغط على الكلمة مجددًا"));
+}
+function rewardOnce(){
+ const stored=load(KEY);
+ if(stored&&stored.rewarded)return;
+ save(KEY,{rewarded:true});
+ const current=load(MAIN);
+ const main=current&&typeof current==="object"&&!Array.isArray(current)?current:{voice:"girl",slow:false,stars:0,completed:{}};
+ main.stars=Math.max(0,Number(main.stars)||0)+1;
+ save(MAIN,main);
+}
+function render(){
+ selected=null;correct=new Set();stopAudio();
+ $("#matchProgress").textContent="⭐ 0 / 4";
+ $("#matchSuccess").hidden=true;
+ $("#wordCards").replaceChildren();$("#pictureCards").replaceChildren();
+ const wordContainer=$("#wordCards"),pictureContainer=$("#pictureCards");
+ shuffle(WORDS).forEach(word=>{
+  const b=document.createElement("button");
+  b.type="button";b.className="tile";b.dataset.match=String(word.index);
+  b.textContent=word.en;b.setAttribute("aria-label","English word "+word.en);
+  b.addEventListener("click",()=>{
+   if(correct.has(word.index))return;
+   selected=word.index;
+   wordContainer.querySelectorAll(".tile").forEach(tile=>tile.classList.toggle("selected",Number(tile.dataset.match)===selected));
+   playWord(word.index);
+   feedback("🔊 "+word.en+" — listen three times, then choose its picture! • استمع ثم اختر الصورة.");
+  });
+  wordContainer.append(b);
+ });
+ shuffle(WORDS).forEach(word=>{
+  const b=document.createElement("button");
+  b.type="button";b.className="tile picture";b.dataset.match=String(word.index);
+  const icon=document.createElement("span");icon.className="emoji";icon.textContent=word.icon;icon.setAttribute("aria-hidden","true");
+  const label=document.createElement("span");label.className="translation";label.textContent=word.ar;label.lang="ar";label.dir="rtl";
+  b.append(icon,label);b.setAttribute("aria-label","Picture and Arabic meaning: "+word.ar);
+  b.addEventListener("click",()=>{
+   if(selected===null){feedback("☝️ First tap an English word. • اختر كلمة إنجليزية أولًا.");return;}
+   if(correct.has(word.index))return;
+   if(word.index!==selected){
+    feedback("🌱 Not quite. Try another picture! • حاول اختيار صورة أخرى.");return;
+   }
+   correct.add(word.index);
+   for(const tile of [...wordContainer.children,...pictureContainer.children]){
+    if(Number(tile.dataset.match)===word.index){tile.disabled=true;tile.classList.remove("selected");tile.classList.add("matched");}
+   }
+   selected=null;
+   $("#matchProgress").textContent="⭐ "+correct.size+" / 4";
+   if(correct.size===WORDS.length){
+    feedback("🎉 Fantastic! Every word is matched! • أحسنت! اكتملت المطابقة.");
+    $("#matchSuccess").hidden=false;
+    rewardOnce();
+   }else feedback("✅ Correct match! Choose the next English word. • أحسنت! اختر الكلمة التالية.");
+  });
+  pictureContainer.append(b);
+ });
+ feedback("Choose an English word to start. • اختر كلمة إنجليزية للبدء.");
+}
+$("#listenAgain").addEventListener("click",()=>{
+ if(selected===null){feedback("Choose an English word first. • اختر الكلمة أولًا.");return;}
+ playWord(selected);feedback("🔊 Playing the word 3 times. • استمع إلى الكلمة ثلاث مرات.");
+});
+$("#restartMatch").addEventListener("click",render);
+window.addEventListener("pagehide",stopAudio);
+render();
+})();
+</script>
+</body>
+</html>
