@@ -165,10 +165,17 @@
     drawChoices();
   }
   function nextClue(){
-    const next=WORDS.findIndex((_w,i)=>!saved.detectiveDone.includes(i));
-    if(next>=0)selectClue(next);
-    else selectClue((position+1)%WORDS.length);
-    $("#soundDetective").scrollIntoView({behavior:"smooth",block:"start"});
+    // Always advance visibly to a DIFFERENT prompt on tap. This matters on
+    // mobile where tapping Next at the bottom can otherwise look unchanged.
+    const nextIncomplete=WORDS.findIndex((_w,i)=>
+      i!==position&&!saved.detectiveDone.includes(i));
+    const next=nextIncomplete>=0?nextIncomplete:(position+1)%WORDS.length;
+    selectClue(next);
+    announce("🔎 New clue: find the picture starting with "+WORDS[next].letter+
+      "! • سؤال جديد: الحرف "+WORDS[next].letter);
+    // Scroll directly to the NEW letter, not merely to the card's heading.
+    $("#detectiveLetter").scrollIntoView({behavior:"instant",block:"center"});
+    $("#detectiveLetter").focus({preventScroll:true});
   }
   document.addEventListener("DOMContentLoaded",()=>{
     if(!$("#soundDetective"))return;
