@@ -193,8 +193,20 @@
 
   function earnStar() {
     if (saved.done.includes(current)) return;
-    saved.done.push(current);
-    write(QUEST_KEY,saved);
+    // Merge the latest quest object: Sound Detective may have earned new
+    // badges since the word-building page first loaded.
+    const latest=read(QUEST_KEY);
+    const quest=latest && typeof latest==="object" && !Array.isArray(latest)
+      ?latest:saved;
+    const done=Array.isArray(quest.done)?quest.done:[];
+    if(done.includes(current)){
+      saved=quest;
+      updateTrail();
+      return;
+    }
+    quest.done=[...new Set([...done,current])];
+    saved=quest;
+    write(QUEST_KEY,quest);
     // Award just one total app star per newly completed quest word.
     const storedMain = read(MAIN_KEY);
     const full = storedMain && typeof storedMain === "object" && !Array.isArray(storedMain)
