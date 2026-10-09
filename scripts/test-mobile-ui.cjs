@@ -134,7 +134,7 @@ const fs=require("node:fs");
  for(const [index,word] of ["cat","fish","sun","bus"].entries()){
    await page.locator('#wordCards .tile[data-match="'+index+'"]').click();
    const played=await page.evaluate(()=>window.__recordedAudioUrls.at(-1));
-   assert(played.includes("audio/practice/en-phonics-"+index+"-girl.mp3"),"Matching game recording incorrect: "+word);
+   assert(played.includes("audio/practice/en-phonics-"+index+"-"+(index===3?"alba":"girl")+".mp3"),"Matching game recording incorrect: "+word);
    await page.locator('#pictureCards .tile[data-match="'+index+'"]').click();
    assert.match(await page.locator("#matchProgress").textContent(),new RegExp((index+1)+"\\s*/\\s*4"));
  }
@@ -153,6 +153,23 @@ const fs=require("node:fs");
  await assertMobile(); // tablet view should not overflow either
  await page.setViewportSize({width:390,height:844});
 
+ // Without a custom preference, C should be the girl-style default.
+ await page.evaluate(()=>localStorage.removeItem("lla-bus-voice-v1"));
+ await goto("match-learn.html");
+ await page.locator('#wordCards .tile[data-match="3"]').click();
+ const defaultBus=await page.evaluate(()=>window.__recordedAudioUrls.at(-1));
+ assert(defaultBus.includes("en-phonics-3-alba.mp3"),"Girl-style bus should default to C");
+ await page.evaluate(()=>{
+   const main=JSON.parse(localStorage.getItem("lla-progress-v2"));
+   main.voice="boy";localStorage.setItem("lla-progress-v2",JSON.stringify(main));
+ });
+ await page.locator('#wordCards .tile[data-match="3"]').click();
+ const boyDefault=await page.evaluate(()=>window.__recordedAudioUrls.at(-1));
+ assert(boyDefault.includes("en-phonics-3-bryce.mp3"),"Boy-style bus should default to D");
+ await page.evaluate(()=>{
+   const main=JSON.parse(localStorage.getItem("lla-progress-v2"));
+   main.voice="girl";localStorage.setItem("lla-progress-v2",JSON.stringify(main));
+ });
  // Bus voice candidate C should be selectable without replacing other words.
  await goto("bus-voice-check.html");
  await page.locator(".choice").first().waitFor({state:"visible"});
