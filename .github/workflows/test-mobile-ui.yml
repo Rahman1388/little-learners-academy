@@ -21,6 +21,7 @@ on:
       - "activity-library.html"
       - "grades-roadmap.html"
       - "parent-progress.html"
+      - "ten-frame-lab.html"
       - "activity-data.js"
       - "activity-library.js"
       - "scripts/test-mobile-ui.cjs"
