@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#fceaa6"><link rel="icon" href="./icon.svg" type="image/svg+xml">
+<title>Picture Memory Garden | Little Learners Academy</title>
+<style>
+:root{font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif;color:#163e60}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:linear-gradient(145deg,#9ae2ff,#e8f9ff 38%,#ffefbd)}
+main{max-width:780px;margin:auto;padding:14px 13px 45px}
+a,button{font:inherit}button{cursor:pointer}button:focus-visible,a:focus-visible{outline:4px solid #8a1538;outline-offset:3px}
+.back{display:inline-flex;background:#fff;border:2px solid #d6e9f0;border-radius:16px;text-decoration:none;color:#173e63;font-weight:850;padding:12px 16px;min-height:49px;align-items:center}
+.hero,.game,.parent{border:4px solid #fff;border-radius:27px;background:#ffffffed;box-shadow:0 5px #a8d7e7;padding:clamp(14px,3vw,25px);margin:17px 0}
+.hero{text-align:center;background:linear-gradient(120deg,#fff9cf,#fff,#e8faff)}
+h1{font-size:clamp(27px,6vw,42px);line-height:1.18;margin:9px 0}
+h1 span{display:block;font-size:.66em;margin-top:7px}
+p{line-height:1.55}
+.miniTitle{font-size:13px;color:#8a1538;font-weight:950}
+.progress{display:flex;align-items:center;justify-content:space-between;gap:7px;flex-wrap:wrap;font-weight:950;padding:13px;background:#fff4c7;border-radius:15px}
+#feedback{font-weight:850;text-align:center;min-height:53px;padding:13px;background:#e9f8ff;border-radius:15px;margin:15px 0}
+.board{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(7px,2vw,15px);margin:15px 0 24px}
+.card{min-height:clamp(94px,18vw,130px);padding:8px 3px;border:4px solid #fff;border-radius:20px;background:linear-gradient(145deg,#ffcae6,#f6a8d1);box-shadow:0 5px #d187b5;color:#153f5a;font-weight:950;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;min-width:0}
+.card .symbol{font-size:clamp(32px,7vw,53px);line-height:1.2}
+.card .label{font-size:clamp(13px,2.6vw,19px);line-height:1.2}
+.card.flipped{background:linear-gradient(#fff,#dff8ff);border-color:#88c4d9;box-shadow:0 5px #85bbc8}
+.card.matched{background:linear-gradient(#efffe7,#d6ffd8);border-color:#60b67a;box-shadow:0 5px #88bd83}
+.card:disabled{opacity:1;cursor:default}
+.actions{display:flex;flex-wrap:wrap;gap:11px;align-items:center;justify-content:center}
+.actions button{background:#087dae;color:#fff;border:0;border-radius:16px;min-height:51px;padding:12px 19px;font-weight:900}
+.win{text-align:center;background:#ecffe8;border:3px solid #94d29f;border-radius:20px;padding:17px;margin:14px 0}
+.parent{font-size:13px;color:#4f697b}
+@media(max-width:390px){.board{gap:7px}.card{min-height:92px;border-radius:14px}.card .label{font-size:12px}}
+@media(prefers-reduced-motion:no-preference){.card.flipped{transition:background .15s ease}}
+</style></head>
+<body><main>
+<a class="back" href="./index.html">← Home • الرئيسية</a>
+<header class="hero">
+<div class="miniTitle">🧠 MEMORY GARDEN • حديقة الذاكرة</div>
+<h1>🌷 Picture Pairs <span lang="ar" dir="rtl">لعبة مطابقة الصور</span></h1>
+<p>Tap two cards. Find the two matching pictures! <span lang="ar" dir="rtl" style="display:block">اضغط على بطاقتين، ثم ابحث عن الصورتين المتطابقتين!</span></p>
+</header>
+<section class="game" aria-label="Picture matching memory game">
+<div class="progress"><span id="pairsCount">⭐ 0 / 4 pairs</span><span id="turnCount">🔄 0 turns</span></div>
+<p id="feedback" role="status" aria-live="polite">Tap one card to see the picture! • اضغط على بطاقة!</p>
+<div class="board" id="memoryBoard" role="group" aria-label="Eight picture memory cards"></div>
+<div id="win" class="win" hidden>
+<div style="font-size:44px" aria-hidden="true">🎉 🌷 ⭐</div>
+<h2>Wonderful memory! <span lang="ar" dir="rtl">ذاكرتك رائعة!</span></h2>
+<p>You found all four pairs. • وجدت الأزواج الأربعة!</p>
+</div>
+<div class="actions"><button id="newGame" type="button">🔄 Play again • العب مجددًا</button></div>
+</section>
+<aside class="parent"><strong>For parents and teachers • للأهل والمعلمين</strong>
+<p>Picture Pairs practises visual memory and attention, not formal Arabic literacy or phonics. It needs no voice recordings, accounts, microphone, or internet after the page has loaded. A completion star is awarded once per device; replaying does not award extra stars.</p></aside>
+</main>
+<script>
+(()=>{
+"use strict";
+const ICONS=[{id:"cat",icon:"🐱",label:"Cat"},{id:"fish",icon:"🐟",label:"Fish"},{id:"sun",icon:"☀️",label:"Sun"},{id:"bus",icon:"🚌",label:"Bus"}];
+const $=s=>document.querySelector(s);
+const KEY="lla-memory-pairs-v1",MAIN="lla-progress-v2";
+let cards=[],open=[],matched=new Set(),turns=0,busy=false,delay=null;
+const read=k=>{try{return JSON.parse(localStorage.getItem(k)||"null")}catch{return null}};
+const write=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch{}};
+function shuffled(arr){const a=arr.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+function message(s){$("#feedback").textContent=s}
+function award(){
+ const prior=read(KEY);if(prior&&prior.completed)return;
+ write(KEY,{completed:true});
+ const original=read(MAIN);
+ const main=original&&typeof original==="object"&&!Array.isArray(original)?original:{stars:0,completed:{}};
+ main.stars=Math.max(0,Number(main.stars)||0)+1;write(MAIN,main);
+}
+function show(i){
+ const button=$("#memoryBoard").children[i],card=cards[i];
+ button.classList.add("flipped");button.setAttribute("aria-label","Revealed "+card.label);
+ button.querySelector(".symbol").textContent=card.icon;
+ button.querySelector(".label").textContent=card.label;
+}
+function hide(i){
+ const button=$("#memoryBoard").children[i];
+ button.classList.remove("flipped");
+ button.setAttribute("aria-label","Hidden picture card "+(i+1));
+ button.querySelector(".symbol").textContent="❔";
+ button.querySelector(".label").textContent="Tap";
+}
+function finish(){
+ $("#win").hidden=false;
+ message("🎉 All four pairs found! • أحسنت! وجدت كل الأزواج.");
+ award();
+}
+function update(){
+ $("#pairsCount").textContent="⭐ "+matched.size+" / 4 pairs";
+ $("#turnCount").textContent="🔄 "+turns+" turns";
+}
+function choose(i){
+ if(busy||open.includes(i)||matched.has(cards[i].id))return;
+ show(i);open.push(i);
+ if(open.length===1){message("Find the matching picture! • ابحث عن الصورة المطابقة.");return}
+ turns++;update();
+ const [first,second]=open;
+ if(cards[first].id===cards[second].id){
+  matched.add(cards[first].id);
+  [first,second].forEach(n=>{
+   const button=$("#memoryBoard").children[n];button.classList.add("matched");button.disabled=true;
+  });
+  open=[];message("✅ A matching pair! • زوج متطابق!");
+  update();if(matched.size===ICONS.length)finish();
+ }else{
+  busy=true;message("🌱 Try to remember where the pictures are. • تذكّر مكان الصورتين.");
+  delay=setTimeout(()=>{
+   hide(first);hide(second);open=[];busy=false;delay=null;
+   message("Try another pair! • حاول مرة أخرى.");
+  },1100);
+ }
+}
+function reset(){
+ if(delay!==null){clearTimeout(delay);delay=null}
+ cards=shuffled(ICONS.flatMap(item=>[{...item},{...item}]));
+ open=[];matched=new Set();turns=0;busy=false;$("#win").hidden=true;
+ $("#memoryBoard").replaceChildren();
+ cards.forEach((card,i)=>{
+  const button=document.createElement("button");
+  button.type="button";button.className="card";
+  button.setAttribute("aria-label","Hidden picture card "+(i+1));
+  const symbol=document.createElement("span");symbol.className="symbol";symbol.textContent="❔";symbol.setAttribute("aria-hidden","true");
+  const label=document.createElement("span");label.className="label";label.textContent="Tap";
+  button.append(symbol,label);button.addEventListener("click",()=>choose(i));
+  $("#memoryBoard").append(button);
+ });
+ update();message("Tap one card to see the picture! • اضغط على بطاقة!");
+}
+$("#newGame").addEventListener("click",reset);
+window.addEventListener("pagehide",()=>{if(delay!==null)clearTimeout(delay)});
+reset();
+})();
+</script>
+</body></html>
