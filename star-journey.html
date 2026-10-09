@@ -1,0 +1,97 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#f4d5ff"><title>My Star Journey | Little Learners Academy</title><link rel="icon" href="./icon.svg">
+<style>
+:root{font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif;color:#163c62}*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(circle at 10% 5%,#ffed9c,transparent 30%),linear-gradient(135deg,#cbecff,#f9e5ff 50%,#ddffd9);min-height:100vh}
+main{max-width:920px;margin:auto;padding:15px 13px 45px}a,button{font:inherit}button{cursor:pointer}a:focus-visible,button:focus-visible{outline:4px solid #8a1538;outline-offset:4px}
+.back{display:inline-flex;background:white;color:#134868;text-decoration:none;font-weight:850;border-radius:16px;padding:12px 15px;min-height:48px;align-items:center}
+.hero,.path,.studio,.parents{background:#fffc;border:4px solid #fff;border-radius:28px;padding:clamp(15px,3vw,25px);box-shadow:0 6px #b6d6e3;margin:18px 0}
+.hero{text-align:center;background:linear-gradient(125deg,#fff8ca,#fff,#e0f8ff)}
+h1{font-size:clamp(30px,6vw,45px);margin:10px 0 5px}h1 span{font-size:.65em;display:block;margin-top:8px}
+p{line-height:1.55}.subtitle{font-weight:750}.count{display:inline-block;padding:11px 21px;background:#ffdf75;border-radius:25px;font-size:23px;font-weight:950}
+h2{font-size:clamp(23px,4vw,29px);margin:3px 0 8px}
+.track{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px;margin:17px 0}
+.step{background:#fff;border:3px solid #c7e6f5;border-radius:20px;padding:17px;display:flex;flex-direction:column;align-items:flex-start;gap:7px;min-width:0}
+.step .emoji{font-size:40px}.step strong{font-size:19px}.step .state{font-size:14px;font-weight:900}
+.step.complete{border-color:#43b889;background:linear-gradient(#e4ffe8,#fff)}
+.step a{display:inline-flex;align-items:center;text-decoration:none;color:white;background:#067da7;border-radius:15px;font-weight:900;min-height:46px;padding:11px 14px;margin-top:auto}
+.badges{display:flex;gap:12px;flex-wrap:wrap}.medal{border-radius:17px;padding:13px 15px;background:#ebeff4;color:#697585;min-width:130px;font-weight:900}
+.medal.earned{background:#fff2b9;color:#7b5208;border:2px solid #e4bc51}
+.voiceRow{display:flex;gap:10px;flex-wrap:wrap}.voiceRow button{flex:1;min-width:130px;padding:14px;border-radius:17px;border:3px solid #bfdde7;background:#fff;color:#195273;font-weight:900;min-height:57px}
+.voiceRow button[aria-pressed=true]{background:#dcffeb;border-color:#2fa68b}
+.words{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:15px 0}
+.words button{display:flex;flex-direction:column;gap:4px;align-items:center;justify-content:center;min-height:105px;border:2px solid #aad6e8;border-radius:18px;background:#fff;color:#154b70;font-weight:950;padding:9px 3px}
+.words .picture{font-size:37px}.words small{font-size:12px}
+.feedback{font-weight:800;min-height:48px;padding:12px;background:#e7f8ff;border-radius:16px}
+.note{font-size:13px;color:#46697c}.parents{background:#fffaed}
+[hidden]{display:none!important}
+@media(max-width:510px){.track{grid-template-columns:1fr}.words{grid-template-columns:repeat(2,minmax(0,1fr))}}
+</style></head><body><main>
+<a class="back" href="./index.html">← Home • الرئيسية</a>
+<header class="hero"><div style="font-weight:950;color:#8a1538">🌈 MY LEARNING JOURNEY • رحلتي التعليمية</div><h1>⭐ My Star Journey <span lang="ar" dir="rtl">رحلة نجومي</span></h1><p class="subtitle">Play • Practise • Grow! <span lang="ar" dir="rtl">العب وتدرب وتطور!</span></p><div class="count" id="totalStars">⭐ 0 stars</div><p id="journeyMessage" aria-live="polite">Every small step matters! • كل خطوة مهمة!</p></header>
+<section class="path"><h2>🗺️ Four Learning Adventures <span lang="ar" dir="rtl">أربع مغامرات تعليمية</span></h2><p>Choose an activity. Completed adventures get a green check. • اختر نشاطاً واجمع الإنجازات!</p><div class="track" id="journeyTrack"></div>
+<h2>🏅 My Achievement Badges <span lang="ar" dir="rtl">شارات الإنجاز</span></h2><div class="badges" id="journeyBadges"></div></section>
+<section class="studio"><h2>🎧 Listen & Repeat Corner <span lang="ar" dir="rtl">ركن الاستماع والتكرار</span></h2><p>Pick an English voice style, tap a picture, then repeat the whole word three times. <span lang="ar" dir="rtl" style="display:block">اختر الصوت الإنجليزي، واضغط على الصورة، ثم كرر الكلمة ثلاث مرات.</span></p>
+<div class="voiceRow" role="group" aria-label="English voice style"><button type="button" id="femaleChoice" aria-pressed="true">👧 Female-style • أنثوي</button><button type="button" id="maleChoice" aria-pressed="false">👦 Male-style • ذكوري</button></div>
+<div class="words" id="listenWords"></div><p class="feedback" id="listenFeedback" role="status" aria-live="polite">Tap a picture to hear its English word three times.</p>
+<p class="note">These are adult synthetic speaker styles—not real children. They replay existing whole-word recordings; isolated phonemes and formal pronunciation instruction still require teacher review. Arabic meanings are shown for support.</p></section>
+<aside class="parents"><h2>👨‍👩‍👧 Parent & Teacher Corner <span lang="ar" dir="rtl">ركن الأهل والمعلمين</span></h2><p>Encourage a short, enjoyable session. Try one game, listen to two words, and celebrate the effort—not just the stars. All progress is saved on this device, with no account or tracking.</p><p class="note">This is supplementary practice, not a Qatar curriculum certification or a substitute for qualified instruction. The app does not assess speech or microphone pronunciation.</p></aside>
+<script>
+(()=>{"use strict";
+const $=s=>document.querySelector(s),MAIN="lla-progress-v2";
+const read=k=>{try{return JSON.parse(localStorage.getItem(k)||"null")}catch{return null}};
+const save=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch{}};
+const games=[
+{icon:"📖",title:"Reading Adventure",ar:"مغامرة القراءة",url:"./phonics-adventure.html",done:()=>{const q=read("lla-reading-quest-v1");return q&&Array.isArray(q.done)&&q.done.length>=4}},
+{icon:"🕵️",title:"Sound Detective",ar:"محقق الأصوات",url:"./phonics-adventure.html#soundDetective",done:()=>{const q=read("lla-reading-quest-v1");return q&&Array.isArray(q.detectiveDone)&&q.detectiveDone.length>=4}},
+{icon:"🧩",title:"Match & Learn",ar:"طابق وتعلّم",url:"./match-learn.html",done:()=>{const x=read("lla-match-pairs-v1");return Boolean(x&&x.rewarded)}},
+{icon:"🌷",title:"Picture Pairs",ar:"مطابقة الصور",url:"./picture-memory.html",done:()=>{const x=read("lla-memory-pairs-v1");return Boolean(x&&x.completed)}}
+];
+function dashboard(){
+ const main=read(MAIN)||{},stars=Math.max(0,Number(main.stars)||0);
+ $("#totalStars").textContent="⭐ "+stars+" stars";
+ $("#journeyTrack").replaceChildren();$("#journeyBadges").replaceChildren();
+ let achieved=0;
+ for(const game of games){
+  const complete=Boolean(game.done());if(complete)achieved++;
+  const card=document.createElement("article");card.className="step"+(complete?" complete":"");
+  const emoji=document.createElement("div");emoji.className="emoji";emoji.textContent=game.icon;
+  const heading=document.createElement("strong");heading.textContent=game.title;
+  const ar=document.createElement("div");ar.lang="ar";ar.dir="rtl";ar.textContent=game.ar;
+  const status=document.createElement("div");status.className="state";status.textContent=complete?"✅ Completed • مكتمل":"🌱 Ready to try • جاهز";
+  const link=document.createElement("a");link.href=game.url;link.textContent=complete?"🔁 Play again • العب مجددًا":"▶ Start • ابدأ";
+  card.append(emoji,heading,ar,status,link);$("#journeyTrack").append(card);
+  const badge=document.createElement("div");badge.className="medal"+(complete?" earned":"");
+  badge.textContent=(complete?"🏅 ":"🔒 ")+game.title;$("#journeyBadges").append(badge);
+ }
+ $("#journeyMessage").textContent=achieved===4?"🏆 All four adventures complete! Keep enjoying the practice.":achieved+" / 4 adventures completed • "+achieved+" من ٤ أنشطة مكتملة";
+}
+const words=[{en:"cat",ar:"قطة",icon:"🐱"},{en:"fish",ar:"سمكة",icon:"🐟"},{en:"sun",ar:"شمس",icon:"☀️"},{en:"bus",ar:"حافلة",icon:"🚌"}];
+let voice="girl",active=null,serial=0;
+function stop(){serial++;if(active){active.pause();active.removeAttribute("src");active.load();active=null}}
+function chooseVoice(next){voice=next;$("#femaleChoice").setAttribute("aria-pressed",String(next==="girl"));$("#maleChoice").setAttribute("aria-pressed",String(next==="boy"))}
+function play(i){
+ stop();const current=++serial;let speaker=voice;
+ if(i===3){
+  speaker=voice==="boy"?"bryce":"alba";
+  try{const override=localStorage.getItem("lla-bus-voice-v1");if(["girl","boy","alba","bryce"].includes(override))speaker=override}catch{}
+ }
+ const audio=new Audio("./audio/practice/en-phonics-"+i+"-"+speaker+".mp3?v=three-repeat-1");
+ active=audio;audio.preload="auto";
+ $("#listenFeedback").textContent="🔊 "+words[i].en+" — listen and repeat three times! • استمع وكرر";
+ audio.addEventListener("error",()=>{if(current===serial)$("#listenFeedback").textContent="Recording unavailable. Check internet and try again. • الصوت غير متاح"},{once:true});
+ const p=audio.play();if(p&&typeof p.catch==="function")p.catch(()=>{if(current===serial)$("#listenFeedback").textContent="Tap the word again or check your connection."});
+}
+$("#femaleChoice").addEventListener("click",()=>chooseVoice("girl"));
+$("#maleChoice").addEventListener("click",()=>chooseVoice("boy"));
+words.forEach((word,i)=>{
+ const b=document.createElement("button");b.type="button";b.setAttribute("aria-label","Hear English word "+word.en);
+ const icon=document.createElement("span");icon.className="picture";icon.textContent=word.icon;
+ const title=document.createElement("span");title.textContent=word.en;
+ const ar=document.createElement("small");ar.lang="ar";ar.dir="rtl";ar.textContent=word.ar;
+ b.append(icon,title,ar);b.addEventListener("click",()=>play(i));$("#listenWords").append(b);
+});
+window.addEventListener("pagehide",stop);
+const main=read(MAIN)||{};chooseVoice(main.voice==="boy"?"boy":"girl");
+dashboard();
+})();
+</script></main></body></html>
