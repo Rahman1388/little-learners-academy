@@ -27,6 +27,8 @@ jobs:
           node --check app.js
           node --check curriculum.js
           node --check sw.js
+          node --check phonics-adventure.js
+          node --check sound-detective.js
 
       - name: Verify required PWA files
         run: |
@@ -36,6 +38,10 @@ jobs:
           test -f curriculum.js
           test -f manifest.webmanifest
           test -f sw.js
+          test -f phonics-adventure.html
+          test -f phonics-adventure.css
+          test -f phonics-adventure.js
+          test -f sound-detective.js
 
       - name: Verify core app wiring
         run: |
@@ -43,6 +49,8 @@ jobs:
           grep -q 'app.js' index.html
           grep -q 'styles.css' index.html
           grep -q 'LLA_CURRICULUM' curriculum.js
+          grep -q 'sound-detective.js' phonics-adventure.html
+          grep -q 'soundDetective' phonics-adventure.html
           grep -q 'serviceWorker' app.js
 
       - name: Install audio inspector
