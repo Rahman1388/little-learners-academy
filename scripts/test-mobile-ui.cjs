@@ -59,9 +59,41 @@ const fs=require("node:fs");
  assert.match(await page.locator("#questStars").textContent(),/1\s*\/\s*4/);
  await page.locator("#nextWord").click();
  assert.equal(await page.locator("#wordText").textContent(),"fish");
+
+ // Independent four-round initial-letter picture game, bilingual instructions,
+ // real prerecorded whole-word clues, saved badges and non-repeatable rewards.
+ assert.equal(await page.locator("#detectiveLetter").textContent(),"C");
+ await page.locator("#detectiveListen").click();
+ const detectiveAudio=await page.evaluate(()=>window.__recordedAudioUrls.at(-1));
+ assert(/audio\/practice\/en-phonics-0-girl\.mp3/.test(detectiveAudio),
+   "Detective is not using the clear three-repeat whole-word recording");
+ await page.locator("#detectiveChoices .detectiveChoice[aria-label='Picture of fish']").click();
+ assert.match(await page.locator("#detectiveFeedback").textContent(),/Try|حاول/);
+ assert.equal(await page.locator("#detectiveNext").isDisabled(),true);
+ const sounds=[["cat","C"],["fish","F"],["sun","S"],["bus","B"]];
+ for(let i=0;i<sounds.length;i++){
+   const [word,letter]=sounds[i];
+   assert.equal(await page.locator("#detectiveLetter").textContent(),letter);
+   await page.locator("#detectiveChoices .detectiveChoice[aria-label='Picture of "+word+"']").click();
+   assert.equal(await page.locator("#detectiveProgressText").textContent(),(i+1)+" / 4");
+   assert.equal(await page.locator("#detectiveNext").isDisabled(),false);
+   if(i+1<sounds.length)await page.locator("#detectiveNext").click();
+ }
+ assert.equal(await page.locator("#detectiveWin").isVisible(),true);
+ assert.equal(await page.locator(".detectiveSticker.collected").count(),4);
+ const beforeReview=await page.evaluate(()=>JSON.parse(localStorage.getItem("lla-progress-v2")).stars);
+ await page.locator("#detectiveReview").click();
+ await page.locator("#detectiveChoices .detectiveChoice[aria-label='Picture of cat']").click();
+ const afterReview=await page.evaluate(()=>JSON.parse(localStorage.getItem("lla-progress-v2")).stars);
+ assert.equal(afterReview,beforeReview,"Repeating a challenge should not award duplicate stars");
+ const savedQuest=await page.evaluate(()=>JSON.parse(localStorage.getItem("lla-reading-quest-v1")));
+ assert.deepEqual(savedQuest.done,[0],"Detective game overwrote existing word-builder progress");
+ assert.deepEqual(savedQuest.detectiveDone,[0,1,2,3],"Detective badge progression not saved");
+ await assertMobile();
  await page.reload({waitUntil:"domcontentloaded"});
  await page.locator("#questStars").waitFor({state:"visible"});
  assert.match(await page.locator("#questStars").textContent(),/1\s*\/\s*4/);
+ assert.equal(await page.locator(".detectiveSticker.collected").count(),4,"Sound badges did not survive reload");
  await assertMobile();
 
  await goto("voice-test.html");
@@ -84,6 +116,6 @@ const fs=require("node:fs");
  assert(Math.abs(speed-0.85)<0.01,"The slower listening mode is not working: "+speed);
  await assertMobile();
  assert.equal(errors.length,0,"Browser JavaScript errors: "+errors.join(" | "));
- console.log("PASS: mobile layout, three-repeat English and Arabic phonics, game, saved stars, 2+ second audio, replay buttons and optional slow playback");
+ console.log("PASS: mobile layout, three-repeat English/Arabic audio, Reading Adventure, Sound Detective 4-round game, saved badges, no duplicate star rewards, 2+ second audio and optional slow playback");
  await browser.close();
 })().catch(e=>{console.error(e.stack||e);process.exit(1)});
