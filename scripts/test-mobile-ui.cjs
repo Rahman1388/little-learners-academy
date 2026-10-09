@@ -153,6 +153,23 @@ const fs=require("node:fs");
  await assertMobile(); // tablet view should not overflow either
  await page.setViewportSize({width:390,height:844});
 
+ // Bus voice candidate C should be selectable without replacing other words.
+ await goto("bus-voice-check.html");
+ await page.locator(".choice").first().waitFor({state:"visible"});
+ assert.equal(await page.locator(".choice").count(),4,"Bus listening comparison should have four speakers");
+ await assertMobile();
+ await page.locator('button[data-pick="alba"]').click();
+ const savedVoice=await page.evaluate(()=>localStorage.getItem("lla-bus-voice-v1"));
+ assert.equal(savedVoice,"alba","Selected alternative bus voice did not save");
+ await goto("match-learn.html");
+ await page.locator('#wordCards .tile[data-match="3"]').click();
+ const busVoiceUrl=await page.evaluate(()=>window.__recordedAudioUrls.at(-1));
+ assert(busVoiceUrl.includes("audio/practice/en-phonics-3-alba.mp3"),"Bus did not use the chosen voice");
+ await page.locator('#wordCards .tile[data-match="0"]').click();
+ const catVoiceUrl=await page.evaluate(()=>window.__recordedAudioUrls.at(-1));
+ assert(catVoiceUrl.includes("audio/practice/en-phonics-0-girl.mp3"),"Bus choice unexpectedly altered cat");
+ await assertMobile();
+
  await goto("voice-test.html");
  await page.locator("audio").first().waitFor();
  const numPlayers=await page.locator("audio").count();
