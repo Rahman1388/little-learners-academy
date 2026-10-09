@@ -2,7 +2,7 @@
 
 Generated: 2026-10-09 UTC
 
-**Scope:** Measurements from twelve actual files in this repository; the list includes the two Arabic trial pronunciations. This is not a listening test or a comparison of proprietary competitors’ digital audio files.
+**Scope:** Measurements from fourteen actual files in this repository; the list includes the two Arabic trial pronunciations. This is not a listening test or a comparison of proprietary competitors’ digital audio files.
 
 | Clip | Codec | Duration (s) | Sample rate (kHz) | Bitrate (kbps) | Ch. | Leading silence (s) | Mean level (dBFS) | Peak (dBFS) |
 |---|---|---:|---:|---:|---:|---:|---:|---:|
@@ -14,10 +14,12 @@ Generated: 2026-10-09 UTC
 | Arabic male word | mp3 | 0.55 | 22.1 | 78 | 1 | 0.00 | -18.5 | -0.1 |
 | Arabic female sentence | mp3 | 0.97 | 22.1 | 76 | 1 | 0.00 | -15.5 | 0.0 |
 | Arabic male sentence | mp3 | 1.96 | 22.1 | 71 | 1 | 0.00 | -17.0 | -0.0 |
-| Arabic female trial A | mp3 | 0.39 | 22.1 | 72 | 1 | 0.00 | -13.6 | -0.0 |
-| Arabic female trial B | mp3 | 0.34 | 22.1 | 76 | 1 | 0.00 | -9.7 | 0.0 |
-| English female trial Alba | mp3 | 0.78 | 22.1 | 69 | 1 | 0.26 | -18.4 | -0.1 |
-| English male trial Bryce | mp3 | 0.52 | 22.1 | 68 | 1 | 0.00 | -17.5 | -0.0 |
+| Arabic female trial A | mp3 | 0.42 | 22.1 | 78 | 1 | 0.00 | -12.4 | -0.0 |
+| Arabic female trial B | mp3 | 0.37 | 22.1 | 87 | 1 | 0.00 | -11.2 | -0.1 |
+| Arabic female calm C | mp3 | 0.71 | 22.1 | 48 | 1 | 0.12 | -19.2 | -4.1 |
+| Arabic female careful D | mp3 | 0.73 | 22.1 | 46 | 1 | 0.12 | -17.9 | -4.0 |
+| English female trial Alba | mp3 | 0.63 | 22.1 | 67 | 1 | 0.00 | -16.3 | 0.0 |
+| English male trial Bryce | mp3 | 0.55 | 22.1 | 68 | 1 | 0.00 | -18.2 | -0.0 |
 
 ## Interpretation and limits
 - Duration, sample rate, file bitrate and clipping/silence can reveal technical defects; **they cannot prove whether an Arabic word is correctly pronounced, whether the voice sounds like a child, or whether the speaker is clearly female/male**.
