@@ -138,7 +138,7 @@
         correctPieces++;
         updateSoundTargets();
         if (correctPieces === target.length) {
-          $("#blendWord").disabled = false;
+          $("#practiceListen").disabled = false;
           setText("#buildFeedback","🌟 Great! You built " + WORDS[current].en + ". Tap Listen 3×, then find the picture!");
           setText("#buddyMessage","Wonderful! Let's listen to your whole word.");
         } else {
@@ -222,7 +222,7 @@
     $("#findPanel").hidden = true;
     $("#successPanel").hidden = true;
     // Children should be able to hear the example before building the word.
-    $("#blendWord").disabled = false;
+    $("#practiceListen").disabled = false;
     setText("#buildFeedback","First listen to the word, then tap the letter groups in order. Ask a grown-up to model each sound.");
     setText("#buddyTitle","Hello, reading star! 🌟");
     setText("#buddyMessage","Look at the picture, listen, then build the word!");
@@ -256,7 +256,7 @@
     $("#hearArabic").addEventListener("click",() => playAudio("ar"));
     $("#repeatWord").addEventListener("click",() => playAudio("en"));
     $("#startOver").addEventListener("click",resetBuilding);
-    $("#blendWord").addEventListener("click",() => {
+    $("#practiceListen").addEventListener("click",() => {
       playAudio("en");
       if (correctPieces !== WORDS[current].sounds.length) {
         setText("#buildFeedback","🔊 Listen to the word, then arrange the letters to unlock Find the Picture! • استمع ثم رتّب الحروف");
