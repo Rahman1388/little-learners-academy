@@ -18,12 +18,12 @@
 
 ## Measurements from OUR actual recordings
 
-The GitHub-generated [AUDIO_TECHNICAL_AUDIT.md](AUDIO_TECHNICAL_AUDIT.md) examines twelve real samples using ffprobe and ffmpeg.
+The GitHub-generated [AUDIO_TECHNICAL_AUDIT.md](AUDIO_TECHNICAL_AUDIT.md) examines fourteen real samples using ffprobe and ffmpeg.
 
 - Every inspected sample uses MP3, 1 channel (mono), 22.05 kHz; bitrate approximately 65–78 kbps.
 - Arabic female word قطة lasts 0.42 seconds; Arabic male word is 0.55 seconds.
 - Arabic female phrase أستطيع القراءة lasts 0.97 seconds; the male version lasts 1.96 seconds.
-- Female pronunciation trials A and B for the Arabic word last just 0.39 and 0.34 seconds.
+- Female baseline trials A/B are also very short. Newly prepared C/D clips add quieter audio and 0.10-second leading plus 0.18-second trailing silence; their total lengths are 0.71 and 0.73 seconds. This added padding should not be confused with reliably slower word articulation.
 - Peaks are around 0 dBFS, leaving very little headroom. Measured average levels vary between clips.
 - Short clips can display 0:00 before/after loading, depending on rounding. Audio not loading is a separate possible issue.
 - Sample rate and bitrate alone do not prove clear pronunciation or a convincing child voice.
@@ -37,7 +37,7 @@ The GitHub-generated [AUDIO_TECHNICAL_AUDIT.md](AUDIO_TECHNICAL_AUDIT.md) examin
 5. Aim for comfortable and fairly consistent volume with sufficient peak headroom (e.g. around -3 dBFS), short consistent pauses and no high-pitch time-stretch artifacts. This is a recommendation, not a claim about competitors.
 6. Mobile test on Android Chrome, iOS Safari and Windows, checking actual playback and an understandable error for network failures.
 7. Keep the comparatively clearer Arabic **male** reference until an Arabic female recording is approved by fluent reviewers.
-8. Trial slow female speech using the neural model's original timing parameters rather than shifting tone. New A/B/C/D trials remain unapproved; never silently replace the main lessons.
+8. Trial more careful Arabic female word delivery with neural synthesis and a quieter level, without shifting pitch. Note the new samples primarily have added padding; they have not yet demonstrated better intelligibility. New A/B/C/D trials remain unapproved; never silently replace the main lessons.
 9. Preserve the prototype's QAR 0 approach: no paid TTS API, no child microphone recordings or tracking, and host approved short clips locally with the app.
 10. If an authentic child narrator is essential, obtain original recordings with guardian consent, performer permission, safeguarding and explicit usage rights. Copying audio from Lamsa, Nahla wa Nahil or other apps is not authorized by their public availability.
 
