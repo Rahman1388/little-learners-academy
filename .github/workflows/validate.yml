@@ -47,6 +47,7 @@ jobs:
           test -f activity-library.html
           test -f activity-data.js
           test -f activity-library.js
+          test -f parent-progress.html
 
       - name: Verify core app wiring
         run: |
