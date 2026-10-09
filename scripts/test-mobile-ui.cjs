@@ -169,6 +169,25 @@ const fs=require("node:fs");
  const catVoiceUrl=await page.evaluate(()=>window.__recordedAudioUrls.at(-1));
  assert(catVoiceUrl.includes("audio/practice/en-phonics-0-girl.mp3"),"Bus choice unexpectedly altered cat");
  await assertMobile();
+ // The choice must carry across the other two games on the SAME phone.
+ await goto("phonics-adventure.html");
+ await page.locator("#wordTrail .trailItem").nth(3).click();
+ await page.locator("#practiceListen").click();
+ const readingBus=await page.evaluate(()=>window.__recordedAudioUrls.at(-1));
+ assert(readingBus.includes("audio/practice/en-phonics-3-alba.mp3"),
+   "Reading Adventure did not respect saved bus pronunciation");
+ await page.locator("#detectiveReview").click();
+ // Move through C, F and S to get to B in the original game.
+ for(const [index,word] of ["cat","fish","sun"].entries()){
+   await page.locator('#detectiveChoices .detectiveChoice[aria-label="Picture of '+word+'"]').click();
+   await page.locator("#detectiveNext").click();
+ }
+ assert.equal(await page.locator("#detectiveLetter").textContent(),"B");
+ await page.locator("#detectiveListen").click();
+ const detectiveBus=await page.evaluate(()=>window.__recordedAudioUrls.at(-1));
+ assert(detectiveBus.includes("audio/practice/en-phonics-3-alba.mp3"),
+   "Sound Detective did not respect saved bus pronunciation");
+ await assertMobile();
 
  await goto("voice-test.html");
  await page.locator("audio").first().waitFor();
