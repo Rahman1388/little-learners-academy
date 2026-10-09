@@ -121,6 +121,38 @@ const fs=require("node:fs");
  assert.equal(await page.locator(".detectiveSticker.collected").count(),4,"Sound badges did not survive reload");
  await assertMobile();
 
+ // Mobile and tablet: complete the bilingual Match & Learn game.
+ await goto("match-learn.html");
+ await page.locator("#wordCards .tile").first().waitFor({state:"visible"});
+ await assertMobile();
+ assert.equal(await page.locator("#wordCards .tile").count(),4);
+ assert.equal(await page.locator("#pictureCards .tile").count(),4);
+ await page.locator("#listenAgain").click();
+ assert.match(await page.locator("#matchFeedback").textContent(),/Choose an English/);
+ await page.locator("#pictureCards .tile").first().click();
+ assert.match(await page.locator("#matchFeedback").textContent(),/First tap/);
+ for(const [index,word] of ["cat","fish","sun","bus"].entries()){
+   await page.locator('#wordCards .tile[data-match="'+index+'"]').click();
+   const played=await page.evaluate(()=>window.__recordedAudioUrls.at(-1));
+   assert(played.includes("audio/practice/en-phonics-"+index+"-girl.mp3"),"Matching game recording incorrect: "+word);
+   await page.locator('#pictureCards .tile[data-match="'+index+'"]').click();
+   assert.match(await page.locator("#matchProgress").textContent(),new RegExp((index+1)+"\\s*/\\s*4"));
+ }
+ assert.equal(await page.locator("#matchSuccess").isVisible(),true);
+ const matchStars=await page.evaluate(()=>JSON.parse(localStorage.getItem("lla-progress-v2")).stars);
+ await page.locator("#restartMatch").click();
+ for(const [index] of ["cat","fish","sun","bus"].entries()){
+   await page.locator('#wordCards .tile[data-match="'+index+'"]').click();
+   await page.locator('#pictureCards .tile[data-match="'+index+'"]').click();
+ }
+ const replayStars=await page.evaluate(()=>JSON.parse(localStorage.getItem("lla-progress-v2")).stars);
+ assert.equal(replayStars,matchStars,"Matching replay must not add duplicate stars");
+ await page.reload({waitUntil:"domcontentloaded"});
+ assert.equal(await page.locator("#wordCards .tile").count(),4);
+ await page.setViewportSize({width:768,height:1024});
+ await assertMobile(); // tablet view should not overflow either
+ await page.setViewportSize({width:390,height:844});
+
  await goto("voice-test.html");
  await page.locator("audio").first().waitFor();
  const numPlayers=await page.locator("audio").count();
