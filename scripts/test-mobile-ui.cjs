@@ -226,6 +226,30 @@ const fs=require("node:fs");
  await page.setViewportSize({width:768,height:1024});
  await assertMobile();
  await page.setViewportSize({width:390,height:844});
+ // Picture Pairs: a new bilingual visual-only memory game for phones/tablets.
+ await goto("picture-memory.html");
+ await page.locator("#memoryBoard .card").first().waitFor({state:"visible"});
+ assert.equal(await page.locator("#memoryBoard .card").count(),8);
+ await assertMobile();
+ for(const id of ["cat","fish","sun","bus"]){
+   const cards=page.locator('#memoryBoard .card[data-pair="'+id+'"]');
+   assert.equal(await cards.count(),2,"Missing picture pair: "+id);
+   await cards.first().click();
+   await cards.nth(1).click();
+ }
+ assert.equal(await page.locator("#win").isVisible(),true);
+ assert.match(await page.locator("#pairsCount").textContent(),/4 \/ 4/);
+ const memoryStars=await page.evaluate(()=>JSON.parse(localStorage.getItem("lla-progress-v2")).stars);
+ await page.locator("#newGame").click();
+ for(const id of ["cat","fish","sun","bus"]){
+   const cards=page.locator('#memoryBoard .card[data-pair="'+id+'"]');
+   await cards.first().click();await cards.nth(1).click();
+ }
+ const starsAfterReplay=await page.evaluate(()=>JSON.parse(localStorage.getItem("lla-progress-v2")).stars);
+ assert.equal(starsAfterReplay,memoryStars,"Replaying picture pairs should not award duplicate stars");
+ await page.setViewportSize({width:768,height:1024});
+ await assertMobile();
+ await page.setViewportSize({width:390,height:844});
  await goto("voice-test.html");
  await page.locator("audio").first().waitFor();
  const numPlayers=await page.locator("audio").count();
