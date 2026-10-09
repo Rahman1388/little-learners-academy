@@ -48,6 +48,14 @@ const fs=require("node:fs");
  await page.locator("#questLessonLink").click();
  await page.locator("#wordText").waitFor({state:"visible"});
  assert.equal(await page.locator("#wordText").textContent(),"cat");
+ // The listen button must work BEFORE any tiles have been selected.
+ assert.equal(await page.locator("#blendWord").isEnabled(),true,"Listen 3× should never be greyed out");
+ await page.locator("#blendWord").click();
+ const firstListen=await page.evaluate(()=>window.__recordedAudioUrls.at(-1));
+ assert(/audio\/practice\/en-phonics-0-girl\.mp3/.test(firstListen),"Early Listen 3× did not play the word recording");
+ assert.equal(await page.locator("#findPanel").isHidden(),true,"Picture task should stay locked until word complete");
+ await page.locator("#startOver").click();
+ assert.equal(await page.locator("#blendWord").isEnabled(),true,"Try Again unexpectedly disabled Listen 3×");
  await assertMobile();
 
  for(const letter of ["c","a","t"])
