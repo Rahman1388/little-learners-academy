@@ -1,4 +1,4 @@
-const CACHE="lla-v8";
+const CACHE="lla-v9";
 const CORE=["./","./index.html","./styles.css","./curriculum.js","./app.js","./manifest.webmanifest","./icon.svg","./phonics-adventure.html","./phonics-adventure.css","./phonics-adventure.js"];
 
 self.addEventListener("install",event=>{
