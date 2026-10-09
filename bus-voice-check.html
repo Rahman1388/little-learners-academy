@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#e1f8ff">
+<title>Clear Bus Pronunciation • Little Learners Academy</title>
+<style>
+:root{font-family:system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif;color:#173b61;background:#e8f8ff}*{box-sizing:border-box}
+body{margin:0;background:linear-gradient(125deg,#d9f6ff,#fff3c4 70%,#fceafa);min-height:100vh}
+main{max-width:760px;padding:15px;margin:auto}
+a,button{font:inherit}button{cursor:pointer}button:focus-visible,a:focus-visible{outline:4px solid #8a1538;outline-offset:3px}
+header,.choice,.disclaimer{border:4px solid #fff;background:#ffffffef;border-radius:26px;box-shadow:0 5px #b5dbe4;padding:20px;margin-bottom:17px}
+h1{margin:12px 0 8px;font-size:clamp(30px,6vw,43px)}h1 span{display:block;font-size:.6em;margin-top:8px}
+p{line-height:1.6}
+.back{display:inline-flex;align-items:center;text-decoration:none;background:#fff;color:#173b61;font-weight:900;border-radius:16px;padding:13px 16px;margin:12px 0}
+.word{font-size:60px;font-weight:1000;color:#135e97;letter-spacing:.03em}
+.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.choice{padding:16px;margin:0}
+.choice h2{font-size:18px;margin:0 0 5px}
+.small{font-size:12px;color:#5b7085}
+.choice audio{max-width:100%;width:100%;margin:9px 0 12px}
+.choice button{display:block;width:100%;border:0;border-radius:15px;background:#0a86b9;color:#fff;font-weight:900;padding:12px 10px;min-height:53px}
+.choice[data-chosen=true]{border-color:#20ae7d;background:#e8fff1}
+.choice[data-chosen=true] button{background:#12835a}
+#chosen{background:#e6f9e7;border-radius:17px;padding:14px;font-weight:850;min-height:55px}
+.disclaimer{font-size:13px}
+@media(max-width:510px){.cards{grid-template-columns:1fr}.choice{padding:18px}.word{font-size:54px}}
+</style></head>
+<body><main>
+<a class="back" href="./match-learn.html">← Match & Learn • العودة للعبة</a>
+<header>
+<div style="font-weight:900;color:#8a1538">🎧 AUDIO REVIEW • مراجعة الصوت</div>
+<h1>🚌 Listen to “bus” <span lang="ar" dir="rtl">استمع إلى كلمة حافلة بالإنجليزية</span></h1>
+<p>We heard your feedback that <strong>bus</strong> is hard to understand. Try four different <strong>synthetic adult voices</strong> below. Each recording repeats the word three times with pauses. Choose one <strong>only if you find it clearly understandable</strong>.</p>
+<p>These are comparison recordings, not verified Grade 1 phonics or real children’s voices.</p>
+<div id="chosen" role="status" aria-live="polite">No alternative chosen yet. • لم يتم اختيار صوت بديل بعد</div>
+</header>
+<section class="cards" aria-label="Listen and compare bus pronunciations">
+<article class="choice" data-voice="girl">
+ <h2>🎤 A · British female-style</h2><p class="small">Current English girl-style recording</p>
+ <audio controls preload="metadata" src="./audio/practice/en-phonics-3-girl.mp3?v=bus-compare-1"></audio>
+ <button type="button" data-pick="girl">Use A for bus • اختر A</button>
+</article>
+<article class="choice" data-voice="boy">
+ <h2>🎤 B · British male-style</h2><p class="small">Current English boy-style recording</p>
+ <audio controls preload="metadata" src="./audio/practice/en-phonics-3-boy.mp3?v=bus-compare-1"></audio>
+ <button type="button" data-pick="boy">Use B for bus • اختر B</button>
+</article>
+<article class="choice" data-voice="alba">
+ <h2>🎤 C · Alternate British female</h2><p class="small">Different synthetic speaker; awaiting listener review</p>
+ <audio controls preload="metadata" src="./audio/practice/en-phonics-3-alba.mp3?v=bus-compare-1"></audio>
+ <button type="button" data-pick="alba">Use C for bus • اختر C</button>
+</article>
+<article class="choice" data-voice="bryce">
+ <h2>🎤 D · Alternate American male</h2><p class="small">Different synthetic speaker; awaiting listener review</p>
+ <audio controls preload="metadata" src="./audio/practice/en-phonics-3-bryce.mp3?v=bus-compare-1"></audio>
+ <button type="button" data-pick="bryce">Use D for bus • اختر D</button>
+</article>
+</section>
+<div class="disclaimer">
+<p><strong>Important:</strong> Choosing a voice only changes <em>bus</em> on this device; it does not change the recording for other children. It can be revised any time. If none sounds correct, please do not select one; we should source a better recording.</p>
+<a class="back" href="./match-learn.html">🧩 Return to Match & Learn</a>
+</div>
+</main>
+<script>
+(()=>{
+"use strict";
+const key="lla-bus-voice-v1",allowed=["girl","boy","alba","bryce"],names={girl:"A · British female-style",boy:"B · British male-style",alba:"C · Alternate British female",bryce:"D · Alternate American male"};
+function chosen(){try{const a=localStorage.getItem(key);return allowed.includes(a)?a:null}catch{return null}}
+function render(){
+ const value=chosen();
+ document.querySelector("#chosen").textContent=value?"✅ Your selected bus recording: "+names[value]+" • تم اختيار الصوت":"No alternative chosen yet. Listen and compare first. • استمع وقارن أولاً";
+ document.querySelectorAll(".choice").forEach(card=>card.dataset.chosen=String(card.dataset.voice===value));
+}
+document.querySelectorAll("audio").forEach(player=>{
+ player.addEventListener("playing",()=>document.querySelectorAll("audio").forEach(other=>{if(other!==player)other.pause()}));
+ player.addEventListener("error",()=>{
+  const p=player.closest(".choice").querySelector(".small");
+  p.textContent="Audio not available. Check connection, then refresh. • تعذر تشغيل الصوت";
+ });
+});
+document.querySelectorAll("[data-pick]").forEach(button=>button.addEventListener("click",()=>{
+ const value=button.dataset.pick;
+ if(!allowed.includes(value))return;
+ try{localStorage.setItem(key,value)}catch{
+  document.querySelector("#chosen").textContent="Saving is unavailable in this browser; the preference cannot be kept. • تعذر حفظ الاختيار";
+  return;
+ }
+ render();
+}));
+render();
+})();
+</script>
+</body></html>
