@@ -89,10 +89,19 @@ const fs=require("node:fs");
  const savedQuest=await page.evaluate(()=>JSON.parse(localStorage.getItem("lla-reading-quest-v1")));
  assert.deepEqual(savedQuest.done,[0],"Detective game overwrote existing word-builder progress");
  assert.deepEqual(savedQuest.detectiveDone,[0,1,2,3],"Detective badge progression not saved");
+ // After earning sound badges, complete another word in the original adventure.
+ // Both independent progress arrays must survive the subsequent save.
+ for(const letter of ["f","i","sh"])
+   await page.locator("#letterOptions .letterTile").filter({hasText:new RegExp("^"+letter+"$")}).click();
+ await page.locator("#blendWord").click();
+ await page.locator("#pictureChoices .pictureChoice[aria-label='Picture of fish']").click();
+ const mergedQuest=await page.evaluate(()=>JSON.parse(localStorage.getItem("lla-reading-quest-v1")));
+ assert.deepEqual(mergedQuest.done,[0,1],"Second word reward was not saved");
+ assert.deepEqual(mergedQuest.detectiveDone,[0,1,2,3],"Word-building deleted Sound Detective badges");
  await assertMobile();
  await page.reload({waitUntil:"domcontentloaded"});
  await page.locator("#questStars").waitFor({state:"visible"});
- assert.match(await page.locator("#questStars").textContent(),/1\s*\/\s*4/);
+ assert.match(await page.locator("#questStars").textContent(),/2\s*\/\s*4/);
  assert.equal(await page.locator(".detectiveSticker.collected").count(),4,"Sound badges did not survive reload");
  await assertMobile();
 
