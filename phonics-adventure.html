@@ -98,6 +98,48 @@
     </div>
   </section>
 
+  <section class="detectivePanel" id="soundDetective" aria-labelledby="detectiveHeading">
+    <div class="detectiveIntro">
+      <div class="detectiveMascot" aria-hidden="true">🕵️‍♀️🔎</div>
+      <div>
+        <p class="eyebrow">NEW MINI GAME • لعبة جديدة</p>
+        <h2 id="detectiveHeading">Sound Detective <span lang="ar" dir="rtl">محقق الأصوات</span></h2>
+        <p>Look at the <strong>first letter</strong>. Listen to its whole word, then find the matching picture! <span lang="ar" dir="rtl">انظر إلى الحرف الأول، واستمع إلى الكلمة، ثم اختر الصورة المناسبة!</span></p>
+      </div>
+    </div>
+
+    <div class="detectiveProgress">
+      <strong>🏅 My sound badges <span lang="ar" dir="rtl">شاراتي</span></strong>
+      <span id="detectiveProgressText" role="status" aria-live="polite">0 / 4</span>
+    </div>
+    <div class="detectiveStickers" id="detectiveStickers" aria-label="Collected sound badges"></div>
+
+    <div class="detectiveChallenge">
+      <div class="detectiveClue">
+        <div class="detectiveClueLabel">🔤 First English letter <span lang="ar" dir="rtl">الحرف الإنجليزي الأول</span></div>
+        <div class="detectiveLetter" id="detectiveLetter" aria-live="polite">C</div>
+        <p>Which picture begins with this letter? <span lang="ar" dir="rtl">أي صورة تبدأ بهذا الحرف؟</span></p>
+        <button type="button" id="detectiveListen" class="audioBtn blue">🔊 Hear the example 3× <span lang="ar" dir="rtl">استمع للمثال ثلاث مرات</span></button>
+        <p class="detectiveHint" id="detectiveAudioStatus" role="status" aria-live="polite"></p>
+      </div>
+      <div>
+        <p class="detectiveSelectLabel">👇 Tap the matching picture • اضغط على الصورة المناسبة</p>
+        <div class="detectiveChoices" id="detectiveChoices" role="group" aria-label="Choose a picture for the first letter"></div>
+        <p class="detectiveFeedback" id="detectiveFeedback" role="status" aria-live="polite">Listen, look and choose! • استمع وانظر واختر!</p>
+      </div>
+    </div>
+    <div id="detectiveWin" class="detectiveWin" hidden>
+      <div class="detectiveWinIcons" aria-hidden="true">🎊 ⭐ 🏆</div>
+      <h3>Great detective work! <span lang="ar" dir="rtl">أحسنت يا محقق!</span></h3>
+      <p>You've found all four starting letters. <span lang="ar" dir="rtl">لقد تعرفت إلى الحروف الأربعة!</span></p>
+    </div>
+    <div class="detectiveActions">
+      <button type="button" id="detectiveNext" class="nextBtn" disabled>Next clue ➜ <span lang="ar" dir="rtl">السؤال التالي</span></button>
+      <button type="button" id="detectiveReview" class="outlineBtn">🔁 Practise again <span lang="ar" dir="rtl">تدرب مجددًا</span></button>
+    </div>
+    <p class="detectiveTeacherNote">Teacher note • ملاحظة للمعلم: This is <strong>initial-letter and word listening practice</strong>, not verified isolated-phoneme instruction. Ask an adult to model the beginning sound clearly; English C in “cat” is /k/, and the two letters SH in “fish” belong together at the end.</p>
+  </section>
+
   <aside class="adultNotice">
     <strong>For parents & teachers • للأهل والمعلمين</strong>
     <p>Inspired by effective early-reading activities, but this is an original supplementary activity. The letter tiles support <em>visual word-building</em>. Whole words are played <strong>three times with pauses</strong> so learners can hear them without an instant 0:00 cutoff. These are repeated original recordings, <em>not</em> newly recorded individual phoneme sounds. Isolated phoneme voiceovers and word pronunciation still need qualified teacher review.</p>
@@ -107,5 +149,6 @@
   <footer class="footerMini">Made for curious little learners in Qatar • Independent educational project</footer>
 </main>
 <script src="./phonics-adventure.js" defer></script>
+<script src="./sound-detective.js" defer></script>
 </body>
 </html>
