@@ -81,7 +81,14 @@ function playRecordedItem(lang,index,text,feedbackSelector="#feedback"){
   // Arabic female recordings are NOT yet understandable enough for Grade 1.
   // Until a native-speaker educator approves a replacement, use the preserved
   // clearer male reference and say so instead of mislabeling it as a girl.
-  const speaker=lang==="ar"?"boy":state.voice;
+  let speaker=lang==="ar"?"boy":state.voice;
+  if(lang==="en"&&currentLesson.id==="phonics"&&index===3){
+    speaker=state.voice==="boy"?"bryce":"alba";
+    try{
+      const selected=localStorage.getItem("lla-bus-voice-v1");
+      if(["girl","boy","alba","bryce"].includes(selected))speaker=selected;
+    }catch{/* Storage optional. */}
+  }
   const practice=currentLesson.id==="phonics";
   const audioPath=practice
     ?"audio/practice/"+lang+"-phonics-"+index+"-"+speaker+".mp3"
