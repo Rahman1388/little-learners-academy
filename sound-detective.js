@@ -62,6 +62,7 @@
     // Parent-approved triple repetition; no unreviewed individual phoneme files.
     let speaker=gender;
     if(position===3){
+      speaker=gender==='boy'?'bryce':'alba';
       try{
         const voice=localStorage.getItem("lla-bus-voice-v1");
         if(["girl","boy","alba","bryce"].includes(voice))speaker=voice;
