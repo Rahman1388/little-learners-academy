@@ -67,7 +67,7 @@ const key="lla-bus-voice-v1",allowed=["girl","boy","alba","bryce"],names={girl:"
 function chosen(){try{const a=localStorage.getItem(key);return allowed.includes(a)?a:null}catch{return null}}
 function render(){
  const value=chosen();
- document.querySelector("#chosen").textContent=value?"✅ Your selected bus recording: "+names[value]+" • تم اختيار الصوت":"No alternative chosen yet. Listen and compare first. • استمع وقارن أولاً";
+ document.querySelector("#chosen").textContent=value?"✅ Your selected bus recording: "+names[value]+" • تم اختيار الصوت":"✅ Default C (English female-style) and D (English male-style). Choose an override only if preferred. • الافتراضي C وD";
  document.querySelectorAll(".choice").forEach(card=>card.dataset.chosen=String(card.dataset.voice===value));
 }
 document.querySelectorAll("audio").forEach(player=>{
