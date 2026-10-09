@@ -2,10 +2,22 @@
 "use strict";
 const activities=window.LLA_MINI_ACTIVITIES||[];
 if(activities.length<101)throw Error("The activity library is incomplete");
-const KEY="lla-activity-library-v1";
+const KEY="lla-activity-library-v1",PRACTICE_KEY="lla-practice-insights-v1";
 const $=q=>document.querySelector(q);
 function load(){try{const x=JSON.parse(localStorage.getItem(KEY)||"{}");return x&&typeof x==="object"&&!Array.isArray(x)?x:{}}catch{return {}}}
 const completed=load();
+function readInsights(){
+ try{const x=JSON.parse(localStorage.getItem(PRACTICE_KEY)||"{}");return x&&typeof x==="object"&&!Array.isArray(x)?x:{}}
+ catch{return {}}
+}
+const insights=readInsights();
+function track(id,kind){
+ const old=insights[id]&&typeof insights[id]==="object"?insights[id]:{};
+ const values={correct:Math.max(0,Number(old.correct)||0),incorrect:Math.max(0,Number(old.incorrect)||0)};
+ values[kind]=Math.min(values[kind]+1,999);
+ insights[id]=values;
+ try{localStorage.setItem(PRACTICE_KEY,JSON.stringify(insights))}catch{}
+}
 let current=null,answered=false,guided=[],guidedPosition=0;
 function save(){try{localStorage.setItem(KEY,JSON.stringify(completed))}catch{}}
 function count(){return activities.filter(a=>completed[a.id]===true).length}
@@ -80,6 +92,7 @@ function answer(i){
  const options=[...$("#answerOptions").children],ok=i===current.answer;
  if(ok){
   answered=true;
+  track(current.id,"correct");
   options.forEach((b,j)=>{b.disabled=true;if(j===i)b.classList.add("correct")});
   if(!completed[current.id]){completed[current.id]=true;save()}
   response("🎉 Well done! "+current.tip+" • أحسنت!","good");
@@ -87,6 +100,7 @@ function answer(i){
   $("#nextChallenge").hidden=false;
   if(guided.length){$("#guidedStatus").textContent="✅ Step "+(guidedPosition+1)+" of "+guided.length+" complete!";$("#nextChallenge").textContent=guidedPosition===guided.length-1?"🏆 Finish my 5 steps • أنهي الخطوات":"➡ Next step • الخطوة التالية";}
  }else{
+  track(current.id,"incorrect");
   options[i].classList.add("wrong");
   options[i].disabled=true;
   response("🌱 Good try! Look again and choose another answer. • حاول مرة أخرى.","try");
@@ -126,4 +140,8 @@ $("#nextChallenge").addEventListener("click",()=>{
 });
 window.addEventListener("pageshow",progress);
 skills();list();
+try{
+ const requested=new URLSearchParams(location.search).get("activity");
+ if(requested&&activities.some(a=>a.id===requested))open(requested);
+}catch{}
 })();
