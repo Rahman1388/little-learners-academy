@@ -78,24 +78,35 @@ function playRecordedItem(lang,index,text,feedbackSelector="#feedback"){
   stopAllAudio();
   const generation=audioGeneration;
   const box=$(feedbackSelector);
-  const file=new URL("audio/"+lang+"/"+currentLesson.id+"-"+index+"-"+state.voice+".mp3",document.baseURI);
-  file.searchParams.set("v",lang==="ar"?"ar-clean-v3":"en-clean-v3");
+  // Arabic female recordings are NOT yet understandable enough for Grade 1.
+  // Until a native-speaker educator approves a replacement, use the preserved
+  // clearer male reference and say so instead of mislabeling it as a girl.
+  const speaker=lang==="ar"?"boy":state.voice;
+  const file=new URL("audio/"+lang+"/"+currentLesson.id+"-"+index+"-"+speaker+".mp3",document.baseURI);
+  file.searchParams.set("v",lang==="ar"?"ar-review-fallback-1":"en-clean-v3");
   const audio=new Audio(file.href);
   activeAudio=audio;
   audio.preload="auto";
   audio.playsInline=true;
   audio.preservesPitch=true;
   audio.playbackRate=state.slow===true?.97:1;
-  if(box)box.textContent="🎧 Your learning voice is starting… • يبدأ الصوت";
+  const referenceMessage=lang==="ar"&&state.voice==="girl"
+    ?"Arabic female voice is under review. Using the clearer male reference for now. • الصوت الأنثوي قيد المراجعة"
+    :lang==="ar"?"Arabic male reference • الصوت العربي المرجعي":"English "+state.voice+"-style voice • الصوت الإنجليزي";
+  if(box)box.textContent="🎧 Loading… "+referenceMessage;
   let failed=false;
   function fallback(){
     if(failed||generation!==audioGeneration)return;
     failed=true;
-    if(box)box.textContent="Using the device voice • نجرب صوت الجهاز";
-    speak(text,state.voice,lang);
+    if(lang==="ar"){
+      if(box)box.textContent="Arabic recording unavailable. Check connection and retry. • تعذر تشغيل التسجيل، حاول مرة أخرى";
+    }else{
+      if(box)box.textContent="Recording unavailable. Trying the device's English voice.";
+      speak(text,state.voice,lang);
+    }
   }
   audio.addEventListener("playing",()=>{
-    if(box&&generation===audioGeneration)box.textContent=(lang==="ar"?"🔊 Arabic":"🔊 English")+" — Listen carefully and repeat • استمع وكرر";
+    if(box&&generation===audioGeneration)box.textContent="🔊 "+referenceMessage+" — Listen and repeat • استمع وكرر";
   });
   audio.addEventListener("ended",()=>{
     if(box&&generation===audioGeneration)box.textContent="🌟 Listen again and say it! • استمع وكرر: "+text;
@@ -111,17 +122,43 @@ function playEnglishItem(index,text,feedbackSelector="#feedback"){
   return playRecordedItem("en",index,text,feedbackSelector);
 }
 
+function previewSelectedEnglish(kind){
+  if(currentLesson&&!$("#lessonView").classList.contains("hidden")){
+    playEnglishItem(0,currentLesson.items[0][1],"#voiceStatus");
+    return;
+  }
+  // Unlike device TTS, these use separate recorded male/female source speakers.
+  stopAllAudio();
+  const generation=audioGeneration;
+  const audio=new Audio(new URL("audio/en/phonics-0-"+kind+".mp3?v=english-preview-2",document.baseURI).href);
+  activeAudio=audio;
+  const box=$("#homeVoiceStatus");
+  if(box)box.textContent="🎧 Loading English "+kind+"-style preview…";
+  audio.addEventListener("playing",()=>{
+    if(box&&generation===audioGeneration)box.textContent="🔊 English "+kind+"-style voice — cat";
+  });
+  audio.addEventListener("error",()=>{
+    if(generation===audioGeneration&&box)box.textContent="Preview unavailable. Check your connection and try again.";
+  });
+  const p=audio.play();
+  if(p&&typeof p.catch==="function")p.catch(()=>{
+    if(generation===audioGeneration&&box)box.textContent="Tap again to play the English sample.";
+  });
+}
 function setVoice(kind,preview=false){
   if(kind!=="girl"&&kind!=="boy")return;
   state.voice=kind;
   saveState();
   const box=$("#voiceStatus");
-  if(box)box.textContent=(kind==="girl"?"👧 Girl-style voice selected":"👦 Boy-style voice selected")+" • تم اختيار الصوت";
-  if(preview){
-    if(currentLesson&&!$("#lessonView").classList.contains("hidden"))playArabicItem(0,currentLesson.items[0][2],"#voiceStatus");
-    else speak("Hello! Let us learn and play!",kind,"en");
-  }else stopAllAudio();
+  const homeBox=$("#homeVoiceStatus");
+  const message=(kind==="girl"?"👧 English female-style voice selected":"👦 English male-style voice selected")
+    +". Arabic uses the clearer male reference until the female audio passes review.";
+  if(box)box.textContent=message;
+  if(homeBox)homeBox.textContent=message;
+  if(preview)previewSelectedEnglish(kind);
+  else stopAllAudio();
 }
+
 function previewEnglish(){
   const text=currentLesson?.items[0]?.[1]||"Hello! Let us learn and play!";
   if(currentLesson)playEnglishItem(0,text,"#voiceStatus");else speak(text,state.voice,"en");
