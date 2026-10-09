@@ -60,7 +60,14 @@
     const main=read(MAIN_KEY);
     const gender=main && main.voice==="boy"?"boy":"girl";
     // Parent-approved triple repetition; no unreviewed individual phoneme files.
-    const file="./audio/practice/en-phonics-"+position+"-"+gender+".mp3?v=three-repeat-1";
+    let speaker=gender;
+    if(position===3){
+      try{
+        const voice=localStorage.getItem("lla-bus-voice-v1");
+        if(["girl","boy","alba","bryce"].includes(voice))speaker=voice;
+      }catch{/* Can work without local storage. */}
+    }
+    const file="./audio/practice/en-phonics-"+position+"-"+speaker+".mp3?v=three-repeat-1";
     const player=new Audio(file);
     activeAudio=player;
     player.preload="auto";
