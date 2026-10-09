@@ -113,7 +113,7 @@ function playWord(index){
  if(index===3){
   try{const candidate=localStorage.getItem("lla-bus-voice-v1");if(options.includes(candidate))busChoice=candidate}catch{}
  }
- const selectedVoice=busChoice||speaker;
+ const selectedVoice=index===3?(busChoice||(speaker==='boy'?'bryce':'alba')):speaker;
  audio=new Audio("./audio/practice/en-phonics-"+index+"-"+selectedVoice+".mp3?v=three-repeat-1");
  audio.preload="auto";
  audio.playbackRate=profile&&profile.slow?0.85:1;
