@@ -64,6 +64,18 @@ a.back{display:inline-block;margin:12px 0;padding:12px 19px;text-decoration:none
       <small>Same female model with different Arabic text input; compare pronunciation</small>
     </article>
     <article class="testCard">
+      <h2>🎧 Arabic female • Calm trial C</h2>
+      <p>Slower neural pronunciation with a gentle volume level</p>
+      <audio id="arabicC" controls preload="metadata" src="./audio/trials/ar-phonics-0-female-calm.mp3">Audio is not supported.</audio>
+      <small>Unapproved synthetic female voice; compare understandable words, not only whether it sounds feminine</small>
+    </article>
+    <article class="testCard">
+      <h2>🎧 Arabic female • Careful trial D</h2>
+      <p>More deliberately paced neural pronunciation; no pitch shifting</p>
+      <audio id="arabicD" controls preload="metadata" src="./audio/trials/ar-phonics-0-female-careful.mp3">Audio is not supported.</audio>
+      <small>Unapproved synthetic female voice, may still not be suitable for children</small>
+    </article>
+    <article class="testCard">
       <h2>Arabic male • Clearer reference</h2>
       <p>Current clear boy voice — unchanged</p>
       <audio id="arabicBoyReference" controls preload="metadata" src="./audio/ar/phonics-0-boy.mp3">Audio is not supported.</audio>
@@ -100,7 +112,7 @@ a.back{display:inline-block;margin:12px 0;padding:12px 19px;text-decoration:none
       <small>Existing synthetic voice</small>
     </article>
   </div>
-  <p style="background:#fff8df;padding:14px;border-radius:16px"><strong>Which sound is clearest?</strong> Please tell me Arabic Girl A or B, and whether the newer English voices sound better. We will keep the app unchanged until you choose. Phoneme-by-phoneme teaching will still need a qualified phonics teacher's review.</p>
+  <p style="background:#fff8df;padding:14px;border-radius:16px"><strong>Which sound is clearest?</strong> Please compare Arabic Female A/B/C/D against the Arabic male reference. We will only use a candidate in lessons after native-speaker approval. Please also compare both English voices. We will keep the app unchanged until you choose. Phoneme-by-phoneme teaching will still need a qualified phonics teacher's review.</p>
 </section>
 <script>
 (function(){
@@ -116,6 +128,8 @@ a.back{display:inline-block;margin:12px 0;padding:12px 19px;text-decoration:none
     var n=a.value;
     changeAudio("arabicA","./audio/trials/ar-phonics-"+n+"-female-natural.mp3");
     changeAudio("arabicB","./audio/trials/ar-phonics-"+n+"-female-vowelled.mp3");
+    changeAudio("arabicC","./audio/trials/ar-phonics-"+n+"-female-calm.mp3");
+    changeAudio("arabicD","./audio/trials/ar-phonics-"+n+"-female-careful.mp3");
     changeAudio("arabicBoyReference","./audio/ar/phonics-"+n+"-boy.mp3");
   });
   e.addEventListener("change",function(){
