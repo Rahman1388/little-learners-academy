@@ -1,0 +1,42 @@
+name: Audit English and Arabic audio format
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/audit_audio_format.py"
+      - ".github/workflows/audit-audio-format.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: audit-audio-format
+  cancel-in-progress: true
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: Checkout actual MP3s
+        uses: actions/checkout@v4
+      - name: Install technical audio inspectors
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq ffmpeg
+      - name: Measure source MP3 format, silence and audio level
+        run: python3 scripts/audit_audio_format.py
+      - name: Publish repository audio audit report
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add AUDIO_TECHNICAL_AUDIT.md
+          if git diff --cached --quiet; then
+            echo "Audio audit report unchanged"
+          else
+            git commit -m "Measure MP3 clip duration, loudness, format and silence"
+            git pull --rebase origin main
+            git push origin main
+          fi
