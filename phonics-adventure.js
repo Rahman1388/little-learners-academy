@@ -53,7 +53,15 @@
     const word = WORDS[current];
     // Arabic boy is currently the parent-preferred intelligible reference.
     // Female Arabic trial audio stays on voice-test.html until approved.
-    const speaker = language === "ar" ? "boy" : chosenEnglish;
+    let speaker = language === "ar" ? "boy" : chosenEnglish;
+    // Optional on-device choice for the word "bus" only. Other words and
+    // Arabic recordings remain exactly as they were.
+    if(language==="en" && current===3){
+      try{
+        const voice=localStorage.getItem("lla-bus-voice-v1");
+        if(["girl","boy","alba","bryce"].includes(voice))speaker=voice;
+      }catch{/* Private browsing may block local storage. */}
+    }
     const file = "./audio/practice/" + language + "-phonics-" + current + "-" + speaker + ".mp3?v=three-repeat-1";
     const audio = new Audio(file);
     const requestId = ++attempt;
