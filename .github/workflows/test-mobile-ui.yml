@@ -17,6 +17,7 @@ on:
       - "bus-voice-check.html"
       - "audio-review.html"
       - "picture-memory.html"
+      - "star-journey.html"
       - "scripts/test-mobile-ui.cjs"
       - ".github/workflows/test-mobile-ui.yml"
   workflow_dispatch:
