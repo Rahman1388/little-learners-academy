@@ -255,7 +255,7 @@ const fs=require("node:fs");
  await page.locator("#journeyTrack .step").first().waitFor({state:"visible"});
  assert.equal(await page.locator("#journeyTrack .step").count(),4);
  assert.equal(await page.locator("#journeyBadges .medal").count(),4);
- assert.equal(await page.locator("#journeyTrack .step.complete").count(),4);
+ assert.equal(await page.locator("#journeyTrack .step.complete").count(),3,"Reading adventure has only one completed word, not four");
  await assertMobile();
  await page.locator("#femaleChoice").click();
  await page.locator('#listenWords button[aria-label="Hear English word cat"]').click();
