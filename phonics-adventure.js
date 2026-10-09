@@ -57,6 +57,7 @@
     // Optional on-device choice for the word "bus" only. Other words and
     // Arabic recordings remain exactly as they were.
     if(language==="en" && current===3){
+      speaker=chosenEnglish==="boy"?"bryce":"alba";
       try{
         const voice=localStorage.getItem("lla-bus-voice-v1");
         if(["girl","boy","alba","bryce"].includes(voice))speaker=voice;
