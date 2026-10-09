@@ -120,7 +120,7 @@ function reset(){
  $("#memoryBoard").replaceChildren();
  cards.forEach((card,i)=>{
   const button=document.createElement("button");
-  button.type="button";button.className="card";
+  button.type="button";button.className="card";button.dataset.pair=card.id;
   button.setAttribute("aria-label","Hidden picture card "+(i+1));
   const symbol=document.createElement("span");symbol.className="symbol";symbol.textContent="❔";symbol.setAttribute("aria-hidden","true");
   const label=document.createElement("span");label.className="label";label.textContent="Tap";
