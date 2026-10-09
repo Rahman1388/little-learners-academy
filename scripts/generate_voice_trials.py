@@ -26,18 +26,24 @@ MODEL_EN_GIRL = Path("/tmp/lla-voice-trials/en_GB-alba-medium.onnx")
 MODEL_EN_BOY = Path("/tmp/lla-voice-trials/en_US-bryce-medium.onnx")
 ARABIC_MARKS = re.compile(r"[\u0610-\u061A\u064B-\u065F\u0670\u06D6-\u06ED]")
 
-def make_file(voice, phrase: str, output: Path, settings: SynthesisConfig) -> None:
+def make_file(voice, phrase: str, output: Path, settings: SynthesisConfig,
+              gentle: bool = False) -> None:
     if not phrase.strip():
         raise ValueError("Empty pronunciation trial")
     output.parent.mkdir(parents=True, exist_ok=True)
     with tempfile.NamedTemporaryFile(suffix=".wav") as temporary:
         with wave.open(temporary.name, "wb") as wav:
             voice.synthesize_wav(phrase, wav, syn_config=settings)
-        subprocess.run([
+        cmd = [
             "ffmpeg", "-hide_banner", "-loglevel", "error", "-y",
             "-i", temporary.name, "-ac", "1",
-            "-codec:a", "libmp3lame", "-q:a", "2", str(output),
-        ], check=True, timeout=45)
+        ]
+        if gentle:
+            # Allow child listeners to hear the onset, avoid near-0 dBFS peaks.
+            # Preserve pitch and formants; the voice engine controls timing.
+            cmd += ["-af", "volume=-4dB,adelay=100,apad=pad_dur=0.18"]
+        cmd += ["-codec:a", "libmp3lame", "-q:a", "2", str(output)]
+        subprocess.run(cmd, check=True, timeout=45)
     if output.stat().st_size < 700:
         raise ValueError(f"Audio missing or too small: {output}")
 
@@ -64,6 +70,20 @@ def main() -> None:
                 make_file(arabic, speech, path, ar_settings)
                 count += 1
 
+    # Two NEW careful female-voice candidates for comparison only. These
+    # remain unapproved adult synthetic female models until reviewed by humans.
+    # Vary the neural synthesizer's own length_scale, not ffmpeg playback speed.
+    for lesson, index_list in (("phonics", range(4)), ("sentences", [0])):
+        for i in index_list:
+            text = source[lesson][i]["text"]
+            for variant, length in (("calm", 1.40), ("careful", 1.75)):
+                settings = SynthesisConfig(
+                    length_scale=length, noise_scale=0.62, noise_w_scale=0.72
+                )
+                path = OUT / f"ar-{lesson}-{i}-female-{variant}.mp3"
+                make_file(arabic, text, path, settings, gentle=True)
+                count += 1
+
     english_phonics = ["cat", "fish", "sun", "bus"]
     english_sentences = ["I can read."]
     for lesson, values in (("phonics", english_phonics), ("sentences", english_sentences)):
@@ -73,7 +93,7 @@ def main() -> None:
                 make_file(voice, text, path, en_settings)
                 count += 1
 
-    print(f"Generated {count} natural-speed demo clips for review. Production files unchanged.")
+    print(f"Generated {count} voice trials including slower, lower-peak Arabic female candidates. Production recordings unchanged.")
 
 if __name__ == "__main__":
     main()
