@@ -271,6 +271,19 @@ const fs=require("node:fs");
  await page.setViewportSize({width:768,height:1024});
  await assertMobile();
  await page.setViewportSize({width:390,height:844});
+ // Achievements in Star Journey derive from saved activity progress.
+ await goto("star-journey.html");
+ assert.equal(await page.locator("#activityMilestoneBadges .medal").count(),5);
+ assert.match(await page.locator("#activityMilestoneProgress").textContent(),/0 \/ 151/);
+ await page.evaluate(()=>{
+   const done={};for(let i=1;i<=25;i++)done["mini-"+String(i).padStart(3,"0")]=true;
+   localStorage.setItem("lla-activity-library-v1",JSON.stringify(done));
+ });
+ await page.reload({waitUntil:"domcontentloaded"});
+ assert.equal(await page.locator("#activityMilestoneBadges .earned").count(),2);
+ assert.match(await page.locator("#activityMilestoneProgress").textContent(),/25 \/ 151/);
+ // Restore an empty library completion state before testing 1/151.
+ await page.evaluate(()=>localStorage.removeItem("lla-activity-library-v1"));
  // More than 100 real, individually playable challenges with local progress.
  await goto("activity-library.html");
  await page.locator('#activityGrid .activity').first().waitFor({state:"visible"});
