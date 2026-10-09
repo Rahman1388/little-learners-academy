@@ -1,0 +1,120 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#ffe8a7"><link rel="icon" href="./icon.svg"><title>Ten-Frame Math Lab | Little Learners Academy</title>
+<style>
+:root{font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif;color:#173c5b}*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:linear-gradient(135deg,#bdeaff,#fff1be 55%,#fbe0f3)}
+main{max-width:790px;margin:auto;padding:13px 13px 40px}a,button{font:inherit}button{cursor:pointer}
+a:focus-visible,button:focus-visible{outline:4px solid #8a1538;outline-offset:3px}
+.back{display:inline-flex;padding:13px 18px;min-height:49px;border-radius:16px;color:#135074;background:white;text-decoration:none;font-weight:900}
+.hero,.stage,.help{background:#fffefb;border:4px solid #fff;border-radius:28px;margin:17px 0;padding:clamp(15px,4vw,26px);box-shadow:0 6px #b5d8e3}
+.hero{text-align:center;background:linear-gradient(120deg,#fff6c3,#fff,#e2f8ff)}
+h1{font-size:clamp(29px,6vw,43px);line-height:1.2;margin:8px 0}h1 span{font-size:.65em;display:block}
+h2{font-size:25px;margin:8px 0}p{line-height:1.6}
+.progress{background:#ffeda1;padding:11px;border-radius:18px;font-weight:950;display:flex;justify-content:space-between;gap:9px;flex-wrap:wrap}
+.mode{display:flex;flex-wrap:wrap;gap:9px;margin:15px 0}
+.mode button,.actions button{flex:1;min-width:130px;min-height:52px;border:2px solid #abdae7;border-radius:16px;background:white;color:#17567e;font-weight:950;padding:11px 12px}
+.mode button[aria-pressed=true]{background:#e0ffeb;border-color:#25a37c}
+.prompt{text-align:center;font-size:clamp(24px,5vw,35px);font-weight:950;margin:15px 0 7px}
+.explanation{text-align:center;font-size:17px;font-weight:800}
+.frame{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;background:#8dd0ef;border:5px solid #2476ac;border-radius:22px;padding:9px;margin:20px auto;max-width:530px}
+.cell{border:3px solid #86aec5;background:white;aspect-ratio:1/1;min-height:49px;border-radius:13px;display:flex;align-items:center;justify-content:center;font-size:clamp(26px,6vw,46px);touch-action:manipulation}
+.cell.filled{background:#fff1a2;border-color:#d8a83a}.cell.given{background:#cbf5ff;border-color:#52a6c5}
+.cell:disabled{opacity:1;cursor:default}
+.cell[aria-pressed=true]{background:#ffeca1}
+.info{display:flex;justify-content:center;gap:13px;flex-wrap:wrap;font-size:18px;font-weight:900}
+.info span{border-radius:13px;padding:9px 13px;background:#eff8ff}
+.feedback{background:#eaf9ff;border-radius:17px;padding:14px;min-height:56px;font-weight:900;margin:16px 0}
+.feedback.good{background:#dfffea}.feedback.retry{background:#fff1df}
+.actions{display:flex;flex-wrap:wrap;gap:12px}
+.actions .primary{background:#0d80b2;color:white;border-color:#0d80b2}
+.win{padding:17px;background:#e5ffe5;border-radius:20px;margin:17px 0;text-align:center}
+.help{font-size:13px;color:#426277}
+[hidden]{display:none!important}
+@media(max-width:400px){.frame{gap:4px;padding:5px;border-width:3px}.cell{min-height:43px;border-width:2px;border-radius:9px}}
+</style></head><body><main>
+<a class="back" href="./index.html">← Home • الرئيسية</a>
+<header class="hero"><div style="color:#8a1538;font-weight:950">🔢 HANDS-ON GRADE 1 MATH • رياضيات تفاعلية</div>
+<h1>🐻 Ten-Frame Math Lab <span lang="ar" dir="rtl">مختبر تكوين العدد عشرة</span></h1>
+<p>Touch the boxes to build numbers and discover how two parts make ten.</p>
+<p lang="ar" dir="rtl">اضغط على المربعات لتكوين الأعداد ومعرفة كيف نكمل العدد عشرة.</p></header>
+<section class="stage">
+<div class="mode" role="group" aria-label="Choose maths mode"><button id="buildMode" type="button" aria-pressed="true">🟡 Build Numbers 1–10</button><button id="bondMode" type="button" aria-pressed="false">🧩 Make Ten</button></div>
+<div class="progress"><span id="roundLabel">Number 1 of 10</span><span id="modeProgress">0 / 10</span></div>
+<h2 class="prompt" id="mathPrompt">Build 1</h2>
+<p class="explanation" id="mathArabic" lang="ar" dir="rtl">كوّن العدد ١</p>
+<div class="frame" id="tenFrame" role="group" aria-label="Ten frame with ten touchable cells"></div>
+<div class="info"><span id="countLabel">🟡 0 selected</span><span id="neededLabel">🎯 Goal: 1</span></div>
+<p id="mathFeedback" class="feedback" role="status" aria-live="polite">Tap the empty boxes, then check your answer.</p>
+<div class="actions"><button id="checkAnswer" type="button" class="primary">✅ Check • تحقق</button><button id="nextRound" type="button" class="primary" hidden>Next ➜ • التالي</button><button id="resetFrame" type="button">🔄 Try again • حاول مجدداً</button></div>
+<div id="mathWin" class="win" hidden><div style="font-size:46px">🎉 🏆 🌟</div><h2>Ten great steps!</h2><p>Well done! You can play again. • أحسنت! يمكنك اللعب مجدداً.</p></div>
+</section>
+<aside class="help"><strong>For parents and teachers • للأهل والمعلمين</strong><p>A ten-frame supports one-to-one counting and number bonds to ten. Encourage children to count aloud and explain how they know. This is supplementary hands-on number practice—not a full maths syllabus. No microphone, accounts, advertising or new synthetic audio is used. One completion star per mode can be earned once per device.</p></aside>
+<script>
+(()=>{"use strict";
+const $=s=>document.querySelector(s),KEY="lla-tenframe-v1",MAIN="lla-progress-v2";
+const read=k=>{try{const o=JSON.parse(localStorage.getItem(k)||"null");return o&&typeof o==="object"&&!Array.isArray(o)?o:{} }catch{return {}}};
+const write=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch{}};
+let mode="build",round=0,chosen=new Set(),locked=false,awarded=read(KEY);
+const target=()=>mode==="build"?round+1:10;
+const starting=()=>mode==="build"?0:round;
+function status(message,kind=""){$("#mathFeedback").textContent=message;$("#mathFeedback").className="feedback"+(kind?" "+kind:"")}
+function fillCount(){return chosen.size+starting()}
+function update(){
+ $("#roundLabel").textContent=(mode==="build"?"Build number ":"Make ten: ") +(round+1)+" of 10";
+ $("#modeProgress").textContent=round+" / 10";
+ $("#mathPrompt").textContent=mode==="build"?"Build "+(round+1)+" dots":"You have "+round+". Make 10!";
+ $("#mathArabic").textContent=mode==="build"?"كوّن العدد "+(round+1):"لديك "+round+"، أكمل إلى عشرة";
+ $("#countLabel").textContent="🟡 "+fillCount()+" filled";
+ $("#neededLabel").textContent=mode==="build"?"🎯 Goal: "+target():"🎯 Add "+(10-round);
+ $("#buildMode").setAttribute("aria-pressed",String(mode==="build"));
+ $("#bondMode").setAttribute("aria-pressed",String(mode==="bond"));
+}
+function cells(){
+ $("#tenFrame").replaceChildren();
+ for(let i=0;i<10;i++){
+  const given=i<starting(),filled=chosen.has(i);
+  const b=document.createElement("button");b.type="button";b.className="cell"+(given?" given":filled?" filled":"");
+  b.textContent=given?"🔵":filled?"🟡":"";
+  b.disabled=given||locked;
+  b.setAttribute("aria-label","Box "+(i+1)+(given?", already filled":filled?", filled":", empty"));
+  b.setAttribute("aria-pressed",String(given||filled));
+  b.addEventListener("click",()=>{
+   if(locked||given)return;
+   if(chosen.has(i))chosen.delete(i);else chosen.add(i);
+   cells();update();status("Count your dots and press Check. • عدّ النقاط ثم اضغط تحقق.");
+  });
+  $("#tenFrame").append(b);
+ }
+}
+function fresh(){chosen=new Set();locked=false;$("#nextRound").hidden=true;$("#checkAnswer").hidden=false;$("#mathWin").hidden=true;cells();update();status("Tap the boxes and check your answer. • اضغط على المربعات ثم تحقق.");}
+function award(){
+ if(awarded[mode])return;
+ awarded[mode]=true;write(KEY,awarded);
+ const prev=read(MAIN),main={...prev};main.stars=Math.max(0,Number(main.stars)||0)+1;write(MAIN,main);
+}
+function check(){
+ if(locked)return;
+ if(fillCount()!==target()){
+  status("🌱 Almost! Count again. You have "+fillCount()+"; the target is "+target()+". • حاول مجدداً.","retry");
+  return;
+ }
+ locked=true;cells();status("🌟 Wonderful! "+(mode==="bond"?round+" + "+(10-round)+" = 10":"You made "+(round+1)+"!")+" • أحسنت!","good");
+ $("#checkAnswer").hidden=true;$("#nextRound").hidden=false;
+}
+function next(){
+ if(!locked)return;
+ if(round===9){
+  award();$("#modeProgress").textContent="10 / 10";$("#mathWin").hidden=false;$("#nextRound").hidden=true;
+  status("🏆 All ten challenges complete! Change mode or play again.","good");
+  return;
+ }
+ round++;fresh();
+}
+function setMode(nextMode){mode=nextMode;round=0;fresh();}
+$("#buildMode").addEventListener("click",()=>setMode("build"));
+$("#bondMode").addEventListener("click",()=>setMode("bond"));
+$("#checkAnswer").addEventListener("click",check);
+$("#nextRound").addEventListener("click",next);
+$("#resetFrame").addEventListener("click",()=>{round=0;fresh()});
+fresh();
+})();
+</script></main></body></html>
