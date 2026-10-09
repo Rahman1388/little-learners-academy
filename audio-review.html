@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#a6e7f9">
+<title>Word Audio Review • Little Learners Academy</title>
+<style>
+:root{font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif;color:#173c63}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(140deg,#dff7ff,#fff5d0,#fbeaff);min-height:100vh}
+main{max-width:840px;margin:auto;padding:14px 14px 50px}a,button,select{font:inherit}
+a:focus-visible,button:focus-visible,select:focus-visible{outline:4px solid #8a1538;outline-offset:3px}
+.back{display:inline-block;text-decoration:none;color:#174a6f;background:white;padding:12px 16px;border-radius:16px;font-weight:900}
+header,.review,.summary{background:#ffffffef;border:4px solid white;border-radius:27px;padding:clamp(15px,4vw,25px);box-shadow:0 5px #b6dbe6;margin:15px 0}
+h1{font-size:clamp(27px,6vw,42px);line-height:1.2;margin:9px 0}h1 span{display:block;font-size:.65em;margin-top:6px}
+h2{font-size:22px;margin:0 0 10px}p{line-height:1.55}
+.note{font-size:13px;color:#496b82}
+.toolbar{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin:14px 0}
+.toolbar select{min-height:45px;background:#fff;border:2px solid #b4d4df;border-radius:14px;padding:9px}
+.status{background:#e8f8ff;border-radius:15px;padding:12px;font-weight:800}
+.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.review{margin:0;padding:16px}.icon{font-size:40px}.word{font-weight:950;font-size:30px;margin:6px 0}
+.ar{font-family:Tahoma,Arial,sans-serif;font-size:23px;font-weight:800}
+.badge{font-size:13px;font-weight:900;color:#8a1538}
+audio{width:100%;max-width:100%;margin:12px 0}
+.choices{display:flex;gap:8px;flex-wrap:wrap}
+.choices button{border:2px solid #c5dce6;background:#fff;color:#154266;min-height:44px;border-radius:13px;padding:9px 12px;font-weight:850;flex:1;min-width:104px}
+.choices button[aria-pressed=true]{background:#d9ffdf;border-color:#52a96b;color:#195a37}
+.choices button[data-rating=unclear][aria-pressed=true]{background:#ffeded;border-color:#dc7676;color:#842b2b}
+.choices button[data-rating=unsure][aria-pressed=true]{background:#fff6c7;border-color:#cfab40;color:#745e23}
+.summary button{border:0;border-radius:15px;padding:13px 17px;background:#087da8;color:white;min-height:48px;font-weight:900;margin:7px 7px 7px 0}
+.summary .secondary{background:#f3f9fd;color:#174c74;border:2px solid #b5d9e6}
+.result{overflow-wrap:anywhere;white-space:pre-wrap;font-size:13px;line-height:1.6;background:#f2faff;border-radius:13px;padding:12px}
+@media(max-width:580px){.cards{grid-template-columns:1fr}.review{padding:17px}}
+</style></head>
+<body><main>
+<a class="back" href="./index.html">← Home • الرئيسية</a>
+<header>
+<div class="badge">🎧 PARENT LISTENING CHECK • مراجعة الصوت للأهل</div>
+<h1>Check Every Word <span lang="ar" dir="rtl">تحقق من وضوح الكلمات</span></h1>
+<p>Listen to each existing English and Arabic recording, then mark it <strong>Clear</strong>, <strong>Unclear</strong>, or <strong>Not sure</strong>. Each word plays three times with pauses.</p>
+<p lang="ar" dir="rtl">استمع إلى كل كلمة وحدّد: واضح أو غير واضح أو غير متأكد.</p>
+<p class="note">These are synthetic adult voices, not real children's recordings. Your feedback does not replace an educator's pronunciation check. We will not automatically replace voices you already like.</p>
+<div class="toolbar"><label for="language">Language • اللغة</label>
+<select id="language"><option value="en">English — الإنجليزية</option><option value="ar">Arabic — العربية</option></select>
+</div>
+<div class="status" id="reviewProgress" role="status" aria-live="polite">0 / 8 reviewed</div>
+</header>
+<div class="cards" id="reviewCards" aria-label="Audio recordings to review"></div>
+<section class="summary">
+<h2>📝 Your Listening Notes <span lang="ar" dir="rtl">ملاحظاتك</span></h2>
+<p>Selections are kept on this device. Press <strong>Copy feedback</strong> and paste it into our chat, so I can see exactly which recordings need attention.</p>
+<button type="button" id="copyFeedback">📋 Copy feedback • انسخ الملاحظات</button>
+<button type="button" id="clearFeedback" class="secondary">🔄 Start review again • ابدأ من جديد</button>
+<p id="copyStatus" class="note" role="status" aria-live="polite"></p>
+<div class="result" id="feedbackSummary">No recordings reviewed yet.</div>
+<a class="back" href="./bus-voice-check.html">🚌 Compare bus options C & D</a>
+</section>
+<script>
+(()=>{
+"use strict";
+const WORDS=[
+ {en:"cat",ar:"قِطَّة",icon:"🐱"},
+ {en:"fish",ar:"سَمَكَة",icon:"🐟"},
+ {en:"sun",ar:"شَمْس",icon:"☀️"},
+ {en:"bus",ar:"حَافِلَة",icon:"🚌"}
+], KEY="lla-audio-word-review-v1";
+const $=s=>document.querySelector(s);
+function restore(){try{const value=JSON.parse(localStorage.getItem(KEY)||"{}");return value&&typeof value==="object"&&!Array.isArray(value)?value:{}}catch{return {}}}
+const feedback=restore();let playing=null;
+function chosenBus(){
+ try{const v=localStorage.getItem("lla-bus-voice-v1");return ["girl","boy","alba","bryce"].includes(v)?v:null}catch{return null}
+}
+function voiceFor(language,index,style){
+ if(language==="ar")return "boy";
+ if(index===3)return chosenBus()||(style==="boy"?"bryce":"alba");
+ return style;
+}
+function report(){
+ const results=[];
+ for(const language of ["en","ar"])for(let i=0;i<4;i++){
+  const voices=language==="ar"?["boy"]:["girl","boy"];
+  for(const style of voices){
+   const key=language+"-"+i+"-"+style;
+   if(feedback[key])results.push(language.toUpperCase()+" "+WORDS[i].en+" ["+style+"] — "+feedback[key]);
+  }
+ }
+ return "Little Learners Academy — audio clarity review\n"+
+ (results.length?results.join("\n"):"No reviews yet.")+
+ "\nNote: Audio quality feedback only; not a certified phonics assessment.";
+}
+function status(){
+ const reviewed=Object.keys(feedback).filter(k=>["clear","unclear","unsure"].includes(feedback[k])).length;
+ $("#reviewProgress").textContent=reviewed+" / 12 recordings reviewed";
+ $("#feedbackSummary").textContent=report();
+}
+function render(){
+ const language=$("#language").value;
+ if(playing){playing.pause();playing=null}
+ $("#reviewCards").replaceChildren();
+ WORDS.forEach((word,index)=>{
+  const styles=language==="en"?["girl","boy"]:["boy"];
+  styles.forEach(style=>{
+   const key=language+"-"+index+"-"+style;
+   const card=document.createElement("article");
+   card.className="review";
+   const head=document.createElement("div");head.className="badge";
+   head.textContent=language==="ar"?"Arabic male reference":"English "+(style==="girl"?"female-style":"male-style");
+   const icon=document.createElement("div");icon.className="icon";icon.textContent=word.icon;
+   const title=document.createElement("div");title.className="word";title.textContent=word.en;
+   const arabic=document.createElement("div");arabic.className="ar";arabic.lang="ar";arabic.dir="rtl";arabic.textContent=word.ar;
+   const player=document.createElement("audio");player.controls=true;player.preload="metadata";
+   const speaker=voiceFor(language,index,style);
+   player.src="./audio/practice/"+language+"-phonics-"+index+"-"+speaker+".mp3?v=audio-review-1";
+   player.setAttribute("aria-label","Listen to "+word.en+" in "+language+" "+style+" voice three times");
+   player.addEventListener("playing",()=>{if(playing&&playing!==player)playing.pause();playing=player});
+   player.addEventListener("error",()=>{hint.textContent="Recording unavailable. Please try again with an internet connection. • تعذر تشغيل الصوت"});
+   const hint=document.createElement("p");hint.className="note";
+   hint.textContent="Listen 3×, then choose your rating. • استمع ثم قيّم الوضوح.";
+   const choices=document.createElement("div");choices.className="choices";
+   for(const [rate,label] of [["clear","✅ Clear"],["unclear","❌ Unclear"],["unsure","❔ Not sure"]]){
+    const button=document.createElement("button");
+    button.type="button";button.dataset.rating=rate;button.textContent=label;
+    button.setAttribute("aria-pressed",String(feedback[key]===rate));
+    button.addEventListener("click",()=>{
+      feedback[key]=rate;
+      try{localStorage.setItem(KEY,JSON.stringify(feedback))}catch{}
+      choices.querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",String(b===button)));
+      status();
+    });
+    choices.append(button);
+   }
+   card.append(head,icon,title,arabic,player,hint,choices);
+   $("#reviewCards").append(card);
+  });
+ });
+ status();
+}
+$("#language").addEventListener("change",render);
+$("#copyFeedback").addEventListener("click",async()=>{
+ const value=report();
+ try{
+  await navigator.clipboard.writeText(value);
+  $("#copyStatus").textContent="✅ Copied! Paste this into our ChatGPT conversation. • تم النسخ";
+ }catch{
+  $("#copyStatus").textContent="Select and copy the text shown below, then paste it into the chat. • انسخ النص أدناه";
+  const selection=window.getSelection();const range=document.createRange();
+  range.selectNodeContents($("#feedbackSummary"));selection.removeAllRanges();selection.addRange(range);
+ }
+});
+$("#clearFeedback").addEventListener("click",()=>{
+ for(const key of Object.keys(feedback))delete feedback[key];
+ try{localStorage.removeItem(KEY)}catch{}
+ $("#copyStatus").textContent="Review reset. Your app stars and voice preferences are untouched.";
+ render();
+});
+render();
+})();
+</script></main></body></html>
