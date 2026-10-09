@@ -206,6 +206,26 @@ const fs=require("node:fs");
    "Sound Detective did not respect saved bus pronunciation");
  await assertMobile();
 
+ // Audio reviewer is a separate, on-device, 12-clip quality checklist.
+ await goto("audio-review.html");
+ await page.locator("#reviewCards audio").first().waitFor({state:"visible"});
+ assert.equal(await page.locator("#reviewCards audio").count(),8,"Expected eight English samples");
+ await assertMobile();
+ await page.locator('#reviewCards .review').first().locator('[data-rating="unclear"]').click();
+ assert.match(await page.locator("#reviewProgress").textContent(),/1 \/ 12/);
+ await page.locator("#language").selectOption("ar");
+ assert.equal(await page.locator("#reviewCards audio").count(),4,"Expected four Arabic samples");
+ const firstArabic=await page.locator("#reviewCards audio").first().getAttribute("src");
+ assert(firstArabic.includes("ar-phonics-0-boy.mp3"),"Arabic male reference was unexpectedly replaced");
+ await page.locator('#reviewCards .review').first().locator('[data-rating="clear"]').click();
+ assert.match(await page.locator("#reviewProgress").textContent(),/2 \/ 12/);
+ assert.match(await page.locator("#feedbackSummary").textContent(),/EN CAT \[girl\] — unclear/);
+ assert.match(await page.locator("#feedbackSummary").textContent(),/AR CAT \[boy\] — clear/);
+ await page.reload({waitUntil:"domcontentloaded"});
+ assert.match(await page.locator("#reviewProgress").textContent(),/2 \/ 12/);
+ await page.setViewportSize({width:768,height:1024});
+ await assertMobile();
+ await page.setViewportSize({width:390,height:844});
  await goto("voice-test.html");
  await page.locator("audio").first().waitFor();
  const numPlayers=await page.locator("audio").count();
