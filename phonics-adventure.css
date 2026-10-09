@@ -193,3 +193,7 @@ button:focus-visible,a:focus-visible{outline:4px solid #9241a0;outline-offset:3p
  .detectiveSticker.collected{animation:stickerArrival .35s ease-out both}
  @keyframes stickerArrival{0%{transform:scale(.8)}75%{transform:scale(1.08)}100%{transform:scale(1)}}
 }
+
+.detectiveJump{display:block;text-align:center;text-decoration:none;font-weight:900;color:#145681;
+  background:#e6f8ff;border:3px solid #b3e0ef;border-radius:15px;padding:13px 16px;margin-top:15px;line-height:1.6}
+.detectiveJump:focus-visible{outline:4px solid #8A1538;outline-offset:4px}
