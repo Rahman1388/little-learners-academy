@@ -28,11 +28,12 @@
         <p><b>Learn • Explore • Grow</b></p>
         <p>Target: age 6–7 • Qatar Grade 1 • British Year 2 core • US Grade 1</p>
         <div class="quick">
-          <button id="girlVoice" class="btn">👧 Girl voice • صوت طفلة</button>
-          <button id="boyVoice" class="btn">👦 Boy voice • صوت طفل</button>
+          <button id="girlVoice" class="btn">👧 English female-style • صوت إنجليزي أنثوي</button>
+          <button id="boyVoice" class="btn">👦 English male-style • صوت إنجليزي ذكوري</button>
           <button id="installBtn" class="btn secondary hidden">📱 Install App • تثبيت التطبيق</button>
           <a href="./voice-test.html" class="btn secondary voiceLink">🎧 Test clear voices • جرّب الأصوات</a>
           <input id="voice" type="hidden" value="girl">
+          <p id="homeVoiceStatus" class="voiceStatus" role="status" aria-live="polite"></p>
         </div>
         <div class="notice">For Arabic-speaking children learning in English-medium or bilingual schools: short instructions, clear audio, pictures, repetition and active recall.</div>
       </section>
@@ -87,12 +88,12 @@
           <span class="voiceStudioMascot" aria-hidden="true">🎙️</span>
           <div>
             <h2>Choose your learning buddy • اختر صوت صديقك</h2>
-            <p>Pick a playful voice for all the lessons. • اختر صوتًا مرحًا لكل الدروس</p>
+            <p>Choose an English voice style. The unclear Arabic female recording is under review. • اختر الصوت الإنجليزي، والصوت العربي الأنثوي قيد المراجعة.</p>
           </div>
         </div>
         <div class="voiceOptions" role="group" aria-label="Choose voice style">
-          <button type="button" id="lessonGirlVoice" class="voiceOption" aria-pressed="false">👧 Girl-style voice <span class="ar">صوت بأسلوب طفلة</span></button>
-          <button type="button" id="lessonBoyVoice" class="voiceOption" aria-pressed="false">👦 Boy-style voice <span class="ar">صوت بأسلوب طفل</span></button>
+          <button type="button" id="lessonGirlVoice" class="voiceOption" aria-pressed="false">👧 English female-style <span class="ar">صوت إنجليزي أنثوي</span></button>
+          <button type="button" id="lessonBoyVoice" class="voiceOption" aria-pressed="false">👦 English male-style <span class="ar">صوت إنجليزي ذكوري</span></button>
         </div>
         <div class="voiceTools">
           <button type="button" id="previewEnglishVoice" class="voicePreview">▶ Hear English • استمع للإنجليزية</button>
@@ -100,7 +101,7 @@
           <label class="speedToggle"><input type="checkbox" id="slowVoice"> 🐢 Slightly slower (optional) • أبطأ قليلًا</label>
         </div>
         <p id="voiceStatus" class="voiceStatus" role="status" aria-live="polite"></p>
-        <small class="voiceDisclosure">These are synthetic girl/boy-style voices, not recordings of real children. Normal speed gives the clearest pronunciation. Arabic and phonics accuracy still need specialist review.</small>
+        <small class="voiceDisclosure">These are adult synthetic English speaker styles, not recordings of children. Arabic uses the comparatively clearer male reference while a suitable female voice is reviewed. Phonics pronunciation still needs specialist review.</small>
       </section>
       <a id="questLessonLink" class="questBanner hidden" href="./phonics-adventure.html">
         🦊 🌈 Try the Reading Adventure • جرّب مغامرة القراءة
