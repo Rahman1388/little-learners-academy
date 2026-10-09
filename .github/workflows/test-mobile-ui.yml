@@ -12,6 +12,7 @@ on:
       - "phonics-adventure.html"
       - "phonics-adventure.css"
       - "phonics-adventure.js"
+      - "sound-detective.js"
       - "scripts/test-mobile-ui.cjs"
       - ".github/workflows/test-mobile-ui.yml"
   workflow_dispatch:
