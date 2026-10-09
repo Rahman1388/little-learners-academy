@@ -315,6 +315,18 @@ const fs=require("node:fs");
  await page.setViewportSize({width:768,height:1024});
  await assertMobile();
  await page.setViewportSize({width:390,height:844});
+ // Parent-facing roadmap must never claim unreleased grades are playable.
+ await goto("grades-roadmap.html");
+ await page.locator("#roadmapGrid .grade").first().waitFor({state:"visible"});
+ assert.equal(await page.locator("#roadmapGrid .grade").count(),6);
+ assert.equal(await page.locator("#roadmapGrid .grade.ready").count(),1);
+ assert.equal(await page.locator('#roadmapGrid .grade a[href="./activity-library.html"]').count(),1);
+ await assertMobile();
+ await page.locator('#roadmapGrid .grade a[href="./activity-library.html"]').click();
+ assert.equal(await page.locator("#activityGrid .activity").count(),151);
+ await page.setViewportSize({width:768,height:1024});
+ await assertMobile();
+ await page.setViewportSize({width:390,height:844});
  await goto("voice-test.html");
  await page.locator("audio").first().waitFor();
  const numPlayers=await page.locator("audio").count();
