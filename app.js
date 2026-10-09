@@ -196,7 +196,8 @@ function openSubject(id){
   window.scrollTo({top:0,behavior:"smooth"});
 }
 function itemMarkup(x,i){
-  return '<div class="item" data-i="'+i+'"><span>'+x[0]+'</span><b>'+x[1]+'</b><div class="ar itemAr">'+x[2]+'</div><div class="speakRow"><button class="speakBtn en" data-i="'+i+'">🔊 English</button><button class="speakBtn arBtn" data-i="'+i+'">🔊 العربية</button></div></div>';
+  const repeats=currentLesson?.id==="phonics"?" ×3":"";
+  return '<div class="item" data-i="'+i+'"><span>'+x[0]+'</span><b>'+x[1]+'</b><div class="ar itemAr">'+x[2]+'</div><div class="speakRow"><button class="speakBtn en" data-i="'+i+'">🔊 English'+repeats+'</button><button class="speakBtn arBtn" data-i="'+i+'">🔊 العربية'+repeats+'</button></div></div>';
 }
 function openLesson(id){
   currentLesson=currentSubject&&currentSubject.lessons.find(l=>l.id===id);if(!currentLesson)return;
