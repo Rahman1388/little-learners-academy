@@ -70,3 +70,7 @@ linear-gradient(145deg,#fffdf7,#f4fbff 46%,#fff3f8);border-color:#fff;box-shadow
 .questBanner{display:flex;max-width:720px;margin:16px auto;padding:16px;font-size:17px;background:linear-gradient(120deg,#b346b2,#218bc1);box-shadow:0 5px #25719e}
 @media(max-width:650px){.questPromo{justify-content:center;text-align:center;padding:14px}
 .questPromoIcon{min-width:100%;font-size:37px}.questPromoBody{min-width:100%}.questGo{width:100%}}
+
+.questPromoLinks{display:flex;gap:9px;align-items:center;flex-wrap:wrap}
+.questGoSecondary{background:linear-gradient(110deg,#0e83b7,#1656a5);box-shadow:0 5px #0a477b}
+@media(max-width:650px){.questPromoLinks{width:100%}.questPromoLinks .questGo{width:100%}}
