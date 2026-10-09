@@ -49,19 +49,19 @@ const fs=require("node:fs");
  await page.locator("#wordText").waitFor({state:"visible"});
  assert.equal(await page.locator("#wordText").textContent(),"cat");
  // The listen button must work BEFORE any tiles have been selected.
- assert.equal(await page.locator("#blendWord").isEnabled(),true,"Listen 3× should never be greyed out");
- await page.locator("#blendWord").click();
+ assert.equal(await page.locator("#practiceListen").isEnabled(),true,"Listen 3× should never be greyed out");
+ await page.locator("#practiceListen").click();
  const firstListen=await page.evaluate(()=>window.__recordedAudioUrls.at(-1));
  assert(/audio\/practice\/en-phonics-0-girl\.mp3/.test(firstListen),"Early Listen 3× did not play the word recording");
  assert.equal(await page.locator("#findPanel").isHidden(),true,"Picture task should stay locked until word complete");
  await page.locator("#startOver").click();
- assert.equal(await page.locator("#blendWord").isEnabled(),true,"Try Again unexpectedly disabled Listen 3×");
+ assert.equal(await page.locator("#practiceListen").isEnabled(),true,"Try Again unexpectedly disabled Listen 3×");
  await assertMobile();
 
  for(const letter of ["c","a","t"])
    await page.locator("#letterOptions .letterTile").filter({hasText:new RegExp("^"+letter+"$")}).click();
- assert.equal(await page.locator("#blendWord").isDisabled(),false);
- await page.locator("#blendWord").click();
+ assert.equal(await page.locator("#practiceListen").isDisabled(),false);
+ await page.locator("#practiceListen").click();
  await page.locator("#pictureChoices .pictureChoice[aria-label='Picture of cat']").click();
  assert.equal(await page.locator("#successPanel").isVisible(),true);
  assert.match(await page.locator("#questStars").textContent(),/1\s*\/\s*4/);
@@ -101,7 +101,7 @@ const fs=require("node:fs");
  // Both independent progress arrays must survive the subsequent save.
  for(const letter of ["f","i","sh"])
    await page.locator("#letterOptions .letterTile").filter({hasText:new RegExp("^"+letter+"$")}).click();
- await page.locator("#blendWord").click();
+ await page.locator("#practiceListen").click();
  await page.locator("#pictureChoices .pictureChoice[aria-label='Picture of fish']").click();
  const mergedQuest=await page.evaluate(()=>JSON.parse(localStorage.getItem("lla-reading-quest-v1")));
  assert.deepEqual(mergedQuest.done,[0,1],"Second word reward was not saved");
