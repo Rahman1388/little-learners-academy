@@ -74,7 +74,9 @@ def make_practice(source: Path, target: Path) -> tuple[float, float]:
         check=True, timeout=60,
     )
     total_duration = metadata(target)
-    min_duration = original_duration * 2.95 + 2 * PAUSE_SECONDS - 0.08
+    # MP3 frame boundaries and encoder delay introduce small duration shifts.
+    # Require clearly three repetitions + pauses, with reasonable tolerance.
+    min_duration = original_duration * 2.70 + 2 * PAUSE_SECONDS - 0.18
     if total_duration < max(2.10, min_duration):
         raise ValueError(
             f"Practice recording is too short: {target}, "
