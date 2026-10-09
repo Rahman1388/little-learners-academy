@@ -174,7 +174,7 @@
     announce("🔎 New clue: find the picture starting with "+WORDS[next].letter+
       "! • سؤال جديد: الحرف "+WORDS[next].letter);
     // Scroll directly to the NEW letter, not merely to the card's heading.
-    $("#detectiveLetter").scrollIntoView({behavior:"instant",block:"center"});
+    $("#detectiveLetter").scrollIntoView({behavior:"auto",block:"center"});
     $("#detectiveLetter").focus({preventScroll:true});
   }
   document.addEventListener("DOMContentLoaded",()=>{
