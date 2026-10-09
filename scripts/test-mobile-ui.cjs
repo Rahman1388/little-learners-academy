@@ -36,14 +36,14 @@ const fs=require("node:fs");
  await assertMobile();
  await page.locator("#girlVoice").click();
  const enPreview=await page.evaluate(()=>window.__recordedAudioUrls.at(-1));
- assert(/audio\/en\/phonics-0-girl\.mp3/.test(enPreview),"Female English preview did not use recorded voice");
+ assert(/audio\/practice\/en-phonics-0-girl\.mp3/.test(enPreview),"Female English preview did not use three-repeat recorded voice");
 
  await page.locator('#subjects .subject[data-id="english"]').click();
  await page.locator('#lessonList .lessonCard[data-id="phonics"]').click();
  await page.locator("#lessonView").waitFor({state:"visible"});
  await page.locator(".speakBtn.arBtn").first().click();
  const arPreview=await page.evaluate(()=>window.__recordedAudioUrls.at(-1));
- assert(/audio\/ar\/phonics-0-boy\.mp3/.test(arPreview),
+ assert(/audio\/practice\/ar-phonics-0-boy\.mp3/.test(arPreview),
    "Arabic female review did not safely use the approved male reference");
  await page.locator("#questLessonLink").click();
  await page.locator("#wordText").waitFor({state:"visible"});
@@ -74,8 +74,16 @@ const fs=require("node:fs");
  },{timeout:16000});
  const status=await page.locator(".audioLoadStatus").first().textContent();
  assert(/ready/i.test(status),"Audio loading state is not reporting readiness: "+status);
+ const duration=await page.locator("audio").first().evaluate(player=>player.duration);
+ assert(duration>2.1,"Audio should exceed 2 seconds after adding three repeats: "+duration);
+ const url=await page.locator("audio").first().getAttribute("src");
+ assert(url.includes("audio/practice/en-sentences-0-girl.mp3"),"Voice testing page still uses the short source recording");
+ assert.equal(await page.locator(".repeatClipBtn").count(),numPlayers,"Some audio players have no replay button");
+ await page.locator("#practiceSpeed").check();
+ const speed=await page.locator("audio").first().evaluate(player=>player.playbackRate);
+ assert(Math.abs(speed-0.85)<0.01,"The slower listening mode is not working: "+speed);
  await assertMobile();
  assert.equal(errors.length,0,"Browser JavaScript errors: "+errors.join(" | "));
- console.log("PASS: mobile layout, English voice preview, Arabic review fallback, Reading Adventure game, saved stars and playable voice-test metadata");
+ console.log("PASS: mobile layout, three-repeat English and Arabic phonics, game, saved stars, 2+ second audio, replay buttons and optional slow playback");
  await browser.close();
 })().catch(e=>{console.error(e.stack||e);process.exit(1)});
