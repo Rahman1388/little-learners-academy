@@ -25,6 +25,8 @@ CASES = [
  ("Arabic male sentence", "audio/ar/sentences-0-boy.mp3"),
  ("Arabic female trial A", "audio/trials/ar-phonics-0-female-natural.mp3"),
  ("Arabic female trial B", "audio/trials/ar-phonics-0-female-vowelled.mp3"),
+ ("Arabic female calm C", "audio/trials/ar-phonics-0-female-calm.mp3"),
+ ("Arabic female careful D", "audio/trials/ar-phonics-0-female-careful.mp3"),
  ("English female trial Alba", "audio/trials/en-phonics-0-alba.mp3"),
  ("English male trial Bryce", "audio/trials/en-phonics-0-bryce.mp3"),
 ]
@@ -68,7 +70,7 @@ def main():
       "",
       "Generated: "+dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%d UTC"),
       "",
-      "**Scope:** Measurements from twelve actual files in this repository; the list includes the two Arabic trial pronunciations. This is not a listening test or a comparison of proprietary competitors’ digital audio files.",
+      "**Scope:** Measurements from fourteen actual files in this repository; the list includes the two Arabic trial pronunciations. This is not a listening test or a comparison of proprietary competitors’ digital audio files.",
       "",
       "| Clip | Codec | Duration (s) | Sample rate (kHz) | Bitrate (kbps) | Ch. | Leading silence (s) | Mean level (dBFS) | Peak (dBFS) |",
       "|---|---|---:|---:|---:|---:|---:|---:|---:|",
