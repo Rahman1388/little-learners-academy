@@ -82,14 +82,18 @@ function playRecordedItem(lang,index,text,feedbackSelector="#feedback"){
   // Until a native-speaker educator approves a replacement, use the preserved
   // clearer male reference and say so instead of mislabeling it as a girl.
   const speaker=lang==="ar"?"boy":state.voice;
-  const file=new URL("audio/"+lang+"/"+currentLesson.id+"-"+index+"-"+speaker+".mp3",document.baseURI);
-  file.searchParams.set("v",lang==="ar"?"ar-review-fallback-1":"en-clean-v3");
+  const practice=currentLesson.id==="phonics";
+  const audioPath=practice
+    ?"audio/practice/"+lang+"-phonics-"+index+"-"+speaker+".mp3"
+    :"audio/"+lang+"/"+currentLesson.id+"-"+index+"-"+speaker+".mp3";
+  const file=new URL(audioPath,document.baseURI);
+  file.searchParams.set("v",practice?"three-repeat-1":lang==="ar"?"ar-review-fallback-1":"en-clean-v3");
   const audio=new Audio(file.href);
   activeAudio=audio;
   audio.preload="auto";
   audio.playsInline=true;
   audio.preservesPitch=true;
-  audio.playbackRate=state.slow===true?.97:1;
+  audio.playbackRate=state.slow===true?.85:1;
   const referenceMessage=lang==="ar"&&state.voice==="girl"
     ?"Arabic female voice is under review. Using the clearer male reference for now. • الصوت الأنثوي قيد المراجعة"
     :lang==="ar"?"Arabic male reference • الصوت العربي المرجعي":"English "+state.voice+"-style voice • الصوت الإنجليزي";
@@ -106,7 +110,8 @@ function playRecordedItem(lang,index,text,feedbackSelector="#feedback"){
     }
   }
   audio.addEventListener("playing",()=>{
-    if(box&&generation===audioGeneration)box.textContent="🔊 "+referenceMessage+" — Listen and repeat • استمع وكرر";
+    if(box&&generation===audioGeneration)box.textContent="🔊 "+referenceMessage
+      +(practice?" — 3 repeats with pauses • ثلاث مرات مع توقفات":" — Listen and repeat • استمع وكرر");
   });
   audio.addEventListener("ended",()=>{
     if(box&&generation===audioGeneration)box.textContent="🌟 Listen again and say it! • استمع وكرر: "+text;
@@ -130,12 +135,12 @@ function previewSelectedEnglish(kind){
   // Unlike device TTS, these use separate recorded male/female source speakers.
   stopAllAudio();
   const generation=audioGeneration;
-  const audio=new Audio(new URL("audio/en/phonics-0-"+kind+".mp3?v=english-preview-2",document.baseURI).href);
+  const audio=new Audio(new URL("audio/practice/en-phonics-0-"+kind+".mp3?v=three-repeat-1",document.baseURI).href);
   activeAudio=audio;
   const box=$("#homeVoiceStatus");
   if(box)box.textContent="🎧 Loading English "+kind+"-style preview…";
   audio.addEventListener("playing",()=>{
-    if(box&&generation===audioGeneration)box.textContent="🔊 English "+kind+"-style voice — cat";
+    if(box&&generation===audioGeneration)box.textContent="🔊 English "+kind+"-style voice — cat, repeated 3 times";
   });
   audio.addEventListener("error",()=>{
     if(generation===audioGeneration&&box)box.textContent="Preview unavailable. Check your connection and try again.";
