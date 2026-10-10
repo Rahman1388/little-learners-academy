@@ -32,6 +32,7 @@ jobs:
           node --check activity-data.js
           node --check activity-library.js
           node --check learning-passport.js
+          node --check drawing-studio.js
 
       - name: Verify required PWA files
         run: |
@@ -47,6 +48,9 @@ jobs:
           test -f sound-detective.js
           test -f learning-passport.html
           test -f learning-passport.js
+          test -f drawing-studio.html
+          test -f drawing-studio.css
+          test -f drawing-studio.js
           test -f activity-library.html
           test -f activity-data.js
           test -f activity-library.js
