@@ -25,6 +25,7 @@ on:
       - "parent-progress.html"
       - "ten-frame-lab.html"
       - "place-value-lab.html"
+      - "number-bonds.html"
       - "drawing-studio.html"
       - "drawing-studio.css"
       - "drawing-studio.js"
