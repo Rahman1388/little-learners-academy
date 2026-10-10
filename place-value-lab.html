@@ -1,0 +1,127 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#e2f8eb"><link rel="icon" href="./icon.svg">
+<title>Tens & Ones Builder | Little Learners Academy</title>
+<style>
+:root{font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif;color:#173e61}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(140deg,#c8f4ff,#fef2bc,#e8dafa);min-height:100vh}
+main{max-width:860px;margin:auto;padding:12px 13px 42px}
+button,a{font:inherit}button{cursor:pointer}button:focus-visible,a:focus-visible{outline:4px solid #8a1538;outline-offset:3px}
+.back{display:inline-flex;align-items:center;min-height:50px;padding:12px 16px;border-radius:16px;text-decoration:none;background:white;color:#184467;font-weight:900}
+.hero,.lab,.adults{background:#fffd;border:4px solid #fff;border-radius:28px;box-shadow:0 5px #a8d4e2;margin:16px 0;padding:clamp(16px,4vw,27px)}
+.hero{text-align:center;background:linear-gradient(125deg,#fff3a5,#fff,#dffbff)}
+h1{font-size:clamp(28px,6vw,44px);margin:10px 0 6px;line-height:1.15}
+h1 span{font-size:.62em;display:block;margin-top:9px}
+p{line-height:1.55}.eyebrow{font-size:13px;font-weight:950;color:#8a1538}
+.progress{background:#fff0b5;border-radius:16px;padding:13px;font-weight:900;display:flex;justify-content:space-between;gap:9px;flex-wrap:wrap}
+.target{text-align:center;background:#e6f7ff;border-radius:21px;padding:15px;margin:16px 0}
+.target strong{font-size:clamp(48px,12vw,78px);color:#086e9b;display:block}
+.builder{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.group{min-width:0;border:3px solid #bee2e5;background:#fff;border-radius:23px;padding:13px;text-align:center}
+.group h2{font-size:clamp(20px,4vw,26px);margin:0 0 5px}.group small{display:block;line-height:1.4;color:#4c6478}
+.number{font-size:37px;font-weight:950;padding:10px}
+.controls{display:flex;gap:10px;justify-content:center}
+.controls button{font-size:25px;font-weight:950;min-width:59px;min-height:60px;border:0;border-radius:17px;color:white;background:#077da7}
+.controls button:disabled{background:#a3b6be;cursor:default}
+.blocks{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;align-content:center;gap:8px;min-height:180px;background:#f1faff;border-radius:20px;padding:12px;margin:15px 0}
+.rod{width:24px;height:104px;background:repeating-linear-gradient(to bottom,#f7ad2f 0px,#f7ad2f 9px,#fff2bd 9px,#fff2bd 10px);border:2px solid #b46b14;border-radius:6px}
+.one{width:24px;height:24px;border-radius:7px;background:#62d5aa;border:2px solid #22896d}
+.empty{font-size:15px;color:#57768c;font-weight:800}
+.equation{text-align:center;font-size:clamp(19px,4vw,28px);font-weight:950;background:#fff6d0;border-radius:18px;padding:14px;margin:15px 0}
+#feedback{font-weight:850;background:#e9f8ff;border-radius:17px;padding:14px;min-height:58px;margin:12px 0}
+#feedback.good{background:#dfffe6}#feedback.try{background:#fff1dc}
+.actions{display:flex;gap:11px;flex-wrap:wrap}.actions button{min-height:53px;border-radius:16px;padding:13px 20px;font-weight:950;background:#087ba7;border:0;color:white}
+.actions button.secondary{background:#edfaff;color:#165173;border:2px solid #a7ccdf}
+[hidden]{display:none!important}.adults{font-size:13px;color:#51687b}
+@media(max-width:480px){.builder{gap:8px}.group{padding:10px}.controls button{min-width:49px;min-height:54px}.blocks{min-height:140px}.rod{height:95px}}
+</style></head><body><main>
+<a class="back" href="./index.html">← Home • الرئيسية</a>
+<header class="hero"><div class="eyebrow">🔢 MATHEMATICS • NUMBERS TO 100</div>
+<h1>🏗️ Tens & Ones Builder <span lang="ar" dir="rtl">بناء العشرات والآحاد</span></h1>
+<p>Build a number using tens rods and single counters. <span lang="ar" dir="rtl" style="display:block">كوّن العدد باستخدام مجموعات العشرة والآحاد.</span></p></header>
+<section class="lab">
+<div class="progress"><span id="roundStatus">🌟 Challenge 1 / 12</span><span id="completedStatus">🏅 0 / 12 complete</span></div>
+<div class="target"><div>🎯 Build this number • كوّن هذا العدد</div><strong id="targetNumber">11</strong></div>
+<div class="builder">
+ <section class="group" aria-label="Tens"><h2>🟠 Tens <span lang="ar" dir="rtl">العشرات</span></h2><small>Each rod means 10</small><div class="number" id="tensCount">0</div><div class="controls">
+ <button id="removeTen" type="button" aria-label="Remove one ten">−</button><button id="addTen" type="button" aria-label="Add one ten">+</button>
+ </div></section>
+ <section class="group" aria-label="Ones"><h2>🟢 Ones <span lang="ar" dir="rtl">الآحاد</span></h2><small>Each counter means 1</small><div class="number" id="onesCount">0</div><div class="controls">
+ <button id="removeOne" type="button" aria-label="Remove one one">−</button><button id="addOne" type="button" aria-label="Add one one">+</button>
+ </div></section>
+</div>
+<div class="blocks" id="blocks" role="img" aria-label="No tens or ones built yet"></div>
+<div class="equation" id="equation">0 tens + 0 ones = 0</div>
+<div id="feedback" role="status" aria-live="polite">Tap + to add tens or ones. Then press Check! • أضف العشرات والآحاد ثم تحقق.</div>
+<div class="actions"><button id="checkBuild" type="button">✅ Check • تحقق</button><button id="nextBuild" type="button" hidden>Next number ➜ • العدد التالي</button><button id="resetBuild" type="button" class="secondary">🔄 Start again • أعد المحاولة</button></div>
+<div id="allComplete" hidden role="status"><h2>🎉 Wonderful! All 12 numbers complete! <span lang="ar" dir="rtl">أحسنت! أكملت الأعداد!</span></h2><p>Try building them again, or explore our other maths activities.</p><a class="back" href="./activity-library.html?subject=math">🔢 More mathematics • المزيد من الرياضيات</a></div>
+</section>
+<aside class="adults"><strong>For parents and teachers • للأهل والمعلمين</strong><p>This hands-on Grade 1 place-value bridge develops tens and ones within 100. Representations use groups of ten and individual counters. A correct answer requires the <em>right number of tens and ones</em>, not just a matching total. It supplements, but does not claim certification against, any school's Qatar curriculum. No recordings or accounts are needed. Your progress stays on this device.</p></aside>
+<script>
+(()=>{"use strict";
+const NUMBERS=[11,20,24,35,40,47,52,60,68,73,85,99],KEY="lla-place-value-v1",MAIN="lla-progress-v2";
+const $=s=>document.querySelector(s);
+const read=k=>{try{return JSON.parse(localStorage.getItem(k)||"null")}catch{return null}};
+const write=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch{}};
+let saved=read(KEY),done=saved&&Array.isArray(saved.done)?saved.done.filter(v=>NUMBERS.includes(v)):[];
+done=[...new Set(done)];let step=Math.max(0,NUMBERS.findIndex(n=>!done.includes(n))),tens=0,ones=0,locked=false;
+function feedback(s,kind=""){$("#feedback").textContent=s;$("#feedback").className=kind}
+function update(){
+ $("#tensCount").textContent=tens;$("#onesCount").textContent=ones;
+ $("#equation").textContent=tens+" tens + "+ones+" ones = "+(tens*10+ones);
+ $("#addTen").disabled=locked||tens>=9;$("#removeTen").disabled=locked||tens<=0;
+ $("#addOne").disabled=locked||ones>=9;$("#removeOne").disabled=locked||ones<=0;
+ const blocks=$("#blocks");blocks.replaceChildren();
+ if(tens+ones===0){const empty=document.createElement("span");empty.className="empty";empty.textContent="Tap + to build your number • اضغط +";blocks.append(empty)}
+ for(let i=0;i<tens;i++){const rod=document.createElement("span");rod.className="rod";rod.setAttribute("aria-hidden","true");blocks.append(rod)}
+ for(let i=0;i<ones;i++){const one=document.createElement("span");one.className="one";one.setAttribute("aria-hidden","true");blocks.append(one)}
+ blocks.setAttribute("aria-label",tens+" groups of ten and "+ones+" ones");
+}
+function render(){
+ tens=0;ones=0;locked=false;
+ $("#targetNumber").textContent=NUMBERS[step];
+ $("#roundStatus").textContent="🌟 Challenge "+(step+1)+" / "+NUMBERS.length;
+ $("#completedStatus").textContent="🏅 "+done.length+" / "+NUMBERS.length+" complete";
+ $("#nextBuild").hidden=true;$("#checkBuild").hidden=false;$("#allComplete").hidden=true;
+ feedback("Tap + to add tens or ones. Then press Check! • أضف العشرات والآحاد ثم تحقق.");
+ update();
+}
+function adjust(kind,delta){
+ if(locked)return;
+ if(kind==="tens")tens=Math.max(0,Math.min(9,tens+delta));
+ else ones=Math.max(0,Math.min(9,ones+delta));
+ update();
+}
+$("#addTen").addEventListener("click",()=>adjust("tens",1));
+$("#removeTen").addEventListener("click",()=>adjust("tens",-1));
+$("#addOne").addEventListener("click",()=>adjust("ones",1));
+$("#removeOne").addEventListener("click",()=>adjust("ones",-1));
+$("#resetBuild").addEventListener("click",render);
+$("#checkBuild").addEventListener("click",()=>{
+ if(locked)return;
+ const n=NUMBERS[step],wantTens=Math.floor(n/10),wantOnes=n%10;
+ if(tens!==wantTens||ones!==wantOnes){
+  feedback("🌱 Almost! "+n+" needs "+wantTens+" tens and "+wantOnes+" ones. Try again! • حاول مجدداً.","try");return;
+ }
+ locked=true;done=[...new Set([...done,n])];
+ write(KEY,{done,earned:saved&&saved.earned===true});
+ $("#completedStatus").textContent="🏅 "+done.length+" / "+NUMBERS.length+" complete";
+ feedback("🎉 Excellent! "+wantTens+" tens + "+wantOnes+" ones make "+n+"! • أحسنت!","good");
+ update();$("#checkBuild").hidden=true;$("#nextBuild").hidden=false;
+ if(done.length===NUMBERS.length){
+  $("#allComplete").hidden=false;
+  const latest=read(KEY);
+  if(!(latest&&latest.earned)){
+   const original=read(MAIN);const main=original&&typeof original==="object"&&!Array.isArray(original)?original:{stars:0,completed:{}};
+   main.stars=Math.max(0,Number(main.stars)||0)+1;
+   write(MAIN,main);write(KEY,{done,earned:true});
+  }
+ }
+});
+$("#nextBuild").addEventListener("click",()=>{
+ if(!locked)return;
+ const next=NUMBERS.findIndex(n=>!done.includes(n));
+ step=next<0?0:next;render();
+});
+render();
+})();
+</script></main></body></html>
