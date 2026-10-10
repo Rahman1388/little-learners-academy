@@ -52,6 +52,7 @@ jobs:
           test -f drawing-studio.css
           test -f drawing-studio.js
           test -f place-value-lab.html
+          test -f number-bonds.html
           test -f activity-library.html
           test -f activity-data.js
           test -f activity-library.js
