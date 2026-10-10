@@ -437,6 +437,33 @@ const fs=require("node:fs");
  assert.match(await page.locator("#prompt").textContent(),/fish/i);
  await page.setViewportSize({width:768,height:1024});await assertMobile();
  await page.setViewportSize({width:390,height:844});await assertMobile();
+ // Grade 1 tens and ones builder: 12 real place-value challenges.
+ await goto("place-value-lab.html");
+ await page.locator("#targetNumber").waitFor({state:"visible"});
+ assert.equal(await page.locator("#targetNumber").textContent(),"11");
+ await assertMobile();
+ await page.locator("#checkBuild").click();
+ assert.match(await page.locator("#feedback").textContent(),/Almost/);
+ for(const n of [11,20,24,35,40,47,52,60,68,73,85,99]){
+   assert.equal(await page.locator("#targetNumber").textContent(),String(n));
+   for(let j=0;j<Math.floor(n/10);j++)await page.locator("#addTen").click();
+   for(let j=0;j<n%10;j++)await page.locator("#addOne").click();
+   assert.equal(await page.locator("#blocks .rod").count(),Math.floor(n/10));
+   assert.equal(await page.locator("#blocks .one").count(),n%10);
+   await page.locator("#checkBuild").click();
+   assert.match(await page.locator("#feedback").textContent(),/Excellent/);
+   await page.locator("#nextBuild").click();
+ }
+ assert.match(await page.locator("#completedStatus").textContent(),/12 \/ 12/);
+ const valStars=await page.evaluate(()=>JSON.parse(localStorage.getItem("lla-progress-v2")).stars);
+ await page.reload({waitUntil:"domcontentloaded"});
+ assert.match(await page.locator("#completedStatus").textContent(),/12 \/ 12/);
+ for(let j=0;j<1;j++)await page.locator("#addTen").click();
+ await page.locator("#addOne").click();await page.locator("#checkBuild").click();
+ const valStarsAfter=await page.evaluate(()=>JSON.parse(localStorage.getItem("lla-progress-v2")).stars);
+ assert.equal(valStars,valStarsAfter,"Place value replay should not give duplicate stars");
+ await page.setViewportSize({width:768,height:1024});await assertMobile();
+ await page.setViewportSize({width:390,height:844});await assertMobile();
  await goto("voice-test.html");
  await page.locator("audio").first().waitFor();
  const numPlayers=await page.locator("audio").count();
