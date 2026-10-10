@@ -416,6 +416,7 @@ const fs=require("node:fs");
  await page.locator('#palette [data-colour="#228bd2"]').click();
  await page.locator("#pencilTool").click();
  const drawing=page.locator("#drawingCanvas");
+ await drawing.scrollIntoViewIfNeeded();
  const box=await drawing.boundingBox();
  const pos={x:box.x+box.width*.45,y:box.y+box.height*.63};
  await page.mouse.move(pos.x,pos.y);
