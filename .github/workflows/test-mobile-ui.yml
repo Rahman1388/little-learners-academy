@@ -18,6 +18,8 @@ on:
       - "audio-review.html"
       - "picture-memory.html"
       - "star-journey.html"
+      - "learning-passport.html"
+      - "learning-passport.js"
       - "activity-library.html"
       - "grades-roadmap.html"
       - "parent-progress.html"
