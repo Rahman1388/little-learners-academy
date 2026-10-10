@@ -24,6 +24,7 @@ on:
       - "grades-roadmap.html"
       - "parent-progress.html"
       - "ten-frame-lab.html"
+      - "place-value-lab.html"
       - "drawing-studio.html"
       - "drawing-studio.css"
       - "drawing-studio.js"
