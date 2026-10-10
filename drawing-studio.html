@@ -1,0 +1,36 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#c9f3ff"><title>Creative Drawing Studio | Little Learners Academy</title><link rel="icon" href="./icon.svg" type="image/svg+xml"><link rel="stylesheet" href="./drawing-studio.css?v=1"></head>
+<body><main>
+<a class="home" href="./index.html">← Home • الرئيسية</a>
+<header class="hero"><div class="eyebrow">🎨 LITTLE LEARNERS ACADEMY • ART CORNER</div><h1>My Drawing & Colouring Studio <span lang="ar" dir="rtl">مرسم الرسم والتلوين</span></h1>
+<p>Draw with your finger, colour a picture, or create your own masterpiece. <span lang="ar" dir="rtl" class="arabic">ارسم بإصبعك، ولوّن صورة، أو ابتكر لوحتك الخاصة!</span></p>
+</header>
+<section class="studio" aria-label="Drawing studio">
+<div class="topline"><label for="template">🖼️ Choose a picture • اختر صورة</label><select id="template">
+<option value="blank">✨ Free drawing • رسم حر</option>
+<option value="house">🏠 House • منزل</option><option value="flower">🌷 Flower • زهرة</option>
+<option value="sun">☀️ Sun & clouds • شمس وغيوم</option><option value="tree">🌳 Tree • شجرة</option>
+<option value="fish">🐟 Fish • سمكة</option><option value="shapes">🔺 Shapes • أشكال هندسية</option>
+</select></div>
+<div class="challenge" id="prompt" role="status" aria-live="polite">✨ Draw anything you imagine! • ارسم ما تتخيله!</div>
+<h2>🖍️ Colour pencils • أقلام التلوين</h2>
+<div id="palette" class="palette" role="group" aria-label="Choose pencil colour"></div>
+<div class="toolbox" role="group" aria-label="Drawing tools">
+<button type="button" id="pencilTool" data-tool="pencil" aria-pressed="true">✏️ Pencil • قلم</button>
+<button type="button" id="fillTool" data-tool="fill" aria-pressed="false">🪣 Fill • تلوين</button>
+<button type="button" id="eraserTool" data-tool="eraser" aria-pressed="false">🧼 Eraser • ممحاة</button>
+</div>
+<div class="sizeRow"><label for="brushSize">Pencil size • حجم القلم</label><input type="range" id="brushSize" min="3" max="24" step="1" value="8"><output id="sizeValue" for="brushSize">8</output></div>
+<div class="paperWrap"><canvas id="drawingCanvas" width="720" height="480" aria-label="Drawing and colouring paper. Drag finger or mouse to draw." role="img"></canvas></div>
+<div id="drawingStatus" class="status" role="status" aria-live="polite">Choose a colour and draw with your finger! • اختر لوناً وارسم بإصبعك!</div>
+<div class="actions"><button type="button" id="undo">↶ Undo • تراجع</button><button type="button" id="redo">↷ Redo • إعادة</button>
+<button type="button" id="savePicture" class="save">📥 Save picture • حفظ الصورة</button>
+<button type="button" id="startOver" class="reset">🔄 Start over • ابدأ من جديد</button></div>
+<p class="small">Saving downloads a PNG picture on supported browsers. On an iPhone, use the share/save option if your browser displays the image instead. Please ask a parent before leaving the app or sharing artwork.</p>
+</section>
+<section class="ideas"><h2>🌟 Fun drawing missions <span lang="ar" dir="rtl">أفكار ممتعة للرسم</span></h2>
+<div class="ideasGrid"><div>🏠 <strong>Build a home</strong><span>Use squares and triangles.</span><small lang="ar">استخدم المربعات والمثلثات</small></div>
+<div>🌷 <strong>Garden colours</strong><span>Count petals and choose colours.</span><small lang="ar">عدّ البتلات واختر الألوان</small></div>
+<div>🐟 <strong>Under the sea</strong><span>Colour a fish and add bubbles.</span><small lang="ar">لوّن السمكة وأضف الفقاعات</small></div>
+<div>☀️ <strong>Sky explorer</strong><span>Draw the sun, clouds and weather.</span><small lang="ar">ارسم الشمس والغيوم والطقس</small></div></div></section>
+<aside class="parent"><strong>For parents and teachers • للأهل والمعلمين</strong><p>This is a creative supplementary activity for early-primary fine-motor practice, visual expression, shape recognition and colours. It is not a graded drawing assessment or officially approved Qatar curriculum unit. No microphone, accounts, trackers, or new audio recordings are required. Artwork stays on the device; the app does not upload children’s drawings.</p></aside>
+</main><script src="./drawing-studio.js?v=1"></script></body></html>
