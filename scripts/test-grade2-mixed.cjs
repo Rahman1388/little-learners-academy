@@ -21,10 +21,10 @@ const {chromium}=require("playwright"),assert=require("node:assert/strict");
    assert(await page.locator("#next").isVisible(),"Question "+n+" did not accept an answer");
    if(n!==8)await page.locator("#next").click();
   }
-  assert.match(await page.locator("#progress").textContent(),/9 \\/ 9/);
+  assert((await page.locator("#progress").textContent()).includes("9 / 9"),"Mixed quest completion counter incorrect");
   assert.equal(await page.evaluate(()=>localStorage.getItem("lla-activity-library-v1")),grade1);
   await page.reload({waitUntil:"domcontentloaded"});
-  assert.match(await page.locator("#progress").textContent(),/9 \\/ 9/);
+  assert((await page.locator("#progress").textContent()).includes("9 / 9"),"Mixed quest completion counter incorrect");
   await page.setViewportSize({width:768,height:1024});
   const tab=await page.evaluate(()=>[document.documentElement.scrollWidth,innerWidth]);
   assert(tab[0]<=tab[1]+3,"Tablet horizontal overflow");
