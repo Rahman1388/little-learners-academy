@@ -32,6 +32,7 @@ on:
       - "daily-discovery.html"
       - "story-garden.html"
       - "family-learning-plan.html"
+      - "clock-time-lab.html"
       - "activity-library.js"
       - "activity-data.js"
       - "activity-library.js"
