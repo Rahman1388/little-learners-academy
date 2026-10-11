@@ -1,0 +1,129 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#daf5ff">
+<title>Measurement Explorer • Little Learners Academy</title><link rel="icon" href="./icon.svg">
+<style>
+:root{font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif;color:#184163}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:linear-gradient(130deg,#b4ecff,#fff0be 45%,#f4dfff)}
+main{max-width:820px;margin:auto;padding:14px 13px 50px}a,button{font:inherit}button{cursor:pointer}
+a:focus-visible,button:focus-visible{outline:4px solid #8a1538;outline-offset:4px}
+.back{display:inline-flex;align-items:center;padding:12px 17px;border-radius:16px;background:white;color:#175276;text-decoration:none;font-weight:900;min-height:48px}
+.hero,.lab,.guide{border:4px solid #fff;border-radius:27px;padding:clamp(16px,4vw,25px);background:#fffe;box-shadow:0 6px #a9d5e1;margin:15px 0}
+.hero{text-align:center;background:linear-gradient(130deg,#fff3bd,#fff,#ddf8ff)}
+h1{font-size:clamp(28px,6vw,43px);margin:10px 0}h1 span{display:block;font-size:.65em;margin-top:8px}
+h2{font-size:clamp(22px,4vw,29px)}p{line-height:1.56}.eyebrow{font-size:13px;font-weight:950;color:#8a1538}
+.progress{background:#fff2be;border-radius:17px;padding:13px;text-align:center;font-weight:950;font-size:18px}
+.bar{background:#e4eefa;border-radius:30px;height:13px;overflow:hidden;margin:12px 0}.bar span{display:block;background:#2aaa80;height:100%;width:0%}
+.picture{font-size:clamp(40px,8vw,72px);text-align:center;background:#eafaff;padding:18px;border-radius:22px}
+.q{font-size:clamp(22px,5vw,29px);font-weight:900;text-align:center;margin:17px 0}
+.ar{font-size:17px;text-align:center;direction:rtl;margin:7px 0 18px}
+.answers{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.answers button{min-height:69px;padding:9px 5px;background:white;border:3px solid #a6d6ea;border-radius:19px;font-size:clamp(16px,3vw,21px);font-weight:950;color:#16486b;overflow-wrap:anywhere}
+.answers button.correct{background:#ddffe5;border-color:#2caa75}
+.answers button.wrong{background:#ffeae5;border-color:#cc786f}
+.answers button:disabled{opacity:1}
+#feedback{min-height:65px;border-radius:17px;padding:14px;background:#e8f7ff;font-weight:850;margin:14px 0}
+#feedback.good{background:#e1ffe7}#feedback.try{background:#fff1dc}
+.actions{display:flex;gap:11px;flex-wrap:wrap}.actions button{border:0;border-radius:16px;background:#087eaf;color:#fff;padding:12px 19px;min-height:49px;font-weight:900}
+.actions button.secondary{background:#ecfaff;color:#175576;border:2px solid #a6d8e8}
+.badges{display:flex;gap:9px;flex-wrap:wrap}.badge{border-radius:15px;background:#e7eff7;color:#526780;padding:10px 12px;font-weight:900}
+.badge.earned{background:#fff0ab;color:#73550d;border:2px solid #d3ab50}
+.note{font-size:13px;color:#4a6a7a}
+[hidden]{display:none!important}
+@media(max-width:450px){.answers{grid-template-columns:1fr}.answers button{min-height:57px}}
+</style></head><body><main><a class="back" href="./index.html">← Home • الرئيسية</a>
+<header class="hero"><div class="eyebrow">📏 PRIMARY MATHS • الرياضيات الأساسية</div>
+<h1>🧪 Measurement Explorer <span lang="ar" dir="rtl">مستكشف القياس</span></h1>
+<p>Compare, measure and choose the right units through 16 everyday challenges.</p>
+<p lang="ar" dir="rtl">قارن الأطوال والأوزان والسعات واختر وحدة القياس المناسبة.</p>
+</header>
+<section class="lab" aria-label="Interactive measurement challenges">
+<div id="progress" class="progress" role="status" aria-live="polite">0 / 16 completed</div><div class="bar" aria-hidden="true"><span id="progressBar"></span></div>
+<div id="picture" class="picture" aria-hidden="true">📏</div><h2 id="question" class="q"></h2><p class="ar" id="questionAr" lang="ar"></p>
+<div id="answers" class="answers" role="group" aria-label="Choose an answer"></div>
+<div id="feedback" role="status" aria-live="polite">Choose an answer. • اختر الإجابة.</div>
+<div class="actions"><button id="next" type="button" hidden>Next challenge ➜ • التالي</button><button id="retry" class="secondary" type="button">🔁 Try again • أعد المحاولة</button><button id="review" class="secondary" type="button">⏮ Review • مراجعة</button></div>
+</section>
+<section class="guide"><h2>🏅 My Measuring Badges <span lang="ar" dir="rtl">شارات القياس</span></h2><div id="badges" class="badges"></div>
+<p class="note">For parents: compare real items at home, such as two pencils, two bottles or a ruler. Pictures are illustrative and are not drawn to measurement scale. Unit symbols are introduced as supplementary early primary learning; national curricula vary. Progress is stored only on this device, with no advertisements or accounts.</p>
+</section>
+<script>
+(()=>{"use strict";
+const QUESTIONS=[
+["📏 ✏️","Which is a suitable unit for a pencil's length?","ما الوحدة المناسبة لطول القلم؟",["centimetres (cm)","litres (L)","kilograms (kg)"],0,"Length can be measured in centimetres.","Length"],
+["🚪","Which unit is suitable for a door's height?","ما الوحدة المناسبة لارتفاع الباب؟",["metres (m)","grams (g)","litres (L)"],0,"Metres measure larger lengths.","Length"],
+["📐","What is 8 cm + 2 cm?","كم يساوي ٨ سم + ٢ سم؟",["10 cm","6 cm","10 L"],0,"Combine the lengths: 8 + 2 = 10 cm.","Length"],
+["📏","Which is longer: 12 cm or 9 cm?","أيهما أطول: ١٢ سم أم ٩ سم؟",["12 cm","9 cm","Equal"],0,"12 is greater than 9.","Length"],
+["🎀","A ribbon is 15 cm long. Cut off 5 cm. How much remains?","شريط طوله ١٥ سم، قُطع منه ٥ سم. كم تبقى؟",["10 cm","20 cm","5 L"],0,"15 − 5 = 10 centimetres.","Length"],
+["🐪 🐜","Which is generally taller, an adult camel or an ant?","أيهما أطول عادة: الجمل البالغ أم النملة؟",["Camel","Ant","Same height"],0,"Compare real objects of different sizes.","Length"],
+["🥄","Which is a suitable unit for the mass of a small spoon?","ما وحدة الكتلة المناسبة لملعقة صغيرة؟",["grams (g)","litres (L)","metres (m)"],0,"Small objects can be weighed in grams.","Mass"],
+["🍉","Which unit is more suitable for the mass of a watermelon?","ما الوحدة المناسبة لكتلة البطيخة؟",["kilograms (kg)","centimetres (cm)","minutes"],0,"Kilograms measure heavier mass.","Mass"],
+["⚖️","Two bags weigh 3 kg and 5 kg. Which is heavier?","حقيبتان كتلتهما ٣ كغ و٥ كغ، أيهما أثقل؟",["5 kg bag","3 kg bag","Same mass"],0,"5 kg is more than 3 kg.","Mass"],
+["🍎","An apple has a mass of 150 g. A second has a mass of 100 g. Which has more mass?","أي تفاحة كتلتها أكبر: ١٥٠ غ أو ١٠٠ غ؟",["150 g apple","100 g apple","Same mass"],0,"150 g is greater than 100 g.","Mass"],
+["🧃","Which unit measures the amount of juice in a bottle?","ما الوحدة المناسبة لسعة زجاجة عصير؟",["litres (L)","metres (m)","kilograms (kg)"],0,"Capacity is how much liquid a container can hold.","Capacity"],
+["🥛","Which is a smaller capacity: 250 mL or 500 mL?","أي سعة أصغر: ٢٥٠ مل أم ٥٠٠ مل؟",["250 mL","500 mL","Same amount"],0,"250 is less than 500.","Capacity"],
+["🧴","A bottle holds 1 L. Which is also 1 litre?","ما الذي يعادل لتراً واحداً؟",["1000 mL","100 mL","10 mL"],0,"1 litre equals 1000 millilitres.","Capacity"],
+["🚰","Two 1 L bottles together hold…","ما سعة زجاجتين، سعة كل واحدة لتر؟",["2 L","1 L","3 m"],0,"1 + 1 = 2 litres.","Capacity"],
+["🕒","Which is a suitable unit for a short lesson's duration?","ما الوحدة المناسبة لقياس مدة درس قصير؟",["minutes","kilograms","centimetres"],0,"Time can be measured in minutes.","Time"],
+["⏰","A game starts at 3:00 and ends at 3:30. How long did it last?","بدأت اللعبة الساعة ٣:٠٠ وانتهت ٣:٣٠، كم استغرقت؟",["30 minutes","3 minutes","1 hour"],0,"Half an hour is 30 minutes.","Time"]
+];
+const $=s=>document.querySelector(s),KEY="lla-measurement-v1",MAIN="lla-progress-v2";
+const get=k=>{try{return JSON.parse(localStorage.getItem(k)||"null")}catch{return null}};
+const save=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch{}};
+const prior=get(KEY);const done=prior&&Array.isArray(prior.done)?new Set(prior.done.filter(n=>Number.isInteger(n)&&n>=0&&n<QUESTIONS.length)):new Set();
+let i=QUESTIONS.findIndex((_q,n)=>!done.has(n)),solved=false;
+if(i<0)i=0;
+function sync(){
+ $("#progress").textContent="🏅 "+done.size+" / "+QUESTIONS.length+" completed";
+ $("#progressBar").style.width=(done.size/QUESTIONS.length*100).toFixed(0)+"%";
+ const badges=$("#badges");badges.replaceChildren();
+ for(const category of ["Length","Mass","Capacity","Time"]){
+  const indices=QUESTIONS.map((q,j)=>q[6]===category?j:-1).filter(j=>j>=0);
+  const earned=indices.every(j=>done.has(j));
+  const badge=document.createElement("span");badge.className="badge"+(earned?" earned":"");badge.textContent=(earned?"🏅 ":"🔒 ")+category;badges.append(badge);
+ }
+}
+function show(){
+ solved=done.has(i);const q=QUESTIONS[i];
+ $("#picture").textContent=q[0];$("#question").textContent=q[1];$("#questionAr").textContent=q[2];
+ $("#answers").replaceChildren();
+ q[3].forEach((text,j)=>{const b=document.createElement("button");b.type="button";b.textContent=text;b.dataset.answer=String(j);b.addEventListener("click",()=>answer(j));if(solved){b.disabled=true;if(j===q[4])b.classList.add("correct")}$("#answers").append(b)});
+ $("#next").hidden=!solved;
+ const msg=$("#feedback");msg.className="";
+ msg.textContent=solved?"✅ Already completed. Review the correct answer or go next.":"Choose the best answer. • اختر الإجابة الصحيحة.";
+ sync();
+}
+function award(){
+ const record=get(KEY),already=Boolean(record&&record.rewarded);
+ if(done.size===QUESTIONS.length&&!already){
+  save(KEY,{done:[...done],rewarded:true});
+  const main=get(MAIN)||{};main.stars=Math.max(0,Number(main.stars)||0)+1;save(MAIN,main);
+ }else save(KEY,{done:[...done],rewarded:already});
+}
+function answer(j){
+ if(solved)return;
+ const correct=QUESTIONS[i][4],buttons=[...$("#answers").children],feedback=$("#feedback");
+ if(j===correct){
+  solved=true;done.add(i);buttons.forEach((b,n)=>{b.disabled=true;if(n===j)b.classList.add("correct")});
+  feedback.className="good";feedback.textContent="🎉 Correct! "+QUESTIONS[i][5]+" • أحسنت!";
+  $("#next").hidden=false;award();sync();
+ }else{
+  buttons[j].disabled=true;buttons[j].classList.add("wrong");
+  feedback.className="try";feedback.textContent="🌱 Keep trying! Think about the measurement. • حاول مرة أخرى.";
+ }
+}
+$("#next").addEventListener("click",()=>{
+ let next=-1;
+ for(let n=1;n<=QUESTIONS.length;n++){const k=(i+n)%QUESTIONS.length;if(!done.has(k)){next=k;break}}
+ i=next>=0?next:(i+1)%QUESTIONS.length;show();
+});
+$("#retry").addEventListener("click",()=>{solved=false;showUnsolved()});
+function showUnsolved(){
+ const q=QUESTIONS[i],buttons=[...$("#answers").children];
+ buttons.forEach((b,n)=>{b.disabled=false;b.classList.toggle("correct",false);b.classList.remove("wrong")});
+ $("#next").hidden=true;
+ $("#feedback").className="";$("#feedback").textContent="Try the question again • حاول الإجابة مرة أخرى.";
+}
+$("#review").addEventListener("click",()=>{i=(i-1+QUESTIONS.length)%QUESTIONS.length;show()});
+show();
+})();
+</script></main></body></html>
