@@ -39,6 +39,7 @@ jobs:
           node --check grade2-science-data.js
           node --check grade2-science.js
           node --check grade2-mixed-quest.js
+          node --check fractions-lab.js
           node --check scripts/check-learning-content.cjs
           node --check learning-passport.js
           node --check drawing-studio.js
@@ -75,6 +76,8 @@ jobs:
           test -f grade2-science.html
           test -f grade2-mixed-quest.html
           test -f grade2-mixed-quest.js
+          test -f fractions-lab.html
+          test -f fractions-lab.js
           test -f grade2-science-data.js
           test -f grade2-science.js
           test -f scripts/check-learning-content.cjs
