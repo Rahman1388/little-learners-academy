@@ -555,6 +555,34 @@ const fs=require("node:fs");
  await page.setViewportSize({width:768,height:1024});
  await assertMobile();
  await page.setViewportSize({width:390,height:844});
+ // Clock & Time Lab: 12 distinct times, with retry, saved progress, and one star.
+ await goto("clock-time-lab.html");
+ await page.locator("#timeAnswers button").first().waitFor({state:"visible"});
+ await assertMobile();
+ for(let i=0;i<12;i++){
+   const actual=await page.locator("#clock").getAttribute("aria-label");
+   const expected=actual.replace("Clock at ","");
+   const correct=page.locator('#timeAnswers button[data-time="'+expected+'"]');
+   assert.equal(await correct.count(),1,"Missing correct digital time "+expected);
+   if(i===0){
+     const wrong=page.locator("#timeAnswers button").filter({hasNotText:expected}).first();
+     await wrong.click();
+     assert.match(await page.locator("#clockFeedback").textContent(),/Nice try/);
+   }
+   await correct.click();
+   assert.equal(await page.locator("#nextClock").isVisible(),true);
+   if(i<11)await page.locator("#nextClock").click();
+ }
+ assert.match(await page.locator("#clockProgress").textContent(),/12 \/ 12/);
+ const clockStars=await page.evaluate(()=>JSON.parse(localStorage.getItem("lla-progress-v2")).stars);
+ await page.reload({waitUntil:"domcontentloaded"});
+ assert.match(await page.locator("#clockProgress").textContent(),/12 \/ 12/);
+ await page.locator("#timeAnswers button").first().click();
+ await page.locator("#restartClock").click();
+ const clockReplayStars=await page.evaluate(()=>JSON.parse(localStorage.getItem("lla-progress-v2")).stars);
+ assert.equal(clockReplayStars,clockStars,"Clock replay must not add another star");
+ await page.setViewportSize({width:768,height:1024});await assertMobile();
+ await page.setViewportSize({width:390,height:844});
  await goto("voice-test.html");
  await page.locator("audio").first().waitFor();
  const numPlayers=await page.locator("audio").count();
