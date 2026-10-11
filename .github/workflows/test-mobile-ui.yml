@@ -35,6 +35,8 @@ on:
       - "grade2-science.js"
       - "grade2-mixed-quest.html"
       - "grade2-mixed-quest.js"
+      - "fractions-lab.html"
+      - "fractions-lab.js"
       - "scripts/test-grade2-mixed.cjs"
       - "scripts/test-grade2-english.cjs"
       - "scripts/check-learning-content.cjs"
