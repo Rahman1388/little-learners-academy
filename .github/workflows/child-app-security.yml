@@ -1,0 +1,41 @@
+name: Child App Security Gate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: child-app-security-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  static-security:
+    name: Static site and privacy security checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Syntax and existing security checks
+        run: |
+          node --check scripts/check-app-security.cjs
+          node --check scripts/prepublish-security-audit.cjs
+          node scripts/check-app-security.cjs
+      - name: Check app files for secrets and unsafe constructs
+        run: node scripts/prepublish-security-audit.cjs
+      - name: Verify that child safety and privacy notices exist
+        run: |
+          test -s privacy.html
+          test -s child-safety.html
+          grep -q "localStorage" privacy-controls.js
+          grep -q "Content-Security-Policy" index.html
