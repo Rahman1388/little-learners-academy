@@ -519,6 +519,28 @@ const fs=require("node:fs");
  assert.equal(await page.locator("#celebrate").isVisible(),true,"Daily completion must survive reload");
  await page.setViewportSize({width:768,height:1024});await assertMobile();
  await page.setViewportSize({width:390,height:844});
+ // Story Garden: eight distinct stories with three answerable questions each.
+ await goto("story-garden.html");
+ await page.locator("#storyGrid .storyCard").first().waitFor({state:"visible"});
+ assert.equal(await page.locator("#storyGrid .storyCard").count(),8);
+ await assertMobile();
+ for(let i=0;i<8;i++){
+   await page.locator('#storyGrid .storyCard[data-story="'+i+'"]').click();
+   assert.equal(await page.locator("#reader").isVisible(),true);
+   for(let q=0;q<3;q++){
+     const wrong=page.locator('#answerButtons button[data-correct="false"]').first();
+     await wrong.click();
+     assert.match(await page.locator("#feedback").textContent(),/Try again/);
+     await page.locator('#answerButtons button[data-correct="true"]').click();
+     assert.match(await page.locator("#feedback").textContent(),/Great reading/);
+     await page.locator("#nextQuestion").click();
+   }
+ }
+ assert.match(await page.locator("#storyProgress").textContent(),/8 \/ 8/);
+ await page.reload({waitUntil:"domcontentloaded"});
+ assert.match(await page.locator("#storyProgress").textContent(),/8 \/ 8/);
+ await page.setViewportSize({width:768,height:1024});await assertMobile();
+ await page.setViewportSize({width:390,height:844});
  await goto("voice-test.html");
  await page.locator("audio").first().waitFor();
  const numPlayers=await page.locator("audio").count();
