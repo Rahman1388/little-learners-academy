@@ -67,6 +67,7 @@ function open(id){
  const a=activities.find(x=>x.id===id);
  if(!a)return;
  current=a;answered=false;wrongRecorded=false;
+ $("#playView").dataset.activity=a.id;
  $("#overview").hidden=true;$("#playView").hidden=false;
  $("#skillBadge").textContent=(guided.length?"Step "+(guidedPosition+1)+" of "+guided.length+" • ":"")+a.skill+" • "+a.area;
  $("#challengeTitle").textContent=a.icon+" "+a.title;
