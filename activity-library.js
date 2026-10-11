@@ -3,6 +3,20 @@
 const activities=window.LLA_MINI_ACTIVITIES||[];
 if(activities.length<101)throw Error("The activity library is incomplete");
 const KEY="lla-activity-library-v1",PRACTICE_KEY="lla-practice-insights-v1";
+const RESUME_KEY="lla-activity-resume-v1";
+function remember(id){
+ try{localStorage.setItem(RESUME_KEY,id)}catch{}
+}
+function recall(){
+ try{const id=localStorage.getItem(RESUME_KEY);return activities.find(a=>a.id===id)||null}catch{return null}
+}
+function showResume(){
+ const a=recall(),button=$("#resumeActivity"),label=$("#resumeDescription");
+ button.hidden=!a;
+ if(a)label.textContent="Continue: "+a.icon+" "+a.title+" • "+a.skill+" • متابعة النشاط";
+ else label.textContent="Start a challenge to save your place. • ابدأ نشاطاً لحفظ مكانك.";
+}
+
 const $=q=>document.querySelector(q);
 function load(){try{const x=JSON.parse(localStorage.getItem(KEY)||"{}");return x&&typeof x==="object"&&!Array.isArray(x)?x:{}}catch{return {}}}
 const completed=load();
@@ -67,6 +81,7 @@ function open(id){
  const a=activities.find(x=>x.id===id);
  if(!a)return;
  current=a;answered=false;wrongRecorded=false;
+ remember(a.id);showResume();
  $("#playView").dataset.activity=a.id;
  $("#overview").hidden=true;$("#playView").hidden=false;
  $("#skillBadge").textContent=(guided.length?"Step "+(guidedPosition+1)+" of "+guided.length+" • ":"")+a.skill+" • "+a.area;
@@ -130,6 +145,11 @@ function smartChoice(){
  }
  return sorted.slice(0,5).map(a=>a.id);
 }
+$("#resumeActivity").addEventListener("click",()=>{
+ const a=recall();
+ if(a)open(a.id);
+ else showResume();
+});
 $("#smartStart").addEventListener("click",()=>{
  guided=smartChoice();
  if(!guided.length){$("#smartStatus").textContent="Select a subject to start. • اختر مادة للبدء";return}
@@ -223,7 +243,7 @@ $("#nextChallenge").addEventListener("click",()=>{
 window.addEventListener("pageshow",progress);
 const requestedSubject=new URLSearchParams(window.location.search).get("subject");
 if(["math","english","science","life","arts"].includes(requestedSubject))$("#areaSelect").value=requestedSubject;
-skills();list();
+skills();list();showResume();
 try{
  const requested=new URLSearchParams(location.search).get("activity");
  if(requested&&activities.some(a=>a.id===requested))open(requested);
