@@ -30,6 +30,7 @@ on:
       - "drawing-studio.css"
       - "drawing-studio.js"
       - "daily-discovery.html"
+      - "story-garden.html"
       - "activity-data.js"
       - "activity-library.js"
       - "scripts/test-mobile-ui.cjs"
