@@ -583,6 +583,27 @@ const fs=require("node:fs");
  assert.equal(clockReplayStars,clockStars,"Clock replay must not add another star");
  await page.setViewportSize({width:768,height:1024});await assertMobile();
  await page.setViewportSize({width:390,height:844});
+ // Measurement explorer: sixteen real questions, no duplicate reward and responsive.
+ await goto("measurement-explorer.html");
+ await page.locator("#answers button").first().waitFor({state:"visible"});
+ assert.match(await page.locator("#progress").textContent(),/0 \/ 16/);
+ await assertMobile();
+ for(let round=0;round<16;round++){
+   const buttons=page.locator("#answers button");
+   await buttons.first().click();
+   assert.match(await page.locator("#progress").textContent(),new RegExp((round+1)+" \\/ 16"));
+   if(round<15)await page.locator("#next").click();
+ }
+ assert.equal(await page.locator("#badges .earned").count(),4);
+ const measurementStars=await page.evaluate(()=>JSON.parse(localStorage.getItem("lla-progress-v2")).stars);
+ await page.reload({waitUntil:"domcontentloaded"});
+ assert.match(await page.locator("#progress").textContent(),/16 \/ 16/);
+ await page.locator("#retry").click();
+ await page.locator("#answers button").first().click();
+ const measurementStarsAgain=await page.evaluate(()=>JSON.parse(localStorage.getItem("lla-progress-v2")).stars);
+ assert.equal(measurementStarsAgain,measurementStars,"Measurement replay must not award duplicate stars");
+ await page.setViewportSize({width:768,height:1024});await assertMobile();
+ await page.setViewportSize({width:390,height:844});
  await goto("voice-test.html");
  await page.locator("audio").first().waitFor();
  const numPlayers=await page.locator("audio").count();
