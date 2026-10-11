@@ -33,6 +33,12 @@ h2{font-size:23px;margin:2px 0 12px}p{line-height:1.6}
 <p>Challenges with incorrect attempts appear here. Encourage another try without pressure. A correct retry keeps the challenge available for reinforcement.</p>
 <div id="practiceList"></div>
 <a class="start" href="./activity-library.html">🎮 Continue Learning • تابع التعلم</a></section>
+<section class="section" aria-label="Five-day family practice plan">
+<h2>🗓️ My Five-Day Family Plan <span lang="ar" dir="rtl">خطتي العائلية لخمسة أيام</span></h2>
+<p>One short activity each day, rotating through the five subjects. Choose a calm moment and discuss the answer together. These are suggestions, not homework or a daily attendance requirement.</p>
+<div id="familyPlan"></div>
+<p class="note">Activities are selected from the existing 151 challenges. No new recordings, personal details, or online accounts are needed.</p>
+</section>
 <section class="section"><h2>🤲 Parent Guidance</h2>
 <p>Try five short questions together, ask the child to explain an answer, and praise effort. For ages 6–7, combine screen activities with books, drawing, counting real objects, and outdoor play.</p>
 <p class="note">The app stores aggregate activity attempts and progress only in this browser. No names, registration, tracking, microphone or data uploads are used on this page. Clearing browser data may remove this progress. This supplementary activity set has not been certified against an individual Qatar school's curriculum.</p></section>
@@ -59,6 +65,28 @@ for(const [id,label,ar] of labels){
  const fill=document.createElement("span");fill.style.width=completed/list.length*100+"%";meter.append(fill);
  item.append(row,meter);$("#subjects").append(item);
 }
+// A simple cross-subject five-day practice plan, prioritising unfinished
+// questions with incorrect attempts while keeping the child in control.
+const days=["Sunday","Monday","Tuesday","Wednesday","Thursday"];
+labels.forEach(([area,label],i)=>{
+ const candidates=data.filter(a=>a.area===area);
+ candidates.sort((a,b)=>{
+  const aDone=done[a.id]===true?1:0,bDone=done[b.id]===true?1:0;
+  if(aDone!==bDone)return aDone-bDone;
+  const aWrong=Number(insights[a.id]?.incorrect)||0,bWrong=Number(insights[b.id]?.incorrect)||0;
+  return bWrong-aWrong;
+ });
+ const chosen=candidates[0];
+ if(!chosen)return;
+ const item=document.createElement("article");item.className="review";
+ const detail=document.createElement("div");
+ const title=document.createElement("strong");title.textContent=days[i]+" • "+label;
+ const note=document.createElement("small");note.textContent=chosen.icon+" "+chosen.title+" • "+(done[chosen.id]?"Review together":"New practice");
+ detail.append(title,note);
+ const link=document.createElement("a");link.textContent="▶ Practise";
+ link.href="./activity-library.html?activity="+encodeURIComponent(chosen.id);
+ item.append(detail,link);$("#familyPlan").append(item);
+});
 const review=data.filter(a=>insights[a.id]&&Number(insights[a.id].incorrect)>0).sort((a,b)=>Number(insights[b.id].incorrect)-Number(insights[a.id].incorrect)).slice(0,12);
 if(!review.length){const p=document.createElement("p");p.textContent="Nothing marked for review yet. Try a few challenges first! • لا توجد أنشطة للمراجعة بعد.";$("#practiceList").append(p)}
 for(const a of review){
