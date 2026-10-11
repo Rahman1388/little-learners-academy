@@ -1,0 +1,47 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#d8f5e8"><title>Grade 2 Mixed Discovery Quest | Little Learners Academy</title><link rel="icon" href="./icon.svg">
+<style>
+:root{font-family:system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif;color:#173e62}*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:linear-gradient(145deg,#c7f3e3,#fff3c9 51%,#e1eaff)}
+main{max-width:850px;padding:14px;margin:auto}a,button{font:inherit}button{cursor:pointer}
+a:focus-visible,button:focus-visible{outline:4px solid #8a1538;outline-offset:3px}
+.back{display:inline-flex;align-items:center;background:#fff;color:#175477;text-decoration:none;font-weight:900;border-radius:16px;padding:12px 17px;min-height:48px}
+.hero,.panel{border:4px solid white;background:#fffd;border-radius:28px;padding:clamp(17px,3vw,27px);margin:17px 0;box-shadow:0 6px #b6d9d9}
+.hero{text-align:center;background:linear-gradient(120deg,#fff8d1,#fff,#e5fbff)}
+h1{font-size:clamp(29px,6vw,43px);margin:8px 0;line-height:1.2}h1 span{display:block;font-size:.63em;margin-top:8px}
+h2{font-size:clamp(21px,4vw,27px)}p{line-height:1.6}.eyebrow{font-size:13px;font-weight:950;color:#8a1538}
+.stats{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:13px;background:#f8f2c9;border-radius:16px;font-weight:950}
+.bar{height:15px;border-radius:20px;background:#dceaf1;margin:14px 0;overflow:hidden}.bar span{display:block;background:#31ae83;height:100%;width:0}
+.question{padding:15px;border-radius:18px;background:#e9f8ff;margin:15px 0}
+.question strong{font-size:clamp(23px,4.5vw,31px)}.arabic{font-size:18px;direction:rtl;line-height:1.5;margin-top:10px}
+.visual{white-space:pre-line;font-size:26px;text-align:center;margin:10px 0}
+.story{line-height:1.7;padding:14px;background:#fff6d5;border-radius:15px;margin-top:12px;font-size:18px}
+.choices{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px}
+.choices button{border:3px solid #aad3e3;border-radius:17px;background:white;color:#194766;font-weight:900;min-height:78px;padding:13px 7px;overflow-wrap:anywhere}
+.choices button.right{background:#ddffe9;border-color:#32a673}.choices button.wrong{background:#fff0e9;border-color:#d7907e}.choices button:disabled{opacity:1}
+.status{padding:14px;border-radius:16px;background:#fff5d2;font-weight:850;min-height:61px;margin:15px 0}.status.good{background:#dffff0}
+.actions{display:flex;flex-wrap:wrap;gap:11px}.actions button{border:0;color:white;background:#087da9;border-radius:15px;padding:13px 20px;min-height:50px;font-weight:950}
+.actions button.secondary{color:#145274;background:#f0faff;border:2px solid #b4d9e5}
+[hidden]{display:none!important}.note{font-size:13px;color:#4d6c7a}
+@media(max-width:510px){.choices{grid-template-columns:1fr}.choices button{min-height:57px}}
+</style></head><body><main>
+<a class="back" href="./grades-roadmap.html">← Grades 1–6 Roadmap • خطة الصفوف</a>
+<header class="hero"><div class="eyebrow">🧭 SUPPLEMENTARY GRADE 2 PILOT • مراجعة تجريبية</div>
+<h1>🌈 Mixed Discovery Quest <span lang="ar" dir="rtl">مغامرة الاكتشاف المتنوع</span></h1>
+<p>Nine friendly review questions, bringing together three maths, three reading and three science skills.</p><p lang="ar" dir="rtl">تسعة أسئلة قصيرة تجمع الرياضيات والقراءة والعلوم.</p>
+<div class="stats"><span id="progress">0 / 9 completed</span><span id="subject">🔢 Maths</span></div><div class="bar"><span id="progressBar"></span></div>
+</header>
+<section class="panel" aria-label="Mixed learning question">
+<h2 id="stepTitle">Question 1 of 9</h2>
+<div class="question">
+<div class="visual" id="visual" hidden></div>
+<div id="story" class="story" hidden></div>
+<strong id="questionText"></strong><div class="arabic" id="questionArabic" lang="ar"></div></div>
+<div class="choices" id="answers" role="group" aria-label="Choose an answer"></div>
+<p class="status" id="feedback" role="status" aria-live="polite">Choose the best answer. • اختر الإجابة الصحيحة.</p>
+<div class="actions"><button type="button" id="next" hidden>Next ➜ • التالي</button><button type="button" id="restart" class="secondary">🔄 Start over • ابدأ من جديد</button></div>
+</section><section class="panel"><h2>👨‍👩‍👧 For parents and teachers</h2>
+<p>This small review draws on existing Grade 2 <em>readiness pilots</em>, not a complete school curriculum. It is text-based, does not test speech, and does not replace qualified assessment. The Arabic prompts support comprehension; formal Arabic lessons still require specialist review.</p>
+<p class="note">Nine distinct items per round; right-answer explanations support understanding. Progress remains only on this device. This activity does not add duplicate stars or alter the Grade 1 records. No camera, microphone, accounts or ads.</p>
+<a class="back" href="./parent-progress.html">📊 Parent Progress • تقدم الطفل</a>
+</section>
+<script src="./grade2-pilot-data.js"></script><script src="./grade2-english-data.js"></script><script src="./grade2-science-data.js"></script><script src="./grade2-mixed-quest.js"></script></main></body></html>
