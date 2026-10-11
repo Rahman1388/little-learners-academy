@@ -25,6 +25,7 @@ jobs:
       - name: Check JavaScript syntax
         run: |
           node --check app.js
+          node --check navigation.js
           node --check curriculum.js
           node --check sw.js
           node --check phonics-adventure.js
@@ -37,6 +38,7 @@ jobs:
       - name: Verify required PWA files
         run: |
           test -f index.html
+          test -f navigation.js
           test -f styles.css
           test -f app.js
           test -f curriculum.js
