@@ -74,3 +74,56 @@ linear-gradient(145deg,#fffdf7,#f4fbff 46%,#fff3f8);border-color:#fff;box-shadow
 .questPromoLinks{display:flex;gap:9px;align-items:center;flex-wrap:wrap}
 .questGoSecondary{background:linear-gradient(110deg,#0e83b7,#1656a5);box-shadow:0 5px #0a477b}
 @media(max-width:650px){.questPromoLinks{width:100%}.questPromoLinks .questGo{width:100%}}
+
+
+/* 2026 child-friendly bilingual navigation: compact homepage, full accessible menu */
+.menuToggle{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:49px;
+ padding:10px 14px;border:3px solid #fff;border-radius:17px;
+ background:linear-gradient(125deg,#177abd,#8052bc);color:#fff;font-size:17px;font-weight:900;
+ box-shadow:0 4px #175080;cursor:pointer;touch-action:manipulation}
+.menuToggle[aria-expanded="true"]{background:#8a1538}
+.menuToggle:focus-visible,.menuTitle button:focus-visible,.mainMenu a:focus-visible,
+.moreAdventures summary:focus-visible{outline:4px solid #8a1538;outline-offset:3px}
+.mainMenu[hidden]{display:none!important}
+.mainMenu{position:fixed;z-index:15;top:82px;left:max(12px,calc((100vw - 1080px)/2));
+ right:max(12px,calc((100vw - 1080px)/2));max-height:calc(100dvh - 94px);overflow:auto;overscroll-behavior:contain;
+ padding:17px;background:#fffdf5;border:4px solid #fff;border-radius:26px;
+ box-shadow:0 13px 35px #134d68aa,0 0 0 9999px #10445f33}
+.menuTitle{display:flex;align-items:center;justify-content:space-between;gap:10px;
+ background:linear-gradient(120deg,#fff5c0,#e3f8ff);border-radius:19px;padding:10px 12px;margin-bottom:13px;
+ color:#204876;font-size:clamp(18px,3vw,23px)}
+.menuTitle button{border:0;border-radius:12px;background:#fff;color:#8a1538;
+ width:44px;height:44px;flex-shrink:0;cursor:pointer;font-size:25px;font-weight:900}
+.menuSections{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.menuSections section{background:#f0faff;padding:12px;border-radius:19px;min-width:0}
+.menuSections section:nth-child(2){background:#fff5db}
+.menuSections section:nth-child(3){background:#f3edff}
+.menuSections section:nth-child(4){background:#edfff0}
+.menuSections h2{font-size:17px;margin:0 0 9px;color:#174b71}
+.menuSections a{display:flex;align-items:center;min-height:46px;margin:7px 0;padding:9px 12px;
+ background:#fff;border:2px solid #d4eaf1;border-radius:14px;color:#17446b;
+ font-size:14px;font-weight:850;text-decoration:none;line-height:1.4;overflow-wrap:anywhere}
+.menuSections a:active{background:#fff3bd}
+.moreAdventures{border:4px solid white;border-radius:25px;background:linear-gradient(130deg,#f8ebff,#dcf7ff);
+ box-shadow:0 6px #abd6dc;margin:24px 0;padding:6px}
+.moreAdventures summary{cursor:pointer;list-style:none;border-radius:17px;padding:18px 17px;
+ font-size:clamp(17px,3.5vw,22px);font-weight:950;min-height:59px;text-align:center;color:#28517d}
+.moreAdventures summary::-webkit-details-marker{display:none}
+.moreAdventures summary span{display:inline-block;margin-left:8px;font-size:15px}
+.moreAdventures[open] summary span{transform:rotate(180deg)}
+.moreAdventuresBody{padding:0 12px 12px}
+.moreAdventuresBody .questPromo{margin:15px 0}
+@media(max-width:600px){
+ .wrap{padding:10px}.top{padding:10px;gap:7px;top:5px}
+ .brand{font-size:14px;line-height:1.3;max-width:150px}
+ .topRight{gap:5px}
+ .topRight .pill:last-child{display:none}
+ .topRight #starCount{font-size:13px;padding:7px}
+ .menuToggle{padding:8px 11px;font-size:14px;min-height:46px}
+ .menuToggle span{font-size:12px}
+ .mainMenu{top:75px;max-height:calc(100dvh - 86px);padding:10px;left:7px;right:7px}
+ .menuSections{grid-template-columns:1fr;gap:9px}
+ .menuSections section{padding:11px}
+ .menuSections a{font-size:15px;min-height:50px}
+ .moreAdventuresBody{padding:0 6px 8px}
+}
