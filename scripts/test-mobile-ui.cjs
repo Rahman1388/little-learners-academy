@@ -711,6 +711,35 @@ const fs=require("node:fs");
  assert.equal(await page.locator("#topicName").textContent(),"Weather");
  await page.setViewportSize({width:768,height:1024});await assertMobile();
  await page.setViewportSize({width:390,height:844});await assertMobile();
+ // Fractions & Fair Sharing: twelve tappable Grade 2 readiness lessons.
+ await goto("fractions-lab.html");
+ await page.locator("#fractionPieces .piece").first().waitFor({state:"visible"});
+ assert.equal(await page.locator("#fractionPieces .piece").count(),2);
+ await assertMobile();
+ // Wrong attempt should be gentle and should not be recorded as completion.
+ await page.locator("#checkFraction").click();
+ assert.match(await page.locator("#fractionFeedback").textContent(),/Good try/);
+ assert.match(await page.locator("#fractionProgress").textContent(),/0 \/ 12/);
+ const gradeOneBeforeFractions=await page.evaluate(()=>localStorage.getItem("lla-activity-library-v1"));
+ for(let i=0;i<12;i++){
+   const target=await page.locator("#question").textContent();
+   const fraction=target.match(/\((\d+) \/ (\d+)\)/);
+   assert(fraction,"Cannot parse hands-on fractions question");
+   const numerator=Number(fraction[1]),denominator=Number(fraction[2]);
+   assert.equal(await page.locator("#fractionPieces .piece").count(),denominator);
+   for(let p=0;p<numerator;p++)await page.locator("#fractionPieces .piece").nth(p).click();
+   await page.locator("#checkFraction").click();
+   assert.equal(await page.locator("#nextFraction").isVisible(),true);
+   await page.locator("#nextFraction").click();
+ }
+ assert.equal(await page.locator("#win").isVisible(),true);
+ assert.match(await page.locator("#fractionProgress").textContent(),/12 \/ 12/);
+ assert.equal(await page.evaluate(()=>localStorage.getItem("lla-activity-library-v1")),gradeOneBeforeFractions,
+   "Fraction pilot must not edit Grade 1 progress");
+ await page.reload({waitUntil:"domcontentloaded"});
+ assert.match(await page.locator("#fractionProgress").textContent(),/12 \/ 12/);
+ await page.setViewportSize({width:768,height:1024});await assertMobile();
+ await page.setViewportSize({width:390,height:844});await assertMobile();
  await goto("voice-test.html");
  await page.locator("audio").first().waitFor();
  const numPlayers=await page.locator("audio").count();
