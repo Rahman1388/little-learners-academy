@@ -35,6 +35,18 @@ h2{font-size:23px;margin:2px 0 12px}p{line-height:1.6}
  <div class="stat"><strong id="mathStoryBadges">0 / 4</strong><small>Chapter badges</small></div>
 </div><p>Optional concrete picture models help with Grade 1 addition, subtraction, number bonds and comparison.</p>
 <a class="start" href="./math-story-village.html">🏡 Continue Maths Stories • تابع القصص</a></section>
+<section class="section" id="grade2PilotProgress" aria-labelledby="grade2PilotHeading">
+<h2 id="grade2PilotHeading">🌿 Grade 2 Discovery Pilots <span lang="ar" dir="rtl">أنشطة الصف الثاني التجريبية</span></h2>
+<p>Early readiness practice only—not complete Grade 2 coverage. Each subject saves progress separately on this device.</p>
+<div class="stats" id="grade2PilotStats">
+<div class="stat"><strong id="grade2MathCount">0 / 24</strong><small>🧮 Mathematics • الرياضيات</small></div>
+<div class="stat"><strong id="grade2EnglishCount">0 / 24</strong><small>📖 English • الإنجليزية</small></div>
+<div class="stat"><strong id="grade2ScienceCount">0 / 18</strong><small>🔬 Science • العلوم</small></div>
+</div>
+<div class="review"><div><strong>🧮 Grade 2 Maths</strong><small>Number, measurement and shapes • 24 questions</small></div><a href="./grade2-pilot.html">▶ Continue</a></div>
+<div class="review"><div><strong>📖 Grade 2 Reading</strong><small>Stories, vocabulary and sentences • 24 questions</small></div><a href="./grade2-english.html">▶ Continue</a></div>
+<div class="review"><div><strong>🔬 Grade 2 Science</strong><small>Plants, animals, materials and weather • 18 questions</small></div><a href="./grade2-science.html">▶ Continue</a></div>
+<p class="note">These counts show completed mini-questions, not tested mastery or school grades. School curriculum alignment still requires qualified review.</p></section>
 <section class="section"><h2>📊 Subject Progress <span lang="ar" dir="rtl">التقدم حسب المادة</span></h2><div id="subjects"></div></section>
 <section class="section"><h2>🌱 Practise Again <span lang="ar" dir="rtl">تدرّب مرة أخرى</span></h2>
 <p>Challenges with incorrect attempts appear here. Encourage another try without pressure. A correct retry keeps the challenge available for reinforcement.</p>
@@ -55,6 +67,16 @@ h2{font-size:23px;margin:2px 0 12px}p{line-height:1.6}
 const data=window.LLA_MINI_ACTIVITIES||[], $=s=>document.querySelector(s);
 const get=k=>{try{const x=JSON.parse(localStorage.getItem(k)||"{}");return x&&typeof x==="object"?x:{}}catch{return {}}};
 const done=get("lla-activity-library-v1"),insights=get("lla-practice-insights-v1");
+const pilots=[
+ ["lla-grade2-pilot-v1","g2-",24,"#grade2MathCount"],
+ ["lla-grade2-english-v1","g2e-",24,"#grade2EnglishCount"],
+ ["lla-grade2-science-v1","g2s-",18,"#grade2ScienceCount"]
+];
+for(const [storage,prefix,total,target] of pilots){
+ const saved=get(storage);
+ const count=Object.keys(saved).filter(key=>key.startsWith(prefix)&&saved[key]===true).length;
+ $(target).textContent=Math.min(total,count)+" / "+total;
+}
 const story=get("lla-math-story-v1");
 const storyDone=(Array.isArray(story.done)?story.done:[]).filter(x=>Number.isInteger(x)&&x>=0&&x<24);
 const storyBadges=(Array.isArray(story.rewarded)?story.rewarded:[]).filter(x=>Number.isInteger(x)&&x>=0&&x<4);
