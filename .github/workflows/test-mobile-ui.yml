@@ -56,6 +56,8 @@ on:
       - "measurement-explorer.html"
       - "activity-library.js"
       - "math-story-village.html"
+      - "qatar-mini-market.html"
+      - "qatar-mini-market.js"
       - "international-benchmark.html"
       - "scripts/test-mega-upgrade.cjs"
       - "activity-data.js"
