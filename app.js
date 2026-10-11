@@ -73,9 +73,27 @@ function showAudioHelp(){
   const box=$("#feedback");
   if(box)box.innerHTML='🔊 Arabic voice is not available on this device yet. جرّب تحديث الصفحة أو تفعيل صوت عربي في إعدادات الجهاز.';
 }
+// Do not play reported questionable recordings to children. The Colours &
+// Patterns set is on hold after parent reports of strange red/yellow speech.
+// Adult comparison remains possible in pronunciation-review.html.
+function pronunciationHold(lang,index){
+ if(!currentLesson)return false;
+ if(currentLesson.id==="patterns")return true;
+ try{
+  const review=JSON.parse(localStorage.getItem("lla-pronunciation-audit-v1")||"{}");
+  const style=lang==="ar"?"boy":state.voice;
+  return ["unclear","wrong","missing"].includes(review[currentLesson.id+"|"+index+"|"+lang+"|"+style]);
+ }catch{return false}
+}
 function playRecordedItem(lang,index,text,feedbackSelector="#feedback"){
-  if(!currentLesson)return speak(text,state.voice,lang);
+ if(!currentLesson)return;
+ if(pronunciationHold(lang,index)){
   stopAllAudio();
+  const box=$(feedbackSelector);
+  if(box)box.textContent="🔇 This recording is paused for pronunciation review. You can still learn using pictures and words. • يجري التحقق من النطق";
+  return;
+ }
+ stopAllAudio();
   const generation=audioGeneration;
   const box=$(feedbackSelector);
   // Arabic female recordings are NOT yet understandable enough for Grade 1.
@@ -109,12 +127,7 @@ function playRecordedItem(lang,index,text,feedbackSelector="#feedback"){
   function fallback(){
     if(failed||generation!==audioGeneration)return;
     failed=true;
-    if(lang==="ar"){
-      if(box)box.textContent="Arabic recording unavailable. Check connection and retry. • تعذر تشغيل التسجيل، حاول مرة أخرى";
-    }else{
-      if(box)box.textContent="Recording unavailable. Trying the device's English voice.";
-      speak(text,state.voice,lang);
-    }
+    if(box)box.textContent="Recording unavailable. No automatic phone voice will replace it during the pronunciation review. • التسجيل غير متاح، نرجو المحاولة لاحقاً";
   }
   audio.addEventListener("playing",()=>{
     if(box&&generation===audioGeneration)box.textContent="🔊 "+referenceMessage
@@ -173,7 +186,9 @@ function setVoice(kind,preview=false){
 
 function previewEnglish(){
   const text=currentLesson?.items[0]?.[1]||"Hello! Let us learn and play!";
-  if(currentLesson)playEnglishItem(0,text,"#voiceStatus");else speak(text,state.voice,"en");
+  if(currentLesson)playEnglishItem(0,text,"#voiceStatus");
+  else {const box=$("#homeVoiceStatus");if(box)box.textContent="Choose a lesson to hear its actual recording. • اختر درساً للاستماع";}
+
 }
 function previewArabic(){
   if(!currentLesson)return;
@@ -204,13 +219,28 @@ function openSubject(id){
 }
 function itemMarkup(x,i){
   const repeats=currentLesson?.id==="phonics"?" ×3":"";
-  return '<div class="item" data-i="'+i+'"><span>'+x[0]+'</span><b>'+x[1]+'</b><div class="ar itemAr">'+x[2]+'</div><div class="speakRow"><button class="speakBtn en" data-i="'+i+'">🔊 English'+repeats+'</button><button class="speakBtn arBtn" data-i="'+i+'">🔊 العربية'+repeats+'</button></div></div>';
+  const hold=currentLesson?.id==="patterns";
+  const disabled=hold?" disabled title=\"Voice undergoing native-speaker review\"":"";
+  const enLabel=hold?"🔇 Voice under review":"🔊 English"+repeats;
+  const arLabel=hold?"🔇 الصوت قيد المراجعة":"🔊 العربية"+repeats;
+  return '<div class="item" data-i="'+i+'"><span>'+x[0]+'</span><b>'+x[1]+'</b><div class="ar itemAr">'+x[2]+'</div><div class="speakRow"><button class="speakBtn en" data-i="'+i+'"'+disabled+'>'+enLabel+'</button><button class="speakBtn arBtn" data-i="'+i+'"'+disabled+'>'+arLabel+'</button></div></div>';
 }
 function openLesson(id){
   currentLesson=currentSubject&&currentSubject.lessons.find(l=>l.id===id);if(!currentLesson)return;
   $("#subjectView").classList.add("hidden");$("#lessonView").classList.remove("hidden");
   $("#lessonTitle").innerHTML=currentSubject.icon+' '+currentLesson.title+' <span class="ar">• '+currentLesson.ar+'</span>';
   $("#lessonIntro").innerHTML=currentLesson.intro+'<br><span class="ar">'+currentLesson.arIntro+'</span>';
+  if(currentLesson.id==="patterns"){
+    const notice=document.createElement("p");
+    notice.className="notice";notice.setAttribute("role","status");
+    notice.textContent="🔇 Colour voice recordings are being reviewed for native pronunciation. Picture and text activities remain available. • أصوات الألوان قيد المراجعة";
+    $("#lessonIntro").append(notice);
+  }
+  const reviewLink=document.createElement("a");
+  reviewLink.href="./pronunciation-review.html?lesson="+encodeURIComponent(currentLesson.id);
+  reviewLink.className="btn secondary";reviewLink.style.display="inline-block";reviewLink.style.marginTop="10px";
+  reviewLink.textContent="🎧 Parent pronunciation review • مراجعة النطق للأهل";
+  $("#lessonIntro").append(reviewLink);
   const adventureLink=$("#questLessonLink");
   if(adventureLink)adventureLink.classList.toggle("hidden",!(currentSubject.id==="english"&&currentLesson.id==="phonics"));
   $("#items").innerHTML=currentLesson.items.map(itemMarkup).join("");
@@ -252,7 +282,7 @@ function renderGame(){
     if(i===gameTarget){
       b.classList.add("good");
       $("#gameFeedback").textContent="🎉 Great job! أحسنت — you found it!";
-      speak("Great job! You found "+target[1],state.voice,"en");
+      // Use visual positive feedback rather than inconsistent phone TTS.
     }else{
       b.classList.add("try");if(correct)correct.classList.add("good");
       $("#gameFeedback").textContent="🌱 Nice try! محاولة جيدة — look at the green answer.";
