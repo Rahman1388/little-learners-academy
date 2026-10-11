@@ -32,6 +32,9 @@ jobs:
           node --check sound-detective.js
           node --check activity-data.js
           node --check activity-library.js
+          node --check grade2-pilot-data.js
+          node --check grade2-pilot.js
+          node --check scripts/check-learning-content.cjs
           node --check learning-passport.js
           node --check drawing-studio.js
 
@@ -58,6 +61,10 @@ jobs:
           test -f activity-library.html
           test -f activity-data.js
           test -f activity-library.js
+          test -f grade2-pilot.html
+          test -f grade2-pilot-data.js
+          test -f grade2-pilot.js
+          test -f scripts/check-learning-content.cjs
           test -f parent-progress.html
           test -f pronunciation-review.html
           test -f math-story-village.html
@@ -78,6 +85,9 @@ jobs:
           grep -q 'pronunciation-review.html' index.html
           grep -q 'math-story-village.html' index.html
           grep -q 'international-benchmark.html' grades-roadmap.html
+
+      - name: Check Grade 1 and Grade 2 learning content and answers
+        run: node scripts/check-learning-content.cjs
 
       - name: Install audio inspector
         run: |
