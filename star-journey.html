@@ -31,6 +31,12 @@ h2{font-size:clamp(23px,4vw,29px);margin:3px 0 8px}
 <section class="path"><h2>🗺️ Four Learning Adventures <span lang="ar" dir="rtl">أربع مغامرات تعليمية</span></h2><p>Choose an activity. Completed adventures get a green check. • اختر نشاطاً واجمع الإنجازات!</p><div class="track" id="journeyTrack"></div>
 <h2>🏅 My Achievement Badges <span lang="ar" dir="rtl">شارات الإنجاز</span></h2><div class="badges" id="journeyBadges"></div></section>
 <section class="path" aria-labelledby="activityMilestoneTitle"><h2 id="activityMilestoneTitle">🚀 Activity Explorer Milestones <span lang="ar" dir="rtl">مراحل إنجاز الأنشطة</span></h2><p id="activityMilestoneProgress" aria-live="polite">0 / 151 activities complete</p><div class="badges" id="activityMilestoneBadges"></div><p><a class="back" href="./activity-library.html">🎮 Continue 151 Activities • أكمل الأنشطة ➜</a></p><p class="note">Milestones reflect your actual completed activities. They do not add extra stars or change learning results.</p></section>
+<section class="path" aria-labelledby="storyBadgesTitle">
+ <h2 id="storyBadgesTitle">🏡 My Maths Story Badges <span lang="ar" dir="rtl">شارات قصص الرياضيات</span></h2>
+ <p id="storyBadgeProgress" aria-live="polite">0 / 24 stories • 0 / 4 chapters</p>
+ <div class="badges" id="storyBadges"></div>
+ <p><a class="back" href="./math-story-village.html">🏡 Explore Maths Story Village • استكشف قصص الرياضيات ➜</a></p>
+</section>
 <section class="studio"><h2>🎧 Listen & Repeat Corner <span lang="ar" dir="rtl">ركن الاستماع والتكرار</span></h2><p>Pick an English voice style, tap a picture, then repeat the whole word three times. <span lang="ar" dir="rtl" style="display:block">اختر الصوت الإنجليزي، واضغط على الصورة، ثم كرر الكلمة ثلاث مرات.</span></p>
 <div class="voiceRow" role="group" aria-label="English voice style"><button type="button" id="femaleChoice" aria-pressed="true">👧 Female-style • أنثوي</button><button type="button" id="maleChoice" aria-pressed="false">👦 Male-style • ذكوري</button></div>
 <div class="words" id="listenWords"></div><p class="feedback" id="listenFeedback" role="status" aria-live="polite">Tap a picture to hear its English word three times.</p>
@@ -80,8 +86,20 @@ function updateMilestones(){
   $("#activityMilestoneBadges").append(badge);
  }
 }
-window.addEventListener("pageshow",updateMilestones);
-updateMilestones();
+function updateStoryBadges(){
+ const data=read("lla-math-story-v1")||{};
+ const done=new Set((Array.isArray(data.done)?data.done:[]).filter(x=>Number.isInteger(x)&&x>=0&&x<24));
+ const rewarded=new Set((Array.isArray(data.rewarded)?data.rewarded:[]).filter(x=>Number.isInteger(x)&&x>=0&&x<4));
+ $("#storyBadgeProgress").textContent="⭐ "+done.size+" / 24 stories • 🏅 "+rewarded.size+" / 4 chapters";
+ $("#storyBadges").replaceChildren();
+ ["🍎 Gather","🧺 Take Away","🔟 Make Ten","⚖️ Compare"].forEach((name,i)=>{
+  const badge=document.createElement("div");badge.className="medal"+(rewarded.has(i)?" earned":"");
+  badge.textContent=(rewarded.has(i)?"🏅 ":"🔒 ")+name;
+  $("#storyBadges").append(badge);
+ });
+}
+window.addEventListener("pageshow",()=>{updateMilestones();updateStoryBadges()});
+updateMilestones();updateStoryBadges();
 const words=[{en:"cat",ar:"قطة",icon:"🐱"},{en:"fish",ar:"سمكة",icon:"🐟"},{en:"sun",ar:"شمس",icon:"☀️"},{en:"bus",ar:"حافلة",icon:"🚌"}];
 let voice="girl",active=null,serial=0;
 function stop(){serial++;if(active){active.pause();active.removeAttribute("src");active.load();active=null}}
