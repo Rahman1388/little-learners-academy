@@ -16,6 +16,7 @@ on:
       - "match-learn.html"
       - "bus-voice-check.html"
       - "audio-review.html"
+      - "pronunciation-review.html"
       - "picture-memory.html"
       - "star-journey.html"
       - "learning-passport.html"
