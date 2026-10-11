@@ -15,10 +15,46 @@
     <header class="top">
       <div class="brand">🌟 Little Learners Academy</div>
       <div class="topRight">
+        <button id="menuToggle" class="menuToggle" type="button" aria-expanded="false" aria-controls="mainMenu" aria-label="Open menu • افتح القائمة">☰ <span>Menu • القائمة</span></button>
         <span id="starCount" class="pill">⭐ 0</span>
         <span class="pill">Primary Level 1 • المستوى الأول 🇶🇦</span>
       </div>
     </header>
+    <nav id="mainMenu" class="mainMenu" aria-label="Main navigation • القائمة الرئيسية" hidden>
+      <div class="menuTitle"><strong>🌈 Choose your adventure • اختر مغامرتك</strong><button id="menuClose" type="button" aria-label="Close menu • أغلق القائمة">✕</button></div>
+      <div class="menuSections">
+        <section><h2>🎮 Play & Learn • العب وتعلّم</h2>
+          <a href="./index.html">🏠 Home • الرئيسية</a>
+          <a href="./phonics-adventure.html">📖 Reading Adventure • مغامرة القراءة</a>
+          <a href="./match-learn.html">🧩 Match & Learn • طابق وتعلّم</a>
+          <a href="./picture-memory.html">🌷 Picture Pairs • مطابقة الصور</a>
+          <a href="./story-garden.html">📚 Story Garden • حديقة القصص</a>
+          <a href="./drawing-studio.html">🎨 Drawing Studio • مرسم التلوين</a>
+        </section>
+        <section><h2>🔢 Skills & Maths • المهارات والرياضيات</h2>
+          <a href="./activity-library.html">🎯 151 Activities • ١٥١ نشاطاً</a>
+          <a href="./math-story-village.html">🏡 Maths Stories • قصص الرياضيات</a>
+          <a href="./ten-frame-lab.html">🔟 Ten-Frame Lab • مختبر العشرة</a>
+          <a href="./clock-time-lab.html">🕒 Clock & Time • الوقت والساعة</a>
+          <a href="./measurement-explorer.html">📏 Measurement Explorer • القياس</a>
+          <a href="./daily-discovery.html">🌞 Daily Discovery • اكتشاف اليوم</a>
+        </section>
+        <section><h2>🏆 Progress & Family • الإنجازات والأسرة</h2>
+          <a href="./star-journey.html">⭐ My Star Journey • رحلة نجومي</a>
+          <a href="./learning-passport.html">🗺️ Learning Passport • مسار التعلم</a>
+          <a href="./parent-progress.html">📊 Parent Progress • تقدم الطفل</a>
+          <a href="./family-learning-plan.html">👨‍👩‍👧 Family Learning Plan • خطة الأسرة</a>
+          <a href="./voice-test.html">🔊 Voice Listening Test • اختبار الأصوات</a>
+          <a href="./audio-review.html">🎧 Audio Review • مراجعة الصوت</a>
+          <a href="./pronunciation-review.html?lesson=patterns">🎙️ Parent Pronunciation Studio • مراجعة النطق</a>
+        </section>
+        <section><h2>🌍 Curriculum & More • المنهج والمزيد</h2>
+          <a href="./grades-roadmap.html">🎓 Grades 1–6 Roadmap • خطة الصفوف</a>
+          <a href="./international-benchmark.html">🌐 International & Gulf Sources • المصادر العالمية والخليجية</a>
+          <a href="#moreAdventures" data-expand="moreAdventures">🌟 See More Adventures • مزيد من المغامرات</a>
+        </section>
+      </div>
+    </nav>
 
     <section id="home">
       <section class="hero">
@@ -31,9 +67,9 @@
           <button id="girlVoice" class="btn">👧 English female-style • صوت إنجليزي أنثوي</button>
           <button id="boyVoice" class="btn">👦 English male-style • صوت إنجليزي ذكوري</button>
           <button id="installBtn" class="btn secondary hidden">📱 Install App • تثبيت التطبيق</button>
-          <a href="./voice-test.html" class="btn secondary voiceLink">🎧 Test clear voices • جرّب الأصوات</a>
-          <a href="./audio-review.html" class="btn secondary voiceLink">📝 Review each word • قيّم وضوح الكلمات</a>
-          <a href="./pronunciation-review.html?lesson=patterns" class="btn secondary voiceLink">🎙️ Parent Pronunciation Studio • مراجعة جودة النطق</a>
+
+
+
           <input id="voice" type="hidden" value="girl">
           <p id="homeVoiceStatus" class="voiceStatus" role="status" aria-live="polite"></p>
         </div>
@@ -64,6 +100,9 @@
           <a class="questGo questGoSecondary" href="./activity-library.html#smartPanel">🧠 Try Smart Review • جرّب المراجعة ➜</a>
         </div>
       </section>
+      <details class="moreAdventures" id="moreAdventures">
+        <summary>🎪 Explore More Adventures • استكشف المزيد <span aria-hidden="true">▼</span></summary>
+        <div class="moreAdventuresBody">
       <section class="questPromo" aria-label="My star journey and listening">
         <div class="questPromoIcon" aria-hidden="true">🏆 🌈 🎧</div>
         <div class="questPromoBody">
@@ -176,6 +215,8 @@
           <p>Eight short original English stories and 24 reading comprehension questions. Read, think, and grow!</p></div>
         <div class="questPromoLinks"><a class="questGo" href="./story-garden.html">📖 Read My Stories • اقرأ القصص ➜</a></div>
       </section>
+        </div>
+      </details>
       <h2 class="sectionTitle">🎓 Learning World • عالم التعلم</h2>
       <section id="subjects" class="grid"></section>
 
@@ -281,6 +322,7 @@
       Independent supplementary educational application. Not affiliated with or endorsed by Qatar MOEHE or any particular school. Practice results are not official grades.
     </footer>
   </main>
+  <script src="navigation.js?v=menu-v1" defer></script>
   <script src="curriculum.js"></script>
   <script src="app.js"></script>
 </body>
