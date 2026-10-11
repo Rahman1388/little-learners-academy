@@ -371,6 +371,17 @@ const fs=require("node:fs");
  await goto("parent-progress.html");
  await page.locator("#subjects .subject").first().waitFor({state:"visible"});
  assert.equal(await page.locator("#subjects .subject").count(),5);
+ // Independent Grade 2 subject counters from this phone's saved work.
+ await page.evaluate(()=>{
+  localStorage.setItem("lla-grade2-pilot-v1",JSON.stringify({"g2-01":true,"g2-02":true}));
+  localStorage.setItem("lla-grade2-english-v1",JSON.stringify({"g2e-01":true}));
+  localStorage.setItem("lla-grade2-science-v1",JSON.stringify({"g2s-01":true,"g2s-02":true,"g2s-03":false}));
+ });
+ await page.reload({waitUntil:"domcontentloaded"});
+ assert.equal(await page.locator("#grade2MathCount").textContent(),"2 / 24");
+ assert.equal(await page.locator("#grade2EnglishCount").textContent(),"1 / 24");
+ assert.equal(await page.locator("#grade2ScienceCount").textContent(),"2 / 18");
+ assert.equal(await page.locator('#grade2PilotProgress a').count(),3);
  await assertMobile();
  await page.locator('a[href="./activity-library.html"]').last().click();
  await page.locator('#activityGrid .activity[data-id="mini-002"]').click();
