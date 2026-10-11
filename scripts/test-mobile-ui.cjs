@@ -382,6 +382,12 @@ const fs=require("node:fs");
  assert.equal(await page.locator("#grade2EnglishCount").textContent(),"1 / 24");
  assert.equal(await page.locator("#grade2ScienceCount").textContent(),"2 / 18");
  assert.equal(await page.locator('#grade2PilotProgress a').count(),3);
+ // Remove injected test-only Grade 2 fixtures before independently testing pilots.
+ await page.evaluate(()=>{
+  localStorage.removeItem("lla-grade2-pilot-v1");
+  localStorage.removeItem("lla-grade2-english-v1");
+  localStorage.removeItem("lla-grade2-science-v1");
+ });
  await assertMobile();
  await page.locator('a[href="./activity-library.html"]').last().click();
  await page.locator('#activityGrid .activity[data-id="mini-002"]').click();
