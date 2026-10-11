@@ -32,6 +32,10 @@ const fs=require("node:fs");
  };
 
  await goto("index.html");
+ await page.locator("#familyPlan .review").first().waitFor({state:"visible"});
+ assert.equal(await page.locator("#familyPlan .review").count(),5,"Five family practice days missing");
+ const planHrefs=await page.locator("#familyPlan .review a").evaluateAll(nodes=>nodes.map(n=>n.getAttribute("href")));
+ assert(planHrefs.every(h=>h.startsWith("./activity-library.html?activity=mini-")),"Plan must open actual activities");
  await page.locator("#subjects .subject").first().waitFor({state:"visible"});
  await assertMobile();
  await page.locator("#girlVoice").click();
