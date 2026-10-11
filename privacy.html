@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
+<meta name="theme-color" content="#daf6ff"><title>Parent Privacy & Data Controls | Little Learners Academy</title>
+<link rel="icon" href="./icon.svg" type="image/svg+xml">
+<style>
+:root{font-family:system-ui,-apple-system,Segoe UI,Tahoma,Arial,sans-serif;color:#183b61}*{box-sizing:border-box}
+body{margin:0;background:linear-gradient(130deg,#d8f5ff,#fff4da,#f2e5ff);min-height:100vh}
+main{max-width:800px;margin:auto;padding:16px 13px 42px}
+a,button,input{font:inherit}a:focus-visible,button:focus-visible,input:focus-visible{outline:4px solid #8a1538;outline-offset:3px}
+.back{display:inline-flex;background:#fff;border-radius:15px;text-decoration:none;color:#174b72;padding:13px 17px;font-weight:900;min-height:49px;align-items:center}
+header,section{background:#fffefa;border:4px solid white;box-shadow:0 5px #badce8;border-radius:25px;padding:clamp(16px,3vw,27px);margin:16px 0}
+header{text-align:center}h1{font-size:clamp(28px,6vw,43px);margin:10px 0}h1 span{display:block;font-size:.62em;margin-top:8px}
+h2{font-size:24px;margin:0 0 12px}p,li{line-height:1.6}.note{font-size:13px;color:#4c637a}
+strong{color:#124d76}.stat{background:#e9f8ff;border-radius:17px;padding:16px;font-weight:850}
+.action{background:#0a77aa;border:0;border-radius:16px;color:#fff;padding:13px 18px;font-weight:900;min-height:51px;margin:8px 8px 8px 0}
+.danger{background:#a52644}.action:disabled{background:#9da9b2;cursor:not-allowed}
+input{min-height:48px;border:2px solid #adcede;border-radius:12px;padding:9px 13px;width:100%;max-width:280px}
+label{display:block;font-weight:850;margin-top:10px}
+#message{min-height:34px;background:#e8f6ff;padding:12px;border-radius:13px;font-weight:800}
+</style></head><body><main><a class="back" href="./index.html">← Home • الرئيسية</a>
+<header><div style="font-weight:900;color:#8a1538">🔒 PARENT CONTROLS • إعدادات الأهل</div>
+<h1>Privacy & Data <span lang="ar" dir="rtl">الخصوصية والبيانات</span></h1>
+<p>Parents and caregivers can check what this device has saved. <span lang="ar" dir="rtl" style="display:block">يمكن للأهل مراجعة البيانات المحفوظة على هذا الجهاز.</span></p></header>
+<section><h2>🛡️ How privacy works • كيف نحمي الخصوصية</h2>
+<p>This version of Little Learners Academy has no student accounts, advertising, social chat, camera or microphone recording, or application analytics. Learning scores, activity completions, and voice preferences are saved in this browser, on this device.</p>
+<p>We do not ask for a child's real name, date of birth, address or contact details. Children should not type personal information into any activity.</p>
+<p><strong>Important limits:</strong> The app is served by GitHub Pages, so GitHub and network providers may process normal web-request information such as IP addresses and access logs under their own policies. Browser storage can be accessed by anyone using the same unlocked device/browser. A lost or shared device may expose locally saved progress. This page does not offer a password-protected child profile or cloud synchronization.</p>
+<p class="note">Source code is publicly visible on GitHub. That does not make the child's on-device learning progress public, and app developers cannot retrieve browser-local progress through GitHub.</p></section>
+<section><h2>📊 Data on this device • بيانات هذا الجهاز</h2>
+<div class="stat" id="storageSummary" role="status" aria-live="polite">Checking the device's app data…</div>
+<p class="note">Only keys belonging to Little Learners Academy (starting with <code>lla-</code>) are counted. Other websites' storage is not touched.</p>
+<button class="action" id="exportData" type="button">💾 Download a parent backup • نسخة احتياطية</button>
+<p class="note">The optional backup is a readable JSON file on your device, not a secret or encrypted file. Keep it private; delete it from Downloads when no longer needed. Export does not upload your data to a server.</p></section>
+<section><h2>🗑️ Erase saved progress • حذف بيانات التقدم</h2>
+<p>This will erase saved progress, earned stars, completion badges, pronunciation preferences, and feedback stored by this app <strong>in this browser</strong>. It will not delete the website or affect other devices. It cannot be undone unless you have a backup and manually restore data using a supported future feature.</p>
+<label for="confirmErase">Parent confirmation: type DELETE to unlock the button • اكتب DELETE للتأكيد</label>
+<input id="confirmErase" type="text" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="DELETE" aria-describedby="eraseHelp">
+<p class="note" id="eraseHelp">This is a confirmation step, not a secure parental PIN.</p>
+<button class="action danger" id="eraseData" type="button" disabled>Erase app data on this device • حذف البيانات</button>
+<p id="message" role="status" aria-live="polite">No changes made.</p>
+</section>
+<section><h2>👨‍👩‍👧 Parent advice • نصائح للأهل</h2>
+<p>Supervise younger learners, balance screen time with play and reading, and avoid uploading identifying child information. This independent app is not certified by a school or ministry, and formal curriculum and pronunciation approval are still under review.</p>
+<p class="note">To remove offline copies of the website itself, use your browser's website-data settings. Erasing progress here does not automatically remove service-worker caches or normal hosting logs.</p></section>
+<script src="./privacy-controls.js?v=privacy-1"></script></main></body></html>
