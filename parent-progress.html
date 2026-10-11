@@ -28,6 +28,13 @@ h2{font-size:23px;margin:2px 0 12px}p{line-height:1.6}
 <div class="stat"><strong id="correctCount">0</strong><small>Correct responses</small></div>
 <div class="stat"><strong id="attemptCount">0</strong><small>Attempts recorded</small></div>
 </div><p class="note">Attempts are counted only in activities answered after this feature was added. They are not exam grades or speech assessments.</p></section>
+<section class="section" aria-labelledby="mathVillageHeader">
+<h2 id="mathVillageHeader">🏡 Math Story Village <span lang="ar" dir="rtl">قصص الرياضيات</span></h2>
+<div class="stats" style="grid-template-columns:repeat(2,minmax(0,1fr))">
+ <div class="stat"><strong id="mathStoryCount">0 / 24</strong><small>Stories completed</small></div>
+ <div class="stat"><strong id="mathStoryBadges">0 / 4</strong><small>Chapter badges</small></div>
+</div><p>Optional concrete picture models help with Grade 1 addition, subtraction, number bonds and comparison.</p>
+<a class="start" href="./math-story-village.html">🏡 Continue Maths Stories • تابع القصص</a></section>
 <section class="section"><h2>📊 Subject Progress <span lang="ar" dir="rtl">التقدم حسب المادة</span></h2><div id="subjects"></div></section>
 <section class="section"><h2>🌱 Practise Again <span lang="ar" dir="rtl">تدرّب مرة أخرى</span></h2>
 <p>Challenges with incorrect attempts appear here. Encourage another try without pressure. A correct retry keeps the challenge available for reinforcement.</p>
@@ -48,6 +55,11 @@ h2{font-size:23px;margin:2px 0 12px}p{line-height:1.6}
 const data=window.LLA_MINI_ACTIVITIES||[], $=s=>document.querySelector(s);
 const get=k=>{try{const x=JSON.parse(localStorage.getItem(k)||"{}");return x&&typeof x==="object"?x:{}}catch{return {}}};
 const done=get("lla-activity-library-v1"),insights=get("lla-practice-insights-v1");
+const story=get("lla-math-story-v1");
+const storyDone=(Array.isArray(story.done)?story.done:[]).filter(x=>Number.isInteger(x)&&x>=0&&x<24);
+const storyBadges=(Array.isArray(story.rewarded)?story.rewarded:[]).filter(x=>Number.isInteger(x)&&x>=0&&x<4);
+$("#mathStoryCount").textContent=new Set(storyDone).size+" / 24";
+$("#mathStoryBadges").textContent=new Set(storyBadges).size+" / 4";
 const labels=[["math","🔢 Mathematics","الرياضيات"],["english","🔤 English","الإنجليزية"],["science","🔬 Science","العلوم"],["life","🌱 Life Skills","المهارات الحياتية"],["arts","🎨 Creative Patterns","الأنماط الإبداعية"]];
 $("#doneCount").textContent=data.filter(a=>done[a.id]===true).length;
 let successes=0,mistakes=0;
