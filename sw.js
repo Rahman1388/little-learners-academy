@@ -36,7 +36,7 @@ self.addEventListener("fetch",event=>{
   if(event.request.method!=="GET")return;
   const url=new URL(event.request.url);
   if(url.origin!==self.location.origin||!ALLOWED_PATHS.has(url.pathname))return;
-  if(!["navigate","same-origin","cors"].includes(event.request.mode))return;
+  if(!["navigate","same-origin","cors","no-cors"].includes(event.request.mode))return;
   const canonical=new Request(url.origin+url.pathname,{credentials:"same-origin"});
   event.respondWith(
     fetch(event.request)
