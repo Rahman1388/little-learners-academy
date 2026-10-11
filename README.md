@@ -7,7 +7,7 @@ An independent bilingual English–Arabic learning platform for primary-school c
 ## Current Grade 1 foundation
 - Child-friendly bilingual dashboard
 - English, Mathematics, Science, Life Skills and Creative Arts
-- Girl/boy child-like browser voice profiles
+- Adult synthetic English female-style and male-style voice profiles
 - Memory Garden: See → Colour → Link → Hide → Recall → Review → Reward
 - Progressive Web App (PWA) and offline foundation
 
@@ -26,3 +26,13 @@ The child experience is designed around data minimisation: no public profiles, o
 
 ## Cost principle
 The development target is to use free and open-source tools first and avoid unnecessary subscriptions or platform lock-in.
+
+## Parent privacy controls
+- No student accounts, ads, direct messaging, or built-in analytics
+- Browser-local learning progress only; device users may see saved progress
+- Open `privacy.html` to review local entries, download an optional JSON backup, or erase only `lla-` app data with explicit confirmation
+- The backup is plain JSON and must be kept private; the app does not collect or receive that file
+- GitHub Pages and network providers may retain normal hosting/access logs outside the app's control
+
+## Repository protection
+The source repository is public. Enable two-factor authentication for the owner, require pull-request reviews and status checks through GitHub branch rules where the plan allows, and check repository security settings for secret scanning. Do not commit API keys, credentials, or real child data.
