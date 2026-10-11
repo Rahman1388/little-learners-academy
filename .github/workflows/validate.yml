@@ -57,6 +57,7 @@ jobs:
           test -f activity-data.js
           test -f activity-library.js
           test -f parent-progress.html
+          test -f pronunciation-review.html
 
       - name: Verify core app wiring
         run: |
@@ -69,6 +70,7 @@ jobs:
           grep -q 'serviceWorker' app.js
           grep -q 'activity-library.html' index.html
           grep -q 'activity-data.js' activity-library.html
+          grep -q 'pronunciation-review.html' index.html
 
       - name: Install audio inspector
         run: |
