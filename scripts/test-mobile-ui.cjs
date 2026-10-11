@@ -740,6 +740,26 @@ const fs=require("node:fs");
  assert.match(await page.locator("#fractionProgress").textContent(),/12 \/ 12/);
  await page.setViewportSize({width:768,height:1024});await assertMobile();
  await page.setViewportSize({width:390,height:844});await assertMobile();
+ // Parent privacy: export and deletion only affect lla- app keys.
+ await goto("privacy.html");
+ await page.locator("#storageSummary").waitFor({state:"visible"});
+ await assertMobile();
+ const beforePrivacy=await page.evaluate(()=>Object.keys(localStorage).filter(x=>x.startsWith("lla-")).length);
+ await page.evaluate(()=>localStorage.setItem("unrelated-demo-key","keep"));
+ await page.locator("#confirmErase").fill("DEL");
+ assert.equal(await page.locator("#eraseData").isDisabled(),true,"Accidental deletion should be blocked");
+ await page.locator("#confirmErase").fill("DELETE");
+ assert.equal(await page.locator("#eraseData").isEnabled(),true);
+ await page.locator("#eraseData").click();
+ const afterPrivacy=await page.evaluate(()=>({
+  app:Object.keys(localStorage).filter(x=>x.startsWith("lla-")).length,
+  unrelated:localStorage.getItem("unrelated-demo-key")
+ }));
+ assert.equal(afterPrivacy.app,0,"Privacy erase should clear only app-specific progress");
+ assert.equal(afterPrivacy.unrelated,"keep","Unrelated browser data must be untouched");
+ await page.evaluate(()=>localStorage.removeItem("unrelated-demo-key"));
+ await page.setViewportSize({width:768,height:1024});await assertMobile();
+ await page.setViewportSize({width:390,height:844});
  await goto("voice-test.html");
  await page.locator("audio").first().waitFor();
  const numPlayers=await page.locator("audio").count();
