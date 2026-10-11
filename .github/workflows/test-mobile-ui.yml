@@ -30,6 +30,7 @@ on:
       - "grade2-english.html"
       - "grade2-english-data.js"
       - "grade2-english.js"
+      - "scripts/test-grade2-english.cjs"
       - "scripts/check-learning-content.cjs"
       - "parent-progress.html"
       - "ten-frame-lab.html"
@@ -93,3 +94,4 @@ jobs:
           node scripts/test-mobile-ui.cjs
           node scripts/test-pronunciation-review.cjs
           node scripts/test-mega-upgrade.cjs
+          node scripts/test-grade2-english.cjs
