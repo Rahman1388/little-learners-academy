@@ -33,6 +33,9 @@ on:
       - "grade2-science.html"
       - "grade2-science-data.js"
       - "grade2-science.js"
+      - "grade2-mixed-quest.html"
+      - "grade2-mixed-quest.js"
+      - "scripts/test-grade2-mixed.cjs"
       - "scripts/test-grade2-english.cjs"
       - "scripts/check-learning-content.cjs"
       - "parent-progress.html"
@@ -98,3 +101,4 @@ jobs:
           node scripts/test-pronunciation-review.cjs
           node scripts/test-mega-upgrade.cjs
           node scripts/test-grade2-english.cjs
+          node scripts/test-grade2-mixed.cjs
