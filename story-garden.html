@@ -1,0 +1,82 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#e5d7ff"><title>Story Garden • Little Learners Academy</title>
+<style>
+:root{font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif;color:#173e63}*{box-sizing:border-box}body{margin:0;background:linear-gradient(135deg,#c7f1ff,#fff1c6 55%,#efd8ff);min-height:100vh}
+main{max-width:810px;margin:auto;padding:14px 13px 45px}button,a{font:inherit}button{cursor:pointer}button:focus-visible,a:focus-visible{outline:4px solid #8a1538;outline-offset:3px}
+.back{display:inline-flex;background:white;padding:12px 16px;border-radius:15px;color:#164b70;text-decoration:none;font-weight:850;min-height:49px;align-items:center}
+header,section,aside{background:#fffe;border:4px solid #fff;border-radius:27px;padding:clamp(15px,3vw,24px);box-shadow:0 6px #b9d6e3;margin:16px 0}
+header{text-align:center;background:linear-gradient(120deg,#fff5c7,#fff,#e5f6ff)}h1{font-size:clamp(30px,6vw,44px);margin:8px 0}h1 span{font-size:.65em;display:block;margin-top:8px}h2{margin:0 0 12px;font-size:24px}p{line-height:1.6}
+.status{font-weight:950;padding:12px;background:#fff0ba;border-radius:16px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
+.storyCard{background:#fff;border:3px solid #c6deed;border-radius:19px;min-height:122px;padding:14px;text-align:left;color:#18466c;display:flex;flex-direction:column;gap:7px}
+.storyCard.done{background:#e7ffed;border-color:#50b77e}.storyCard strong{font-size:19px}.storyCard .emoji{font-size:33px}
+.story{background:#eaf8ff;border-radius:18px;padding:18px;font-size:clamp(19px,3vw,24px);line-height:1.85;white-space:pre-line}
+.question{font-size:22px;font-weight:900;padding:13px 0}
+.answers{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.answers button{border:3px solid #a7d2e6;background:white;border-radius:17px;min-height:66px;padding:11px;font-weight:900;color:#13496d;font-size:18px}
+.answers button.correct{background:#d8ffe4;border-color:#41b47c}.answers button.wrong{background:#ffede8;border-color:#d98b80}
+.answers button:disabled{opacity:1;cursor:default}
+.feedback{padding:13px;background:#fff4d5;border-radius:16px;min-height:55px;font-weight:850;margin:13px 0}
+.actions{display:flex;gap:10px;flex-wrap:wrap}.actions button{border:0;background:#087da7;color:white;border-radius:16px;min-height:49px;padding:12px 17px;font-weight:900}
+.note{font-size:13px;color:#526f7d}[hidden]{display:none!important}
+@media(max-width:460px){.grid{grid-template-columns:1fr}.answers{grid-template-columns:1fr}}
+</style></head><body><main><a class="back" href="./index.html">← Home • الرئيسية</a>
+<header><div style="font-weight:950;color:#8a1538">📚 READING COMPREHENSION • فهم المقروء</div><h1>🌼 Story Garden <span lang="ar" dir="rtl">حديقة القصص</span></h1>
+<p>Read a short English story. Think, answer three questions, and grow your reading confidence!</p><p lang="ar" dir="rtl">اقرأ قصة قصيرة باللغة الإنجليزية ثم أجب عن ثلاثة أسئلة.</p><div class="status" id="storyProgress" role="status" aria-live="polite">0 / 8 stories completed</div></header>
+<section id="storyList"><h2>Choose a story • اختر قصة</h2><div id="storyGrid" class="grid"></div></section>
+<section id="reader" hidden><div class="actions"><button id="backStories" type="button">← All stories • جميع القصص</button></div><h2 id="storyTitle" style="margin-top:17px"></h2><div class="story" id="storyText"></div><p class="note">Read slowly. A parent or teacher can help with unfamiliar words. • اقرأ بهدوء واطلب المساعدة عند الحاجة.</p>
+<div class="status" id="questionCount"></div><div class="question" id="questionText"></div><div class="answers" id="answerButtons"></div><div class="feedback" id="feedback" role="status" aria-live="polite">Choose an answer. • اختر الإجابة.</div><div class="actions"><button id="nextQuestion" type="button" hidden>Next question ➜ • السؤال التالي</button></div></section>
+<aside><strong>👨‍👩‍👧 For parents & teachers • للأهل والمعلمين</strong><p class="note">Eight original short stories practise recall, sequence, and simple inference, with three questions per story (24 comprehension questions). These are supplementary English reading activities, not certified Qatar curriculum content. There is no microphone, automated speech evaluation, new audio, account or tracking. Discuss each story together for deeper learning.</p></aside>
+<script>
+(()=>{"use strict";
+const stories=[
+{icon:"🐱",title:"Mimi and the Box",text:"Mimi is a little cat. She sees a big box in the room. Mimi jumps inside the box. It is warm and quiet. Mimi goes to sleep.",qs:[["Who is Mimi?",["A cat","A fish","A bird"],0],["Where does Mimi sleep?",["In a box","In a tree","On a bus"],0],["Why might Mimi like the box?",["It is warm and quiet","It is full of water","It is very noisy"],0]]},
+{icon:"🌱",title:"Sara's Seed",text:"Sara puts a seed in a pot. She adds soil and a little water. She puts the pot near a sunny window. After some days, a small green shoot grows. Sara smiles.",qs:[["What does Sara plant?",["A seed","A stone","A pencil"],0],["Where does she put the pot?",["Near a sunny window","Under a bed","Inside a cupboard"],0],["What happens after some days?",["A shoot grows","The pot disappears","The soil turns into a book"],0]]},
+{icon:"🚌",title:"The School Bus",text:"Ali waits with his father at the bus stop. The yellow school bus arrives. Ali says goodbye and gets on carefully. He sits down and puts on his seat belt. Soon he sees his school.",qs:[["Who waits with Ali?",["His father","His teacher","His cousin"],0],["What colour is the bus?",["Yellow","Purple","Green"],0],["What does Ali do after sitting down?",["Puts on his seat belt","Runs around","Opens the door"],0]]},
+{icon:"🐟",title:"A Fish in the Pond",text:"A small fish swims in a pond. It sees a leaf on the water. A frog sits on a rock nearby. The fish swims under the leaf and then comes out again. The frog watches.",qs:[["Where does the fish swim?",["In a pond","In a tree","In a box"],0],["What sits on a rock?",["A frog","A camel","A cat"],0],["What does the fish swim under?",["A leaf","A chair","A shoe"],0]]},
+{icon:"🌴",title:"A Day at the Park",text:"Noor visits the park with her family. She sees tall palm trees and bright flowers. Noor drinks water after playing. Before leaving, she puts her empty bottle in a recycling bin.",qs:[["Where does Noor go?",["To a park","To a hospital","To a library"],0],["What does Noor drink?",["Water","Paint","Soap"],0],["What does Noor do with her empty bottle?",["Puts it in a recycling bin","Drops it on the grass","Throws it in a pond"],0]]},
+{icon:"📚",title:"The Library Book",text:"Omar goes to the library with his mother. He chooses a book about stars. At home, Omar reads it with his sister. They learn that the Sun is a star. They return the book the next week.",qs:[["What is Omar's book about?",["Stars","Cars","Shoes"],0],["Who reads with Omar?",["His sister","His uncle","His teacher"],0],["What do they learn?",["The Sun is a star","The Moon is a bus","Fish live in trees"],0]]},
+{icon:"⚽",title:"The Missing Ball",text:"Hamad and Lina play with a red ball. The ball rolls behind a bench. Hamad looks under a tree, but it is not there. Lina looks behind the bench and finds it. They take turns playing again.",qs:[["What colour is the ball?",["Red","Blue","Yellow"],0],["Where is the ball found?",["Behind a bench","Under a tree","In a pond"],0],["What do they do after finding it?",["Take turns playing","Go to sleep","Leave the ball"],0]]},
+{icon:"🌧️",title:"After the Rain",text:"Dark clouds cover the sky. Fatima stays inside with her grandmother while rain falls. Soon the rain stops. Fatima sees a rainbow from the window. She counts its bright colours.",qs:[["Who is with Fatima?",["Her grandmother","Her brother","Her teacher"],0],["What falls from the clouds?",["Rain","Sand","Leaves"],0],["What does Fatima see after the rain?",["A rainbow","A camel","A bus"],0]]}
+];
+const KEY="lla-story-garden-v1",$=s=>document.querySelector(s);
+function read(){try{const v=JSON.parse(localStorage.getItem(KEY)||"{}");return v&&typeof v==="object"?v:{}}catch{return {}}}
+const completed=read();let index=-1,q=0,answered=false;
+function save(){try{localStorage.setItem(KEY,JSON.stringify(completed))}catch{}}
+function progress(){const n=stories.filter((_,i)=>completed[i]===true).length;$("#storyProgress").textContent="🏅 "+n+" / "+stories.length+" stories completed"}
+function list(){
+ $("#storyList").hidden=false;$("#reader").hidden=true;$("#storyGrid").replaceChildren();progress();
+ stories.forEach((s,i)=>{
+  const b=document.createElement("button");b.type="button";b.className="storyCard"+(completed[i]?" done":"");b.dataset.story=String(i);
+  const icon=document.createElement("span");icon.className="emoji";icon.textContent=s.icon;
+  const name=document.createElement("strong");name.textContent=s.title;
+  const state=document.createElement("span");state.textContent=completed[i]?"✅ Completed • مكتمل":"▶ Read • اقرأ";
+  b.append(icon,name,state);b.addEventListener("click",()=>open(i));$("#storyGrid").append(b);
+ });
+}
+function open(i){index=i;q=0;$("#storyList").hidden=true;$("#reader").hidden=false;$("#storyTitle").textContent=stories[i].icon+" "+stories[i].title;$("#storyText").textContent=stories[i].text;showQuestion();$("#reader").scrollIntoView({block:"start"})}
+function showQuestion(){
+ answered=false;const question=stories[index].qs[q];
+ $("#questionCount").textContent="Question "+(q+1)+" of 3 • السؤال "+(q+1)+" من ٣";
+ $("#questionText").textContent=question[0];$("#answerButtons").replaceChildren();
+ const correct=question[1][question[2]];
+ const offset=(index+q)%3;const options=[...question[1].slice(offset),...question[1].slice(0,offset)];
+ options.forEach(text=>{
+  const b=document.createElement("button");b.type="button";b.textContent=text;
+  b.dataset.correct=String(text===correct);
+  b.addEventListener("click",()=>{
+   if(answered)return;
+   if(text===correct){answered=true;b.classList.add("correct");$("#answerButtons").querySelectorAll("button").forEach(x=>x.disabled=true);$("#feedback").textContent="🎉 Great reading! • قراءة رائعة!";$("#nextQuestion").hidden=false;}
+   else{b.disabled=true;b.classList.add("wrong");$("#feedback").textContent="🌱 Try again. Look for the answer in the story. • حاول مرة أخرى.";}
+  });
+  $("#answerButtons").append(b);
+ });
+ $("#nextQuestion").hidden=true;$("#nextQuestion").textContent=q===2?"🏆 Finish story • أنهي القصة":"Next question ➜ • السؤال التالي";
+ $("#feedback").textContent="Choose the answer from the story. • اختر الإجابة من القصة.";
+}
+$("#nextQuestion").addEventListener("click",()=>{
+ if(!answered)return;
+ if(q<2){q++;showQuestion()}else{completed[index]=true;save();list();$("#storyProgress").textContent+=" 🎉 Well done!"}
+});
+$("#backStories").addEventListener("click",list);list();
+})();
+</script></main></body></html>
