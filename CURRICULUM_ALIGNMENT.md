@@ -51,3 +51,11 @@ The app should remain simple for children:
 **SEE → LISTEN → SAY → LEARN → DO → RECALL → QUIZ → REWARD**
 
 Memory features use pictures, colour, association and active recall. No claim is made that colour alone improves memory or that the app uses an official proprietary Tony Buzan programme.
+
+## Grade 2 mathematics readiness pilot (limited)
+
+The `grade2-pilot.html` screen contains **24 independently checkable questions** in four six-question strands: base-ten place value, two-digit addition/subtraction, length/time tools, and geometric/data reasoning. It is not a complete Grade 2 programme or an assessment of mastery. Progress lives in the separate `lla-grade2-pilot-v1` key and does not alter Grade 1 achievements.
+
+Reference themes: Common Core `2.NBT.A`, `2.NBT.B`, `2.MD.A`, `2.MD.C`, `2.MD.D`, `2.G.A` and England Years 2/3 maths. The grade-age equivalency depends on the school system and is not asserted as one-to-one. Official references: https://corestandards.org/mathematics-standards/ and https://www.gov.uk/government/publications/national-curriculum-in-england-mathematics-programmes-of-study.
+
+`node scripts/check-learning-content.cjs` checks fixed answer keys, counts, unique options, maths arithmetic, stable IDs, and the previously ambiguous capital-letter item. This **technical/content integrity check is not teacher approval**; Arabic support text and pedagogy still need specialist review before formal launch. Grades 3–6 remain roadmap-only.
