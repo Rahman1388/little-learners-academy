@@ -39,6 +39,7 @@ on:
       - "activity-data.js"
       - "activity-library.js"
       - "scripts/test-mobile-ui.cjs"
+      - "scripts/test-pronunciation-review.cjs"
       - ".github/workflows/test-mobile-ui.yml"
   workflow_dispatch:
 
@@ -77,4 +78,6 @@ jobs:
           curl --fail --silent --show-error http://127.0.0.1:8765/phonics-adventure.html >/dev/null
 
       - name: Test actual interactive game and both-language recording links
-        run: node scripts/test-mobile-ui.cjs
+        run: |
+          node scripts/test-mobile-ui.cjs
+          node scripts/test-pronunciation-review.cjs
