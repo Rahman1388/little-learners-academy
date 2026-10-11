@@ -41,6 +41,8 @@ on:
       - "scripts/test-grade2-english.cjs"
       - "scripts/check-learning-content.cjs"
       - "parent-progress.html"
+      - "privacy.html"
+      - "privacy-controls.js"
       - "ten-frame-lab.html"
       - "place-value-lab.html"
       - "number-bonds.html"
