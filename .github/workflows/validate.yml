@@ -43,6 +43,8 @@ jobs:
           node --check scripts/check-learning-content.cjs
           node --check learning-passport.js
           node --check drawing-studio.js
+          node --check scripts/check-app-security.cjs
+          node scripts/check-app-security.cjs
 
       - name: Verify required PWA files
         run: |
