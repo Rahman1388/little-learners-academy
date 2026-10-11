@@ -48,10 +48,8 @@ const assert=require("node:assert/strict");
  await page.locator("#playChapterAgain").click();
  for(const answer of expected[3]){
   await page.locator('#storyChoices button[data-value="'+answer+'"]').click();
-  if(answer!==expected[3].at(-1)||await page.locator("#storyStep").textContent()!=="never"){
-    const step=await page.locator("#storyStep").textContent();
-    if(!/Story 6 of 6/.test(step))await page.locator("#nextStory").click();
-  }
+  const step=await page.locator("#storyStep").textContent();
+  if(!/Story 6 of 6/.test(step))await page.locator("#nextStory").click();
  }
  const replayStars=await page.evaluate(()=>JSON.parse(localStorage.getItem("lla-progress-v2")).stars);
  assert.equal(replayStars,stars,"Replay must not create duplicate stars");
@@ -101,7 +99,7 @@ const assert=require("node:assert/strict");
   await page.locator("#nextChallenge").click();
  }
  assert.equal(new Set(selected).size,5,"Smart Review repeated an activity in its five-step session");
- assert.equal(new Set(selected.map(x=>x.slice(0,8))).size,1,"Activity IDs should have stable prefix");
+ assert(selected.every(id=>/^mini-[0-9]{3}$/.test(id)),"Activity IDs should use stable mini-001 format");
  assert.match(await page.locator("#smartStatus").textContent(),/Five steps finished/);
  assert.match(await page.locator("#overallProgress").textContent(),/5 \/ 151/);
  const insight=await page.evaluate(()=>JSON.parse(localStorage.getItem("lla-practice-insights-v1"))["mini-001"]);
