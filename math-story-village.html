@@ -207,8 +207,8 @@ function answer(n,b){
  b.classList.add("correct");
  $("#storyChoices").querySelectorAll("button").forEach(x=>x.disabled=true);
  $("#storyFeedback").className="good";
- $("#storyFeedback").textContent="🎉 Great thinking! "+item.a+(item.type==="add"?" + ":item.type==="bond"?" + ": " − ")+
-  (item.type==="bond"?"?":item.b)+" = "+(item.type==="bond"?"10":item.answer)+" • أحسنت!";
+ $("#storyFeedback").textContent="🎉 Great thinking! "+item.a+(item.type==="add"||item.type==="bond"?" + ":" − ")+
+  item.b+" = "+(item.type==="bond"?"10":item.answer)+" • أحسنت!";
  if(chapterCount(chapter)===6){markReward();$("#chapterSuccess").hidden=false}
  $("#nextStory").hidden=false;
  $("#nextStory").textContent=index%6===5?"🌟 Choose another chapter • فصل آخر":"➡ Next story • القصة التالية";
