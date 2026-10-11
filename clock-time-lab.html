@@ -1,0 +1,127 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#f9e7af"><link rel="icon" href="./icon.svg"><title>Clock & Time Lab | Little Learners Academy</title>
+<style>
+:root{font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif;color:#173d60}*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:linear-gradient(135deg,#bdeeff,#fff6c6 48%,#f8dfff)}
+main{max-width:800px;margin:auto;padding:14px 13px 45px}a,button{font:inherit}button{cursor:pointer}a:focus-visible,button:focus-visible{outline:4px solid #8a1538;outline-offset:3px}
+.back{display:inline-flex;align-items:center;text-decoration:none;background:white;color:#174c71;border-radius:15px;padding:12px 16px;min-height:49px;font-weight:900}
+.hero,.lab,.guide{border:4px solid white;border-radius:27px;background:#fffef9;box-shadow:0 6px #b7d8e5;padding:clamp(16px,4vw,25px);margin:15px 0}
+.hero{text-align:center;background:linear-gradient(125deg,#fff6ce,#fff,#ddf9ff)}h1{font-size:clamp(27px,6vw,42px);margin:10px 0}h1 span{display:block;font-size:.64em;margin-top:7px}h2{font-size:clamp(22px,4vw,27px);margin:8px 0}
+p{line-height:1.55}.progress{padding:12px;border-radius:16px;background:#fff0b0;font-weight:900;text-align:center}
+.track{height:14px;background:#dfeafa;border-radius:20px;overflow:hidden;margin-top:11px}.track span{display:block;background:#2bb286;height:100%;width:0}
+#clock{display:block;max-width:300px;width:min(85%,300px);height:auto;margin:8px auto 15px;filter:drop-shadow(0 6px 3px #c9dae1)}
+.question{text-align:center;font-size:clamp(22px,5vw,28px);font-weight:900;background:#e7f9ff;border-radius:16px;padding:13px}
+.answers{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:18px 0}
+.answers button{min-height:72px;border-radius:17px;background:white;border:3px solid #a4d1e5;color:#15476d;font-size:clamp(19px,4vw,27px);font-weight:900;padding:9px 4px}
+.answers button.correct{background:#e1ffe7;border-color:#38ac75}.answers button.wrong{background:#fff0e9;border-color:#e49e7d}
+.answers button:disabled{opacity:1;cursor:default}
+.status{padding:14px;background:#fff7d9;border-radius:16px;min-height:53px;font-weight:900}
+.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:14px}.actions button{min-height:51px;border:0;border-radius:15px;padding:12px 19px;background:#087ba8;color:white;font-weight:900}.actions .secondary{background:#ebf7ff;color:#145272;border:2px solid #b1daed}
+.guide{font-size:14px}.guide strong{font-size:17px}.guide .examples{background:#e8f7ff;border-radius:14px;padding:11px;margin:11px 0}
+[hidden]{display:none!important}@media(max-width:440px){.answers{grid-template-columns:1fr}.answers button{min-height:56px}.actions button{flex:1}}
+</style></head><body><main>
+<a class="back" href="./index.html">← Home • الرئيسية</a>
+<header class="hero"><div style="font-weight:950;color:#8a1538">🕒 GRADE 1 MATHEMATICS • رياضيات الصف الأول</div><h1>⏰ Clock & Time Lab <span lang="ar" dir="rtl">مختبر الساعة والوقت</span></h1>
+<p>Learn to read <strong>o’clock</strong> and <strong>half past</strong> on a big, colourful clock.<span lang="ar" dir="rtl" style="display:block">تعلّم قراءة الساعة الكاملة والنصف ساعة بطريقة ممتعة.</span></p>
+<div id="clockProgress" class="progress" role="status" aria-live="polite">0 / 12 challenges</div><div class="track" aria-hidden="true"><span id="clockProgressBar"></span></div></header>
+<section class="lab"><h2 id="questionTitle">What time is it? • كم الساعة؟</h2>
+<svg id="clock" viewBox="0 0 320 320" aria-label="Analogue clock showing the time" role="img" xmlns="http://www.w3.org/2000/svg">
+ <circle cx="160" cy="160" r="146" fill="#fff4c4" stroke="#175279" stroke-width="9"/>
+ <circle cx="160" cy="160" r="131" fill="white" stroke="#c6dbe7" stroke-width="3"/>
+ <g id="clockNumbers" font-size="21" font-weight="900" fill="#174c75" text-anchor="middle" dominant-baseline="central"></g>
+ <line id="hourHand" x1="160" y1="160" x2="160" y2="96" stroke="#8a1538" stroke-width="12" stroke-linecap="round"/>
+ <line id="minuteHand" x1="160" y1="160" x2="160" y2="49" stroke="#1685ab" stroke-width="7" stroke-linecap="round"/>
+ <circle cx="160" cy="160" r="11" fill="#123c5b"/>
+</svg>
+<p class="question" id="questionText">Choose the matching digital time.</p>
+<div id="timeAnswers" class="answers" role="group" aria-label="Digital clock choices"></div>
+<p id="clockFeedback" class="status" role="status" aria-live="polite">Tap the correct time • اختر الوقت الصحيح</p>
+<div class="actions"><button id="nextClock" type="button" hidden>Next clock ➜ • الساعة التالية</button><button class="secondary" id="restartClock" type="button">🔄 Start again • ابدأ من جديد</button></div>
+</section>
+<aside class="guide"><strong>👨‍👩‍👧 Parent and Teacher Guide • دليل الأهل والمعلمين</strong>
+<div class="examples"><strong>🟣 Short hand = hour • العقرب القصير للساعات</strong><p><strong>🔵 Long hand = minutes • العقرب الطويل للدقائق</strong></p></div>
+<p>When the long hand points to 12, it is <strong>o’clock</strong>. When it points to 6, it is <strong>half past</strong>; the short hand sits between two hour numbers. Try making the same time with a toy clock. These are supplementary foundational time-reading challenges; the exact syllabus and teaching sequence should be checked with each child's school.</p>
+<p>No accounts, microphone, new recordings, advertising or child data collection. Progress is stored on this device. One completion star is awarded for all 12 questions, not each replay.</p>
+</aside></main>
+<script>
+(()=>{"use strict";
+const $=s=>document.querySelector(s),STORE="lla-clock-lab-v1",MAIN="lla-progress-v2";
+const tasks=[...[1,2,3,4,5,6].map(hour=>({hour,minute:0})),...[1,2,3,4,5,6].map(hour=>({hour,minute:30}))];
+const read=k=>{try{return JSON.parse(localStorage.getItem(k)||"null")}catch{return null}};
+const write=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch{}};
+const original=read(STORE),prior=original&&typeof original==="object"?original:{};
+let done=new Set(Array.isArray(prior.done)?prior.done.filter(n=>Number.isInteger(n)&&n>=0&&n<tasks.length):[]),position=tasks.findIndex((_,i)=>!done.has(i)),answered=false;
+if(position<0)position=0;
+const svgNs="http://www.w3.org/2000/svg";
+for(let n=1;n<=12;n++){
+ const a=n*Math.PI/6-Math.PI/2;
+ const text=document.createElementNS(svgNs,"text");
+ text.setAttribute("x",String(160+109*Math.cos(a)));
+ text.setAttribute("y",String(160+109*Math.sin(a)));
+ text.textContent=String(n);$("#clockNumbers").append(text);
+}
+const digital=t=>String(t.hour)+":"+(t.minute===0?"00":"30");
+function progress(){
+ $("#clockProgress").textContent="🏅 "+done.size+" / 12 clocks completed";
+ $("#clockProgressBar").style.width=(done.size/12*100).toFixed(1)+"%";
+}
+function draw(task){
+ const hourAngle=(task.hour%12+task.minute/60)*Math.PI/6-Math.PI/2;
+ const minuteAngle=task.minute*Math.PI/30-Math.PI/2;
+ const hand=(id,angle,length)=>{$(id).setAttribute("x2",String(160+Math.cos(angle)*length));$(id).setAttribute("y2",String(160+Math.sin(angle)*length))};
+ hand("#hourHand",hourAngle,67);hand("#minuteHand",minuteAngle,101);
+ $("#clock").setAttribute("aria-label","Clock at "+digital(task));
+}
+function answerOptions(t){
+ const first=t.minute===0?{hour:t.hour,minute:30}:{hour:t.hour,minute:0};
+ const second={hour:t.hour===6?5:t.hour+1,minute:t.minute};
+ const values=[digital(t),digital(first),digital(second)];
+ const shift=position%3;
+ return values.slice(shift).concat(values.slice(0,shift));
+}
+function show(){
+ answered=false;const t=tasks[position];draw(t);progress();
+ $("#questionTitle").textContent="⏰ Clock "+(position+1)+" of 12 • السؤال "+(position+1);
+ $("#questionText").textContent=t.minute===0?"What time does the clock show? • كم الساعة؟":"Look at the half-hour clock. What is the time? • كم الوقت؟";
+ $("#timeAnswers").replaceChildren();
+ answerOptions(t).forEach(value=>{
+  const button=document.createElement("button");button.type="button";button.textContent=value;button.dataset.time=value;
+  button.addEventListener("click",()=>choose(value,button));
+  $("#timeAnswers").append(button);
+ });
+ $("#nextClock").hidden=true;
+ $("#clockFeedback").textContent="Choose the matching digital time • اختر الوقت الصحيح";
+}
+function reward(){
+ if(prior.rewarded)return;
+ const current=read(STORE);
+ if(current&&current.rewarded)return;
+ const state=read(MAIN)||{stars:0,completed:{}};
+ state.stars=Math.max(0,Number(state.stars)||0)+1;write(MAIN,state);
+ prior.rewarded=true;
+}
+function choose(value,button){
+ if(answered)return;
+ const expected=digital(tasks[position]);
+ if(value!==expected){
+  button.disabled=true;button.classList.add("wrong");
+  $("#clockFeedback").textContent="🌱 Nice try! Check the long hand, then try another answer. • حاول مرة أخرى";
+  return;
+ }
+ answered=true;button.classList.add("correct");
+ [...$("#timeAnswers").children].forEach(b=>b.disabled=true);
+ done.add(position);
+ if(done.size===tasks.length)reward();
+ write(STORE,{done:[...done],rewarded:!!prior.rewarded});
+ progress();
+ $("#clockFeedback").textContent=done.size===tasks.length?"🏆 Wonderful! All twelve clocks completed! • أحسنت!":"✅ Correct! "+(tasks[position].minute===0?"It's o'clock.":"It's half past.")+" • أحسنت!";
+ $("#nextClock").textContent=done.size===tasks.length?"🏆 Review clocks • راجع الساعات":"Next clock ➜ • الساعة التالية";
+ $("#nextClock").hidden=false;
+}
+$("#nextClock").addEventListener("click",()=>{
+ const next=tasks.findIndex((_,i)=>!done.has(i));
+ position=next>=0?next:(position+1)%tasks.length;show();
+});
+$("#restartClock").addEventListener("click",()=>{position=0;show()});
+show();
+})();
+</script></body></html>
