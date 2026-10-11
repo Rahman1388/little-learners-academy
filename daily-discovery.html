@@ -1,0 +1,86 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#ffdf9e"><title>My Daily Discovery • Little Learners Academy</title>
+<style>
+:root{font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif;color:#16415f}*{box-sizing:border-box}body{margin:0;min-height:100vh;background:linear-gradient(140deg,#bcecff,#fff3bc 50%,#f5d8ff)}
+main{max-width:760px;margin:auto;padding:14px 14px 45px}a,button{font:inherit}button{cursor:pointer}button:focus-visible,a:focus-visible{outline:4px solid #8a1538;outline-offset:3px}
+.back{display:inline-flex;padding:13px 16px;background:#fff;border-radius:16px;color:#174766;font-weight:900;text-decoration:none}
+.hero,.mission,.parent{background:#fffd;border:4px solid #fff;border-radius:28px;box-shadow:0 6px #b3d4dd;padding:clamp(16px,4vw,25px);margin:16px 0}
+.hero{text-align:center;background:linear-gradient(115deg,#fff3be,#fff,#e3f8ff)}
+h1{font-size:clamp(28px,6vw,43px);margin:8px 0}h1 span{display:block;font-size:.65em;margin-top:8px}
+p{line-height:1.5}.sub{font-weight:900;color:#8a1538;font-size:13px}.track{display:flex;gap:9px;flex-wrap:wrap;justify-content:center;margin:17px 0}
+.dot{background:#e9f0f6;border:2px solid #a9ccdc;border-radius:16px;padding:10px;font-size:21px;min-width:65px;text-align:center}
+.dot.done{background:#dbffe5;border-color:#3ab77d}.dot.active{background:#fff2bc;border-color:#e2a640}
+#progress{font-weight:950;background:#fff0ba;padding:12px;border-radius:15px;text-align:center}
+.question{background:#e8f8ff;padding:18px;border-radius:20px;text-align:center;font-size:clamp(22px,5vw,32px);font-weight:950;line-height:1.4}
+.ar{font-size:17px;font-weight:600;direction:rtl;margin-top:10px}
+.choices{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px;margin:17px 0}
+.choices button{border:3px solid #aad6e9;border-radius:18px;background:#fff;color:#164669;font-weight:950;font-size:clamp(17px,3vw,23px);padding:13px 7px;min-height:75px;overflow-wrap:anywhere}
+.choices button.correct{background:#d8ffe6;border-color:#43ac75}.choices button.wrong{background:#ffebe8;border-color:#da8d81}
+.choices button:disabled{opacity:1;cursor:default}
+#feedback{background:#fff4d7;padding:13px;border-radius:15px;min-height:56px;font-weight:850}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:15px}.actions button,.actions a{border:0;background:#0b7faa;color:#fff;padding:13px 18px;min-height:51px;border-radius:16px;font-weight:900;text-decoration:none}
+.actions .secondary{background:#e8f7ff;color:#125477;border:2px solid #a9d5e7}
+[hidden]{display:none!important}.parent{font-size:13px;color:#476c7d}
+@media(max-width:470px){.choices{grid-template-columns:1fr}.choices button{min-height:58px}}
+</style></head><body><main>
+<a class="back" href="./index.html">← Home • الرئيسية</a>
+<header class="hero"><div class="sub">🌈 FIVE SUBJECTS • FIVE SMALL DISCOVERIES</div><h1>🌟 My Daily Discovery <span lang="ar" dir="rtl">اكتشافاتي اليومية</span></h1>
+<p>Five little challenges, one from each subject. No timer and no pressure! <span lang="ar" dir="rtl" style="display:block">خمس مهام قصيرة من خمسة مجالات، دون مؤقت أو ضغط!</span></p>
+<div class="track" id="missionTrack" aria-label="Five learning steps"></div>
+<div id="progress" role="status" aria-live="polite">0 / 5 completed</div></header>
+<section class="mission" id="mission"><div class="sub" id="subjectName"></div><h2 id="challengeName"></h2>
+<div class="question"><div id="question"></div><div class="ar" id="questionAr" lang="ar"></div><div id="visual" style="font-size:26px;line-height:1.7;margin-top:10px"></div></div>
+<div class="choices" id="answerChoices" role="group" aria-label="Answer choices"></div>
+<p id="feedback" role="status" aria-live="polite">Choose your answer! • اختر الإجابة.</p>
+<div class="actions"><button id="nextStep" type="button" hidden>Next discovery ➜ • الاكتشاف التالي</button><a class="secondary" href="./activity-library.html">🎮 All 151 activities</a></div></section>
+<section class="mission" id="celebrate" hidden style="text-align:center"><div style="font-size:57px">🎉 🏅 🌈</div><h2>Wonderful discovering! <span lang="ar" dir="rtl">أحسنت الاستكشاف!</span></h2>
+<p>You finished all five subject challenges. Come back another day for five new discoveries!</p><p lang="ar" dir="rtl">أنهيت خمس مهام! عد في يوم آخر لاكتشافات جديدة.</p>
+<div class="actions" style="justify-content:center"><a href="./activity-library.html">Explore 151 activities • استكشف الأنشطة</a></div></section>
+<aside class="parent"><strong>👨‍👩‍👧 Parents & teachers • للأهل والمعلمين</strong>
+<p>This short cross-subject mission selects one existing Grade 1 mini-challenge each from maths, English, science, life skills, and patterns. Questions change by device-local calendar date. Children can retry mistakes and resume unfinished steps on the same device. No extra stars, accounts, microphone, advertising, or tracking. These are supplementary skills, not certified Qatar curriculum assessments; Arabic is supportive translation only.</p></aside>
+<script src="./activity-data.js?v=activities-151a"></script><script>
+(()=>{"use strict";
+const $=s=>document.querySelector(s),all=window.LLA_MINI_ACTIVITIES||[];
+const areas=[["math","🔢","Mathematics • الرياضيات"],["english","📚","English • الإنجليزية"],["science","🔬","Science • العلوم"],["life","🌱","Life skills • المهارات الحياتية"],["arts","🎨","Creative patterns • الأنماط"]];
+const now=new Date(),date=[now.getFullYear(),String(now.getMonth()+1).padStart(2,"0"),String(now.getDate()).padStart(2,"0")].join("-");
+const key="lla-daily-discovery-v1-"+date;
+const dayNumber=Math.floor(new Date(now.getFullYear(),now.getMonth(),now.getDate()).getTime()/86400000);
+const tasks=areas.map(([area])=>{const pool=all.filter(a=>a.area===area);return pool[((dayNumber%pool.length)+pool.length)%pool.length]});
+if(tasks.some(x=>!x))throw Error("Daily Discovery needs five subject banks");
+let done={};try{const old=JSON.parse(localStorage.getItem(key)||"{}");if(old&&typeof old==="object")done=old}catch{}
+let position=0,answered=false;
+function save(){try{localStorage.setItem(key,JSON.stringify(done))}catch{}}
+function status(){
+ const n=tasks.filter(t=>done[t.id]).length;
+ $("#progress").textContent="🏅 "+n+" / 5 discoveries completed • "+n+" من ٥";
+ $("#missionTrack").replaceChildren();
+ tasks.forEach((t,i)=>{const el=document.createElement("span");el.className="dot"+(done[t.id]?" done":i===position?" active":"");el.textContent=(done[t.id]?"✅":areas[i][1])+" "+(i+1);$("#missionTrack").append(el)});
+}
+function show(){
+ while(position<tasks.length&&done[tasks[position].id])position++;
+ status();
+ if(position===tasks.length){$("#mission").hidden=true;$("#celebrate").hidden=false;return}
+ const a=tasks[position];answered=false;
+ $("#mission").hidden=false;$("#celebrate").hidden=true;
+ $("#subjectName").textContent="STEP "+(position+1)+" OF 5 • "+areas[position][2];
+ $("#challengeName").textContent=a.icon+" "+a.title;
+ $("#question").textContent=a.question;$("#questionAr").textContent=a.arQuestion;
+ $("#visual").textContent=a.display||"";$("#visual").hidden=!a.display;
+ $("#answerChoices").replaceChildren();
+ a.choices.forEach((choice,i)=>{const b=document.createElement("button");b.type="button";b.textContent=choice;b.dataset.answer=String(i);b.addEventListener("click",()=>choose(i));$("#answerChoices").append(b)});
+ $("#feedback").textContent="Choose your answer! • اختر الإجابة.";
+ $("#nextStep").hidden=true;
+}
+function choose(i){
+ if(answered)return;
+ const a=tasks[position],buttons=[...$("#answerChoices").children],b=buttons[i];
+ if(i!==a.answer){b.disabled=true;b.classList.add("wrong");$("#feedback").textContent="🌱 Good try! Look again. • حاول مرة أخرى.";return}
+ answered=true;done[a.id]=true;save();b.classList.add("correct");
+ buttons.forEach(x=>x.disabled=true);
+ $("#feedback").textContent="🎉 Well done! "+a.tip+" • أحسنت!";
+ $("#nextStep").hidden=false;$("#nextStep").textContent=position===4?"🏆 See my achievement • شاهد إنجازك":"➡ Next discovery • الاكتشاف التالي";
+ status();
+}
+$("#nextStep").addEventListener("click",()=>{if(!answered)return;position++;show()});
+show();
+})();
+</script></main></body></html>
