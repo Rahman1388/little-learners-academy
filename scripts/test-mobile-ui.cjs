@@ -676,6 +676,24 @@ const fs=require("node:fs");
  await page.setViewportSize({width:768,height:1024});
  await assertMobile();
  await page.setViewportSize({width:390,height:844});
+ // Grade 2 science pilot: topic switching, answers and persistence.
+ await goto("grade2-science.html");
+ await page.locator("#answers button").first().waitFor({state:"visible"});
+ assert.equal(await page.locator("#answers button").count(),3);
+ await assertMobile();
+ await page.locator("#answers button").nth(0).click();
+ if(!(await page.locator("#next").isVisible())){
+   const available=page.locator("#answers button:not([disabled])");
+   await available.first().click();
+ }
+ assert.equal(await page.locator("#next").isVisible(),true);
+ assert.match(await page.locator("#progress").textContent(),/1 \/ 18/);
+ await page.reload({waitUntil:"domcontentloaded"});
+ assert.match(await page.locator("#progress").textContent(),/1 \/ 18/);
+ await page.locator("#topicSelect").selectOption("Weather");
+ assert.equal(await page.locator("#topicName").textContent(),"Weather");
+ await page.setViewportSize({width:768,height:1024});await assertMobile();
+ await page.setViewportSize({width:390,height:844});await assertMobile();
  await goto("voice-test.html");
  await page.locator("audio").first().waitFor();
  const numPlayers=await page.locator("audio").count();
