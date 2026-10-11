@@ -9,7 +9,7 @@ const guarded=["index.html","activity-library.html","learning-passport.html"];
 const cspRequired=["script-src 'self'","object-src 'none'","frame-src 'none'","base-uri 'self'","form-action 'none'"];
 for(const name of guarded){
  const html=fs.readFileSync(path.join(root,name),"utf8");
- const match=html.match(/<meta\s+http-equiv=["']Content-Security-Policy["']\s+content=["']([^"']+)["']/i);
+ const match=html.match(/<meta\s+http-equiv="Content-Security-Policy"\s+content="([^"]+)"/i);
  assert(match,"Missing CSP in "+name);
  for(const part of cspRequired)assert(match[1].includes(part),"CSP missing "+part+" in "+name);
  assert(!/<script\b(?![^>]*\bsrc\s*=)[^>]*>/i.test(html),"Inline JavaScript would violate strict CSP: "+name);
