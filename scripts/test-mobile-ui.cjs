@@ -664,6 +664,18 @@ const fs=require("node:fs");
  assert.equal(await page.locator("#roadmapGrid .grade.ready").count(),1);
  assert.equal(await page.locator('a[href="./grade2-pilot.html"]').count(),1);
  await assertMobile();
+ // A child can resume the last open activity after leaving and returning.
+ await goto("activity-library.html");
+ await page.locator('#activityGrid .activity[data-id="mini-012"]').click();
+ assert.equal(await page.locator("#playView").getAttribute("data-activity"),"mini-012");
+ await page.reload({waitUntil:"domcontentloaded"});
+ await page.locator("#resumeActivity").click();
+ assert.equal(await page.locator("#playView").getAttribute("data-activity"),"mini-012");
+ assert.equal(await page.locator("#playView").isVisible(),true);
+ await assertMobile();
+ await page.setViewportSize({width:768,height:1024});
+ await assertMobile();
+ await page.setViewportSize({width:390,height:844});
  await goto("voice-test.html");
  await page.locator("audio").first().waitFor();
  const numPlayers=await page.locator("audio").count();
