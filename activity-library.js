@@ -139,6 +139,8 @@ $("#nextChallenge").addEventListener("click",()=>{
  if(next)open(next);else list();
 });
 window.addEventListener("pageshow",progress);
+const requestedSubject=new URLSearchParams(window.location.search).get("subject");
+if(["math","english","science","life","arts"].includes(requestedSubject))$("#areaSelect").value=requestedSubject;
 skills();list();
 try{
  const requested=new URLSearchParams(location.search).get("activity");
