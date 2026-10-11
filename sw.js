@@ -1,4 +1,4 @@
-const CACHE="lla-v45";
+const CACHE="lla-v46";
 // Download essential three-repeat words once on installation so phonics lessons
 // can play from cache even on a patchy mobile connection.
 const PHONICS_PRACTICE=Array.from({length:4},(_,i)=>[
@@ -29,24 +29,29 @@ self.addEventListener("activate",event=>{
   );
 });
 
+// Only serve/cache our packaged learning assets. Do not let arbitrary URLs
+// or attacker-controlled query strings fill a child's offline storage.
+const ALLOWED_PATHS=new Set(CORE.map(path=>new URL(path,self.registration.scope).pathname));
 self.addEventListener("fetch",event=>{
   if(event.request.method!=="GET")return;
   const url=new URL(event.request.url);
-  if(url.origin!==self.location.origin)return;
-
+  if(url.origin!==self.location.origin||!ALLOWED_PATHS.has(url.pathname))return;
+  if(!["navigate","same-origin","cors"].includes(event.request.mode))return;
+  const canonical=new Request(url.origin+url.pathname,{credentials:"same-origin"});
   event.respondWith(
     fetch(event.request)
       .then(response=>{
-        if(response && response.ok){
+        if(response&&response.ok&&response.type==="basic"){
           const copy=response.clone();
-          caches.open(CACHE).then(cache=>cache.put(event.request,copy));
+          caches.open(CACHE).then(cache=>cache.put(canonical,copy)).catch(()=>{});
         }
         return response;
       })
       .catch(async()=>{
-        const cached=await caches.match(event.request);
+        const cache=await caches.open(CACHE);
+        const cached=await cache.match(canonical);
         if(cached)return cached;
-        if(event.request.mode==="navigate")return caches.match("./index.html");
+        if(event.request.mode==="navigate")return cache.match(new URL("./index.html",self.registration.scope).href);
         return Response.error();
       })
   );
