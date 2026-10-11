@@ -36,6 +36,9 @@ on:
       - "clock-time-lab.html"
       - "measurement-explorer.html"
       - "activity-library.js"
+      - "math-story-village.html"
+      - "international-benchmark.html"
+      - "scripts/test-mega-upgrade.cjs"
       - "activity-data.js"
       - "activity-library.js"
       - "scripts/test-mobile-ui.cjs"
@@ -81,3 +84,4 @@ jobs:
         run: |
           node scripts/test-mobile-ui.cjs
           node scripts/test-pronunciation-review.cjs
+          node scripts/test-mega-upgrade.cjs
