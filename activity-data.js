@@ -78,7 +78,7 @@ plurals.forEach(([singular,correct,x,y])=>add("english","Plurals","One and many:
  "There are two. Which is the correct plural of '"+singular+"'?","ما صيغة الجمع الصحيحة؟",[correct,x,y],0,"Many words add -s; words ending in s, sh or x often add -es.","🔤"));
 const sentences=[
 ["Which one is a complete sentence?",["I can play.","can play","the red"],0],
-["Which sentence starts with a capital letter?",["The sun is hot.","the sun is hot.","THE sun is hot."],0],
+["Which sentence starts with a capital letter?",["The sun is hot.","the sun is hot.","the SUN is hot."],0],
 ["Which sentence ends with a full stop?",["We read books.","We read books","We read books?"],0],
 ["Which one asks a question?",["Where is my book?","My book is here.","I like books."],0],
 ["Choose the correctly written sentence.",["I see a cat.","i see a cat.","I see a cat"],0],
