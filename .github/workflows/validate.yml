@@ -58,6 +58,9 @@ jobs:
           test -f activity-library.js
           test -f parent-progress.html
           test -f pronunciation-review.html
+          test -f math-story-village.html
+          test -f international-benchmark.html
+          test -f scripts/test-mega-upgrade.cjs
 
       - name: Verify core app wiring
         run: |
@@ -71,6 +74,8 @@ jobs:
           grep -q 'activity-library.html' index.html
           grep -q 'activity-data.js' activity-library.html
           grep -q 'pronunciation-review.html' index.html
+          grep -q 'math-story-village.html' index.html
+          grep -q 'international-benchmark.html' grades-roadmap.html
 
       - name: Install audio inspector
         run: |
