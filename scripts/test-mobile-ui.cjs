@@ -622,6 +622,48 @@ const fs=require("node:fs");
  assert.equal(measurementStarsAgain,measurementStars,"Measurement replay must not award duplicate stars");
  await page.setViewportSize({width:768,height:1024});await assertMobile();
  await page.setViewportSize({width:390,height:844});
+ // Grade 2 mathematics pilot is a limited, independently stored 24-question trial.
+ await goto("grade2-pilot.html");
+ await page.locator("#domainCards .domain").first().waitFor({state:"visible"});
+ assert.equal(await page.locator("#domainCards .domain").count(),4);
+ assert.match(await page.locator("#g2Progress").textContent(),/0 \/ 24/);
+ await assertMobile();
+ for(const domain of ["place","arithmetic","measure","geometry"]){
+   await page.locator('#domainCards .domain[data-domain="'+domain+'"]').click();
+   for(let step=0;step<6;step++){
+     const info=await page.evaluate(()=>{
+       const q=document.querySelector("#questionEn").textContent;
+       const item=window.LLA_GRADE2_PILOT.find(x=>x.question===q);
+       return {answer:item.answer,wrong:item.choices.findIndex((_text,i)=>i!==item.answer)};
+     });
+     if(domain==="place" && step===0){
+       await page.locator("#g2Answers button").nth(info.wrong).click();
+       assert.match(await page.locator("#g2Feedback").textContent(),/Nice effort/);
+       await page.locator("#learningHint").click();
+       assert.equal(await page.locator("#hintBox").isVisible(),true);
+     }
+     await page.locator("#g2Answers button").nth(info.answer).click();
+     assert.equal(await page.locator("#explanation").isVisible(),true);
+     assert.equal(await page.locator("#g2Next").isVisible(),true);
+     await page.locator("#g2Next").click();
+   }
+   assert.equal(await page.locator("#selectPanel").isVisible(),true);
+ }
+ assert.match(await page.locator("#g2Progress").textContent(),/24 \/ 24/);
+ assert.equal(await page.locator("#domainCards .domain.complete").count(),4);
+ const grade1Before=await page.evaluate(()=>localStorage.getItem("lla-activity-library-v1"));
+ await page.reload({waitUntil:"domcontentloaded"});
+ assert.match(await page.locator("#g2Progress").textContent(),/24 \/ 24/);
+ assert.equal(await page.evaluate(()=>localStorage.getItem("lla-activity-library-v1")),grade1Before,
+   "Grade 2 pilot must not modify Grade 1 completion progress");
+ await page.setViewportSize({width:768,height:1024});
+ await assertMobile();
+ await page.setViewportSize({width:390,height:844});
+ // Roadmap still distinguishes the pilot from full Grade 2 readiness.
+ await goto("grades-roadmap.html");
+ assert.equal(await page.locator("#roadmapGrid .grade.ready").count(),1);
+ assert.equal(await page.locator('a[href="./grade2-pilot.html"]').count(),1);
+ await assertMobile();
  await goto("voice-test.html");
  await page.locator("audio").first().waitFor();
  const numPlayers=await page.locator("audio").count();
