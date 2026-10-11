@@ -26,6 +26,7 @@ jobs:
         run: |
           node --check app.js
           node --check navigation.js
+          node --check privacy-controls.js
           node --check curriculum.js
           node --check sw.js
           node --check phonics-adventure.js
@@ -50,6 +51,8 @@ jobs:
         run: |
           test -f index.html
           test -f navigation.js
+          test -f privacy.html
+          test -f privacy-controls.js
           test -f styles.css
           test -f app.js
           test -f curriculum.js
