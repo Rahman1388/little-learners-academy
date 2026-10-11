@@ -40,6 +40,12 @@ p{line-height:1.55}.tagline{font-size:13px;font-weight:900;color:#8a1538}.progre
 .actions button{border:0;border-radius:15px;min-height:50px;padding:12px 17px;font-size:16px;font-weight:900;background:#087fab;color:white}
 .actions .secondary{background:#eff9ff;color:#12527a;border:2px solid #a5d2e8}
 .pill{display:inline-block;font-size:13px;font-weight:900;border-radius:15px;padding:8px 13px;background:#f9e9ff}
+.workModel{border:2px dashed #70b598;border-radius:18px;background:#e9fff1;padding:14px;line-height:1.6;margin:12px 0}
+.workModel .row{font-size:clamp(20px,5vw,28px);line-height:1.6;overflow-wrap:anywhere;margin:8px 0}
+.workModel .taken{opacity:.25;text-decoration:line-through}
+#smartPanel{background:linear-gradient(140deg,#fffbdc,#e6f8ff)}
+#smartPanel p,#guidedPanel p{line-height:1.55}
+
 [hidden]{display:none!important}
 .note{font-size:13px;color:#4f6b7e}.parent{font-size:13px}
 @media(max-width:480px){.answerGrid{grid-template-columns:1fr}.choices{grid-template-columns:repeat(2,minmax(0,1fr))}.activity{min-height:125px;padding:10px}.answerGrid button{min-height:59px}.visual{font-size:26px}}
@@ -55,6 +61,14 @@ p{line-height:1.55}.tagline{font-size:13px;font-weight:900;color:#8a1538}.progre
 <div class="progressbar" aria-hidden="true"><span id="overallBar"></span></div>
 <p class="note">Progress is stored only on this device. Your existing game stars and voice recordings are not changed.</p>
 </header>
+<section class="overview" id="smartPanel" aria-label="Smart review">
+ <h2>🧠 My Smart Review <span lang="ar" dir="rtl">مراجعتي الذكية</span></h2>
+ <p>Five short questions chosen from skills you've missed or haven't tried. When practising all subjects, there is one question from each. No timer or pressure.</p>
+ <p lang="ar" dir="rtl">خمس مسائل قصيرة لمراجعة المهارات الصعبة أو الجديدة، من دون وقت محدد.</p>
+ <p id="smartStatus" role="status" aria-live="polite">Ready for friendly revision • جاهز للمراجعة</p>
+ <div class="actions"><button id="smartStart" type="button">🌈 Try My Smart Review • ابدأ المراجعة</button></div>
+ <p class="note">This is simple on-device practice selection, not AI assessment or a determination of mastery. A parent or teacher can help.</p>
+</section>
 <section class="overview" id="guidedPanel" aria-label="Guided learning path">
  <h2>🚀 My Next 5 Steps <span lang="ar" dir="rtl">خطواتي الخمس القادمة</span></h2>
  <p>Start with the easiest unfinished questions in your selected subject, then work through five short challenges. You can stop at any time.</p>
@@ -74,6 +88,8 @@ p{line-height:1.55}.tagline{font-size:13px;font-weight:900;color:#8a1538}.progre
 <h2 id="challengeTitle" style="margin-top:18px"></h2>
 <div class="question"><div class="big" id="questionText"></div><div class="ar" id="questionArabic" lang="ar"></div><div class="visual" id="questionVisual" aria-label="Counting objects"></div></div>
 <div class="answerGrid" id="answerOptions" role="group" aria-label="Answer choices"></div>
+<div class="actions"><button id="showWork" class="secondary" type="button" aria-expanded="false">🧮 Show a learning hint • أظهر مساعدة</button></div>
+<div id="workModel" class="workModel" hidden aria-live="polite"></div>
 <div id="response" role="status" aria-live="polite">Choose the best answer. • اختر الإجابة الصحيحة.</div>
 <div class="actions"><button id="nextChallenge" type="button" hidden>Next activity ➜ • النشاط التالي</button><button id="retryQuestion" class="secondary" type="button">🔄 Try again • حاول مجدداً</button></div>
 </section>
@@ -81,5 +97,5 @@ p{line-height:1.55}.tagline{font-size:13px;font-weight:900;color:#8a1538}.progre
 <p>These 151 original mini-challenges introduce supplementary learning objectives from early primary maths, English literacy, science, life skills and visual patterns. They are organised around themes overlapping British KS1 and US Grade 1; actual classroom sequence and difficulty vary. They are <strong>not an official Qatar Grade 1 curriculum, school syllabus, or assessment</strong>. Arabic is supportive text, not an approved Arabic-language curriculum module. For formal pronunciation instruction, qualified educator review remains needed.</p>
 <p>Encourage short sessions and conversation about the answers. Every challenge is free and works without an account, microphone, advertising or external APIs.</p></aside>
 </main>
-<script src="./activity-data.js?v=activities-151a"></script><script src="./activity-library.js?v=activities-151a"></script>
+<script src="./activity-data.js?v=smart-review-v1"></script><script src="./activity-library.js?v=smart-review-v1"></script>
 </body></html>
