@@ -29,6 +29,7 @@ on:
       - "drawing-studio.html"
       - "drawing-studio.css"
       - "drawing-studio.js"
+      - "daily-discovery.html"
       - "activity-data.js"
       - "activity-library.js"
       - "scripts/test-mobile-ui.cjs"
