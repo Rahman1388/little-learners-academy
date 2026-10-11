@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#e6d5ff"><link rel="icon" href="./icon.svg" type="image/svg+xml">
+<title>Fair Sharing Fractions Lab • Little Learners Academy</title>
+<style>
+:root{font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif;color:#174061}*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:linear-gradient(125deg,#d5eaff,#fff2c3 48%,#f1ddff)}
+main{max-width:800px;margin:auto;padding:13px 13px 45px}a,button{font:inherit}button{cursor:pointer}
+a:focus-visible,button:focus-visible{outline:4px solid #8a1538;outline-offset:4px}
+.back{display:inline-flex;min-height:50px;align-items:center;padding:12px 16px;background:#fff;color:#174565;text-decoration:none;border-radius:17px;font-weight:900}
+.hero,.panel,.parent{background:#fffd;border:4px solid white;box-shadow:0 6px #b9d2e5;border-radius:28px;padding:clamp(15px,3vw,24px);margin:17px 0}
+.hero{text-align:center;background:linear-gradient(120deg,#fff7cf,#fff,#edeeff)}
+h1{font-size:clamp(29px,6vw,44px);line-height:1.17;margin:8px 0}h1 span{display:block;font-size:.63em;margin-top:8px}
+h2{font-size:clamp(22px,4vw,29px)}p{line-height:1.55}.eyebrow{font-size:13px;font-weight:950;color:#8a1538}
+.progress{font-size:19px;font-weight:950;background:#fff0bd;border-radius:16px;padding:12px}
+.track{background:#e3edf6;height:15px;border-radius:20px;overflow:hidden;margin:12px 0}.track span{display:block;height:100%;background:#31a983;width:0}
+.lesson{background:#eaf8ff;border-radius:20px;padding:18px;margin:16px 0;text-align:center}
+#question{font-weight:950;font-size:clamp(23px,5vw,32px);line-height:1.35}
+.arabic{direction:rtl;font-size:18px;margin-top:8px}
+.pieces{display:grid;grid-template-columns:repeat(var(--parts),minmax(0,1fr));gap:5px;max-width:570px;margin:22px auto 15px;background:#fff;border-radius:24px;padding:8px;border:3px solid #cbe1ef}
+.piece{height:clamp(100px,20vw,160px);border:3px solid #a7cddf;background:repeating-linear-gradient(45deg,#eff9ff,#eff9ff 14px,#e4f3ff 14px,#e4f3ff 28px);border-radius:14px;color:#155377;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:8px;min-width:0}
+.piece[aria-pressed=true]{background:#ffce72;border-color:#c06b2b;color:#693c13}
+.piece .icon{font-size:clamp(29px,6vw,48px)}
+.piece .label{font-size:13px;font-weight:950}
+.equation{font-size:clamp(25px,5vw,38px);font-weight:950;text-align:center}
+.feedback{background:#fff8d5;padding:16px;min-height:68px;border-radius:17px;font-weight:900;margin:15px 0}
+.feedback.good{background:#ddffe9}.feedback.try{background:#fff0e7}
+.actions{display:flex;flex-wrap:wrap;gap:10px}
+.actions button{border:0;border-radius:16px;background:#087daf;color:#fff;padding:12px 20px;min-height:52px;font-weight:950}
+.actions .secondary{background:#f0faff;border:2px solid #b7d6e3;color:#195273}
+.checkpoint{font-size:14px;color:#536b7d}
+[hidden]{display:none!important}.parent{font-size:13px}
+@media(max-width:390px){.piece{height:104px;padding:4px}.piece .label{font-size:11px}.pieces{gap:4px;padding:5px}.actions button{flex:1}}
+</style></head>
+<body><main>
+<a class="back" href="./grades-roadmap.html">← Grades 1–6 Roadmap • خطة الصفوف</a>
+<header class="hero"><div class="eyebrow">🧩 GRADE 2 READINESS • SUPPLEMENTARY MATHS PILOT</div>
+<h1>🍕 Fair Sharing Fractions <span lang="ar" dir="rtl">الكسور والمشاركة بالتساوي</span></h1>
+<p>Tap equal pieces to make a half, a third or a quarter. Learn by doing!</p><p lang="ar" dir="rtl">اضغط على الأجزاء المتساوية لتكوين النصف أو الثلث أو الربع.</p>
+<div class="progress" id="fractionProgress" role="status" aria-live="polite">🏅 0 / 12 challenges completed</div>
+<div class="track" aria-hidden="true"><span id="fractionBar"></span></div>
+<p class="checkpoint">Small hands-on lessons • No timer • No pressure • Saved on this phone</p></header>
+<section class="panel" aria-label="Fractions matching game">
+<h2 id="stepTitle">Challenge 1 of 12</h2>
+<div class="lesson"><div id="question">Tap one out of two equal parts</div><div class="arabic" id="questionArabic" lang="ar"></div></div>
+<div class="pieces" id="fractionPieces" role="group" aria-label="Tap equal parts to shade them"></div>
+<div class="equation" id="fractionDisplay">0 / 2</div>
+<p class="feedback" id="fractionFeedback" role="status" aria-live="polite">Tap the pieces, then press Check. • اختر الأجزاء ثم تحقق.</p>
+<div class="actions">
+<button id="checkFraction" type="button">✅ Check my answer • تحقق</button>
+<button id="nextFraction" type="button" hidden>➡ Next challenge • التالي</button>
+<button id="clearFraction" type="button" class="secondary">🔄 Clear pieces • مسح الاختيار</button>
+</div>
+<div id="win" hidden style="text-align:center;padding:18px;background:#e1ffe4;border-radius:18px;margin-top:14px"><h2>🏆 Fair Sharing Explorer!</h2><p>You've practised all 12 challenges! • أحسنت! أكملت ١٢ نشاطاً.</p><button id="playAgain" type="button">🌈 Play again • العب مجدداً</button></div>
+</section>
+<aside class="parent"><strong>👨‍👩‍👧 For parents and teachers • للأهل والمعلمين</strong>
+<p>These 12 original, hands-on sharing tasks support the concepts of equal parts, halves, thirds and fourths commonly introduced in Grade 2 mathematics (such as US 2.G.A.3). Equal pieces of the same whole represent a fraction. Encourage children to describe what they shaded and to compare pieces of the same-sized whole.</p>
+<p>Supplementary Grade 2 readiness pilot, not a complete or certified Qatar curriculum. This uses existing on-device controls only—no new voice recordings, microphones, accounts, ads or trackers. Completing a round doesn't add duplicate stars or change Grade 1 progress.</p>
+</aside>
+<script src="./fractions-lab.js?v=fractions-1"></script>
+</main></body></html>
