@@ -760,6 +760,23 @@ const fs=require("node:fs");
  await page.evaluate(()=>localStorage.removeItem("unrelated-demo-key"));
  await page.setViewportSize({width:768,height:1024});await assertMobile();
  await page.setViewportSize({width:390,height:844});
+ // Qatar Mini Market: all 10 pretend-money challenges and mobile layout.
+ await goto("qatar-mini-market.html");
+ await page.locator("#marketAnswers button").first().waitFor({state:"visible"});
+ await assertMobile();
+ const marketAnswers=[[2,3,5],[4,5,9],[8,3,5],[6,2,8],[10,4,6],[7,5,12],[13,6,7],[9,4,13],[15,8,7],[11,7,18]];
+ for(let i=0;i<marketAnswers.length;i++){
+   const [a,b,answer]=marketAnswers[i];
+   await page.locator('#marketAnswers button[data-value="'+answer+'"]').click();
+   assert.equal(await page.locator("#nextMarket").isVisible(),true);
+   await page.locator("#nextMarket").click();
+ }
+ assert.equal(await page.locator("#marketWin").isVisible(),true);
+ assert.equal(await page.evaluate(()=>JSON.parse(localStorage.getItem("lla-market-v1")).completed),true);
+ await page.locator("#restartMarket").click();
+ assert.match(await page.locator("#marketProgress").textContent(),/1 \/ 10/);
+ await page.setViewportSize({width:768,height:1024});await assertMobile();
+ await page.setViewportSize({width:390,height:844});await assertMobile();
  await goto("voice-test.html");
  await page.locator("audio").first().waitFor();
  const numPlayers=await page.locator("audio").count();
