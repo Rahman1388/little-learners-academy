@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#e4f7ff">
+<title>Pronunciation Quality Studio • Little Learners Academy</title><link rel="icon" href="./icon.svg" type="image/svg+xml">
+<style>
+:root{font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Tahoma,Arial,sans-serif;color:#173f62}
+*{box-sizing:border-box}
+body{margin:0;background:linear-gradient(145deg,#d5f4ff,#fff6cf,#f9eaff);min-height:100vh}
+main{max-width:860px;margin:auto;padding:14px 13px 44px}button,select{font:inherit}
+a:focus-visible,button:focus-visible,select:focus-visible{outline:4px solid #8a1538;outline-offset:3px}
+.back{display:inline-block;padding:12px 16px;background:#fff;border-radius:15px;color:#145478;text-decoration:none;font-weight:900}
+.hero,.tools,.item,.summary{background:#fffdfb;border:3px solid white;box-shadow:0 5px #b5d5e3;border-radius:25px;padding:clamp(15px,3vw,23px);margin:16px 0}
+.hero{background:linear-gradient(130deg,#fff7c7,#fff,#dcf7ff)}
+h1{font-size:clamp(29px,6vw,43px);line-height:1.2;margin:7px 0 14px}
+h2{font-size:clamp(19px,4vw,25px);margin:0 0 8px}
+p{line-height:1.5}.mini{font-size:13px;color:#4d6979}
+h1 span{display:block;font-size:.6em;line-height:1.35}
+.flag{padding:13px;background:#fff1de;border-left:5px solid #d68c36;border-radius:13px;font-weight:750}
+.tools{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.tools label{font-weight:900}.tools select{width:100%;background:#fff;border:2px solid #a7d7e9;padding:12px;border-radius:14px;min-height:51px}
+.full{flex:1;min-width:190px}
+.item{padding:17px}.head{display:flex;gap:13px;align-items:center}.icon{font-size:43px;flex:0 0 auto}
+.names{font-weight:950;font-size:23px}.names span{display:block;font-family:Tahoma,Arial,sans-serif;font-size:22px;margin-top:5px}
+.samples{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:14px}
+.sample{border:2px solid #cce5ef;border-radius:18px;padding:12px;min-width:0;background:#f7fdff}
+.sample h3{font-size:15px;line-height:1.4;margin:0 0 8px}
+.sample audio{display:block;width:100%;max-width:100%;margin:9px 0}
+.sample .note{font-size:12px;color:#586f80;min-height:25px}
+.rate{display:flex;gap:7px;flex-wrap:wrap}
+.rate button{flex:1;min-width:94px;border:2px solid #add9e4;background:#fff;border-radius:12px;color:#134663;min-height:44px;padding:7px 9px;font-weight:900;cursor:pointer;font-size:13px}
+.rate button[aria-pressed=true]{background:#e0ffe7;border-color:#299e6d}
+.rate button[data-rating=unclear][aria-pressed=true]{background:#ffeded;border-color:#d78282}
+.rate button[data-rating=wrong][aria-pressed=true]{background:#fff0cf;border-color:#d59847}
+.rate button[data-rating=missing][aria-pressed=true]{background:#f1eaff;border-color:#aa88c7}
+.status{border-radius:13px;padding:13px;background:#e8f8ff;font-weight:900}
+.summary button{border:0;background:#0a7eaf;color:#fff;font-weight:900;border-radius:15px;padding:12px 15px;min-height:49px;cursor:pointer}
+.summary pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#eff8ff;padding:13px;border-radius:14px;font:13px/1.5 ui-monospace,monospace;max-height:260px;overflow:auto}
+@media(max-width:570px){.samples{grid-template-columns:1fr}.sample{padding:14px}}
+</style></head>
+<body><main><a class="back" href="./index.html">← Home • الرئيسية</a>
+<header class="hero"><div style="font-weight:950;color:#8a1538">🎙️ PARENT / EDUCATOR REVIEW • مراجعة الأهل والمعلمين</div>
+<h1>Pronunciation Quality Studio <span lang="ar" dir="rtl">استوديو مراجعة جودة النطق</span></h1>
+<p>Review recordings for <strong>all 52 existing lesson items</strong> in English and Arabic. Select any lesson, tap to listen, and mark exactly which speaker and word sounds unclear.</p>
+<p lang="ar" dir="rtl">اختر الدرس واستمع للكلمات. حدّد الصوت غير الواضح لإصلاحه قبل استخدامه لتعليم النطق.</p>
+<div class="flag">⚠️ <strong>Adult review only.</strong> These recordings are synthetic, not verified native human recordings. English female/male and Arabic male/female candidates are shown for comparison. <strong>The Arabic female voice is not enabled in children's lessons.</strong> Phoneme sounds and word pronunciations require qualified native-speaker and phonics-educator approval before release.</div>
+</header>
+<section class="tools"><div class="full"><label for="lessonSelect">Choose a lesson • اختر الدرس</label><select id="lessonSelect" aria-label="Choose a curriculum lesson"></select></div>
+<div class="status" id="reviewCount" role="status" aria-live="polite">No recordings reviewed yet.</div></section>
+<section id="cards" aria-label="Four-voice pronunciation review cards"></section>
+<section class="summary"><h2>📋 Share Your Pronunciation Findings <span lang="ar" dir="rtl">شارك ملاحظاتك</span></h2>
+<p>The ratings stay on this phone until you copy them. They <strong>do not approve or replace any lesson audio</strong>. Please send your findings back in our chat for correction and native-speaker review.</p>
+<button id="copyReport" type="button">📋 Copy pronunciation report • انسخ التقرير</button>
+<p id="copyStatus" role="status" aria-live="polite" class="mini"></p>
+<pre id="report">No feedback marked yet.</pre>
+<p class="mini">Please use headphones if possible, listen at normal speed, and compare each word to the written meaning. Mark <strong>Wrong</strong> if the speaker says a different word, not only if it sounds unnatural.</p></section>
+</main>
+<script src="./curriculum.js"></script><script>
+(()=>{
+"use strict";
+const $=s=>document.querySelector(s);
+const KEY="lla-pronunciation-audit-v1",VALUES=["clear","unclear","wrong","missing"];
+const sections=window.LLA_CURRICULUM.subjects.flatMap(s=>s.lessons.map(l=>({
+ id:l.id,subject:s.title,subjectId:s.id,title:l.title,ar:l.ar,items:l.items
+})));
+const load=()=>{try{const o=JSON.parse(localStorage.getItem(KEY)||"{}");return o&&typeof o==="object"&&!Array.isArray(o)?o:{}}catch{return {}}};
+const checks=load();let active=null;
+function filename(section,i,lang,voice){
+ if(section.id==="phonics"){
+  if(lang==="en"&&i===3){
+   const selected=voice==="girl"?"alba":"bryce";
+   return "./audio/practice/en-phonics-3-"+selected+".mp3?v=quality-studio-1";
+  }
+  return "./audio/practice/"+lang+"-phonics-"+i+"-"+voice+".mp3?v=quality-studio-1";
+ }
+ return "./audio/"+lang+"/"+section.id+"-"+i+"-"+voice+".mp3?v=quality-studio-1";
+}
+function readReport(){
+ const keys=Object.keys(checks).filter(k=>VALUES.includes(checks[k])).sort();
+ const lines=keys.map(k=>{
+  const bits=k.split("|"),section=sections.find(x=>x.id===bits[0]);
+  const word=section?.items[Number(bits[1])];
+  return (section?.title||bits[0])+" / "+(word?.[1]||"item "+bits[1])+
+  " / "+(bits[2]==="en"?"English":"Arabic")+" "+(bits[3]==="girl"?"female-style":"male-style")+
+  ": "+checks[k];
+ });
+ return "Little Learners Academy — pronunciation QA (adult listening)\n"+
+ (lines.length?lines.join("\n"):"No feedback marked yet.")+
+ "\nStatus: listener ratings only; no native-speaker educator approval.";
+}
+function status(){
+ const reviewed=Object.keys(checks).filter(k=>VALUES.includes(checks[k])).length;
+ $("#reviewCount").textContent=reviewed+" recordings rated • "+reviewed+" تسجيلات تم تقييمها";
+ $("#report").textContent=readReport();
+}
+function reviewCard(section,i){
+ const item=section.items[i],card=document.createElement("article");card.className="item";
+ const head=document.createElement("div");head.className="head";
+ const icon=document.createElement("div");icon.className="icon";icon.textContent=item[0];
+ const names=document.createElement("div");names.className="names";names.textContent=item[1];
+ const arabic=document.createElement("span");arabic.lang="ar";arabic.dir="rtl";arabic.textContent=item[2];names.append(arabic);head.append(icon,names);
+ const samples=document.createElement("div");samples.className="samples";
+ for(const lang of ["en","ar"])for(const voice of ["girl","boy"]){
+  const id=section.id+"|"+i+"|"+lang+"|"+voice;
+  const sample=document.createElement("div");sample.className="sample";
+  const title=document.createElement("h3");title.textContent=(lang==="en"?"🇬🇧 English":"🇶🇦 Arabic")+" "+(voice==="girl"?"female-style":"male-style")+(lang==="ar"&&voice==="girl"?" • REVIEW ONLY":"");
+  const p=document.createElement("audio");p.controls=true;p.preload="none";
+  p.src=filename(section,i,lang,voice);
+  p.setAttribute("aria-label","Listen to "+item[1]+", "+lang+" "+voice);
+  p.addEventListener("playing",()=>{if(active&&active!==p)active.pause();active=p});
+  const note=document.createElement("div");note.className="note";
+  note.textContent=lang==="ar"&&voice==="girl"?"Arabic female sample not approved for lessons":"Listen to the original voice without speed effects";
+  p.addEventListener("error",()=>{note.textContent="Audio failed to load • تعذر تشغيل التسجيل"});
+  const buttons=document.createElement("div");buttons.className="rate";
+  for(const [value,label] of [["clear","✅ Clear"],["unclear","❌ Unclear"],["wrong","⚠️ Wrong word"],["missing","🔇 Missing"]]){
+   const b=document.createElement("button");b.type="button";b.dataset.rating=value;
+   b.textContent=label;b.setAttribute("aria-pressed",String(checks[id]===value));
+   b.addEventListener("click",()=>{
+    checks[id]=value;try{localStorage.setItem(KEY,JSON.stringify(checks))}catch{}
+    buttons.querySelectorAll("button").forEach(btn=>btn.setAttribute("aria-pressed",String(btn===b)));status();
+   });
+   buttons.append(b);
+  }
+  sample.append(title,p,note,buttons);samples.append(sample);
+ }
+ card.append(head,samples);return card;
+}
+function render(){
+ if(active){active.pause();active=null}
+ const lesson=sections.find(x=>x.id===$("#lessonSelect").value)||sections[0];
+ $("#cards").replaceChildren();
+ lesson.items.forEach((_,i)=>$("#cards").append(reviewCard(lesson,i)));
+ status();
+}
+for(const lesson of sections){
+ const option=document.createElement("option");option.value=lesson.id;
+ option.textContent=lesson.subject+" / "+lesson.title+" • "+lesson.ar;$("#lessonSelect").append(option);
+}
+const params=new URLSearchParams(location.search);
+const requested=params.get("lesson");
+$("#lessonSelect").value=sections.some(s=>s.id===requested)?requested:"patterns";
+$("#lessonSelect").addEventListener("change",render);
+$("#copyReport").addEventListener("click",async()=>{
+ const report=readReport();
+ try{await navigator.clipboard.writeText(report);$("#copyStatus").textContent="✅ Copied! Paste the report into our chat. • تم النسخ"}
+ catch{const selection=window.getSelection(),range=document.createRange();
+ range.selectNodeContents($("#report"));selection.removeAllRanges();selection.addRange(range);
+ $("#copyStatus").textContent="Copy the selected report below and paste it into our chat. • انسخ التقرير المحدد";}
+});
+render();
+})();
+</script></body></html>
