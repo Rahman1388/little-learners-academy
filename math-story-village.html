@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#d2f3ff"><link rel="icon" href="./icon.svg" type="image/svg+xml">
+<title>Math Story Village • Little Learners Academy</title>
+<meta name="description" content="24 Grade 1 bilingual maths word problems with pictorial support and four chapter badges.">
+<style>
+:root{font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif;color:#153e63}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(circle at 8% 3%,#ffedac,transparent 34%),linear-gradient(140deg,#c9f2ff,#fbeaff 62%,#e2ffde)}
+main{max-width:860px;margin:auto;padding:13px 13px 48px}
+button,a{font:inherit}button{cursor:pointer}
+button:focus-visible,a:focus-visible{outline:4px solid #8a1538;outline-offset:3px}
+.back{display:inline-flex;align-items:center;background:white;border-radius:17px;padding:13px 17px;min-height:48px;font-weight:850;color:#185176;text-decoration:none}
+.hero,.chapterPanel,.challenge,.parent{background:#fffefa;border:4px solid #fff;border-radius:27px;box-shadow:0 6px #afd7e5;padding:clamp(15px,3vw,25px);margin:16px 0}
+.hero{text-align:center;background:linear-gradient(130deg,#fff8ce,#fff,#e3f7ff)}
+h1{font-size:clamp(29px,6vw,45px);line-height:1.2;margin:8px 0}h1 span{display:block;font-size:.63em;margin-top:8px}h2{font-size:clamp(21px,4vw,27px);margin:4px 0 10px}
+p{line-height:1.56}.subtitle{font-weight:900;color:#8a1538;font-size:13px}
+.stats{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:12px 0}
+.stat{padding:10px 16px;background:#fff0b6;border-radius:19px;font-weight:950}
+.progressTrack{height:16px;background:#e5edf2;border-radius:15px;overflow:hidden;margin:12px 0}
+.progressFill{height:100%;background:#31ad82;width:0%;transition:width .15s}
+.chapters{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:15px 0}
+.chapterBtn{border:3px solid #c0dbe9;border-radius:19px;background:white;color:#194668;text-align:left;min-height:122px;padding:13px;display:flex;flex-direction:column;gap:6px}
+.chapterBtn strong{font-size:18px}.chapterBtn small{font-size:14px}
+.chapterBtn.active{background:#fff2d2;border-color:#e6a83d}
+.chapterBtn.complete{background:#e1ffe8;border-color:#5bb783}
+.pill{background:#e6f5ff;border-radius:15px;padding:8px 12px;font-size:14px;font-weight:900;display:inline-block}
+.story{background:#e5f7ff;border-radius:21px;padding:18px 14px;text-align:center;margin:18px 0}
+#storyIcon{font-size:clamp(54px,11vw,76px)}
+#storyQuestion{font-size:clamp(22px,4.8vw,30px);font-weight:950;line-height:1.35;margin:9px auto}
+#storyArabic{direction:rtl;font-size:19px;font-weight:700;margin:8px 0;line-height:1.55}
+.choices{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:16px 0}
+.choices button{border:3px solid #99cde6;border-radius:18px;min-height:77px;background:white;color:#174768;font-weight:950;font-size:clamp(22px,5vw,32px)}
+.choices button.wrong{background:#ffece8;border-color:#d78071}
+.choices button.correct{background:#d7ffe6;border-color:#30a46b}
+.choices button:disabled{opacity:1}
+.actions{display:flex;gap:11px;flex-wrap:wrap;align-items:center}
+.actions button,.actions a{background:#087ead;color:white;border:0;border-radius:15px;padding:13px 18px;min-height:52px;font-weight:900;text-decoration:none}
+.actions .secondary{background:#edf9ff;color:#155476;border:2px solid #a8d5e9}
+.model{padding:17px 11px;background:#f0fff1;border:2px dashed #79be92;border-radius:19px;margin:14px 0;overflow-wrap:anywhere}
+.modelRow{display:flex;align-items:flex-start;flex-wrap:wrap;gap:8px;margin:7px 0;font-size:clamp(23px,5.5vw,36px);line-height:1.6}
+.token{display:inline-block;padding:3px;border-radius:9px;background:white}
+.token.out{opacity:.28;text-decoration:line-through}
+.model small{font-size:14px;font-weight:850}
+#storyFeedback{font-weight:900;border-radius:18px;background:#fff5ca;padding:14px;min-height:63px;margin:13px 0}
+#storyFeedback.good{background:#d9ffe6}
+#storyFeedback.try{background:#fff0e7}
+.celebrate{background:#e3ffea;border:3px solid #7bc990;border-radius:21px;padding:17px;text-align:center;margin:16px 0}
+.note{font-size:13px;color:#516a7c}
+[hidden]{display:none!important}
+@media(max-width:450px){.chapters{grid-template-columns:1fr}.chapterBtn{min-height:100px}.choices button{min-height:65px}.story{padding:16px 10px}}
+@media(prefers-reduced-motion:reduce){.progressFill{transition:none}}
+</style>
+</head>
+<body>
+<main>
+<a href="./index.html" class="back">← Home • الرئيسية</a>
+<header class="hero"><div class="subtitle">🌴 GRADE 1 REAL-LIFE MATHS • رياضيات من حياتنا</div>
+<h1>🏡 Math Story Village <span lang="ar" dir="rtl">قرية قصص الرياضيات</span></h1>
+<p>Solve 24 short word problems across four colourful chapters. Tap for a picture model whenever you need help!</p>
+<p lang="ar" dir="rtl">٢٤ مسألة قصيرة من الحياة اليومية عبر أربعة فصول، مع صور تساعدك على الحل.</p>
+<div class="stats"><span class="stat" id="storyProgress" role="status" aria-live="polite">0 / 24 stories</span><span class="stat" id="chapterBadges">🏅 0 / 4 chapter badges</span></div>
+<div class="progressTrack" aria-hidden="true"><div class="progressFill" id="progressFill"></div></div>
+</header>
+<section class="chapterPanel">
+<h2>🗺️ Choose a chapter <span lang="ar" dir="rtl">اختر فصلاً</span></h2>
+<div class="chapters" id="chapterCards" role="group" aria-label="Maths story chapters"></div>
+</section>
+<section class="challenge" id="challenge" aria-label="Maths story challenge">
+<div class="pill" id="storyStep"></div>
+<div class="story"><div id="storyIcon" aria-hidden="true">🍎</div>
+<div id="storyQuestion"></div><div id="storyArabic" lang="ar"></div></div>
+<div class="choices" id="storyChoices" role="group" aria-label="Maths answer choices"></div>
+<div class="actions"><button class="secondary" type="button" id="showModel" aria-expanded="false">👀 Show picture help • أظهر الصور</button></div>
+<div class="model" id="storyModel" hidden></div>
+<p id="storyFeedback" role="status" aria-live="polite">Choose an answer. • اختر إجابة.</p>
+<div class="celebrate" id="chapterSuccess" hidden><div style="font-size:43px">🎉 🏅 🌈</div>
+<h2>Chapter completed! <span lang="ar" dir="rtl">أحسنت! أكملت الفصل!</span></h2>
+<p>Wonderful thinking. Try another chapter whenever you're ready.</p></div>
+<div class="actions"><button id="nextStory" type="button" hidden>➡ Next story • القصة التالية</button><button class="secondary" id="playChapterAgain" type="button">🔁 Restart this chapter • أعد الفصل</button></div>
+</section>
+<aside class="parent"><strong>👨‍👩‍👧 Parent / teacher note • ملاحظة للأهل والمعلمين</strong>
+<p>These 24 original problems practise Grade 1 addition, subtraction, number bonds to 10 and comparison within 20. Children can show visual models, retry without penalty, and earn each chapter badge once. They are supplementary examples, not a certified Qatar syllabus or an assessment of mastery.</p>
+<p class="note">No accounts, advertisements, microphone, personal data collection or new synthetic voice recordings. Progress stays on this device; clearing browser data may reset it.</p>
+<a class="back" href="./activity-library.html?subject=math">🔢 Explore more Grade 1 maths</a></aside>
+<script>
+(()=>{
+"use strict";
+const $=q=>document.querySelector(q),KEY="lla-math-story-v1",MAIN="lla-progress-v2";
+const chapters=[
+{title:"Gather Together",ar:"نجمع الأشياء",icon:"🍎",type:"add"},
+{title:"Take Some Away",ar:"نطرح الأشياء",icon:"🧺",type:"sub"},
+{title:"Make Ten",ar:"أكمل العدد عشرة",icon:"🔟",type:"bond"},
+{title:"Who Has More?",ar:"من لديه أكثر؟",icon:"⚖️",type:"compare"}
+];
+const data=[
+["classroom pencils","أقلام في الصف","✏️",3,2],
+["park birds","طيور في الحديقة","🐦",4,3],
+["basket apples","تفاحات في السلة","🍎",6,2],
+["beach shells","أصداف على الشاطئ","🐚",5,4],
+["garden flowers","زهور في الحديقة","🌼",7,2],
+["school books","كتب في المدرسة","📘",8,3],
+["picnic bananas","موز في النزهة","🍌",9,3],
+["toy cars","سيارات لعبة","🚙",8,2],
+["colour pencils","أقلام تلوين","🖍️",10,4],
+["balloon bunch","بالونات","🎈",12,5],
+["star stickers","ملصقات نجوم","⭐",15,6],
+["building blocks","مكعبات بناء","🧱",17,8],
+["ten-frame stars","نجوم","⭐",7,3],
+["ten-frame flowers","زهور","🌸",6,4],
+["ten-frame books","كتب","📗",4,6],
+["ten-frame cars","سيارات","🚗",8,2],
+["ten-frame apples","تفاحات","🍎",3,7],
+["ten-frame fish","أسماك","🐟",9,1],
+["two shell boxes","صندوقا أصداف","🐚",9,6],
+["two pencil pots","حاملتا أقلام","✏️",8,4],
+["two fruit plates","طبقا فواكه","🍎",14,9],
+["two flower pots","أصيصا زهور","🌷",8,3],
+["two book shelves","رفا كتب","📚",11,7],
+["two palm groves","مجموعتا نخيل","🌴",10,6]
+].map((r,i)=>{
+ const type=chapters[Math.floor(i/6)].type;
+ const [context,ar,icon,a,b]=r;
+ const answer=type==="add"?a+b:type==="sub"?a-b:type==="bond"?b:a-b;
+ const question=type==="add"?"There are "+a+" "+context+". We add "+b+" more. How many altogether?"
+ :type==="sub"?"There are "+a+" "+context+". We take away "+b+". How many are left?"
+ :type==="bond"?"We have "+a+" out of 10 "+context+". How many more to make 10?"
+ :"One group has "+a+" "+context+"; another has "+b+". How many more are in the first group?";
+ const arQuestion=type==="add"?"لدينا "+a+" من "+ar+" ثم نضيف "+b+". كم يصبح المجموع؟"
+ :type==="sub"?"لدينا "+a+" من "+ar+" ثم نأخذ "+b+". كم يتبقى؟"
+ :type==="bond"?"لدينا "+a+" من "+ar+" ونريد عشرة. كم ينقصنا؟"
+ :"المجموعة الأولى فيها "+a+" من "+ar+" والثانية "+b+". بكم تزيد الأولى؟";
+ return {id:i,chapter:Math.floor(i/6),type,a,b,answer,icon,question,arQuestion};
+});
+function load(){try{const x=JSON.parse(localStorage.getItem(KEY)||"{}");return x&&typeof x==="object"&&!Array.isArray(x)?x:{}}catch{return {}}}
+const stored=load();
+const done=new Set((Array.isArray(stored.done)?stored.done:[]).filter(x=>Number.isInteger(x)&&x>=0&&x<24));
+const rewarded=new Set((Array.isArray(stored.rewarded)?stored.rewarded:[]).filter(x=>Number.isInteger(x)&&x>=0&&x<4));
+let chapter=0,index=0,answered=false,modelVisible=false;
+function save(){try{localStorage.setItem(KEY,JSON.stringify({done:[...done],rewarded:[...rewarded]}));return true}catch{return false}}
+function chapterCount(c){return data.filter(x=>x.chapter===c&&done.has(x.id)).length}
+function update(){
+ $("#storyProgress").textContent="⭐ "+done.size+" / 24 stories";
+ $("#chapterBadges").textContent="🏅 "+rewarded.size+" / 4 chapter badges";
+ $("#progressFill").style.width=(done.size/24*100)+"%";
+ $("#chapterCards").replaceChildren();
+ chapters.forEach((c,i)=>{
+  const b=document.createElement("button");b.type="button";
+  b.className="chapterBtn"+(i===chapter?" active":"")+(chapterCount(i)===6?" complete":"");
+  b.dataset.chapter=String(i);
+  b.setAttribute("aria-pressed",String(i===chapter));
+  const head=document.createElement("strong");head.textContent=c.icon+" "+c.title;
+  const ar=document.createElement("span");ar.lang="ar";ar.dir="rtl";ar.textContent=c.ar;
+  const state=document.createElement("small");state.textContent=chapterCount(i)===6?"🏅 Complete • مكتمل":"⭐ "+chapterCount(i)+" / 6";
+  b.append(head,ar,state);b.addEventListener("click",()=>selectChapter(i));
+  $("#chapterCards").append(b);
+ });
+}
+function render(){
+ const item=data[index];
+ answered=false;modelVisible=false;
+ $("#storyIcon").textContent=item.icon;
+ $("#storyStep").textContent="📖 "+chapters[chapter].title+" • Story "+(index%6+1)+" of 6";
+ $("#storyQuestion").textContent=item.question;
+ $("#storyArabic").textContent=item.arQuestion;
+ $("#storyModel").hidden=true;
+ $("#showModel").setAttribute("aria-expanded","false");
+ $("#showModel").textContent="👀 Show picture help • أظهر الصور";
+ $("#chapterSuccess").hidden=true;
+ $("#nextStory").hidden=true;
+ $("#storyFeedback").textContent="Choose an answer. • اختر إجابة.";
+ $("#storyFeedback").className="";
+ $("#storyChoices").replaceChildren();
+ const correct=item.answer;
+ let options=[correct,correct+1,correct-1>=0?correct-1:correct+2];
+ options=[...new Set(options)];
+ if(options.length<3)options.push(correct+3);
+ const shift=item.id%3;options=[...options.slice(shift),...options.slice(0,shift)];
+ options.forEach(n=>{
+  const b=document.createElement("button");b.type="button";b.textContent=String(n);b.dataset.value=String(n);
+  b.setAttribute("aria-label","Answer "+n);
+  b.addEventListener("click",()=>answer(n,b));
+  $("#storyChoices").append(b);
+ });
+ update();
+}
+function markReward(){
+ if(chapterCount(chapter)!==6||rewarded.has(chapter))return;
+ rewarded.add(chapter);
+ if(!save()){rewarded.delete(chapter);return}
+ const prev=(()=>{try{return JSON.parse(localStorage.getItem(MAIN)||"{}")}catch{return {}}})();
+ const main=prev&&typeof prev==="object"&&!Array.isArray(prev)?prev:{};
+ main.stars=Math.max(0,Number(main.stars)||0)+1;
+ try{localStorage.setItem(MAIN,JSON.stringify(main))}catch{}
+}
+function answer(n,b){
+ if(answered||b.disabled)return;
+ const item=data[index];
+ if(n!==item.answer){
+  b.disabled=true;b.classList.add("wrong");
+  $("#storyFeedback").textContent="🌱 Not quite. Use picture help or try another answer. • حاول مرة أخرى أو انظر إلى الصور.";
+  $("#storyFeedback").className="try";
+  return;
+ }
+ answered=true;done.add(item.id);save();
+ b.classList.add("correct");
+ $("#storyChoices").querySelectorAll("button").forEach(x=>x.disabled=true);
+ $("#storyFeedback").className="good";
+ $("#storyFeedback").textContent="🎉 Great thinking! "+item.a+(item.type==="add"?" + ":item.type==="bond"?" + ": " − ")+
+  (item.type==="bond"?"?":item.b)+" = "+(item.type==="bond"?"10":item.answer)+" • أحسنت!";
+ if(chapterCount(chapter)===6){markReward();$("#chapterSuccess").hidden=false}
+ $("#nextStory").hidden=false;
+ $("#nextStory").textContent=index%6===5?"🌟 Choose another chapter • فصل آخر":"➡ Next story • القصة التالية";
+ update();
+}
+function addIcons(parent,num,icon,out=0){
+ for(let i=0;i<num;i++){
+  const x=document.createElement("span");x.className="token"+(i>=num-out?" out":"");x.textContent=icon;x.setAttribute("aria-hidden","true");parent.append(x);
+ }
+}
+function model(){
+ const item=data[index],box=$("#storyModel");
+ box.replaceChildren();
+ const intro=document.createElement("strong");intro.textContent="Picture model • نموذج بالصور";box.append(intro);
+ const first=document.createElement("div");first.className="modelRow";addIcons(first,item.a,item.icon,item.type==="sub"?item.b:0);box.append(first);
+ if(item.type==="add"||item.type==="compare"){
+  const divider=document.createElement("small");divider.textContent=item.type==="add"?"Add this group • أضف هذه المجموعة":"Compare with this group • قارن بهذه المجموعة";
+  const second=document.createElement("div");second.className="modelRow";addIcons(second,item.b,item.icon);
+  box.append(divider,second);
+ }else if(item.type==="bond"){
+  const divider=document.createElement("small");divider.textContent="We need 10 spaces. Count the missing spaces. • عدّ الأماكن الناقصة";
+  const frame=document.createElement("div");frame.className="modelRow";
+  for(let n=0;n<10;n++){
+   const x=document.createElement("span");x.className="token";
+   x.textContent=n<item.a?item.icon:"⬜";frame.append(x);
+  }
+  box.append(divider,frame);
+ }
+ const tip=document.createElement("p");
+ tip.textContent=item.type==="add"?"Count both groups together.":item.type==="sub"?"Count the pictures NOT crossed out.":item.type==="bond"?"Count the empty boxes until you reach 10.":"Compare the groups. How many pictures are left unmatched?";
+ box.append(tip);
+}
+function selectChapter(i){
+ chapter=i;
+ const next=data.filter(x=>x.chapter===i&&!done.has(x.id))[0];
+ index=next?next.id:i*6;
+ render();
+ $("#challenge").scrollIntoView({behavior:"auto",block:"start"});
+}
+$("#showModel").addEventListener("click",()=>{
+ modelVisible=!modelVisible;
+ $("#storyModel").hidden=!modelVisible;
+ if(modelVisible)model();
+ $("#showModel").setAttribute("aria-expanded",String(modelVisible));
+ $("#showModel").textContent=modelVisible?"🙈 Hide picture help • أخف الصور":"👀 Show picture help • أظهر الصور";
+});
+$("#playChapterAgain").addEventListener("click",()=>{index=chapter*6;render()});
+$("#nextStory").addEventListener("click",()=>{
+ if(!answered)return;
+ if(index%6===5){selectChapter((chapter+1)%4);return}
+ index++;render();
+});
+chapter=[0,1,2,3].find(c=>chapterCount(c)<6)??0;
+index=data.find(x=>x.chapter===chapter&&!done.has(x.id))?.id??chapter*6;
+render();
+})();
+</script>
+</main></body></html>
