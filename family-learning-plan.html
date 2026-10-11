@@ -1,0 +1,61 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#cdeeff"><title>7-Day Family Learning Plan | Little Learners Academy</title><link rel="icon" href="./icon.svg" type="image/svg+xml"><style>
+:root{font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif;color:#173f64}*{box-sizing:border-box}body{margin:0;min-height:100vh;background:linear-gradient(130deg,#c8f1ff,#fff4c7 45%,#f3dfff)}
+main{max-width:880px;margin:auto;padding:15px 13px 48px}a,button{font:inherit}button{cursor:pointer}a:focus-visible,button:focus-visible{outline:4px solid #8a1538;outline-offset:3px}
+.back{display:inline-flex;background:white;color:#155073;text-decoration:none;font-weight:900;border-radius:15px;padding:13px 17px;min-height:49px;align-items:center}
+header,.day,.parents{background:#fffd;border:4px solid white;border-radius:26px;padding:clamp(16px,4vw,26px);margin:17px 0;box-shadow:0 6px #b7d6e4}
+header{text-align:center;background:linear-gradient(125deg,#fff8cb,#fff,#e3f9ff)}h1{font-size:clamp(29px,6vw,44px);line-height:1.2;margin:8px 0}h1 span{font-size:.65em;display:block;margin-top:8px}
+h2{font-size:clamp(21px,4vw,26px);margin:4px 0 8px}p{line-height:1.55}
+.progress{font-weight:950;background:#fff0b5;padding:13px;border-radius:15px;display:inline-block}.bar{height:15px;background:#e4edf2;border-radius:20px;overflow:hidden;margin:13px auto;max-width:540px}.bar span{display:block;background:#33a779;height:100%;width:0}
+.day{border-color:#fff;scroll-margin-top:12px}.day.done{border-color:#5fc48a;background:#effff1}.dayHead{display:flex;align-items:center;gap:12px}.dayIcon{font-size:39px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}.chip{background:#e8f6ff;border-radius:20px;padding:7px 12px;font-weight:850;font-size:13px}
+.activities{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px;margin:16px 0}
+.activities a{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;text-align:center;min-height:105px;padding:12px 7px;background:white;color:#145178;border:3px solid #b9dbea;border-radius:18px;text-decoration:none;font-weight:900;line-height:1.3}
+.activities a .emoji{font-size:28px}.check{display:flex;gap:11px;align-items:center;background:#f4faff;border-radius:15px;padding:12px;font-weight:850}
+.check input{width:26px;height:26px;accent-color:#13885f;flex-shrink:0}.note{font-size:13px;color:#4f6c80}.tip{background:#fff5cf;border-radius:14px;padding:11px;margin:10px 0}
+@media(max-width:520px){.activities{grid-template-columns:1fr}.activities a{min-height:72px;flex-direction:row;justify-content:flex-start;text-align:left;padding:11px 16px}.day{padding:15px}}
+</style></head><body><main>
+<a class="back" href="./index.html">← Home • الرئيسية</a>
+<header><div style="font-size:13px;font-weight:950;color:#8a1538">👨‍👩‍👧 FAMILY LEARNING • التعلم مع الأسرة</div>
+<h1>🌈 My 7-Day Adventure <span lang="ar" dir="rtl">مغامرتي التعليمية في ٧ أيام</span></h1>
+<p>Seven short sessions, three fun choices each day. No timers, pressure, or fixed dates.</p>
+<p lang="ar" dir="rtl">سبع جلسات قصيرة، وثلاثة أنشطة ممتعة كل يوم، دون ضغط أو وقت محدد.</p>
+<div class="progress" id="planProgress" role="status" aria-live="polite">0 / 7 sessions completed</div><div class="bar" aria-hidden="true"><span id="planBar"></span></div>
+<p class="note">Parent checkmarks are saved on this device only. They indicate that a session was marked complete, not that a child's skills were assessed.</p>
+</header>
+<div id="dayList"></div>
+<aside class="parents"><h2>💛 For parents and teachers • للأهل والمعلمين</h2>
+<p>Try about 10–15 minutes if the child is comfortable, or shorter when needed. Let children choose their favourite activity, discuss what they learned, and include breaks and offline play. You can do the sessions in any order, on any dates.</p>
+<p>These activities support foundational Grade 1 skills and family participation; they are not an approved Qatar curriculum or a substitute for classroom teaching. Arabic labels support families while formal Arabic and Islamic Studies content remain subject to specialist review.</p>
+<p class="note">No child names, accounts, advertisements, microphone access, or data sharing are required.</p></aside>
+</main><script>
+(()=>{"use strict";
+const KEY="lla-family-plan-v1", $=s=>document.querySelector(s);
+const days=[
+{icon:"📚",name:"Words & Pictures",ar:"الكلمات والصور",skills:"Reading • Recognition",tip:"Ask your child to name two pictures, then point to their written words.",activities:[["🐱","Match & Learn","match-learn.html"],["🎧","Listen & Repeat","star-journey.html"],["🌷","Picture Pairs","picture-memory.html"]]},
+{icon:"🔢",name:"Numbers Around Us",ar:"الأعداد من حولنا",skills:"Counting • Number sense",tip:"Count everyday objects together, such as spoons or blocks.",activities:[["🔟","Ten-Frame Lab","ten-frame-lab.html"],["🎮","151 Activity Explorer","activity-library.html"],["🧩","Number Bonds","number-bonds.html"]]},
+{icon:"📖",name:"Little Story Day",ar:"يوم القصص",skills:"Reading • Comprehension",tip:"After reading, ask who was in the story and what happened first.",activities:[["🌼","Story Garden","story-garden.html"],["📚","Reading Adventure","phonics-adventure.html"],["🎧","Listen & Repeat","star-journey.html"]]},
+{icon:"🔬",name:"Nature Detectives",ar:"مستكشفو الطبيعة",skills:"Science • Observation",tip:"Look at a plant or tree and discuss what it needs to grow.",activities:[["🌱","Science Challenges","activity-library.html?subject=science"],["🎨","Drawing Studio","drawing-studio.html"],["🌷","Picture Pairs","picture-memory.html"]]},
+{icon:"🏗️",name:"Build & Solve",ar:"ابنِ وحل",skills:"Place value • Problem solving",tip:"Make a group of ten objects, then add one more.",activities:[["🏗️","Tens & Ones","place-value-lab.html"],["🧩","Number Bonds","number-bonds.html"],["🔟","Ten-Frame Lab","ten-frame-lab.html"]]},
+{icon:"🎨",name:"Create & Remember",ar:"الإبداع والذاكرة",skills:"Patterns • Memory • Creativity",tip:"Make a colour pattern with pencils or blocks, then continue it.",activities:[["🖍️","Drawing Studio","drawing-studio.html"],["🧠","Picture Pairs","picture-memory.html"],["🌈","Pattern Challenges","activity-library.html?subject=arts"]]},
+{icon:"🏅",name:"Celebrate Learning",ar:"احتفل بالتعلم",skills:"Review • Kindness • Reflection",tip:"Ask your child to share a favourite thing they learned this week.",activities:[["🌞","Daily Discovery","daily-discovery.html"],["⭐","My Star Journey","star-journey.html"],["👨‍👩‍👧","Parent Progress","parent-progress.html"]]}
+];
+function load(){try{const v=JSON.parse(localStorage.getItem(KEY)||"{}");return v&&typeof v==="object"&&!Array.isArray(v)?v:{}}catch{return {}}}
+const done=load();
+function update(){const n=days.filter((_,i)=>done["day"+(i+1)]===true).length;$("#planProgress").textContent="🏅 "+n+" / 7 sessions completed";$("#planBar").style.width=(n/7*100).toFixed(1)+"%"}
+days.forEach((day,i)=>{
+ const key="day"+(i+1),section=document.createElement("section");section.className="day"+(done[key]?" done":"");section.dataset.day=String(i+1);
+ const head=document.createElement("div");head.className="dayHead";
+ const icon=document.createElement("div");icon.className="dayIcon";icon.textContent=day.icon;
+ const title=document.createElement("div");const h=document.createElement("h2");h.textContent="Day "+(i+1)+" • "+day.name;
+ const ar=document.createElement("div");ar.textContent=day.ar;ar.lang="ar";ar.dir="rtl";title.append(h,ar);head.append(icon,title);
+ const chips=document.createElement("div");chips.className="chips";const skill=document.createElement("span");skill.className="chip";skill.textContent=day.skills;chips.append(skill);
+ const grid=document.createElement("div");grid.className="activities";
+ day.activities.forEach(([emoji,label,url])=>{const a=document.createElement("a");a.href="./"+url;const pict=document.createElement("span");pict.className="emoji";pict.textContent=emoji;const txt=document.createElement("span");txt.textContent=label;a.append(pict,txt);grid.append(a)});
+ const tip=document.createElement("p");tip.className="tip";tip.textContent="💡 Parent idea: "+day.tip;
+ const label=document.createElement("label");label.className="check";const box=document.createElement("input");box.type="checkbox";box.checked=Boolean(done[key]);box.setAttribute("aria-label","Mark day "+(i+1)+" completed");const text=document.createElement("span");text.textContent="We finished this session • أكملنا هذه الجلسة";
+ box.addEventListener("change",()=>{done[key]=box.checked;try{localStorage.setItem(KEY,JSON.stringify(done))}catch{}section.classList.toggle("done",box.checked);update()});label.append(box,text);
+ section.append(head,chips,grid,tip,label);$("#dayList").append(section);
+});
+update();
+})();
+</script></body></html>
