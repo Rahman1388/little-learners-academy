@@ -489,6 +489,32 @@ const fs=require("node:fs");
  assert.equal(afterBondReplay,bondStars,"Replaying Number Bonds must not duplicate stars");
  await page.setViewportSize({width:768,height:1024});await assertMobile();
  await page.setViewportSize({width:390,height:844});await assertMobile();
+ // Five-subject Daily Discovery: one question per subject, saved without changing stars.
+ await goto("daily-discovery.html");
+ await page.locator("#missionTrack .dot").first().waitFor({state:"visible"});
+ assert.equal(await page.locator("#missionTrack .dot").count(),5);
+ await assertMobile();
+ const dailyStarsBefore=await page.evaluate(()=>JSON.parse(localStorage.getItem("lla-progress-v2")).stars);
+ for(let i=0;i<5;i++){
+   assert.equal(await page.locator("#mission").isVisible(),true);
+   const answer=await page.evaluate(i=>{
+     const areas=["math","english","science","life","arts"];
+     const d=new Date(),day=Math.floor(new Date(d.getFullYear(),d.getMonth(),d.getDate()).getTime()/86400000);
+     const pool=window.LLA_MINI_ACTIVITIES.filter(a=>a.area===areas[i]);
+     return pool[((day%pool.length)+pool.length)%pool.length].answer;
+   },i);
+   await page.locator('#answerChoices button[data-answer="'+answer+'"]').click();
+   assert.match(await page.locator("#feedback").textContent(),/Well done/);
+   await page.locator("#nextStep").click();
+ }
+ assert.equal(await page.locator("#celebrate").isVisible(),true);
+ assert.match(await page.locator("#progress").textContent(),/5 \/ 5/);
+ const dailyStarsAfter=await page.evaluate(()=>JSON.parse(localStorage.getItem("lla-progress-v2")).stars);
+ assert.equal(dailyStarsBefore,dailyStarsAfter,"Daily discovery must not inflate stars");
+ await page.reload({waitUntil:"domcontentloaded"});
+ assert.equal(await page.locator("#celebrate").isVisible(),true,"Daily completion must survive reload");
+ await page.setViewportSize({width:768,height:1024});await assertMobile();
+ await page.setViewportSize({width:390,height:844});
  await goto("voice-test.html");
  await page.locator("audio").first().waitFor();
  const numPlayers=await page.locator("audio").count();
