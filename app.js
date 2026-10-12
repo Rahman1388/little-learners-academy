@@ -78,6 +78,14 @@ function showAudioHelp(){
 // Adult comparison remains possible in pronunciation-review.html.
 function pronunciationHold(lang,index){
  if(!currentLesson)return false;
+ // User-reported unclear Arabic شمس. Withhold the existing synthetic clip in
+ // every lesson that includes this word, until reviewed by a native educator.
+ // Pictures and written words remain available.
+ if(lang==="ar"){
+  const text=String(currentLesson.items?.[index]?.[2]||"")
+    .replace(/[\u064b-\u065f\u0670]/g,"").trim();
+  if(text==="شمس")return true;
+ }
  if(currentLesson.id==="patterns")return true;
  try{
   const review=JSON.parse(localStorage.getItem("lla-pronunciation-audit-v1")||"{}");
