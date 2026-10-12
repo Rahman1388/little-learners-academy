@@ -28,6 +28,7 @@ on:
       - "curriculum-skills-map.html"
       - "curriculum-skills-map.js"
       - "grades-roadmap.html"
+      - "choose-grade.html"
       - "grade2-pilot.html"
       - "grade2-pilot.js"
       - "grade2-pilot-data.js"
