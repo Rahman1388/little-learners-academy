@@ -33,6 +33,7 @@ jobs:
           node --check sound-detective.js
           node --check activity-data.js
           node --check activity-library.js
+          node --check curriculum-skills-map.js
           node --check grade2-pilot-data.js
           node --check grade2-pilot.js
           node --check grade2-english-data.js
