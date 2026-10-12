@@ -907,6 +907,16 @@ const fs=require("node:fs");
  assert.match(await page.locator("#score").textContent(),/1 \/ 24/);
  await page.setViewportSize({width:768,height:1024});await assertMobile();
  await page.setViewportSize({width:390,height:844});
+ // Store readiness: iPhone-first installation instructions (not false store downloads).
+ await goto("index.html");
+ assert.equal(await page.locator('a[href="./install-app.html"]').count(),2);
+ await goto("install-app.html");
+ await page.locator("#iphoneSteps").waitFor({state:"visible"});
+ assert.match(await page.locator("#iphoneSteps").textContent(),/Add to Home Screen/);
+ assert.match(await page.locator("body").textContent(),/not yet an Apple App Store download/);
+ await assertMobile();
+ await page.setViewportSize({width:768,height:1024});await assertMobile();
+ await page.setViewportSize({width:390,height:844});
  await goto("voice-test.html");
  await page.locator("audio").first().waitFor();
  const numPlayers=await page.locator("audio").count();
