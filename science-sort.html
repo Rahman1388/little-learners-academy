@@ -1,0 +1,56 @@
+<!doctype html><html lang="en"><head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; media-src 'self'; connect-src 'self'; worker-src 'self'; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#b9f0c4"><link rel="icon" href="./icon.svg">
+<title>Science Sorting Garden • Little Learners Academy</title>
+<style>
+:root{font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif;color:#214467}*{box-sizing:border-box}
+body{margin:0;background:linear-gradient(130deg,#d6f8cf,#d7f1ff 50%,#fff0ca);min-height:100vh}
+main{max-width:840px;margin:auto;padding:14px 13px 50px}
+button,a{font:inherit}button{cursor:pointer}button:focus-visible,a:focus-visible{outline:4px solid #8a1538;outline-offset:3px}
+.back{display:inline-block;padding:12px 17px;border-radius:15px;background:white;text-decoration:none;color:#174c70;font-weight:900}
+.hero,.game,.info{background:#fffef8;border:4px solid white;border-radius:27px;box-shadow:0 6px #b0d6c1;padding:clamp(16px,4vw,26px);margin:17px 0}
+.hero{text-align:center;background:linear-gradient(115deg,#f7ffcb,#fff,#def8ed)}
+h1{font-size:clamp(28px,6vw,43px);line-height:1.16;margin:10px 0}
+h1 span{display:block;font-size:.63em;margin-top:8px}
+h2{font-size:clamp(22px,4vw,28px);margin:0 0 10px}p{line-height:1.6}
+.progress{display:flex;align-items:center;justify-content:space-between;gap:9px;flex-wrap:wrap;background:#e3faeb;border-radius:16px;padding:12px;font-weight:900}
+.bar{height:13px;background:#e1eaf0;border-radius:15px;overflow:hidden;margin-top:11px}
+.bar span{display:block;height:100%;width:0;background:#2da474}
+.card{border:3px solid #b8dcdf;border-radius:23px;background:#f7fcff;text-align:center;margin:17px 0;padding:21px 10px}
+.card .emoji{font-size:clamp(76px,18vw,112px);line-height:1.4}
+.card strong{font-size:clamp(23px,5vw,32px);display:block}
+.card .ar{font-size:24px;font-weight:800;direction:rtl}
+.categories{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:17px 0}
+.categories button{border:3px solid #8bc8b0;border-radius:20px;background:#fff;font-weight:900;color:#174c5d;min-height:94px;padding:14px 8px;font-size:clamp(16px,4vw,22px);touch-action:manipulation}
+.categories button:disabled{opacity:1}.categories button.correct{background:#d9ffe0;border-color:#27a576}
+.categories button.wrong{background:#fff1e6;border-color:#db9a65}
+.feedback{padding:15px;border-radius:16px;background:#fff5d2;min-height:65px;font-size:17px;font-weight:800}
+.feedback.good{background:#dfffdf}.feedback.retry{background:#fff0df}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}
+.actions button{padding:12px 19px;border-radius:15px;background:#0c826b;color:white;border:0;min-height:50px;font-weight:900}
+.actions button.secondary{background:#f0f8ff;color:#185374;border:2px solid #aacfdc}
+.chapter{font-weight:900;font-size:13px;color:#8a1538}.win{text-align:center;background:#e3ffe8;border:3px solid #82c48b;border-radius:21px;padding:24px}
+.info{font-size:13px;color:#4d697d}
+[hidden]{display:none!important}
+@media(max-width:400px){.categories{gap:9px}.categories button{min-height:88px;padding:11px 5px}}
+</style></head>
+<body><main><a class="back" href="./index.html">← Home • الرئيسية</a>
+<header class="hero"><div class="chapter">🔬 GRADE 1 SCIENCE • علوم الصف الأول</div>
+<h1>🌱 Science Sorting Garden <span lang="ar" dir="rtl">حديقة تصنيف العلوم</span></h1>
+<p>Look carefully, think, then put each picture in the correct group.<span lang="ar" dir="rtl" style="display:block">انظر إلى الصورة، وفكّر، ثم اختر المجموعة الصحيحة.</span></p>
+</header>
+<section class="game" aria-label="Science sorting game">
+<div class="progress"><span id="chapterName">🌱 Living & non-living</span><span id="roundProgress">1 / 16</span></div>
+<div class="bar" aria-hidden="true"><span id="progressFill"></span></div>
+<div id="challenge">
+ <h2 id="prompt">Which group does it belong to?</h2>
+ <div class="card"><div class="emoji" id="itemEmoji" aria-hidden="true">🌴</div><strong id="itemName">Palm tree</strong><div class="ar" id="itemArabic" lang="ar" dir="rtl">نخلة</div></div>
+ <div class="categories" id="sortOptions" role="group" aria-label="Choose the correct group"></div>
+ <div class="feedback" id="sortFeedback" role="status" aria-live="polite">Tap the correct group • اختر المجموعة الصحيحة</div>
+ <div class="actions"><button type="button" id="nextRound" hidden>➡ Next picture • الصورة التالية</button></div>
+</div>
+<div id="success" class="win" hidden><div style="font-size:57px">🏆 🌱 🎉</div><h2>Science Explorer! <span lang="ar" dir="rtl">مستكشف العلوم!</span></h2><p>You've sorted all 16 pictures and earned your science badge. • أحسنت! أكملت تصنيف الصور.</p><div class="actions"><button id="replay" type="button">🔁 Play again • العب مجدداً</button><a class="back" href="./parent-progress.html">👨‍👩‍👧 Parent Progress</a></div></div>
+</section>
+<aside class="info"><strong>Parent/teacher guidance • إرشادات الأهل والمعلمين</strong><p>This introductory sorting activity reinforces common early-primary science concepts: living and non-living things, everyday materials, five senses, and what living things need. Categories are simplified teaching examples rather than exhaustive scientific classifications. Explanations accompany each correct answer. No microphone, accounts, advertising or new pronunciation recordings are used; Arabic terms are vocabulary support, not a certified Arabic science syllabus. Completing it earns one star per device, never one star per replay.</p></aside>
+<script src="./science-sort.js?v=sort-v1"></script>
+</main></body></html>
