@@ -230,8 +230,11 @@ function itemMarkup(x,i){
   const hold=currentLesson?.id==="patterns";
   const disabled=hold?" disabled title=\"Voice undergoing native-speaker review\"":"";
   const enLabel=hold?"🔇 Voice under review":"🔊 English"+repeats;
-  const arLabel=hold?"🔇 الصوت قيد المراجعة":"🔊 العربية"+repeats;
-  return '<div class="item" data-i="'+i+'"><span>'+x[0]+'</span><b>'+x[1]+'</b><div class="ar itemAr">'+x[2]+'</div><div class="speakRow"><button class="speakBtn en" data-i="'+i+'"'+disabled+'>'+enLabel+'</button><button class="speakBtn arBtn" data-i="'+i+'"'+disabled+'>'+arLabel+'</button></div></div>';
+  const sunArabic=String(x[2]).replace(/[\u064b-\u065f\u0670]/g,"").trim()==="شمس";
+  const arLabel=hold||sunArabic?"🔇 العربية قيد المراجعة":"🔊 العربية"+repeats;
+  const arabicDisabled=sunArabic&&!hold?' disabled title="Arabic شمس pronunciation is under review"':disabled;
+  const sunReview=sunArabic?'<a style="display:inline-block;margin-top:10px;font-weight:850" href="./pronunciation-review.html?lesson='+encodeURIComponent(currentLesson.id)+'&item='+i+'">🎧 Review شمس audio • مراجعة صوت شمس</a>':'';
+  return '<div class="item" data-i="'+i+'"><span>'+x[0]+'</span><b>'+x[1]+'</b><div class="ar itemAr">'+x[2]+'</div><div class="speakRow"><button class="speakBtn en" data-i="'+i+'"'+disabled+'>'+enLabel+'</button><button class="speakBtn arBtn" data-i="'+i+'"'+arabicDisabled+'>'+arLabel+'</button></div>'+sunReview+'</div>';
 }
 function openLesson(id){
   currentLesson=currentSubject&&currentSubject.lessons.find(l=>l.id===id);if(!currentLesson)return;
