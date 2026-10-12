@@ -872,6 +872,20 @@ const fs=require("node:fs");
  assert(recordedPattern.includes("audio/en/patterns-0-boy.mp3"),
    "Clear English male-style red recording was not played");
  await assertMobile();
+ // Sound help distinguishes playback status from pronunciation, without uploading audio.
+ await goto("sound-help.html");
+ await page.locator("#clips audio").first().waitFor({state:"visible"});
+ assert.equal(await page.locator("#clips audio").count(),3,"Expected female, male, Arabic sample controls");
+ assert((await page.locator("#clips audio").nth(0).getAttribute("src")).includes("en-phonics-0-girl.mp3"));
+ assert((await page.locator("#clips audio").nth(2).getAttribute("src")).includes("ar-phonics-0-boy.mp3"));
+ await page.locator("#wordChoice").selectOption("3");
+ assert((await page.locator("#clips audio").nth(0).getAttribute("src")).includes("en-phonics-3-alba.mp3"));
+ await page.locator("#problemChoice").selectOption("unclear");
+ assert.match(await page.locator("#suggestion").textContent(),/clearer source recording/);
+ assert.match(await page.locator("#report").textContent(),/Word: bus/);
+ await assertMobile();
+ await page.setViewportSize({width:768,height:1024});await assertMobile();
+ await page.setViewportSize({width:390,height:844});
  await goto("voice-test.html");
  await page.locator("audio").first().waitFor();
  const numPlayers=await page.locator("audio").count();
