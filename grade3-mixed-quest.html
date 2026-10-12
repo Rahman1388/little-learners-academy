@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#e2f4ff"><link rel="icon" href="./icon.svg" type="image/svg+xml">
+<title>Grade 3 Mixed Discovery Quest • Little Learners Academy</title>
+<style>
+:root{font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif;color:#17415c}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:linear-gradient(135deg,#bdeafe,#fff1bb 55%,#eee0ff)}
+main{max-width:840px;padding:15px 13px 50px;margin:auto}button,a{font:inherit}button{cursor:pointer}a:focus-visible,button:focus-visible{outline:4px solid #8a1538;outline-offset:3px}
+.back{display:inline-flex;align-items:center;text-decoration:none;color:#174866;background:#fff;border-radius:16px;padding:12px 17px;min-height:49px;font-weight:850}
+.hero,.panel,.parents{background:#fffd;border:4px solid white;border-radius:28px;padding:clamp(15px,4vw,26px);margin:16px 0;box-shadow:0 6px #b5d9e7}
+.hero{text-align:center;background:linear-gradient(125deg,#fff6c1,#fff,#dff7ff)}
+.eyebrow{font-weight:950;font-size:13px;color:#8a1538}h1{font-size:clamp(28px,6vw,42px);margin:8px 0;line-height:1.2}h1 span{display:block;margin-top:7px;font-size:.62em}
+h2{font-size:clamp(21px,4vw,27px);margin:6px 0 12px}p{line-height:1.6}
+.stats{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;padding:13px;background:#fff1c6;border-radius:18px;font-weight:950}
+.bar{height:14px;background:#dce9ef;border-radius:20px;overflow:hidden;margin:13px 0}.bar span{display:block;height:100%;background:#29aa7e;width:0;transition:width .18s ease}
+.medals{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}
+.medal{background:#f1f3f8;border:2px solid #d5dfe8;border-radius:17px;padding:11px;text-align:center;min-width:0;font-weight:850;font-size:14px}
+.medal.earned{background:#e0ffec;border-color:#45b786}
+.medal small{display:block;font-size:12px;margin-top:5px}
+.question{padding:17px;background:#e8f7ff;border-radius:20px;margin:15px 0}
+.subject{font-size:15px;font-weight:950;color:#8a1538}
+#qText{font-size:clamp(23px,4.5vw,31px);font-weight:950;line-height:1.4;overflow-wrap:anywhere}
+.story{background:#fff8d9;padding:14px;border-radius:17px;line-height:1.7;margin:13px 0;font-size:18px}
+.visual{text-align:center;white-space:pre-wrap;overflow-wrap:anywhere;font-size:clamp(18px,4vw,28px);line-height:1.5;padding:12px}
+.arabic{direction:rtl;text-align:right;margin:12px 0 0;line-height:1.8;font-size:17px}
+.answers{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.answers button{background:#fff;color:#184c6e;border:3px solid #a8d1e3;border-radius:19px;min-height:74px;padding:12px 7px;font-size:clamp(17px,3vw,22px);font-weight:900;overflow-wrap:anywhere}
+.answers button.wrong{background:#ffe9e3;border-color:#d88e78}.answers button.correct{background:#d8ffe7;border-color:#42b47d}
+.answers button:disabled{opacity:1;cursor:default}
+.feedback{padding:14px;border-radius:17px;background:#fff4ce;font-weight:850;min-height:61px;margin:14px 0}
+.feedback.good{background:#dfffe9}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:15px}
+.actions button,.actions a{border:0;background:#087eae;color:#fff;font-weight:950;text-decoration:none;display:inline-flex;justify-content:center;align-items:center;padding:12px 18px;min-height:50px;border-radius:16px}
+.actions .secondary{background:#edfaff;border:2px solid #a4d2e4;color:#164c6c}
+.hint{background:#fffbea;border-left:5px solid #ddae36;padding:13px;border-radius:12px;margin-top:12px}
+.finished{background:#e5ffe8;border:3px solid #88d49a;text-align:center;border-radius:20px;padding:20px;margin:14px 0}
+.note{font-size:13px;color:#516b7f}.parents{font-size:14px}
+[hidden]{display:none!important}
+@media(max-width:540px){.answers{grid-template-columns:1fr}.answers button{min-height:59px}.medals{grid-template-columns:1fr}.medal{display:flex;align-items:center;justify-content:space-between}.medal small{margin-top:0}}
+@media(prefers-reduced-motion:reduce){.bar span{transition:none}}
+</style></head>
+<body><main>
+<a class="back" href="./grades-roadmap.html">← Grades 1–6 Roadmap • خطة الصفوف</a>
+<header class="hero">
+<div class="eyebrow">🌍 SUPPLEMENTARY GRADE 3 PILOT • نشاط تجريبي للصف الثالث</div>
+<h1>🌈 Mixed Discovery Quest <span lang="ar" dir="rtl">مغامرة الاكتشاف المتنوع</span></h1>
+<p>12 friendly review questions: <strong>4 maths, 4 reading and 4 science</strong>, selected from the existing Grade 3 pilots.</p>
+<p lang="ar" dir="rtl">١٢ سؤالاً قصيراً للمراجعة: أربعة في الرياضيات، وأربعة في القراءة، وأربعة في العلوم.</p>
+<div class="stats"><span id="mixedProgress" role="status" aria-live="polite">0 / 12 completed</span><span id="mixedSubject">🧮 Maths</span></div>
+<div class="bar" aria-hidden="true"><span id="mixedBar"></span></div>
+</header>
+<section class="panel"><h2>🏅 My Subject Badges <span lang="ar" dir="rtl">شارات إنجاز المواد</span></h2>
+<div class="medals">
+<div class="medal" id="mathBadge">🧮 Maths <small>0 / 4</small></div>
+<div class="medal" id="englishBadge">📖 Reading <small>0 / 4</small></div>
+<div class="medal" id="scienceBadge">🔬 Science <small>0 / 4</small></div>
+</div></section>
+<section class="panel" id="questPanel" aria-label="Mixed discovery question">
+<h2 id="mixedStep">Question 1 of 12</h2>
+<div class="question">
+<div class="subject" id="mixedKind">🧮 Mathematics</div>
+<div class="visual" id="mixedVisual" hidden></div>
+<div class="story" id="mixedStory" hidden></div>
+<div id="qText"></div><div class="arabic" id="qArabic" lang="ar"></div>
+</div>
+<div class="answers" id="mixedAnswers" role="group" aria-label="Choose an answer"></div>
+<div class="feedback" id="mixedFeedback" role="status" aria-live="polite">Choose an answer. • اختر الإجابة الصحيحة.</div>
+<div class="actions"><button type="button" class="secondary" id="mixedHint" aria-expanded="false">💡 Help me think • ساعدني</button>
+<button type="button" id="mixedNext" hidden>Next question ➜ • التالي</button></div>
+<div class="hint" id="mixedHelp" hidden></div>
+<div class="finished" id="mixedFinish" hidden>
+<div style="font-size:42px" aria-hidden="true">🏆 🌈 ⭐</div><h2>All twelve explored! <span lang="ar" dir="rtl">أحسنت! أكملت المراجعة</span></h2>
+<p>Great persistence. Explain one maths answer, one reading clue and one science observation to a parent or teacher.</p>
+<div class="actions"><button type="button" id="mixedReplay">🔁 Practise again • أعد التدريب</button>
+<a href="./parent-progress.html">👨‍👩‍👧 Parent progress • تقدم الطفل</a></div></div>
+</section>
+<aside class="parents"><strong>👨‍👩‍👧 For parents & teachers • للأهل والمعلمين</strong>
+<p>This quest is a <strong>review of 12 existing questions</strong> from the 54-question Grade 3 mathematics, English reading and science pilots. It does not add 12 unique syllabus questions. Hints encourage reasoning; the three badges simply mark completed review questions, not mastery.</p>
+<p class="note">This is independent, parent-guided supplementary practice, not a complete or officially approved Grade 3 or Qatar curriculum. Answers are text-based and do not assess speech. Progress is stored on this device only. No ads, student accounts or microphones.</p>
+</aside>
+<script src="./grade3-preview-data.js"></script>
+<script src="./grade3-english-data.js"></script>
+<script src="./grade3-science-data.js"></script>
+<script src="./grade3-mixed-quest.js"></script>
+</main></body></html>
