@@ -70,6 +70,8 @@ on:
       - "scripts/test-mega-upgrade.cjs"
       - "foundation-check.html"
       - "foundation-check.js"
+      - "practice-path.html"
+      - "practice-path.js"
       - "activity-data.js"
       - "activity-library.js"
       - "scripts/test-mobile-ui.cjs"
