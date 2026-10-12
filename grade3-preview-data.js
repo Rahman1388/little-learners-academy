@@ -24,7 +24,7 @@ sharing.forEach(([total,groups])=>add("sharing",
  "Share "+total+" apples equally among "+groups+" children. How many apples does each child get?",
  "قسّم "+total+" تفاحة بالتساوي على "+groups+" أطفال. كم تفاحة لكل طفل؟",
  "🍎 ".repeat(Math.min(total,24)).trim(),
- [String(total/groups),String(groups),String(total/groups+2)].map(String),String(total/groups),
+ [String(total/groups),String(total/groups+1),String(total/groups+2)],String(total/groups),
  "Make "+groups+" groups, then give one apple to each group in turn.",
  total+" ÷ "+groups+" = "+(total/groups)+". Every child receives the same amount."));
 const frac=[
