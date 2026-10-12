@@ -96,6 +96,9 @@ for(const [storage,prefix,total,target] of [
  const count=Object.keys(saved).filter(key=>key.startsWith(prefix)&&saved[key]===true).length;
  $(target).textContent=Math.min(total,count)+" / "+total;
 }
+const mixed=get("lla-grade3-mixed-v1");
+const mixedDone=Object.keys(mixed).filter(k=>mixed[k]===true && /^(math:g3-|english:g3e-|science:g3s-)/.test(k)).length;
+$("#grade3MixedCount").textContent=Math.min(12,mixedDone)+" / 12";
 const story=get("lla-math-story-v1");
 const storyDone=(Array.isArray(story.done)?story.done:[]).filter(x=>Number.isInteger(x)&&x>=0&&x<24);
 const storyBadges=(Array.isArray(story.rewarded)?story.rewarded:[]).filter(x=>Number.isInteger(x)&&x>=0&&x<4);
