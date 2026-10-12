@@ -34,6 +34,8 @@ jobs:
           node --check sound-detective.js
           node --check activity-data.js
           node --check activity-library.js
+          node --check parent-report.js
+          node --check scripts/test-parent-report.cjs
           node --check foundation-check.js
           node --check practice-path.js
           node --check maths-thinking.js
@@ -118,6 +120,9 @@ jobs:
           test -f grade2-science.js
           test -f scripts/check-learning-content.cjs
           test -f parent-progress.html
+          test -f parent-report.html
+          test -f parent-report.js
+          test -f scripts/test-parent-report.cjs
           test -f pronunciation-review.html
           test -f math-story-village.html
           test -f international-benchmark.html
@@ -133,6 +138,8 @@ jobs:
           grep -q 'soundDetective' phonics-adventure.html
           grep -q 'serviceWorker' app.js
           grep -q 'activity-library.html' index.html
+          grep -q 'parent-report.html' index.html
+          grep -q 'parent-report.html' parent-progress.html
           grep -q 'activity-data.js' activity-library.html
           grep -q 'pronunciation-review.html' index.html
           grep -q 'math-story-village.html' index.html
