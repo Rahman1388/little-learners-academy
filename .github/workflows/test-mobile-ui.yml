@@ -58,6 +58,8 @@ on:
       - "clock-time-lab.html"
       - "measurement-explorer.html"
       - "activity-library.js"
+      - "maths-thinking.html"
+      - "maths-thinking.js"
       - "math-story-village.html"
       - "qatar-mini-market.html"
       - "qatar-mini-market.js"
