@@ -801,6 +801,33 @@ const fs=require("node:fs");
  assert.notEqual(await page.locator("#skillSelect").inputValue(),"all");
  await page.setViewportSize({width:768,height:1024});await assertMobile();
  await page.setViewportSize({width:390,height:844});
+ // Science Sorting Garden: four chapters of 16 real tap-to-sort challenges.
+ await goto("science-sort.html");
+ await page.locator("#sortOptions button").first().waitFor({state:"visible"});
+ await assertMobile();
+ const sciCorrect=["Living","Non-living","Living","Non-living",
+   "Wood","Metal","Glass","Plastic","Sight","Hearing","Smell","Taste",
+   "Helps a plant","Helps a plant","Not needed by a plant","Not needed by a plant"];
+ await page.locator('#sortOptions button[data-category="Non-living"]').click();
+ assert.match(await page.locator("#sortFeedback").textContent(),/Good try/);
+ await page.locator('#sortOptions button[data-category="Living"]').click();
+ assert.equal(await page.locator("#nextRound").isVisible(),true);
+ await page.locator("#nextRound").click();
+ for(let i=1;i<sciCorrect.length;i++){
+  await page.locator('#sortOptions button[data-category="'+sciCorrect[i]+'"]').click();
+  assert.equal(await page.locator("#nextRound").isVisible(),true,"Science round "+(i+1)+" did not accept answer");
+  await page.locator("#nextRound").click();
+ }
+ assert.equal(await page.locator("#success").isVisible(),true);
+ assert.equal(await page.locator("#roundProgress").textContent(),"16 / 16");
+ const sciStars=await page.evaluate(()=>JSON.parse(localStorage.getItem("lla-progress-v2")).stars);
+ await page.locator("#replay").click();
+ for(const value of sciCorrect){await page.locator('#sortOptions button[data-category="'+value+'"]').click();await page.locator("#nextRound").click();}
+ assert.equal(await page.locator("#success").isVisible(),true);
+ const sciReplay=await page.evaluate(()=>JSON.parse(localStorage.getItem("lla-progress-v2")).stars);
+ assert.equal(sciReplay,sciStars,"Replaying science must not award duplicate stars");
+ await page.setViewportSize({width:768,height:1024});await assertMobile();
+ await page.setViewportSize({width:390,height:844});
  await goto("voice-test.html");
  await page.locator("audio").first().waitFor();
  const numPlayers=await page.locator("audio").count();
