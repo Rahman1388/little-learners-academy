@@ -606,6 +606,8 @@ const fs=require("node:fs");
  await page.locator('#dayList .day[data-day="1"] input[type="checkbox"]').uncheck();
  assert.match(await page.locator("#planProgress").textContent(),/0 \/ 7/);
  await page.locator('#dayList .day[data-day="4"] a[href="./activity-library.html?subject=science"]').click();
+ await page.waitForURL(/activity-library\.html\?subject=science/,{timeout:15000});
+ await page.waitForFunction(()=>document.querySelector("#areaSelect")?.value==="science",null,{timeout:15000});
  assert.equal(await page.locator("#areaSelect").inputValue(),"science");
  assert.equal(await page.locator("#activityGrid .activity").count(),20);
  await page.setViewportSize({width:768,height:1024});
