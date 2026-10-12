@@ -1,0 +1,61 @@
+<!doctype html><html lang="en"><head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; media-src 'self'; connect-src 'self'; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#dcf9eb"><link rel="icon" href="./icon.svg" type="image/svg+xml">
+<title>Grade 3 Maths Discovery • Little Learners Academy</title>
+<style>
+:root{font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif;color:#183e60}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(145deg,#caf1ff,#fff2c8 50%,#e9dfff);min-height:100vh}
+main{max-width:850px;margin:auto;padding:14px 14px 44px}a,button{font:inherit}button{cursor:pointer}a:focus-visible,button:focus-visible{outline:4px solid #8a1538;outline-offset:3px}
+.back{display:inline-flex;text-decoration:none;align-items:center;min-height:48px;background:#fff;color:#174868;border-radius:16px;padding:12px 16px;font-weight:850}
+.hero,.section,.parent{background:#fffefd;border:4px solid #fff;border-radius:25px;padding:clamp(15px,3vw,25px);box-shadow:0 6px #bbdae5;margin:16px 0}
+.hero{text-align:center;background:linear-gradient(110deg,#fff8cf,#fff,#dffaff)}
+h1{font-size:clamp(28px,6vw,43px);line-height:1.2;margin:12px 0 8px}h1 span{display:block;font-size:.63em;margin-top:6px}
+h2{font-size:clamp(21px,4vw,28px);margin:0 0 12px}p{line-height:1.55}
+.eyebrow{color:#8a1538;font-size:13px;font-weight:950}
+.count{font-size:21px;background:#ffefae;border-radius:17px;font-weight:950;display:inline-block;padding:11px 17px}
+.track{height:13px;background:#e3ecf0;border-radius:40px;overflow:hidden;margin-top:13px}.track span{display:block;background:#2aaf75;height:100%;width:0}
+.domains{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.domain{min-height:155px;background:#fff;border:3px solid #b6dfea;border-radius:20px;color:#16486b;padding:13px;text-align:left;display:flex;flex-direction:column;gap:8px}
+.domain strong{font-size:18px}.domain .emoji{font-size:35px}.domain.done{background:#e5ffe8;border-color:#57ba83}.domain small{font-size:13px;font-weight:800}
+.playhead{font-size:14px;font-weight:950;color:#8a1538}
+.question{background:#e7f8ff;padding:18px 12px;border-radius:19px;text-align:center;margin:12px 0 17px;overflow-wrap:anywhere}
+.question strong{display:block;font-size:clamp(21px,4vw,30px);line-height:1.45}
+.ar{direction:rtl;font-size:18px;margin-top:12px}
+.visual{white-space:pre-wrap;font-size:clamp(20px,4vw,27px);line-height:1.65;word-break:break-word;background:#fff4d2;border-radius:17px;text-align:center;padding:13px;margin:14px 0}
+.answers{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px}
+.answers button{min-height:71px;background:#fff;border:3px solid #acd8ea;border-radius:17px;color:#164d73;font-size:clamp(17px,3vw,25px);font-weight:950;padding:8px;overflow-wrap:anywhere}
+.answers button.wrong{background:#fff0e8;border-color:#df987e}
+.answers button.right{background:#e5ffe6;border-color:#4daf7a}
+.answers button:disabled{opacity:1}
+.feedback{padding:14px;background:#fff7ce;border-radius:16px;min-height:60px;font-weight:850;margin:14px 0}
+.feedback.good{background:#ddffe9}.feedback.try{background:#fff0e0}
+.hint{padding:14px;background:#eaf6ff;border:2px solid #b7dfeb;border-radius:16px;margin:12px 0;line-height:1.6}
+.actions{display:flex;gap:10px;flex-wrap:wrap;align-items:center}.actions button{background:#087ea9;color:#fff;font-weight:900;border:0;border-radius:16px;min-height:50px;padding:12px 17px}
+.actions .secondary{background:#f0f9ff;color:#134b6f;border:2px solid #b4dfeb}
+.note{font-size:13px;color:#4a6b7e}.parent{font-size:13px}
+[hidden]{display:none!important}
+@media(max-width:590px){.domains{grid-template-columns:1fr}.domain{min-height:94px}.answers{grid-template-columns:1fr}.answers button{min-height:55px}}
+</style></head><body><main>
+<a href="./grades-roadmap.html" class="back">← Grades 1–6 Roadmap • الخطة</a>
+<header class="hero"><div class="eyebrow">🧮 EARLY GRADE 3 EXPLORATION • تجربة للصف الثالث</div>
+<h1>🌟 Maths Discovery <span lang="ar" dir="rtl">استكشاف الرياضيات</span></h1>
+<p>18 parent-guided questions: groups, equal sharing, and fractions. Build understanding with pictures and explanations.</p>
+<p lang="ar" dir="rtl">١٨ سؤالاً تمهيدياً بإرشاد الأهل: المجموعات والقسمة المتساوية والكسور.</p>
+<div class="count" id="g3Progress" role="status" aria-live="polite">0 / 18 explored</div><div class="track" aria-hidden="true"><span id="g3Bar"></span></div>
+<p class="note">This is a voluntary early Grade 3 preview for children already comfortable with Grade 1–2 maths. It is not a full Grade 3 course or placement test.</p></header>
+<section class="section" id="selectPanel"><h2>Choose a maths world • اختر مجالاً</h2>
+<div class="domains" id="domainCards"></div><p class="note">Try six questions in each world. Correct answers save on this device. Replaying never adds duplicate credit.</p></section>
+<section class="section" id="playPanel" hidden><div class="actions"><button id="backToWorlds" class="secondary" type="button">← Choose a world • المجالات</button><span id="stepLabel" class="playhead"></span></div>
+<h2 id="questionHeading"></h2>
+<div class="question"><strong id="questionEn"></strong><div class="ar" id="questionAr" lang="ar"></div></div>
+<div class="visual" id="mathVisual"></div>
+<div class="answers" id="g3Answers" role="group" aria-label="Answer choices"></div>
+<div class="feedback" id="g3Feedback" role="status" aria-live="polite">Choose an answer • اختر الإجابة</div>
+<div id="explanation" class="hint" hidden></div><div id="hintBox" class="hint" hidden></div>
+<div class="actions"><button type="button" id="learningHint" class="secondary" aria-expanded="false">💡 Help me think • مساعدة</button><button id="g3Next" type="button" hidden>➡ Next question • التالي</button></div>
+</section>
+<aside class="parent"><strong>👨‍👩‍👧 Parent note • ملاحظة للأهل</strong>
+<p>Learning themes broadly reflect Grade 3 multiplication, division and fraction concepts found in international primary frameworks. These 18 introductory questions are <strong>not an official Qatar syllabus, certified assessment, or evidence of mastery</strong>. Review with a qualified educator before curricular adoption. Arabic text is supportive translation and may need linguistic review; there are no unverified spoken pronunciations on this page.</p>
+<p>Free, no account, no child name, no microphone, and no external tracking. Progress is browser-local.</p></aside>
+<script src="./grade3-preview-data.js?v=g3-1"></script><script src="./grade3-preview.js?v=g3-1"></script>
+</main></body></html>
