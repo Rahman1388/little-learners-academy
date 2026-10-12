@@ -23,6 +23,8 @@ on:
       - "learning-passport.html"
       - "learning-passport.js"
       - "activity-library.html"
+      - "curriculum-skills-map.html"
+      - "curriculum-skills-map.js"
       - "grades-roadmap.html"
       - "grade2-pilot.html"
       - "grade2-pilot.js"
