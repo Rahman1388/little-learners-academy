@@ -52,6 +52,24 @@ const fs=require("node:fs");
  assert.equal(await page.locator("#mainMenu").isVisible(),false);
  assert.equal(await page.locator('#moreAdventures a[href="./star-journey.html"]').isVisible(),true);
  await assertMobile();
+ // Grade selector provides working Grades 1–3 pilots, with 4–6 clearly planned.
+ await page.locator('#mainMenu a[href="./choose-grade.html"]').count().then(n=>assert.equal(n,1));
+ await goto("choose-grade.html");
+ await page.locator("#grade1").waitFor({state:"visible"});
+ assert.equal(await page.locator(".grade").count(),6);
+ assert.equal(await page.locator(".grade.available").count(),1);
+ assert.equal(await page.locator(".grade.pilot").count(),2);
+ assert.equal(await page.locator(".grade.planned").count(),3);
+ assert.equal(await page.locator(".grade.planned a").count(),0,"Unreleased grades must not appear as playable");
+ for(const href of ["./activity-library.html","./grade2-pilot.html","./grade2-english.html","./grade2-science.html","./grade3-preview.html","./grade3-english.html","./grade3-science.html"]){
+   assert.equal(await page.locator('.grade a[href="'+href+'"]').count(),1,"Missing playable grade link "+href);
+ }
+ await assertMobile();
+ await page.setViewportSize({width:768,height:1024});
+ await assertMobile();
+ await page.setViewportSize({width:390,height:844});
+ await goto("index.html");
+ await page.locator("#girlVoice").waitFor({state:"visible"});
  await page.locator("#girlVoice").click();
  const enPreview=await page.evaluate(()=>window.__recordedAudioUrls.at(-1));
  assert(/audio\/practice\/en-phonics-0-girl\.mp3/.test(enPreview),"Female English preview did not use three-repeat recorded voice");
