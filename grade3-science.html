@@ -1,0 +1,39 @@
+<!doctype html><html lang="en"><head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; media-src 'self'; connect-src 'self'; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#d9f5ff"><link rel="icon" href="./icon.svg" type="image/svg+xml">
+<title>Grade 3 Science Discovery • Little Learners Academy</title>
+<style>
+:root{font-family:system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif;color:#193d60}*{box-sizing:border-box}body{margin:0;min-height:100vh;background:linear-gradient(135deg,#caf0ff,#fff5ce 50%,#eddfff)}main{max-width:870px;margin:auto;padding:15px 13px 45px}a,button{font:inherit}button{cursor:pointer}button:focus-visible,a:focus-visible{outline:4px solid #8a1538;outline-offset:3px}
+.back{display:inline-flex;align-items:center;min-height:49px;background:#fff;color:#165074;padding:12px 16px;border-radius:16px;text-decoration:none;font-weight:900}
+header,section,aside{background:#ffffffed;border:4px solid white;border-radius:26px;padding:clamp(15px,3vw,24px);box-shadow:0 6px #b6d6e8;margin:16px 0}
+header{text-align:center;background:linear-gradient(135deg,#fff8d4,#fff,#e1faff)}
+h1{font-size:clamp(29px,6vw,43px);margin:10px 0}h1 span{display:block;font-size:.64em;margin-top:6px}h2{font-size:clamp(22px,4vw,28px);margin:0 0 12px}p{line-height:1.55}
+.eyebrow{font-size:13px;font-weight:950;color:#8a1538}.progress{background:#fff2b8;border-radius:17px;display:inline-block;padding:12px 19px;font-weight:950;font-size:20px}
+.domains{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.domain{min-height:150px;text-align:left;border:3px solid #a5d9e9;border-radius:19px;background:#fff;color:#174469;padding:14px;display:flex;flex-direction:column;gap:8px}.domain .emoji{font-size:36px}.domain strong{font-size:18px}.domain small{font-weight:850}.domain.complete{border-color:#38aa7b;background:#e6ffed}
+.passage{background:#e6f7ff;border-radius:17px;padding:18px;font-size:clamp(19px,3.8vw,24px);line-height:1.7;margin:13px 0}
+.question{font-size:clamp(20px,4vw,27px);font-weight:950}
+.answers{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px;margin:15px 0}.answers button{min-height:70px;padding:11px;border-radius:17px;border:3px solid #a5d8e9;background:#fff;color:#144c71;font-size:clamp(17px,3vw,21px);font-weight:850;overflow-wrap:anywhere}.answers button.correct{border-color:#36aa7c;background:#dfffeb}.answers button.wrong{border-color:#c57a72;background:#fff0e9}.answers button:disabled{opacity:1}
+.feedback{background:#fff7d7;border-radius:16px;padding:15px;min-height:56px;font-weight:850}.feedback.good{background:#ddffe9}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin:15px 0}.actions button{background:#087daf;color:#fff;border:0;border-radius:14px;min-height:49px;padding:12px 17px;font-weight:900}.actions .secondary{background:#fff;color:#164d73;border:2px solid #a5d3e3}
+.help{background:#f2edff;border-radius:16px;padding:13px;margin:10px 0;font-weight:800}
+.note{font-size:13px;color:#4c6b7f}
+[hidden]{display:none!important}@media(max-width:600px){.domains{grid-template-columns:1fr}.domain{min-height:95px}.answers{grid-template-columns:1fr}.answers button{min-height:58px}}
+</style></head><body><main>
+<a class="back" href="./grades-roadmap.html">← Grades 1–6 Roadmap • خطة الصفوف</a>
+<header><div class="eyebrow">🔬 GRADE 3 • SCIENCE DISCOVERY PILOT • الصف الثالث</div>
+<h1>🌿 Science Discovery <span lang="ar" dir="rtl">مغامرة العلوم</span></h1>
+<p>Read short science observations, think about evidence, and choose your answer. <span lang="ar" dir="rtl" style="display:block">اقرأ الملاحظات العلمية وفكر في الأدلة ثم اختر الإجابة.</span></p>
+<div class="progress" id="englishProgress" role="status" aria-live="polite">0 / 18 explored</div>
+<p class="note">18 supplementary Grade 3 science questions, not a complete syllabus, laboratory experiment or formal assessment. Activities involving real objects need adult supervision.</p>
+</header>
+<section id="choosePanel"><h2>Choose a science adventure • اختر نشاط العلوم</h2><div class="domains" id="englishDomains"></div></section>
+<section id="playPanel" hidden><div class="actions"><button type="button" class="secondary" id="backToDomains">← Choose a skill • اختر المهارة</button></div>
+<h2 id="lessonHeading"></h2><div class="passage" id="readingText"></div><p class="question" id="readingQuestion"></p>
+<p lang="ar" dir="rtl">اختر الإجابة الصحيحة بناءً على الملاحظة.</p>
+<div class="answers" id="readingAnswers" role="group" aria-label="Science question answers"></div>
+<div class="feedback" id="readingFeedback" role="status" aria-live="polite">Choose an answer. • اختر إجابة.</div>
+<div class="actions"><button class="secondary" type="button" id="readingHint" aria-expanded="false">💡 Help me think • ساعدني</button><button type="button" id="readingNext" hidden>Next question ➜ • السؤال التالي</button></div>
+<div id="readingHelp" class="help" hidden></div><div id="readingExplanation" class="help" hidden></div>
+</section>
+<aside class="note"><strong>Parents & teachers • للأهل والمعلمين</strong><p>Discuss observations with the child; never allow unsupervised experiments, sharp items or small magnets. Each skill has six original questions. Progress is saved only on this device, separately from other activities. Scientific facts and Arabic support instructions require qualified educator review before any formal curriculum-alignment claim.</p><p><a href="./grade3-preview.html">🧮 Explore the Grade 3 mathematics pilot</a></p></aside>
+</main><script src="./grade3-science-data.js?v=g3-science-1"></script><script src="./grade3-science.js?v=g3-science-1"></script></body></html>
