@@ -128,7 +128,14 @@ function render(){
  if(active){active.pause();active=null}
  const lesson=sections.find(x=>x.id===$("#lessonSelect").value)||sections[0];
  $("#cards").replaceChildren();
- lesson.items.forEach((_,i)=>$("#cards").append(reviewCard(lesson,i)));
+ const focus=Number(params.get("item"));
+ const focused=params.has("item")&&Number.isInteger(focus)&&focus>=0&&focus<lesson.items.length&&lesson.id===requested;
+ if(focused){
+  const info=document.createElement("p");info.setAttribute("role","status");info.className="flag";
+  info.textContent="🔎 Focused word review. Compare Arabic female-style and male-style recordings below. These are unapproved candidates; do not use them to teach phonics until checked by a qualified Arabic speaker. • مراجعة الكلمة المحددة";
+  $("#cards").append(info);
+ }
+ lesson.items.forEach((_,i)=>{if(!focused||i===focus)$("#cards").append(reviewCard(lesson,i))});
  status();
 }
 for(const lesson of sections){
