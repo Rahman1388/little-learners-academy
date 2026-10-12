@@ -34,6 +34,7 @@ jobs:
           node --check sound-detective.js
           node --check activity-data.js
           node --check activity-library.js
+          node --check foundation-check.js
           node --check maths-thinking.js
           node --check curriculum-skills-map.js
           node --check grade2-pilot-data.js
@@ -65,6 +66,8 @@ jobs:
           test -f phonics-adventure.css
           test -f phonics-adventure.js
           test -f sound-detective.js
+          test -f foundation-check.html
+          test -f foundation-check.js
           test -f learning-passport.html
           test -f learning-passport.js
           test -f drawing-studio.html
