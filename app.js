@@ -188,6 +188,22 @@ function setVoice(kind,preview=false){
   if(kind!=="girl"&&kind!=="boy")return;
   state.voice=kind;
   saveState();
+  // A different voice can have a different pronunciation QA result. Update
+  // visible buttons immediately without resetting the child's lesson progress.
+  if(currentLesson){
+    $("#items").querySelectorAll(".item").forEach(card=>{
+      const i=Number(card.dataset.i);
+      for(const [lang,selector] of [["en",".speakBtn.en"],["ar",".speakBtn.arBtn"]]){
+        const button=card.querySelector(selector);
+        if(!button)continue;
+        const held=pronunciationHold(lang,i);
+        button.disabled=held;
+        button.title=held?"Recording awaiting pronunciation review":"";
+        button.textContent=held?(lang==="en"?"🔇 English under review":"🔇 العربية قيد المراجعة"):
+          (lang==="en"?"🔊 English":"🔊 العربية")+(currentLesson.id==="phonics"?" ×3":"");
+      }
+    });
+  }
   const box=$("#voiceStatus");
   const homeBox=$("#homeVoiceStatus");
   const message=(kind==="girl"?"👧 English female-style voice selected":"👦 English male-style voice selected")
