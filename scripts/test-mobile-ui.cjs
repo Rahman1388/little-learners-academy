@@ -382,6 +382,26 @@ const fs=require("node:fs");
  assert.equal(await page.locator("#grade2EnglishCount").textContent(),"1 / 24");
  assert.equal(await page.locator("#grade2ScienceCount").textContent(),"2 / 18");
  assert.equal(await page.locator('#grade2PilotProgress a').count(),3);
+ // Parent dashboard also summarises three independent Grade 3 pilot areas.
+ await page.evaluate(()=>{
+  localStorage.setItem("lla-grade3-preview-v1",JSON.stringify({"g3-01":true,"g3-02":true,"g3-03":false}));
+  localStorage.setItem("lla-grade3-english-v1",JSON.stringify({"g3e-01":true}));
+  localStorage.setItem("lla-grade3-science-v1",JSON.stringify({"g3s-01":true,"g3s-02":true}));
+ });
+ await page.reload({waitUntil:"domcontentloaded"});
+ assert.equal(await page.locator("#grade3MathCount").textContent(),"2 / 18");
+ assert.equal(await page.locator("#grade3EnglishCount").textContent(),"1 / 18");
+ assert.equal(await page.locator("#grade3ScienceCount").textContent(),"2 / 18");
+ assert.equal(await page.locator('#grade3PilotProgress .review a').count(),3);
+ await page.setViewportSize({width:768,height:1024});
+ await assertMobile();
+ await page.setViewportSize({width:390,height:844});
+ await assertMobile();
+ await page.evaluate(()=>{
+  localStorage.removeItem("lla-grade3-preview-v1");
+  localStorage.removeItem("lla-grade3-english-v1");
+  localStorage.removeItem("lla-grade3-science-v1");
+ });
  // Remove injected test-only Grade 2 fixtures before independently testing pilots.
  await page.evaluate(()=>{
   localStorage.removeItem("lla-grade2-pilot-v1");
