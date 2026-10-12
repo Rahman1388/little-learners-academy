@@ -49,6 +49,8 @@ jobs:
           node --check grade3-preview.js
           node --check grade3-english-data.js
           node --check grade3-english.js
+          node --check grade3-science-data.js
+          node --check grade3-science.js
           node --check fractions-lab.js
           node --check scripts/check-learning-content.cjs
           node --check learning-passport.js
@@ -94,6 +96,9 @@ jobs:
           test -f grade3-english.html
           test -f grade3-english-data.js
           test -f grade3-english.js
+          test -f grade3-science.html
+          test -f grade3-science-data.js
+          test -f grade3-science.js
           test -f grade2-pilot-data.js
           test -f grade2-pilot.js
           test -f grade2-english.html
