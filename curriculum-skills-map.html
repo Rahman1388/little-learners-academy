@@ -17,6 +17,11 @@ main{max-width:960px;padding:13px;margin:auto}a,button{font:inherit}a:focus-visi
 .skillhead small{white-space:nowrap;font-weight:900}.meter{background:#e7eef3;height:13px;border-radius:50px;overflow:hidden;margin:9px 0}
 .fill{height:100%;background:#249f75;display:block;width:0%}
 .skill a{display:inline-block;font-size:14px;font-weight:900;color:#08668f;padding:7px 0;overflow-wrap:anywhere}
+.nextGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:14px 0}
+.nextItem{border:2px solid #b7dfed;border-radius:18px;background:#f6fcff;padding:15px;display:flex;flex-direction:column;gap:9px;min-width:0}
+.nextItem strong{font-size:18px}.nextItem small{color:#4c6980;font-weight:850}
+.nextItem a{display:inline-flex;align-items:center;min-height:48px;padding:10px 13px;border-radius:15px;background:#087ca4;color:white;text-decoration:none;font-weight:900;margin-top:auto}
+@media(max-width:650px){.nextGrid{grid-template-columns:1fr}}
 .gaps{padding-left:22px;line-height:1.7}.caution{background:#fff2d5;border-radius:18px;padding:15px}
 @media(max-width:650px){.subjects{grid-template-columns:1fr}.skillhead{flex-wrap:wrap}}
 </style></head><body><main>
@@ -26,6 +31,12 @@ main{max-width:960px;padding:13px;margin:auto}a,button{font:inherit}a:focus-visi
 <p>See which skills each activity practises, what has been tried, and where to explore next. <span lang="ar" dir="rtl">تابع المهارات التي يتدرب عليها الطفل وحدد الخطوة التالية.</span></p>
 <div class="summary" id="mapSummary" role="status" aria-live="polite">Loading skill progress…</div>
 <p class="note">This map reads the completion history already stored on this device; it does not send data anywhere.</p></header>
+<section class="panel" aria-labelledby="nextLearningHeading">
+<h2 id="nextLearningHeading">✨ Your Next 5 Activities <span lang="ar" dir="rtl">أنشطتك الخمسة التالية</span></h2>
+<p id="nextLearningStatus" role="status" aria-live="polite">Finding suitable practice…</p>
+<div class="nextGrid" id="recommendedActivities"></div>
+<p class="note">Recommendations use your on-device activity history, not a test of ability. Do these at your own pace, ask a parent for help, and take breaks.</p>
+</section>
 <section class="panel"><h2>🎒 Five learning areas <span lang="ar" dir="rtl">خمسة مجالات تعليمية</span></h2>
 <div class="subjects" id="skillSubjects"></div></section>
 <section class="panel"><h2>🧭 What the map does—and doesn't mean</h2>
@@ -40,5 +51,5 @@ main{max-width:960px;padding:13px;margin:auto}a,button{font:inherit}a:focus-visi
 <p>Completing an activity means a correct answer was recorded at least once, not that a child has independently mastered the skill. Parents can ask their child to explain an answer, practise with real objects, and revisit difficult questions.</p>
 <a class="go" href="./parent-progress.html">📊 Parent Progress • تقدم الطفل</a>
 </section>
-<script src="./activity-data.js?v=skills-map-1"></script><script src="./curriculum-skills-map.js?v=skills-map-1"></script>
+<script src="./activity-data.js?v=skills-map-1"></script><script src="./curriculum-skills-map.js?v=next-five-1"></script>
 </main></body></html>
