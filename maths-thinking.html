@@ -1,0 +1,48 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#c8f3ff"><title>Maths Thinking Lab • Little Learners Academy</title><link rel="icon" href="./icon.svg">
+<style>
+:root{font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif;color:#183d60}*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:linear-gradient(135deg,#ccefff,#fff0c8 56%,#f4e2ff)}main{max-width:850px;margin:auto;padding:12px 13px 40px}
+a,button,select{font:inherit}button{cursor:pointer}a:focus-visible,button:focus-visible,select:focus-visible{outline:4px solid #8a1538;outline-offset:3px}
+.back{display:inline-block;background:#fff;text-decoration:none;color:#16456b;border-radius:14px;padding:12px 16px;font-weight:850}
+.hero,.work,.parent{background:#fffffff5;border:4px solid #fff;border-radius:26px;padding:clamp(15px,4vw,24px);box-shadow:0 5px #b0d8e4;margin:14px 0}
+.hero{text-align:center;background:linear-gradient(125deg,#fff7c9,#fff,#e6fbff)}
+h1{font-size:clamp(27px,6vw,42px);margin:9px 0}h1 span{font-size:.66em;display:block;margin-top:7px}
+h2{font-size:22px}.mini{font-size:13px;color:#8a1538;font-weight:900}.score{font-size:20px;font-weight:950;background:#ffe5a7;border-radius:19px;padding:11px;display:inline-block}
+.levels{display:flex;flex-wrap:wrap;gap:10px;margin:15px 0}
+.levels button{flex:1;min-width:110px;background:#f7fbff;border:3px solid #bedcec;border-radius:15px;padding:13px;color:#15486b;font-weight:900;min-height:56px}
+.levels button[aria-pressed=true]{background:#d9ffe6;border-color:#49ac83}
+.progress{font-weight:900;background:#e9f8ff;border-radius:14px;padding:13px}
+.puzzle{background:#f0faff;border-radius:20px;text-align:center;padding:22px 10px;margin:12px 0}
+#prompt{font-size:clamp(22px,4.5vw,32px);font-weight:950;line-height:1.4;white-space:pre-wrap}
+#arabic{font-size:18px;direction:rtl;margin:12px 0}
+#objects{font-size:clamp(23px,5vw,35px);display:flex;justify-content:center;flex-wrap:wrap;gap:6px;margin:16px 0}
+.options{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:12px}
+.options button{background:#fff;border:3px solid #99cbe0;border-radius:17px;min-height:69px;padding:10px 5px;font-size:clamp(17px,3vw,24px);color:#13476b;font-weight:950;overflow-wrap:anywhere}
+.options button.correct{background:#d6ffe7;border-color:#30a777}.options button.wrong{background:#fff0ee;border-color:#d27d74}
+.options button:disabled{opacity:1}
+.notice{min-height:66px;background:#fff3c6;border-radius:16px;padding:15px;font-weight:850;line-height:1.5;margin:14px 0}
+.actions{display:flex;flex-wrap:wrap;gap:10px}
+.actions button{border:0;border-radius:14px;min-height:51px;background:#086fa8;color:#fff;padding:13px 18px;font-weight:900}
+.actions .secondary{border:2px solid #acd8e9;background:#edf9ff;color:#164b70}
+.note{font-size:13px;color:#48687d;line-height:1.5}
+[hidden]{display:none!important}
+@media(max-width:510px){.options{grid-template-columns:1fr}.options button{min-height:55px}.puzzle{padding:16px 10px}}
+</style></head><body><main>
+<a class="back" href="./index.html">← Home • الرئيسية</a>
+<header class="hero"><div class="mini">🧠 CONCRETE → PICTURES → REASONING • فهم وتفكير</div>
+<h1>🔢 Maths Thinking Lab <span lang="ar" dir="rtl">مختبر التفكير الرياضي</span></h1>
+<p>Think, try, explain! • فكر، جرّب، واشرح!</p>
+<p>24 carefully structured challenges, not a speed test. No timers or penalty for mistakes.</p>
+<div class="score" id="score">🏅 0 / 24 mastered</div>
+</header>
+<section class="work"><h2>Choose your challenge level • اختر المستوى</h2>
+<div class="levels"><button id="level1" data-level="1" type="button" aria-pressed="true">🌱 Explore (1–8)</button><button id="level2" data-level="2" type="button" aria-pressed="false">🌟 Think (9–16)</button><button id="level3" data-level="3" type="button" aria-pressed="false">🚀 Challenge (17–24)</button></div>
+<div id="progress" class="progress" aria-live="polite">Challenge 1 / 8</div>
+<div class="puzzle"><div id="prompt"></div><p id="arabic" lang="ar" dir="rtl"></p><div id="objects" aria-label="Visual maths representation"></div></div>
+<div class="options" id="options" role="group" aria-label="Choose an answer"></div>
+<p id="feedback" role="status" aria-live="polite" class="notice">Look carefully. Take your time! • فكر جيداً.</p>
+<div class="actions"><button id="hint" class="secondary" type="button">💡 Show a hint • تلميح</button><button id="explain" class="secondary" type="button" hidden>🧠 Why? • لماذا؟</button><button id="next" type="button" hidden>Next challenge ➜ • التالي</button></div></section>
+<aside class="parent"><strong>👨‍👩‍👧 Parent & Teacher Notes</strong>
+<p class="note">A supplementary Grade 1 reasoning extension informed by UK KS1 number and shape study, US Common Core Grade 1 operations and place value, and Qatar's emphasis on critical thinking. The three levels are not certified grade bands or standardised IQ tests. Encourage children to use counters, ten frames and spoken explanations. Progress is local to this device; earlier activity rewards are untouched.</p>
+<p class="note">Use one short session at a time. A correct answer marks a challenge complete once; a wrong answer gives a clue rather than a penalty.</p></aside>
+</main><script src="./maths-thinking.js?v=reasoning-1"></script></body></html>
