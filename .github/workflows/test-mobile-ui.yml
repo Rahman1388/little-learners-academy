@@ -47,6 +47,9 @@ on:
       - "grade3-science.html"
       - "grade3-science-data.js"
       - "grade3-science.js"
+      - "grade3-mixed-quest.html"
+      - "grade3-mixed-quest.js"
+      - "scripts/test-grade3-mixed.cjs"
       - "grade2-mixed-quest.js"
       - "fractions-lab.html"
       - "fractions-lab.js"
@@ -129,3 +132,4 @@ jobs:
           node scripts/test-mega-upgrade.cjs
           node scripts/test-grade2-english.cjs
           node scripts/test-grade2-mixed.cjs
+          node scripts/test-grade3-mixed.cjs
