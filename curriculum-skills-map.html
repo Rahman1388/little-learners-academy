@@ -1,0 +1,44 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; media-src 'self'; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
+<meta name="theme-color" content="#daf8ed"><link rel="icon" href="./icon.svg"><title>Parent Skills Map | Little Learners Academy</title>
+<style>
+:root{font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif;color:#183f61}*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:linear-gradient(120deg,#d4f3ff,#fff5d1 55%,#e8e4ff)}
+main{max-width:960px;padding:13px;margin:auto}a,button{font:inherit}a:focus-visible,button:focus-visible{outline:4px solid #8a1538;outline-offset:3px}
+.back,.go{display:inline-flex;align-items:center;text-decoration:none;color:#124769;background:white;border-radius:15px;padding:12px 15px;min-height:48px;font-weight:900}
+.hero,.panel,.subject{border:3px solid #fff;background:#fffd;border-radius:26px;box-shadow:0 6px #b5dbe3;padding:clamp(16px,3vw,26px);margin:15px 0}
+.hero{background:linear-gradient(125deg,#fff5cb,#fff,#e5fcf7)}h1{font-size:clamp(28px,6vw,42px);line-height:1.14;margin:9px 0}h1 span{font-size:.65em;display:block;margin:8px 0}h2{font-size:24px;margin:0 0 9px}h3{margin:0;font-size:18px}p{line-height:1.55}.note{font-size:13px;color:#4d6a7e}
+.summary{background:#e0f9ed;border-radius:18px;padding:14px;font-size:19px;font-weight:900}.subjects{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}
+.subject{margin:0}.subject .name{display:flex;gap:9px;align-items:center;flex-wrap:wrap}
+.subject .name span{font-size:29px}.subject .count{font-size:13px;color:#536a75;font-weight:900}
+.skill{background:#fff;border:2px solid #d5eaf0;border-radius:15px;padding:12px;margin:10px 0}
+.skillhead{display:flex;justify-content:space-between;align-items:flex-start;gap:9px}
+.skillhead small{white-space:nowrap;font-weight:900}.meter{background:#e7eef3;height:13px;border-radius:50px;overflow:hidden;margin:9px 0}
+.fill{height:100%;background:#249f75;display:block;width:0%}
+.skill a{display:inline-block;font-size:14px;font-weight:900;color:#08668f;padding:7px 0;overflow-wrap:anywhere}
+.gaps{padding-left:22px;line-height:1.7}.caution{background:#fff2d5;border-radius:18px;padding:15px}
+@media(max-width:650px){.subjects{grid-template-columns:1fr}.skillhead{flex-wrap:wrap}}
+</style></head><body><main>
+<a class="back" href="./index.html">← Home • الرئيسية</a>
+<header class="hero"><div style="color:#8a1538;font-weight:950">📋 FAMILY LEARNING GUIDE • دليل التعلم للأسرة</div>
+<h1>🌱 My Skills Map <span lang="ar" dir="rtl">خريطة مهاراتي</span></h1>
+<p>See which skills each activity practises, what has been tried, and where to explore next. <span lang="ar" dir="rtl">تابع المهارات التي يتدرب عليها الطفل وحدد الخطوة التالية.</span></p>
+<div class="summary" id="mapSummary" role="status" aria-live="polite">Loading skill progress…</div>
+<p class="note">This map reads the completion history already stored on this device; it does not send data anywhere.</p></header>
+<section class="panel"><h2>🎒 Five learning areas <span lang="ar" dir="rtl">خمسة مجالات تعليمية</span></h2>
+<div class="subjects" id="skillSubjects"></div></section>
+<section class="panel"><h2>🧭 What the map does—and doesn't mean</h2>
+<p>Our activities overlap with broad early-primary topics used in British KS1 and US Grade 1. This is a <strong>supplementary practice map</strong>, not a verified standards crosswalk or evidence of full mastery.</p>
+<div class="caution"><strong>Still needing curriculum and specialist review:</strong>
+<ul class="gaps">
+<li>Explicit progression for phoneme-level decoding, spelling and reading fluency</li>
+<li>Teacher-reviewed Arabic literacy, Qatar History and Islamic Studies</li>
+<li>Broader writing, extended comprehension, measurement and place-value assessments</li>
+<li>Pronunciation checks by qualified English and Arabic educators</li>
+</ul></div>
+<p>Completing an activity means a correct answer was recorded at least once, not that a child has independently mastered the skill. Parents can ask their child to explain an answer, practise with real objects, and revisit difficult questions.</p>
+<a class="go" href="./parent-progress.html">📊 Parent Progress • تقدم الطفل</a>
+</section>
+<script src="./activity-data.js?v=skills-map-1"></script><script src="./curriculum-skills-map.js?v=skills-map-1"></script>
+</main></body></html>
