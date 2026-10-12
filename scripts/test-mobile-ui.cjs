@@ -846,6 +846,32 @@ const fs=require("node:fs");
  assert.equal(await page.locator('#items .item[data-i="1"] .speakBtn.arBtn').isDisabled(),true,"Arabic شمس must be held in drawing lesson too");
  assert.equal(await page.locator('#items .item[data-i="1"] .speakBtn.en').isEnabled(),true,"English sun must remain playable");
  await assertMobile();
+ // Parent listening report: the four pattern words have selective audio holds.
+ await goto("index.html");
+ await page.locator("#girlVoice").click();
+ await page.locator('#subjects .subject[data-id="arts"]').click();
+ await page.locator('#lessonList .lessonCard[data-id="patterns"]').click();
+ assert.equal(await page.locator('#items .item[data-i="0"] .speakBtn.en').isDisabled(),true,
+   "Unclear female-style English red must be paused");
+ for(let i=0;i<4;i++){
+   assert.equal(await page.locator('#items .item[data-i="'+i+'"] .speakBtn.arBtn').isDisabled(),true,
+     "Both Arabic-style colours are unclear; Arabic child audio must be paused");
+ }
+ for(let i=1;i<4;i++){
+   assert.equal(await page.locator('#items .item[data-i="'+i+'"] .speakBtn.en').isEnabled(),true,
+     "Clear-rated English female-style pattern word should remain playable");
+ }
+ await page.locator("#lessonBoyVoice").click();
+ for(let i=0;i<4;i++){
+   const clip=page.locator('#items .item[data-i="'+i+'"] .speakBtn.en');
+   assert.equal(await clip.isEnabled(),true,
+     "All four male-style English pattern recordings were marked clear");
+ }
+ await page.locator('#items .item[data-i="0"] .speakBtn.en').click();
+ const recordedPattern=await page.evaluate(()=>window.__recordedAudioUrls.at(-1));
+ assert(recordedPattern.includes("audio/en/patterns-0-boy.mp3"),
+   "Clear English male-style red recording was not played");
+ await assertMobile();
  await goto("voice-test.html");
  await page.locator("audio").first().waitFor();
  const numPlayers=await page.locator("audio").count();
