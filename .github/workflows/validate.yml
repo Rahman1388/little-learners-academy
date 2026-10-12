@@ -29,6 +29,7 @@ jobs:
           node --check privacy-controls.js
           node --check curriculum.js
           node --check sw.js
+          node --check science-sort.js
           node --check phonics-adventure.js
           node --check sound-detective.js
           node --check activity-data.js
