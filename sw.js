@@ -1,4 +1,4 @@
-const CACHE="lla-v49";
+const CACHE="lla-v50";
 // Download essential three-repeat words once on installation so phonics lessons
 // can play from cache even on a patchy mobile connection.
 const PHONICS_PRACTICE=Array.from({length:4},(_,i)=>[
