@@ -58,9 +58,10 @@ const assert=require("node:assert/strict");
  await page.locator('#subjects .subject[data-id="english"]').click();
  await page.locator('#lessonList .lessonCard[data-id="words"]').click();
  const beforeFlagged=await page.evaluate(()=>window.__clips.length);
- await page.locator(".speakBtn.en").first().click();
- assert.match(await page.locator("#feedback").textContent(),/paused for pronunciation review/);
- assert.equal(await page.evaluate(()=>window.__clips.length),beforeFlagged,"Previously flagged clip played unexpectedly");
+ assert.equal(await page.locator(".speakBtn.en").first().isDisabled(),true,
+  "Previously flagged recording must be disabled for a child");
+ assert.equal(await page.evaluate(()=>window.__clips.length),beforeFlagged,
+  "Previously flagged clip played unexpectedly");
  await fit();
  assert.deepEqual(errors,[],"Browser JS errors");
  console.log("PASS: 52-word studio, both languages/profiles, parent ratings, safe colour-audio hold and no device fallback");
