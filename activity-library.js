@@ -243,7 +243,10 @@ $("#nextChallenge").addEventListener("click",()=>{
 window.addEventListener("pageshow",progress);
 const requestedSubject=new URLSearchParams(window.location.search).get("subject");
 if(["math","english","science","life","arts"].includes(requestedSubject))$("#areaSelect").value=requestedSubject;
-skills();list();showResume();
+skills();
+const requestedSkill=new URLSearchParams(window.location.search).get("skill");
+if(requestedSkill&&[...$("#skillSelect").options].some(o=>o.value===requestedSkill))$("#skillSelect").value=requestedSkill;
+list();showResume();
 try{
  const requested=new URLSearchParams(location.search).get("activity");
  if(requested&&activities.some(a=>a.id===requested))open(requested);
