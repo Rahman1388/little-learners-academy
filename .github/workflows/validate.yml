@@ -34,6 +34,7 @@ jobs:
           node --check sound-detective.js
           node --check activity-data.js
           node --check activity-library.js
+          node --check maths-thinking.js
           node --check curriculum-skills-map.js
           node --check grade2-pilot-data.js
           node --check grade2-pilot.js
@@ -74,6 +75,8 @@ jobs:
           test -f activity-library.html
           test -f activity-data.js
           test -f activity-library.js
+          test -f maths-thinking.html
+          test -f maths-thinking.js
           test -f grade2-pilot.html
           test -f grade2-pilot-data.js
           test -f grade2-pilot.js
