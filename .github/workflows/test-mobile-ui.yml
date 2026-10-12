@@ -60,6 +60,8 @@ on:
       - "math-story-village.html"
       - "qatar-mini-market.html"
       - "qatar-mini-market.js"
+      - "science-sort.html"
+      - "science-sort.js"
       - "international-benchmark.html"
       - "scripts/test-mega-upgrade.cjs"
       - "activity-data.js"
