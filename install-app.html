@@ -1,0 +1,59 @@
+<!doctype html><html lang="en"><head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'none'">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#79d8ff"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="apple-mobile-web-app-title" content="Little Learners">
+<link rel="icon" href="./icon.svg" type="image/svg+xml"><link rel="manifest" href="./manifest.webmanifest">
+<title>Install Little Learners Academy • iPhone & Android</title>
+<style>
+:root{font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif;color:#1a4267;line-height:1.5}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(125deg,#d6f7ff,#fff3bd,#f5e6ff);min-height:100vh}
+main{max-width:780px;margin:0 auto;padding:16px max(14px,env(safe-area-inset-right)) max(38px,env(safe-area-inset-bottom))}
+a,button{font:inherit}a:focus-visible,button:focus-visible{outline:4px solid #8a1538;outline-offset:3px}
+.back{display:inline-flex;padding:12px 17px;background:white;border-radius:17px;text-decoration:none;color:#164768;font-weight:900;min-height:48px;align-items:center}
+header,section{background:#fffe;border:4px solid white;border-radius:27px;box-shadow:0 6px #add9e4;margin:17px 0;padding:clamp(17px,4vw,27px)}
+header{text-align:center;background:linear-gradient(120deg,#fff9d5,#fff,#e9faff)}
+h1{font-size:clamp(28px,6vw,43px);line-height:1.2;margin:12px 0}h1 span{font-size:.65em;display:block;margin-top:7px}
+h2{font-size:clamp(22px,5vw,27px);margin:0 0 9px}
+.step{display:flex;align-items:flex-start;gap:13px;padding:12px 0;border-bottom:1px solid #dceff5}
+.step:last-child{border-bottom:0}.number{background:#147fad;color:white;font-weight:950;border-radius:15px;min-width:42px;height:42px;display:grid;place-items:center;font-size:21px}
+.step p{margin:0;flex:1}.button{display:inline-flex;justify-content:center;align-items:center;background:#087fab;color:white;text-decoration:none;font-weight:900;border-radius:17px;padding:13px 19px;min-height:51px}
+.status{background:#e7f8ff;padding:13px;border-radius:15px;font-weight:850}
+.note{font-size:13px;color:#4e687c}
+.platformTag{font-weight:900;color:#8a1538}
+[hidden]{display:none!important}
+</style></head><body><main>
+<a class="back" href="./index.html">← Home • الرئيسية</a>
+<header><div class="platformTag">📱 PHONE FIRST • الهاتف أولاً</div>
+<h1>🌟 Little Learners on Your Phone <span lang="ar" dir="rtl">أكاديمية المتعلمين الصغار على هاتفك</span></h1>
+<p>Use the current learning app from your iPhone or Android home screen—no laptop or developer account needed just to use this version.</p>
+<p lang="ar" dir="rtl">يمكنك فتح التطبيق من الشاشة الرئيسية على آيفون أو أندرويد.</p>
+<div class="status" id="platformStatus" role="status" aria-live="polite">Choose the steps for your phone below.</div></header>
+<section id="iphoneSteps"><h2>🍎 iPhone / iPad • آيفون / آيباد</h2>
+<p>Recommended for families in Qatar. These instructions install the <strong>website to your Home Screen</strong>; this is not yet an Apple App Store download.</p>
+<div class="step"><span class="number">1</span><p>Open <strong>Little Learners Academy in Safari</strong> on your iPhone. If you're currently viewing this inside another app, use its menu to open in Safari.</p></div>
+<div class="step"><span class="number">2</span><p>Tap <strong>Share</strong> (the square with an upward arrow). Depending on your iOS version, you may need to use the Safari page menu to find Share.</p></div>
+<div class="step"><span class="number">3</span><p>Select <strong>Add to Home Screen</strong>. If offered, select <strong>Open as Web App</strong>.</p></div>
+<div class="step"><span class="number">4</span><p>Tap <strong>Add</strong>. Open the new Little Learners icon from your Home Screen!</p></div>
+<p class="note" lang="ar" dir="rtl">افتح الموقع في سفاري، ثم المشاركة ← إضافة إلى الشاشة الرئيسية ← إضافة.</p></section>
+<section id="androidSteps"><h2>🤖 Android • أندرويد</h2>
+<div class="step"><span class="number">1</span><p>Open Little Learners Academy in <strong>Chrome</strong> on your Android device.</p></div>
+<div class="step"><span class="number">2</span><p>Open Chrome's menu (<strong>⋮</strong>) and choose <strong>Install app</strong> or <strong>Add to Home screen</strong> (wording varies).</p></div>
+<div class="step"><span class="number">3</span><p>Confirm and open the icon on your Home Screen.</p></div></section>
+<section><h2>🏬 App Store & Google Play: coming later</h2>
+<p>We are preparing a separate <strong>signed, tested mobile application</strong> for the official stores. The website installed from your browser is not an approved store listing, so there are no App Store or Google Play download links yet.</p>
+<p>Store release requires developer accounts, real device testing, child-privacy review, accurate screenshots and approval from each store. We will not ask you to download an unofficial IPA or APK.</p>
+<a class="button" href="./index.html">🎮 Open Little Learners Academy</a></section>
+</main><script>
+(()=>{"use strict";
+const s=document.getElementById("platformStatus");const ua=navigator.userAgent||"";
+if(navigator.standalone===true||window.matchMedia("(display-mode: standalone)").matches){
+ s.textContent="✅ You're already using Little Learners from your Home Screen. • التطبيق يعمل من الشاشة الرئيسية";
+}else if(/iPhone|iPad|iPod/i.test(ua)){
+ s.textContent="🍎 iPhone detected: open this page in Safari and follow the four steps below.";
+ document.getElementById("androidSteps").hidden=true;
+}else if(/Android/i.test(ua)){
+ s.textContent="🤖 Android detected: open this page in Chrome and follow the Android steps below.";
+ document.getElementById("iphoneSteps").hidden=true;
+}else{s.textContent="📱 Choose iPhone or Android instructions below. Both work without an app store download today."}
+})();
+</script></body></html>
