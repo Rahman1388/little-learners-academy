@@ -43,17 +43,4 @@ h2{font-size:clamp(22px,5vw,27px);margin:0 0 9px}
 <p>We are preparing a separate <strong>signed, tested mobile application</strong> for the official stores. The website installed from your browser is not an approved store listing, so there are no App Store or Google Play download links yet.</p>
 <p>Store release requires developer accounts, real device testing, child-privacy review, accurate screenshots and approval from each store. We will not ask you to download an unofficial IPA or APK.</p>
 <a class="button" href="./index.html">🎮 Open Little Learners Academy</a></section>
-</main><script>
-(()=>{"use strict";
-const s=document.getElementById("platformStatus");const ua=navigator.userAgent||"";
-if(navigator.standalone===true||window.matchMedia("(display-mode: standalone)").matches){
- s.textContent="✅ You're already using Little Learners from your Home Screen. • التطبيق يعمل من الشاشة الرئيسية";
-}else if(/iPhone|iPad|iPod/i.test(ua)){
- s.textContent="🍎 iPhone detected: open this page in Safari and follow the four steps below.";
- document.getElementById("androidSteps").hidden=true;
-}else if(/Android/i.test(ua)){
- s.textContent="🤖 Android detected: open this page in Chrome and follow the Android steps below.";
- document.getElementById("iphoneSteps").hidden=true;
-}else{s.textContent="📱 Choose iPhone or Android instructions below. Both work without an app store download today."}
-})();
-</script></body></html>
+</main><script src="./install-app.js"></script></body></html>
