@@ -68,6 +68,8 @@ on:
       - "science-sort.js"
       - "international-benchmark.html"
       - "scripts/test-mega-upgrade.cjs"
+      - "foundation-check.html"
+      - "foundation-check.js"
       - "activity-data.js"
       - "activity-library.js"
       - "scripts/test-mobile-ui.cjs"
