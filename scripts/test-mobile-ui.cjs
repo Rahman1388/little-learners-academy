@@ -931,7 +931,8 @@ const fs=require("node:fs");
  await page.locator("#startCheck").click();
  for(let i=1;i<15;i++){
    await page.locator("#checkAnswers button").first().click();
-   await page.locator("#nextQuestion").click();
+   // The final answer immediately opens the supportive results screen.
+   if(i<14)await page.locator("#nextQuestion").click();
  }
  assert.equal(await page.locator("#summary").isVisible(),true);
  assert.equal(await page.locator("#results .result").count(),5);
