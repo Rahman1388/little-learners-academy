@@ -65,7 +65,7 @@ function choose(choice,button){
  }
  answered=true;button.classList.add("correct");
  $("#sortOptions").querySelectorAll("button").forEach(b=>b.disabled=true);
- done.add(index);write(KEY,{done:[...done].sort((a,b)=>a-b),completed:done.size===rounds.length});
+ done.add(index);write(KEY,{done:[...done].sort((a,b)=>a-b),completed:done.size===rounds.length,rewarded:Boolean((read(KEY)||{}).rewarded)});
  $("#sortFeedback").className="feedback good";
  $("#sortFeedback").textContent="✅ "+data[4]+" • أحسنت!";
  $("#progressFill").style.width=(done.size/rounds.length*100)+"%";
