@@ -51,6 +51,8 @@ jobs:
           node --check grade3-english.js
           node --check grade3-science-data.js
           node --check grade3-science.js
+          node --check grade3-mixed-quest.js
+          node --check scripts/test-grade3-mixed.cjs
           node --check fractions-lab.js
           node --check scripts/check-learning-content.cjs
           node --check learning-passport.js
@@ -99,6 +101,9 @@ jobs:
           test -f grade3-science.html
           test -f grade3-science-data.js
           test -f grade3-science.js
+          test -f grade3-mixed-quest.html
+          test -f grade3-mixed-quest.js
+          test -f scripts/test-grade3-mixed.cjs
           test -f grade2-pilot-data.js
           test -f grade2-pilot.js
           test -f grade2-english.html
@@ -132,6 +137,8 @@ jobs:
           grep -q 'pronunciation-review.html' index.html
           grep -q 'math-story-village.html' index.html
           grep -q 'international-benchmark.html' grades-roadmap.html
+          grep -q 'grade3-mixed-quest.html' grades-roadmap.html
+          grep -q 'grade3-mixed-quest.html' index.html
 
       - name: Check Grade 1 and Grade 2 learning content and answers
         run: node scripts/check-learning-content.cjs
