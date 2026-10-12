@@ -917,6 +917,31 @@ const fs=require("node:fs");
  await assertMobile();
  await page.setViewportSize({width:768,height:1024});await assertMobile();
  await page.setViewportSize({width:390,height:844});
+ // Foundation Check: 15 formative questions, progress saved without changing stars.
+ await goto("foundation-check.html");
+ await page.locator("#startCheck").click();
+ assert.equal(await page.locator("#questionPanel").isVisible(),true);
+ const foundationQuestion=await page.locator("#questionText").textContent();
+ assert(foundationQuestion.length>8);
+ await page.locator("#checkAnswers button").first().click();
+ assert.equal(await page.locator("#nextQuestion").isVisible(),true);
+ assert.match(await page.locator("#checkProgress").textContent(),/1 \/ 15/);
+ await page.reload({waitUntil:"domcontentloaded"});
+ assert.match(await page.locator("#checkProgress").textContent(),/1 \/ 15/);
+ await page.locator("#startCheck").click();
+ for(let i=1;i<15;i++){
+   await page.locator("#checkAnswers button").first().click();
+   await page.locator("#nextQuestion").click();
+ }
+ assert.equal(await page.locator("#summary").isVisible(),true);
+ assert.equal(await page.locator("#results .result").count(),5);
+ const foundationLinks=await page.locator("#results .result a").count();
+ assert.equal(foundationLinks,5);
+ await assertMobile();
+ await page.setViewportSize({width:768,height:1024});await assertMobile();
+ await page.setViewportSize({width:390,height:844});
+ await page.locator("#restartCheck").click();
+ assert.match(await page.locator("#checkProgress").textContent(),/0 \/ 15/);
  await goto("voice-test.html");
  await page.locator("audio").first().waitFor();
  const numPlayers=await page.locator("audio").count();
