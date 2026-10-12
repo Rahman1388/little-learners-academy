@@ -73,9 +73,12 @@ function showAudioHelp(){
   const box=$("#feedback");
   if(box)box.innerHTML='🔊 Arabic voice is not available on this device yet. جرّب تحديث الصفحة أو تفعيل صوت عربي في إعدادات الجهاز.';
 }
-// Do not play reported questionable recordings to children. The Colours &
-// Patterns set is on hold after parent reports of strange red/yellow speech.
-// Adult comparison remains possible in pronunciation-review.html.
+// Parent listening QA: Colour & Shape Patterns (red/yellow/star/blue).
+// Both Arabic candidate styles were rated unclear for every item. English
+// female-style red was unclear; all English male-style samples and the other
+// three English female-style samples were reported clear. These are adult
+// listening results, NOT native-speaker educator approval.
+// Keep rejected child-facing audio paused and retain adult-only review access.
 function pronunciationHold(lang,index){
  if(!currentLesson)return false;
  // User-reported unclear Arabic شمس. Withhold the existing synthetic clip in
@@ -86,7 +89,10 @@ function pronunciationHold(lang,index){
     .replace(/[\u064b-\u065f\u0670]/g,"").trim();
   if(text==="شمس")return true;
  }
- if(currentLesson.id==="patterns")return true;
+ if(currentLesson.id==="patterns"){
+  if(lang==="ar")return true;
+  if(lang==="en"&&index===0&&state.voice!=="boy")return true;
+ }
  try{
   const review=JSON.parse(localStorage.getItem("lla-pronunciation-audit-v1")||"{}");
   const style=lang==="ar"?"boy":state.voice;
@@ -227,14 +233,15 @@ function openSubject(id){
 }
 function itemMarkup(x,i){
   const repeats=currentLesson?.id==="phonics"?" ×3":"";
-  const hold=currentLesson?.id==="patterns";
-  const disabled=hold?" disabled title=\"Voice undergoing native-speaker review\"":"";
-  const enLabel=hold?"🔇 Voice under review":"🔊 English"+repeats;
-  const sunArabic=String(x[2]).replace(/[\u064b-\u065f\u0670]/g,"").trim()==="شمس";
-  const arLabel=hold||sunArabic?"🔇 العربية قيد المراجعة":"🔊 العربية"+repeats;
-  const arabicDisabled=sunArabic&&!hold?' disabled title="Arabic شمس pronunciation is under review"':disabled;
-  const sunReview=sunArabic?'<a style="display:inline-block;margin-top:10px;font-weight:850" href="./pronunciation-review.html?lesson='+encodeURIComponent(currentLesson.id)+'&item='+i+'">🎧 Review شمس audio • مراجعة صوت شمس</a>':'';
-  return '<div class="item" data-i="'+i+'"><span>'+x[0]+'</span><b>'+x[1]+'</b><div class="ar itemAr">'+x[2]+'</div><div class="speakRow"><button class="speakBtn en" data-i="'+i+'"'+disabled+'>'+enLabel+'</button><button class="speakBtn arBtn" data-i="'+i+'"'+arabicDisabled+'>'+arLabel+'</button></div>'+sunReview+'</div>';
+  const englishHeld=pronunciationHold("en",i);
+  const arabicHeld=pronunciationHold("ar",i);
+  const disabledEnglish=englishHeld?' disabled title="English recording awaiting pronunciation review"':"";
+  const disabledArabic=arabicHeld?' disabled title="Arabic recording awaiting native-speaker pronunciation review"':"";
+  const enLabel=englishHeld?"🔇 English under review":"🔊 English"+repeats;
+  const arLabel=arabicHeld?"🔇 العربية قيد المراجعة":"🔊 العربية"+repeats;
+  const needsReview=englishHeld||arabicHeld;
+  const review=needsReview?'<a style="display:inline-block;margin-top:10px;font-weight:850" href="./pronunciation-review.html?lesson='+encodeURIComponent(currentLesson.id)+'&item='+i+'">🎧 Parent voice review • مراجعة النطق</a>':'';
+  return '<div class="item" data-i="'+i+'"><span>'+x[0]+'</span><b>'+x[1]+'</b><div class="ar itemAr">'+x[2]+'</div><div class="speakRow"><button class="speakBtn en" data-i="'+i+'"'+disabledEnglish+'>'+enLabel+'</button><button class="speakBtn arBtn" data-i="'+i+'"'+disabledArabic+'>'+arLabel+'</button></div>'+review+'</div>';
 }
 function openLesson(id){
   currentLesson=currentSubject&&currentSubject.lessons.find(l=>l.id===id);if(!currentLesson)return;
@@ -244,7 +251,7 @@ function openLesson(id){
   if(currentLesson.id==="patterns"){
     const notice=document.createElement("p");
     notice.className="notice";notice.setAttribute("role","status");
-    notice.textContent="🔇 Colour voice recordings are being reviewed for native pronunciation. Picture and text activities remain available. • أصوات الألوان قيد المراجعة";
+    notice.textContent="🎧 Your listening review is applied: unclear Arabic recordings and English female-style red are paused. Clear-rated English clips remain available for practice; teacher sign-off is still pending. • التسجيلات غير الواضحة قيد المراجعة";
     $("#lessonIntro").append(notice);
   }
   const reviewLink=document.createElement("a");
