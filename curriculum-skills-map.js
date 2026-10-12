@@ -9,6 +9,36 @@ const labels=[
 ];
 const $=s=>document.querySelector(s);
 function getCompleted(){try{const value=JSON.parse(localStorage.getItem("lla-activity-library-v1")||"{}");return value&&typeof value==="object"&&!Array.isArray(value)?value:{}}catch{return {}}}
+function getInsights(){try{const value=JSON.parse(localStorage.getItem("lla-practice-insights-v1")||"{}");return value&&typeof value==="object"&&!Array.isArray(value)?value:{}}catch{return {}}}
+function recommend(){
+ const finished=getCompleted(),insights=getInsights(),container=$("#recommendedActivities");container.replaceChildren();
+ // A balanced first pass: one recommendation per learning area, following
+ // the published activity order inside each area.
+ const selected=[];
+ for(const [area,icon] of labels){
+  const pool=activities.filter(a=>a.area===area);
+  const unfinished=pool.filter(a=>finished[a.id]!==true);
+  const needy=pool.filter(a=>{
+   const p=insights[a.id]||{};
+   return Number(p.incorrect)>0&&Number(p.correct)<2;
+  });
+  const choose=needy.find(a=>!selected.includes(a))||unfinished.find(a=>!selected.includes(a))||pool[0];
+  if(choose)selected.push(choose);
+ }
+ const allComplete=activities.length>0&&activities.every(a=>finished[a.id]===true);
+ $("#nextLearningStatus").textContent=allComplete
+  ?"All activities have been tried successfully. These are optional refreshers. • مراجعة اختيارية"
+  :"Five small steps from across the learning areas. Previous mistakes may be suggested again. • خمس خطوات قصيرة";
+ selected.forEach((a,i)=>{
+  const info=insights[a.id]||{};
+  const needsReview=Number(info.incorrect)>0&&Number(info.correct)<2;
+  const card=document.createElement("article");card.className="nextItem";
+  const heading=document.createElement("strong");heading.textContent=(i+1)+". "+a.icon+" "+a.title;
+  const details=document.createElement("small");details.textContent=a.skill+" • "+(needsReview?"Try again • حاول مرة أخرى":finished[a.id]?"Refresh • راجع":"Explore • استكشف");
+  const link=document.createElement("a");link.href="./activity-library.html?activity="+encodeURIComponent(a.id);link.textContent="▶ Start this activity • ابدأ النشاط";
+  card.append(heading,details,link);container.append(card);
+ });
+}
 function build(){
  const done=getCompleted(),container=$("#skillSubjects");container.replaceChildren();
  let total=0,finished=0;
@@ -41,6 +71,7 @@ function build(){
   container.append(section);
  });
  $("#mapSummary").textContent="⭐ "+finished+" / "+total+" mini-challenges completed • "+(total-finished)+" available to explore";
+ recommend();
 }
 build();
 window.addEventListener("pageshow",build);
