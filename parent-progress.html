@@ -47,6 +47,19 @@ h2{font-size:23px;margin:2px 0 12px}p{line-height:1.6}
 <div class="review"><div><strong>📖 Grade 2 Reading</strong><small>Stories, vocabulary and sentences • 24 questions</small></div><a href="./grade2-english.html">▶ Continue</a></div>
 <div class="review"><div><strong>🔬 Grade 2 Science</strong><small>Plants, animals, materials and weather • 18 questions</small></div><a href="./grade2-science.html">▶ Continue</a></div>
 <p class="note">These counts show completed mini-questions, not tested mastery or school grades. School curriculum alignment still requires qualified review.</p></section>
+<section class="section" id="grade3PilotProgress" aria-labelledby="grade3PilotHeading">
+<h2 id="grade3PilotHeading">🌻 Grade 3 Discovery Pilots <span lang="ar" dir="rtl">أنشطة الصف الثالث التجريبية</span></h2>
+<p>Optional introductory practice in multiplication, reading and science. These are <strong>54 pilot questions, not a complete Grade 3 syllabus or a measure of mastery</strong>. Progress is kept on this device.</p>
+<div class="stats" id="grade3PilotStats">
+<div class="stat"><strong id="grade3MathCount">0 / 18</strong><small>🧮 Mathematics • الرياضيات</small></div>
+<div class="stat"><strong id="grade3EnglishCount">0 / 18</strong><small>📖 English • الإنجليزية</small></div>
+<div class="stat"><strong id="grade3ScienceCount">0 / 18</strong><small>🔬 Science • العلوم</small></div>
+</div>
+<div class="review"><div><strong>🧮 Grade 3 Maths</strong><small>Equal groups, sharing and fractions • 18 questions</small></div><a href="./grade3-preview.html">▶ Continue</a></div>
+<div class="review"><div><strong>📖 Grade 3 Reading</strong><small>Comprehension, vocabulary and sentences • 18 questions</small></div><a href="./grade3-english.html">▶ Continue</a></div>
+<div class="review"><div><strong>🔬 Grade 3 Science</strong><small>Plants, forces and investigations • 18 questions</small></div><a href="./grade3-science.html">▶ Continue</a></div>
+<p class="note">These counts indicate correctly explored mini-questions—not curriculum certification or independent student assessment. For the planned Grades 1–6 sequence, visit the <a href="./grades-roadmap.html">learning roadmap</a>.</p>
+</section>
 <section class="section"><h2>📊 Subject Progress <span lang="ar" dir="rtl">التقدم حسب المادة</span></h2><div id="subjects"></div></section>
 <section class="section"><h2>🌱 Practise Again <span lang="ar" dir="rtl">تدرّب مرة أخرى</span></h2>
 <p>Challenges with incorrect attempts appear here. Encourage another try without pressure. A correct retry keeps the challenge available for reinforcement.</p>
@@ -72,7 +85,12 @@ const pilots=[
  ["lla-grade2-english-v1","g2e-",24,"#grade2EnglishCount"],
  ["lla-grade2-science-v1","g2s-",18,"#grade2ScienceCount"]
 ];
-for(const [storage,prefix,total,target] of pilots){
+for(const [storage,prefix,total,target] of [
+ ...pilots,
+ ["lla-grade3-preview-v1","g3-",18,"#grade3MathCount"],
+ ["lla-grade3-english-v1","g3e-",18,"#grade3EnglishCount"],
+ ["lla-grade3-science-v1","g3s-",18,"#grade3ScienceCount"]
+]){
  const saved=get(storage);
  const count=Object.keys(saved).filter(key=>key.startsWith(prefix)&&saved[key]===true).length;
  $(target).textContent=Math.min(total,count)+" / "+total;
