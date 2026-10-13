@@ -1129,6 +1129,17 @@ const fs=require("node:fs");
  assert.match(await page.locator("#sciencePassage").textContent(),/toy cars/);
  await page.setViewportSize({width:768,height:1024});await assertMobile();
  await page.setViewportSize({width:390,height:844});await assertMobile();
+ // Grade 4 family overview reuses the existing three pilot progress stores.
+ await goto("choose-grade.html");
+ assert.equal(await page.locator('#grade4 a[href="./grade4-progress.html"]').count(),1);
+ await goto("grade4-progress.html");
+ assert.match(await page.locator("#grade4Total").textContent(),/3 \/ 60/);
+ assert.match(await page.locator("#mathCount").textContent(),/1 \/ 24/);
+ assert.match(await page.locator("#readingCount").textContent(),/1 \/ 18/);
+ assert.match(await page.locator("#scienceCount").textContent(),/1 \/ 18/);
+ await assertMobile();
+ await page.setViewportSize({width:768,height:1024});await assertMobile();
+ await page.setViewportSize({width:390,height:844});await assertMobile();
  await goto("voice-test.html");
  await page.locator("audio").first().waitFor();
  const numPlayers=await page.locator("audio").count();
