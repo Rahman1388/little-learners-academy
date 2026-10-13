@@ -4,6 +4,8 @@
 
 An independent bilingual English–Arabic learning platform for primary-school children.
 
+**Project history & continuation guide:** [PROJECT-CONTINUITY.md](PROJECT-CONTINUITY.md) — current features, owner requirements, audio decisions, curriculum status, testing and next steps. Use this document when earlier conversations are hard to find.
+
 ## Current Grade 1 foundation
 - Child-friendly bilingual dashboard
 - English, Mathematics, Science, Life Skills and Creative Arts
