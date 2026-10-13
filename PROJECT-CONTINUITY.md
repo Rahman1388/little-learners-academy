@@ -149,3 +149,14 @@ Ask the assistant to inspect this file and live repository before making changes
 - The Grade 6 overview now honestly describes **24 maths questions + 18 English reading questions** (42 distinct questions across two limited pilots), not a full Grade 6 curriculum or a teacher-validated course. The school/curriculum alignment and draft Arabic wording remain awaiting qualified review.
 - Added `scripts/check-grade6-reading.cjs` and mobile browser checks; **Validate app**, **Child App Security Gate**, **Test mobile reading and audio**, and **GitHub Pages deployment** all passed for the working release before this documentation update.
 - Next useful development: a small Grade 6 science investigation pilot, parent-facing Grade 6 coverage summary and more demanding written-response activities—not just extra multiple-choice counts.
+
+
+## 13 October 2026 — Grade 6 science investigation pilot
+
+- Added **18 original Grade 6 science inquiry questions** across three fictional classroom investigations: coastal/mangrove ecosystem evidence, solar electricity and low-voltage circuits, and water separation/evaporation/condensation. New files: `grade6-science.html`, `grade6-science-data.js`, `grade6-science.js`.
+- Each of the three scenarios includes six questions, draft Arabic prompts, optional hints, and explanations of scientific reasoning. Safety cautions explicitly prohibit experimenting with mains electricity, drinking classroom samples, disturbing wildlife or visiting protected areas without permission.
+- Grade chooser and roadmap now show a **limited 24-question Grade 6 maths pilot, 18-question English reading pilot, and 18-question science pilot (60 questions across three different subjects)**. They are not full grade-level curricula, and the experiments are hypothetical demonstrations, not observed Qatar field research.
+- Curriculum Compass and School Pathways now link only introductory related science topics, with Earth/space breadth, writing and other missing competencies still visible. The science module is **not school-standards certification**, Arabic language review, independent pedagogical evaluation or proof of mastery.
+- Saved science completion is browser-local under `lla-grade6-science-v1`. No new accounts, microphone, tracking, or recordings; existing stars/progress and preferred English voice recordings were not modified.
+- Added deterministic data integrity checks in `scripts/test-grade6-science.cjs` and browser regression checks for mobile/tablet layout, wrong-answer retry, hints, explanations and persistence. Check latest GitHub workflow conclusions before claiming final release.
+
