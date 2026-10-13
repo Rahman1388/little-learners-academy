@@ -41,6 +41,8 @@ jobs:
           node --check practice-path.js
           node --check maths-thinking.js
           node --check number-line-trail.js
+          node --check skip-count-rocket.js
+          node --check scripts/test-skip-count.cjs
           node --check scripts/test-number-line.cjs
           node --check curriculum-skills-map.js
           node --check curriculum-compass.js
@@ -138,6 +140,9 @@ jobs:
           test -f number-bonds.html
           test -f number-line-trail.html
           test -f number-line-trail.js
+          test -f skip-count-rocket.html
+          test -f skip-count-rocket.js
+          test -f scripts/test-skip-count.cjs
           test -f activity-library.html
           test -f activity-data.js
           test -f activity-library.js
@@ -223,6 +228,8 @@ jobs:
           grep -q 'parent-report.html' index.html
           grep -q 'parent-report.html' parent-progress.html
           grep -q 'activity-data.js' activity-library.html
+          grep -q 'skip-count-rocket.html' index.html
+          grep -q 'skip-count-rocket.js' skip-count-rocket.html
           grep -q 'pronunciation-review.html' index.html
           grep -q 'math-story-village.html' index.html
           grep -q 'international-benchmark.html' grades-roadmap.html
