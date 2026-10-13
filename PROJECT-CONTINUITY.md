@@ -106,3 +106,11 @@ Ask the assistant to inspect this file and live repository before making changes
 - The dashboard reads **existing** browser-local keys `lla-grade4-math-v1`, `lla-grade4-reading-v1`, and `lla-grade4-science-v1` and displays counts for 24 maths + 18 reading + 18 science questions (60 short questions total). No new student profiles, storage keys, microphones, or tracking.
 - Added a link on `choose-grade.html`, PWA cache entry, validation syntax check and a responsive Playwright test that verifies all three counts after solving one question in each pilot.
 - Keep describing these as **supplementary practice questions, not official curriculum completion or a measure of mastery**. Check CI conclusions and deployment after this documentation commit.
+
+## 13 October 2026 — Grade 5 maths starter pilot
+
+- Released a **limited 24-question Grade 5 mathematics starter pilot** in `grade5-math.html`, `grade5-math-data.js` and `grade5-math.js`. The four six-question strands cover larger-number place value, operations and word problems, fractions/decimals, and measure/data.
+- Each question includes an English prompt, draft Arabic support wording, a helpful hint, and a worked English explanation; browser-local progress uses `lla-grade5-math-v1`. There are no new accounts, recordings, analytics, advertisements, or microphone permissions.
+- The Grade chooser marks Grade 5 as a **limited pilot** and Grade 6 as **planned**. Do not claim Grade 5 is a complete school curriculum, or that its Arabic support has been independently reviewed.
+- Updated the offline PWA cache, validation syntax checks, and mobile Playwright regression checks. **The mobile test, validation, security gate, and GitHub Pages deployment for the release passed**.
+- Next priorities: qualified subject/Arabic review, more contextual problems and explanations, parental feedback, Grade 5 English and science pilots, and measurable learning outcomes before public school-scale promotion.
