@@ -122,3 +122,10 @@ Ask the assistant to inspect this file and live repository before making changes
 - Added `INDEPENDENT_LEARNING_REVIEW.md`, a practical self-review checklist covering correctness, Grade 1–5 pilot boundaries, bilingual content, pronunciation, touch accessibility and privacy.
 - Added `scripts/check-grade5-content.cjs` as a deterministic 24-question Grade 5 maths answer/ID/hint/explanation integrity gate, invoked from `Validate app` on repository changes.
 - These checks do **not** provide teacher validation or certify Qatar curriculum alignment, English phoneme quality or Arabic pronunciation.
+
+
+## 13 October 2026 — Grade 5 science inquiry pilot
+
+- Added three original Grade 5 science inquiry topics and **18 supplementary questions**: Ecosystems & Interdependence; Earth, Space & Patterns; and Materials, Forces & Fair Tests. Each question has drafted Arabic support, hints and a concept explanation. Files `grade5-science.html`, `grade5-science-data.js`, `grade5-science.js`.
+- Device-only progress key `lla-grade5-science-v1`; no account, microphone, advertising, new voices or child identity data. The Grade 5 chooser now lists limited maths, reading, and science pilots.
+- Grade 5 is **not a complete or certified curriculum**; Arabic, formal curricular alignment and science content remain subject to qualified educator review. Verify current GitHub mobile, validation, security and Pages workflows before declaring the release complete.
