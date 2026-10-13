@@ -1199,6 +1199,36 @@ const fs=require("node:fs");
  assert.match(await page.locator("#grade6Progress").textContent(),/1 \/ 24/);
  await page.setViewportSize({width:768,height:1024});await assertMobile();
  await page.setViewportSize({width:390,height:844});await assertMobile();
+ // Grade 6 LIMITED English reading: evidence, research and privacy passages.
+ await goto("choose-grade.html");
+ assert.equal(await page.locator('#grade6 a[href="./grade6-reading.html"]').count(),1);
+ await goto("grade6-reading.html");
+ await page.locator("#readingStories .story").first().waitFor({state:"visible"});
+ assert.equal(await page.locator("#readingStories .story").count(),3);
+ await assertMobile();
+ await page.locator('#readingStories .story[data-story="shade"]').click();
+ assert.equal(await page.locator("#readingPlay").isVisible(),true);
+ assert.match(await page.locator("#readingPassage").textContent(),/paving surface/);
+ assert.match(await page.locator("#readingSkill").textContent(),/Evidence/);
+ assert.match(await page.locator("#readingDiscuss").textContent(),/measurements/);
+ await page.locator("#readingHint").click();
+ assert.equal(await page.locator("#readingHelp").isVisible(),true);
+ const g6answer=await page.evaluate(()=>window.LLA_GRADE6_READING.questions[0].answer);
+ const g6wrong=(g6answer+1)%3;
+ await page.locator('#readingAnswers button[data-answer="'+g6wrong+'"]').click();
+ assert.match(await page.locator("#readingFeedback").textContent(),/Good try/);
+ await page.locator('#readingAnswers button[data-answer="'+g6answer+'"]').click();
+ assert.equal(await page.locator("#readingExplanation").isVisible(),true);
+ assert.equal(await page.locator("#readingNext").isVisible(),true);
+ assert.match(await page.locator("#readingProgress").textContent(),/1 \/ 18/);
+ await page.locator("#readingNext").click();
+ assert.equal(await page.locator("#readingPlay").isVisible(),true);
+ await page.reload({waitUntil:"domcontentloaded"});
+ assert.match(await page.locator("#readingProgress").textContent(),/1 \/ 18/);
+ await page.locator('#readingStories .story[data-story="library"]').click();
+ assert.match(await page.locator("#readingPassage").textContent(),/student names/);
+ await page.setViewportSize({width:768,height:1024});await assertMobile();
+ await page.setViewportSize({width:390,height:844});await assertMobile();
  // Curriculum Compass reports honest cross-grade topical coverage and gaps.
  await goto("curriculum-compass.html");
  await page.locator("#coverageGrid .card").first().waitFor({state:"visible"});
@@ -1213,12 +1243,12 @@ const fs=require("node:fs");
    ["3",["18","18","18"]],
    ["4",["24","18","18"]],
    ["5",["24","18","18"]],
-   ["6",["24","0","0"]]
+   ["6",["24","18","0"]]
  ]){
   await page.locator("#grade").selectOption(grade);
   assert.deepEqual(await page.locator("#coverageGrid .card .count").allTextContents(),expected);
  }
- assert.equal(await page.locator("#coverageGrid .card.notYet").count(),2);
+ assert.equal(await page.locator("#coverageGrid .card.notYet").count(),1);
  assert.equal(await page.locator("#gradeGaps li").count(),3);
  await page.locator("#pathway").selectOption("qatar");
  assert.match(await page.locator("#pathwaySummary").textContent(),/Arabic, Islamic Studies and Qatar History/);
@@ -1242,9 +1272,9 @@ const fs=require("node:fs");
  await page.locator("#grade").selectOption("6");
  await page.locator("#subject").selectOption("english");
  assert.match(await page.locator("#coverageTitle").textContent(),/Year 6/);
- assert.equal(await page.locator("#topicLinked").textContent(),"0");
- assert.equal(await page.locator("#topicGaps").textContent(),"4");
- assert.equal(await page.locator("#topicCards .link").count(),0,"Do not invent Grade 6 English practice");
+ assert.equal(await page.locator("#topicLinked").textContent(),"2");
+ assert.equal(await page.locator("#topicGaps").textContent(),"2");
+ assert.equal(await page.locator('#topicCards a[href="./grade6-reading.html"]').count(),2,"Only evidence and comprehension topics link to the reading pilot");
  await page.locator("#subject").selectOption("science");
  assert.equal(await page.locator("#topicGaps").textContent(),"4");
  await page.locator("#subject").selectOption("math");
