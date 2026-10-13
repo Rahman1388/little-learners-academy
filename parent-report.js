@@ -42,7 +42,7 @@ function refresh(){
   lines.push("- "+name+": "+n+" / "+all.length);
  }
  const requested=data.filter(a=>confidence[a.id]==="review");
- $("#reflectionCount").textContent="🌱 "+requested.length+" activity"+(requested.length===1?"":"ies")+" marked for another practice round";
+ $("#reflectionCount").textContent="🌱 "+requested.length+" "+(requested.length===1?"activity":"activities")+" marked for another practice round";
  lines.push("Learner-requested reviews: "+requested.length+" (optional self-report, not a grade)");
  const waiting=data.filter(a=>completed[a.id]!==true);
  waiting.sort((a,b)=>(Number(insights[b.id]?.incorrect)||0)-(Number(insights[a.id]?.incorrect)||0));
