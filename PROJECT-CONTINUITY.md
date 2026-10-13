@@ -92,3 +92,10 @@ Ask the assistant to inspect this file and live repository before making changes
 - Targeted skills include retrieving information, ordering events, contextual vocabulary, inference and finding evidence. Each answer has a hint and an explanation; completion is stored only on device under `lla-grade4-reading-v1`.
 - Grade 4 chooser now links maths and reading. This is supplementary English-medium reading practice with Arabic question support, **not a certified Qatar syllabus**. It adds no speech recording or other child data collection.
 - Confirm latest mobile, validation, security and Pages workflows after release before claiming all tests passed.
+
+## 13 October 2026 — Grade 4 Science pilot
+
+- Added a further **18 science inquiry questions** across three original brief contexts: Habitats & Food Chains; Materials & Changes; Forces & Fair Tests. Each question includes Arabic support, a hint, correction feedback, and a worked concept explanation.
+- Files: `grade4-science.html`, `grade4-science-data.js`, `grade4-science.js`; chooser entry under Grade 4. Device-only progress key: `lla-grade4-science-v1`.
+- This is a **limited, English-medium supplementary science pilot**, not a complete or accredited Grade 4 science syllabus. No new voice recordings, microphones, accounts, or child-data collection.
+- Updated cached app shell and mobile regression tests. Verify latest validation, security, mobile, and deployment workflows before declaring the release complete.
