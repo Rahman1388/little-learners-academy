@@ -207,3 +207,12 @@ Ask the assistant to inspect this file and live repository before making changes
 - The published 451-question audited **source inventory stays at 451**: these twelve model-based practice stops form a separate guided game and are not double-counted as new curriculum questions. Grades 2–6 remain limited subject pilots.
 - `scripts/test-number-line.cjs` checks wrong-answer feedback, stepwise hints, all twelve answers, reload persistence, no duplicate stars, and 320px/390px/768px widths. The mobile Actions workflow, validation syntax checks and PWA shell cache include the new feature. Always confirm workflow conclusions after changes before stating that the release is fully validated.
 
+
+
+## 13 October 2026 — international activity-count comparison refreshed
+
+- Preserved the audited source inventory: **451 distinct short multiple-choice questions across Grades 1–6**, plus **six separate Grade 6 writing prompts**. The original Grade 1 activity library remains **151** short questions.
+- Refreshed the parent-facing `international-benchmark.html` with **20,000+ IXL skills** and **Prodigy Math's 1,500+ mathematics skills for Grades 1–8**, alongside the Khan Academy Kids, SplashLearn and ABCmouse comparisons. These are different content units, not equivalent learning outcomes.
+- Added four international-benchmark development priorities: worked learning models before quizzes, grade-specific skill mapping, family progress distinguished from mastery, and specialist pronunciation/Arabic/accessibility/curriculum review.
+- Updated phone/tablet benchmark test assertions and refreshed the offline PWA cache. The update adds **no new counted child questions** or changes to progress, approved C/D bus voice recordings, audio files, accounts or privacy.
+- Provider-published information is useful benchmarking, not an independent curriculum approval. Confirm the latest workflows before describing the release as verified.
