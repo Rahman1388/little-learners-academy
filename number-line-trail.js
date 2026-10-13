@@ -104,7 +104,7 @@ function feedback(text,kind=""){
  $("#answerFeedback").textContent=text;
  $("#answerFeedback").className="feedback"+(kind?" "+kind:"");
 }
-function open(index){
+function open(index,shouldScroll=true){
  if(!Number.isInteger(index)||index<0||index>=STATIONS.length)return;
  position=index;hops=0;solved=false;
  const s=station(),direction=s.delta>0?"right ➜":"left ⬅";
@@ -119,7 +119,7 @@ function open(index){
  $("#nextStation").hidden=true;
  feedback("Choose the landing number. • اختر العدد الذي وصلت إليه.");
  options();drawLine();menu();progress();
- $("#game").scrollIntoView({behavior:"auto",block:"start"});
+ if(shouldScroll)$("#game").scrollIntoView({behavior:"auto",block:"start"});
 }
 function showJump(){
  if(solved)return;
@@ -170,5 +170,5 @@ $("#nextStation").addEventListener("click",()=>{
  if(next)open(STATIONS.indexOf(next));
  else open((position+1)%STATIONS.length);
 });
-open(position);
+open(position,false);
 })();
