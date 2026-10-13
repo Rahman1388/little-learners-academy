@@ -92,8 +92,8 @@ topic("algebra","Expressions and equations","التعابير والمعادلا
 topic("fractions","Fractions and decimals","الكسور والعشريات","Calculate with fractions, decimals and percentages.","./grade6-math.html"),
 topic("data","Geometry and statistics","الهندسة والإحصاء","Explore introductory area, volume and data questions.","./grade6-math.html")],
 english:[
-topic("complex","Complex text comprehension","فهم النصوص المركبة","Read extended literary and informational texts.",null,"gap"),
-topic("evidence","Citing textual evidence","الاستشهاد بالأدلة","Support responses with evidence from texts.",null,"gap"),
+topic("complex","Complex text comprehension","فهم النصوص المركبة","Try three original English reading passages; wider text genres and full course coverage remain missing.","./grade6-reading.html"),
+topic("evidence","Citing textual evidence","الاستشهاد بالأدلة","Answer questions on claims and evidence in original English passages; formal analytical writing is still missing.","./grade6-reading.html"),
 topic("writing","Structured essays","كتابة المقالات","Plan, draft and revise longer writing.",null,"gap"),
 topic("vocab","Advanced vocabulary","المفردات المتقدمة","Understand academic words in context.",null,"gap")],
 science:[
