@@ -40,6 +40,7 @@ jobs:
           node --check practice-path.js
           node --check maths-thinking.js
           node --check curriculum-skills-map.js
+          node --check curriculum-compass.js
           node --check grade2-pilot-data.js
           node --check grade2-pilot.js
           node --check grade2-english-data.js
@@ -90,6 +91,8 @@ jobs:
           test -f styles.css
           test -f app.js
           test -f curriculum.js
+          test -f curriculum-compass.html
+          test -f curriculum-compass.js
           test -f manifest.webmanifest
           test -f sw.js
           test -f phonics-adventure.html
