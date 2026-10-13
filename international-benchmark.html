@@ -12,7 +12,7 @@ main{max-width:910px;padding:14px;margin:auto}a{color:#095f8c;overflow-wrap:anyw
 h1{font-size:clamp(30px,6vw,44px);line-height:1.15;margin:10px 0}h1 span{display:block;font-size:.65em;margin-top:8px}
 h2{font-size:24px;margin:0 0 10px}h3{font-size:20px;margin:4px 0}
 p{line-height:1.6}
-.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px;margin:17px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(225px,1fr));gap:13px;margin:17px 0}
 .compare{margin:0;padding:16px;border-color:#d7e6f1;box-shadow:none}
 .compare strong{display:block;font-size:clamp(22px,4.6vw,29px);margin:12px 0;color:#0b6d8e}
 .compare small{font-size:13px;color:#526c7e}
@@ -38,11 +38,13 @@ th{background:#dff6ff}
 </header>
 <section class="panel"><h2>📊 A fair comparison of scale</h2>
 <div class="grid">
-<article class="compare"><div class="ribbon">🌟 LITTLE LEARNERS ACADEMY</div><strong>151 mini-challenges</strong><p>Plus 24 Math Story Village word problems and other distinct learning games.</p><small>Currently designed for Grade 1. Grades 2–6 are a roadmap, not released full curricula.</small></article>
-<article class="compare"><div class="ribbon">🐻 KHAN ACADEMY KIDS</div><strong>4,000+</strong><p>The provider counts <em>activities, videos and books together</em>. Ages 2–8; includes early literacy, maths and creative learning.</p><small><a href="https://www.khanacademy.org/kids/pricing" target="_blank" rel="noopener noreferrer">Khan Academy Kids: official figures ↗</a></small></article>
-<article class="compare"><div class="ribbon">📘 IXL</div><strong>K–12 breadth</strong><p>Lists 357 Grade 1 maths skills and 235 Grade 1 English language arts skills, with adaptive practice.</p><small>Not a directly comparable count of individual activities. <a href="https://www.ixl.com/math/grade-1/skills" target="_blank" rel="noopener noreferrer">IXL's official Grade 1 maths skills ↗</a></small></article>
+<article class="compare"><div class="ribbon">🌟 LITTLE LEARNERS ACADEMY</div><strong>151 Grade 1 mini-challenges</strong><p>Plus separate maths, reading, sorting, story and sentence-building activities. Grades 2–6 also have <em>limited playable pilot questions</em>.</p><small>Not 151 full lessons, not a certified Grade 1–6 curriculum. <a href="./choose-grade.html">See each grade’s actual pilot ↗</a></small></article>
+<article class="compare"><div class="ribbon">🐻 KHAN ACADEMY KIDS</div><strong>4,000+</strong><p>The provider advertises <em>4,000+ activities and books</em> for early learners. Covers preschool through Grade 2, not Grade 6.</p><small><a href="https://www.khanacademy.org/kids/pricing" target="_blank" rel="noopener noreferrer">Khan Academy Kids: official figures ↗</a></small></article>
+<article class="compare"><div class="ribbon">📘 IXL</div><strong>17,000+ skills</strong><p>Provider-published skills across five subjects and a comprehensive K–12 offering, including Grades 1–6. Skills are not individual activities.</p><small><a href="https://www.ixl.com/" target="_blank" rel="noopener noreferrer">IXL: official skill catalogue ↗</a></small></article>
+<article class="compare"><div class="ribbon">💦 SPLASHLEARN</div><strong>8,000+ activities</strong><p>Provider-published activities, games, printable worksheets and related learning resources for Pre-K through Grade 5.</p><small><a href="https://support.splashlearn.com/hc/en-us/articles/12275062512658-What-is-SplashLearn" target="_blank" rel="noopener noreferrer">SplashLearn: official description ↗</a></small></article>
+<article class="compare"><div class="ribbon">🐭 ABCMOUSE</div><strong>13,000+ activities</strong><p>Provider-published content across reading, mathematics, science and other areas for approximately ages 2–8 (up to Grade 2).</p><small><a href="https://www.abcmouse.com/learn/program/math-learning-program-online" target="_blank" rel="noopener noreferrer">ABCmouse: official current offering ↗</a></small></article>
 </div>
-<p class="warning">⚠️ 151 short questions ≠ 151 complete lessons. And 4,000+ items mixing books, videos and activities ≠ 4,000 equivalent questions. Numbers alone cannot establish learning quality.</p>
+<p class="warning">⚠️ Not equivalent units: our 151 short questions are not 151 complete lessons. Providers count different combinations of skills, games, books, worksheets and activities. Numbers alone cannot establish learning quality or school-curriculum alignment.</p>
 </section>
 <section class="panel" id="gulfSources">
 <h2>🇶🇦 🌍 International and Gulf references <span lang="ar" dir="rtl">المراجع الخليجية والعالمية</span></h2>
@@ -55,7 +57,7 @@ th{background:#dff6ff}
 <tr><td><strong>🇸🇦 Madrasati (Saudi Arabia)</strong><p><a href="https://madrasatibeta.moe.gov.sa/books?Language=2" target="_blank" rel="noopener noreferrer">Official Grade 1–6 textbooks ↗</a></p><p><a href="https://www.moe.gov.sa/en/knowledgecenter/eservices/pages/elearning.aspx" target="_blank" rel="noopener noreferrer">Ministry e-learning ↗</a></p></td><td>Grade-by-grade approved curriculum materials, digital activities, self-assessment, and teacher / parent tools.</td><td>Organize Grades 1–6 as distinct learning sequences with specific parent progress—not a single bank of repeated Grade 1 questions.</td></tr>
 <tr><td><strong>🌎 Khan Academy Kids &amp; IXL</strong><p><a href="https://www.khanacademy.org/kids/pricing" target="_blank" rel="noopener noreferrer">Khan Academy Kids ↗</a></p><p><a href="https://www.ixl.com/ela/grade-1" target="_blank" rel="noopener noreferrer">IXL Grade 1 literacy ↗</a></p></td><td>Play-based learning, adaptive pathways, detailed skills, teacher tools and explicit early literacy development.</td><td>Prioritize learning progression, verified phonics and feedback on mistakes before simply increasing the number of questions.</td></tr>
 </tbody></table></div>
-<p class="warning">Curriculum caution: these are public provider descriptions and government guidance. They are <strong>not</strong> proof that Little Learners Academy satisfies Qatar, UAE, Saudi, British or US requirements. Our current 151 mini-challenges are Grade 1 supplementary practice; Grades 2–6 remain on the roadmap.</p>
+<p class="warning">Curriculum caution: these are public provider descriptions and government guidance. They are <strong>not</strong> proof that Little Learners Academy satisfies Qatar, UAE, Saudi, British or US requirements. Our 151 mini-challenges are Grade 1 supplementary practice; limited maths, English and science pilot questions for Grades 2–6 are playable, but those pilots are not complete school curricula.</p>
 </section>
 <section class="panel"><h2>🎯 What children really need</h2>
 <div class="tableWrap"><table>
@@ -66,7 +68,7 @@ th{background:#dff6ff}
 <tr><td>Reading development</td><td>Words, short stories and comprehension questions</td><td>Structured phonemic awareness and verified sound recordings</td></tr>
 <tr><td>Parent involvement</td><td>Local progress, family plans and activity badges</td><td>Teacher feedback, optional offline printable practice, classroom pilots</td></tr>
 <tr><td>Child safety & privacy</td><td>No advertising or child accounts; local progress</td><td>Formal safety/accessibility testing across devices and users</td></tr>
-<tr><td>Grade 2–6 expansion</td><td>Development roadmap only</td><td>Distinct, progressively harder and curriculum-reviewed resources for every grade</td></tr>
+<tr><td>Grade 2–6 expansion</td><td>Limited subject pilots for Grades 2–6; comprehensive curriculum and independently reviewed assessment remain missing</td><td>Distinct, progressively harder and curriculum-reviewed resources for every grade</td></tr>
 </tbody></table></div>
 </section>
 <section class="panel"><h2>🗺️ Our staged development plan</h2>
@@ -77,6 +79,7 @@ th{background:#dff6ff}
 <div class="track"><strong>🌟 Finally: Grades 5–6</strong> Extend to decimals, ratios, research and explanation, with age-appropriate accessibility and QA.</div>
 </div>
 <p class="note">This app is independent and not affiliated with Khan Academy Kids or IXL. Qatar Arabic, Islamic Studies and national-history modules remain under specialist review and are not claimed as complete.</p>
+<a class="cta" href="./sentence-builder.html">🌻 Build English sentences • تكوين الجمل</a>
 <a class="cta" href="./math-story-village.html">🏡 Try real-life Math Story Village • جرّب قصص الرياضيات</a>
 <a class="cta" href="./activity-library.html">🧠 Try five Smart Review questions</a>
 </section>
