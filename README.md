@@ -18,6 +18,10 @@ An independent bilingual English–Arabic learning platform for primary-school c
 
 The project will focus on Grade 1 first. Later grades can reuse the framework with age-appropriate content and difficulty.
 
+## Learning-quality review without a teacher panel
+- [Independent review and quality checklist](INDEPENDENT_LEARNING_REVIEW.md): self-review steps, automated Grade 1/2/5 checks and clear limits on educator/parent sign-off
+- No teaching, Arabic pronunciation or curriculum certification is claimed from automated tests alone
+
 ## Important
 This is an independent educational application. It is not affiliated with or endorsed by Qatar MOEHE or a particular school. Practice scores are not official school grades.
 
