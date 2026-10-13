@@ -60,6 +60,8 @@ jobs:
           node --check grade4-science.js
           node --check grade5-math-data.js
           node --check grade5-math.js
+          node --check grade5-reading-data.js
+          node --check grade5-reading.js
           node --check grade4-progress.js
           node --check scripts/test-grade3-mixed.cjs
           node --check fractions-lab.js
