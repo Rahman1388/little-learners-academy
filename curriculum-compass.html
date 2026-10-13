@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; media-src 'self'; connect-src 'self'; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
+<meta name="theme-color" content="#e4f5ff">
+<meta name="description" content="See real Grade 1–6 activity coverage, school curriculum themes, missing objectives and parent guidance for children learning in Qatar.">
+<link rel="icon" href="./icon.svg" type="image/svg+xml">
+<title>Curriculum Compass • Little Learners Academy</title>
+<style>
+:root{font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif;color:#153f63}
+*{box-sizing:border-box}
+body{margin:0;background:linear-gradient(125deg,#c5edff,#fff6d7 48%,#f0e2ff);min-height:100vh}
+main{max-width:1000px;margin:auto;padding:15px 14px 55px}
+a,button,select{font:inherit}a:focus-visible,button:focus-visible,select:focus-visible{outline:4px solid #8a1538;outline-offset:3px}
+.back,.go{display:inline-flex;padding:12px 16px;min-height:48px;border-radius:15px;background:white;color:#125274;font-weight:850;text-decoration:none;align-items:center}
+.hero,.panel,.card{border:3px solid #fff;border-radius:27px;background:#fffefa;box-shadow:0 5px #b4dce9;padding:clamp(15px,3vw,26px);margin:16px 0}
+.hero{text-align:center;background:linear-gradient(130deg,#fff4c0,#fff,#dff7ef)}
+.eyebrow{font-size:13px;font-weight:950;color:#8a1538}
+h1{font-size:clamp(29px,6vw,44px);line-height:1.2;margin:9px 0}h1 span{display:block;font-size:.63em;margin-top:7px}
+h2{font-size:clamp(22px,4vw,28px);margin:0 0 13px}
+h3{font-size:20px;margin:8px 0}
+p{line-height:1.58}
+.note{font-size:13px;color:#52687e}
+.controls{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+.controls label{display:flex;flex-direction:column;font-weight:900;gap:8px}
+.controls select{min-height:54px;padding:12px 14px;border:2px solid #aad5e6;background:white;border-radius:16px;color:#173f63;font-weight:780;width:100%}
+.summary{border-radius:19px;background:#fff3bf;padding:16px;margin-top:16px}
+.summary strong{font-size:20px}
+.summary p{margin-bottom:0}
+.areaGrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}
+.card{margin:0;box-shadow:none;border-color:#d6e7f2;display:flex;flex-direction:column;gap:9px;min-width:0}
+.card h3{margin:0}.card .count{font-size:30px;font-weight:950;color:#087ba6}
+.card .status{font-size:13px;font-weight:950;padding:8px;border-radius:12px;background:#e5f7ee;color:#205a44}
+.card.notYet{background:#f9f7fc;border-color:#dedee7}.card.notYet .status{background:#eeeef4;color:#5d5871}
+.card h4{margin:6px 0 0;font-size:15px}.card p{margin:0;font-size:14px}
+.card a{display:inline-flex;align-items:center;text-decoration:none;background:#087fa9;color:#fff;font-weight:850;border-radius:14px;padding:11px 13px;min-height:46px;margin-top:auto}
+.label{font-size:13px;color:#47677c;font-weight:800}
+.guard{background:#fff6d7;border-radius:18px;padding:16px}
+.sources{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.sources a{background:#edf9ff;padding:13px;border:2px solid #c4e3ef;border-radius:15px;font-size:14px;font-weight:820;overflow-wrap:anywhere}
+ul{line-height:1.75;padding-left:24px}
+@media(max-width:760px){.areaGrid{grid-template-columns:1fr}.controls{grid-template-columns:1fr}.sources{grid-template-columns:1fr}}
+</style>
+</head>
+<body><main>
+<a class="back" href="./choose-grade.html">← Choose My Grade • اختر صفّي</a>
+<header class="hero">
+<div class="eyebrow">🧭 LEARNING STANDARDS • معايير التعلم</div>
+<h1>Curriculum Compass <span lang="ar" dir="rtl">بوصلة المناهج الدراسية</span></h1>
+<p>Follow familiar school topics as you play. See <strong>what is available, what each activity practises, and what is still missing</strong>.</p>
+<p lang="ar" dir="rtl">اعرف المهارات المتاحة وما يتعلمه الطفل وما يحتاج إلى تطوير، مع مراعاة مناهج المدرسة.</p>
+<p class="note">This is an honest thematic comparison with public curriculum guidance—not official accreditation, a textbook match, or proof that a child has mastered a standard.</p>
+</header>
+<section class="panel" aria-label="Grade and school pathway">
+<h2>🎒 Choose your learning pathway <span lang="ar" dir="rtl">اختر المسار الدراسي</span></h2>
+<div class="controls">
+<label for="grade">Grade • الصف الدراسي
+<select id="grade">
+<option value="1">Grade 1 • الصف الأول</option><option value="2">Grade 2 • الصف الثاني</option><option value="3">Grade 3 • الصف الثالث</option>
+<option value="4">Grade 4 • الصف الرابع</option><option value="5">Grade 5 • الصف الخامس</option><option value="6">Grade 6 • الصف السادس</option>
+</select></label>
+<label for="pathway">School curriculum • منهج المدرسة
+<select id="pathway">
+<option value="qatar">🇶🇦 Qatar / school-specific</option>
+<option value="british">🇬🇧 British / English National Curriculum</option>
+<option value="american">🇺🇸 American / Common Core topics</option>
+</select></label>
+</div>
+<div class="summary"><strong id="gradeSummary">Grade 1 foundation</strong><p id="pathwaySummary"></p></div>
+</section>
+<section class="panel" aria-labelledby="coverageTitle">
+<h2 id="coverageTitle">📚 What can children practise now? <span lang="ar" dir="rtl">ما الأنشطة المتاحة حالياً؟</span></h2>
+<div class="areaGrid" id="coverageGrid" aria-live="polite"></div>
+<p class="note">Activity counts are the number of existing mini-questions in the listed modules—not lessons, curriculum standards, or evidence of mastery. Other games and mixed activities are not included in these subject-specific counts.</p>
+</section>
+<section class="panel">
+<h2>🧩 Gaps before full curriculum coverage <span lang="ar" dir="rtl">الفجوات التي يجب استكمالها</span></h2>
+<ul id="gradeGaps"></ul>
+<div class="guard"><strong>🇶🇦 Qatar national subjects • المواد الوطنية</strong><p>Arabic, Islamic Studies and Qatar History are important compulsory areas under applicable Qatar private-school policy. Formal national-content lessons are <strong>review-locked</strong> until approved against appropriate Qatar source materials and checked by qualified specialists. The Arabic translation on a maths question does not make it an Arabic-curriculum lesson.</p></div>
+</section>
+<section class="panel">
+<h2>🏫 How a parent can compare this with schoolwork</h2>
+<ul>
+<li>Choose the child's actual grade and school system above; British Year and American Grade labels are <strong>not automatically interchangeable</strong>.</li>
+<li>Compare a school textbook chapter or weekly learning objective to the topic names shown here—not just the activity count.</li>
+<li>Try one relevant game together and ask the child to explain the answer. A completed activity records practice, not an official assessment.</li>
+<li>For precise mapping, use the school’s published scheme of work or textbook contents. <strong>Do not share student names, grades/reports with identity details, or children's personal records.</strong></li>
+</ul>
+</section>
+<section class="panel">
+<h2>📖 Public curriculum references</h2>
+<p class="note">These links are reference frameworks. A Qatar private school may follow one of several international curricula and must also meet applicable national-subject policies. Grade-by-grade accreditation has not been verified for this app.</p>
+<div class="sources">
+<a href="https://www.edu.gov.qa/en/Content/CurriculumSection" target="_blank" rel="noopener noreferrer">🇶🇦 Qatar MOEHE Curriculum Section ↗</a>
+<a href="https://www.edu.gov.qa/en/News/Details/1621800" target="_blank" rel="noopener noreferrer">🇶🇦 Qatar compulsory subjects policy ↗</a>
+<a href="https://www.gov.uk/government/publications/national-curriculum-in-england-mathematics-programmes-of-study/national-curriculum-in-england-mathematics-programmes-of-study" target="_blank" rel="noopener noreferrer">🇬🇧 England Years 1–6 mathematics ↗</a>
+<a href="https://www.gov.uk/government/publications/national-curriculum-in-england-english-programmes-of-study/national-curriculum-in-england-english-programmes-of-study" target="_blank" rel="noopener noreferrer">🇬🇧 England primary English ↗</a>
+<a href="https://www.gov.uk/government/publications/national-curriculum-in-england-science-programmes-of-study/national-curriculum-in-england-science-programmes-of-study" target="_blank" rel="noopener noreferrer">🇬🇧 England primary science ↗</a>
+<a href="https://corestandards.org/mathematics-standards/" target="_blank" rel="noopener noreferrer">🇺🇸 US Common Core mathematics ↗</a>
+<a href="https://corestandards.org/english-language-arts-standards/" target="_blank" rel="noopener noreferrer">🇺🇸 US Common Core English ↗</a>
+</div>
+<p class="note">United States science standards depend on the state and school; Common Core is not a national science curriculum. Curriculum overlap is only a starting point for teacher review.</p>
+</section>
+</main>
+<script src="./curriculum-compass.js?v=20261013"></script>
+</body></html>
