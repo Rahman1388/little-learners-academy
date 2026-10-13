@@ -1252,6 +1252,24 @@ const fs=require("node:fs");
  assert.match(await page.locator("#sciencePassage").textContent(),/filter/);
  await page.setViewportSize({width:768,height:1024});await assertMobile();
  await page.setViewportSize({width:390,height:844});await assertMobile();
+ // Grade 6 parent overview reads existing maths, reading and science answers only.
+ await goto("choose-grade.html");
+ assert.equal(await page.locator('#grade6 a[href="./grade6-progress.html"]').count(),1);
+ await goto("grade6-progress.html");
+ await page.locator("#mathTopics li").first().waitFor({state:"visible"});
+ assert.match(await page.locator("#grade6Total").textContent(),/3 \/ 60/);
+ for(const [field,expected] of [
+   ["mathCount",/1 \/ 24/],["readingCount",/1 \/ 18/],["scienceCount",/1 \/ 18/]
+ ])assert.match(await page.locator("#"+field).textContent(),expected);
+ assert.equal(await page.locator("#mathTopics li").count(),4);
+ assert.equal(await page.locator("#readingTopics li").count(),3);
+ assert.equal(await page.locator("#scienceTopics li").count(),3);
+ assert.equal(await page.locator("#totalMeter").getAttribute("aria-valuenow"),"3");
+ await assertMobile();
+ await page.reload({waitUntil:"domcontentloaded"});
+ assert.match(await page.locator("#grade6Total").textContent(),/3 \/ 60/);
+ await page.setViewportSize({width:768,height:1024});await assertMobile();
+ await page.setViewportSize({width:390,height:844});await assertMobile();
  // Curriculum Compass reports honest cross-grade topical coverage and gaps.
  await goto("curriculum-compass.html");
  await page.locator("#coverageGrid .card").first().waitFor({state:"visible"});
