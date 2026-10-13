@@ -62,6 +62,7 @@ jobs:
           node --check grade5-math.js
           node --check grade5-reading-data.js
           node --check grade5-reading.js
+          node --check scripts/test-grade5-reading.cjs
           node --check grade4-progress.js
           node --check scripts/test-grade3-mixed.cjs
           node --check fractions-lab.js
@@ -118,6 +119,9 @@ jobs:
           test -f grade4-reading.html
           test -f grade4-reading-data.js
           test -f grade4-reading.js
+          test -f grade5-reading.html
+          test -f grade5-reading-data.js
+          test -f grade5-reading.js
           test -f grade4-science.html
           test -f grade4-science-data.js
           test -f grade4-science.js
@@ -162,6 +166,7 @@ jobs:
           grep -q 'international-benchmark.html' grades-roadmap.html
           grep -q 'grade3-mixed-quest.html' grades-roadmap.html
           grep -q 'grade3-mixed-quest.html' index.html
+          grep -q 'grade5-reading.html' choose-grade.html
 
       - name: Check Grade 1 and Grade 2 learning content and answers
         run: node scripts/check-learning-content.cjs
