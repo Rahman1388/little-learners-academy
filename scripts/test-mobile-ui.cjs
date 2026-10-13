@@ -1199,6 +1199,33 @@ const fs=require("node:fs");
  assert.match(await page.locator("#grade6Progress").textContent(),/1 \/ 24/);
  await page.setViewportSize({width:768,height:1024});await assertMobile();
  await page.setViewportSize({width:390,height:844});await assertMobile();
+ // Curriculum Compass reports honest cross-grade topical coverage and gaps.
+ await goto("curriculum-compass.html");
+ await page.locator("#coverageGrid .card").first().waitFor({state:"visible"});
+ assert.equal(await page.locator("#coverageGrid .card").count(),3);
+ assert.match(await page.locator("#gradeSummary").textContent(),/Grade 1/);
+ assert.deepEqual(await page.locator("#coverageGrid .card .count").allTextContents(),["70","34","20"]);
+ await assertMobile();
+ await page.locator("#pathway").selectOption("british");
+ assert.match(await page.locator("#pathwaySummary").textContent(),/Year groups/);
+ for(const [grade,expected] of [
+   ["2",["24","24","18"]],
+   ["3",["18","18","18"]],
+   ["4",["24","18","18"]],
+   ["5",["24","18","18"]],
+   ["6",["24","0","0"]]
+ ]){
+  await page.locator("#grade").selectOption(grade);
+  assert.deepEqual(await page.locator("#coverageGrid .card .count").allTextContents(),expected);
+ }
+ assert.equal(await page.locator("#coverageGrid .card.notYet").count(),2);
+ assert.equal(await page.locator("#gradeGaps li").count(),3);
+ await page.locator("#pathway").selectOption("qatar");
+ assert.match(await page.locator("#pathwaySummary").textContent(),/Arabic, Islamic Studies and Qatar History/);
+ await page.reload({waitUntil:"domcontentloaded"});
+ assert.equal(await page.locator("#grade").inputValue(),"6");
+ await page.setViewportSize({width:768,height:1024});await assertMobile();
+ await page.setViewportSize({width:390,height:844});await assertMobile();
  await goto("voice-test.html");
  await page.locator("audio").first().waitFor();
  const numPlayers=await page.locator("audio").count();
