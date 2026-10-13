@@ -56,15 +56,48 @@ function update(){
   :sum===0?"🌱 Start with one question. Small steps build confidence! • ابدأ بسؤال واحد!"
   :"🌈 "+sum+" questions explored. Keep building your skills at your own pace! • واصل التعلّم!";
  const written=read("lla-grade6-writing-v1");
- const writing=Array.from({length:6},(_,i)=>"g6w-"+String(i+1).padStart(2,"0")).filter(id=>written[id]===true).length;
+ const writingTasks=Array.isArray(window.LLA_GRADE6_WRITING)?window.LLA_GRADE6_WRITING:[];
+ const writing=writingTasks.filter(task=>written[task.id]===true).length;
  $("#writingCount").textContent="✍️ "+writing+" / 6 tasks practised (not graded)";
  $("#writingMeter").setAttribute("aria-valuenow",String(writing));
  $("#writingFill").style.width=percent(writing,6);
+ // Writing checklists are self-reported practice, deliberately separated
+ // from 60 objectively answered maths/reading/science questions.
+ const missionList=$("#writingMissions");
+ missionList.replaceChildren();
+ for(const task of writingTasks){
+  const complete=written[task.id]===true;
+  const item=document.createElement("li");if(complete)item.className="practised";
+  item.dataset.task=task.id;
+  const title=document.createElement("b");title.textContent=task.icon+" "+task.title;
+  const arabic=document.createElement("span");arabic.className="ar";arabic.lang="ar";arabic.dir="rtl";arabic.textContent=task.ar;
+  const status=document.createElement("span");status.className="status";
+  status.textContent=complete?"✅ Practised (self-check) • تم التدريب":"🌱 Ready to practise • جاهز للتدريب";
+  item.append(title,arabic,status);missionList.append(item);
+ }
+ const upcoming=writingTasks.find(task=>written[task.id]!==true);
+ const writingSuggestion=$("#writingRecommendation");
+ writingSuggestion.replaceChildren();
+ const writingText=document.createElement("p");
+ writingText.textContent=upcoming
+  ?"✍️ Suggested writing mission: "+upcoming.title+". Draft a short paragraph, check your evidence, and discuss it with a parent or teacher."
+  :"🌟 All six writing prompts were marked practised on this device. Revisit one draft with a parent or teacher—these are not graded results.";
+ writingSuggestion.append(writingText);
+ const writingLink=document.createElement("a");
+ writingLink.href="./grade6-writing.html";
+ writingLink.textContent=upcoming?"✏️ Open Writing Studio • ابدأ الكتابة":"🔁 Practise writing again • تدرب مجدداً";
+ writingSuggestion.append(writingLink);
  const target=$("#nextStep");target.replaceChildren();
  if(sum===60){
-  const p=document.createElement("p");p.textContent="🏆 Every question in these three small pilots has been explored. Try an explanation or compare a different grade topic. This is not a curriculum graduation.";
+  const p=document.createElement("p");
+  p.textContent=upcoming
+   ?"🏆 All 60 pilot questions have been explored. Your next small step: practise writing '"+upcoming.title+"' and discuss the evidence. Completing practice questions does not certify grade-level mastery."
+   :"🏆 All 60 pilot questions and six writing self-checks have been explored! Discuss a worked answer or revise a paragraph with a parent or teacher. This is not a curriculum graduation.";
   target.append(p);
-  const a=document.createElement("a");a.href="./school-pathways.html";a.textContent="📘 See skills not covered yet";target.append(a);
+  const a=document.createElement("a");
+  a.href=upcoming?"./grade6-writing.html":"./school-pathways.html";
+  a.textContent=upcoming?"✍️ Continue Grade 6 writing • تابع الكتابة":"📘 See skills not covered yet";
+  target.append(a);
   return;
  }
  // Favour the first unfinished topic in the lowest proportion-completed subject.
