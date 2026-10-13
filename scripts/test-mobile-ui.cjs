@@ -68,6 +68,18 @@ const fs=require("node:fs");
  await page.setViewportSize({width:768,height:1024});
  await assertMobile();
  await page.setViewportSize({width:390,height:844});
+ // Benchmark count is verified on phone and tablet; writing is separate.
+ await goto("international-benchmark.html");
+ await page.locator("#ourInventory").waitFor({state:"visible"});
+ assert.equal(await page.locator("[data-audit-total]").textContent(),"451 distinct short questions");
+ assert.equal(await page.locator("[data-audit-writing]").textContent(),"6 guided writing prompts");
+ for(const [grade,count] of [[1,151],[2,66],[3,54],[4,60],[5,60],[6,60]]){
+   assert.equal(await page.locator('[data-audit-grade="'+grade+'"]').textContent(),String(count));
+ }
+ await assertMobile();
+ await page.setViewportSize({width:768,height:1024});
+ await assertMobile();
+ await page.setViewportSize({width:390,height:844});
  // Grades 5 and 6 have separate limited mathematics pilots.
  await goto("grade5-math.html");
  await page.locator("#grade5Domains .domain").first().waitFor({state:"visible"});
