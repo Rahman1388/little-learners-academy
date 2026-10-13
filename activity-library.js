@@ -3,6 +3,7 @@
 const activities=window.LLA_MINI_ACTIVITIES||[];
 if(activities.length<101)throw Error("The activity library is incomplete");
 const KEY="lla-activity-library-v1",PRACTICE_KEY="lla-practice-insights-v1";
+const CONFIDENCE_KEY="lla-practice-confidence-v1";
 const RESUME_KEY="lla-activity-resume-v1";
 function remember(id){
  try{localStorage.setItem(RESUME_KEY,id)}catch{}
@@ -25,6 +26,26 @@ function readInsights(){
  catch{return {}}
 }
 const insights=readInsights();
+function loadConfidence(){
+ try{const v=JSON.parse(localStorage.getItem(CONFIDENCE_KEY)||"{}");return v&&typeof v==="object"&&!Array.isArray(v)?v:{}}
+ catch{return {}}
+}
+const confidence=loadConfidence();
+function updateReflection(){
+ const v=current&&confidence[current.id];
+ $("#feelReady").setAttribute("aria-pressed",String(v==="ready"));
+ $("#wantPractice").setAttribute("aria-pressed",String(v==="review"));
+ $("#reflectionNote").textContent=v==="review"?
+  "🌱 We'll suggest this skill again during Smart Review. • سنراجع هذا النشاط لاحقاً":
+  v==="ready"?"😊 Great! You can still practise again any time. • أحسنت":
+  "Optional choice: there's no right or wrong feeling. • اختيار اختياري";
+}
+function setReflection(v){
+ if(!current||!answered||!["ready","review"].includes(v))return;
+ confidence[current.id]=v;
+ try{localStorage.setItem(CONFIDENCE_KEY,JSON.stringify(confidence))}catch{}
+ updateReflection();
+}
 function track(id,kind){
  const old=insights[id]&&typeof insights[id]==="object"?insights[id]:{};
  const values={correct:Math.max(0,Number(old.correct)||0),incorrect:Math.max(0,Number(old.incorrect)||0),lastAt:new Date().toISOString(),lastResult:kind};
@@ -99,6 +120,7 @@ function open(id){
   $("#answerOptions").append(button);
  });
  $("#nextChallenge").hidden=true;
+ $("#reflectionChoices").hidden=true;
  $("#workModel").hidden=true;
  $("#showWork").setAttribute("aria-expanded","false");
  $("#showWork").textContent="🧮 Show a learning hint • أظهر مساعدة";
@@ -116,6 +138,8 @@ function answer(i){
   if(!completed[current.id]){completed[current.id]=true;save()}
   response("🎉 Well done! "+current.tip+" • أحسنت!","good");
   progress();
+  $("#reflectionChoices").hidden=false;
+  updateReflection();
   $("#nextChallenge").hidden=false;
   if(guided.length){
     const status=sessionMode==="smart"?"#smartStatus":"#guidedStatus";
@@ -130,6 +154,7 @@ function answer(i){
  }
 }
 function reviewPriority(a){
+ if(confidence[a.id]==="review")return 3000; // self-requested review takes priority
  const info=insights[a.id]||{};
  const errors=Math.max(0,Number(info.incorrect)||0),good=Math.max(0,Number(info.correct)||0);
  if(errors>0&&good<2)return 2000+errors*10-good; // revisit mistakes first
@@ -145,6 +170,8 @@ function smartChoice(){
  }
  return sorted.slice(0,5).map(a=>a.id);
 }
+$("#feelReady").addEventListener("click",()=>setReflection("ready"));
+$("#wantPractice").addEventListener("click",()=>setReflection("review"));
 $("#resumeActivity").addEventListener("click",()=>{
  const a=recall();
  if(a)open(a.id);
