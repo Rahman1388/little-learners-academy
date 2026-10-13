@@ -45,7 +45,7 @@
 - **Grade 3:** mathematics, English reading, science and mixed discovery pilot activity pages (`grade3-*`).
 - **Grade 4:** **24 mathematics questions**, with an additional **18-question English reading-comprehension pilot** across three original passages (see `grade4-reading.html`, `grade4-reading-data.js`, `grade4-reading.js`); mathematics is a **24-question pilot**, in `grade4-math.html`, `grade4-math.js`, `grade4-math-data.js`, covering place value, operations, fractions/decimals, measurement/data, with hints, explanations and device-only completion progress.
 - **Grade 5:** limited mathematics (24), English reading (18) and science (18) pilot questions.
-- **Grade 6:** limited mathematics (24) and English reading (18) pilot questions; dedicated Grade 6 science and longer structured-writing modules are not yet released.
+- **Grade 6:** limited mathematics (24), English reading (18), and science (18) pilot questions, plus six guided, self-reviewed writing practice prompts. None are teacher-certified or a complete curriculum.
 - All Grade 2–6 materials are supplementary pilots rather than complete grade-level curricula.
 - Do not overcount or conflate questions, games, activities, lessons, or full grade curricula. Update quantitative claims after checking source files and tests.
 
@@ -180,3 +180,11 @@ Ask the assistant to inspect this file and live repository before making changes
 - Linked the writing studio from the Grade 6 chooser and Reading Adventure. The Grade 6 family progress screen displays a separate **0–6 writing practice** count without changing the truthful **60 maths/reading/science questions** total.
 - Added mobile/tablet browser assertions for writing navigation, safe draft behaviour, practice completion, persistence of boolean markers, and separate family progress. Added `scripts/check-grade6-writing.cjs` as a repeatable prompt-structure/privacy check and included assets in the offline cache.
 - No audio recordings, parent-approved English `bus` voice choices, formal Arabic learning modules, names, child accounts or advertising were changed or added. Draft Arabic supports remain subject to native-speaking review; qualified English-writing teacher review and school-specific curriculum mapping are still outstanding.
+
+## 13 October 2026 — Parent-friendly Grade 6 writing pathway
+
+- Expanded `grade6-progress.html` and `grade6-progress.js` to show six individual writing mission statuses drawn from the original `grade6-writing-data.js` prompts. They retain existing browser-local `lla-grade6-writing-v1` boolean markers and never store drafts.
+- Writing practice stays **separate** from the 60 maths, reading and science questions. A self-check represents practice, not a scored or teacher-verified writing grade.
+- When all 60 question checks have been explored but writing prompts remain unpractised, the next-step recommendation points to the Grade 6 Writing Studio, rather than implying the learner graduated.
+- Added mobile/tablet browser regression assertions for each mission, a next writing recommendation, and separation of question progress from writing practice. Changes preserve existing child progress, audio voice preferences and privacy safeguards.
+- Verify the latest mobile tests, validation, security gate, and Pages deployment statuses before calling this milestone fully released.
