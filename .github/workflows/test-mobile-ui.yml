@@ -82,6 +82,10 @@ on:
       - "grade6-reading.html"
       - "grade6-reading-data.js"
       - "grade6-reading.js"
+      - "grade6-science.html"
+      - "grade6-science-data.js"
+      - "grade6-science.js"
+      - "scripts/test-grade6-science.cjs"
       - "scripts/check-grade6-reading.cjs"
       - "scripts/test-grade6-math.cjs"
       - "scripts/test-grade5-science.cjs"
@@ -175,3 +179,4 @@ jobs:
           node scripts/test-grade3-mixed.cjs
           node scripts/test-parent-report.cjs
           node scripts/test-grade5-reading.cjs
+          node scripts/test-grade6-science.cjs
