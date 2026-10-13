@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; media-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#d7f4ff"><link rel="icon" href="./icon.svg" type="image/svg+xml">
+<meta name="description" content="A guided Grade 1 number-line game: make one jump at a time, practise addition and subtraction, and earn a completion badge.">
+<title>Number Line Trail • Little Learners Academy</title>
+<style>
+:root{font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif;color:#183e65}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:linear-gradient(130deg,#c8efff,#fef6d4 48%,#e6f6df)}
+main{max-width:850px;margin:auto;padding:14px 13px 47px}
+button,a{font:inherit}button{cursor:pointer}
+a:focus-visible,button:focus-visible{outline:4px solid #8a1538;outline-offset:3px}
+.back{display:inline-flex;min-height:48px;align-items:center;background:#fff;color:#165079;text-decoration:none;font-weight:900;border-radius:16px;padding:12px 17px}
+.hero,.panel,.parent{background:#fffefb;border:4px solid #fff;border-radius:27px;box-shadow:0 6px #b8dae5;padding:clamp(16px,3.5vw,26px);margin:16px 0}
+.hero{text-align:center;background:linear-gradient(125deg,#fff5be,#fff,#dff8ff)}
+.eyebrow{color:#8a1538;font-weight:950;font-size:13px}
+h1{font-size:clamp(30px,6vw,45px);line-height:1.2;margin:10px 0}
+h1 span{display:block;font-size:.65em;margin-top:8px}
+h2{font-size:clamp(22px,4.5vw,27px);margin:4px 0 13px}
+p{line-height:1.55}
+.score{display:inline-flex;background:#fff2b7;font-size:19px;font-weight:950;padding:12px 18px;border-radius:17px}
+.meter{height:13px;border-radius:16px;background:#e5ecf2;margin:15px 0 4px;overflow:hidden}
+#meterFill{display:block;height:100%;width:0;background:#2dac82;transition:width .25s}
+.levels{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.level{padding:13px 9px;min-height:93px;border:3px solid #bfdce9;border-radius:17px;background:#fff;display:flex;flex-direction:column;justify-content:center;gap:5px;color:#174869;font-weight:900;text-align:center}
+.level.active{border-color:#e3b342;background:#fff7d5}
+.level.done{border-color:#4cb88c;background:#e3ffeb}
+.level small{font-size:12px;line-height:1.3;font-weight:750}
+.letter{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:10px}
+.chapter{font-size:13px;color:#8a1538;font-weight:950}
+.task{font-size:clamp(22px,5vw,31px);font-weight:950;line-height:1.45;text-align:center;margin:19px 0 10px}
+.ar{font-family:Tahoma,Arial,sans-serif;font-size:18px;direction:rtl;text-align:center;margin:0 0 18px}
+.numberWrap{background:#edfaff;border:2px solid #bee3ed;padding:14px 8px;border-radius:23px;margin:16px 0}
+.numberLine{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px;max-width:610px;margin:auto}
+.point{display:flex;min-width:0;min-height:54px;align-items:center;justify-content:center;position:relative;border:2px solid #b8d9e8;border-radius:13px;background:#fff;color:#265276;font-weight:950;font-size:clamp(16px,3.6vw,23px)}
+.point.start{background:#fff0b2;border-color:#dfa82e;color:#765400}
+.point.visited{background:#d3ffe6;border-color:#2ea978;color:#126a46}
+.point.current{outline:3px solid #087ba8;outline-offset:-3px}
+.markerLegend{display:flex;justify-content:center;gap:15px;flex-wrap:wrap;font-size:13px;margin-top:10px;font-weight:800}
+.markerLegend span:first-child{color:#936700}.markerLegend span:last-child{color:#157858}
+.tutor{background:#f7edff;border-radius:16px;padding:13px;font-weight:850;min-height:59px;text-align:center}
+.controls{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:13px 0}
+.controls button{border:0;border-radius:16px;min-height:52px;padding:12px 17px;font-weight:900;background:#107eaa;color:#fff}
+.controls button.secondary{background:#fff;color:#165173;border:2px solid #a5d5e5}
+.controls button:disabled{opacity:.5;cursor:default}
+.answerGrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:16px 0}
+.answerGrid button{border:3px solid #a4d1e6;border-radius:19px;background:#fff;color:#19517a;min-height:76px;font-size:clamp(22px,5vw,32px);font-weight:950}
+.answerGrid button.correct{background:#dcffe8;border-color:#32b276}
+.answerGrid button.wrong{background:#fff0e9;border-color:#d58a78}
+.answerGrid button:disabled{opacity:1;cursor:default}
+.feedback{background:#fff4d4;border-radius:18px;padding:14px;min-height:64px;font-weight:850}
+.feedback.success{background:#dfffe9}.feedback.try{background:#fff1e9}
+.reward{background:#e0ffe5;border:3px solid #85c99c;border-radius:19px;text-align:center;padding:20px;margin-top:15px}
+.foot{font-size:13px;color:#4c697e}
+[hidden]{display:none!important}
+@media(max-width:430px){.hero,.panel{padding:16px 11px}.levels{gap:6px}.level{font-size:13px;padding:9px 4px}.numberWrap{padding:12px 4px}.numberLine{gap:3px}.point{border-radius:11px;min-height:50px}.answerGrid button{min-height:68px}}
+@media(prefers-reduced-motion:reduce){#meterFill{transition:none}}
+</style>
+</head>
+<body>
+<main>
+<a class="back" href="./index.html">← Home • الرئيسية</a>
+<header class="hero">
+<div class="eyebrow">🔢 GRADE 1 MATHS • الصف الأول</div>
+<h1>🐾 Number Line Trail <span lang="ar" dir="rtl">رحلة خط الأعداد</span></h1>
+<p>See a number, take one jump at a time, then choose where you land.</p>
+<p lang="ar" dir="rtl">انظر إلى العدد، واقفز خطوة بخطوة، ثم اختر العدد الذي تصل إليه.</p>
+<div class="score" id="totalProgress" aria-live="polite">⭐ 0 / 12 challenges</div>
+<div class="meter" aria-hidden="true"><span id="meterFill"></span></div>
+</header>
+<section class="panel" aria-label="Choose a number-line station">
+<h2>🗺️ Choose your stop • اختر محطتك</h2>
+<div class="levels" id="stationGrid"></div>
+</section>
+<section class="panel" id="game" aria-labelledby="challengeTitle">
+<div class="letter"><span class="chapter" id="chapterText">Counting</span><span class="chapter" id="stationNumber">1 of 12</span></div>
+<h2 id="challengeTitle" class="task"></h2>
+<p class="ar" id="arabicPrompt" lang="ar" dir="rtl"></p>
+<div class="numberWrap" aria-label="A number line showing seven numbers">
+<div class="numberLine" id="numberLine" role="img" aria-label="Number line"></div>
+<div class="markerLegend"><span>🟡 Start • البداية</span><span>🟢 Jumped • قفز</span></div>
+</div>
+<p class="tutor" id="jumpStatus" role="status" aria-live="polite">Start on the yellow number.</p>
+<div class="controls"><button id="showJump" type="button">👣 Show one jump • خطوة واحدة</button><button id="showHint" class="secondary" type="button">💡 Hint • مساعدة</button></div>
+<h2 style="text-align:center">Where did you land? <span lang="ar" dir="rtl">إلى أي عدد وصلت؟</span></h2>
+<div class="answerGrid" id="answerChoices" role="group" aria-label="Choose the landing number"></div>
+<div class="feedback" id="answerFeedback" role="status" aria-live="polite">Tap the answer when you're ready. • اختر الإجابة.</div>
+<div class="controls"><button id="nextStation" type="button" hidden>Next stop ➜ • المحطة التالية</button><button id="restartStation" class="secondary" type="button">↺ Practise this stop • تدرب مجدداً</button></div>
+<div class="reward" id="reward" hidden><div style="font-size:47px" aria-hidden="true">🏅 🌟 🎉</div><h2>Number Line Explorer!</h2><p>All 12 stops completed. Every jump helped your understanding. • أحسنت! أكملت المحطات الاثنتي عشرة.</p></div>
+</section>
+<aside class="parent"><h2>👨‍👩‍👧 Family Learning Guide • دليل الأسرة</h2>
+<p>Start with the yellow number. For addition, move one place right for each jump. For subtraction, move one place left. Ask the child to predict the answer before pressing <strong>Show one jump</strong>. If the answer is wrong, encourage another try without a timer.</p>
+<p lang="ar" dir="rtl">ابدأ من العدد الأصفر. في الجمع تحرّك إلى اليمين، وفي الطرح تحرّك إلى اليسار. شجّع الطفل على التوقع أولاً ثم التحقق خطوة بخطوة.</p>
+<p class="foot">This is supplementary Grade 1 number-sense practice, not an official school assessment or a complete curriculum. Results are saved locally on this device. The game adds no account, microphone, audio recordings or tracking, and awards at most one completion star per device.</p>
+<p class="foot">The app's audited 451-question inventory counts distinct questions in the subject libraries; these 12 guided number-line stops are separate practice and are not added to that inventory.</p>
+</aside>
+</main>
+<script src="./number-line-trail.js?v=1"></script>
+</body>
+</html>
