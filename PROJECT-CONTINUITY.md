@@ -44,7 +44,9 @@
 - **Grade 2:** mathematics, English reading, science and mixed discovery pilot activity pages (`grade2-*`).
 - **Grade 3:** mathematics, English reading, science and mixed discovery pilot activity pages (`grade3-*`).
 - **Grade 4:** **24 mathematics questions**, with an additional **18-question English reading-comprehension pilot** across three original passages (see `grade4-reading.html`, `grade4-reading-data.js`, `grade4-reading.js`); mathematics is a **24-question pilot**, in `grade4-math.html`, `grade4-math.js`, `grade4-math-data.js`, covering place value, operations, fractions/decimals, measurement/data, with hints, explanations and device-only completion progress.
-- **Grades 5–6:** planned, not released. Grades 2–4 are limited supplementary pilots rather than complete grade-level curricula.
+- **Grade 5:** limited mathematics (24), English reading (18) and science (18) pilot questions.
+- **Grade 6:** limited mathematics (24) and English reading (18) pilot questions; dedicated Grade 6 science and longer structured-writing modules are not yet released.
+- All Grade 2–6 materials are supplementary pilots rather than complete grade-level curricula.
 - Do not overcount or conflate questions, games, activities, lessons, or full grade curricula. Update quantitative claims after checking source files and tests.
 
 ## Pronunciation/audio decisions — especially important
@@ -136,3 +138,14 @@ Ask the assistant to inspect this file and live repository before making changes
 - Grade chooser now provides Grade 6 as a **limited maths pilot**, not as a complete Grade 6 curriculum or teacher-approved Arabic/local syllabus.
 - Device-only progress uses `lla-grade6-math-v1`; existing Grade 1–5 progress, sound recordings, approved C/D bus voices and achievements are untouched. No accounts, microphones, analytics or advertising.
 - Content-integrity checks and mobile browser regression added. Verify the latest CI conclusions and Pages deployment after this update; qualified teacher review remains outstanding.
+
+
+## 13 October 2026 — Grade 6 English reading comprehension pilot
+
+- Published **three original Grade 6 English reading passages and 18 evidence-led comprehension questions** in `grade6-reading.html`, `grade6-reading-data.js` and `grade6-reading.js`.
+- Story contexts: *The Shaded Walkway Decision*, *Notes from the Mangrove Channel* and *Who Gets a Quiet Reading Corner?*. Skills include evidence, inference, comparing claims and observations, checking information sources, sampling limitations, respectful decisions and privacy.
+- Each passage has six questions, short draft Arabic question guidance, a hint, a worked explanation and an optional parent discussion prompt. Browser-local progress is stored under `lla-grade6-reading-v1`; existing achievements, other grade progress and voice recordings are unaffected.
+- Linked only two **limited related topics** in the Grade 6 school-topic guide (extended comprehension and textual evidence). Structured composition, broader vocabulary study and science remain explicit gaps.
+- The Grade 6 overview now honestly describes **24 maths questions + 18 English reading questions** (42 distinct questions across two limited pilots), not a full Grade 6 curriculum or a teacher-validated course. The school/curriculum alignment and draft Arabic wording remain awaiting qualified review.
+- Added `scripts/check-grade6-reading.cjs` and mobile browser checks; **Validate app**, **Child App Security Gate**, **Test mobile reading and audio**, and **GitHub Pages deployment** all passed for the working release before this documentation update.
+- Next useful development: a small Grade 6 science investigation pilot, parent-facing Grade 6 coverage summary and more demanding written-response activities—not just extra multiple-choice counts.
