@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; media-src 'self'; connect-src 'self'; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
+<meta name="theme-color" content="#d8f0ff"><meta name="description" content="Grade 6 supplementary English writing practice with six evidence-based prompts and teacher-style self-review, no automatic writing grades.">
+<link rel="icon" href="./icon.svg" type="image/svg+xml">
+<title>Grade 6 Writing Studio • Little Learners Academy</title>
+<style>
+:root{font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif;color:#173d60;line-height:1.5}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(125deg,#d2eeff,#fff3c7 55%,#ede0ff);min-height:100vh}
+main{max-width:940px;margin:auto;padding:14px 13px 50px}
+button,a,textarea{font:inherit}button{cursor:pointer}
+button:focus-visible,a:focus-visible,textarea:focus-visible,input:focus-visible,summary:focus-visible{outline:4px solid #8a1538;outline-offset:3px}
+.back{display:inline-flex;align-items:center;min-height:50px;text-decoration:none;background:white;color:#144e75;padding:12px 16px;border-radius:16px;font-weight:900}
+.hero,.panel,.guide{padding:clamp(16px,3vw,26px);border:4px solid white;border-radius:28px;background:#fffd;margin:16px 0;box-shadow:0 5px #b4d8e7}
+.hero{text-align:center;background:linear-gradient(125deg,#fff7cc,#fff,#e2f7ff)}
+.eyebrow{font-size:13px;font-weight:950;color:#8a1538}
+h1{font-size:clamp(30px,6vw,43px);line-height:1.2;margin:9px 0}h1 span{display:block;font-size:.64em;margin-top:7px}
+h2{font-size:clamp(22px,4vw,28px);margin:4px 0 11px}
+h3{font-size:21px;margin:13px 0 7px}
+p{line-height:1.65}.ar{font-family:Tahoma,Arial,sans-serif;direction:rtl;display:block}
+.pill{display:inline-block;padding:10px 15px;background:#ffe8a1;border-radius:17px;font-weight:950}
+.meter{height:15px;border-radius:20px;background:#dfebf4;overflow:hidden;margin:12px 0}
+.meter span{display:block;width:0;height:100%;background:#29a878;transition:width .2s}
+.choices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.prompt{border:3px solid #c8e0ed;background:white;color:#164568;border-radius:19px;text-align:left;min-height:136px;padding:14px;display:flex;flex-direction:column;align-items:flex-start;gap:7px}
+.prompt strong{font-size:19px}.prompt span{font-size:14px}.prompt.done{background:#e8fff0;border-color:#4dad82}
+.prompt .status{font-weight:900;margin-top:auto}
+.evidence{background:#e7f8ff;border-radius:19px;padding:17px;margin:16px 0}
+.evidence strong{font-size:17px}
+.starters{background:#f5eeff;padding:16px;border-radius:17px}
+.starters li{margin:6px 0}
+textarea{display:block;width:100%;min-height:175px;border:3px solid #add3e6;background:white;border-radius:17px;padding:16px;font-size:17px;line-height:1.6;resize:vertical;color:#183f62}
+.count{font-size:13px;color:#4f667d;font-weight:850;margin:9px 0}
+.checks{display:grid;gap:10px;margin:14px 0}
+.checks label{display:flex;gap:12px;align-items:flex-start;background:#f1f9fd;border-radius:15px;padding:13px;font-size:16px;font-weight:750;cursor:pointer}
+.checks input{width:22px;height:22px;flex-shrink:0;margin:1px 0}
+.actions{display:flex;flex-wrap:wrap;gap:11px;align-items:center;margin:15px 0}
+.actions button{border:0;border-radius:15px;min-height:51px;background:#087ba8;color:#fff;font-weight:900;padding:12px 16px}
+.actions button.secondary{background:#eef8ff;color:#155475;border:2px solid #a8d2e5}
+.actions button:disabled{opacity:.52;cursor:not-allowed}
+.feedback{background:#fff2cc;border-radius:15px;padding:14px;font-weight:800;min-height:53px}
+.feedback.good{background:#e2ffe9}
+.example{background:#f5fff4;border-radius:18px;padding:15px;margin:17px 0}
+.example summary{cursor:pointer;font-weight:950;padding:8px}
+.example p{margin:12px 0}
+.note{font-size:13px;color:#526d7d}
+.guide{font-size:14px;background:#fffcf0}
+[hidden]{display:none!important}
+@media(max-width:640px){.choices{grid-template-columns:1fr}.prompt{min-height:105px}}
+@media(prefers-reduced-motion:reduce){.meter span{transition:none}}
+</style></head><body><main>
+<a class="back" href="./choose-grade.html">← Choose Grade • اختر الصف الدراسي</a>
+<header class="hero"><div class="eyebrow">✍️ GRADE 6 • SUPPLEMENTARY PRACTICE • الصف السادس</div>
+<h1>Writing & Evidence Studio <span lang="ar" dir="rtl">استوديو الكتابة والأدلة</span></h1>
+<p>Six short writing tasks to help explain ideas with evidence and fair reasoning. Work with a parent or teacher.</p>
+<p lang="ar" dir="rtl">ست مهام كتابية قصيرة لممارسة الاستدلال والشرح باستخدام الأدلة، بمساعدة الأهل أو المعلم.</p>
+<div id="writingProgress" class="pill" role="status" aria-live="polite">🌱 0 / 6 tasks practised</div>
+<div class="meter" role="progressbar" id="writingMeter" aria-label="Writing activities practised" aria-valuemin="0" aria-valuemax="6" aria-valuenow="0"><span id="writingFill"></span></div>
+<p class="note">Your paragraphs remain on this page only while it is open. They are <strong>not saved or uploaded</strong>. Only the IDs of tasks marked practised are saved on this device. A practice mark is not an assessment of writing quality.</p>
+</header>
+<section class="panel" id="selection"><h2>🗺️ Choose a writing mission <span class="ar">اختر مهمة كتابية</span></h2>
+<p>Read the original Grade 6 stories first if you like: <a href="./grade6-reading.html">Grade 6 English Reading • القراءة الإنجليزية</a>.</p>
+<div class="choices" id="writingMissions" aria-label="Six writing prompts"></div>
+</section>
+<section class="panel" id="writingTask" hidden>
+<div class="actions"><button id="chooseMission" class="secondary" type="button">← All writing tasks • جميع المهام</button><span class="pill" id="writingSkill"></span></div>
+<h2 id="taskTitle"></h2><p id="taskArabic" class="ar" lang="ar"></p>
+<div class="evidence"><strong>📖 Read the evidence • اقرأ الأدلة</strong><p id="taskSource"></p></div>
+<h3>Your mission • مهمتك</h3><p id="taskPrompt"></p>
+<div class="starters"><strong>🧠 Sentence starters • بدايات مقترحة</strong><ul id="taskStarters"></ul></div>
+<h3><label for="draft">✏️ Write in your own words • اكتب بأسلوبك</label></h3>
+<textarea id="draft" rows="8" maxlength="1600" autocomplete="off" spellcheck="true" placeholder="Write your ideas here. Explain your thinking with evidence. No text will be uploaded or saved."></textarea>
+<p id="wordCount" class="count">0 words in this draft • 0 كلمة</p>
+<h3>✅ Check your own work • راجع كتابتك</h3>
+<p>Read each point. Tick it only when your paragraph meets it. • ضع علامة عند تحقق كل نقطة.</p>
+<div class="checks" id="writingChecklist"></div>
+<details class="example"><summary>🌟 Show one possible example answer • عرض مثال للإجابة</summary><p id="exampleAnswer"></p><p class="note">One example, not the only correct response. Compare your ideas rather than copying.</p></details>
+<p id="writingFeedback" class="feedback" role="status" aria-live="polite">Write at least 12 words and check your own work before marking this as practised.</p>
+<div class="actions"><button type="button" id="markPractised" disabled>🌟 Mark as practised • أتممت التدريب</button><button type="button" id="nextWriting" class="secondary">Next mission ➜ • المهمة التالية</button></div>
+<p id="taskReflection" class="note"></p>
+</section>
+<aside class="guide"><h2>👨‍👩‍👧 For parents & teachers • للأهل والمعلمين</h2>
+<p>These prompts connect to three original fictional Grade 6 reading passages and introduce evidence, balanced arguments, data limitations, survey samples and accessibility. Ask pupils how they know their claim, and help them revise a sentence. No built-in AI grades, microphone, accounts, analytics, child-targeted ads or shared drafts.</p>
+<p>Typing 12 words and ticking the checklist merely unlocks a <em>practised</em> marker. It does not prove independent writing competence, match a specific school syllabus, or replace human feedback. Arabic supports still require native-language review. Do not type children's personal details, addresses or private information.</p></aside>
+<script src="./grade6-writing-data.js"></script><script src="./grade6-writing.js"></script>
+</main></body></html>
