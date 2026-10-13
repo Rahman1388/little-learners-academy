@@ -40,9 +40,9 @@ topic("investigate","Scientific enquiry","الاستقصاء العلمي","Plan
 3:{
 math:[
 topic("multiply","Multiplication and division","الضرب والقسمة","Explore equal groups and basic multiplication facts.","./grade3-preview.html"),
-topic("place","Three-digit numbers","الأعداد من ثلاث خانات","Use hundreds, tens and ones.","./grade3-preview.html"),
+topic("place","Three-digit numbers","الأعداد من ثلاث خانات","Use hundreds, tens and ones; a dedicated Grade 3 pilot is still needed.",null,"gap"),
 topic("fractions","Simple fractions","الكسور البسيطة","Interpret fractions as equal parts.","./grade3-preview.html"),
-topic("measure","Measure and money","القياس والنقود","Solve elementary everyday measure questions.","./grade3-preview.html")],
+topic("measure","Measure and money","القياس والنقود","Solve elementary everyday measure questions; a dedicated Grade 3 pilot is still needed.",null,"gap")],
 english:[
 topic("meaning","Reading comprehension","فهم المقروء","Answer questions about short passages.","./grade3-english.html"),
 topic("detail","Details and inference","التفاصيل والاستنتاج","Find information and make simple inferences.","./grade3-english.html"),
@@ -51,7 +51,7 @@ topic("writing","Paragraph writing","كتابة الفقرات","Organise an ind
 science:[
 topic("plants","Plant growth","نمو النباتات","Observe plant life cycles.","./grade3-science.html"),
 topic("forces","Forces and magnets","القوى والمغناطيس","Explore push, pull and magnets.","./grade3-science.html"),
-topic("materials","Rocks and materials","الصخور والمواد","Compare physical properties.","./grade3-science.html"),
+topic("materials","Rocks and materials","الصخور والمواد","Compare physical properties; a dedicated Grade 3 materials activity is still needed.",null,"gap"),
 topic("investigate","Fair tests","التجارب العادلة","Plan and explain an investigation; more hands-on tasks are needed.",null,"gap")]},
 4:{
 math:[
@@ -67,7 +67,7 @@ topic("writing","Structured writing","الكتابة المنظمة","Organise m
 science:[
 topic("living","Living things and habitats","الكائنات الحية وموائلها","Classify living things and consider habitats.","./grade4-science.html"),
 topic("matter","States of matter","حالات المادة","Explore solids, liquids and gases.","./grade4-science.html"),
-topic("energy","Energy and electricity","الطاقة والكهرباء","Review elementary energy-related concepts.","./grade4-science.html"),
+topic("energy","Energy and electricity","الطاقة والكهرباء","Explore electrical circuits and energy; no dedicated Grade 4 electricity module yet.",null,"gap"),
 topic("investigate","Scientific investigations","التحقيق العلمي","Collect evidence with fair tests; fuller investigations are still needed.",null,"gap")]},
 5:{
 math:[
