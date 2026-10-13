@@ -129,3 +129,10 @@ Ask the assistant to inspect this file and live repository before making changes
 - Added three original Grade 5 science inquiry topics and **18 supplementary questions**: Ecosystems & Interdependence; Earth, Space & Patterns; and Materials, Forces & Fair Tests. Each question has drafted Arabic support, hints and a concept explanation. Files `grade5-science.html`, `grade5-science-data.js`, `grade5-science.js`.
 - Device-only progress key `lla-grade5-science-v1`; no account, microphone, advertising, new voices or child identity data. The Grade 5 chooser now lists limited maths, reading, and science pilots.
 - Grade 5 is **not a complete or certified curriculum**; Arabic, formal curricular alignment and science content remain subject to qualified educator review. Verify current GitHub mobile, validation, security and Pages workflows before declaring the release complete.
+
+## 13 October 2026 — Grade 6 maths limited starter
+
+- Added `grade6-math.html`, `grade6-math-data.js`, `grade6-math.js`: **24 original supplementary Grade 6 mathematics questions**, six each on ratios/rates, introductory algebra, fractions/decimals, and measurement/data, with English worked explanations, hints and draft Arabic prompt supports.
+- Grade chooser now provides Grade 6 as a **limited maths pilot**, not as a complete Grade 6 curriculum or teacher-approved Arabic/local syllabus.
+- Device-only progress uses `lla-grade6-math-v1`; existing Grade 1–5 progress, sound recordings, approved C/D bus voices and achievements are untouched. No accounts, microphones, analytics or advertising.
+- Content-integrity checks and mobile browser regression added. Verify the latest CI conclusions and Pages deployment after this update; qualified teacher review remains outstanding.
