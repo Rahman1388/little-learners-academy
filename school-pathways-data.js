@@ -97,10 +97,10 @@ topic("evidence","Citing textual evidence","الاستشهاد بالأدلة","
 topic("writing","Structured essays","كتابة المقالات","Plan, draft and revise longer writing.",null,"gap"),
 topic("vocab","Advanced vocabulary","المفردات المتقدمة","Understand academic words in context.",null,"gap")],
 science:[
-topic("ecosystem","Ecosystems","النظم البيئية","Explain relationships within ecosystems.",null,"gap"),
+topic("ecosystem","Ecosystems","النظم البيئية","Explore a limited mangrove-coast observation case, not full ecosystem coverage.","./grade6-science.html"),
 topic("earth","Earth and space systems","أنظمة الأرض والفضاء","Use evidence to explain Earth and space phenomena.",null,"gap"),
-topic("matter","Matter and energy","المادة والطاقة","Build models of interactions and transformations.",null,"gap"),
-topic("experiment","Data and investigations","البيانات والتجارب","Collect, represent and evaluate experimental evidence.",null,"gap")]}
+topic("matter","Matter and energy","المادة والطاقة","Investigate basic solar energy transfer and filtering/dissolving in an introductory pilot.","./grade6-science.html"),
+topic("experiment","Data and investigations","البيانات والتجارب","Discuss safe fair tests and sample limitations; practical data analysis remains incomplete.","./grade6-science.html")]}
 };
 const sources={
 qatar:[{label:"Qatar MOEHE curriculum section",url:"https://www.edu.gov.qa/en/Content/CurriculumSection"}],
