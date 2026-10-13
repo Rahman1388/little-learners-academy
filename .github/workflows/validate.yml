@@ -77,6 +77,10 @@ jobs:
           node --check grade6-science-data.js
           node --check grade6-science.js
           node --check grade6-progress.js
+          node --check grade6-writing-data.js
+          node --check grade6-writing.js
+          node --check scripts/check-grade6-writing.cjs
+          node scripts/check-grade6-writing.cjs
           node --check scripts/test-grade6-science.cjs
           node scripts/test-grade6-science.cjs
           node --check scripts/check-grade6-reading.cjs
@@ -167,6 +171,10 @@ jobs:
           test -f grade6-science.js
           test -f grade6-progress.html
           test -f grade6-progress.js
+          test -f grade6-writing.html
+          test -f grade6-writing-data.js
+          test -f grade6-writing.js
+          test -f scripts/check-grade6-writing.cjs
           test -f scripts/test-grade6-science.cjs
           test -f scripts/check-grade6-reading.cjs
           test -f grade4-science.html
@@ -218,6 +226,8 @@ jobs:
           grep -q 'grade6-reading.html' curriculum-compass.js
           grep -q 'grade6-science.html' choose-grade.html
           grep -q 'grade6-science.html' curriculum-compass.js
+          grep -q 'grade6-writing.html' choose-grade.html
+          grep -q 'grade6-writing.html' grade6-reading.html
 
       - name: Check Grade 1 and Grade 2 learning content and answers
         run: node scripts/check-learning-content.cjs
