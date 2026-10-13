@@ -54,6 +54,8 @@ jobs:
           node --check grade3-science-data.js
           node --check grade3-science.js
           node --check grade3-mixed-quest.js
+          node --check grade4-reading-data.js
+          node --check grade4-reading.js
           node --check scripts/test-grade3-mixed.cjs
           node --check fractions-lab.js
           node --check scripts/check-learning-content.cjs
@@ -105,6 +107,9 @@ jobs:
           test -f grade3-science.js
           test -f grade3-mixed-quest.html
           test -f grade3-mixed-quest.js
+          test -f grade4-reading.html
+          test -f grade4-reading-data.js
+          test -f grade4-reading.js
           test -f scripts/test-grade3-mixed.cjs
           test -f grade2-pilot-data.js
           test -f grade2-pilot.js
