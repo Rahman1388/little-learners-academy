@@ -74,8 +74,8 @@ for(let grade=1;grade<=6;grade++){
  const pattern=new RegExp('<td data-audit-grade="'+grade+'">'+count+'</td>');
  assert.match(benchmark,pattern,"Published benchmark count is out of sync for Grade "+grade);
 }
-assert.match(benchmark,/<strong data-audit-total="451">451 distinct short questions</strong>/);
-assert.match(benchmark,/<strong data-audit-writing="6">6 guided writing prompts</strong>/);
+assert.ok(benchmark.includes('<strong data-audit-total="451">451 distinct short questions</strong>'),"Benchmark total is out of sync");
+assert.ok(benchmark.includes('<strong data-audit-writing="6">6 guided writing prompts</strong>'),"Writing prompt total is out of sync");
 console.log("Verified unique practice question inventory across Grades 1-6:");
 for(let grade=1;grade<=6;grade++)console.log(" Grade "+grade+": "+byGrade.get(grade)+" distinct questions");
 console.log("Total: "+seen.size+" distinct multiple-choice questions; separate Grade 6 writing prompts: "+writing.length);
