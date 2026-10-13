@@ -12,7 +12,7 @@ const countPilot=(key,prefix,max)=>{
  return Math.min(max,Object.keys(v).filter(k=>k.startsWith(prefix)&&/^[0-9]+$/.test(k.slice(prefix.length))&&v[k]===true).length);
 };
 function refresh(){
- const completed=read("lla-activity-library-v1"),insights=read("lla-practice-insights-v1");
+ const completed=read("lla-activity-library-v1"),insights=read("lla-practice-insights-v1"),confidence=read("lla-practice-confidence-v1");
  const done=data.filter(a=>completed[a.id]===true).length;
  let right=0,wrong=0;
  for(const a of data){
@@ -41,10 +41,14 @@ function refresh(){
   bar.append(fill);box.append(heading,bar);$("#subjectProgress").append(box);
   lines.push("- "+name+": "+n+" / "+all.length);
  }
+ const requested=data.filter(a=>confidence[a.id]==="review");
+ $("#reflectionCount").textContent="🌱 "+requested.length+" activity"+(requested.length===1?"":"ies")+" marked for another practice round";
+ lines.push("Learner-requested reviews: "+requested.length+" (optional self-report, not a grade)");
  const waiting=data.filter(a=>completed[a.id]!==true);
  waiting.sort((a,b)=>(Number(insights[b.id]?.incorrect)||0)-(Number(insights[a.id]?.incorrect)||0));
  const suggestions=[],seen=new Set();
- for(const a of waiting){if(!seen.has(a.area)){suggestions.push(a);seen.add(a.area)}if(suggestions.length===3)break}
+ for(const a of requested){suggestions.push(a);seen.add(a.area);if(suggestions.length===3)break}
+ for(const a of waiting){if(suggestions.length===3)break;if(!seen.has(a.area)&&!suggestions.includes(a)){suggestions.push(a);seen.add(a.area)}}
  for(const a of waiting){if(suggestions.length===3)break;if(!suggestions.includes(a))suggestions.push(a)}
  $("#focusCards").replaceChildren();lines.push("Suggested next practice:");
  if(!suggestions.length){
@@ -56,11 +60,12 @@ function refresh(){
   const card=document.createElement("article");
   const heading=document.createElement("strong");heading.textContent=a.icon+" "+a.title;
   const ar=document.createElement("p");ar.lang="ar";ar.dir="rtl";ar.textContent=a.ar;
-  const note=document.createElement("p");note.textContent=tries>0?"Revisit after "+tries+" recorded incorrect attempt"+(tries===1?"":"s")+".":"An unfinished activity to explore together.";
+  const note=document.createElement("p");note.textContent=confidence[a.id]==="review"?
+    "🌱 The learner chose to practise this activity again (optional self-report).":tries>0?"Revisit after "+tries+" recorded incorrect attempt"+(tries===1?"":"s")+".":"An unfinished activity to explore together.";
   const link=document.createElement("a");link.className="go";link.textContent="▶ Practise • تدرّب";
   link.href="./activity-library.html?activity="+encodeURIComponent(a.id);
   card.append(heading,ar,note,link);$("#focusCards").append(card);
-  lines.push("- "+a.area+" / "+a.skill+": "+a.title+(tries>0?" (review suggested)":" (not completed)"));
+  lines.push("- "+a.area+" / "+a.skill+": "+a.title+(confidence[a.id]==="review"?" (learner requested another try)":tries>0?" (review suggested)":" (not completed)"));
  }
  const g2=[countPilot("lla-grade2-pilot-v1","g2-",24),countPilot("lla-grade2-english-v1","g2e-",24),countPilot("lla-grade2-science-v1","g2s-",18)];
  const g3=[countPilot("lla-grade3-preview-v1","g3-",18),countPilot("lla-grade3-english-v1","g3e-",18),countPilot("lla-grade3-science-v1","g3s-",18)];
