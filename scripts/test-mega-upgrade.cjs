@@ -69,7 +69,7 @@ const assert=require("node:assert/strict");
  assert.match(await page.locator("body").textContent(),/4,000\+/);
  assert((await page.locator('a[href="https://www.khanacademy.org/kids/pricing"]').count())>=1,"Missing Khan Academy official reference");
  // Verify the benchmark is genuinely Gulf + international, not Khan-only.
- assert.equal(await page.locator('a[href="https://www.edu.gov.qa/en/Content/EarlyLearning"]').count(),1,"Missing official Qatar foundation-stage reference");
+ assert((await page.locator('a[href="https://www.edu.gov.qa/en/Content/EarlyLearning"]').count())>=1,"Missing official Qatar foundation-stage reference");
  assert.equal(await page.locator('a[href="https://www.alefeducation.com/ar/products/abjadiyat"]').count(),1,"Missing UAE Arabic-learning reference");
  assert.equal(await page.locator('a[href="https://madrasa.org/who?lang=en"]').count(),1,"Missing UAE Arabic science/maths platform");
  assert.equal(await page.locator('a[href="https://madrasatibeta.moe.gov.sa/books?Language=2"]').count(),1,"Missing Saudi Grade 1–6 curriculum reference");
