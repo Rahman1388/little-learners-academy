@@ -99,6 +99,8 @@ jobs:
           node --check drawing-studio.js
           node --check scripts/check-app-security.cjs
           node scripts/check-app-security.cjs
+          node --check scripts/audit-activity-inventory.cjs
+          node scripts/audit-activity-inventory.cjs
 
       - name: Verify required PWA files
         run: |
@@ -201,6 +203,7 @@ jobs:
           test -f pronunciation-review.html
           test -f math-story-village.html
           test -f international-benchmark.html
+          test -f scripts/audit-activity-inventory.cjs
           test -f scripts/test-mega-upgrade.cjs
 
       - name: Verify core app wiring
