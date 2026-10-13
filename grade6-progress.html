@@ -32,6 +32,15 @@ p{line-height:1.55}
 .topicList li{padding:10px 11px;border-radius:12px;background:#eaf5fb;font-size:13px;font-weight:750}
 .topicList li.complete{background:#e4ffed;color:#155d40}
 .topicList b{display:block;font-size:14px}
+.writingMissionList{list-style:none;padding:0;margin:15px 0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
+.writingMissionList li{min-width:0;border:2px solid #d1e4ee;border-radius:15px;padding:13px;background:#f1f9ff}
+.writingMissionList li.practised{background:#e6fff0;border-color:#62bb88}
+.writingMissionList b{display:block;font-size:15px}
+.writingMissionList .status{display:block;font-size:13px;font-weight:900;margin-top:5px}
+.writingNext{margin:13px 0;padding:14px 15px;border-radius:16px;background:#fff5d5;font-weight:800;line-height:1.6}
+.writingNext a{display:inline-block;margin-top:8px;color:#fff;background:#087fa8;border-radius:13px;padding:11px 15px;text-decoration:none;font-weight:900}
+@media(max-width:580px){.writingMissionList{grid-template-columns:1fr}}
+
 .action{display:inline-flex;min-height:51px;width:100%;align-items:center;justify-content:center;text-align:center;border-radius:15px;background:#087fa8;color:white;text-decoration:none;padding:12px;font-weight:900}
 .suggest{border-radius:19px;background:#fff6d6;padding:16px;margin:13px 0;font-weight:850}
 .suggest a{display:inline-block;padding:10px 15px;border-radius:13px;background:#087fa8;color:white;text-decoration:none;margin-top:8px}
@@ -68,6 +77,9 @@ p{line-height:1.55}
 <p class="stat" id="writingCount">0 / 6 tasks practised</p>
 <div class="meter" role="progressbar" aria-label="Writing tasks practised, not graded" aria-valuemin="0" aria-valuemax="6" aria-valuenow="0" id="writingMeter"><span id="writingFill"></span></div>
 <p class="note">A writing practice mark records a learner's self-check, not writing accuracy or mastery. Draft paragraphs are never stored or uploaded.</p>
+<h3>🗺️ Writing Missions • مهام الكتابة</h3>
+<ul class="writingMissionList" id="writingMissions" aria-label="Six Grade 6 writing practice statuses"></ul>
+<div class="writingNext" id="writingRecommendation" role="status" aria-live="polite"></div>
 <a class="action" href="./grade6-writing.html">▶ Open Writing Studio • ابدأ الكتابة</a>
 </section>
 <section class="panel" aria-labelledby="nextTitle"><h2 id="nextTitle">🌱 Next Small Step <span class="ar">الخطوة التعليمية التالية</span></h2>
@@ -78,5 +90,6 @@ p{line-height:1.55}
 <p>Progress is read only from the existing browser storage on this device. This screen does not upload personal data, require a child's identity, create an account, or change existing stars. Clearing browser data may remove progress, and progress is not synchronised between phones.</p>
 <a href="./school-pathways.html">📘 Compare school topics &amp; gaps • مواضيع المنهج</a>
 </aside>
+<script src="./grade6-writing-data.js"></script>
 <script src="./grade6-progress.js"></script>
 </main></body></html>
