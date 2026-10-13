@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en"><head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; media-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#c4f3ff"><link rel="icon" href="./icon.svg" type="image/svg+xml">
+<meta name="description" content="Grade 1 and Grade 2 bridge: learn skip counting by 2, 5 and 10 with one guided rocket jump at a time.">
+<title>Skip-Count Rocket | Little Learners Academy</title>
+<style>
+:root{font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif;color:#173d64}
+*{box-sizing:border-box}
+body{min-height:100vh;margin:0;background:radial-gradient(circle at 80% 5%,#ffedb4,transparent 28%),linear-gradient(125deg,#caefff,#e8dcff 52%,#e6ffdb)}
+main{max-width:920px;margin:auto;padding:15px 13px 50px}
+button,a{font:inherit}button{cursor:pointer}
+button:focus-visible,a:focus-visible{outline:4px solid #8a1538;outline-offset:4px}
+.back{display:inline-flex;align-items:center;min-height:50px;background:#fff;color:#174b70;padding:12px 17px;border-radius:16px;text-decoration:none;font-weight:900}
+.hero,.panel,.parent{background:#fffefb;border:4px solid #fff;border-radius:28px;padding:clamp(15px,3vw,25px);box-shadow:0 6px #aed6e4;margin:16px 0}
+.hero{text-align:center;background:linear-gradient(120deg,#fff7be,#fff,#d9f8ff)}
+.eyebrow{font-weight:950;color:#8a1538;font-size:13px}
+h1{font-size:clamp(30px,6vw,46px);line-height:1.2;margin:12px 0}
+h1 span{display:block;font-size:.66em;margin:8px 0}
+h2{font-size:clamp(23px,4vw,29px);margin:3px 0 12px}
+p{line-height:1.6}
+.score{font-size:19px;font-weight:950;background:#fff2be;border-radius:17px;padding:12px 18px;display:inline-block}
+.meter{height:14px;background:#e0ebf2;border-radius:99px;margin:15px 0 4px;overflow:hidden}
+.meter>span{display:block;background:#279f75;height:100%;width:0;transition:width .2s}
+.routes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.route{border:3px solid #c1deed;border-radius:19px;background:#fff;min-height:98px;padding:11px 8px;display:flex;flex-direction:column;gap:6px;align-items:center;justify-content:center;color:#184d75;font-weight:900;text-align:center}
+.route.selected{border-color:#b790e0;background:#f8edff}.route.done{border-color:#49b98a;background:#e4ffec}
+.route strong{font-size:clamp(15px,2.6vw,18px)}.route small{font-size:12px}
+.story{background:#f0edff;border-radius:19px;padding:15px;font-weight:950;font-size:clamp(19px,4vw,25px);line-height:1.4}
+.ar{font-size:17px;text-align:right;direction:rtl;margin-top:10px;font-weight:750}
+.model{background:#e8faff;border:2px solid #b7ddea;border-radius:23px;margin:16px 0;padding:15px 10px;text-align:center}
+.groups{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:8px 0 17px}
+.group{border:2px solid #a6cfea;background:white;border-radius:13px;padding:9px;font-size:15px;font-weight:950;min-width:59px}
+.lane{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:5px;max-width:660px;margin:auto}
+.point{background:#fff;border:2px solid #b8dce8;border-radius:14px;min-height:62px;display:flex;align-items:center;justify-content:center;font-weight:950;font-size:clamp(17px,3.5vw,25px);min-width:0}
+.point.start{background:#fff0b7;border-color:#ddae47}.point.visited{background:#d9ffe6;border-color:#35ae7b}.point.current{outline:3px solid #097da8;outline-offset:-4px}
+.legend{font-size:13px;color:#32627e;font-weight:800;margin:13px auto}
+.feedback{font-weight:900;background:#f6ecff;border-radius:17px;padding:14px;margin:13px 0;min-height:62px;line-height:1.5}
+.feedback.try{background:#fff0e2}.feedback.success{background:#e3ffed}
+.controls{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0}
+.controls button{border:none;background:#087dac;color:#fff;border-radius:17px;font-weight:900;padding:12px 18px;min-height:53px}
+.controls button.secondary{border:2px solid #a6d4e5;background:white;color:#155476}
+.controls button:disabled{opacity:.57;cursor:default}
+.choices{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:16px 0}
+.choices button{border:3px solid #aad1e4;border-radius:20px;background:white;min-height:75px;font-size:clamp(23px,5vw,33px);font-weight:950;color:#19557d}
+.choices button.correct{border-color:#35ab7a;background:#dfffe8}.choices button.wrong{border-color:#db8e77;background:#fff0e7}
+.choices button:disabled{opacity:1;cursor:default}
+.reward{text-align:center;background:#e4ffe9;border:3px solid #7ccb99;padding:19px;border-radius:20px;margin:15px 0}
+.parent{color:#4a637a;font-size:14px}
+[hidden]{display:none!important}
+@media(max-width:420px){.lane{gap:3px}.point{min-height:53px;border-radius:10px}.route{min-height:96px}.routes{gap:6px}.group{font-size:13px;min-width:48px}}
+@media(prefers-reduced-motion:reduce){.meter>span{transition:none}}
+</style></head><body><main>
+<a class="back" href="./index.html">← Home • الرئيسية</a>
+<header class="hero"><div class="eyebrow">🚀 NUMBER PATTERNS • أنماط الأعداد</div>
+<h1>🚀 Skip-Count Rocket <span lang="ar" dir="rtl">صاروخ العد بالقفز</span></h1>
+<p>Count in 2s, 5s and 10s. Discover how equal jumps build number patterns!</p>
+<p lang="ar" dir="rtl">تعلّم العد بالقفز بمقدار ٢ و٥ و١٠، واكتشف أنماط الأعداد خطوة بخطوة.</p>
+<div class="score" id="rocketProgress" role="status" aria-live="polite">⭐ 0 / 12 missions</div>
+<div class="meter" aria-hidden="true"><span id="progressFill"></span></div>
+</header>
+<section class="panel"><h2>🗺️ Choose a mission • اختر مهمة</h2>
+<div class="routes" id="missionGrid" role="group" aria-label="Twelve skip-counting missions"></div></section>
+<section class="panel" id="rocketGame" aria-label="Skip-counting practice">
+<div class="eyebrow" id="chapter">Count in twos</div><h2 id="missionTitle">Mission 1</h2>
+<div class="story" id="prompt"></div><p id="arabicPrompt" class="ar" lang="ar" dir="rtl"></p>
+<div class="model"><div id="groupTitle" style="font-weight:900">Equal jumps • قفزات متساوية</div>
+<div id="groupModels" class="groups" aria-label="Equal-size step groups"></div>
+<div id="numberLane" class="lane" role="group" aria-label="Skip-counting number sequence"></div>
+<div class="legend">🟡 Start • البداية &nbsp; 🟢 Completed jump • خطوة منجزة</div></div>
+<div class="controls"><button type="button" id="showModel">👣 Show one jump • اعرض خطوة</button>
+<button type="button" id="showHint" class="secondary">💡 Hint • تلميح</button></div>
+<p id="modelStatus" class="feedback" role="status" aria-live="polite">Start with a number and jump forward.</p>
+<h2>🎯 Where does the rocket land? <span lang="ar" dir="rtl">أين يصل الصاروخ؟</span></h2>
+<div id="answerChoices" class="choices" role="group" aria-label="Choose the landing number"></div>
+<p id="answerStatus" class="feedback" role="status" aria-live="polite">Choose a number. • اختر عدداً.</p>
+<div class="controls"><button type="button" id="nextMission" hidden>Next mission ➜ • المهمة التالية</button>
+<button type="button" id="replayMission" class="secondary">🔁 Practise again • تدرب مرة أخرى</button></div>
+<div class="reward" id="rocketReward" hidden><div style="font-size:47px" aria-hidden="true">🏆 🚀 🌟</div>
+<h2>Rocket Explorer! <span lang="ar" dir="rtl">مستكشف الأعداد!</span></h2><p>You explored all 12 missions. Keep practising when you like!</p></div>
+</section>
+<aside class="parent"><strong>👨‍👩‍👧 For parents & teachers • للأهل والمعلمين</strong>
+<p>This is a <strong>Grade 1 extension / Grade 2 bridge</strong>, introducing equal-size jumps and repeated addition. Children first watch one jump at a time, then explain their answer. Try using two blocks, five fingers or ten counters to model each jump. The last two missions gently introduce jumping backwards.</p>
+<p>Supplementary practice only; school sequence and exact national standard vary. Draft Arabic prompts have not received specialist review. No account, advertising, microphone, audio replacement or individual child profile is required. Progress is kept on this device. Completing the twelve missions awards one star at most.</p>
+</aside></main>
+<script src="./skip-count-rocket.js?v=rocket-1"></script></body></html>
