@@ -1,0 +1,43 @@
+/* Original Grade 5 supplementary science investigation pilot. Draft bilingual supports;
+ * requires qualified teacher and Arabic language review before formal school use. */
+(()=>{"use strict";
+const domains=[
+{id:"ecosystems",icon:"🌴",title:"Ecosystems & Interdependence",ar:"الأنظمة البيئية والترابط بين الكائنات",
+text:"During a class project in Doha, pupils compare a shaded school garden with a nearby sandy open area. The garden contains flowering plants, insects and birds. Pupils draw a simple food web, showing that plants make food using energy from sunlight and that some insects eat plants while birds may eat insects. They learn that living things depend on each other and on resources such as water and shelter. The pupils do not touch nests or disturb wildlife. They also discuss what might happen during a long dry period when plants grow less well.",
+questions:[
+["Why are green plants called producers in a food web?","لماذا تُسمّى النباتات الخضراء كائنات منتجة؟",["They make food using light energy","They eat small birds","They never need water"],"Think about where plants get the energy to produce food.","Plants produce sugars using sunlight, water and carbon dioxide."],
+["Which relationship is shown by insects eating garden plants?","ما العلاقة التي تظهر عندما تأكل الحشرات نباتات الحديقة؟",["The insect is a consumer of the plant","The plant eats the insect","Neither organism needs energy"],"Think about which organism obtains food from the other.","Plant-eating insects act as consumers because they obtain energy from plants."],
+["If fewer plants grow during drought, what could happen next?","ماذا يمكن أن يحدث إذا قلّت النباتات أثناء الجفاف؟",["Some plant-eating insects may have less food","Birds will stop needing water","All animals will become producers"],"Trace the food connection from plants to animals.","Less vegetation may reduce food and habitat for plant-eating species."],
+["Why might birds prefer the shaded garden?","لماذا قد تفضّل بعض الطيور الحديقة الظليلة؟",["It may offer water, food and shelter","Shade guarantees there are no predators","Every bird eats only plants"],"Habitats offer more than one needed resource.","A shaded garden can offer several resources, though different birds have different needs."],
+["Which observation best supports a comparison of both habitats?","أي ملاحظة تدعم مقارنة الموئلين بشكل أفضل؟",["Counting insects in equal-sized sample areas","Taking photos only of the garden","Guessing how many animals live there"],"A fair comparison uses the same measurement approach.","Equal-sized sampling areas make habitat counts more comparable."],
+["What is a responsible way to study local wildlife?","ما الطريقة المسؤولة لدراسة الكائنات الحية المحلية؟",["Observe without disturbing nests or animals","Remove bird nests to count eggs","Collect every insect to take home"],"Consider animal welfare and habitat protection.","Observing without disturbing wildlife is safer and more respectful."]
+]},
+{id:"earth",icon:"🌍",title:"Earth, Space & Patterns",ar:"الأرض والفضاء والأنماط",
+text:"A Grade 5 science group makes a shadow diary in a safe outdoor part of their school. Under teacher supervision, they mark the tip of a stick's shadow at different times while keeping the stick in the same place. The shadow's direction and length change as the Sun appears to move across the sky. The teacher explains that Earth's rotation causes the daily pattern of daylight and darkness, and that the Sun is a star. Pupils also learn that Earth travels around the Sun during a year. They never look directly at the Sun.",
+questions:[
+["What causes the regular cycle of day and night on Earth?","ما سبب تعاقب الليل والنهار على الأرض؟",["Earth rotating on its axis","The Moon blocking the Sun every night","The Sun switching off"],"Think about which parts of Earth face the Sun.","As Earth rotates, different places face toward or away from the Sun."],
+["Why does the stick's shadow change during the day?","لماذا يتغيّر ظل العصا خلال النهار؟",["The Sun's apparent position changes as Earth rotates","The stick always becomes shorter","Gravity changes direction each hour"],"The light comes from a changing apparent direction.","The Sun appears to move because Earth rotates, changing the shadow's direction and length."],
+["Which is a safe rule when observing shadows?","ما قاعدة السلامة عند ملاحظة الظلال؟",["Never look directly at the Sun","Stare at the Sun to check its shape","Use binoculars to look at the Sun"],"Protect eyes from intense sunlight.","Looking directly at the Sun can damage eyesight; observe the shadow instead."],
+["What kind of object is the Sun?","ما نوع الجرم السماوي الذي تُعدّه الشمس؟",["A star","A planet","A moon"],"It produces its own light.","The Sun is a star that produces light and heat."],
+["About how long does Earth take to orbit the Sun once?","كم تستغرق الأرض تقريباً لإكمال دورة حول الشمس؟",["One year","One day","One hour"],"Compare daily rotation with yearly orbit.","Earth's journey around the Sun takes roughly one year."],
+["Why should pupils keep the stick in one place?","لماذا ينبغي إبقاء العصا في المكان نفسه؟",["So the shadow observations are more comparable","So the stick makes more sunlight","So time stops changing"],"A fair observation avoids changing unnecessary conditions.","Keeping the stick fixed helps pupils compare shadows at different times."]
+]},
+{id:"investigations",icon:"🧪",title:"Materials, Forces & Fair Tests",ar:"المواد والقوى والتجارب العادلة",
+text:"At a supervised science station, children explore how quickly a toy car moves down a low ramp. They compare two ramp surfaces using the same car, the same height and the same starting point. A rough surface may increase friction and slow the car. They measure travel distance in centimetres, repeat tests and record any variation instead of changing results. At a separate desk, the teacher demonstrates that an object can dissolve in water without vanishing: particles of the dissolved substance remain in the solution. Children do not taste classroom materials or use dangerous chemicals.",
+questions:[
+["In the car investigation, what should the pupils change between tests?","ما المتغير الذي يغيّره التلاميذ بين الاختبارات؟",["Only the ramp surface","The car, height and surface together","The units of measurement"],"A fair test changes one factor at a time.","Changing only the surface helps test its effect on movement."],
+["What force often slows a moving car on a rough ramp?","ما القوة التي غالباً ما تبطّئ السيارة على سطح خشن؟",["Friction","Magnetism in every ramp","Sunlight"],"Think about the contact between car and surface.","Friction can oppose motion where surfaces touch."],
+["Why repeat the toy-car test several times?","لماذا نكرر تجربة السيارة أكثر من مرة؟",["To see whether the measurements are consistent","To guarantee the same answer regardless of evidence","To avoid recording unusual results"],"Repeated measurements help identify variation.","Repetition helps assess how reliable a result is."],
+["Which measurement is most useful for comparing travel distance?","أي قياس أنسب لمقارنة مسافة حركة السيارة؟",["Distance in centimetres","The car's colour","The number of pupils watching"],"Choose a quantity with a suitable unit.","Recording distance in centimetres gives a measurable comparison."],
+["When sugar dissolves in water, what happens to it?","ماذا يحدث للسكر عندما يذوب في الماء؟",["Its particles spread through the water","It stops existing completely","It turns into sand"],"Dissolving is not the same as disappearing.","Sugar particles remain present in a solution even when they are no longer visible."],
+["What is the safest behaviour during a science demonstration?","ما السلوك الأكثر أماناً أثناء التجربة العلمية؟",["Follow the teacher's instructions and never taste materials","Taste solutions to identify them","Mix unknown chemicals alone"],"Scientific learning starts with safety.","Supervision and not tasting materials help prevent injuries."]
+]}];
+const questions=[];
+domains.forEach((d,di)=>d.questions.forEach(([prompt,ar,choices,hint,explanation],i)=>{
+ if(choices.length!==3||new Set(choices).size!==3||!prompt||!ar||!hint||!explanation)throw Error("Invalid Grade 5 science question");
+ const shift=(i+di)%3;const rotated=[...choices.slice(shift),...choices.slice(0,shift)];
+ questions.push(Object.freeze({id:"g5s-"+String(questions.length+1).padStart(2,"0"),passage:d.id,prompt,ar,choices:rotated,answer:rotated.indexOf(choices[0]),hint,explanation}));
+}));
+if(questions.length!==18)throw Error("Grade 5 science pilot requires 18 questions");
+window.LLA_GRADE5_SCIENCE=Object.freeze({passages:Object.freeze(domains.map(({questions,...d})=>Object.freeze(d))),questions:Object.freeze(questions)});
+})();
