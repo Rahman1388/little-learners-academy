@@ -52,19 +52,37 @@ const fs=require("node:fs");
  assert.equal(await page.locator("#mainMenu").isVisible(),false);
  assert.equal(await page.locator('#moreAdventures a[href="./star-journey.html"]').isVisible(),true);
  await assertMobile();
- // Grade selector provides Grade 1 activities and limited Grades 2–4 pilots, with Grades 5–6 planned.
+ // Grade selector provides Grade 1 activities and limited Grades 2–5 pilots, with Grade 6 planned.
  await page.locator('#mainMenu a[href="./choose-grade.html"]').count().then(n=>assert.equal(n,1));
  await goto("choose-grade.html");
  await page.locator("#grade1").waitFor({state:"visible"});
  assert.equal(await page.locator(".grade").count(),6);
  assert.equal(await page.locator(".grade.available").count(),1);
- assert.equal(await page.locator(".grade.pilot").count(),3);
- assert.equal(await page.locator(".grade.planned").count(),2);
+ assert.equal(await page.locator(".grade.pilot").count(),4);
+ assert.equal(await page.locator(".grade.planned").count(),1);
  assert.equal(await page.locator(".grade.planned a").count(),0,"Unreleased grades must not appear as playable");
- for(const href of ["./activity-library.html","./grade2-pilot.html","./grade2-english.html","./grade2-science.html","./grade3-preview.html","./grade3-english.html","./grade3-science.html"]){
+ for(const href of ["./activity-library.html","./grade2-pilot.html","./grade2-english.html","./grade2-science.html","./grade3-preview.html","./grade3-english.html","./grade3-science.html","./grade5-math.html"]){
    assert.equal(await page.locator('.grade a[href="'+href+'"]').count(),1,"Missing playable grade link "+href);
  }
  await assertMobile();
+ await page.setViewportSize({width:768,height:1024});
+ await assertMobile();
+ await page.setViewportSize({width:390,height:844});
+ // Grade 5 is a limited 24-question maths pilot, Grade 6 is unreleased.
+ await goto("grade5-math.html");
+ await page.locator("#grade5Domains .domain").first().waitFor({state:"visible"});
+ assert.equal(await page.locator("#grade5Domains .domain").count(),4);
+ await assertMobile();
+ await page.locator('#grade5Domains .domain[data-topic="place"]').click();
+ assert.equal(await page.locator("#grade5Play").isVisible(),true);
+ await page.locator("#grade5Hint").click();
+ assert.equal(await page.locator("#grade5Help").isVisible(),true);
+ const correctChoice=page.locator('#grade5Answers button').filter({hasText:"6,000,000"});
+ await correctChoice.click();
+ assert.equal(await page.locator("#grade5Explanation").isVisible(),true);
+ assert.match(await page.locator("#grade5Progress").textContent(),/1 \/ 24/);
+ await page.reload({waitUntil:"domcontentloaded"});
+ assert.match(await page.locator("#grade5Progress").textContent(),/1 \/ 24/);
  await page.setViewportSize({width:768,height:1024});
  await assertMobile();
  await page.setViewportSize({width:390,height:844});
