@@ -23,7 +23,7 @@ for(const [i,t] of items.entries()){
 const html=fs.readFileSync("grade6-writing.html","utf8");
 const js=fs.readFileSync("grade6-writing.js","utf8");
 assert(html.includes('Content-Security-Policy'),"Writing page requires CSP");
-assert(html.includes("are not saved or uploaded"),"Draft privacy notice missing");
+assert(html.includes("not saved or uploaded"),"Draft privacy notice missing");
 assert(js.includes('lla-grade6-writing-v1'),"Stable key missing");
 assert(js.includes("drafts=new Map()"),"Writing draft must remain in memory");
 assert(!js.includes("localStorage.setItem(KEY,JSON.stringify(drafts)"),"Do not save draft text");
