@@ -64,6 +64,10 @@ on:
       - "grade5-math.html"
       - "grade5-math-data.js"
       - "grade5-math.js"
+      - "grade5-reading.html"
+      - "grade5-reading-data.js"
+      - "grade5-reading.js"
+      - "scripts/test-grade5-reading.cjs"
       - "scripts/test-grade3-mixed.cjs"
       - "grade2-mixed-quest.js"
       - "fractions-lab.html"
@@ -152,3 +156,4 @@ jobs:
           node scripts/test-grade2-mixed.cjs
           node scripts/test-grade3-mixed.cjs
           node scripts/test-parent-report.cjs
+          node scripts/test-grade5-reading.cjs
