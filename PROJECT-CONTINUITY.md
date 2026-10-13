@@ -160,3 +160,14 @@ Ask the assistant to inspect this file and live repository before making changes
 - Saved science completion is browser-local under `lla-grade6-science-v1`. No new accounts, microphone, tracking, or recordings; existing stars/progress and preferred English voice recordings were not modified.
 - Added deterministic data integrity checks in `scripts/test-grade6-science.cjs` and browser regression checks for mobile/tablet layout, wrong-answer retry, hints, explanations and persistence. Check latest GitHub workflow conclusions before claiming final release.
 
+
+
+## 13 October 2026 — Grade 6 family progress and continuity milestone
+
+- Added \`grade6-progress.html\` and \`grade6-progress.js\`: a bilingual-friendly, mobile/tablet-first parent summary of the three **limited Grade 6 subject pilots**, covering **24 mathematics + 18 reading + 18 science = 60 distinct practice questions**.
+- The progress page reads **only existing same-device storage keys**, \`lla-grade6-math-v1\`, \`lla-grade6-reading-v1\`, and \`lla-grade6-science-v1\`, counting the exact \`g6m-01…24\`, \`g6r-01…18\`, and \`g6s-01…18\` question IDs. It introduces no accounts, names, tracking, microphones, ads, or new reward balances.
+- Shows per-subject counts, four maths topics, three reading passages, three science investigations, a next-practice suggestion and a link to school-topic gaps. A correct response at least once counts as \`explored\`; it is **not a claim of independent mastery, a full curriculum, or qualified teacher review**.
+- Added navigation from \`choose-grade.html\` and the home menu, cached the new page and script for PWA, and expanded code validation and Playwright mobile/tablet checks.
+- **At commit \`f961fa37\`, all four required workflows passed**: Validate app, Child App Security Gate, Test mobile reading and audio, and GitHub Pages deployment. These results verified the feature release before this documentation-only update.
+- Preserve all existing English/Arabic recordings and the parent's approved C/D word \`bus\` defaults and optional override. The owner can access the released page from an iPhone without a laptop.
+- Future priorities: richer Grade 6 writing tasks and evidence-based explanation; qualified review for curriculum/Arabic; parent review of newly added content; improved accessibility and production security before a broader child rollout.
