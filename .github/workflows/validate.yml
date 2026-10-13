@@ -64,6 +64,7 @@ jobs:
           node --check scripts/test-grade3-mixed.cjs
           node --check fractions-lab.js
           node --check scripts/check-learning-content.cjs
+          node --check scripts/check-grade5-content.cjs
           node --check learning-passport.js
           node --check drawing-studio.js
           node --check scripts/check-app-security.cjs
@@ -162,6 +163,9 @@ jobs:
 
       - name: Check Grade 1 and Grade 2 learning content and answers
         run: node scripts/check-learning-content.cjs
+
+      - name: Check Grade 5 maths pilot answer keys and explanations
+        run: node scripts/check-grade5-content.cjs
 
       - name: Install audio inspector
         run: |
