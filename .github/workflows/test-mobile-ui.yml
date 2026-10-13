@@ -59,6 +59,8 @@ on:
       - "grade4-science.html"
       - "grade4-science-data.js"
       - "grade4-science.js"
+      - "grade4-progress.html"
+      - "grade4-progress.js"
       - "scripts/test-grade3-mixed.cjs"
       - "grade2-mixed-quest.js"
       - "fractions-lab.html"
