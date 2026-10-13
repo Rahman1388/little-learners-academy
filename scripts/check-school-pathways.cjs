@@ -31,7 +31,7 @@ for(let grade=1;grade<=6;grade++)for(const subject of ["math","english","science
 }
 assert.equal(total,72);
 assert.equal(data.grade[6].english.filter(x=>x.href).length,2,"Grade 6 English has only two limited reading topic links");
-assert.equal(data.grade[6].science.filter(x=>x.href).length,0,"Grade 6 science has no pilot");
+assert.equal(data.grade[6].science.filter(x=>x.href).length,3,"Grade 6 science has three limited topic links; Earth and space remains a gap");
 assert.equal(data.grade[6].math.filter(x=>x.href).length,4);
 for(const key of ["qatar","british","american"]){
  assert(Array.isArray(data.sources[key])&&data.sources[key].length>0,"Missing "+key+" sources");
