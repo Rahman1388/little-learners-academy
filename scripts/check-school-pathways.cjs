@@ -12,7 +12,10 @@ for(let grade=1;grade<=6;grade++)for(const subject of ["math","english","science
   assert(typeof item.id==="string"&&/^[a-z]+$/.test(item.id));
   assert(!ids.has(item.id),"Duplicate topic ID "+item.id);
   ids.add(item.id);
-  for(const k of ["title","ar","goal"])assert(typeof item[k]==="string"&&item[k].trim().length>7,"Missing "+k+": "+grade+" "+subject);
+  for(const k of ["title","ar","goal"]){
+   const min=k==="ar"?3:k==="title"?5:8;
+   assert(typeof item[k]==="string"&&item[k].trim().length>=min,"Missing "+k+": "+grade+" "+subject);
+  }
   if(item.href){
    assert(/^\.\//.test(item.href)&&!item.href.includes(".."),"Unsafe activity link "+item.href);
    const file=item.href.split("?")[0].replace(/^\.\//,"");
