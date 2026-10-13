@@ -1297,6 +1297,34 @@ const fs=require("node:fs");
  assert.equal(await page.locator("#totalMeter").getAttribute("aria-valuenow"),"3");
  assert.match(await page.locator("#writingCount").textContent(),/1 \/ 6/);
  assert.equal(await page.locator("#writingMeter").getAttribute("aria-valuenow"),"1");
+ assert.equal(await page.locator("#writingMissions li").count(),6,"Family view should describe all six writing prompts");
+ assert.match(await page.locator('#writingMissions li[data-task="g6w-01"] .status').textContent(),/Practised/);
+ assert.match(await page.locator('#writingMissions li[data-task="g6w-02"] .status').textContent(),/Ready to practise/);
+ assert.match(await page.locator("#writingRecommendation").textContent(),/Suggested writing mission/);
+ assert.equal(await page.locator('#writingRecommendation a[href="./grade6-writing.html"]').count(),1);
+ await assertMobile();
+ // Simulate all 60 question checkboxes finished, without changing the writing
+ // state: family next-step guidance should prioritize outstanding writing.
+ const oldGrade6=await page.evaluate(()=>{
+  const keys=["lla-grade6-math-v1","lla-grade6-reading-v1","lla-grade6-science-v1"];
+  const old=keys.map(k=>localStorage.getItem(k));
+  const specs=[["g6m-",24],["g6r-",18],["g6s-",18]];
+  specs.forEach(([prefix,n],i)=>{
+   const marks={};for(let k=1;k<=n;k++)marks[prefix+String(k).padStart(2,"0")]=true;
+   localStorage.setItem(keys[i],JSON.stringify(marks));
+  });
+  return old;
+ });
+ await page.reload({waitUntil:"domcontentloaded"});
+ assert.match(await page.locator("#grade6Total").textContent(),/60 \/ 60/);
+ assert.match(await page.locator("#writingCount").textContent(),/1 \/ 6/);
+ assert.equal(await page.locator('#nextStep a[href="./grade6-writing.html"]').count(),1,"Remaining writing should be the next suggestion");
+ await page.evaluate(old=>{
+  const keys=["lla-grade6-math-v1","lla-grade6-reading-v1","lla-grade6-science-v1"];
+  keys.forEach((key,i)=>{if(old[i]===null)localStorage.removeItem(key);else localStorage.setItem(key,old[i])});
+ },oldGrade6);
+ await page.reload({waitUntil:"domcontentloaded"});
+ assert.match(await page.locator("#grade6Total").textContent(),/3 \/ 60/);
  await assertMobile();
  await page.reload({waitUntil:"domcontentloaded"});
  assert.match(await page.locator("#grade6Total").textContent(),/3 \/ 60/);
