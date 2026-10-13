@@ -57,13 +57,13 @@ const grades={
   gaps:["The Grade 5 question pilots are supplementary and not equivalents to textbooks or end-of-year tests.","More practice needs to move from recognition questions to explanations and independent application.","A selected school pathway and qualified educator should review the topic-by-topic match."]
  },
  6:{
-  label:"Very limited starter • 24 mathematics questions only",
+  label:"Very limited subject pilots • 24 maths and 18 reading questions",
   topics:{
    math:{count:24,description:"Ratios/rates, introductory algebra, fractions/decimals, geometry, measurement and data.",gap:"Missing number systems depth, operations with rational numbers, multi-step problems, visual models, wider geometry/statistics and full teacher review.",url:"./grade6-math.html"},
-   english:{count:0,description:"No dedicated Grade 6 English activity bank has been released.",gap:"Plan reading comprehension, vocabulary, grammar, structured composition, critical reading and writing.",url:""},
+   english:{count:18,description:"Three original longer passages: retrieving details, inference, evidence, evaluating claims, sample limitations and contextual vocabulary.",gap:"Broader text genres, writing/composition, reading fluency, more vocabulary/grammar and independently reviewed Arabic wording remain unbuilt.",url:"./grade6-reading.html"},
    science:{count:0,description:"No dedicated Grade 6 science activity bank has been released.",gap:"Plan investigations and content after choosing the school's curriculum pathway and topic order.",url:""}
   },
-  gaps:["Grade 6 currently has only a 24-question maths pilot—no Grade 6 English or science release.","Grade 6 maths has partial thematic overlap with published ratio/algebra/fractions/geometry themes; it is not standards coverage or an assessment of mastery.","Formal national subjects, parent usability reviews, teacher maths review and Arabic proofreading are still pending."]
+  gaps:["Grade 6 currently has 24 maths and 18 English-reading questions; science is not yet released and wider writing is still missing.","Grade 6 maths has partial thematic overlap with published ratio/algebra/fractions/geometry themes; it is not standards coverage or an assessment of mastery.","Formal national subjects, parent usability reviews, teacher maths review and Arabic proofreading are still pending."]
  }
 };
 const pathwayText={
