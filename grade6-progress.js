@@ -55,6 +55,11 @@ function update(){
   ?"🎉 All 60 pilot questions explored! Practise explaining your reasoning. • أحسنت!"
   :sum===0?"🌱 Start with one question. Small steps build confidence! • ابدأ بسؤال واحد!"
   :"🌈 "+sum+" questions explored. Keep building your skills at your own pace! • واصل التعلّم!";
+ const written=read("lla-grade6-writing-v1");
+ const writing=Array.from({length:6},(_,i)=>"g6w-"+String(i+1).padStart(2,"0")).filter(id=>written[id]===true).length;
+ $("#writingCount").textContent="✍️ "+writing+" / 6 tasks practised (not graded)";
+ $("#writingMeter").setAttribute("aria-valuenow",String(writing));
+ $("#writingFill").style.width=percent(writing,6);
  const target=$("#nextStep");target.replaceChildren();
  if(sum===60){
   const p=document.createElement("p");p.textContent="🏆 Every question in these three small pilots has been explored. Try an explanation or compare a different grade topic. This is not a curriculum graduation.";
