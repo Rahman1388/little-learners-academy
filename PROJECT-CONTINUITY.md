@@ -216,3 +216,12 @@ Ask the assistant to inspect this file and live repository before making changes
 - Added four international-benchmark development priorities: worked learning models before quizzes, grade-specific skill mapping, family progress distinguished from mastery, and specialist pronunciation/Arabic/accessibility/curriculum review.
 - Updated phone/tablet benchmark test assertions and refreshed the offline PWA cache. The update adds **no new counted child questions** or changes to progress, approved C/D bus voice recordings, audio files, accounts or privacy.
 - Provider-published information is useful benchmarking, not an independent curriculum approval. Confirm the latest workflows before describing the release as verified.
+
+
+## 13 October 2026 — Skip-Count Rocket conceptual number patterns
+
+- Added `skip-count-rocket.html` and `skip-count-rocket.js`: **12 guided, original equal-jump maths missions**, counting forward in 2s, 5s and 10s, with two final backward-counting extensions. A mobile/tablet learner can reveal one jump at a time, inspect the sequence, try answers, receive non-punitive feedback and explain the constant jump size.
+- Curriculum description: **Grade 1 extension and Grade 2 bridge** only; this is supplementary number-pattern modelling, not a claim of verified alignment with Qatar schools. Draft Arabic instructions remain subject to professional review.
+- Browser-local key `lla-skip-count-rocket-v1` preserves completion of exactly twelve stops; the shared `lla-progress-v2` stars balance increases by **one at most per device** after finishing all stops. No microphone, login, analytics, third-party voice, new audio or personal student information is added.
+- New page linked from Grade 1 chooser and visible home card/menu. Offline PWA shell updated. `scripts/test-skip-count.cjs` covers wrong-answer recovery, a hint, stepwise modelling, all twelve target calculations, saved completion, one-time reward and 320px/390px/768px widths. Mobile workflow and syntax validation updated; **check the live GitHub Actions run conclusions before asserting the release is fully verified**.
+- **Do not add twelve to the audited 451-question inventory.** This is an interactive teaching model, not twelve new Grade 1 inventory quiz questions; the existing international benchmark retains its own defined question-count methodology.
