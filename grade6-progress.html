@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en"><head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; media-src 'self'; connect-src 'self'; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#d9f1ff">
+<meta name="description" content="Private, on-device Grade 6 family progress for three supplementary maths, reading, and science pilots.">
+<link rel="icon" href="./icon.svg" type="image/svg+xml">
+<title>Grade 6 Family Progress • Little Learners Academy</title>
+<style>
+:root{font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif;color:#153b60}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:linear-gradient(125deg,#cfedff,#fff1c4 52%,#efe3fc)}
+main{max-width:930px;margin:auto;padding:14px 14px 48px}
+a{color:#12658a}a:focus-visible{outline:4px solid #8a1538;outline-offset:4px}
+.back{display:inline-flex;min-height:50px;align-items:center;border-radius:16px;background:white;padding:12px 16px;text-decoration:none;color:#17486c;font-weight:900}
+.hero,.panel,.card,.info{background:#fffefc;border:4px solid white;border-radius:27px;box-shadow:0 6px #b9d9e5;padding:clamp(16px,3vw,25px);margin:16px 0}
+.hero{text-align:center;background:linear-gradient(130deg,#fff9c7,#fff,#dbf5ff)}
+.eyebrow{font-size:13px;font-weight:950;color:#8a1538}
+h1{font-size:clamp(28px,6vw,44px);line-height:1.2;margin:10px 0}
+h1 span{display:block;font-size:.64em;margin-top:7px}
+h2{font-size:clamp(22px,4vw,28px);margin:2px 0 12px}
+h3{font-size:21px;margin:6px 0}
+p{line-height:1.55}
+.total{font-size:clamp(22px,5vw,30px);font-weight:950;background:#ffdf86;border-radius:19px;display:inline-block;padding:12px 19px}
+.meter{height:17px;border-radius:20px;background:#dcebf2;overflow:hidden;margin:14px 0}
+.meter span{display:block;height:100%;background:#32aa7b;width:0%;transition:width .2s}
+.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}
+.card{margin:0;padding:17px;border:3px solid #d2e6f1;box-shadow:none;min-width:0}
+.card .icon{font-size:38px}
+.ar{font-family:Tahoma,Arial,sans-serif;display:block;font-size:15px;direction:rtl}
+.stat{font-size:20px;font-weight:950;margin:14px 0 4px}
+.topicList{margin:13px 0;padding:0;list-style:none;display:grid;gap:9px}
+.topicList li{padding:10px 11px;border-radius:12px;background:#eaf5fb;font-size:13px;font-weight:750}
+.topicList li.complete{background:#e4ffed;color:#155d40}
+.topicList b{display:block;font-size:14px}
+.action{display:inline-flex;min-height:51px;width:100%;align-items:center;justify-content:center;text-align:center;border-radius:15px;background:#087fa8;color:white;text-decoration:none;padding:12px;font-weight:900}
+.suggest{border-radius:19px;background:#fff6d6;padding:16px;margin:13px 0;font-weight:850}
+.suggest a{display:inline-block;padding:10px 15px;border-radius:13px;background:#087fa8;color:white;text-decoration:none;margin-top:8px}
+.info{font-size:14px;color:#4a677d}
+[hidden]{display:none!important}
+@media(max-width:700px){.cards{grid-template-columns:1fr}.card{padding:18px}}
+@media(prefers-reduced-motion:reduce){.meter span{transition:none}}
+</style></head><body><main>
+<a class="back" href="./choose-grade.html">← Choose Grade • اختر الصف</a>
+<header class="hero">
+<div class="eyebrow">📊 FAMILY LEARNING CHECK • متابعة الأسرة</div>
+<h1>Grade 6 Learning Progress <span lang="ar" dir="rtl">تقدم التعلم للصف السادس</span></h1>
+<p>Celebrate explored questions in three limited Grade 6 practice pilots, and see the next useful topic.</p>
+<p lang="ar" dir="rtl">تابع تقدم الرياضيات والقراءة الإنجليزية والعلوم واختر الخطوة التالية.</p>
+<div class="total" id="grade6Total" role="status" aria-live="polite">🌱 0 / 60 questions explored</div>
+<div class="meter" role="progressbar" aria-label="Overall pilot question completion" aria-valuemin="0" aria-valuemax="60" aria-valuenow="0" id="totalMeter"><span id="totalFill"></span></div>
+<p id="grade6Encourage" aria-live="polite">Start with one interesting question! • ابدأ بسؤال واحد!</p>
+</header>
+<section class="panel"><h2>📚 Explore Three Subjects <span class="ar">ثلاث مواد للتدريب</span></h2>
+<div class="cards" aria-label="Grade 6 subject progress">
+<article class="card" id="mathCard"><div class="icon">🧮</div><h3>Mathematics</h3><span class="ar">الرياضيات</span>
+<p class="stat" id="mathCount">0 / 24</p><div class="meter" role="progressbar" aria-label="Maths question completion" aria-valuemin="0" aria-valuemax="24" aria-valuenow="0" id="mathMeter"><span id="mathFill"></span></div>
+<ul class="topicList" id="mathTopics"></ul><a class="action" href="./grade6-math.html">▶ Continue Maths • تابع الرياضيات</a></article>
+<article class="card" id="readingCard"><div class="icon">📖</div><h3>English Reading</h3><span class="ar">القراءة الإنجليزية</span>
+<p class="stat" id="readingCount">0 / 18</p><div class="meter" role="progressbar" aria-label="English reading question completion" aria-valuemin="0" aria-valuemax="18" aria-valuenow="0" id="readingMeter"><span id="readingFill"></span></div>
+<ul class="topicList" id="readingTopics"></ul><a class="action" href="./grade6-reading.html">▶ Continue Reading • تابع القراءة</a></article>
+<article class="card" id="scienceCard"><div class="icon">🔬</div><h3>Science</h3><span class="ar">العلوم</span>
+<p class="stat" id="scienceCount">0 / 18</p><div class="meter" role="progressbar" aria-label="Science question completion" aria-valuemin="0" aria-valuemax="18" aria-valuenow="0" id="scienceMeter"><span id="scienceFill"></span></div>
+<ul class="topicList" id="scienceTopics"></ul><a class="action" href="./grade6-science.html">▶ Continue Science • تابع العلوم</a></article>
+</div></section>
+<section class="panel" aria-labelledby="nextTitle"><h2 id="nextTitle">🌱 Next Small Step <span class="ar">الخطوة التعليمية التالية</span></h2>
+<div class="suggest" id="nextStep" role="status" aria-live="polite"></div>
+<p>Try explaining an answer aloud or showing your working to a parent or teacher. Ask: <em>“How do I know?”</em></p></section>
+<aside class="info"><strong>Information for parents • معلومات للأهل</strong>
+<p>These are <strong>60 short practice questions</strong> (24 maths, 18 reading, 18 science), not 60 full lessons or a complete Grade 6 curriculum. Counts mean questions answered correctly at least once; they do <strong>not</strong> measure mastery, independent writing ability, or official school performance. Wider subject coverage, teacher validation, and specialist-reviewed Arabic and Qatar curriculum modules remain outstanding.</p>
+<p>Progress is read only from the existing browser storage on this device. This screen does not upload personal data, require a child's identity, create an account, or change existing stars. Clearing browser data may remove progress, and progress is not synchronised between phones.</p>
+<a href="./school-pathways.html">📘 Compare school topics &amp; gaps • مواضيع المنهج</a>
+</aside>
+<script src="./grade6-progress.js"></script>
+</main></body></html>
