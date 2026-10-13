@@ -43,7 +43,7 @@
 ### Higher-grade pilot status (not certified curricula)
 - **Grade 2:** mathematics, English reading, science and mixed discovery pilot activity pages (`grade2-*`).
 - **Grade 3:** mathematics, English reading, science and mixed discovery pilot activity pages (`grade3-*`).
-- **Grade 4:** a **24-question mathematics pilot**, in `grade4-math.html`, `grade4-math.js`, `grade4-math-data.js`, covering place value, operations, fractions/decimals, measurement/data, with hints, explanations and device-only completion progress.
+- **Grade 4:** **24 mathematics questions**, with an additional **18-question English reading-comprehension pilot** across three original passages (see `grade4-reading.html`, `grade4-reading-data.js`, `grade4-reading.js`); mathematics is a **24-question pilot**, in `grade4-math.html`, `grade4-math.js`, `grade4-math-data.js`, covering place value, operations, fractions/decimals, measurement/data, with hints, explanations and device-only completion progress.
 - **Grades 5–6:** planned, not released. Grades 2–4 are limited supplementary pilots rather than complete grade-level curricula.
 - Do not overcount or conflate questions, games, activities, lessons, or full grade curricula. Update quantitative claims after checking source files and tests.
 
@@ -85,3 +85,10 @@ Ask the assistant to inspect this file and live repository before making changes
 - As of 13 October 2026, Grade 4 maths files and the chooser link have been committed.
 - GitHub validation and security gate for the Grade 4 update passed. An initial mobile workflow had an outdated grade-selector expectation (2 pilots instead of 3). A correction to `scripts/test-mobile-ui.cjs` was committed; check the latest workflow result before considering this milestone fully verified.
 - Check the Pages deployment result for the current head commit, and do not conflate an earlier deployment with the latest commit.
+
+## 13 October 2026 — Grade 4 English reading extension
+
+- Added a limited 18-question English reading comprehension pilot across three original short passages: *The Desert Garden*, *A Library Mystery* and *The Mini Market Challenge*.
+- Targeted skills include retrieving information, ordering events, contextual vocabulary, inference and finding evidence. Each answer has a hint and an explanation; completion is stored only on device under `lla-grade4-reading-v1`.
+- Grade 4 chooser now links maths and reading. This is supplementary English-medium reading practice with Arabic question support, **not a certified Qatar syllabus**. It adds no speech recording or other child data collection.
+- Confirm latest mobile, validation, security and Pages workflows after release before claiming all tests passed.
