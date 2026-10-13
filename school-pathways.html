@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#d9f4ff">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; media-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
+<meta name="description" content="Find supplementary Little Learners Academy practice by your school's Qatar, British or American curriculum, Grade 1–6.">
+<link rel="icon" href="./icon.svg" type="image/svg+xml"><title>School Curriculum Companion • Little Learners Academy</title>
+<style>
+:root{font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif;color:#183e62}*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:linear-gradient(135deg,#d5f4ff,#fff2c6 52%,#ece6ff)}
+main{max-width:980px;margin:auto;padding:13px 14px 54px}a,button,select{font:inherit}
+button{cursor:pointer}button:focus-visible,a:focus-visible,select:focus-visible{outline:4px solid #8a1538;outline-offset:3px}
+.back{display:inline-flex;align-items:center;border-radius:16px;background:white;text-decoration:none;color:#13486d;font-weight:900;min-height:49px;padding:12px 17px}
+header,.controls,.section,.notice{background:#fffd;border:4px solid white;border-radius:28px;padding:clamp(15px,3vw,25px);box-shadow:0 6px #b6d9e9;margin:16px 0}
+header{background:linear-gradient(115deg,#fff5c5,#fff,#e1faff);text-align:center}
+h1{font-size:clamp(29px,6vw,43px);line-height:1.15;margin:10px 0}h1 span{display:block;font-size:.64em;margin-top:8px}
+h2{font-size:clamp(21px,4vw,27px);margin:3px 0 12px}
+p{line-height:1.55} .eyebrow{font-size:13px;color:#8a1538;font-weight:950}
+.pickGrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.pick label{display:block;font-weight:900;margin-bottom:7px}
+.pick select{width:100%;min-height:54px;padding:11px 12px;border-radius:15px;border:2px solid #a9ccdf;background:white;color:#153e64;font-weight:800}
+.schoolNote{border-radius:17px;background:#effaff;padding:14px;margin-top:15px}
+.stats{display:flex;flex-wrap:wrap;gap:10px}
+.stat{background:#ebf7fc;border-radius:16px;padding:13px;font-weight:900;flex:1;min-width:130px}
+.stat strong{display:block;font-size:25px}
+.topicGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
+.topic{background:#fff;border:2px solid #c3e1ed;border-radius:21px;padding:18px;display:flex;flex-direction:column;align-items:flex-start;gap:8px;min-width:0}
+.topic.gap{background:#fffaf0;border-color:#eacfa7}
+.topic h3{font-size:20px;margin:0}.topic p{margin:0}.topic .ar{font-size:16px;font-weight:850}
+.tag{display:inline-block;font-weight:900;font-size:12px;padding:7px 11px;background:#dcf5e5;color:#17583d;border-radius:14px}
+.gap .tag{background:#fff1d6;color:#805718}
+.link{display:inline-flex;align-items:center;min-height:48px;margin-top:auto;padding:12px 15px;text-decoration:none;background:#087fab;color:white;border-radius:15px;font-weight:900;max-width:100%}
+.focusBtn{border:2px solid #c9ddeb;border-radius:15px;background:white;color:#175277;padding:12px 13px;min-height:48px;font-weight:850;text-align:left;width:100%}
+.focusBtn[aria-pressed=true]{border-color:#2a987a;background:#dffbea;color:#155d43}
+.note{font-size:13px;color:#546f82}.sources{display:flex;flex-wrap:wrap;gap:10px}.sources a{font-size:14px;color:#076a98;font-weight:850;overflow-wrap:anywhere}
+#focusedStatus{background:#fff4d3;border-radius:16px;padding:13px;font-weight:900}
+[hidden]{display:none!important}
+@media(max-width:650px){.pickGrid{grid-template-columns:1fr}.topicGrid{grid-template-columns:1fr}.topic{padding:15px}}
+</style></head><body><main>
+<a class="back" href="./index.html">← Home • الرئيسية</a>
+<header><div class="eyebrow">📘 SCHOOL SYLLABUS COMPANION • دليل المنهج المدرسي</div>
+<h1>🌍 Learn What You Study <span lang="ar" dir="rtl">تعلّم ما تدرسه في المدرسة</span></h1>
+<p>Find the closest available Little Learners practice for a school topic, with clear labels for topics that still need development.</p>
+<p lang="ar" dir="rtl">ابحث عن أنشطة مرتبطة بموضوعات الدراسة، وتعرّف على الموضوعات التي تحتاج إلى تطوير.</p>
+<p class="note">The guide is a transparent topic comparison—not a government-approved curriculum, exact objective-by-objective audit, or proof of mastery.</p></header>
+<section class="controls" aria-label="Choose school learning pathway">
+<h2>🎒 Tell us your school pathway <span lang="ar" dir="rtl">اختر المنهج الدراسي</span></h2>
+<div class="pickGrid">
+<div class="pick"><label for="system">School curriculum • المنهج</label><select id="system">
+<option value="qatar">🇶🇦 Qatar national pathway</option>
+<option value="british">🇬🇧 British / England pathway</option>
+<option value="american">🇺🇸 American / US pathway</option>
+</select></div>
+<div class="pick"><label for="grade">School grade / year • الصف</label><select id="grade">
+<option value="1">1</option><option value="2">2</option><option value="3">3</option>
+<option value="4">4</option><option value="5">5</option><option value="6">6</option>
+</select></div>
+<div class="pick"><label for="subject">Subject • المادة</label><select id="subject">
+<option value="math">🔢 Mathematics • الرياضيات</option>
+<option value="english">📖 English / Literacy • الإنجليزية</option>
+<option value="science">🔬 Science • العلوم</option>
+</select></div>
+</div>
+<p class="schoolNote" id="systemExplanation" role="status"></p>
+<p class="note">For British schools, select the school's actual <strong>Year</strong> (not an assumed conversion from Qatar or US Grade). For Qatar, exact mapping awaits the child's school textbook/teacher objectives. US science standards and curricula vary by school/state.</p></section>
+<section class="section" aria-labelledby="coverageTitle"><h2 id="coverageTitle">📋 School topics and matching practice</h2>
+<div class="stats"><div class="stat"><strong id="topicTotal">4</strong>Topics shown</div><div class="stat"><strong id="topicLinked">0</strong>Practice links</div><div class="stat"><strong id="topicGaps">0</strong>Development gaps</div></div>
+<p id="focusedStatus" role="status" aria-live="polite"></p>
+<div class="topicGrid" id="topicCards"></div>
+<p class="note">A practice link means a related short activity or limited pilot exists. It does <strong>not</strong> mean the complete school objective has been covered, independently assessed, or endorsed.</p></section>
+<section class="notice"><h2>👨‍👩‍👧 A message for families <span lang="ar" dir="rtl">رسالة للأسر</span></h2>
+<p>Use your child's actual lesson plan or textbook to choose a topic. Tap <strong>⭐ Studying at school</strong> to remember a topic on this device and revisit the linked practice with an adult. Do not use these checkmarks as examination results.</p>
+<p id="referenceIntro">Curriculum sources:</p><div class="sources" id="referenceLinks"></div>
+<p class="note">Qatar Arabic, Islamic Studies and Qatar History modules still require qualified national-curriculum and language review before formal use. Any Arabic descriptions here are supportive draft translations and should be checked by a native-speaking educator. No account, child name, microphone or tracking is used.</p>
+<a class="back" href="./choose-grade.html">🎓 View available Grade 1–6 modules • اختر الصف</a>
+</section>
+<script src="./school-pathways-data.js?v=school-pathways-1"></script>
+<script src="./school-pathways.js?v=school-pathways-1"></script>
+</main></body></html>
