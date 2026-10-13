@@ -41,6 +41,12 @@ p{line-height:1.55}.tagline{font-size:13px;font-weight:900;color:#8a1538}.progre
 .actions button{border:0;border-radius:15px;min-height:50px;padding:12px 17px;font-size:16px;font-weight:900;background:#087fab;color:white}
 .actions .secondary{background:#eff9ff;color:#12527a;border:2px solid #a5d2e8}
 .pill{display:inline-block;font-size:13px;font-weight:900;border-radius:15px;padding:8px 13px;background:#f9e9ff}
+#reflectionChoices{margin:14px 0;padding:16px;border:2px solid #9ddbc0;border-radius:19px;background:#e8fff5}
+#reflectionChoices p{margin:0 0 12px;font-weight:850}
+#reflectionChoices .reflectionButtons{display:flex;flex-wrap:wrap;gap:12px}
+#reflectionChoices button{flex:1;min-width:135px;border:2px solid #aacbdd;border-radius:15px;min-height:55px;padding:12px;background:white;color:#1d4e6b;font-weight:900}
+#reflectionChoices button[aria-pressed="true"]{background:#d2f1ff;border-color:#087fab}
+#reflectionNote{font-size:13px;color:#4a697e;margin:11px 0 0!important}
 .workModel{border:2px dashed #70b598;border-radius:18px;background:#e9fff1;padding:14px;line-height:1.6;margin:12px 0}
 .workModel .row{font-size:clamp(20px,5vw,28px);line-height:1.6;overflow-wrap:anywhere;margin:8px 0}
 .workModel .taken{opacity:.25;text-decoration:line-through}
@@ -98,11 +104,19 @@ p{line-height:1.55}.tagline{font-size:13px;font-weight:900;color:#8a1538}.progre
 <div class="actions"><button id="showWork" class="secondary" type="button" aria-expanded="false">🧮 Show a learning hint • أظهر مساعدة</button></div>
 <div id="workModel" class="workModel" hidden aria-live="polite"></div>
 <div id="response" role="status" aria-live="polite">Choose the best answer. • اختر الإجابة الصحيحة.</div>
+<div id="reflectionChoices" hidden aria-label="Optional child reflection">
+  <p>💭 How do you feel about this question? <span lang="ar" dir="rtl">هل ترغب في التدرب مرة أخرى؟</span></p>
+  <div class="reflectionButtons" role="group" aria-label="How confident do you feel?">
+    <button id="feelReady" type="button" aria-pressed="false">😊 I feel ready • أنا مستعد</button>
+    <button id="wantPractice" type="button" aria-pressed="false">🌱 Practise again • أريد التدريب</button>
+  </div>
+  <p id="reflectionNote" role="status" aria-live="polite">Optional choice: there's no right or wrong feeling. • اختيار اختياري</p>
+</div>
 <div class="actions"><button id="nextChallenge" type="button" hidden>Next activity ➜ • النشاط التالي</button><button id="retryQuestion" class="secondary" type="button">🔄 Try again • حاول مجدداً</button></div>
 </section>
 <aside class="parent"><strong>👨‍👩‍👧 Parents & teachers • للأهل والمعلمين</strong>
 <p>These 151 original mini-challenges introduce supplementary learning objectives from early primary maths, English literacy, science, life skills and visual patterns. They are organised around themes overlapping British KS1 and US Grade 1; actual classroom sequence and difficulty vary. They are <strong>not an official Qatar Grade 1 curriculum, school syllabus, or assessment</strong>. Arabic is supportive text, not an approved Arabic-language curriculum module. For formal pronunciation instruction, qualified educator review remains needed.</p>
 <p>Encourage short sessions and conversation about the answers. Every challenge is free and works without an account, microphone, advertising or external APIs.</p></aside>
 </main>
-<script src="./activity-data.js?v=smart-review-v1"></script><script src="./activity-library.js?v=smart-review-v1"></script>
+<script src="./activity-data.js?v=smart-review-v1"></script><script src="./activity-library.js?v=reflection-1"></script>
 </body></html>
