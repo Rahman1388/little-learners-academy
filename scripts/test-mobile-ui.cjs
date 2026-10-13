@@ -1226,6 +1226,37 @@ const fs=require("node:fs");
  assert.equal(await page.locator("#grade").inputValue(),"6");
  await page.setViewportSize({width:768,height:1024});await assertMobile();
  await page.setViewportSize({width:390,height:844});await assertMobile();
+ // School curriculum companion: teacher-transparent Grade 1–6 topic links.
+ await goto("school-pathways.html");
+ await page.locator("#topicCards .topic").first().waitFor({state:"visible"});
+ assert.equal(await page.locator("#topicCards .topic").count(),4);
+ assert.equal(await page.locator("#topicLinked").textContent(),"4");
+ assert.match(await page.locator("#systemExplanation").textContent(),/NOT a confirmed mapping/);
+ await assertMobile();
+ await page.locator("#topicCards .focusBtn").first().click();
+ assert.equal(await page.locator("#topicCards .focusBtn").first().getAttribute("aria-pressed"),"true");
+ await page.reload({waitUntil:"domcontentloaded"});
+ assert.equal(await page.locator("#topicCards .focusBtn").first().getAttribute("aria-pressed"),"true",
+   "School-topic focus should persist on the same device");
+ await page.locator("#system").selectOption("british");
+ await page.locator("#grade").selectOption("6");
+ await page.locator("#subject").selectOption("english");
+ assert.match(await page.locator("#coverageTitle").textContent(),/Year 6/);
+ assert.equal(await page.locator("#topicLinked").textContent(),"0");
+ assert.equal(await page.locator("#topicGaps").textContent(),"4");
+ assert.equal(await page.locator("#topicCards .link").count(),0,"Do not invent Grade 6 English practice");
+ await page.locator("#subject").selectOption("science");
+ assert.equal(await page.locator("#topicGaps").textContent(),"4");
+ await page.locator("#subject").selectOption("math");
+ assert.equal(await page.locator("#topicLinked").textContent(),"4");
+ assert.equal(await page.locator('#topicCards a[href="./grade6-math.html"]').count(),4);
+ await page.locator("#grade").selectOption("3");
+ assert.equal(await page.locator("#topicLinked").textContent(),"2",
+   "Grade 3 maths coverage should flag currently missing place value and measure strands");
+ await page.locator("#system").selectOption("american");
+ assert.match(await page.locator("#systemExplanation").textContent(),/Common Core/);
+ await page.setViewportSize({width:768,height:1024});await assertMobile();
+ await page.setViewportSize({width:390,height:844});await assertMobile();
  await goto("voice-test.html");
  await page.locator("audio").first().waitFor();
  const numPlayers=await page.locator("audio").count();
