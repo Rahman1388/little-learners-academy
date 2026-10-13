@@ -113,6 +113,9 @@ on:
       - "number-line-trail.html"
       - "number-line-trail.js"
       - "scripts/test-number-line.cjs"
+      - "skip-count-rocket.html"
+      - "skip-count-rocket.js"
+      - "scripts/test-skip-count.cjs"
       - "place-value-lab.html"
       - "number-bonds.html"
       - "drawing-studio.html"
@@ -187,6 +190,7 @@ jobs:
           node scripts/test-pronunciation-review.cjs
           node scripts/test-mega-upgrade.cjs
           node scripts/test-number-line.cjs
+          node scripts/test-skip-count.cjs
           node scripts/test-grade2-english.cjs
           node scripts/test-grade2-mixed.cjs
           node scripts/test-grade3-mixed.cjs
