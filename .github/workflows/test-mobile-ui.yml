@@ -116,6 +116,9 @@ on:
       - "skip-count-rocket.html"
       - "skip-count-rocket.js"
       - "scripts/test-skip-count.cjs"
+      - "array-garden.html"
+      - "array-garden.js"
+      - "scripts/test-array-garden.cjs"
       - "place-value-lab.html"
       - "number-bonds.html"
       - "drawing-studio.html"
@@ -191,6 +194,7 @@ jobs:
           node scripts/test-mega-upgrade.cjs
           node scripts/test-number-line.cjs
           node scripts/test-skip-count.cjs
+          node scripts/test-array-garden.cjs
           node scripts/test-grade2-english.cjs
           node scripts/test-grade2-mixed.cjs
           node scripts/test-grade3-mixed.cjs
