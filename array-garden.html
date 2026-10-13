@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en"><head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; media-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#d8f9dc"><link rel="icon" href="./icon.svg" type="image/svg+xml">
+<meta name="description" content="12 Grade 2–3 equal-groups maths missions, using visual arrays, repeated addition, and multiplication.">
+<title>Equal Groups Garden • Little Learners Academy</title>
+<style>
+:root{font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif;color:#174164}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:radial-gradient(circle at 90% 7%,#ffe6a8,transparent 28%),linear-gradient(130deg,#cef4ff,#f4e8ff 51%,#dbf9d7)}
+main{max-width:940px;margin:auto;padding:13px 13px 55px}
+a,button{font:inherit}button{cursor:pointer}a:focus-visible,button:focus-visible{outline:4px solid #8a1538;outline-offset:4px}
+.back{display:inline-flex;align-items:center;min-height:50px;background:white;color:#17496a;text-decoration:none;font-weight:900;border-radius:15px;padding:12px 16px}
+.hero,.panel,.parent{background:#fffefb;border:4px solid white;border-radius:28px;padding:clamp(15px,3vw,25px);margin:16px 0;box-shadow:0 6px #b4d8e1}
+.hero{text-align:center;background:linear-gradient(120deg,#eeffdb,#fff,#e1f7ff)}
+h1{font-size:clamp(28px,6vw,45px);line-height:1.16;margin:10px 0}
+h1 span{display:block;font-size:.65em;margin-top:8px}
+h2{font-size:clamp(22px,4vw,28px);margin:5px 0 12px}
+p{line-height:1.6}.eyebrow{font-size:13px;color:#8a1538;font-weight:950}
+.total{display:inline-block;background:#fff0af;border-radius:18px;padding:12px 20px;font-weight:950;font-size:20px}
+.bar{height:15px;background:#e1eef3;border-radius:99px;overflow:hidden;margin:13px auto;max-width:550px}
+.bar span{display:block;height:100%;width:0;background:#29a57a}
+.levels{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.level{min-height:146px;display:flex;flex-direction:column;align-items:flex-start;gap:8px;text-align:left;padding:15px;border-radius:21px;border:3px solid #c2e3f1;background:white;color:#184767}
+.level strong{font-size:19px}.level .emoji{font-size:36px}.level .stat{font-size:13px;font-weight:900}
+.level.finished{background:#e2ffeb;border-color:#62b881}
+.actions{display:flex;flex-wrap:wrap;align-items:center;gap:10px;margin:14px 0}
+.actions button{border:0;border-radius:16px;background:#067fa9;color:white;font-weight:950;min-height:50px;padding:12px 17px}
+.actions button.secondary{color:#174d70;background:#eef9fe;border:2px solid #b6dbea}
+.actions button:disabled{cursor:default;opacity:.5}
+#groupDisplay{display:flex;flex-direction:column;align-items:center;gap:10px;padding:17px 12px;background:linear-gradient(#e9fcff,#f3fff1);border-radius:22px;min-height:128px}
+.objectRow{display:flex;align-items:center;justify-content:center;gap:clamp(5px,2vw,12px);border:3px solid #a0d7b0;border-radius:18px;background:white;padding:8px 12px;min-width:0;max-width:100%}
+.objectRow span{font-size:clamp(28px,5.2vw,43px);line-height:1.2}
+.placeholder{font-weight:850;color:#557c8a}
+.model{font-size:clamp(20px,4vw,29px);font-weight:950;background:#fff4d0;border-radius:19px;padding:15px;text-align:center;margin:12px 0}
+.question{font-size:clamp(20px,4vw,26px);font-weight:900;text-align:center;padding:10px}
+.answers{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px}
+.answers button{min-height:73px;background:#fff;border:3px solid #a0d2e5;border-radius:18px;padding:12px 5px;font-size:clamp(22px,4vw,27px);font-weight:950;color:#174768}
+.answers button.wrong{background:#fff1e9;border-color:#d58d72}
+.answers button.correct{background:#deffe7;border-color:#3caa78}
+.answers button:disabled{opacity:1;cursor:default}
+#feedback,#hintText,#workedExample{min-height:56px;padding:14px;border-radius:17px;background:#e7f8ff;line-height:1.55;margin:13px 0}
+#feedback{font-weight:900}#feedback.good{background:#dfffe7}#feedback.retry{background:#fff1df}
+#hintText{background:#fff9e6}#workedExample{background:#e9ffe9}
+#success{background:#e7ffe4;border:3px solid #82c991;border-radius:19px;text-align:center;padding:18px}
+.note{font-size:13px;color:#4a6878}.parent{font-size:13px}
+[hidden]{display:none!important}
+@media(max-width:580px){.levels{grid-template-columns:1fr}.level{min-height:90px;display:grid;grid-template-columns:45px 1fr;gap:2px 12px}.level .emoji{grid-row:1/3}.level .stat{grid-column:2}.answers button{min-height:66px}}
+</style></head>
+<body><main>
+<a class="back" href="./choose-grade.html">← Choose My Grade • اختر صفّي</a>
+<header class="hero">
+<div class="eyebrow">🌱 GRADE 2–3 MATHS BRIDGE • المجموعات المتساوية</div>
+<h1>🌻 Equal Groups Garden <span lang="ar" dir="rtl">حديقة المجموعات المتساوية</span></h1>
+<p>Grow rows of little pictures. Count equal groups, then discover how adding the same number connects to multiplication.</p>
+<p lang="ar" dir="rtl">اكشف صفوف الصور، ثم اجمع المجموعات المتساوية واكتشف معنى الضرب.</p>
+<div id="gardenProgress" class="total" role="status" aria-live="polite">⭐ 0 / 12 missions explored</div><div class="bar" aria-hidden="true"><span id="gardenBar"></span></div>
+<p class="note">A short supplementary Grade 2–3 bridge, not an official or comprehensive school curriculum. Progress stays on this device.</p>
+</header>
+<section class="panel" id="levelMenu">
+<h2>🗺️ Pick a garden path <span lang="ar" dir="rtl">اختر مساراً</span></h2>
+<p>Each path has four missions. Open every row before answering. • أكمل أربع مراحل في كل مسار.</p>
+<div id="levelCards" class="levels" role="group" aria-label="Select an equal groups learning path"></div>
+</section>
+<section class="panel" id="missionView" hidden>
+<div class="actions"><button id="goBack" type="button" class="secondary">← Garden paths • المسارات</button><span id="missionLabel" class="eyebrow"></span></div>
+<h2 id="missionHeading"></h2>
+<p class="question" id="gardenQuestion"></p>
+<div id="groupDisplay" aria-label="Rows of equal objects"></div>
+<div class="model" id="modelText" aria-live="polite">Tap to reveal the first equal group</div>
+<div class="actions"><button type="button" id="revealGroup">🌱 Reveal next group • اكشف مجموعة</button>
+<button type="button" id="showHint" class="secondary">💡 Give me a hint • تلميح</button></div>
+<p id="hintText" hidden></p>
+<h2>🔢 How many altogether? <span lang="ar" dir="rtl">كم المجموع؟</span></h2>
+<p class="note" id="answerHint">First reveal every row, then choose the total. • اكشف كل الصفوف أولاً.</p>
+<div class="answers" id="answerChoices" role="group" aria-label="Choose the total number of objects"></div>
+<div id="feedback" role="status" aria-live="polite">Let's build the array one row at a time. • لنبنِ الصفوف بالتدريج.</div>
+<div id="workedExample" hidden></div>
+<div class="actions"><button id="nextMission" type="button" hidden>➡️ Next mission • المرحلة التالية</button></div>
+<div id="success" hidden><div style="font-size:45px" aria-hidden="true">🏆 🌻 ⭐</div><h2>All twelve gardens explored! <span lang="ar" dir="rtl">أحسنت! أكملت المراحل!</span></h2>
+<p>Try again whenever you like. Practice helps understanding grow.</p></div>
+</section>
+<aside class="parent"><strong>👨‍👩‍👧 For parents and teachers • للأهل والمعلمين</strong>
+<p>The visual arrays introduce equal groups, repeated addition and multiplication. The first missions use small groups; later missions explore arrays up to 5 rows and 5 columns. This is a supplementary model overlapping England's Year 2 arrays and US Grade 2 equal-group concepts; Grades 2–3 should not be treated as equivalent across school systems.</p>
+<p>Completion means the child eventually selected all twelve correct totals, possibly after hints. It does not certify independent mathematical mastery. The Arabic support text is a draft pending review. No student account, camera, microphone, new voices or ads are used.</p></aside>
+<script src="./array-garden.js?v=array-garden-1"></script>
+</main></body></html>
