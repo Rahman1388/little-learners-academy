@@ -197,3 +197,13 @@ Ask the assistant to inspect this file and live repository before making changes
 - `international-benchmark.html` now includes the auditable per-grade breakdown, honest caveats about limited Grade 2–6 subject pilots, and the distinction between questions, full lessons, writing tasks and games. It retains links to original providers for comparisons (Khan Academy Kids, IXL, SplashLearn, ABCmouse) and avoids treating their skill/activity/book counts as interchangeable.
 - Updated the mobile/tablet browser regression to check the count table, refreshed the PWA cache, and preserved all existing child progress, offline audio files, the parent's approved C/D `bus` voice settings, and established curricula gates. No new user data, accounts, analytics or trackers were introduced.
 - Technical audit is **not** independent educational or Arabic-language approval, proof of skill mastery or confirmation of exact Qatar curriculum alignment. Next step: improve depth in individually reviewed skill sequences and measured parent/teacher usability rather than simply maximizing the advertised count.
+
+
+## 13 October 2026 — Number Line Trail: conceptual Grade 1 model
+
+- Added `number-line-trail.html` and `number-line-trail.js`: twelve guided Grade 1 number-sense stops with a seven-number visual strip, forward/backward jumps, and short contextual addition/subtraction stories. Children may use a hint or reveal **one jump at a time** before selecting an answer; wrong answers provide non-punitive guidance.
+- Linked the lesson from the home menu, a visible home card and Grade 1 grade chooser. The page is responsive on phones and tablets and contains supportive English/Arabic wording; the Arabic remains draft support rather than educator-certified literacy instruction.
+- Browser-local `lla-number-line-trail-v1` tracks the 12 distinct completed stops; the existing `lla-progress-v2` shared star total increases by **one at most per device** after all 12 are completed. Neither existing achievements nor approved `bus` English C/D voices are changed. No account, ads, microphone, or new sound recordings.
+- The published 451-question audited **source inventory stays at 451**: these twelve model-based practice stops form a separate guided game and are not double-counted as new curriculum questions. Grades 2–6 remain limited subject pilots.
+- `scripts/test-number-line.cjs` checks wrong-answer feedback, stepwise hints, all twelve answers, reload persistence, no duplicate stars, and 320px/390px/768px widths. The mobile Actions workflow, validation syntax checks and PWA shell cache include the new feature. Always confirm workflow conclusions after changes before stating that the release is fully validated.
+
