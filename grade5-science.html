@@ -1,0 +1,61 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; media-src 'self'; connect-src 'self'; worker-src 'self'; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
+<meta name="theme-color" content="#e0f4ff"><link rel="icon" href="./icon.svg" type="image/svg+xml">
+<meta name="description" content="Grade 5 science exploration: 18 questions across ecosystems, Earth and space, and fair investigations.">
+<title>Grade 5 Science Discovery • Little Learners Academy</title>
+<style>
+:root{font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif;color:#183c62}*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:linear-gradient(125deg,#c9ecff,#fff4cb 50%,#e9dfff)}
+main{max-width:900px;margin:auto;padding:15px 13px 55px}button,a{font:inherit}button{cursor:pointer}
+button:focus-visible,a:focus-visible{outline:4px solid #8a1538;outline-offset:3px}
+.back{display:inline-flex;text-decoration:none;color:#145172;background:white;border-radius:16px;padding:12px 17px;min-height:48px;align-items:center;font-weight:900}
+.hero,.panel,.parents{background:#fffd;border:4px solid white;border-radius:28px;padding:clamp(16px,4vw,25px);margin:17px 0;box-shadow:0 5px #a9d7e6}
+.hero{text-align:center;background:linear-gradient(125deg,#fff8d9,#fff,#def8ff)}
+.eyebrow{font-size:13px;color:#8a1538;font-weight:950}
+h1{font-size:clamp(29px,6vw,44px);line-height:1.19;margin:10px 0}h1 span{display:block;font-size:.65em;margin-top:7px}
+h2{font-size:clamp(21px,4vw,27px)}p{line-height:1.6}.note{font-size:13px;color:#526b7e}
+.stats{font-weight:900;background:#fff3c5;padding:13px;border-radius:15px;display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between}
+.meter{height:15px;border-radius:20px;overflow:hidden;background:#dcebf3;margin:13px 0}.meter span{display:block;width:0;height:100%;background:#31ac7b}
+.stories{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px}
+.story{border:3px solid #bedce9;background:white;border-radius:19px;min-height:150px;padding:14px;display:flex;flex-direction:column;gap:8px;text-align:left;color:#1b4768;font-weight:850}
+.story strong{font-size:18px}.story .icon{font-size:34px}.story small{font-size:13px}.story.complete{background:#e2ffeb;border-color:#45a676}
+.passage{background:#eef9ff;border-radius:19px;padding:clamp(16px,4vw,25px);font-size:clamp(18px,3vw,21px);line-height:1.85}
+.question{padding:15px;background:#fff9e7;border-radius:18px;margin:17px 0}
+#scienceQuestion{font-size:clamp(21px,4vw,27px);font-weight:900}
+.arabic{direction:rtl;text-align:right;margin-top:10px;font-size:17px}
+.answers{display:grid;grid-template-columns:1fr;gap:11px}
+.answers button{border:3px solid #a4d1e3;background:white;border-radius:17px;min-height:60px;padding:12px 16px;font-weight:850;font-size:17px;color:#144769;text-align:left}
+.answers button.correct{background:#deffeb;border-color:#3ea878}.answers button.wrong{background:#fff0e9;border-color:#d9947b}
+.answers button:disabled{opacity:1;cursor:default}
+.feedback,.explain,.hint{padding:14px;border-radius:16px;margin:13px 0;line-height:1.6}.feedback{background:#fff3cc;font-weight:850;min-height:52px}.feedback.good,.explain{background:#dfffe9}.hint{background:#fff8e3}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin:15px 0}.actions button{background:#087ba8;color:white;font-weight:900;min-height:48px;border:0;border-radius:15px;padding:11px 17px}.actions .secondary{background:#eef9ff;color:#175072;border:2px solid #afdaea}
+[hidden]{display:none!important}
+@media(max-width:640px){.stories{grid-template-columns:1fr}.story{min-height:100px}}
+</style></head><body><main>
+<a class="back" href="./choose-grade.html">← Choose Grade • اختر الصف</a>
+<header class="hero"><div class="eyebrow">🔬 GRADE 5 SCIENCE • LIMITED PILOT • الصف الرابع</div>
+<h1>🔬 Science Discovery <span lang="ar" dir="rtl">مغامرة العلوم</span></h1>
+<p>Three science investigations and 18 questions about ecosystems, Earth and space, and fair investigations. Explore evidence, then explain why.</p>
+<p lang="ar" dir="rtl">ثلاثة موضوعات علمية و١٨ سؤالاً مع تلميحات وتفسيرات.</p>
+<p class="note">Supplementary English-medium science practice only; not a certified Qatar Grade 5 curriculum or approved Arabic science course.</p>
+</header>
+<section class="panel" aria-label="Reading progress and story selection">
+<div class="stats"><span id="scienceProgress">🌟 0 / 18 completed</span><span id="scienceMedals">🏅 0 / 3 topics completed</span></div>
+<div class="meter" aria-hidden="true"><span id="scienceBar"></span></div>
+<h2>Choose a science topic • اختر الموضوع</h2><div class="stories" id="scienceDomains"></div>
+</section>
+<section class="panel" id="sciencePlay" hidden>
+<div class="actions"><button id="scienceBack" class="secondary" type="button">← Topics • الموضوعات</button></div>
+<div id="scienceTopic" class="eyebrow"></div><h2 id="scienceTitle"></h2>
+<div class="passage" id="sciencePassage" aria-label="Reading passage"></div>
+<div class="question"><div id="scienceQuestion"></div><p id="scienceArabic" class="arabic" lang="ar"></p></div>
+<div class="answers" id="scienceAnswers" role="group" aria-label="Science answer choices"></div>
+<div class="feedback" id="scienceFeedback" role="status" aria-live="polite">Choose an answer. • اختر الإجابة.</div>
+<div class="hint" id="scienceHelp" hidden></div><div class="explain" id="scienceExplanation" hidden></div>
+<div class="actions"><button id="scienceHint" type="button">💡 Show hint • تلميح</button><button id="scienceNext" type="button" hidden>Next question ➜ • السؤال التالي</button></div>
+</section>
+<aside class="parents"><h2>👨‍👩‍👧 For Parents & Teachers</h2>
+<p>Read each investigation scenario together. Ask the child to use evidence, explain their reasoning and practise safe observation. The science topics reflect broad primary-school themes, with short Arabic question support.</p>
+<p class="note">This pilot uses text, not new voice recordings. No microphone, account, real student name or location data is collected. Completion progress stays on this browser only. Qualified teachers should review the content before official classroom or commercial curriculum claims.</p></aside>
+<script src="./grade5-science-data.js?v=pilot-1"></script><script src="./grade5-science.js?v=pilot-1"></script>
+</main></body></html>
