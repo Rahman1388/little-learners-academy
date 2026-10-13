@@ -1229,6 +1229,29 @@ const fs=require("node:fs");
  assert.match(await page.locator("#readingPassage").textContent(),/student names/);
  await page.setViewportSize({width:768,height:1024});await assertMobile();
  await page.setViewportSize({width:390,height:844});await assertMobile();
+ // Grade 6 science limited inquiry pilot: mobile layout, hint, corrections and saved progress.
+ await goto("choose-grade.html");
+ assert.equal(await page.locator('#grade6 a[href="./grade6-science.html"]').count(),1);
+ await goto("grade6-science.html");
+ await page.locator("#scienceDomains .story").first().waitFor({state:"visible"});
+ assert.equal(await page.locator("#scienceDomains .story").count(),3);
+ await assertMobile();
+ await page.locator('#scienceDomains .story[data-domain="mangrove"]').click();
+ assert.match(await page.locator("#sciencePassage").textContent(),/five crabs at Site A/);
+ await page.locator("#scienceHint").click();
+ assert.equal(await page.locator("#scienceHelp").isVisible(),true);
+ const scienceG6Correct=await page.evaluate(()=>window.LLA_GRADE6_SCIENCE.questions[0].answer);
+ await page.locator('#scienceAnswers button[data-answer="'+((scienceG6Correct+1)%3)+'"]').click();
+ assert.match(await page.locator("#scienceFeedback").textContent(),/Good try/);
+ await page.locator('#scienceAnswers button[data-answer="'+scienceG6Correct+'"]').click();
+ assert.equal(await page.locator("#scienceExplanation").isVisible(),true);
+ assert.match(await page.locator("#scienceProgress").textContent(),/1 \/ 18/);
+ await page.reload({waitUntil:"domcontentloaded"});
+ assert.match(await page.locator("#scienceProgress").textContent(),/1 \/ 18/);
+ await page.locator('#scienceDomains .story[data-domain="water"]').click();
+ assert.match(await page.locator("#sciencePassage").textContent(),/filter/);
+ await page.setViewportSize({width:768,height:1024});await assertMobile();
+ await page.setViewportSize({width:390,height:844});await assertMobile();
  // Curriculum Compass reports honest cross-grade topical coverage and gaps.
  await goto("curriculum-compass.html");
  await page.locator("#coverageGrid .card").first().waitFor({state:"visible"});
@@ -1243,12 +1266,12 @@ const fs=require("node:fs");
    ["3",["18","18","18"]],
    ["4",["24","18","18"]],
    ["5",["24","18","18"]],
-   ["6",["24","18","0"]]
+   ["6",["24","18","18"]]
  ]){
   await page.locator("#grade").selectOption(grade);
   assert.deepEqual(await page.locator("#coverageGrid .card .count").allTextContents(),expected);
  }
- assert.equal(await page.locator("#coverageGrid .card.notYet").count(),1);
+ assert.equal(await page.locator("#coverageGrid .card.notYet").count(),0);
  assert.equal(await page.locator("#gradeGaps li").count(),3);
  await page.locator("#pathway").selectOption("qatar");
  assert.match(await page.locator("#pathwaySummary").textContent(),/Arabic, Islamic Studies and Qatar History/);
@@ -1276,7 +1299,9 @@ const fs=require("node:fs");
  assert.equal(await page.locator("#topicGaps").textContent(),"2");
  assert.equal(await page.locator('#topicCards a[href="./grade6-reading.html"]').count(),2,"Only evidence and comprehension topics link to the reading pilot");
  await page.locator("#subject").selectOption("science");
- assert.equal(await page.locator("#topicGaps").textContent(),"4");
+ assert.equal(await page.locator("#topicGaps").textContent(),"1");
+ assert.equal(await page.locator("#topicLinked").textContent(),"3");
+ assert.equal(await page.locator('#topicCards a[href="./grade6-science.html"]').count(),3);
  await page.locator("#subject").selectOption("math");
  assert.equal(await page.locator("#topicLinked").textContent(),"4");
  assert.equal(await page.locator('#topicCards a[href="./grade6-math.html"]').count(),4);
