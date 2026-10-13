@@ -76,6 +76,7 @@ jobs:
           node --check grade6-reading.js
           node --check grade6-science-data.js
           node --check grade6-science.js
+          node --check grade6-progress.js
           node --check scripts/test-grade6-science.cjs
           node scripts/test-grade6-science.cjs
           node --check scripts/check-grade6-reading.cjs
@@ -164,6 +165,8 @@ jobs:
           test -f grade6-science.html
           test -f grade6-science-data.js
           test -f grade6-science.js
+          test -f grade6-progress.html
+          test -f grade6-progress.js
           test -f scripts/test-grade6-science.cjs
           test -f scripts/check-grade6-reading.cjs
           test -f grade4-science.html
