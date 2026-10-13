@@ -43,6 +43,8 @@ jobs:
           node --check number-line-trail.js
           node --check skip-count-rocket.js
           node --check scripts/test-skip-count.cjs
+          node --check array-garden.js
+          node --check scripts/test-array-garden.cjs
           node --check scripts/test-number-line.cjs
           node --check curriculum-skills-map.js
           node --check curriculum-compass.js
@@ -143,6 +145,9 @@ jobs:
           test -f skip-count-rocket.html
           test -f skip-count-rocket.js
           test -f scripts/test-skip-count.cjs
+          test -f array-garden.html
+          test -f array-garden.js
+          test -f scripts/test-array-garden.cjs
           test -f activity-library.html
           test -f activity-data.js
           test -f activity-library.js
@@ -230,6 +235,8 @@ jobs:
           grep -q 'activity-data.js' activity-library.html
           grep -q 'skip-count-rocket.html' index.html
           grep -q 'skip-count-rocket.js' skip-count-rocket.html
+          grep -q 'array-garden.html' index.html
+          grep -q 'array-garden.js' array-garden.html
           grep -q 'pronunciation-review.html' index.html
           grep -q 'math-story-village.html' index.html
           grep -q 'international-benchmark.html' grades-roadmap.html
