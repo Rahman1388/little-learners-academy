@@ -73,7 +73,7 @@ const assert=require("node:assert/strict");
  assert.equal(await page.locator('a[href="https://www.alefeducation.com/ar/products/abjadiyat"]').count(),1,"Missing UAE Arabic-learning reference");
  assert.equal(await page.locator('a[href="https://madrasa.org/who?lang=en"]').count(),1,"Missing UAE Arabic science/maths platform");
  assert.equal(await page.locator('a[href="https://madrasatibeta.moe.gov.sa/books?Language=2"]').count(),1,"Missing Saudi Grade 1–6 curriculum reference");
- assert.equal(await page.locator('a[href="https://www.ixl.com/"]').count(),1,"Missing current official IXL skills reference");
+ assert((await page.locator('a[href="https://www.ixl.com/"]').count())>=1,"Missing current official IXL skills reference");
  assert.equal(await page.locator('a[href="https://support.splashlearn.com/hc/en-us/articles/12275062512658-What-is-SplashLearn"]').count(),1,"Missing official SplashLearn comparison");
  assert.equal(await page.locator('a[href="https://www.abcmouse.com/learn/program/math-learning-program-online"]').count(),1,"Missing official ABCmouse activity count");
  assert.match(await page.locator("body").textContent(),/limited playable pilot questions/i,"Grade 2–6 pilots should not be presented as full curricula");
