@@ -5,7 +5,7 @@
 const fs=require("node:fs"),path=require("node:path"),assert=require("node:assert/strict");
 const root=path.resolve(__dirname,"..");
 const files=fs.readdirSync(root).filter(x=>x.endsWith(".html")||x.endsWith(".js"));
-const guarded=["index.html","activity-library.html","learning-passport.html","privacy.html"];
+const guarded=["index.html","activity-library.html","learning-passport.html","privacy.html","sentence-builder.html"];
 const cspRequired=["script-src 'self'","object-src 'none'","frame-src 'none'","base-uri 'self'","form-action 'none'"];
 for(const name of guarded){
  const html=fs.readFileSync(path.join(root,name),"utf8");
