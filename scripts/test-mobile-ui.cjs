@@ -1312,6 +1312,48 @@ const fs=require("node:fs");
  assert.match(await page.locator("#systemExplanation").textContent(),/Common Core/);
  await page.setViewportSize({width:768,height:1024});await assertMobile();
  await page.setViewportSize({width:390,height:844});await assertMobile();
+
+ // Twelve original tap-to-order sentence puzzles, no extra rewards on replay.
+ await goto("sentence-builder.html");
+ await page.locator("#sentenceList .puzzle").first().waitFor({state:"visible"});
+ assert.equal(await page.locator("#sentenceList .puzzle").count(),12);
+ await assertMobile();
+ await page.locator('#sentenceList .puzzle[data-puzzle="0"]').click();
+ assert.equal(await page.locator("#sentenceGame").isVisible(),true);
+ await page.locator("#voiceBoy").click();
+ await page.locator("#hearSentence").click();
+ const boySentence=await page.evaluate(()=>window.__recordedAudioUrls.at(-1));
+ assert(boySentence.includes("en-sentences-0-boy.mp3"),"Sentence audio must use the selected recorded voice");
+ // Checking an incorrectly ordered full sentence should not award completion.
+ for(const j of [1,0,2])await page.locator('#wordBank button[data-token-index="'+j+'"]').click();
+ await page.locator("#checkSentence").click();
+ assert.match(await page.locator("#sentenceFeedback").textContent(),/Nearly there/);
+ assert.match(await page.locator("#sentenceProgress").textContent(),/0 \/ 12/);
+ await page.locator("#resetSentence").click();
+ for(const j of [0,1,2])await page.locator('#wordBank button[data-token-index="'+j+'"]').click();
+ await page.locator("#checkSentence").click();
+ assert.match(await page.locator("#sentenceProgress").textContent(),/1 \/ 12/);
+ await page.locator("#backSentences").click();
+ for(let i=1;i<12;i++){
+   await page.locator('#sentenceList .puzzle[data-puzzle="'+i+'"]').click();
+   const count=await page.locator("#wordBank button").count();
+   for(let j=0;j<count;j++)await page.locator('#wordBank button[data-token-index="'+j+'"]').click();
+   await page.locator("#checkSentence").click();
+   assert.equal(await page.locator("#nextSentence").isVisible(),true,"Sentence "+(i+1)+" not completed");
+   await page.locator("#backSentences").click();
+ }
+ assert.match(await page.locator("#sentenceProgress").textContent(),/12 \/ 12/);
+ const sentenceStars=await page.evaluate(()=>JSON.parse(localStorage.getItem("lla-progress-v2")).stars);
+ await page.locator('#sentenceList .puzzle[data-puzzle="0"]').click();
+ for(const j of [0,1,2])await page.locator('#wordBank button[data-token-index="'+j+'"]').click();
+ await page.locator("#checkSentence").click();
+ const replaySentenceStars=await page.evaluate(()=>JSON.parse(localStorage.getItem("lla-progress-v2")).stars);
+ assert.equal(replaySentenceStars,sentenceStars,"Sentence replay must not award a duplicate star");
+ await page.reload({waitUntil:"domcontentloaded"});
+ assert.match(await page.locator("#sentenceProgress").textContent(),/12 \/ 12/);
+ await page.setViewportSize({width:768,height:1024});
+ await assertMobile();
+ await page.setViewportSize({width:390,height:844});
  await goto("voice-test.html");
  await page.locator("audio").first().waitFor();
  const numPlayers=await page.locator("audio").count();
