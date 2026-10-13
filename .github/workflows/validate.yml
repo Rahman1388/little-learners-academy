@@ -64,6 +64,10 @@ jobs:
           node --check grade5-reading.js
           node --check grade5-science-data.js
           node --check grade5-science.js
+          node --check grade6-math-data.js
+          node --check grade6-math.js
+          node --check scripts/test-grade6-math.cjs
+          node scripts/test-grade6-math.cjs
           node --check scripts/test-grade5-reading.cjs
           node --check scripts/test-grade5-science.cjs
           node scripts/test-grade5-science.cjs
@@ -129,6 +133,9 @@ jobs:
           test -f grade5-science.html
           test -f grade5-science-data.js
           test -f grade5-science.js
+          test -f grade6-math.html
+          test -f grade6-math-data.js
+          test -f grade6-math.js
           test -f grade4-science.html
           test -f grade4-science-data.js
           test -f grade4-science.js
