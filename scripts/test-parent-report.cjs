@@ -43,10 +43,26 @@ const assert=require("node:assert/strict"),{chromium}=require("playwright");
   assert.match(await page.locator("#grade3Count").textContent(),/3 \/ 54/);
   assert.match(await page.locator("#storySummary").textContent(),/2 \/ 24/);
   assert.equal(await page.locator('#focusCards a[href*="mini-003"]').count(),1);
+  // Optional self-reflection is separate from correctness and must influence suggested practice.
+  await go("activity-library.html?activity=mini-001");
+  await page.locator("#answerOptions button").first().waitFor({state:"visible"});
+  const answerIndex=await page.evaluate(()=>window.LLA_MINI_ACTIVITIES.find(a=>a.id==="mini-001").answer);
+  await page.locator("#answerOptions button").nth(answerIndex).click();
+  assert.equal(await page.locator("#reflectionChoices").isVisible(),true);
+  await page.locator("#wantPractice").click();
+  assert.equal(await page.locator("#wantPractice").getAttribute("aria-pressed"),"true");
+  assert.equal(await page.evaluate(()=>JSON.parse(localStorage.getItem("lla-practice-confidence-v1"))["mini-001"]),"review");
+  await go("parent-report.html");
+  await page.locator("#reflectionCount").filter({hasText:"1 activity"}).waitFor({state:"visible"});
+  assert.equal(await page.locator('#focusCards a[href*="mini-001"]').count(),1,
+    "A completed activity explicitly requested for revision must remain a suggested practice");
+  assert.match(await page.locator("#focusCards").textContent(),/learner chose to practise/i);
+  await assertFits();
   await page.locator("#showReportText").click();
   assert.equal(await page.locator("#copyText").isVisible(),true);
   const summary=await page.locator("#copyText").inputValue();
   assert(summary.includes("Grade 1 mini-challenges: 2 / 151"));
+  assert(summary.includes("Learner-requested reviews: 1"));
   assert(summary.includes("Grade 2 pilot questions: 3 / 66"));
   assert(summary.includes("Grade 3 pilot questions: 3 / 54"));
   // The visible print control really calls print only after a parent taps.
