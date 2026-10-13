@@ -40,6 +40,8 @@ jobs:
           node --check foundation-check.js
           node --check practice-path.js
           node --check maths-thinking.js
+          node --check number-line-trail.js
+          node --check scripts/test-number-line.cjs
           node --check curriculum-skills-map.js
           node --check curriculum-compass.js
           node --check school-pathways-data.js
@@ -134,6 +136,8 @@ jobs:
           test -f drawing-studio.js
           test -f place-value-lab.html
           test -f number-bonds.html
+          test -f number-line-trail.html
+          test -f number-line-trail.js
           test -f activity-library.html
           test -f activity-data.js
           test -f activity-library.js
