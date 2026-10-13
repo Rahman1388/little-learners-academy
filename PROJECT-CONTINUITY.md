@@ -99,3 +99,10 @@ Ask the assistant to inspect this file and live repository before making changes
 - Files: `grade4-science.html`, `grade4-science-data.js`, `grade4-science.js`; chooser entry under Grade 4. Device-only progress key: `lla-grade4-science-v1`.
 - This is a **limited, English-medium supplementary science pilot**, not a complete or accredited Grade 4 science syllabus. No new voice recordings, microphones, accounts, or child-data collection.
 - Updated cached app shell and mobile regression tests. Verify latest validation, security, mobile, and deployment workflows before declaring the release complete.
+
+## 13 October 2026 — Grade 4 parent progress overview
+
+- Added `grade4-progress.html` / `grade4-progress.js` to summarise the three **limited Grade 4 pilots** in one bilingual-friendly, mobile-first parent/student view.
+- The dashboard reads **existing** browser-local keys `lla-grade4-math-v1`, `lla-grade4-reading-v1`, and `lla-grade4-science-v1` and displays counts for 24 maths + 18 reading + 18 science questions (60 short questions total). No new student profiles, storage keys, microphones, or tracking.
+- Added a link on `choose-grade.html`, PWA cache entry, validation syntax check and a responsive Playwright test that verifies all three counts after solving one question in each pilot.
+- Keep describing these as **supplementary practice questions, not official curriculum completion or a measure of mastery**. Check CI conclusions and deployment after this documentation commit.
