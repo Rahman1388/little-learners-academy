@@ -114,3 +114,11 @@ Ask the assistant to inspect this file and live repository before making changes
 - The Grade chooser marks Grade 5 as a **limited pilot** and Grade 6 as **planned**. Do not claim Grade 5 is a complete school curriculum, or that its Arabic support has been independently reviewed.
 - Updated the offline PWA cache, validation syntax checks, and mobile Playwright regression checks. **The mobile test, validation, security gate, and GitHub Pages deployment for the release passed**.
 - Next priorities: qualified subject/Arabic review, more contextual problems and explanations, parental feedback, Grade 5 English and science pilots, and measurable learning outcomes before public school-scale promotion.
+
+
+## Independent educational self-review (13 October 2026)
+
+- The owner presently has no organised access to teachers or a parent feedback panel; do not invent reviews or approval.
+- Added `INDEPENDENT_LEARNING_REVIEW.md`, a practical self-review checklist covering correctness, Grade 1–5 pilot boundaries, bilingual content, pronunciation, touch accessibility and privacy.
+- Added `scripts/check-grade5-content.cjs` as a deterministic 24-question Grade 5 maths answer/ID/hint/explanation integrity gate, invoked from `Validate app` on repository changes.
+- These checks do **not** provide teacher validation or certify Qatar curriculum alignment, English phoneme quality or Arabic pronunciation.
