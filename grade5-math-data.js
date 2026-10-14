@@ -7,14 +7,14 @@ const add=(skill,prompt,ar,choices,answer,hint,explanation)=>{
  if(choices.length!==3||new Set(choices).size!==3||!choices.includes(answer))throw Error("Invalid "+id);
  items.push(Object.freeze({id,skill,prompt,ar,choices,answer,hint,explanation,visual:""}));
 };
-add("place","What is the value of 6 in 6,305,120?","ما قيمة الرقم ٦ في العدد المعطى؟",["6,000,000","600,000","60,000"],"6,000,000","Look at the millions column.","The 6 is in the millions place: 6 × 1,000,000 = 6,000,000.");
-add("place","Round 487,652 to the nearest thousand.","قرّب العدد إلى أقرب ألف.",["488,000","487,000","490,000"],"488,000","Check the hundreds digit: 6.","The hundreds digit is 6, so 487,652 rounds up to 488,000.");
+add("place","What is the value of 6 in 6,305,120?","ما قيمة الرقم ٦ في العدد ٦٬٣٠٥٬١٢٠؟",["6,000,000","600,000","60,000"],"6,000,000","Look at the millions column.","The 6 is in the millions place: 6 × 1,000,000 = 6,000,000.");
+add("place","Round 487,652 to the nearest thousand.","قرّب العدد ٤٨٧٬٦٥٢ إلى أقرب ألف.",["488,000","487,000","490,000"],"488,000","Check the hundreds digit: 6.","The hundreds digit is 6, so 487,652 rounds up to 488,000.");
 add("place","Which is the greatest number?","ما العدد الأكبر؟",["70,904","70,940","70,490"],"70,940","Compare place values from the left.","All start with 70 thousand, and 940 is greater than 904 or 490.");
 add("place","What is 0.7 as a fraction in tenths?","ما الكسر الذي يمثّل ٠٫٧؟",["7/10","7/100","70/1"],"7/10","Seven tenths means seven parts out of ten.","0.7 = 7 tenths = 7/10.");
 add("place","Which is equivalent to 3.45?","ما العدد المساوي لـ ٣٫٤٥؟",["3 + 0.4 + 0.05","3 + 0.04 + 0.5","3 + 4 + 0.5"],"3 + 0.4 + 0.05","Separate units, tenths and hundredths.","3.45 is 3 ones, 4 tenths and 5 hundredths.");
 add("place","Which decimal is smallest?","أي عدد عشري هو الأصغر؟",["0.56","0.65","0.60"],"0.56","Compare the tenths, then hundredths.","0.56 has 5 tenths, whereas the other numbers have 6 tenths.");
-add("operations","Calculate 4,375 + 2,648.","احسب المجموع.",["7,023","6,923","7,123"],"7,023","Add the columns, regrouping when needed.","4,375 + 2,648 = 7,023.");
-add("operations","Find 9,004 − 2,786.","احسب الفرق.",["6,218","6,318","7,218"],"6,218","Regroup carefully across zeros.","9,004 − 2,786 = 6,218.");
+add("operations","Calculate 4,375 + 2,648.","احسب ٤٣٧٥ + ٢٦٤٨.",["7,023","6,923","7,123"],"7,023","Add the columns, regrouping when needed.","4,375 + 2,648 = 7,023.");
+add("operations","Find 9,004 − 2,786.","احسب ٩٠٠٤ − ٢٧٨٦.",["6,218","6,318","7,218"],"6,218","Regroup carefully across zeros.","9,004 − 2,786 = 6,218.");
 add("operations","What is 36 × 7?","كم يساوي ٣٦ × ٧؟",["252","242","262"],"252","Break 36 into 30 and 6.","30 × 7 = 210 and 6 × 7 = 42, so 252.");
 add("operations","What is 144 ÷ 12?","كم يساوي ١٤٤ ÷ ١٢؟",["12","14","10"],"12","Find the number multiplied by 12 to make 144.","12 × 12 = 144, so the quotient is 12.");
 add("operations","A library has 24 shelves with 15 books each. How many books?","في المكتبة ٢٤ رفاً وعلى كل رف ١٥ كتاباً. ما المجموع؟",["360","340","390"],"360","Multiply 24 × (10 + 5).","24 × 10 = 240 and 24 × 5 = 120; total 360 books.");
@@ -30,7 +30,7 @@ add("measure","A rectangle is 8 cm long and 5 cm wide. What is its area?","مس�
 add("measure","What is the perimeter of a square with side 9 cm?","ما محيط مربع طول ضلعه ٩ سم؟",["36 cm","81 cm","18 cm"],"36 cm","A square has four equal sides.","4 × 9 = 36 cm.");
 add("measure","A lesson starts at 10:25 and lasts 45 minutes. When does it end?","بدأ الدرس الساعة ١٠:٢٥ واستمر ٤٥ دقيقة. متى ينتهي؟",["11:10","11:00","10:55"],"11:10","Add 35 minutes to reach 11:00, then 10 more.","10:25 + 45 minutes = 11:10.");
 add("measure","Four bags weigh 1.5 kg each. What is their total mass?","أربع حقائب وزن كل منها ١٫٥ كجم. ما الوزن الكلي؟",["6 kg","5 kg","6.5 kg"],"6 kg","Multiply mass per bag by the number of bags.","4 × 1.5 kg = 6 kg.");
-add("measure","A bar chart shows 12 apples and 7 oranges. How many more apples?","يُظهر الرسم ١٢ تفاحة و٧ برتقالات. كم تزيد التفاحات؟",["5","19","6"],"5","Subtract orange count from apple count.","12 − 7 = 5 more apples.");
+add("measure","There are 12 apples and 7 oranges. How many more apples?","هناك ١٢ تفاحة و٧ برتقالات. بكم يزيد عدد التفاح على البرتقال؟",["5","19","6"],"5","Subtract orange count from apple count.","12 − 7 = 5 more apples.");
 if(items.length!==24)throw Error("Grade 5 pilot requires 24 questions");
 window.LLA_GRADE5_MATH=Object.freeze(items);
 })();
