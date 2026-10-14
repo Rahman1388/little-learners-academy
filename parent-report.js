@@ -74,12 +74,21 @@ function refresh(){
  $("#grade2Breakdown").textContent="Maths "+g2[0]+"/24 • Reading "+g2[1]+"/24 • Science "+g2[2]+"/18";
  $("#grade3Count").textContent=c3+" / 54 introductory questions completed";
  $("#grade3Breakdown").textContent="Maths "+g3[0]+"/18 • Reading "+g3[1]+"/18 • Science "+g3[2]+"/18";
+ const quest=read("lla-arabic-quest-v1");
+ const safeCount=n=>Number.isSafeInteger(n)&&n>=0?n:0;
+ const sessions=safeCount(quest.sessions);
+ const best=Math.min(12,safeCount(quest.bestFirstTry));
+ const last=Math.min(12,safeCount(quest.lastFirstTry));
+ $("#questSessions").textContent=String(sessions);
+ $("#questBest").textContent=best+" / 12";
+ $("#questLast").textContent=sessions?last+" / 12":"–";
  const story=read("lla-math-story-v1");
  const unique=new Set(Array.isArray(story.done)?story.done.filter(i=>Number.isInteger(i)&&i>=0&&i<24):[]);
  $("#storySummary").textContent="🏡 Math Story Village: "+unique.size+" / 24 stories completed.";
  lines.push("Grade 2 pilot questions: "+c2+" / 66 (maths "+g2[0]+", reading "+g2[1]+", science "+g2[2]+")");
  lines.push("Grade 3 pilot questions: "+c3+" / 54 (maths "+g3[0]+", reading "+g3[1]+", science "+g3[2]+")");
  lines.push("Math Story Village: "+unique.size+" / 24");
+ lines.push("Arabic Picture Quest: "+sessions+" completed rounds; best first-try "+best+" / 12; latest "+(sessions?last+" / 12":"not yet played")+" (separate from 151 Grade 1 activities)");
  lines.push("These counts show practice, not school grades, certified alignment or demonstrated mastery.");
  lines.push("Mixed review quests reuse existing questions and are not additional unique tasks.");
  lines.push("Only share this summary with someone you trust.");
@@ -98,7 +107,18 @@ $("#copyReport").addEventListener("click",()=>{
    .catch(showText);
  }else showText();
 });
-$("#printReport").addEventListener("click",()=>window.print());
+$("#printReport").addEventListener("click",()=>{
+ // Some in-app iOS browsers silently ignore window.print(). This is a user-gesture
+ // call; always provide browser-level steps rather than claiming success.
+ $("#mobilePrintHelp").open=true;
+ $("#copyStatus").textContent="Opening the browser print option. If no preview appears, open in Safari and choose Share → Print. • إن لم تظهر المعاينة، افتح في سفاري واختر مشاركة ثم طباعة.";
+ try{
+  if(typeof window.print==="function")window.print();
+  else $("#copyStatus").textContent="Printing is unavailable in this browser. Use Safari or Chrome's Share → Print option. • استخدم قائمة المشاركة في المتصفح للطباعة.";
+ }catch{
+  $("#copyStatus").textContent="This browser did not open printing. Open this report in Safari or Chrome and use Share → Print. • افتح التقرير في المتصفح واختر مشاركة ثم طباعة.";
+ }
+});
 window.addEventListener("pageshow",refresh);
 refresh();
 })();
