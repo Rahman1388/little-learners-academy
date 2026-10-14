@@ -2,20 +2,81 @@
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#8ddfe8"><meta name="description" content="A free bilingual Arabic picture vocabulary game for Grade 1 children in Qatar."><title>Arabic Picture Quest • Little Learners Academy</title><link rel="icon" href="./icon.svg" type="image/svg+xml">
 <style>
 :root{font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif;color:#17436b}*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(circle at 5% 5%,#fff1ae,transparent 36%),linear-gradient(145deg,#9be5f9,#f5fbff 55%,#ffe8f2)}main{max-width:790px;margin:auto;padding:15px 15px 40px}header,section{background:#fffffff0;border:4px solid white;border-radius:28px;padding:clamp(17px,4vw,30px);box-shadow:0 7px #a4d7df;margin:18px 0}header{text-align:center;background:linear-gradient(120deg,#fff7cd,#fff,#e5f9ff)}h1{font-size:clamp(28px,7vw,45px);margin:8px 0}h1 span{display:block;font-size:.65em;margin-top:8px}h2{font-size:clamp(19px,4vw,28px)}p{line-height:1.6}.back{display:inline-flex;align-items:center;background:white;color:#17436b;text-decoration:none;padding:13px 18px;border-radius:16px;font-weight:800;min-height:48px}.chip{display:inline-block;padding:8px 13px;background:#fff1b8;border-radius:99px;font-weight:850}.topline{display:flex;justify-content:space-between;gap:9px;align-items:center;flex-wrap:wrap}.picture{font-size:clamp(90px,22vw,140px);text-align:center;padding:7px;line-height:1.4}#question{text-align:center}#question .ar{display:block;direction:rtl;font-size:clamp(23px,5vw,31px);font-weight:850}.choices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:20px 0}.choice{background:linear-gradient(#fff,#f0fbff);border:3px solid #b4dbe9;border-radius:20px;padding:17px 8px;min-height:92px;font-size:clamp(22px,5vw,29px);font-weight:900;color:#173e65;cursor:pointer}.choice small{display:block;font-size:13px;font-weight:650;margin-top:5px}.choice.correct{background:#e0ffe8;border-color:#329b67}.choice.wrong{background:#fff0e9;border-color:#da8068}button:focus-visible,a:focus-visible{outline:4px solid #8a1538;outline-offset:3px}.message{min-height:68px;background:#fff4cc;border-radius:17px;padding:14px;font-size:17px;font-weight:750;text-align:center;line-height:1.5}.actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:16px}.primary,.secondary{min-height:51px;border-radius:16px;padding:12px 20px;font:inherit;font-weight:850;cursor:pointer}.primary{border:0;background:#087d9b;color:white}.secondary{border:2px solid #abd4e4;background:white;color:#17436b}.progressTrack{height:13px;background:#dceef2;border-radius:22px;overflow:hidden;margin-top:14px}.progressTrack span{display:block;background:#219f80;height:100%;width:0;transition:width .2s}.note{font-size:13px;color:#48647a}.hidden{display:none!important}@media(max-width:375px){.choice{min-height:83px;padding:11px 5px}.choices{gap:8px}}
-</style></head><body><main><a class="back" href="./index.html">← Home • الرئيسية</a><header><div>🇶🇦 🌴 ⭐ 🐪</div><h1>Arabic Picture Quest <span lang="ar" dir="rtl">مغامرة الصور والكلمات</span></h1><p>Look at a picture. Choose the matching Arabic word.<span lang="ar" dir="rtl" style="display:block">انظر إلى الصورة ثم اختر الكلمة العربية المناسبة.</span></p><span class="chip">Grade 1 • الصف الأول</span></header><section id="game"><div class="topline"><strong id="progress">Question 1 of 12 • السؤال ١ من ١٢</strong><span class="chip" id="stars">⭐ 0</span></div><div class="progressTrack" aria-hidden="true"><span id="progressBar"></span></div><div class="picture" id="picture" role="img" aria-label="Picture clue">🐪</div><h2 id="question">Which Arabic word matches the picture?<span class="ar" lang="ar">أي كلمة تطابق الصورة؟</span></h2><div class="choices" id="choices"></div><p class="message" id="message" role="status" aria-live="polite">Choose the best match! • اختر الإجابة الصحيحة!</p><div class="actions"><button class="primary hidden" id="next" type="button">Next picture • الصورة التالية ➜</button><button class="secondary" id="restart" type="button">↻ Start again • ابدأ من جديد</button></div></section><section id="finish" class="hidden" aria-live="polite"><h2>🎉 Amazing effort! • أحسنت!</h2><p id="summary"></p><div class="actions"><button class="primary" id="playAgain" type="button">Play again • العب مرة أخرى</button><a class="back" href="./activity-library.html">Explore more activities • المزيد من الأنشطة</a></div></section><section aria-label="Picture practice"><h2>🌱 Practice together • نتدرّب معاً</h2><p>After playing, choose three pictures and say each word with a parent or teacher. Draw your favourite picture on paper!</p><p lang="ar" dir="rtl">بعد اللعب، اختر ثلاث صور واذكر اسم كل صورة مع أحد الوالدين أو المعلم. ثم ارسم صورتك المفضلة على الورق!</p><p>⭐ My practice goal • هدفي: 3 words / ٣ كلمات</p></section><p class="note">This is a picture-and-word learning activity. Pronunciation audio is intentionally not included until reviewed recordings are approved. No account or personal details are required. • هذا النشاط لتعلّم الصور والكلمات، والتسجيلات الصوتية قيد المراجعة.</p></main>
+.awardline{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:15px 0}.award{background:#f4ecff;border:2px solid #cdb5e6;border-radius:16px;padding:10px 12px;font-weight:850}.best{margin:12px auto 0;color:#155b68;font-weight:800}.tip{background:#e8f8ff;border-radius:16px;padding:12px;font-size:14px;line-height:1.5}.secondary:hover,.primary:hover,.choice:hover:not(:disabled){filter:brightness(.96)}
+</style></head><body><main><a class="back" href="./index.html">← Home • الرئيسية</a><header><div>🇶🇦 🌴 ⭐ 🐪</div><h1>Arabic Picture Quest <span lang="ar" dir="rtl">مغامرة الصور والكلمات</span></h1><p>Look at a picture. Choose the matching Arabic word.<span lang="ar" dir="rtl" style="display:block">انظر إلى الصورة ثم اختر الكلمة العربية المناسبة.</span></p><span class="chip">Grade 1 • الصف الأول</span><p id="bestSoFar" class="best" aria-live="polite">🌱 Your picture journey begins here! • تبدأ رحلتك هنا!</p></header><section id="game"><div class="topline"><strong id="progress">Question 1 of 12 • السؤال ١ من ١٢</strong><span class="chip" id="stars">⭐ 0 first tries</span></div><div class="progressTrack" aria-hidden="true"><span id="progressBar"></span></div><div class="picture" id="picture" role="img" aria-label="Picture clue">🐪</div><h2 id="question">Which Arabic word matches the picture?<span class="ar" lang="ar">أي كلمة تطابق الصورة؟</span></h2><div class="choices" id="choices"></div><p class="message" id="message" role="status" aria-live="polite">Choose the best match! • اختر الإجابة الصحيحة!</p><div class="actions"><button class="primary hidden" id="next" type="button">Next picture • الصورة التالية ➜</button><button class="secondary" id="restart" type="button">↻ Start again • ابدأ من جديد</button></div></section><section id="finish" class="hidden" aria-live="polite"><h2>🎉 Amazing effort! • أحسنت!</h2><p id="summary"></p><div class="awardline" id="awards" aria-label="Earned achievement badges"></div><p id="savedMessage" class="tip"></p><div class="actions"><button class="primary" id="playAgain" type="button">Play again • العب مرة أخرى</button><a class="back" href="./activity-library.html">Explore more activities • المزيد من الأنشطة</a></div></section><section aria-label="Picture practice"><h2>🌱 Practice together • نتدرّب معاً</h2><p>After playing, choose three pictures and say each word with a parent or teacher. Draw your favourite picture on paper!</p><p lang="ar" dir="rtl">بعد اللعب، اختر ثلاث صور واذكر اسم كل صورة مع أحد الوالدين أو المعلم. ثم ارسم صورتك المفضلة على الورق!</p><p>⭐ My practice goal • هدفي: 3 words / ٣ كلمات</p></section><p class="note">This is a picture-and-word learning activity. Pronunciation audio is intentionally not included until reviewed recordings are approved. No account or personal details are required. • هذا النشاط لتعلّم الصور والكلمات، والتسجيلات الصوتية قيد المراجعة.</p></main>
 <script>
 "use strict";
 const words=[
 {p:"🐪",en:"camel",ar:"جمل"},{p:"🌴",en:"palm tree",ar:"نخلة"},{p:"📘",en:"book",ar:"كتاب"},{p:"✏️",en:"pencil",ar:"قلم رصاص"},
 {p:"🚌",en:"bus",ar:"حافلة"},{p:"🏫",en:"school",ar:"مدرسة"},{p:"🐟",en:"fish",ar:"سمكة"},{p:"☀️",en:"sun",ar:"شمس"},
 {p:"🏠",en:"home",ar:"منزل"},{p:"🌸",en:"flower",ar:"زهرة"},{p:"🍎",en:"apple",ar:"تفاحة"},{p:"💧",en:"water",ar:"ماء"}];
-const $=id=>document.getElementById(id);let sequence=[],index=0,score=0,answered=false;
-function shuffle(a){const copy=[...a];for(let i=copy.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[copy[i],copy[j]]=[copy[j],copy[i]];}return copy;}
-function start(){sequence=shuffle(words);index=0;score=0;$("finish").classList.add("hidden");$("game").classList.remove("hidden");show();}
-function show(){answered=false;const item=sequence[index];$("progress").textContent="Question "+(index+1)+" of "+sequence.length+" • السؤال "+(index+1)+" من "+sequence.length;$("stars").textContent="⭐ "+score;$("progressBar").style.width=(index/sequence.length*100)+"%";$("picture").textContent=item.p;$("picture").setAttribute("aria-label",item.en);$("next").classList.add("hidden");$("message").textContent="Choose the matching Arabic word! • اختر الكلمة العربية المناسبة!";
-const choices=shuffle([item,...shuffle(words.filter(x=>x!==item)).slice(0,3)]);
-const container=$("choices");container.replaceChildren();choices.forEach(word=>{const b=document.createElement("button");b.type="button";b.className="choice";b.lang="ar";b.dir="rtl";b.textContent=word.ar;b.addEventListener("click",()=>select(b,word,item));container.append(b);});}
-function select(button,word,item){if(answered)return;if(word===item){answered=true;score++;button.classList.add("correct");$("message").textContent="🌟 Correct! "+item.ar+" means "+item.en+". • إجابة صحيحة!";$("stars").textContent="⭐ "+score;$("next").classList.remove("hidden");[...$("choices").children].forEach(b=>b.disabled=true);}else{button.classList.add("wrong");button.disabled=true;$("message").textContent="Try another word! • حاول مرة أخرى!";}}
-function next(){if(!answered)return;index++;if(index>=sequence.length){$("game").classList.add("hidden");$("finish").classList.remove("hidden");$("summary").textContent="You matched "+score+" of "+sequence.length+" pictures! • طابقت "+score+" من "+sequence.length+" صور!";}else show();}
-$("next").addEventListener("click",next);$("restart").addEventListener("click",start);$("playAgain").addEventListener("click",start);start();
+const $=id=>document.getElementById(id), STORAGE_KEY="lla-arabic-quest-v1";
+let sequence=[],index=0,firstTryStars=0,answered=false,hadMistake=false;
+function shuffle(a){const b=[...a];for(let i=b.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[b[i],b[j]]=[b[j],b[i]];}return b;}
+function readStats(){
+ try{
+  const s=JSON.parse(localStorage.getItem(STORAGE_KEY)||"{}");
+  const nonnegative=x=>Number.isSafeInteger(x)&&x>=0?x:0;
+  return {sessions:nonnegative(s.sessions),bestFirstTry:Math.min(words.length,nonnegative(s.bestFirstTry)),lastFirstTry:Math.min(words.length,nonnegative(s.lastFirstTry))};
+ }catch{return {sessions:0,bestFirstTry:0,lastFirstTry:0};}
+}
+function updateBest(){
+ const s=readStats();
+ $("bestSoFar").textContent=s.sessions
+  ?"🏅 Personal best: "+s.bestFirstTry+" / "+words.length+" first-try stars • أفضل نتيجة: "+s.bestFirstTry+" من "+words.length
+  :"🌱 Your picture journey begins here! • تبدأ رحلتك هنا!";
+}
+function start(){sequence=shuffle(words);index=0;firstTryStars=0;answered=false;hadMistake=false;$("finish").classList.add("hidden");$("game").classList.remove("hidden");updateBest();show();}
+function show(){
+ answered=false;hadMistake=false;
+ const item=sequence[index];
+ $("progress").textContent="Picture "+(index+1)+" of "+sequence.length+" • الصورة "+(index+1)+" من "+sequence.length;
+ $("stars").textContent="⭐ "+firstTryStars+" first-try";
+ $("progressBar").style.width=(index/sequence.length*100)+"%";
+ $("picture").textContent=item.p;
+ $("picture").setAttribute("aria-label",item.en);
+ $("next").classList.add("hidden");
+ $("message").textContent="Choose the matching Arabic word! • اختر الكلمة العربية المناسبة!";
+ const choices=shuffle([item,...shuffle(words.filter(x=>x!==item)).slice(0,3)]);
+ const container=$("choices");container.replaceChildren();
+ choices.forEach(word=>{
+  const b=document.createElement("button");b.type="button";b.className="choice";b.lang="ar";b.dir="rtl";b.textContent=word.ar;
+  b.addEventListener("click",()=>select(b,word,item));container.append(b);
+ });
+}
+function select(button,word,item){
+ if(answered||button.disabled)return;
+ if(word===item){
+  answered=true;
+  if(!hadMistake)firstTryStars++;
+  button.classList.add("correct");
+  $("message").textContent=hadMistake
+   ?"✅ You found it! "+item.ar+" means "+item.en+". Keep practising! • أحسنت بعد المحاولة!"
+   :"🌟 First try! "+item.ar+" means "+item.en+". • رائع! إجابة صحيحة من أول محاولة!";
+  $("stars").textContent="⭐ "+firstTryStars+" first-try";
+  $("next").classList.remove("hidden");
+  [...$("choices").children].forEach(b=>b.disabled=true);
+ }else{
+  hadMistake=true;button.classList.add("wrong");button.disabled=true;
+  $("message").textContent="You can try another word! • حاول كلمة أخرى، أنت تتعلّم!";
+ }
+}
+function finish(){
+ $("game").classList.add("hidden");$("finish").classList.remove("hidden");
+ $("summary").textContent="🎯 12 pictures matched • ١٢ صورة مطابقة. ⭐ "+firstTryStars+" / "+sequence.length+" correct on the first try • إجابات صحيحة من أول محاولة.";
+ const awards=$("awards");awards.replaceChildren();
+ const badges=[["🏅","Picture Explorer • مستكشف الصور"],...(firstTryStars>=4?[["🌱","Growing Learner • متعلّم مجتهد"]]:[]),...(firstTryStars>=8?[["🌟","Word Champion • بطل الكلمات"]]:[]),...(firstTryStars===words.length?[["🏆","Perfect First Tries • كل الإجابات من أول محاولة"]]:[])];
+ for(const [emoji,label] of badges){const span=document.createElement("span");span.className="award";span.textContent=emoji+" "+label;awards.append(span);}
+ const prev=readStats();const next={sessions:prev.sessions+1,bestFirstTry:Math.max(prev.bestFirstTry,firstTryStars),lastFirstTry:firstTryStars};
+ let saved=false;try{localStorage.setItem(STORAGE_KEY,JSON.stringify(next));saved=true;}catch{}
+ $("savedMessage").textContent=saved
+  ?"📱 This session was saved on this device only. • تم حفظ هذه الجولة على هذا الجهاز فقط."
+  :"🌱 Great practice! This browser did not allow saving progress. • تعذّر حفظ التقدم على هذا الجهاز.";
+ updateBest();
+}
+function next(){if(!answered)return;index++;if(index>=sequence.length)finish();else show();}
+$("next").addEventListener("click",next);
+$("restart").addEventListener("click",start);
+$("playAgain").addEventListener("click",start);
+start();
 </script></body></html>
