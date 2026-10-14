@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
+<meta name="theme-color" content="#d8f3ff"><meta name="description" content="On-device Grade 3 mathematics, English and science pilot content integrity checks for Little Learners Academy.">
+<link rel="icon" href="../icon.svg" type="image/svg+xml">
+<title>Grade 3 Pilot Content Checks • Little Learners Academy</title>
+<style>
+:root{font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif;color:#173c61}*{box-sizing:border-box}
+body{margin:0;background:linear-gradient(130deg,#d6f2ff,#fff4cf 55%,#ede9ff);min-height:100vh}
+main{max-width:850px;margin:auto;padding:16px 14px 50px}
+.back{display:inline-flex;padding:13px 17px;min-height:48px;text-decoration:none;background:white;color:#164b70;font-weight:850;border-radius:16px}
+header,section{background:#fffefc;border:3px solid white;border-radius:27px;box-shadow:0 5px #b3d7e6;padding:clamp(18px,4vw,27px);margin:15px 0}
+header{background:linear-gradient(125deg,#fff5c5,#fff,#e5faff)}
+h1{font-size:clamp(28px,6vw,42px);margin:9px 0}h1 span{display:block;font-size:.65em;margin-top:8px}
+h2{font-size:clamp(21px,4vw,27px)}p,li{line-height:1.65}
+.status{padding:14px 17px;border-radius:17px;background:#fff1bf;font-weight:900;font-size:18px}
+.status.pass{background:#ddf8e7;color:#165d3c}.status.fail{background:#ffe8e3;color:#92283d}
+#checkList{list-style:none;padding:0}
+#checkList li{padding:14px 15px;margin:10px 0;border:2px solid #cddfe6;border-radius:18px;background:white}
+#checkList li.pass{border-color:#84c6a0}#checkList li.fail{border-color:#de8a82;background:#fff5f2}
+#checkList strong{display:block;margin-bottom:5px}#checkList small{font-size:13px}
+.notice{background:#fff5dc;border:2px solid #e9d08c;border-radius:18px;padding:15px}
+.links{display:flex;gap:12px;flex-wrap:wrap}.links a{background:#e4f5ff;border-radius:14px;min-height:47px;padding:12px;text-decoration:none;font-weight:850}
+a:focus-visible{outline:4px solid #8a1538;outline-offset:3px}
+</style></head><body><main>
+<a class="back" href="../quality-and-standards.html">← Quality standards • معايير الجودة</a>
+<header><div>🧪 GRADE 2 PILOT QA • فحص جودة الصف الثالث</div>
+<h1>Mathematics, English & Science <span lang="ar" dir="rtl">فحص الرياضيات والإنجليزية والعلوم</span></h1>
+<p>Checks that the three Grade 3 pilot question banks are complete, contain stable IDs, have stable progress identifiers, validated mathematical models and reviewed answer keys, and preserve corrected teaching prompts. All checks run locally on this device. No account or child information is used.</p>
+</header>
+<section><div class="status" role="status" aria-live="polite" id="summary">Checking question data…</div>
+<ol id="checkList"><li>Loading tests…</li></ol></section>
+<section><h2>🛡️ What these tests cannot confirm</h2>
+<p class="notice">A passing result <strong>does not</strong> certify Ministry approval, grade-level curriculum alignment, natural Arabic translations, phonics or pronunciation, complete accessibility, or demonstrated learning outcomes. Independent teacher and native Arabic-language review, school-textbook mapping and real-device tests are still required.</p>
+<div class="links">
+<a href="../grade3-preview.html">🧮 Try Mathematics</a><a href="../grade3-english.html">📖 Try English</a><a href="../grade3-science.html">🔬 Try Science</a><a href="../school-pathways.html">📘 Curriculum companion</a>
+</div></section>
+</main>
+<script src="../grade3-preview-data.js"></script>
+<script src="../grade3-english-data.js"></script>
+<script src="../grade3-science-data.js"></script>
+<script src="./grade3-check.js"></script></body></html>
