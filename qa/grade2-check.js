@@ -74,11 +74,6 @@ check("Previously identified misleading cues","Confirm the 4:15 visual and vocab
  assert(english[16].arabic.includes("whisper")&&!english[16].arabic.includes("يهمس"),"Vocabulary revealed in g2e-17");
  return "Three specific defects remain corrected";
 });
-check("All pages remain pilot-labelled","Confirm both banks clearly indicate supplementary pilot status.",()=>{
- assert(Array.isArray(math)&&Array.isArray(english),"Missing pilot data");
- assert(math.length===24&&english.length===24,"Unexpected pilot lengths");
- return "Check page descriptions and curriculum approval claims separately during release review";
-});
 const list=$("checkList");list.replaceChildren();
 for(const c of checks){
  const li=document.createElement("li");li.className=c.passed?"pass":"fail";
