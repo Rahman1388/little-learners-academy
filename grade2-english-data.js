@@ -27,9 +27,9 @@ add("think","Noor finds a lost pencil case with a name written on it. She gives 
 // Six word meaning in context / parts of speech items.
 add("words","The camel walks slowly across the sandy ground.","Which word tells HOW the camel walks?","أي كلمة تصف كيفية مشي الجمل؟",["slowly","camel","ground"],"slowly","Slowly describes how the camel walks.");
 add("words","The bright sun shines above the school.","Which word describes the sun?","أي كلمة تصف الشمس؟",["bright","school","above"],"bright","Bright is a describing word (adjective).");
-add("words","Maha is delighted when her friend visits.","What does delighted mean here?","ما معنى سعيدة جداً هنا؟",["Very happy","Very angry","Very tired"],"Very happy","Delighted means very pleased or happy.");
+add("words","Maha is delighted when her friend visits.","What does delighted mean here?","ما معنى كلمة delighted في هذا السياق؟",["Very happy","Very angry","Very tired"],"Very happy","Delighted means very pleased or happy.");
 add("words","The tiny ant carries a crumb of bread.","Which word means very small?","أي كلمة تعني صغير جداً؟",["tiny","carries","bread"],"tiny","Tiny means very small.");
-add("words","The children whisper in the quiet library.","What does whisper mean?","ما معنى يهمس؟",["Speak very softly","Shout loudly","Run quickly"],"Speak very softly","To whisper is to speak in a soft, quiet voice.");
+add("words","The children whisper in the quiet library.","What does whisper mean?","ما معنى كلمة whisper في هذا النص؟",["Speak very softly","Shout loudly","Run quickly"],"Speak very softly","To whisper is to speak in a soft, quiet voice.");
 add("words","The family will travel tomorrow.","Which word tells WHEN?","أي كلمة تدل على الوقت؟",["tomorrow","family","travel"],"tomorrow","Tomorrow tells when the travel will happen.");
 // Six writing/grammar basics, not assessing voice.
 add("write","The bird is on the tree.","Which sentence starts with a capital letter and ends with a full stop?","أي جملة تبدأ بحرف كبير وتنتهي بنقطة؟",["The bird is on the tree.","the bird is on the tree.","The bird is on the tree"],"The bird is on the tree.","A statement usually begins with a capital letter and ends with a full stop.");
