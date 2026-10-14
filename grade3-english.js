@@ -50,6 +50,8 @@ function answer(i){
  feedback("🎉 Great reading! You found the answer. • أحسنت!",true);
  $("#readingExplanation").textContent="✅ "+current.explanation;$("#readingExplanation").hidden=false;
  $("#readingNext").hidden=false;
+ const remaining=DATA.all.some(q=>q.domain===current.domain&&!done[q.id]);
+ $("#readingNext").textContent=remaining?"Next reading question ➜ • السؤال التالي":"🏅 Reading pathway complete • اكتمل المسار";
 }
 $("#backToDomains").addEventListener("click",()=>{
  $("#playPanel").hidden=true;$("#choosePanel").hidden=false;refresh();
@@ -67,7 +69,12 @@ $("#readingNext").addEventListener("click",()=>{
  const tasks=DATA.all.filter(q=>q.domain===current.domain);
  const index=tasks.findIndex(q=>q.id===current.id);
  const upcoming=[...tasks.slice(index+1),...tasks.slice(0,index+1)];
- open(upcoming.find(q=>!done[q.id])||upcoming[0]);
+ const next=upcoming.find(q=>!done[q.id]);
+ if(next)open(next);
+ else{
+  $("#playPanel").hidden=true;$("#choosePanel").hidden=false;refresh();
+  $("#choosePanel").scrollIntoView({behavior:"auto",block:"start"});
+ }
 });
 refresh();
 })();
