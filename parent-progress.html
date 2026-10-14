@@ -33,6 +33,10 @@ h2{font-size:23px;margin:2px 0 12px}p{line-height:1.6}
 <div class="stat"><strong id="correctCount">0</strong><small>Correct responses</small></div>
 <div class="stat"><strong id="attemptCount">0</strong><small>Attempts recorded</small></div>
 </div><p class="note">Attempts are counted only in activities answered after this feature was added. They are not exam grades or speech assessments.</p></section>
+<section class="section" aria-label="Arabic Picture Quest progress"><h2>🐪 Arabic Picture Quest <span lang="ar" dir="rtl">مغامرة الصور والكلمات</span></h2>
+<p>Encourage effort and retries. First-try stars are different from the number of pictures completed.</p>
+<div class="stats"><div class="stat"><strong id="questSessions">0</strong><small>Games finished</small></div><div class="stat"><strong id="questBest">0 / 12</strong><small>Best first-try stars</small></div><div class="stat"><strong id="questLast">–</strong><small>Most recent first-try stars</small></div></div>
+<p><a class="start" href="./arabic-picture-quest.html">🐪 Play Arabic Picture Quest • العب وتعلّم</a></p><p class="note">These are practice observations, not an examination score or a measure of language proficiency. Data is stored locally on this device.</p></section>
 <section class="section" aria-labelledby="mathVillageHeader">
 <h2 id="mathVillageHeader">🏡 Math Story Village <span lang="ar" dir="rtl">قصص الرياضيات</span></h2>
 <div class="stats" style="grid-template-columns:repeat(2,minmax(0,1fr))">
@@ -86,6 +90,12 @@ h2{font-size:23px;margin:2px 0 12px}p{line-height:1.6}
 const data=window.LLA_MINI_ACTIVITIES||[], $=s=>document.querySelector(s);
 const get=k=>{try{const x=JSON.parse(localStorage.getItem(k)||"{}");return x&&typeof x==="object"?x:{}}catch{return {}}};
 const done=get("lla-activity-library-v1"),insights=get("lla-practice-insights-v1");
+const quest=get("lla-arabic-quest-v1");
+const safeCount=n=>Number.isSafeInteger(n)&&n>=0?n:0;
+const questSessions=safeCount(quest.sessions);
+$("#questSessions").textContent=String(questSessions);
+$("#questBest").textContent=Math.min(12,safeCount(quest.bestFirstTry))+" / 12";
+$("#questLast").textContent=questSessions?Math.min(12,safeCount(quest.lastFirstTry))+" / 12":"–";
 const pilots=[
  ["lla-grade2-pilot-v1","g2-",24,"#grade2MathCount"],
  ["lla-grade2-english-v1","g2e-",24,"#grade2EnglishCount"],
