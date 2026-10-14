@@ -1,5 +1,5 @@
 (()=>{"use strict";
-const DATA=window.LLA_GRADE3_SCIENCE;if(!DATA||DATA.all.length!==18)throw Error("Grade 3 English pilot missing");
+const DATA=window.LLA_GRADE3_SCIENCE;if(!DATA||DATA.all.length!==18)throw Error("Grade 3 science pilot missing");
 const $=s=>document.querySelector(s),KEY="lla-grade3-science-v1",domains=["plants","forces","investigation"];
 function read(){try{const s=JSON.parse(localStorage.getItem(KEY)||"{}");return s&&typeof s==="object"&&!Array.isArray(s)?s:{}}catch{return {}}}
 const done=read();let current=null,locked=false;
@@ -50,6 +50,8 @@ function answer(i){
  feedback("🎉 Great thinking! You used the evidence. • أحسنت!",true);
  $("#readingExplanation").textContent="✅ "+current.explanation;$("#readingExplanation").hidden=false;
  $("#readingNext").hidden=false;
+ const remaining=DATA.all.some(q=>q.domain===current.domain&&!done[q.id]);
+ $("#readingNext").textContent=remaining?"Next science question ➜ • السؤال التالي":"🏅 Science pathway complete • اكتمل المسار";
 }
 $("#backToDomains").addEventListener("click",()=>{
  $("#playPanel").hidden=true;$("#choosePanel").hidden=false;refresh();
@@ -67,7 +69,12 @@ $("#readingNext").addEventListener("click",()=>{
  const tasks=DATA.all.filter(q=>q.domain===current.domain);
  const index=tasks.findIndex(q=>q.id===current.id);
  const upcoming=[...tasks.slice(index+1),...tasks.slice(0,index+1)];
- open(upcoming.find(q=>!done[q.id])||upcoming[0]);
+ const next=upcoming.find(q=>!done[q.id]);
+ if(next)open(next);
+ else{
+  $("#playPanel").hidden=true;$("#choosePanel").hidden=false;refresh();
+  $("#choosePanel").scrollIntoView({behavior:"auto",block:"start"});
+ }
 });
 refresh();
 })();
