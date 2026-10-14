@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
+<meta name="theme-color" content="#dbf5ff"><meta name="description" content="Free on-device structural quality checks for the Little Learners Academy Grade 1 question bank.">
+<title>Grade 1 Content Check • Little Learners Academy</title>
+<link rel="icon" href="../icon.svg" type="image/svg+xml">
+<style>
+:root{font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif;color:#173e62}*{box-sizing:border-box}
+body{margin:0;background:linear-gradient(130deg,#d5f5ff,#fff7db,#ebedff);min-height:100vh}main{max-width:830px;margin:auto;padding:18px 14px 48px}
+header,section{background:#fffdf8;border:3px solid white;border-radius:25px;box-shadow:0 5px #bdd8e5;padding:clamp(17px,4vw,27px);margin:16px 0}
+header{background:linear-gradient(115deg,#fff5c8,#fff,#e5faff)}h1{font-size:clamp(28px,6vw,40px);margin:12px 0}h2{font-size:clamp(20px,4vw,26px)}p,li{line-height:1.6}
+.back{display:inline-flex;background:white;text-decoration:none;color:#174b72;font-weight:850;padding:13px 18px;min-height:48px;border-radius:16px}
+.stat{padding:14px;border-radius:17px;background:#e5f8ee;font-size:18px;font-weight:900}
+.stat.fail{background:#ffe8e3;color:#8d283a}.stat.pending{background:#fff2d4;color:#73530c}
+#checks{padding:0;list-style:none}#checks li{margin:9px 0;border:2px solid #cbdfe8;border-radius:16px;background:white;padding:13px 15px}
+#checks li.pass{border-color:#80c8a3}#checks li.fail{border-color:#e39690;background:#fff5f1}
+#checks b{display:block;margin-bottom:3px}#checks small{font-size:13px;line-height:1.4}
+.caution{border:2px solid #e7cd8a;background:#fff4d4;padding:13px;border-radius:16px}
+a:focus-visible{outline:4px solid #8a1538;outline-offset:3px}
+</style></head><body><main>
+<a class="back" href="../quality-and-standards.html">← Quality standards • معايير الجودة</a>
+<header>
+<div>🧪 INTERNAL QUALITY CHECK • فحص جودة المحتوى</div>
+<h1>Grade 1 Question Bank Check <span lang="ar" dir="rtl" style="display:block;font-size:.6em;margin-top:8px">فحص أسئلة الصف الأول</span></h1>
+<p>Automatic checks of activity structure, answer options, counting, basic arithmetic and repeating patterns. Runs locally in this browser; no child's progress is accessed or uploaded.</p>
+</header>
+<section><div class="stat pending" id="summary" role="status" aria-live="polite">Running checks… • جارٍ الفحص</div>
+<ol id="checks"><li>Loading validation results…</li></ol>
+</section>
+<section><h2>🔎 What this does NOT prove</h2>
+<p class="caution">Passing these automated checks does <strong>not</strong> mean all questions are age-appropriate, accurately translated, aligned to a school textbook, accessible to every child, verified for religious or cultural suitability, or approved by MOEHE. Qualified human curriculum and language review, audio checks and actual-device testing are still needed.</p>
+<p>Reference: <a href="../school-pathways.html">School curriculum pathways</a> · <a href="../privacy.html">Parent privacy controls</a>.</p>
+</section></main>
+<script src="../activity-data.js"></script>
+<script src="./grade1-check.js"></script>
+</body></html>
