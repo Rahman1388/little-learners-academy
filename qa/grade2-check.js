@@ -1,10 +1,11 @@
-/* Read-only, device-local structural and answer-key regression checks for 48 Grade 2 pilot items. */
+/* Read-only, device-local structural and answer-key regression checks for 66 Grade 2 pilot items. */
 (()=>{"use strict";
 const $=id=>document.getElementById(id);
-const math=window.LLA_GRADE2_PILOT,english=window.LLA_GRADE2_ENGLISH;
+const math=window.LLA_GRADE2_PILOT,english=window.LLA_GRADE2_ENGLISH,science=window.LLA_GRADE2_SCIENCE;
 const checks=[];
 const expectedMath=["34","6","57","72","90","330","42","36","68","60","60","50","100 cm","Half past three","Quarter past four","35 cm","A ruler","1 kilogram","6","5","12","Books","2","One quarter"];
 const expectedEnglish=["A seed in a pot","At the library","Blue","An umbrella","In a palm tree","Washes her hands","Rainy","He shapes the dough","Food","It belongs to the library","He feels thirsty","Help return it to its owner","slowly","bright","Very happy","tiny","Speak very softly","tomorrow","The bird is on the tree.","?","boxes","Yesterday","happy","and"];
+const expectedScience=["Water","Light","A seed","It needs water to grow","Water","Broad feet","Small twigs","Water","Iron","Rubber band","Transparent glass","It becomes liquid water","Thermometer","Stay hydrated and seek shade","Rain may be coming","Away from a light source","One factor at a time","Record what happened"];
 function assert(ok,message){if(!ok)throw Error(message);}
 function check(name,description,fn){
  try{const detail=fn();checks.push({name,description,passed:true,detail:detail||""});}
@@ -53,6 +54,23 @@ check("English answer-key review","Compare reading, vocabulary and writing answe
   assert(chosen===expectedEnglish[i],"Answer mismatch on "+english[i].id);
  }
  return "24 predefined English answer keys matched";
+});
+check("Grade 2 Science answer-key review","Check 18 science pilot items, five subject strands and their predefined answer keys.",()=>{
+ assert(Array.isArray(science)&&science.length===18,"Expected 18 science items");
+ const expectedTopics={Plants:4,Animals:4,Materials:4,Weather:4,"Scientific enquiry":2};
+ for(const [topic,count] of Object.entries(expectedTopics))
+  assert(science.filter(x=>x.topic===topic).length===count,"Science topic count: "+topic);
+ assert(Object.keys(expectedTopics).length===new Set(science.map(x=>x.topic)).size,"Unknown science topic");
+ for(let i=0;i<science.length;i++){
+  const x=science[i];
+  assert(x.id==="g2s-"+String(i+1).padStart(2,"0"),"Science ID changed: "+x.id);
+  assert(Array.isArray(x.choices)&&x.choices.length===3&&new Set(x.choices).size===3,"Science choices: "+x.id);
+  assert(Number.isInteger(x.answer)&&x.answer>=0&&x.answer<3,"Science index: "+x.id);
+  assert(x.choices[x.answer]===expectedScience[i],"Science answer mismatch: "+x.id);
+  for(const field of ["question","arabic","reason","icon"])
+   assert(typeof x[field]==="string"&&x[field].trim(),"Science missing "+field+": "+x.id);
+ }
+ return "18 answer keys, stable IDs and bilingual fields checked";
 });
 check("Bilingual prompt integrity","Check all questions include Arabic instructions and usable English explanation fields.",()=>{
  for(const items of [math,english]){
