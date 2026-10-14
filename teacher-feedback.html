@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; connect-src 'none'; img-src 'self' data:; media-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
+<meta name="theme-color" content="#d3f4f3">
+<meta name="description" content="Private, mobile-friendly voluntary teacher review form for the Little Learners Academy educational pilot.">
+<link rel="icon" href="./icon.svg" type="image/svg+xml">
+<title>Teacher Feedback • Little Learners Academy</title>
+<style>
+:root{font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif;color:#183955}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;min-height:100vh;background:linear-gradient(135deg,#ccefff,#fff3d4 49%,#e8e4ff)}
+main{width:min(850px,100%);margin:0 auto;padding:14px 12px 46px}
+header,section,footer{background:#fffefdf2;border:3px solid #fff;border-radius:25px;box-shadow:0 5px #bad8e5;margin:14px 0;padding:clamp(17px,3vw,25px)}
+header{background:linear-gradient(145deg,#fff7ca,#fff,#dffcff)}
+.back{display:inline-flex;align-items:center;padding:12px 16px;background:white;border-radius:14px;color:#174c70;text-decoration:none;min-height:48px;font-weight:800}
+h1{font-size:clamp(28px,6vw,39px);line-height:1.2;margin:7px 0 9px}h1 span{display:block;font-size:.63em;margin-top:7px}
+h2{font-size:clamp(21px,4vw,26px);margin:0 0 11px}
+p,li{line-height:1.65}a{color:#075b87}
+.intro{font-size:15px}.subtle{font-size:13px;color:#4b677a}
+.note{background:#fff1cf;border:2px solid #edd290;border-radius:16px;padding:12px 15px}
+.links{display:flex;gap:9px;flex-wrap:wrap;margin:12px 0}
+.links a{background:#e7f8ff;text-decoration:none;border:2px solid #b6ddeb;border-radius:14px;padding:12px;min-height:48px;font-weight:800}
+form{display:grid;gap:19px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
+.field{display:flex;flex-direction:column;gap:6px}
+label,legend{font-weight:850}
+label span{font-weight:500;color:#526678}
+input,select,textarea,button{font:inherit}
+input,select,textarea{width:100%;border:2px solid #aacbd9;border-radius:13px;background:#fff;color:#162f47;padding:13px 12px;font-size:16px;min-height:48px}
+textarea{min-height:113px;resize:vertical;line-height:1.45}
+input:focus-visible,select:focus-visible,textarea:focus-visible,button:focus-visible,a:focus-visible{outline:4px solid #8a1538;outline-offset:2px}
+fieldset{margin:0;padding:14px;border:2px solid #cadfea;border-radius:17px}
+legend{padding:0 5px}
+.ratings{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.rating{background:#f2faff;border:2px solid #d4e7f0;border-radius:15px;padding:13px}
+.rating label{display:block;margin-bottom:7px}
+.actions{display:flex;gap:10px;flex-wrap:wrap}
+button{cursor:pointer;background:#087c9d;color:white;border:0;border-radius:14px;padding:13px 16px;min-height:51px;font-weight:850}
+button.secondary{background:#e6f5ff;color:#144d70;border:2px solid #b4dae7}
+button.critical{background:#fff1ec;color:#7d3631;border:2px solid #ecc5b9}
+.status{border-radius:14px;background:#eaf7f0;padding:12px;line-height:1.5;font-weight:750}
+#preview{min-height:160px;white-space:pre-wrap;overflow-wrap:anywhere;display:none}
+#preview[aria-hidden="false"]{display:block}
+.smalltext{font-size:13px}
+@media(max-width:630px){.grid,.ratings{grid-template-columns:1fr}.actions button{width:100%}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+@media print{body{background:white}header,section,footer{box-shadow:none;border:1px solid #ccdce3}.back,.actions{display:none}}
+</style>
+</head>
+<body><main>
+<a class="back" href="./index.html">← Little Learners Academy • الرئيسية</a>
+<header>
+<div style="font-weight:900;color:#8a1538">👩‍🏫 VOLUNTARY EDUCATOR REVIEW • مراجعة المعلمين التطوعية</div>
+<h1>Teacher Feedback Form <span lang="ar" dir="rtl">نموذج ملاحظات المعلمين</span></h1>
+<p class="intro">Review a few activities on your phone, fill in this form, and send your comments to the project owner using your phone's Share menu or Copy button. No printing, account, app installation or payment required.</p>
+<p class="note"><strong>Private by design:</strong> Nothing is submitted to the website. This form does not use analytics, accounts or persistent draft storage. Your answers are shared only when <em>you</em> tap Share and choose a recipient, or copy/paste them. Do not include pupils' names, photos, health information, school records or confidential materials. Keep a copy before closing this page.</p>
+<div class="links"><a href="./index.html">🏠 Open learning app</a><a href="./choose-grade.html">📚 Choose a grade</a><a href="./educator-review-kit.html">📋 Reviewer guidance</a></div>
+<p class="subtle">This is an independent supplementary learning pilot, not a school-endorsed or Ministry-approved assessment.</p>
+</header>
+<section>
+<h2>1. Tell us what you reviewed</h2>
+<form id="teacherReview" autocomplete="off" novalidate>
+<div class="grid">
+<div class="field"><label for="role">Your subject / reviewer role <span>(optional)</span></label><input id="role" maxlength="110" placeholder="e.g., Primary Mathematics teacher"></div>
+<div class="field"><label for="grade">Grade or year reviewed</label><select id="grade"><option value="">Choose a grade</option><option>Grade 1</option><option>Grade 2</option><option>Grade 3</option><option>Grade 4</option><option>Grade 5</option><option>Grade 6</option><option>Mixed grades</option><option>Other year system</option></select></div>
+<div class="field"><label for="subject">Subject</label><select id="subject"><option value="">Choose a subject</option><option>Mathematics</option><option>English reading</option><option>Arabic language</option><option>Science</option><option>Islamic Studies (specialist content review)</option><option>Qatar History (specialist content review)</option><option>App accessibility and usability</option><option>Other</option></select></div>
+<div class="field"><label for="questionCount">Approximate number of activities checked</label><input id="questionCount" inputmode="numeric" type="number" min="1" max="500" placeholder="e.g., 8"></div>
+</div>
+<div class="field"><label for="reviewLink">Page link or activity title <span>(optional)</span></label><input id="reviewLink" maxlength="260" placeholder="e.g., grade2-english.html"></div>
+<div class="field"><label for="questionIDs">Question IDs checked / flagged <span>(optional)</span></label><input id="questionIDs" maxlength="450" placeholder="e.g., g2e-15, g3-03"></div>
+<h2>2. Quality checklist</h2>
+<p class="subtle">Choose Accept, Revise, Hold or Not checked for each area. A decision for a small sample is not certification of the full curriculum.</p>
+<div class="ratings">
+<div class="rating"><label for="accuracy">Answer accuracy &amp; explanations</label><select id="accuracy"><option>Not checked</option><option>Accept</option><option>Revise</option><option>Hold</option></select></div>
+<div class="rating"><label for="level">Learning objective &amp; grade suitability</label><select id="level"><option>Not checked</option><option>Accept</option><option>Revise</option><option>Hold</option></select></div>
+<div class="rating"><label for="english">English clarity / reading level</label><select id="english"><option>Not checked</option><option>Accept</option><option>Revise</option><option>Hold</option></select></div>
+<div class="rating"><label for="arabic">Arabic language &amp; terminology</label><select id="arabic"><option>Not checked</option><option>Accept</option><option>Revise</option><option>Hold</option></select></div>
+<div class="rating"><label for="visuals">Illustrations / sound clarity</label><select id="visuals"><option>Not checked</option><option>Accept</option><option>Revise</option><option>Hold</option></select></div>
+<div class="rating"><label for="culture">Cultural suitability &amp; child safety</label><select id="culture"><option>Not checked</option><option>Accept</option><option>Revise</option><option>Hold</option></select></div>
+<div class="rating"><label for="usability">Phone usability / accessibility</label><select id="usability"><option>Not checked</option><option>Accept</option><option>Revise</option><option>Hold</option></select></div>
+<div class="rating"><label for="overall">Overall recommendation</label><select id="overall"><option>Not checked</option><option>Accept this sample</option><option>Revise selected items</option><option>Hold pending further review</option></select></div>
+</div>
+<h2>3. Tell us how to improve</h2>
+<div class="field"><label for="strengths">What worked well? <span>(optional)</span></label><textarea id="strengths" maxlength="2200" placeholder="One or two strengths of the activities or app…"></textarea></div>
+<div class="field"><label for="issues">Incorrect question, unclear Arabic, or other issue <span>(include question ID)</span></label><textarea id="issues" maxlength="4500" placeholder="Example: g2e-15 — the translation reveals the vocabulary answer…"></textarea></div>
+<div class="field"><label for="suggestions">Suggested correction / source / textbook objective <span>(optional)</span></label><textarea id="suggestions" maxlength="4500" placeholder="What should change, and what source supports the change?"></textarea></div>
+<div class="field"><label for="finalComments">Other recommendations <span>(optional)</span></label><textarea id="finalComments" maxlength="2500" placeholder="Missing learning topics, accessibility barriers, next steps…"></textarea></div>
+<div class="field"><label for="publicUse">Use of feedback in public updates</label><select id="publicUse"><option value="Internal improvement only">Internal improvement only (default)</option><option value="Anonymous summary permitted">Anonymous summary permitted</option></select></div>
+<div class="actions">
+<button type="button" id="shareFeedback"> <span aria-hidden="true">📲</span> Share feedback from phone</button>
+<button type="button" id="copyFeedback" class="secondary">📋 Copy feedback</button>
+<button type="button" id="showFeedback" class="secondary">👁 Preview text</button>
+<button type="button" id="saveFeedback" class="secondary">⬇ Save text copy</button>
+<button type="reset" class="critical">Clear form</button>
+</div>
+<div id="status" class="status" role="status" aria-live="polite">Fill the form, then tap Share or Copy. It is not automatically sent.</div>
+<textarea id="preview" aria-label="Feedback text for manual copying" readonly aria-hidden="true"></textarea>
+</form>
+</section>
+<footer><strong>Thank you for helping children learn.</strong><p class="smalltext">This review concerns only the activities you checked and does not represent endorsement by your school, employer, or Qatar's Ministry of Education and Higher Education. The project owner should store feedback privately and verify revisions before publishing educational claims.</p></footer>
+</main>
+<script src="./teacher-feedback.js"></script>
+</body></html>
