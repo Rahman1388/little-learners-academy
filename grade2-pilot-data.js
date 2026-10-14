@@ -30,7 +30,7 @@ add("arithmetic","2.NBT.B","What is 76 − 26?","كم ناتج 76 − 26؟",["50
 // C. Measurement, time and familiar tools: 2.MD and UK KS1/early KS2.
 add("measure","2.MD.A","How many centimetres are in 1 metre?","كم سنتيمتراً في متر واحد؟",["100 cm","10 cm","1000 cm"],"100 cm","1 metre equals 100 centimetres.","📏 1 m = ? cm");
 add("measure","2.MD.C","Which phrase means the time 3:30?","ما العبارة التي تصف الوقت 3:30؟",["Half past three","Quarter past three","Three o'clock"],"Half past three","3:30 means 30 minutes after three, or half past three.","🕞 3:30");
-add("measure","2.MD.C","Which phrase means the time 4:15?","ما العبارة التي تصف الوقت 4:15؟",["Quarter past four","Half past four","Quarter to four"],"Quarter past four","4:15 is 15 minutes after four: quarter past four.","🕓 4:15");
+add("measure","2.MD.C","Which phrase means the time 4:15?","ما العبارة التي تصف الوقت 4:15؟",["Quarter past four","Half past four","Quarter to four"],"Quarter past four","4:15 is 15 minutes after four: quarter past four.","4:15");
 add("measure","2.MD.A","A ribbon is 20 cm long. Add 15 cm. How long is it?","شريط طوله 20 سم، أضف 15 سم. كم يصبح؟",["35 cm","25 cm","45 cm"],"35 cm","20 + 15 = 35 centimetres.","📏 20 cm + 15 cm");
 add("measure","2.MD.A","Which tool should you use to measure a pencil's length?","أي أداة تصلح لقياس طول قلم؟",["A ruler","A clock","A thermometer"],"A ruler","Use a ruler to measure length in centimetres.","✏️ 📏");
 add("measure","2.MD.A","Which is heavier?","أيهما أثقل؟",["1 kilogram","500 grams","They are equal"],"1 kilogram","One kilogram is 1000 grams. That is more than 500 grams.","⚖️ 1 kg    500 g");
