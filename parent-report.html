@@ -51,6 +51,14 @@ p{line-height:1.55}.small{font-size:13px;color:#526c80}
 #copyText[hidden]{display:none}
 [hidden]{display:none!important}
 #copyStatus{min-height:24px;font-weight:850}
+.printHelp{margin-top:17px;border:2px solid #b5d9e6;border-radius:17px;background:#eaf8ff;padding:13px 17px}
+.printHelp summary{cursor:pointer;font-weight:900;color:#144e74;padding:5px 0;line-height:1.55}
+.printHelp summary:focus-visible{outline:4px solid #8a1538;outline-offset:3px}
+.printHelp ol{padding-inline-start:24px;line-height:1.65}
+.printHelp li{margin:8px 0}
+.printHelp p{font-size:14px}
+.printHelp code{font-family:ui-monospace,monospace}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
 @media(max-width:620px){.subjects,.gradegrid{grid-template-columns:1fr}.focus{grid-template-columns:1fr}.statgrid{gap:6px}.stat{padding:12px 6px}}
 @media print{
  @page{size:A4;margin:12mm}
@@ -111,6 +119,15 @@ p{line-height:1.55}.small{font-size:13px;color:#526c80}
 <p id="storySummary" class="small">Math Story Village: 0 / 24 stories completed.</p>
 <p class="small">Mixed review quests reuse questions from these pilots and are not additional unique activities. Grades 4–6 have limited playable pilots; none is a complete curriculum.</p>
 </section>
+<section class="panel" aria-labelledby="arabicQuestTitle">
+<h2 id="arabicQuestTitle">🐪 Arabic Picture Quest • مغامرة الصور والكلمات</h2>
+<div class="statgrid">
+<div class="stat"><strong id="questSessions">0</strong><small>Completed practice rounds</small></div>
+<div class="stat"><strong id="questBest">0 / 12</strong><small>Best first-try stars</small></div>
+<div class="stat"><strong id="questLast">–</strong><small>Latest first-try stars</small></div>
+</div>
+<p class="small">Separate from the 151 Grade 1 mini-challenges. Children can retry any picture, and the first-try score is a practice observation, not a school grade. Stored only on this device.</p>
+</section>
 <section class="panel" aria-labelledby="familyAdvice">
 <h2 id="familyAdvice">💛 Family Practice Tip • نصيحة للأسرة</h2>
 <p>Choose one short activity, ask the child to explain their thinking, and praise effort. Combine screen practice with reading a physical book, drawing and counting real objects.</p>
@@ -120,10 +137,21 @@ p{line-height:1.55}.small{font-size:13px;color:#526c80}
 <h2 id="shareTitle">🖨️ Keep a Copy • احتفظ بنسخة</h2>
 <p>Print for your own records, or copy a text-only summary to discuss with a teacher. Do not include a child's name or private information unnecessarily.</p>
 <div class="actions">
-<button id="printReport" type="button">🖨️ Print report • طباعة التقرير</button>
+<button id="printReport" type="button" aria-describedby="printNote">🖨️ Print report • طباعة التقرير</button>
 <button id="copyReport" type="button">📋 Copy summary • نسخ الملخص</button>
 <button id="showReportText" class="secondary" type="button">📝 Show text • عرض النص</button>
 </div>
+<p id="printNote" class="small">On iPhone, printing may require Safari's Share menu. The academy does not connect directly to a printer. • في الآيفون قد تحتاج إلى الطباعة من قائمة المشاركة في سفاري.</p>
+<details id="mobilePrintHelp" class="printHelp">
+<summary>📱 Print or save PDF on your phone • الطباعة أو الحفظ كملف PDF</summary>
+<ol>
+<li><strong>iPhone / iPad:</strong> Open this report in <strong>Safari</strong> (not inside a chat or social app). Tap the <strong>Share</strong> icon, scroll if needed, and choose <strong>Print</strong>. Choose an available AirPrint printer and tap Print. • افتح التقرير في سفاري ثم مشاركة ← طباعة.</li>
+<li><strong>iPhone PDF without a printer:</strong> In Safari's Print preview, expand the document preview with two fingers, then use <strong>Share → Save to Files</strong>. The exact options can vary by iOS version. • للحفظ بصيغة PDF استخدم المعاينة ثم مشاركة ← حفظ في الملفات.</li>
+<li><strong>Android:</strong> Open in Chrome, use the browser menu or Share → Print, then select a printer or <strong>Save as PDF</strong>. • أندرويد: المشاركة أو القائمة ← طباعة أو حفظ PDF.</li>
+<li><strong>Laptop:</strong> Use <strong>Ctrl+P</strong> (Windows) or <strong>⌘+P</strong> (Mac). Select a printer or the built-in PDF destination.</li>
+</ol>
+<p>Printing needs your device's browser and an available printer (such as a compatible AirPrint printer on your network). If a chat-app preview ignores the Print button, use the browser's own Share/Print controls. No report is sent to a server by this page.</p>
+</details>
 <p id="copyStatus" role="status" aria-live="polite"></p>
 <textarea id="copyText" readonly hidden aria-label="Text-only learning progress report"></textarea>
 </section>
