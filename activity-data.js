@@ -17,7 +17,7 @@ const qnum=(area,skill,title,ar,q,aq,n,max,tip,icon)=>add(area,skill,title,ar,q,
 // 70 progressive number and mathematics challenges. Concrete and symbolic practice.
 for(let n=1;n<=20;n++){
  const emoji=["⭐","🍎","⚽","🟡","🐟"][n%5];
- add("math","Counting","Count "+n+" objects","عُدَّ الصور",
+ add("math","Counting","Count "+n+(n===1?" object":" objects"),"عُدَّ الصور",
   "How many "+emoji+" do you see?","كم عدد العناصر؟",
   [n,Math.max(0,n-1),n+1].map(String),0,
   "Count one by one, touching each symbol with your finger.",emoji);
