@@ -30,7 +30,7 @@ add("measure","A rectangle is 6 cm long and 4 cm wide. What is its perimeter?","
 add("measure","Find the area of a rectangle measuring 5 cm by 3 cm.","أوجد مساحة مستطيل أبعاده ٥ سم و٣ سم.",["8 cm²","15 cm²","16 cm²"],"15 cm²","Area = length × width.","5 × 3 = 15 square centimetres.");
 add("measure","A lesson starts at 09:15 and lasts 45 minutes. When does it finish?","بدأ الدرس ٩:١٥ ويستغرق ٤٥ دقيقة. متى ينتهي؟",["09:45","10:00","10:15"],"10:00","15 minutes takes us to 09:30, then add 30 minutes.","09:15 + 45 minutes = 10:00.");
 add("measure","A fruit basket weighs 3 kg. How many grams is that?","سلة فاكهة وزنها ٣ كغ. كم غراماً؟",["300 g","3,000 g","30 g"],"3,000 g","1 kg = 1,000 grams.","3 × 1,000 = 3,000 g.");
-add("measure","A chart shows 4 red, 6 blue and 3 green balls. How many in total?","يوضح الرسم ٤ كرات حمراء و٦ زرقاء و٣ خضراء. كم المجموع؟",["12","13","14"],"13","Add all three categories.","4 + 6 + 3 = 13 balls.","🔴🔴🔴🔴 🔵🔵🔵🔵🔵🔵 🟢🟢🟢");
+add("measure","There are 4 red, 6 blue and 3 green balls. How many in total?","هناك ٤ كرات حمراء و٦ زرقاء و٣ خضراء. كم المجموع؟",["12","13","14"],"13","Add all three categories.","4 + 6 + 3 = 13 balls.","🔴🔴🔴🔴 🔵🔵🔵🔵🔵🔵 🟢🟢🟢");
 if(items.length!==24)throw Error("Grade 4 maths pilot must contain 24 questions");
 window.LLA_GRADE4_MATH=Object.freeze(items);
 })();
