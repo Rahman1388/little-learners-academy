@@ -28,7 +28,7 @@ h2{font-size:clamp(23px,4vw,29px);margin:3px 0 8px}
 </style></head><body><main>
 <a class="back" href="./index.html">← Home • الرئيسية</a>
 <header class="hero"><div style="font-weight:950;color:#8a1538">🌈 MY LEARNING JOURNEY • رحلتي التعليمية</div><h1>⭐ My Star Journey <span lang="ar" dir="rtl">رحلة نجومي</span></h1><p class="subtitle">Play • Practise • Grow! <span lang="ar" dir="rtl">العب وتدرب وتطور!</span></p><div class="count" id="totalStars">⭐ 0 stars</div><p id="journeyMessage" aria-live="polite">Every small step matters! • كل خطوة مهمة!</p></header>
-<section class="path"><h2>🗺️ Four Learning Adventures <span lang="ar" dir="rtl">أربع مغامرات تعليمية</span></h2><p>Choose an activity. Completed adventures get a green check. • اختر نشاطاً واجمع الإنجازات!</p><div class="track" id="journeyTrack"></div>
+<section class="path"><h2>🗺️ Five Learning Adventures <span lang="ar" dir="rtl">خمس مغامرات تعليمية</span></h2><p>Choose an activity. Completed adventures get a green check. • اختر نشاطاً واجمع الإنجازات!</p><div class="track" id="journeyTrack"></div>
 <h2>🏅 My Achievement Badges <span lang="ar" dir="rtl">شارات الإنجاز</span></h2><div class="badges" id="journeyBadges"></div></section>
 <section class="path" aria-labelledby="activityMilestoneTitle"><h2 id="activityMilestoneTitle">🚀 Activity Explorer Milestones <span lang="ar" dir="rtl">مراحل إنجاز الأنشطة</span></h2><p id="activityMilestoneProgress" aria-live="polite">0 / 151 activities complete</p><div class="badges" id="activityMilestoneBadges"></div><p><a class="back" href="./activity-library.html">🎮 Continue 151 Activities • أكمل الأنشطة ➜</a></p><p class="note">Milestones reflect your actual completed activities. They do not add extra stars or change learning results.</p></section>
 <section class="path" aria-labelledby="storyBadgesTitle">
@@ -41,7 +41,7 @@ h2{font-size:clamp(23px,4vw,29px);margin:3px 0 8px}
 <div class="voiceRow" role="group" aria-label="English voice style"><button type="button" id="femaleChoice" aria-pressed="true">👧 Female-style • أنثوي</button><button type="button" id="maleChoice" aria-pressed="false">👦 Male-style • ذكوري</button></div>
 <div class="words" id="listenWords"></div><p class="feedback" id="listenFeedback" role="status" aria-live="polite">Tap a picture to hear its English word three times.</p>
 <p class="note">These are adult synthetic speaker styles—not real children. They replay existing whole-word recordings; isolated phonemes and formal pronunciation instruction still require teacher review. Arabic meanings are shown for support.</p></section>
-<aside class="parents"><h2>👨‍👩‍👧 Parent & Teacher Corner <span lang="ar" dir="rtl">ركن الأهل والمعلمين</span></h2><p>Encourage a short, enjoyable session. Try one game, listen to two words, and celebrate the effort—not just the stars. All progress is saved on this device, with no account or tracking.</p><p class="note">This is supplementary practice, not a Qatar curriculum certification or a substitute for qualified instruction. The app does not assess speech or microphone pronunciation.</p></aside>
+<aside class="parents"><h2>👨‍👩‍👧 Parent & Teacher Corner <span lang="ar" dir="rtl">ركن الأهل والمعلمين</span></h2><p>Encourage a short, enjoyable session. Try one game, listen to two words, and celebrate the effort—not just the stars. Progress is saved on this device, with no account or tracking. Arabic Picture Quest uses a separate first-try star count that is not added to the core lesson stars.</p><p class="note">This is supplementary practice, not a Qatar curriculum certification or a substitute for qualified instruction. The app does not assess speech or microphone pronunciation.</p></aside>
 <script>
 (()=>{"use strict";
 const $=s=>document.querySelector(s),MAIN="lla-progress-v2";
@@ -51,11 +51,12 @@ const games=[
 {icon:"📖",title:"Reading Adventure",ar:"مغامرة القراءة",url:"./phonics-adventure.html",done:()=>{const q=read("lla-reading-quest-v1");return q&&Array.isArray(q.done)&&q.done.length>=4}},
 {icon:"🕵️",title:"Sound Detective",ar:"محقق الأصوات",url:"./phonics-adventure.html#soundDetective",done:()=>{const q=read("lla-reading-quest-v1");return q&&Array.isArray(q.detectiveDone)&&q.detectiveDone.length>=4}},
 {icon:"🧩",title:"Match & Learn",ar:"طابق وتعلّم",url:"./match-learn.html",done:()=>{const x=read("lla-match-pairs-v1");return Boolean(x&&x.rewarded)}},
-{icon:"🌷",title:"Picture Pairs",ar:"مطابقة الصور",url:"./picture-memory.html",done:()=>{const x=read("lla-memory-pairs-v1");return Boolean(x&&x.completed)}}
+{icon:"🌷",title:"Picture Pairs",ar:"مطابقة الصور",url:"./picture-memory.html",done:()=>{const x=read("lla-memory-pairs-v1");return Boolean(x&&x.completed)}},
+{icon:"🐪",title:"Arabic Picture Quest",ar:"مغامرة الصور والكلمات",url:"./arabic-picture-quest.html",done:()=>{const x=read("lla-arabic-quest-v1");return Boolean(x&&Number.isSafeInteger(x.sessions)&&x.sessions>0)}}
 ];
 function dashboard(){
  const main=read(MAIN)||{},stars=Math.max(0,Number(main.stars)||0);
- $("#totalStars").textContent="⭐ "+stars+" stars";
+ $("#totalStars").textContent="⭐ "+stars+" core lesson stars";
  $("#journeyTrack").replaceChildren();$("#journeyBadges").replaceChildren();
  let achieved=0;
  for(const game of games){
@@ -70,7 +71,7 @@ function dashboard(){
   const badge=document.createElement("div");badge.className="medal"+(complete?" earned":"");
   badge.textContent=(complete?"🏅 ":"🔒 ")+game.title;$("#journeyBadges").append(badge);
  }
- $("#journeyMessage").textContent=achieved===4?"🏆 All four adventures complete! Keep enjoying the practice.":achieved+" / 4 adventures completed • "+achieved+" من ٤ أنشطة مكتملة";
+ $("#journeyMessage").textContent=achieved===games.length?"🏆 All five adventures complete! Keep enjoying the practice.":achieved+" / "+games.length+" adventures completed • "+achieved+" من "+games.length+" أنشطة مكتملة";
 }
 function updateMilestones(){
  const x=read("lla-activity-library-v1")||{};
