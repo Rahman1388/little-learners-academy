@@ -1,12 +1,12 @@
 # Little Learners Academy — Independent Learning Quality Review
 
-**Updated:** 13 October 2026  
+**Updated:** 15 October 2026  
 **Audience:** Project owner and future voluntary reviewers  
 **Status:** Owner-guided preliminary review, **NOT** teacher sign-off, Arabic-language validation, or official curriculum certification.
 
 ## Why this exists
 
-The project currently has no dependable access to classroom teachers or an organised parent-testing panel. That must not become a reason to call unverified pronunciation “approved” or to advertise pilot activities as complete Grades 1–6 curricula. We can carry out repeatable technical checks and structured common-sense learning reviews now, keep gaps visible, and request expert input when possible.
+As of 15 October 2026, educator-review materials have been forwarded through two colleagues, but **no completed teacher feedback has been received yet**. There is not yet a confirmed teacher or parent-testing panel. This is not a reason to call unverified pronunciation “approved” or to advertise pilot activities as complete Grades 1–6 curricula. Repeatable technical checks and structured preliminary reviews can continue while responses are pending.
 
 ## Evidence hierarchy
 
@@ -53,6 +53,18 @@ The project currently has no dependable access to classroom teachers or an organ
 - Grade 5: `scripts/check-grade5-content.cjs` checks 24 published mathematics prompts, immutable progress IDs, reference answers, arithmetic, English hints/explanations and topic balance.
 - Mobile/browser tests and the Child App Security Gate cover technical behaviour and selected safety issues, **not the truth of every educational claim**.
 - Grades 3–4 and all language/science content still need explicit subject-matter audit coverage; coverage must increase before describing the app as comprehensively verified.
+
+## Educator feedback status and issue handling (15 October 2026)
+
+**Outreach status:** Review materials sent via two colleagues; teacher response **awaited**. No reviews, approvals, endorsements, credentials or reviewer scores may be inferred from this outreach.
+
+**For each genuine response**, log an anonymous reviewer code, subject/grade, reviewed page and question IDs, date, specific findings, the suggested correction, and evidence/learning objective. Keep names, institutions, phone numbers and correspondence private unless the reviewer explicitly authorises disclosure.
+
+**Decision labels:** `Pending` → `Under review` → `Revise / Hold / Accept this sample` → `Corrected` → `Rechecked`. An `Accept this sample` finding never approves an entire grade or curriculum.
+
+**Severity and response:** Incorrect answers, misleading science claims, inappropriate content, privacy and unsafe directions are **release blockers** for the affected activity until fixed and checked. Broken audio, inaccurate Arabic, confusing directions and accessibility problems should be triaged by impact; do not teach with inaccurate pronunciation. Cosmetic issues may be scheduled later.
+
+**While waiting:** Audit existing question keys and worked explanations; check mobile/tablet flows, accessibility and offline behaviour; preserve established audio choices and saved progress. Clearly disclose remaining independent-review gaps and do not add invented approval badges or testimonials.
 
 ## Release status wording
 
