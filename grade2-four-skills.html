@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; worker-src 'self'; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
+<meta name="theme-color" content="#e8f5ff">
+<meta name="description" content="Original guided Grade 2 English listening, speaking, reading and writing activities. Supplementary, not ministry-approved.">
+<link rel="icon" type="image/svg+xml" href="./icon.svg">
+<title>Grade 2 Four English Skills | Little Learners Academy</title>
+<style>
+:root{font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif;color:#17395d;background:#e7f5ff}*{box-sizing:border-box}
+body{margin:0;background:linear-gradient(155deg,#d8efff,#fff2d4 60%,#f4e5ff);min-height:100vh}
+main{max-width:990px;margin:auto;padding:14px 14px 60px}
+a,button,input{font:inherit}button{cursor:pointer}a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{outline:4px solid #8a1538;outline-offset:3px}
+.back{display:inline-flex;align-items:center;text-decoration:none;font-weight:850;background:#fff;padding:12px 16px;border-radius:15px;color:#164d73;min-height:49px}
+.hero,.panel,.skill{border:3px solid #fff;background:#fffffff2;border-radius:24px;box-shadow:0 4px 0 #b2d4e6;padding:clamp(15px,3vw,24px);margin:15px 0}
+.hero{text-align:center;background:linear-gradient(115deg,#fff1af,#ffffff,#def5ff)}
+.hero h1{font-size:clamp(27px,6vw,42px);line-height:1.22;margin:8px 0}
+.hero h1 span{display:block;font-size:.67em}
+.eyebrow{font-weight:850;color:#8a1538;font-size:13px;letter-spacing:.02em}
+h2{font-size:clamp(22px,4vw,29px);margin:0 0 8px}
+h3{font-size:clamp(20px,3.5vw,26px);margin:0 0 5px}
+p{line-height:1.6;margin:9px 0}
+.ar{font-size:17px;direction:rtl;text-align:right}
+.note{font-size:14px;color:#375c78}
+.module-buttons{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:10px;margin-top:16px}
+.module-buttons button,.choice, .primary, .secondary{border:2px solid #aacfe3;border-radius:15px;background:#fff;color:#17395d;font-weight:800;padding:12px 14px;min-height:51px;overflow-wrap:anywhere}
+.module-buttons button[aria-pressed="true"]{background:#155d96;color:#fff;border-color:#155d96}
+.module-buttons button span{display:block;font-size:13px;margin-top:5px}
+.module-header{display:flex;gap:12px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap}
+.pill{background:#ffedb6;padding:8px 12px;border-radius:14px;font-weight:800}
+.skill-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.skill{margin:0;min-width:0;box-shadow:none;border-color:#cee7f4}
+.skill[data-skill="listening"]{background:#eef8ff}.skill[data-skill="speaking"]{background:#f8edff}
+.skill[data-skill="reading"]{background:#fff8e8}.skill[data-skill="writing"]{background:#f0fff3}
+.skill .objective{font-weight:650}.skill .status{font-weight:800;color:#136443}
+.q{font-weight:850;margin-top:13px}
+.choices{display:grid;gap:9px;margin-top:12px}
+.choice{text-align:left;background:#fff;min-height:48px}
+.choice:disabled{cursor:default}
+.choice.correct{border-color:#127e46;background:#d5f5df}
+.choice.incorrect{border-color:#b44431;background:#ffe8e2}
+.feedback{min-height:28px;font-weight:750;margin-top:13px}
+.feedback.good{color:#146a3b}.feedback.retry{color:#9c381a}
+.script{background:#fff;padding:13px;border-radius:13px;border:1px solid #a8d3e7;margin-top:12px}
+.script summary{font-weight:850;cursor:pointer}
+.primary{background:#176b9e;color:#fff;border-color:#176b9e;margin-top:12px}
+.secondary{background:#fff;border-color:#176b9e;color:#125b8d;margin-top:12px}
+.example{font-weight:800;background:#fff;padding:12px 14px;border-radius:12px}
+.passage{font-size:18px;line-height:1.65;background:#fff;border-radius:13px;padding:13px;border:1px solid #d1d4db}
+.word-clues{display:flex;flex-wrap:wrap;gap:7px;margin:12px 0}
+.word-clues span{background:#fff;padding:8px 13px;border:2px solid #b6d5de;border-radius:12px;font-weight:800}
+.write-input{width:100%;padding:12px;border:2px solid #7eafc8;border-radius:12px;min-height:50px;font-size:18px}
+.progress-wrap{max-width:440px;margin:14px auto 0}progress{width:100%;height:17px;accent-color:#227f58}
+[hidden]{display:none!important}
+@media(max-width:650px){.skill-grid{grid-template-columns:1fr}.module-buttons{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:350px){.module-buttons{grid-template-columns:1fr}}
+</style>
+</head>
+<body><main>
+<a class="back" href="./choose-grade.html">← Choose Grade • اختر الصف</a>
+<header class="hero">
+<div class="eyebrow">📘 GRADE 2 • GUIDED ENGLISH SKILLS PILOT • تجربة إرشادية للصف الثاني</div>
+<h1>🌈 My English Skills <span lang="ar" dir="rtl">مهاراتي في اللغة الإنجليزية</span></h1>
+<p>Listen • Speak • Read • Write — five original mini-units following the topics in the 2026–2027 Semester 1 overview.</p>
+<p class="ar" lang="ar" dir="rtl">استمع • تحدث • اقرأ • اكتب — أنشطة تدريبية قصيرة بإشراف أحد البالغين.</p>
+<div class="progress-wrap"><div id="progressText" role="status" aria-live="polite">0 / 20 activities practised</div><progress id="progressBar" max="20" value="0" aria-label="Practice activities recorded"></progress></div>
+</header>
+<section class="panel" aria-labelledby="moduleTitle">
+<h2 id="moduleTitle">Choose a module • اختر الوحدة</h2>
+<p class="note">Each module has one introductory activity per language skill. Select a module to see all four activities.</p>
+<div id="moduleButtons" class="module-buttons" role="group" aria-label="Five English learning modules"></div>
+</section>
+<section class="panel" aria-labelledby="selectedModuleTitle">
+<div class="module-header"><div><h2 id="selectedModuleTitle">Module 1</h2><p id="selectedModuleOutcome"></p></div><span id="moduleCount" class="pill">0 / 4</span></div>
+<div id="skillCards" class="skill-grid"></div>
+</section>
+<aside class="panel">
+<h2>For adults • إرشادات للأهل</h2>
+<p><strong>Listening:</strong> An adult reads the hidden script aloud. This is guided practice, not an independent listening test or verified audio.</p>
+<p><strong>Speaking:</strong> A child practises with an adult. The button records an attempt, not a judgment of fluency or pronunciation. The app does not record voices.</p>
+<p><strong>Reading and writing:</strong> Children receive feedback on one comprehension response and one guided sentence per module. Writing is not assessed as free composition.</p>
+<p class="note">Independent supplementary draft only. Based on themes and learning outcomes in the Department of Early Years Education Grade 2 Semester 1 overview (2026–2027). No claim of Ministry approval, full curriculum coverage, or teacher-certified Arabic. Explanatory Arabic text requires review. The supplied 2020–2021 Top Stars textbook informed topic comparison only; no proprietary illustrations, passages, or audio are reproduced. Only completion flags are stored on this device; no names, typed sentences, accounts, microphone, advertising or analytics are collected by this activity.</p>
+</aside>
+<script src="./grade2-four-skills-data.js"></script>
+<script src="./grade2-four-skills.js"></script>
+</main></body></html>
