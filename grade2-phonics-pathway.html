@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; worker-src 'self'; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
+<meta name="theme-color" content="#eaf7ff">
+<meta name="description" content="Original adult-guided word-family pathway for Grade 2 English: see, hear, blend, read, spell, apply and review. Draft supplementary activity.">
+<link rel="icon" type="image/svg+xml" href="./icon.svg">
+<title>Grade 2 Word Family Adventure | Little Learners Academy</title>
+<style>
+:root{font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif;color:#17395d;background:#edf7ff}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:linear-gradient(150deg,#dcefff,#fff4d4 60%,#ecedff)}
+main{max-width:900px;margin:0 auto;padding:15px 14px 60px}
+h1{font-size:clamp(27px,6vw,39px);line-height:1.25;margin:8px 0}
+h2{font-size:clamp(23px,5vw,29px)}
+a,button,input{font:inherit}
+a:focus-visible,button:focus-visible,input:focus-visible{outline:4px solid #8a1538;outline-offset:3px}
+.back{display:inline-flex;padding:13px 17px;min-height:48px;align-items:center;background:white;border-radius:16px;color:#134e78;font-weight:850;text-decoration:none}
+.hero,.panel{margin:16px 0;border:3px solid white;background:#ffffffee;border-radius:23px;padding:clamp(16px,3vw,25px);box-shadow:0 4px 0 #b9d6e7}
+.hero{text-align:center;background:linear-gradient(110deg,#fff0b5,#fff,#d9efff)}
+.hero p,.panel p{line-height:1.55}
+.eyebrow{font-weight:800;color:#8a1538;font-size:14px}
+.ar{direction:rtl;text-align:right;font-size:17px}
+.note{color:#3d5c75;font-size:14px}
+.family-buttons,.step-buttons{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(120px,1fr))}
+.step-buttons{grid-template-columns:repeat(auto-fit,minmax(115px,1fr))}
+.family-buttons button,.step-buttons button,.choice,.primary{min-height:50px;border:2px solid #a8cee0;border-radius:14px;padding:12px;background:white;color:#174b70;font-weight:800;cursor:pointer}
+.family-buttons button[aria-pressed=true],.step-buttons button[aria-pressed=true]{background:#155c90;border-color:#155c90;color:white}
+.step-buttons button.done:not([aria-pressed=true]){background:#e4f8ea;border-color:#8cca9d}
+.step-buttons button span{display:block;font-size:12px;margin-top:3px}
+.lesson{border:2px solid #b8dce8;border-radius:18px;background:#f5fbff;padding:clamp(13px,3vw,22px);margin-top:20px;min-height:240px}
+#stepHeading{margin:5px 0 15px}
+.visual{display:flex;align-items:center;justify-content:center;gap:15px;flex-wrap:wrap;background:white;border:2px solid #d4e7ed;border-radius:18px;padding:18px;margin:15px 0}
+.visual .picture{font-size:clamp(52px,9vw,76px);line-height:1.3}
+.visual .word{font-size:clamp(30px,7vw,45px);font-weight:900;letter-spacing:.04em}
+.chunks{display:flex;justify-content:center;gap:9px;align-items:center;flex-wrap:wrap;margin:18px auto}
+.chunk{padding:14px 19px;border:2px solid #8fbdd4;background:#fff;border-radius:16px;font-size:28px;font-weight:900}
+.result{background:#e1f5e7;border-color:#95caa3}
+.choice-list{display:grid;gap:10px;grid-template-columns:1fr;margin:12px 0}
+.choice{text-align:left}
+.choice.incorrect{background:#ffebe6;border-color:#b84a37}
+.choice.correct{background:#d9f6e2;border-color:#16804d}
+.choice:disabled{cursor:default}
+.primary{background:#176b9d;border-color:#176b9d;color:white;margin-top:12px}
+details{background:#fff;border:2px solid #b3d8df;border-radius:14px;margin:14px 0;padding:7px 12px}
+details summary{display:flex;align-items:center;min-height:48px;cursor:pointer;font-weight:850}
+fieldset{border:0;padding:0;margin:0}
+legend,label{font-weight:800}
+.spell-input{display:block;padding:14px;border:2px solid #78afc8;border-radius:12px;margin:14px 0;width:100%;max-width:430px;min-height:52px;font-size:22px}
+.feedback{font-weight:800;min-height:24px}
+.feedback.retry{color:#993a24}.feedback.good{color:#17683b}
+.status{font-size:16px;font-weight:850}
+progress{width:100%;max-width:420px;height:19px;accent-color:#1b814c}
+[hidden]{display:none!important}
+@media(max-width:390px){.step-buttons{grid-template-columns:repeat(2,minmax(0,1fr))}}
+</style>
+</head>
+<body><main>
+<a class="back" href="./grade2-four-skills.html">← Back to Grade 2 English</a>
+<header class="hero">
+<div class="eyebrow">🔤 GRADE 2 • MODULE 2 • OPTIONAL ADULT-GUIDED PHONICS</div>
+<h1>Word Family Adventure <span lang="ar" dir="rtl">مغامرة عائلات الكلمات</span></h1>
+<p>See → Hear → Blend → Read → Spell → Apply → Review</p>
+<p lang="ar" dir="rtl">أنشطة إضافية بإشراف ولي الأمر. لا تُعد اختبارًا للنطق أو إتقان القراءة.</p>
+<div id="progressText" role="status" aria-live="polite">0 / 14 practice steps completed in this visit</div>
+<progress id="progressBar" max="14" value="0" aria-label="Optional practice steps this visit"></progress>
+</header>
+<section class="panel" aria-labelledby="familyTitle">
+<h2 id="familyTitle">Choose a word family • اختر عائلة الكلمات</h2>
+<div id="familyButtons" class="family-buttons" role="group" aria-label="Word family selection"></div>
+<h2>Learning journey • رحلة التعلم</h2>
+<div id="stepButtons" class="step-buttons" role="group" aria-label="Seven practice stages"></div>
+<div class="lesson" aria-labelledby="stepHeading">
+<h2 id="stepHeading" tabindex="-1">See</h2>
+<div id="stepContent"></div>
+<p id="feedback" class="feedback" role="status" aria-live="polite"></p>
+</div>
+</section>
+<aside class="panel">
+<h2>For adults • إرشادات للأهل</h2>
+<p>This is an <strong>original supplementary draft</strong> referencing Module 2 letter families <strong>-ing</strong> and <strong>-and</strong> in the Qatar Grade 2 English Semester 1 2026–2027 overview (p.17).</p>
+<p>Read the adult script aloud at a comfortable pace and let the learner listen without seeing your words. In blending, guide the learner through the starting sound and shared ending. The on-screen response checks spelling or recognition only; it does <strong>not</strong> assess oral blending, pronunciation, comprehension mastery or fluency.</p>
+<p>Keep the child supported and do not rush. Some children will need easier examples or multisensory support; please flag unsuitable words for educator review. The Arabic heading and directions need native-language educator approval before wider release.</p>
+<p class="note"><strong>Privacy:</strong> No accounts, ads, microphone, child names, tracking, typed-answer storage, or paid audio/API services. The 14 step indicators exist only in this open page, are unscored, and reset after refresh; the Grade 2 app's existing 20 progress flags are untouched. Official school endorsement and teacher validation are not claimed.</p>
+</aside>
+<script src="./grade2-phonics-pathway.js"></script>
+</main></body></html>
