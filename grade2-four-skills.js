@@ -57,7 +57,7 @@ function updateProgress(){
 function feedback(node,text,kind){
  node.textContent=text;node.className="feedback"+(kind?" "+kind:"");
 }
-function answerPanel(card,module,skill,question,choices,right){
+function answerPanel(card,module,skill,question,choices,right,recordPractice=true){
  card.append(el("p","q",question));
  const group=el("div","choices");
  group.setAttribute("role","group");group.setAttribute("aria-label",skill+" practice choices");
@@ -74,8 +74,8 @@ function answerPanel(card,module,skill,question,choices,right){
    }
    [...group.children].forEach(c=>c.disabled=true);
    b.classList.add("correct");
-   mark(module,skill);
-   feedback(info,"✅ Correct! Excellent practice. • أحسنت!","good");
+   if(recordPractice)mark(module,skill);
+   feedback(info,recordPractice?"✅ Correct! Excellent practice. • أحسنت!":"✅ Well done! Find the sentence in the story that supports your answer. Bonus practice is not scored.","good");
   });
   group.append(b);
  });
@@ -114,6 +114,17 @@ function createSkill(module,skill){
   const passage=el("p","passage",module.read.passage);
   passage.lang="en";card.append(passage);
   answerPanel(card,module,"reading",module.read.question,module.read.choices,module.read.answer);
+  if(module.read.followUp){
+   const extra=el("details","extra-reading");
+   extra.append(el("summary",null,"🔎 Bonus reading challenge • سؤال إضافي"));
+   card.append(extra);
+   const follow=module.read.followUp;
+   answerPanel(extra,module,"reading",follow.question,follow.choices,follow.answer,false);
+   const evidence=el("details","reading-evidence");
+   evidence.append(el("summary",null,"👩‍🏫 Adult: reveal a supporting sentence"));
+   evidence.append(el("p","note",follow.evidence));
+   extra.append(evidence);
+  }
  }else if(skill.id==="writing"){
   card.append(el("p","objective",module.write.prompt));
   const clues=el("div","word-clues");
@@ -144,25 +155,57 @@ function createSkill(module,skill){
   b.addEventListener("click",check);
   input.addEventListener("keydown",event=>{if(event.key==="Enter")check()});
   card.append(b,info);
+  if(module.write.independent){
+   const task=module.write.independent;
+   const area=el("section","independent-writing");
+   area.append(el("h4",null,"🌱 Write your own sentence • اكتب جملة من تأليفك"));
+   area.append(el("p","note",task.prompt));
+   area.append(el("p","starter","Try this starter: "+task.starter));
+   const ownLabel=el("label","q","My own sentence (not saved)");
+   ownLabel.htmlFor="freewriting-"+module.id;
+   const ownInput=el("textarea","freewrite");
+   ownInput.id=ownLabel.htmlFor;
+   ownInput.maxLength=180;
+   ownInput.autocomplete="off";
+   ownInput.spellcheck=false;
+   ownInput.placeholder="Write a new sentence about a pretend person or object";
+   const review=el("button","secondary","💬 Review with an adult");
+   review.type="button";
+   const ownInfo=el("p","feedback","This creative sentence is not graded or saved. Avoid personal details.");
+   ownInfo.setAttribute("role","status");ownInfo.setAttribute("aria-live","polite");
+   review.addEventListener("click",()=>{
+    if(!ownInput.value.trim())feedback(ownInfo,"🌱 Write a sentence first, then ask an adult to review it.","retry");
+    else feedback(ownInfo,"👩‍🏫 Read your sentence to an adult. Check together: "+task.adultCheck+" No score or text was saved.","good");
+   });
+   area.append(ownLabel,ownInput,review,ownInfo);
+   card.append(area);
+  }
  }
  return card;
 }
 function renderPhonics(module){
  const host=$("phonicsPractice");
- const questions=Array.isArray(module.phonics)?module.phonics:[];
+ const families=Array.isArray(module.phonics)?module.phonics:[];
+ const patterns=Array.isArray(module.patterns)?module.patterns:[];
+ const questions=[
+  ...families.map(q=>({...q,kind:"family"})),
+  ...patterns.map(q=>({...q,kind:"pattern"}))
+ ];
  host.replaceChildren();
  if(!questions.length){host.hidden=true;return}
  const panel=el("section","phonics-panel");
- panel.append(el("h3",null,"🔤 Word-family practice • تدريب على أنماط الكلمات"));
- panel.append(el("p","note","Extra sound-pattern recognition practice. Say the words with an adult. These questions do not record a score or prove pronunciation."));
+ panel.append(el("h3",null,"🔤 Word families, digraphs & silent e • أنماط الكلمات"));
+ panel.append(el("p","note","Extra written-letter practice: read words aloud with an adult. These checks are not pronunciation tests, mastery scores, or saved progress."));
  const area=el("div","phonics-questions");
  for(const item of questions){
+  const isFamily=item.kind==="family";
+  const label=isFamily?item.family:item.pattern;
   const question=el("div","phonics-question");
-  question.dataset.family=item.family;
-  question.append(el("h4",null,item.family+" • "+item.prompt));
+  if(isFamily)question.dataset.family=label;else question.dataset.pattern=label;
+  question.append(el("h4",null,label+" • "+item.prompt));
   const choices=el("div","phonics-choices");
   choices.setAttribute("role","group");
-  choices.setAttribute("aria-label","Word family "+item.family+" answer choices");
+  choices.setAttribute("aria-label",(isFamily?"Word family ":"Letter pattern ")+label+" answer choices");
   const status=el("p","feedback","Choose one word • اختر كلمة");
   status.setAttribute("role","status");status.setAttribute("aria-live","polite");
   item.choices.forEach((word,i)=>{
@@ -172,11 +215,12 @@ function renderPhonics(module){
     if(b.disabled)return;
     if(i!==item.answer){
      b.disabled=true;b.classList.add("incorrect");
-     feedback(status,"🌱 Try another word in the same family.","retry");return;
+     feedback(status,isFamily?"🌱 Try another word in the same family.":"🌱 Look for the target letters and try again.","retry");return;
     }
     for(const child of choices.children)child.disabled=true;
     b.classList.add("correct");
-    feedback(status,"✅ Yes! "+word+" ends with "+item.family.slice(1)+". No pronunciation was assessed.","good");
+    const explanation=isFamily?word+" ends with "+item.family.slice(1)+".":item.explanation;
+    feedback(status,"✅ Yes! "+explanation+" No pronunciation was assessed.","good");
    });
    choices.append(b);
   });
