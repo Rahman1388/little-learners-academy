@@ -1,0 +1,59 @@
+name: Grade 2 four-skills pilot
+
+on:
+  pull_request:
+    paths:
+      - "grade2-four-skills.html"
+      - "grade2-four-skills.js"
+      - "grade2-four-skills-data.js"
+      - "grade2-phonics-pathway.html"
+      - "grade2-phonics-pathway.js"
+      - "scripts/test-grade2-four-skills.cjs"
+      - "scripts/check-grade2-four-skills.cjs"
+      - "scripts/test-grade2-phonics-pathway.cjs"
+      - ".github/workflows/grade2-four-skills.yml"
+  push:
+    branches: [main]
+    paths:
+      - "grade2-four-skills.html"
+      - "grade2-four-skills.js"
+      - "grade2-four-skills-data.js"
+      - "grade2-phonics-pathway.html"
+      - "grade2-phonics-pathway.js"
+      - "scripts/test-grade2-four-skills.cjs"
+      - "scripts/check-grade2-four-skills.cjs"
+      - "scripts/test-grade2-phonics-pathway.cjs"
+      - ".github/workflows/grade2-four-skills.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  grade2-four-skills:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Check source syntax and original activity data
+        run: |
+          node --check grade2-four-skills.js
+          node --check grade2-four-skills-data.js
+          node --check grade2-phonics-pathway.js
+          node scripts/check-grade2-four-skills.cjs
+      - name: Install Chromium for mobile and tablet test
+        run: |
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Run local test site and interactive browser regression
+        run: |
+          python3 -m http.server 8765 --bind 127.0.0.1 >/tmp/g2-four-skills-test.log 2>&1 &
+          for i in $(seq 1 20); do
+            if curl -fsS http://127.0.0.1:8765/grade2-four-skills.html >/dev/null; then break; fi
+            sleep 1
+          done
+          node scripts/test-grade2-four-skills.cjs
+          node scripts/test-grade2-phonics-pathway.cjs
