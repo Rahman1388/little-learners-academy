@@ -228,12 +228,13 @@ function renderPhonics(module){
  }
  panel.append(area);host.append(panel);host.hidden=false;
 }
-function renderModule(module){
+function renderModule(module,focusHeading=false){
  current=module;
  $("selectedModuleTitle").textContent="Module "+(MODULES.indexOf(module)+1)+": "+module.title+" • "+module.ar;
  $("selectedModuleOutcome").textContent=module.outcome+" • "+module.week;
  $("skillCards").replaceChildren(...SKILLS.map(skill=>createSkill(module,skill)));
  renderPhonics(module);
+ if(focusHeading)$("selectedModuleTitle").focus();
  for(const b of $("moduleButtons").querySelectorAll("button"))
   b.setAttribute("aria-pressed",String(b.dataset.module===module.id));
  updateProgress();
@@ -243,7 +244,7 @@ for(const [i,module] of MODULES.entries()){
  b.type="button";b.dataset.module=module.id;b.setAttribute("aria-pressed","false");
  const small=el("span",null,"0 / 4 practised");
  b.append(small);
- b.addEventListener("click",()=>renderModule(module));
+ b.addEventListener("click",()=>renderModule(module,true));
  $("moduleButtons").append(b);
 }
 renderModule(MODULES[0]);
