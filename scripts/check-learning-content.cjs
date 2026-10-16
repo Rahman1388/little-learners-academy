@@ -58,7 +58,7 @@ for(const task of grade1.filter(x=>x.area==="math")){
   equations++;
  }
  if(task.skill==="Counting"){
-  const count=Number(task.title.match(/^Count (\d+) objects$/)?.[1]);
+  const count=Number(task.title.match(/^Count (\d+) objects?$/)?.[1]);
   assert(count>=1&&count<=20,"Counting range "+task.id);
   assert.equal(task.display.split(" ").length,count,"Object count mismatch "+task.id);
   assert.equal(Number(task.choices[task.answer]),count,"Counting answer mismatch "+task.id);
