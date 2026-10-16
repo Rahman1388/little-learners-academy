@@ -19,6 +19,7 @@ const modules=box.window.LLA_G2_FOUR_SKILLS;
  await overflow();
  for(const [j,m] of modules.entries()){
   await page.locator("#moduleButtons button").nth(j).click();
+  assert(await page.locator("#selectedModuleTitle").evaluate(x=>document.activeElement===x),"The selected module heading must receive focus on change");
   assert.equal(await page.locator("#skillCards .skill").count(),4);
   const phonics=page.locator("#phonicsPractice .phonics-question");
   assert.equal(await phonics.count(),(m.phonics||[]).length+(m.patterns||[]).length);
@@ -45,6 +46,7 @@ const modules=box.window.LLA_G2_FOUR_SKILLS;
   const listen=page.locator('.skill[data-skill="listening"]');
   await listen.locator("details summary").click();
   assert(await listen.locator("details").evaluate(x=>x.open));
+  assert(await listen.locator("details summary").evaluate(x=>x.getBoundingClientRect().height>=44),"Listening reveal target must be at least 44px high");
   if(j===0){
    const wrong=(m.listen.answer+1)%3;
    await listen.locator(".choice").nth(wrong).click();
@@ -59,6 +61,7 @@ const modules=box.window.LLA_G2_FOUR_SKILLS;
   const progressBeforeBonus=await page.locator("#progressText").innerText();
   const extraReading=reading.locator("details.extra-reading");
   await extraReading.locator("summary").first().click();
+  assert(await extraReading.locator("summary").first().evaluate(x=>x.getBoundingClientRect().height>=44),"Reading challenge target must be at least 44px high");
   await extraReading.locator(".choice").nth(m.read.followUp.answer).click();
   assert.match(await extraReading.locator(".feedback").innerText(),/not scored/);
   assert.equal(await page.locator("#progressText").innerText(),progressBeforeBonus);
