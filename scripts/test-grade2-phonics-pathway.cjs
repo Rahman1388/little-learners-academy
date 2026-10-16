@@ -16,6 +16,8 @@ for(const unsafe of [/\bfetch\s*\(/, /sendBeacon/, /getUserMedia/, /SpeechRecogn
 }
 assert(html.includes('id="stepHeading" tabindex="-1"'),"Focusable lesson heading missing");
 assert(html.includes("min-height:48px"),"Touchable adult-script summary missing");
+assert(html.includes('id="continueStep"'),"Accessible next-step button missing");
+assert(html.includes('id="stageCounter"'),"Stage progress label missing");
 (async()=>{
  const browser=await chromium.launch({headless:true,args:["--no-sandbox"]});
  const page=await browser.newPage({viewport:{width:320,height:720},isMobile:true,hasTouch:true,serviceWorkers:"block"});
@@ -35,9 +37,12 @@ assert(html.includes("min-height:48px"),"Touchable adult-script summary missing"
  for(let family=0;family<2;family++){
   await page.locator("#familyButtons button").nth(family).click();
   assert(await page.locator("#stepHeading").evaluate(x=>document.activeElement===x),"Family selection must focus heading");
+  assert(await page.locator("#continueStep").isHidden(),"Cannot continue before finishing a step");
   for(let step=0;step<7;step++){
    await page.locator("#stepButtons button").nth(step).click();
    assert(await page.locator("#stepHeading").evaluate(x=>document.activeElement===x),"Stage selection must focus heading");
+   assert.match(await page.locator("#stageCounter").innerText(),new RegExp("Stage "+(step+1)+" of 7"));
+   assert(await page.locator("#continueStep").isHidden(),"New stage must not permit premature continue");
    switch(step){
     case 0:case 2:case 6:
      await page.locator('[data-action="complete"]').click();break;
@@ -52,6 +57,7 @@ assert(html.includes("min-height:48px"),"Touchable adult-script summary missing"
      const wrong=(answer+1)%3;
      await page.locator('[data-answer="'+wrong+'"]').click();
      assert.match(await page.locator("#feedback").innerText(),/Not quite/);
+     assert(await page.locator("#continueStep").isHidden(),"Wrong answer must not unlock continue");
      await page.locator('[data-answer="'+answer+'"]').click();
      break;
     }
@@ -66,6 +72,20 @@ assert(html.includes("min-height:48px"),"Touchable adult-script summary missing"
     }
    }
    assert.match(await page.locator("#feedback").innerText(),/Practice noted/);
+   if(family===1&&step===6){
+    assert(await page.locator("#continueStep").isHidden(),"All 14 steps are complete; no further stage");
+    assert.match(await page.locator("#journeySummary").innerText(),/All 14 guided steps practised/);
+   }else{
+    assert(await page.locator("#continueStep").isVisible(),"Completing a stage must unlock Continue");
+    await page.locator("#continueStep").click();
+    assert(await page.locator("#stepHeading").evaluate(x=>document.activeElement===x),"Continue must focus new heading");
+    if(step<6){
+     assert.match(await page.locator("#stageCounter").innerText(),new RegExp("Stage "+(step+2)+" of 7"));
+    }else{
+     assert.equal(await page.locator('#familyButtons button[aria-pressed="true"]').count(),1);
+     assert.match(await page.locator("#stageCounter").innerText(),/Stage 1 of 7 • -and/);
+    }
+   }
    await noOverflow();
   }
  }
