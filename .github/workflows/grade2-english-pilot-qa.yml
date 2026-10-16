@@ -1,0 +1,51 @@
+name: Grade 2 English pilot QA
+
+on:
+  push:
+    branches:
+      - feature/grade2-four-skills-pilot-20261016
+    paths:
+      - 'grade2-four-skills.html'
+      - 'grade2-four-skills-data.js'
+      - 'grade2-four-skills.js'
+      - 'scripts/check-grade2-four-skills.cjs'
+      - 'scripts/test-grade2-four-skills.cjs'
+      - '.github/workflows/grade2-english-pilot-qa.yml'
+  pull_request:
+    paths:
+      - 'grade2-four-skills.html'
+      - 'grade2-four-skills-data.js'
+      - 'grade2-four-skills.js'
+      - 'scripts/check-grade2-four-skills.cjs'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  static-curriculum-and-safety-check:
+    name: Validate Grade 2 prototype without paid services
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Check JavaScript syntax
+        run: |
+          node --check grade2-four-skills-data.js
+          node --check grade2-four-skills.js
+          node --check scripts/check-grade2-four-skills.cjs
+          node --check scripts/test-grade2-four-skills.cjs
+      - name: Verify module sequence, answers, spelling patterns and privacy
+        run: node scripts/check-grade2-four-skills.cjs
+      - name: Check required Grade 2 assets
+        run: |
+          test -f grade2-four-skills.html
+          test -f grade2-four-skills-data.js
+          test -f grade2-four-skills.js
+          test -f GRADE2-SEM1-CURRICULUM-CROSSWALK.md
+          test -f GRADE2-TEACHER-FEEDBACK-TRACKER.md

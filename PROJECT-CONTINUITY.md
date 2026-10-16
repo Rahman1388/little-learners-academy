@@ -233,3 +233,13 @@ Ask the assistant to inspect this file and live repository before making changes
 - Grade 2–3 describes the **supplementary learning bridge**, not a verified Qatar/UK/US grade equivalence or full curricular coverage. This approach corresponds broadly to England Year 2 multiplication arrays and US Grade 2 equal-groups foundations. Draft Arabic support still needs qualified educator review.
 - Browser-local `lla-array-garden-v1` records completion of the 12 models and gives a **single non-repeatable shared star** after all twelve; no new personal information, accounts, voices, third-party analytics, ads or microphones.
 - Links appear on home, Grade 2 and Grade 3 chooser, and Grades 1–6 roadmap. PWA shell cache incremented, and separate Playwright checks cover all twelve arrays, wrong answers, hints, reload persistence, star cap and phone/tablet layout. **Do not add these guided models to the audited 451 short multiple-choice-question inventory.** Confirm CI and deployment status before marking release verified.
+
+## 16 October 2026 — Grade 2 word family pathway
+
+- Continuing from draft PR #8, branch `feature/grade2-four-skills-pilot-20261016` (public GitHub review branch, **not yet merged to main**).
+- Built `grade2-phonics-pathway.html` + `.js` and linked them from the Grade 2 four-skills draft. Module 2 `-ing/-and` original examples follow See → Hear (adult voice only) → Blend → Read → Spell → Apply → Review.
+- Two families × seven steps = **14 optional guided practice stages**, not additional scored activities. They reset on reload and do not alter previously stored Grade 2 progress. No child identity, microphone or paid API.
+- Added `scripts/test-grade2-phonics-pathway.cjs` to `.github/workflows/grade2-four-skills.yml`. Verify the newest GitHub check before claiming a pass.
+- Still **on hold for educator and Arabic review, iPhone Safari/VoiceOver testing and child/adult usability review**. Never market as Ministry-approved or teacher-certified.
+- When resuming, inspect this PR and the Grade 2 curriculum crosswalk and feedback tracker rather than restarting the project.
+
