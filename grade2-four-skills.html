@@ -45,6 +45,7 @@ p{line-height:1.6;margin:9px 0}
 .feedback.good{color:#146a3b}.feedback.retry{color:#9c381a}
 .script{background:#fff;padding:13px;border-radius:13px;border:1px solid #a8d3e7;margin-top:12px}
 .script summary{font-weight:850;cursor:pointer}
+.script summary,.extra-reading>summary,.reading-evidence>summary{display:flex;align-items:center;min-height:48px}
 .primary{background:#176b9e;color:#fff;border-color:#176b9e;margin-top:12px}
 .secondary{background:#fff;border-color:#176b9e;color:#125b8d;margin-top:12px}
 .example{font-weight:800;background:#fff;padding:12px 14px;border-radius:12px}
@@ -88,7 +89,7 @@ p{line-height:1.6;margin:9px 0}
 <div id="moduleButtons" class="module-buttons" role="group" aria-label="Five English learning modules"></div>
 </section>
 <section class="panel" aria-labelledby="selectedModuleTitle">
-<div class="module-header"><div><h2 id="selectedModuleTitle">Module 1</h2><p id="selectedModuleOutcome"></p></div><span id="moduleCount" class="pill">0 / 4</span></div>
+<div class="module-header"><div><h2 id="selectedModuleTitle" tabindex="-1">Module 1</h2><p id="selectedModuleOutcome"></p></div><span id="moduleCount" class="pill">0 / 4</span></div>
 <div id="skillCards" class="skill-grid"></div>
 <div id="phonicsPractice" hidden aria-label="Optional phonics and letter-pattern practice"></div>
 </section>
