@@ -10,7 +10,7 @@
 
 ## Semester modules and app mapping
 
-All app items listed below belong to the **separate review branch**, not the approved public curriculum. Each module uses one adult-guided Listening, one observed Speaking, one short Reading and one model-based Writing exercise. Its activity completion is *practice*, not demonstrated mastery.
+All app items listed below belong to the **separate review branch**, not the approved public curriculum. Each module uses one adult-guided Listening, one observed Speaking, one short Reading and one model-based Writing exercise. In addition, every module contains an optional evidence-based reading challenge and one adult-reviewed original-writing prompt; optional letter-pattern activities supplement the word-family questions. Activity completion is *practice*, not demonstrated mastery.
 
 | Module (app ID) | Weeks in 2026–2027 overview | First-semester outcomes and content drawn from overview | Prototype activities | Gaps and reviewer questions |
 |---|---|---|---|---|
@@ -22,15 +22,15 @@ All app items listed below belong to the **separate review branch**, not the app
 
 **Module 4 name verified:** The 2026–27 overview uses “Food & drink” in the p.3 schedule and “Food and drink” on pp.11–12, matching the textbook's “Food and drink.” Previous tracker language implying its title remained unverified was outdated.
 
-**Phonics reference:** Overview PDF p.17 lists Module 2 (-ing/-and), 3 (-all/-ack), 4 (-ain/-ink), 5 (-ay/-ick). Eight **new original word-family recognition questions** are implemented as optional checks, two per module; they are *not recorded as mastery scores*. Phonics comprehension, blending and pronunciation still require teacher/adult review.
+**Phonics reference:** Overview PDF p.17 lists Module 2 (-ing/-and), 3 (-all/-ack), 4 (-ain/-ink), 5 (-ay/-ick). Eight **original word-family recognition questions** are included as optional checks, two per Modules 2–5. The overview p.2 also recommends attention to **ch, sh, th, wh, ph** digraphs and **silent e**; seven additional optional written-letter recognition questions cover those spelling features. These are **15 optional recognition questions**, not a phonemic decoding course or spoken-pronunciation assessment. Phonics blending, sound production and grade suitability still require teacher/adult review.
 
 ## Limits of current implementation
 
-- Core guided practice: **5 modules × 4 skills = 20**. Optional phonics: **8**. The progress counter remains 20 and still uses `lla-g2-four-skills-v1`. No existing IDs or Grade 2 English progress records changed.
+- Core guided practice: **5 modules × 4 skills = 20**. Extras: **15** optional phonics/letter-pattern selections, **5** optional second reading questions with evidence notes for adults, and **5** independent-writing prompts for adult discussion. Extras are **not additional saved progress scores**. The progress counter remains 20, stored only under `lla-g2-four-skills-v1`. No existing IDs or Grade 2 English progress records changed.
 - **Listening:** Adult reads an onscreen script; there is no recorded/verified audio and no formal listening test.
 - **Speaking:** Adult observes; a button only records practice attempted, never fluency/pronunciation certification.
-- **Reading:** Short original passages have one comprehension choice each; no oral fluency scoring, no full curriculum reading progression.
-- **Writing:** Only one guided sentence per module is checked for an approximate text match. Capitalization, punctuation and free writing are **not** assessed by the checker.
+- **Reading:** Each short original passage has one primary comprehension choice and a second optional comprehension choice; the adult can reveal a supporting sentence. These are not oral fluency tests, nor a full reading progression.
+- **Writing:** One guided sentence per module is checked for an approximate text match. Every module also has an optional **independent-writing** prompt and an on-screen input that disappears upon navigation/reload. The sentence is never saved, transmitted or automatically graded. An adult may discuss capitals, punctuation and meaning using a checklist, but the software does **not** assess them.
 - **Arabic:** UI explanatory labels and module-title translations still require native-language educator checking. Do not claim that Arabic reading/voice quality is certified.
 - **Copyright:** Do not reproduce Top Stars passages, graphics or workbook materials. Avoid uploading source textbooks into the public repository.
 - **Curriculum:** Themes and schedule have been cross-checked to source pages; lesson-level accuracy, grade appropriateness and completeness are **not independently verified**.
@@ -38,8 +38,8 @@ All app items listed below belong to the **separate review branch**, not the app
 ## Quality-gate follow-up
 
 1. Ask the Grade 2 English teacher to check one complete module at a time against the overview pp.4–14 (Accept, Revise, Hold, with exact question IDs).
-2. Check phonics distractors and developmental suitability of the eight optional items; include silent-e and digraph progression from overview p.2 in a future enhancement.
-3. Get an Arabic teacher's review of instructions and module labels; no teacher approval recorded yet.
+2. Check developmental suitability of **all 15** optional letter-pattern items. The new digraph and silent-e choices supplement, rather than replace, explicit blending/decoding lessons, which still require design and review.
+3. Ask the teacher to review the **five new reading follow-ups** and **five original-writing prompts**, including whether parent-read instructions support or overly scaffold pupils. Ask an Arabic teacher to review instructions and module labels; no teacher approval recorded yet.
 4. Run static and mobile layout regression scripts, then test with Safari VoiceOver and a real phone.
 5. Only merge or promote the pilot after corrective action and appropriate review; otherwise label clearly as an unverified supplementary pilot.
 
