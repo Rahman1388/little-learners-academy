@@ -35,6 +35,12 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:4px solid #8a15
 .visual{display:flex;align-items:center;justify-content:center;gap:15px;flex-wrap:wrap;background:white;border:2px solid #d4e7ed;border-radius:18px;padding:18px;margin:15px 0}
 .visual .picture{font-size:clamp(52px,9vw,76px);line-height:1.3}
 .visual .word{font-size:clamp(30px,7vw,45px);font-weight:900;letter-spacing:.04em}
+.visual{flex-direction:column}
+.word-visual{display:flex;align-items:center;justify-content:center;gap:15px;flex-wrap:wrap}
+.audio-actions{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:10px;width:100%}
+.audio-actions button{min-height:50px;border:2px solid #a8cee0;border-radius:14px;background:#176b9d;color:white;padding:11px 16px;font-weight:850;cursor:pointer}
+.audio-actions button.slow-word{background:white;color:#174b70}
+.audio-actions button:focus-visible{outline:4px solid #8a1538;outline-offset:3px}
 .chunks{display:flex;justify-content:center;gap:9px;align-items:center;flex-wrap:wrap;margin:18px auto}
 .chunk{padding:14px 19px;border:2px solid #8fbdd4;background:#fff;border-radius:16px;font-size:28px;font-weight:900}
 .result{background:#e1f5e7;border-color:#95caa3}
@@ -67,6 +73,7 @@ progress{width:100%;max-width:420px;height:19px;accent-color:#1b814c}
 <h1>Word Family Adventure <span lang="ar" dir="rtl">مغامرة عائلات الكلمات</span></h1>
 <p>See → Hear → Blend → Read → Spell → Apply → Review</p>
 <p>Complete one guided activity, then tap <strong>Continue</strong> to move to the next step.</p>
+<p class="note">🔊 Word pronunciation is an optional device-voice preview. Tap Hear or Slow next to a word; the exact voice may vary on different phones and must be reviewed by an English educator.</p>
 <p lang="ar" dir="rtl">أنشطة إضافية بإشراف ولي الأمر. لا تُعد اختبارًا للنطق أو إتقان القراءة.</p>
 <div id="progressText" role="status" aria-live="polite">0 / 14 practice steps completed in this visit</div>
 <progress id="progressBar" max="14" value="0" aria-label="Optional practice steps this visit"></progress>
@@ -80,6 +87,7 @@ progress{width:100%;max-width:420px;height:19px;accent-color:#1b814c}
 <div class="lesson" aria-labelledby="stepHeading">
 <h2 id="stepHeading" tabindex="-1">See</h2>
 <div id="stepContent"></div>
+<p id="audioStatus" class="note" role="status" aria-live="polite">🔊 Tap a word's speaker button to hear a device-generated voice preview. For listening practice, an adult should still read aloud.</p>
 <p id="feedback" class="feedback" role="status" aria-live="polite"></p>
 <div class="journey-actions"><button id="continueStep" class="primary" type="button" hidden>Continue →</button><p id="journeySummary" class="note" role="status" aria-live="polite">Complete this activity with an adult to continue, or select a stage above.</p></div>
 </div>
@@ -87,9 +95,9 @@ progress{width:100%;max-width:420px;height:19px;accent-color:#1b814c}
 <aside class="panel">
 <h2>For adults • إرشادات للأهل</h2>
 <p>This is an <strong>original supplementary draft</strong> referencing Module 2 letter families <strong>-ing</strong> and <strong>-and</strong> in the Qatar Grade 2 English Semester 1 2026–2027 overview (p.17).</p>
-<p>Read the adult script aloud at a comfortable pace and let the learner listen without seeing your words. In blending, guide the learner through the starting sound and shared ending. The on-screen response checks spelling or recognition only; it does <strong>not</strong> assess oral blending, pronunciation, comprehension mastery or fluency.</p>
+<p>Read the adult script aloud at a comfortable pace and let the learner listen without seeing your words. Word cards include an optional device-generated voice demonstration (normal and slow speed), but its correctness must be checked on each device; no remote audio or paid API is used. In blending, guide the learner through the starting sound and shared ending. The on-screen response checks spelling or recognition only; it does <strong>not</strong> assess oral blending, pronunciation, comprehension mastery or fluency.</p>
 <p>Keep the child supported and do not rush. Some children will need easier examples or multisensory support; please flag unsuitable words for educator review. The Arabic heading and directions need native-language educator approval before wider release.</p>
-<p class="note"><strong>Privacy:</strong> No accounts, ads, microphone, child names, tracking, typed-answer storage, or paid audio/API services. The 14 step indicators exist only in this open page, are unscored, and reset after refresh; the Grade 2 app's existing 20 progress flags are untouched. Official school endorsement and teacher validation are not claimed.</p>
+<p class="note"><strong>Privacy:</strong> No accounts, ads, microphone, child names, tracking, typed-answer storage, voice uploads or paid audio/API services. Speaker buttons use the device's built-in voice, which may be unavailable or vary in accuracy. The 14 step indicators exist only in this open page, are unscored, and reset after refresh; the Grade 2 app's existing 20 progress flags are untouched. Official school endorsement and teacher validation are not claimed.</p>
 </aside>
 <script src="./grade2-phonics-pathway.js"></script>
 </main></body></html>
