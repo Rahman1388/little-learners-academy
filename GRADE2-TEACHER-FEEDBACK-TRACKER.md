@@ -54,3 +54,10 @@ On the isolated review branch, module changes now focus the newly selected lesso
 - Which items should be marked Revise or Hold before wider pilot testing?
 
 Record feedback with page/question ID, evidence, correction owner and date. After implementing verified corrections, request targeted recheck. This tracker is not proof of Ministry approval or curriculum certification.
+
+## Module 2 optional word-family pathway — 16 October 2026
+
+**Review branch only (draft PR #8):** Added linked `grade2-phonics-pathway.html` and `grade2-phonics-pathway.js` with **-ing/-and** practice in 7 adult-guided stages per family: See, Hear, Blend, Read, Spell, Apply, Review. Examples are original and refer to the 2026–27 Grade 2 Semester 1 overview p.17. No synthetic or recorded audio is available; adults read and model the words. Practice is unscored, resets on page refresh, saves no typed text, and leaves the existing app progress unchanged.
+
+**Teacher questions before release:** Are `ring/sing` and `hand/sand` developmentally suitable? Does the onset-rime demonstration reflect sound blending adequately? Are the reading and spelling prompts fair? Can a child use the lesson with adult support on a phone? Are all Arabic instructions appropriate? Do not claim mastery from correct written selections. The branch workflow includes a new browser regression, but a passing test is not an educator approval.
+
