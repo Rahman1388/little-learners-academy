@@ -16,12 +16,31 @@ for(const unsafe of [/\bfetch\s*\(/, /sendBeacon/, /getUserMedia/, /SpeechRecogn
 }
 assert(html.includes('id="stepHeading" tabindex="-1"'),"Focusable lesson heading missing");
 assert(html.includes("min-height:48px"),"Touchable adult-script summary missing");
+assert(html.includes('id="audioStatus"'),"Audio playback accessibility feedback missing");
+assert(js.includes("SpeechSynthesisUtterance")&&js.includes("speakWord"),"Device speech preview missing");
+assert(!/getUserMedia|MediaRecorder|speechSynthesis\\s*\\.\\s*pause/.test(js),"Do not capture child voice");
 assert(html.includes('id="continueStep"'),"Accessible next-step button missing");
 assert(html.includes('id="stageCounter"'),"Stage progress label missing");
 (async()=>{
  const browser=await chromium.launch({headless:true,args:["--no-sandbox"]});
  const page=await browser.newPage({viewport:{width:320,height:720},isMobile:true,hasTouch:true,serviceWorkers:"block"});
  const errors=[];page.on("pageerror",e=>errors.push(e.message));
+ // Stub iPhone-like English speech locally. This tests taps, not real human audio quality.
+ await page.addInitScript(()=>{
+  window.__spokenWords=[];
+  window.SpeechSynthesisUtterance=class {constructor(text){this.text=text;}};
+  Object.defineProperty(window,"speechSynthesis",{
+   configurable:true,
+   value:{
+    cancel(){},
+    getVoices(){return [{lang:"en-GB",default:true,name:"Test English Voice"}];},
+    speak(utterance){
+     window.__spokenWords.push({word:utterance.text,lang:utterance.lang,rate:utterance.rate});
+     if(utterance.onstart)utterance.onstart();
+    }
+   }
+  });
+ });
  const base=process.env.TEST_URL||"http://127.0.0.1:8765";
  await page.goto(base+"/grade2-four-skills.html",{waitUntil:"domcontentloaded"});
  assert.equal(await page.locator('a[href="./grade2-phonics-pathway.html"]').count(),1,"Pilot must link phonics practice");
@@ -43,6 +62,18 @@ assert(html.includes('id="stageCounter"'),"Stage progress label missing");
    assert(await page.locator("#stepHeading").evaluate(x=>document.activeElement===x),"Stage selection must focus heading");
    assert.match(await page.locator("#stageCounter").innerText(),new RegExp("Stage "+(step+1)+" of 7"));
    assert(await page.locator("#continueStep").isHidden(),"New stage must not permit premature continue");
+   if([0,2,6].includes(step)){
+    assert.equal(await page.locator('[data-action="speak-word"]').count(),2,"Each word has a normal-speed speaker");
+    assert.equal(await page.locator('[data-action="speak-slow"]').count(),2,"Each word has a slow-speed speaker");
+    await page.locator('[data-action="speak-word"]').first().click();
+    await page.locator('[data-action="speak-slow"]').first().click();
+    const speech=await page.evaluate(()=>window.__spokenWords.slice(-2));
+    assert.equal(speech[0].word,family===0?"ring":"hand");
+    assert.equal(speech[1].word,speech[0].word);
+    assert.equal(speech[0].lang,"en-GB");
+    assert(speech[1].rate<speech[0].rate,"Slow playback must use a lower rate");
+    assert.match(await page.locator("#audioStatus").innerText(),/Trying/);
+   }
    switch(step){
     case 0:case 2:case 6:
      await page.locator('[data-action="complete"]').click();break;
