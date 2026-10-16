@@ -147,11 +147,49 @@ function createSkill(module,skill){
  }
  return card;
 }
+function renderPhonics(module){
+ const host=$("phonicsPractice");
+ const questions=Array.isArray(module.phonics)?module.phonics:[];
+ host.replaceChildren();
+ if(!questions.length){host.hidden=true;return}
+ const panel=el("section","phonics-panel");
+ panel.append(el("h3",null,"🔤 Word-family practice • تدريب على أنماط الكلمات"));
+ panel.append(el("p","note","Extra sound-pattern recognition practice. Say the words with an adult. These questions do not record a score or prove pronunciation."));
+ const area=el("div","phonics-questions");
+ for(const item of questions){
+  const question=el("div","phonics-question");
+  question.dataset.family=item.family;
+  question.append(el("h4",null,item.family+" • "+item.prompt));
+  const choices=el("div","phonics-choices");
+  choices.setAttribute("role","group");
+  choices.setAttribute("aria-label","Word family "+item.family+" answer choices");
+  const status=el("p","feedback","Choose one word • اختر كلمة");
+  status.setAttribute("role","status");status.setAttribute("aria-live","polite");
+  item.choices.forEach((word,i)=>{
+   const b=el("button","phonics-choice",word);
+   b.type="button";
+   b.addEventListener("click",()=>{
+    if(b.disabled)return;
+    if(i!==item.answer){
+     b.disabled=true;b.classList.add("incorrect");
+     feedback(status,"🌱 Try another word in the same family.","retry");return;
+    }
+    for(const child of choices.children)child.disabled=true;
+    b.classList.add("correct");
+    feedback(status,"✅ Yes! "+word+" ends with "+item.family.slice(1)+". No pronunciation was assessed.","good");
+   });
+   choices.append(b);
+  });
+  question.append(choices,status);area.append(question);
+ }
+ panel.append(area);host.append(panel);host.hidden=false;
+}
 function renderModule(module){
  current=module;
  $("selectedModuleTitle").textContent="Module "+(MODULES.indexOf(module)+1)+": "+module.title+" • "+module.ar;
  $("selectedModuleOutcome").textContent=module.outcome+" • "+module.week;
  $("skillCards").replaceChildren(...SKILLS.map(skill=>createSkill(module,skill)));
+ renderPhonics(module);
  for(const b of $("moduleButtons").querySelectorAll("button"))
   b.setAttribute("aria-pressed",String(b.dataset.module===module.id));
  updateProgress();
