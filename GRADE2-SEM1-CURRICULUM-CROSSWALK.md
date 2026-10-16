@@ -1,0 +1,46 @@
+# Grade 2 English Semester 1 — source-linked learning crosswalk
+
+**Status:** curriculum-reference mapping and development QA completed; **specialist review pending**. Date: 16 October 2026.
+
+## Source priority and appropriate use
+
+1. **Primary Semester 1 source:** user-provided `Grade 2-Semester 1 Overview-2026-2027(1).pdf`, Qatar Department of Early Years Education, 18 pages. Week-by-week scheduling on p.3; teaching objectives on pp.4–14; word-family patterns and spelling lists on p.17; Super Reader word lists on p.18; teaching-method advice on p.2. These page numbers refer to PDF pages.
+2. **Supplementary topic cross-check:** user-provided `TopStars_2A_QTR_20-21_SB_low(1).pdf`, 110 PDF pages (2020–2021 historical Student's Book 2a). Syllabus is PDF pp.5–6 and contents p.7. This is a historical edition: compare vocabulary and grammar, do not imply that the edition is current or permission to republish it. Prototype exercise sentences and passages are original.
+3. **Not a Semester 1 syllabus:** user-provided 2025–2026 Grade 2 **Semester 2** final exam table of specifications (3 pages). It applies to Top Stars 2b, **Modules 9: Toys and Games** and **10: Having Fun**. It is useful only as an example of four-skill assessment and accessibility principles. Its marking plan must not be copied into our Semester 1 lessons.
+
+## Semester modules and app mapping
+
+All app items listed below belong to the **separate review branch**, not the approved public curriculum. Each module uses one adult-guided Listening, one observed Speaking, one short Reading and one model-based Writing exercise. Its activity completion is *practice*, not demonstrated mastery.
+
+| Module (app ID) | Weeks in 2026–2027 overview | First-semester outcomes and content drawn from overview | Prototype activities | Gaps and reviewer questions |
+|---|---|---|---|---|
+| **1. Welcome back!** (`welcome`) | **1–2**, pp.3–5 | Greetings, introducing oneself, classroom objects, colours, 1–20, simple instructions; revision of letter names/sounds | Listen: pencil/book/desk instruction; Speak: greeting; Read: classroom story; Write: "This is my book." | Oral introduction, letter/blending progression, number/colour use are underrepresented; check question level |
+| **2. That's me!** (`me`) | **2–4**, pp.3,5–7 | Jobs, verbs, `can/can't`, animals, short texts, listening and speaking; word families **-ing, -and** | Listen: jobs; Speak: "I can jump."; Read: ability; Write: model `can` sentence; 2 optional phonics items | Need specialist check on `can't`, student-produced answers and sequencing; improve oral reading |
+| **3. About people** (`people`) | **4–6**, pp.3,7–9 | Appearance and possession, toys/gadgets, `have got / has got`, describing objects; word families **-all, -ack** | Listen: possessions; Speak: `has got`; Read: short toy text; Write: `has got`; 2 phonics items | Expand question forms and `have got / haven't got`; Arabic and sensitivity review pending |
+| **4. Food and drink** (`food`) | **10–11**, pp.3,11–12 | Food/drinks; likes and dislikes; requests; meals and healthy dish presentation; **-ain, -ink** | Listen: food request; Speak: polite request; Read: rice/carrots and preferences; Write: `I like rice.`; 2 phonics items | Need spoken `Do you like…?` answer practice, model healthy dish, comprehension differentiation |
+| **5. What I eat** (`meals`) | **12–13**, pp.3,13–14 | Breakfast/lunch/dinner, parts of day, food vocabulary; `there is / there are` quantities in Top Stars 2a; **-ay, -ick** | Listen: breakfast and `there is/are`; Speak: breakfast; Read: picnic; Write: `There are two apples.`; 2 phonics items | Practice `there is` independently, question/answer for quantities and adult-supported food project |
+
+**Module 4 name verified:** The 2026–27 overview uses “Food & drink” in the p.3 schedule and “Food and drink” on pp.11–12, matching the textbook's “Food and drink.” Previous tracker language implying its title remained unverified was outdated.
+
+**Phonics reference:** Overview PDF p.17 lists Module 2 (-ing/-and), 3 (-all/-ack), 4 (-ain/-ink), 5 (-ay/-ick). Eight **new original word-family recognition questions** are implemented as optional checks, two per module; they are *not recorded as mastery scores*. Phonics comprehension, blending and pronunciation still require teacher/adult review.
+
+## Limits of current implementation
+
+- Core guided practice: **5 modules × 4 skills = 20**. Optional phonics: **8**. The progress counter remains 20 and still uses `lla-g2-four-skills-v1`. No existing IDs or Grade 2 English progress records changed.
+- **Listening:** Adult reads an onscreen script; there is no recorded/verified audio and no formal listening test.
+- **Speaking:** Adult observes; a button only records practice attempted, never fluency/pronunciation certification.
+- **Reading:** Short original passages have one comprehension choice each; no oral fluency scoring, no full curriculum reading progression.
+- **Writing:** Only one guided sentence per module is checked for an approximate text match. Capitalization, punctuation and free writing are **not** assessed by the checker.
+- **Arabic:** UI explanatory labels and module-title translations still require native-language educator checking. Do not claim that Arabic reading/voice quality is certified.
+- **Copyright:** Do not reproduce Top Stars passages, graphics or workbook materials. Avoid uploading source textbooks into the public repository.
+- **Curriculum:** Themes and schedule have been cross-checked to source pages; lesson-level accuracy, grade appropriateness and completeness are **not independently verified**.
+
+## Quality-gate follow-up
+
+1. Ask the Grade 2 English teacher to check one complete module at a time against the overview pp.4–14 (Accept, Revise, Hold, with exact question IDs).
+2. Check phonics distractors and developmental suitability of the eight optional items; include silent-e and digraph progression from overview p.2 in a future enhancement.
+3. Get an Arabic teacher's review of instructions and module labels; no teacher approval recorded yet.
+4. Run static and mobile layout regression scripts, then test with Safari VoiceOver and a real phone.
+5. Only merge or promote the pilot after corrective action and appropriate review; otherwise label clearly as an unverified supplementary pilot.
+
+All development follows child-data minimization and a zero-paid-API approach.
