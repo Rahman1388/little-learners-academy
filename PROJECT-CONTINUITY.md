@@ -7,6 +7,17 @@
 
 > This file exists to keep an independently readable project history and next-step plan even when an earlier ChatGPT conversation cannot easily be found. **It is a summary, not an export of the chat transcripts.** Changes after this date should update this document.
 
+## 16 October 2026 — Public Grade 2 English previews and guided phonics navigation
+
+**Public app:** https://rahman1388.github.io/little-learners-academy/ . Two parent/teacher PREVIEW links were published on the main homepage, the Grade 2 selection card, and the existing Grade 2 reading page:
+
+- Grade 2 four English skills: https://rahman1388.github.io/little-learners-academy/grade2-four-skills.html — five modules (Semester 1 themes), with **20** adult-guided listening/speaking/reading/writing practice flags, **15 optional written phonics recognition questions**, **five bonus reading follow-ups**, and **five adult-reviewed, ephemeral original writing prompts**. Completion is not mastery.
+- Word Family Adventure: https://rahman1388.github.io/little-learners-academy/grade2-phonics-pathway.html — two original families (-ing/-and), each covering See → Hear (adult voice) → Blend → Read → Spell → Apply → Review: **14 in-page optional steps**, not 14 scored outcomes.
+- After public feedback that links returned 404 during deployment, GitHub Pages deployment finished and the owner confirmed the links opened on iPhone. In future, verify the **latest deployment succeeded before promising a public link**; allow propagation time.
+- Mobile usability upgrade from **PR #9**, merged on 16 Oct 2026 (commit `ee863b5`): a large **Continue** control advances from one phonics stage to the next, then into the other family; blocked until the active stage has been practised; page announces the stage number and returns focus to the heading. Tests for staged progression, retry correctness, completion, mobile widths, application validation and child security passed before merge. Public Pages deployment still needs separate verification after changes.
+- **Quality gates remain:** real-device iPhone/Safari/VoiceOver and parent/child usability checks; English-grade pedagogy and Arabic educator item-by-item review; human pronunciation assessment. No claim of Ministry, school, Arabic or teacher endorsement. Synthetic audio is not automatically certified; in the phonics preview an adult reads the script.
+- No accounts, ads, microphone, uploads, child names or new tracking were introduced. The optional 14-step phonics pathway uses in-page ephemeral state and does not change the existing Grade 2 English progress key.
+
 ## Vision and non-negotiable requirements
 
 - A welcoming, colourful, high-quality, mobile- and tablet-first children's learning app, usable in Qatar and respecting Islamic ethics, Qatar cultural values and children's privacy.
