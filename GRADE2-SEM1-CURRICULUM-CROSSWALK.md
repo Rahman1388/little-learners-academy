@@ -44,3 +44,12 @@ All app items listed below belong to the **separate review branch**, not the app
 5. Only merge or promote the pilot after corrective action and appropriate review; otherwise label clearly as an unverified supplementary pilot.
 
 All development follows child-data minimization and a zero-paid-API approach.
+
+## Optional Module 2 guided phonics pathway — 16 October 2026
+
+The separate draft review branch now has `grade2-phonics-pathway.html` and `grade2-phonics-pathway.js`, linked from the four-skills pilot. They offer the seven guided stages **See → Hear → Blend → Read → Spell → Apply → Review** for the **-ing** and **-and** families referenced on overview p.17. The child sees original examples (`ring`, `sing`; `hand`, `sand`), listens to an **adult reading**, observes letter chunking, makes a word-family choice, types a spelling from an adult-read cue, chooses a meaningful sentence, and reviews together.
+
+This is **14 optional guided steps** across two families, **not 14 additional scored activities** or proof of phonological mastery. The guided adult-listening and blending buttons record practice attempts only within the open page. Typed answers and completion indicators are **not stored, uploaded or included** in the original 20 saved four-skill progress flags or 15 optional recognition questions. No recorded speech or synthetic voice is included pending quality review. The source-to-topic mapping is not a specialist endorsement; a Grade 2 English teacher and an Arabic-speaking educator must approve the content before release.
+
+**Technical checks:** a new Playwright test exercises every stage for both families, correct/incorrect responses, focus after navigation, small-screen overflow, and lack of local-storage writes. GitHub Actions must pass for the relevant commit before reporting technical verification. Real-device Safari/VoiceOver, real student/adult usability, developmental progression and pronunciation review are outstanding.
+
