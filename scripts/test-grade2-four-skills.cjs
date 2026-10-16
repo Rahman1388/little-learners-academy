@@ -20,6 +20,19 @@ const modules=box.window.LLA_G2_FOUR_SKILLS;
  for(const [j,m] of modules.entries()){
   await page.locator("#moduleButtons button").nth(j).click();
   assert.equal(await page.locator("#skillCards .skill").count(),4);
+  const phonics=page.locator("#phonicsPractice .phonics-question");
+  assert.equal(await phonics.count(),j===0?0:2);
+  if(j>0){
+   for(const [i,q] of m.phonics.entries()){
+    const card=phonics.nth(i);
+    if(j===1&&i===0){
+     await card.locator("button.phonics-choice").nth((q.answer+1)%3).click();
+     assert.match(await card.locator(".feedback").innerText(),/Try another word/);
+    }
+    await card.locator("button.phonics-choice").nth(q.answer).click();
+    assert.match(await card.locator(".feedback").innerText(),/No pronunciation was assessed/);
+   }
+  }
   const listen=page.locator('.skill[data-skill="listening"]');
   await listen.locator("details summary").click();
   assert(await listen.locator("details").evaluate(x=>x.open));
@@ -53,5 +66,5 @@ const modules=box.window.LLA_G2_FOUR_SKILLS;
  await page.setViewportSize({width:768,height:1024});await overflow();
  assert.deepEqual(errors,[]);
  await browser.close();
- console.log("PASS: Grade 2 20 practices, retries, persistence, accessibility structure and 320/390/768px layouts");
+ console.log("PASS: Grade 2 20 saved practices + 8 optional phonics checks, retries, persistence and mobile viewports");
 })().catch(e=>{console.error(e.stack||e);process.exit(1)});
