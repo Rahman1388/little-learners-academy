@@ -38,7 +38,7 @@ assert.equal(practiceCount,20);
 assert(html.includes('src="./grade2-four-skills-data.js"'));
 assert(html.includes('src="./grade2-four-skills.js"'));
 assert(html.includes('id="skillCards"'));
-assert(html.includes('not a secure test'));
+assert(code.includes('not a secure test'));
 assert(!/https?:\/\/[^"'\s]+\.js/.test(html),"No external JS libraries should be used");
 assert(!/getUserMedia|SpeechRecognition|sendBeacon|\bfetch\s*\(/.test(code));
 assert(code.includes("lla-g2-four-skills-v1"));
