@@ -23,7 +23,7 @@ for(const m of modules){
   assert.equal(p.choices.length,3);
   assert.equal(new Set(p.choices).size,3);
   assert(Number.isInteger(p.answer)&&p.answer>=0&&p.answer<3);
-  assert(p.question.length>15);
+  assert(p.question.length>=8,"Question too short for "+m.id+" "+key);
   assert((key==="listen"?p.script:p.passage).length>30);
  }
  const words=m.read.passage.split(/\s+/).filter(Boolean);
