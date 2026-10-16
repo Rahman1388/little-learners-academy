@@ -14,7 +14,7 @@
 | --- | --- | --- | --- | --- | --- |
 | M1 Welcome back! | Greetings and classroom objects | Hear objects/instructions | Pretend self-introduction | Original classroom paragraph | This is my book. |
 | M2 That's me! | Jobs, action verbs and "can" | Hear occupations | Describe a fictional ability | Original park paragraph | I can jump. |
-| M3 About people | Possessions, people and objects | Hear a colour/object description | Describe a pretend character | Original toys paragraph | She has a kite. |
+| M3 About people | Possessions, people and objects | Hear a colour/object description | Describe a pretend character | Original toys paragraph | She has got a kite. |
 | M4 Food and drink | Food, preferences and requests | Hear a polite drink request | Role-play café | Original family lunch paragraph | I like rice. |
 | M5 What I eat | Meals, quantities and routines | Hear breakfast/lunch | Role-play meal description | Original school picnic paragraph | There are two apples. |
 
@@ -24,11 +24,11 @@ Each unit contains four **practice opportunities** (5 × 4 = 20), not 20 validat
 
 - **Listening:** An adult reads a short original script from a revealable panel. Child should look away. This is informal practice, **not a secure independent listening test**. No unverified audio synthesis.
 - **Speaking:** Child answers a fictional role-play prompt to an adult, with adult observation cue. Clicking "I practised" is **self-reported participation**, not teacher-scored oral communication.
-- **Reading:** One short original paragraph and one answerable literal comprehension question per module. Expand into decoding, reading fluency, vocabulary, inference and differentiated assessment; avoid presenting multiple-choice scores as reading-level diagnoses.
-- **Writing:** One guided target sentence typed with scrambled word clues per module. This verifies only a narrow example of sentence construction; spelling, dictation, handwriting and free composition still need development.
+- **Reading:** One original short paragraph, one primary question, and one optional evidence-based follow-up per module. Expand into decoding, reading fluency, vocabulary, inference and differentiated assessment; multiple-choice practice is not a reading-level diagnosis.
+- **Writing:** One guided target sentence typed with scrambled word clues per module, plus an optional original sentence with adult review. Only approximate model-word matching is checked automatically; capitalization, punctuation, handwriting and independent writing are not machine-assessed. Original sentences are never saved or transmitted.
 - **Arabic support:** Interface labels and instructions are draft. A competent Arabic-language educator must check language, age suitability, script rendering and pronunciation before broad release.
-- **Phonics:** 2026–27 Semester 1 overview p. 17 gives a progression: Module 2 -ing/-and; Module 3 -all/-ack; Module 4 -ain/-ink; Module 5 -ay/-ick. This pilot does **not** currently teach or assess that sequence. Digraphs and silent-e are priorities from overview p. 2.
-- **Grade suitability and accessibility:** Automated mobile, keyboard, answer-key, and persistence tests help, but child testing, accessibility audit, and teaching review are still needed.
+- **Phonics:** 2026–27 Semester 1 overview p. 17 lists Module 2 -ing/-and; Module 3 -all/-ack; Module 4 -ain/-ink; Module 5 -ay/-ick. The branch now contains **eight written word-family recognition questions** and **seven optional digraph/silent-e recognition questions** from p. 2 priorities. These **15 unscored checks** do not teach verified sound blending or assess oral pronunciation; explicit decoding and educator review are still required.
+- **Grade suitability and accessibility:** The review branch now focuses the selected module heading after a module-button click and gives disclosure summaries a minimum 48px height. Automated browser tests check focus, touch target size, answer keys, persistence and 320/390/768px layouts. These technical passes do not replace iPhone Safari/VoiceOver, adult-child usability or specialist teaching review.
 - **Assessment:** The supplied 2025–26 Semester 2 exam blueprint belongs to **another semester and year**; do not infer 2026–27 Semester 1 exam weights or reproduce official exam content.
 - **Curriculum validation:** Topic overlap is documented, not exact official outcomes or national approval.
 
@@ -37,8 +37,8 @@ Each unit contains four **practice opportunities** (5 × 4 = 20), not 20 validat
 - No accounts, learner names, microphones, child recordings, trackers or external JavaScript. Reading tasks use fictional characters.
 - Saves **only 20 boolean practice flags** in browser-local storage key 'lla-g2-four-skills-v1'. Does not alter existing grade progress, stars, or previously approved audio.
 - New 'scripts/check-grade2-four-skills.cjs' checks five distinct modules, 20 skill practices, answer keys, sentence clues, 20–40 word original reading paragraphs and prohibited voice/network APIs.
-- New 'scripts/test-grade2-four-skills.cjs' checks actual interactions and retries, local persistence and 320/390/768-pixel screen widths when run in GitHub Actions.
-- Do not claim technical pass until GitHub checks conclude successfully. Do not claim educational or human review from CI pass.
+- Updated 'scripts/test-grade2-four-skills.cjs' checks actual interactions/retries, 5 follow-up reading checks, 5 ephemeral original-writing tasks, 15 optional phonics checks, module-heading keyboard focus, 44px+ disclosure tap height, progress persistence and 320/390/768-pixel screen widths.
+- GitHub Actions **Grade 2 four-skills pilot** and **Child App Security Gate** reported success on development commit `171ba65a` (16 Oct 2026). Other checks or subsequent commits should be independently rechecked; CI does not constitute child testing or educational/Arabic review.
 - Before wider child use: review Arabic wording, listening/speaking validity, specific Ministry 2026–27 learning outcomes, learning accommodations, actual family usability, privacy policy and PWA/offline behavior.
 
 ## Next original content sprint
