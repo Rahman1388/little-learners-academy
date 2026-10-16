@@ -10,10 +10,10 @@ The development reference is the user-supplied Grade 2 Semester 1 overview (2026
 ## What exists on this branch
 
 - `grade2-four-skills.html`: responsive pilot interface, adult instructions and privacy boundaries.
-- `grade2-four-skills-data.js`: five draft modules × one guided activity in each of four English skills = **20 saved practice activities**; plus **8 optional phonics questions** following the documented Semester 1 word families.
-- `grade2-four-skills.js`: feedback and local-only completion flags at `lla-g2-four-skills-v1`.
-- `scripts/check-grade2-four-skills.cjs`: structural, source-week, answer and phonics checks.
-- `scripts/test-grade2-four-skills.cjs`: mobile/browser regression test (320, 390, 768px layouts, retries, optional phonics and progress persistence).
+- `grade2-four-skills-data.js`: five draft modules × four guided skills = **20 saved practice activities**. There are **15 optional written phonics items** (8 word families, 5 digraphs, 2 silent-e), **5 optional follow-up reading questions** and **5 adult-reviewed original-writing prompts**. Extras do not change progress scores.
+- `grade2-four-skills.js`: extra learning UI, feedback and local-only completion flags at the **unchanged** `lla-g2-four-skills-v1` key; free writing is ephemeral and not saved.
+- `scripts/check-grade2-four-skills.cjs`: structural, source-week, all 15 letter-pattern key, five bonus-comprehension answer and free-writing content checks.
+- `scripts/test-grade2-four-skills.cjs`: **updated** mobile/browser regression script for 320/390/768px layouts, retries, added comprehension, ephemeral writing, all optional phonics, and progress persistence. A real iPhone/VoiceOver test is **still pending**.
 - `GRADE2-SEM1-CURRICULUM-CROSSWALK.md`: verified source-backed module mapping, exact PDF pages, review gaps and careful separation of the unrelated Semester 2 exam reference.
 - Existing `grade2-english-data.js` and `lla-grade2-english-v1` progress are not replaced.
 
@@ -27,7 +27,9 @@ The development reference is the user-supplied Grade 2 Semester 1 overview (2026
 | P1 | Verify each activity's grade suitability and pedagogy, including reading length and spoken comprehension feasibility | Grade 2 teacher samples every module and files Accept/Revise/Hold | **PENDING** |
 | P1 | Test with mobile accessibility checks (keyboard, focus, screen reader labels, touch targets, no horizontal overflow) | 320/390/768px regression plus manual VoiceOver on iPhone | **AUTOMATED SCRIPT PRESENT; manual check pending** |
 | P1 | Confirm adult-read listening exercises work pedagogically; do not label as independently scored listening or teacher-reviewed speech | Adult observer feedback and clear non-assessment copy | **DRAFT — review pending** |
-| P2 | Add optional, unscored phonics practice without changing existing saved progress | Eight original word-family checks mapped to overview p.17; specialist phonics review still pending | **IMPLEMENTED ON BRANCH; teacher validation PENDING** |
+| P2 | Add optional, unscored phonics practice without changing saved progress | Eight original word-family checks mapped to overview p.17 plus five digraph and two silent-e checks based on p.2; specialist review still pending | **15 ITEMS IMPLEMENTED ON BRANCH; teacher validation PENDING** |
+| P2 | Strengthen Grade 2 reading comprehension with evidence-based follow-ups | Five original extra questions with adult evidence notes; never counted as mastery | **IMPLEMENTED ON BRANCH; teacher validation PENDING** |
+| P2 | Add independent sentence writing with privacy and honest evaluation limits | Five open-ended writing prompts with starters and adult checklist; text never saved or automatically graded | **IMPLEMENTED ON BRANCH; teacher validation PENDING** |
 | P2 | Expand breadth only after item-level review, not just by increasing question count | Approved learning objectives and reviewed questions | **NOT STARTED** |
 
 ## Safeguards
