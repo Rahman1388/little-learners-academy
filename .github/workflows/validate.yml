@@ -28,6 +28,10 @@ jobs:
           node --check navigation.js
           node --check privacy-controls.js
           node --check curriculum.js
+          node --check national-core-grade1-data.js
+          node --check national-core-grade1-preview.js
+          node --check scripts/check-national-core-grade1.cjs
+          node scripts/check-national-core-grade1.cjs
           node --check sw.js
           node --check science-sort.js
           node --check phonics-adventure.js
