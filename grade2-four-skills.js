@@ -135,11 +135,11 @@ function createSkill(module,skill){
   const norm=s=>s.toLowerCase().replace(/[^a-z0-9 ]/g,"").replace(/\s+/g," ").trim();
   const check=()=>{
    if(norm(input.value)!==norm(module.write.answer)){
-    feedback(info,"🌱 Check the word order, capitals and spacing. Try again.","retry");
+    feedback(info,"🌱 Check the word order and spelling. Try the model sentence again.","retry");
     return;
    }
    mark(module,"writing");
-   feedback(info,"✅ This guided sentence matches the model. Free writing is not assessed.","good");
+   feedback(info,"✅ The words match the guided model sentence. Capitalization, punctuation and free writing are not assessed.","good");
   };
   b.addEventListener("click",check);
   input.addEventListener("keydown",event=>{if(event.key==="Enter")check()});
