@@ -99,6 +99,10 @@ jobs:
           node --check grade4-progress.js
           node --check scripts/test-grade3-mixed.cjs
           node --check fractions-lab.js
+          node --check grade2-four-skills-data.js
+          node --check grade2-four-skills.js
+          node --check scripts/check-grade2-four-skills.cjs
+          node scripts/check-grade2-four-skills.cjs
           node --check scripts/check-learning-content.cjs
           node --check scripts/check-grade5-content.cjs
           node --check learning-passport.js
