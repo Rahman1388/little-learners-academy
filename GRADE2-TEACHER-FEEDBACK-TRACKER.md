@@ -5,28 +5,30 @@ _Last updated: 16 October 2026 | Internal quality review; not an official endors
 
 An early-education English teacher reviewed a **sample of three** Grade 2 English reading activities. They accepted the sample's answer accuracy/explanations, English, Arabic, pictures/audio category, and cultural/safety category. They requested revisions to **learning objectives/grade suitability** and **accessibility/usability** and recommended improving all four English-language skills: listening, speaking, reading, and writing. These findings apply to the reviewed sample only; they do not certify the complete app or its audio.
 
-The development reference is the user-supplied Grade 2 Semester 1 overview (2026–27). The five-module prototype is **supplementary** and must not be represented as reviewed Ministry-aligned delivery. The precise module titles/objectives must be independently confirmed against the primary curriculum document before public claims; specifically verify Module 4 instead of treating the draft title as confirmed.
+The development reference is the user-supplied Grade 2 Semester 1 overview (2026–27). The five-module prototype is **supplementary** and must not be represented as reviewed Ministry-aligned delivery. The five module titles, week sequence and broad themes have now been cross-checked against the primary 2026–2027 Semester 1 overview, documented in the crosswalk. **Module 4 “Food and drink” is confirmed.** Exact competency mastery and grade suitability still need educator review before public claims.
 
 ## What exists on this branch
 
 - `grade2-four-skills.html`: responsive pilot interface, adult instructions and privacy boundaries.
-- `grade2-four-skills-data.js`: five draft modules × one guided activity in each of four English skills = **20 practice activities**.
+- `grade2-four-skills-data.js`: five draft modules × one guided activity in each of four English skills = **20 saved practice activities**; plus **8 optional phonics questions** following the documented Semester 1 word families.
 - `grade2-four-skills.js`: feedback and local-only completion flags at `lla-g2-four-skills-v1`.
-- `scripts/check-grade2-four-skills.cjs`: structural, answer and script safety checks.
-- `scripts/test-grade2-four-skills.cjs`: mobile/browser regression test (320, 390, 768px layouts, retries and progress persistence).
+- `scripts/check-grade2-four-skills.cjs`: structural, source-week, answer and phonics checks.
+- `scripts/test-grade2-four-skills.cjs`: mobile/browser regression test (320, 390, 768px layouts, retries, optional phonics and progress persistence).
+- `GRADE2-SEM1-CURRICULUM-CROSSWALK.md`: verified source-backed module mapping, exact PDF pages, review gaps and careful separation of the unrelated Semester 2 exam reference.
 - Existing `grade2-english-data.js` and `lla-grade2-english-v1` progress are not replaced.
 
 ## Review priorities and release gates
 
 | Priority | Action | Verification | Status |
 |---|---|---|---|
-| P0 | Independently confirm **each Grade 2 Semester 1 module title, weekly sequence and learning objective** against the original curriculum overview; fix prototype mapping as needed | Teacher provides page/objective correspondence, reviewer approval recorded | **HOLD — curriculum crosswalk unverified** |
+| P0 | Trace **the five Grade 2 Semester 1 module titles, weeks and main objectives** to the 2026–2027 overview; retain specialist sign-off as a separate requirement | See `GRADE2-SEM1-CURRICULUM-CROSSWALK.md` for PDF pages and activity mapping; teacher approval still needed | **SOURCE CROSSWALK COMPLETED; teacher validation PENDING** |
 | P0 | Obtain Arabic-speaking primary educator review of each draft Arabic module title/instruction | Record exact activity IDs and approved wording | **HOLD — Arabic specialist review pending** |
 | P1 | Revise writing feedback so the app does **not** imply automatic checks of capitalization or punctuation | UI text plus updated mobile regression assertion | **DONE on development branch** |
 | P1 | Verify each activity's grade suitability and pedagogy, including reading length and spoken comprehension feasibility | Grade 2 teacher samples every module and files Accept/Revise/Hold | **PENDING** |
 | P1 | Test with mobile accessibility checks (keyboard, focus, screen reader labels, touch targets, no horizontal overflow) | 320/390/768px regression plus manual VoiceOver on iPhone | **AUTOMATED SCRIPT PRESENT; manual check pending** |
 | P1 | Confirm adult-read listening exercises work pedagogically; do not label as independently scored listening or teacher-reviewed speech | Adult observer feedback and clear non-assessment copy | **DRAFT — review pending** |
-| P2 | Expand breadth after the first educator round, not just by increasing item counts | Approved learning objectives and teacher-reviewed question bank | **NOT STARTED** |
+| P2 | Add optional, unscored phonics practice without changing existing saved progress | Eight original word-family checks mapped to overview p.17; specialist phonics review still pending | **IMPLEMENTED ON BRANCH; teacher validation PENDING** |
+| P2 | Expand breadth only after item-level review, not just by increasing question count | Approved learning objectives and reviewed questions | **NOT STARTED** |
 
 ## Safeguards
 
