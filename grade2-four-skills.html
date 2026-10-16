@@ -12,7 +12,7 @@
 :root{font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif;color:#17395d;background:#e7f5ff}*{box-sizing:border-box}
 body{margin:0;background:linear-gradient(155deg,#d8efff,#fff2d4 60%,#f4e5ff);min-height:100vh}
 main{max-width:990px;margin:auto;padding:14px 14px 60px}
-a,button,input{font:inherit}button{cursor:pointer}a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{outline:4px solid #8a1538;outline-offset:3px}
+a,button,input,textarea{font:inherit}button{cursor:pointer}a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,summary:focus-visible{outline:4px solid #8a1538;outline-offset:3px}
 .back{display:inline-flex;align-items:center;text-decoration:none;font-weight:850;background:#fff;padding:12px 16px;border-radius:15px;color:#164d73;min-height:49px}
 .hero,.panel,.skill{border:3px solid #fff;background:#fffffff2;border-radius:24px;box-shadow:0 4px 0 #b2d4e6;padding:clamp(15px,3vw,24px);margin:15px 0}
 .hero{text-align:center;background:linear-gradient(115deg,#fff1af,#ffffff,#def5ff)}
@@ -51,6 +51,14 @@ p{line-height:1.6;margin:9px 0}
 .passage{font-size:18px;line-height:1.65;background:#fff;border-radius:13px;padding:13px;border:1px solid #d1d4db}
 .word-clues{display:flex;flex-wrap:wrap;gap:7px;margin:12px 0}
 .word-clues span{background:#fff;padding:8px 13px;border:2px solid #b6d5de;border-radius:12px;font-weight:800}
+.extra-reading,.reading-evidence{border:2px solid #e1cd9b;border-radius:13px;background:#fffef7;padding:12px;margin-top:16px}
+.extra-reading>summary,.reading-evidence>summary{cursor:pointer;font-weight:850;min-height:40px}
+.reading-evidence{background:#f3faff;border-color:#b4d9e8}
+.independent-writing{background:#fff;border:2px solid #b9d7c6;border-radius:15px;padding:13px;margin-top:22px}
+.independent-writing h4{margin:0 0 8px;font-size:19px}.starter{background:#f0f9ef;padding:10px;border-radius:10px;font-weight:750}
+.freewrite{width:100%;min-height:115px;resize:vertical;padding:12px;font-size:17px;line-height:1.5;border:2px solid #7eafc8;border-radius:12px}
+.independent-writing label{display:block}
+
 .phonics-panel{margin:17px 0 0;padding:18px;background:#f0fbf8;border:2px solid #b6ddd4;border-radius:19px}
 .phonics-questions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px;margin-top:12px}
 .phonics-question{background:#fff;padding:14px;border:2px solid #d1e9e0;border-radius:15px;min-width:0}
@@ -76,20 +84,21 @@ p{line-height:1.6;margin:9px 0}
 </header>
 <section class="panel" aria-labelledby="moduleTitle">
 <h2 id="moduleTitle">Choose a module • اختر الوحدة</h2>
-<p class="note">Each module has one guided activity per English skill. Modules 2–5 also include two optional phonics checks. The phonics checks are not counted as mastered skills.</p>
+<p class="note">Each module includes guided listening, speaking, reading and writing, plus an optional reading challenge and an adult-reviewed original sentence. Across the five modules there are 15 extra phonics/letter-pattern checks. Extra practice is not included in the 20 saved completion flags.</p>
 <div id="moduleButtons" class="module-buttons" role="group" aria-label="Five English learning modules"></div>
 </section>
 <section class="panel" aria-labelledby="selectedModuleTitle">
 <div class="module-header"><div><h2 id="selectedModuleTitle">Module 1</h2><p id="selectedModuleOutcome"></p></div><span id="moduleCount" class="pill">0 / 4</span></div>
 <div id="skillCards" class="skill-grid"></div>
-<div id="phonicsPractice" hidden aria-label="Optional word-family practice"></div>
+<div id="phonicsPractice" hidden aria-label="Optional phonics and letter-pattern practice"></div>
 </section>
 <aside class="panel">
 <h2>For adults • إرشادات للأهل</h2>
 <p><strong>Listening:</strong> An adult reads the hidden script aloud. This is guided practice, not an independent listening test or verified audio.</p>
 <p><strong>Speaking:</strong> A child practises with an adult. The button records an attempt, not a judgment of fluency or pronunciation. The app does not record voices.</p>
-<p><strong>Reading and writing:</strong> Children receive feedback on one comprehension response and one guided sentence per module. Writing is not assessed as free composition.</p>
-<p><strong>Phonics:</strong> Eight optional word-family recognition questions across Modules 2–5 follow the -ing/-and, -all/-ack, -ain/-ink and -ay/-ick patterns listed in the 2026–2027 Grade 2 Semester 1 overview, page 17. No speech or pronunciation is tested; parents can read words aloud and practise together. They are not included in the 20 saved practice flags.</p>
+<p><strong>Reading:</strong> Each original passage has one primary question plus an optional additional comprehension question. An adult can reveal a supporting sentence and discuss the evidence. The bonus question does not change saved progress.</p>
+<p><strong>Writing:</strong> Children build one guided sentence, then may write an original sentence using an optional starter. Adults—not the app—check the independent writing. The typed original sentence is not saved or uploaded and will disappear if the lesson is changed or refreshed. Avoid names and other personal information.</p>
+<p><strong>Phonics:</strong> Eight optional word-family items follow the -ing/-and, -all/-ack, -ain/-ink and -ay/-ick patterns (2026–2027 Grade 2 Semester 1 overview, p.17). Seven more optional questions introduce ch, sh, th, wh, ph and silent-e spellings (overview, p.2). All 15 are on-screen letter-recognition tasks, not spoken pronunciation assessments, and do not change saved progress.</p>
 <p class="note">Independent supplementary draft only. Based on themes and learning outcomes in the Department of Early Years Education Grade 2 Semester 1 overview (2026–2027). No claim of Ministry approval, full curriculum coverage, or teacher-certified Arabic. Explanatory Arabic text requires review. The supplied 2020–2021 Top Stars textbook informed topic comparison only; no proprietary illustrations, passages, or audio are reproduced. Only completion flags are stored on this device; no names, typed sentences, accounts, microphone, advertising or analytics are collected by this activity.</p>
 </aside>
 <script src="./grade2-four-skills-data.js"></script>
