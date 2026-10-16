@@ -51,6 +51,13 @@ p{line-height:1.6;margin:9px 0}
 .passage{font-size:18px;line-height:1.65;background:#fff;border-radius:13px;padding:13px;border:1px solid #d1d4db}
 .word-clues{display:flex;flex-wrap:wrap;gap:7px;margin:12px 0}
 .word-clues span{background:#fff;padding:8px 13px;border:2px solid #b6d5de;border-radius:12px;font-weight:800}
+.phonics-panel{margin:17px 0 0;padding:18px;background:#f0fbf8;border:2px solid #b6ddd4;border-radius:19px}
+.phonics-questions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px;margin-top:12px}
+.phonics-question{background:#fff;padding:14px;border:2px solid #d1e9e0;border-radius:15px;min-width:0}
+.phonics-question h4{margin:0 0 10px;font-size:18px}.phonics-question p{margin:8px 0}
+.phonics-choices{display:grid;gap:8px}.phonics-choice{padding:12px;border:2px solid #a9cbd5;border-radius:12px;background:#fff;min-height:49px;color:#17395d;font-weight:800;text-align:left}
+.phonics-choice.correct{background:#d8f8e8;border-color:#17784e}.phonics-choice.incorrect{background:#fff0eb;border-color:#b45335}
+@media(max-width:650px){.phonics-questions{grid-template-columns:1fr}}
 .write-input{width:100%;padding:12px;border:2px solid #7eafc8;border-radius:12px;min-height:50px;font-size:18px}
 .progress-wrap{max-width:440px;margin:14px auto 0}progress{width:100%;height:17px;accent-color:#227f58}
 [hidden]{display:none!important}
@@ -69,18 +76,20 @@ p{line-height:1.6;margin:9px 0}
 </header>
 <section class="panel" aria-labelledby="moduleTitle">
 <h2 id="moduleTitle">Choose a module • اختر الوحدة</h2>
-<p class="note">Each module has one introductory activity per language skill. Select a module to see all four activities.</p>
+<p class="note">Each module has one guided activity per English skill. Modules 2–5 also include two optional phonics checks. The phonics checks are not counted as mastered skills.</p>
 <div id="moduleButtons" class="module-buttons" role="group" aria-label="Five English learning modules"></div>
 </section>
 <section class="panel" aria-labelledby="selectedModuleTitle">
 <div class="module-header"><div><h2 id="selectedModuleTitle">Module 1</h2><p id="selectedModuleOutcome"></p></div><span id="moduleCount" class="pill">0 / 4</span></div>
 <div id="skillCards" class="skill-grid"></div>
+<div id="phonicsPractice" hidden aria-label="Optional word-family practice"></div>
 </section>
 <aside class="panel">
 <h2>For adults • إرشادات للأهل</h2>
 <p><strong>Listening:</strong> An adult reads the hidden script aloud. This is guided practice, not an independent listening test or verified audio.</p>
 <p><strong>Speaking:</strong> A child practises with an adult. The button records an attempt, not a judgment of fluency or pronunciation. The app does not record voices.</p>
 <p><strong>Reading and writing:</strong> Children receive feedback on one comprehension response and one guided sentence per module. Writing is not assessed as free composition.</p>
+<p><strong>Phonics:</strong> Eight optional word-family recognition questions across Modules 2–5 follow the -ing/-and, -all/-ack, -ain/-ink and -ay/-ick patterns listed in the 2026–2027 Grade 2 Semester 1 overview, page 17. No speech or pronunciation is tested; parents can read words aloud and practise together. They are not included in the 20 saved practice flags.</p>
 <p class="note">Independent supplementary draft only. Based on themes and learning outcomes in the Department of Early Years Education Grade 2 Semester 1 overview (2026–2027). No claim of Ministry approval, full curriculum coverage, or teacher-certified Arabic. Explanatory Arabic text requires review. The supplied 2020–2021 Top Stars textbook informed topic comparison only; no proprietary illustrations, passages, or audio are reproduced. Only completion flags are stored on this device; no names, typed sentences, accounts, microphone, advertising or analytics are collected by this activity.</p>
 </aside>
 <script src="./grade2-four-skills-data.js"></script>
