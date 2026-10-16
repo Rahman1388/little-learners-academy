@@ -51,6 +51,19 @@ function say(message,kind=""){
  x.className="feedback"+(kind?" "+kind:"");
 }
 function key(){return family.id+"-"+step.id}
+function nextTarget(){
+ if(!done.has(key()))return null;
+ const index=STEPS.indexOf(step);
+ if(index<STEPS.length-1)return {family,step:STEPS[index+1],label:"Continue to "+STEPS[index+1].label+" →"};
+ const unfinished=STEPS.find(item=>!done.has(family.id+"-"+item.id));
+ if(unfinished)return {family,step:unfinished,label:"Review "+unfinished.label+" →"};
+ const other=FAMILIES.find(item=>item.id!==family.id&&STEPS.some(s=>!done.has(item.id+"-"+s.id)));
+ if(other){
+  const firstUnfinished=STEPS.find(item=>!done.has(other.id+"-"+item.id));
+  return {family:other,step:firstUnfinished,label:"Start "+other.pattern+" family →"};
+ }
+ return null;
+}
 function progress(){
  const total=done.size;
  $("progressText").textContent=total+" / 14 optional guided steps practised this visit (not a score)";
@@ -60,6 +73,16 @@ function progress(){
   b.classList.toggle("done",finished);
   b.querySelector("span").textContent=finished?"✓ Practised":"Try this";
  }
+ $("stageCounter").textContent="Stage "+(STEPS.indexOf(step)+1)+" of 7 • "+family.pattern+" word family";
+ const next=nextTarget();
+ const button=$("continueStep");
+ button.hidden=!next;
+ if(next)button.textContent=next.label;
+ $("journeySummary").textContent=total===14
+  ?"🌟 All 14 guided steps practised this visit! Great effort. This is not a reading or pronunciation test."
+  :next
+   ?"Nice practice! Continue when ready, or choose another stage above."
+   :"Complete this activity with an adult to continue, or select a stage above.";
 }
 function mark(){
  done.add(key());progress();
@@ -183,6 +206,13 @@ function render(focus=false){
  show();
  if(focus)$("stepHeading").focus();
 }
+$("continueStep").addEventListener("click",()=>{
+ const target=nextTarget();
+ if(!target)return;
+ family=target.family;
+ step=target.step;
+ render(true);
+});
 for(const f of FAMILIES){
  const b=el("button",null,"🔤 "+f.pattern);
  b.type="button";b.dataset.family=f.id;b.setAttribute("aria-pressed","false");
