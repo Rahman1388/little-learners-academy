@@ -59,5 +59,7 @@ Record feedback with page/question ID, evidence, correction owner and date. Afte
 
 **Review branch only (draft PR #8):** Added linked `grade2-phonics-pathway.html` and `grade2-phonics-pathway.js` with **-ing/-and** practice in 7 adult-guided stages per family: See, Hear, Blend, Read, Spell, Apply, Review. Examples are original and refer to the 2026–27 Grade 2 Semester 1 overview p.17. No synthetic or recorded audio is available; adults read and model the words. Practice is unscored, resets on page refresh, saves no typed text, and leaves the existing app progress unchanged.
 
+**Automated QA result:** On commit `bc92b2ba` (16 October 2026), the Grade 2 four-skills pilot workflow including the new phonics-pathway Playwright test, Validate app, Grade 2 English pilot QA, and Child App Security Gate **all reported success**. This verifies implemented test scenarios, not a human review. A separate mobile reading/audio workflow for that commit was cancelled during overlapping branch updates; it is not evidence of a pass.
+
 **Teacher questions before release:** Are `ring/sing` and `hand/sand` developmentally suitable? Does the onset-rime demonstration reflect sound blending adequately? Are the reading and spelling prompts fair? Can a child use the lesson with adult support on a phone? Are all Arabic instructions appropriate? Do not claim mastery from correct written selections. The branch workflow includes a new browser regression, but a passing test is not an educator approval.
 
