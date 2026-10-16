@@ -94,11 +94,72 @@ function completeButton(text){
  b.addEventListener("click",mark);
  return b;
 }
+// On-device speech preview: no audio uploads, microphone or network API calls.
+let activeUtterance=null;
+function setAudioStatus(message){
+ $("audioStatus").textContent=message;
+}
+function speakWord(word,slow){
+ if(typeof window.speechSynthesis==="undefined"||typeof window.SpeechSynthesisUtterance!=="function"){
+  setAudioStatus("Audio is unavailable in this browser. Please ask an adult to pronounce the word.");
+  return;
+ }
+ try{
+  window.speechSynthesis.cancel();
+  const utterance=new window.SpeechSynthesisUtterance(word);
+  const voices=typeof window.speechSynthesis.getVoices==="function"?window.speechSynthesis.getVoices():[];
+  const available=Array.from(voices||[]).filter(v=>typeof v.lang==="string"&&v.lang.toLowerCase().startsWith("en"));
+  const voice=available.find(v=>v.lang.toLowerCase()==="en-gb")||available.find(v=>v.default)||available[0];
+  if(voice)utterance.voice=voice;
+  utterance.lang=voice?voice.lang:"en-GB";
+  utterance.rate=slow?0.72:0.95;
+  utterance.pitch=1;
+  utterance.volume=1;
+  activeUtterance=utterance;
+  utterance.onstart=()=>{
+   if(activeUtterance===utterance)setAudioStatus("🔊 Listening to '"+word+"'"+(slow?" slowly":"")+". Repeat after the voice.");
+  };
+  utterance.onend=()=>{
+   if(activeUtterance===utterance){
+    setAudioStatus("You heard '"+word+"'. Listen again or continue practising.");
+    activeUtterance=null;
+   }
+  };
+  utterance.onerror=()=>{
+   if(activeUtterance===utterance){
+    setAudioStatus("The device voice did not play. Try again or ask an adult to say the word.");
+    activeUtterance=null;
+   }
+  };
+  window.speechSynthesis.speak(utterance);
+  setAudioStatus("🔊 Trying '"+word+"'"+(slow?" slowly":"")+". If no sound plays, use Safari or ask an adult.");
+ }catch{
+  activeUtterance=null;
+  setAudioStatus("The device voice is unavailable. Ask an adult to say the word.");
+ }
+}
+function audioControls(word){
+ const controls=el("div","audio-actions");
+ controls.setAttribute("role","group");
+ controls.setAttribute("aria-label","Hear English word "+word);
+ for(const [slow,label] of [[false,"🔊 Hear "+word],[true,"🐢 Slow"]]){
+  const b=el("button",slow?"slow-word":"",label);
+  b.type="button";
+  b.dataset.action=slow?"speak-slow":"speak-word";
+  b.dataset.word=word;
+  b.setAttribute("aria-label",slow?"Hear "+word+" slowly":"Hear "+word+" pronounced");
+  b.addEventListener("click",()=>speakWord(word,slow));
+  controls.append(b);
+ }
+ return controls;
+}
 function addVisual(host,word){
  const card=el("div","visual");
+ const visual=el("div","word-visual");
  const picture=el("span","picture",word.picture);
  picture.setAttribute("role","img");picture.setAttribute("aria-label",word.label);
- card.append(picture,el("span","word",word.word));
+ visual.append(picture,el("span","word",word.word));
+ card.append(visual,audioControls(word.word));
  host.append(card);
 }
 function adultDetails(host,title,script){
@@ -129,6 +190,10 @@ function choose(host,question,choices,right){
  host.append(list);
 }
 function show(){
+ if(activeUtterance&&typeof window.speechSynthesis!=="undefined"){
+  window.speechSynthesis.cancel();activeUtterance=null;
+ }
+ setAudioStatus("🔊 Tap Hear or Slow next to a word to listen to a device-voice preview. Adult pronunciation review is still needed.");
  const host=$("stepContent");host.replaceChildren();
  say("");
  $("stepHeading").textContent=step.label+" • "+family.pattern;
@@ -143,7 +208,7 @@ function show(){
   case "hear":{
    host.append(el("p",null,"Ask an adult to read both words aloud. Listen for their similar ending."));
    adultDetails(host,"👩‍🏫 Adult only: show reading script",family.adult);
-   host.append(el("p","note","This page contains no sound recording or synthetic audio. The adult—not the app—observes listening."));
+   host.append(el("p","note","This hearing stage is adult-led. The optional speaker buttons elsewhere play a device-generated voice preview, not a validated listening or pronunciation assessment."));
    host.append(completeButton("👂 We listened with an adult"));
    break;
   }
@@ -153,7 +218,7 @@ function show(){
     const row=el("div","chunks");
     row.setAttribute("aria-label",word.onset+" plus "+family.ending+" makes "+word.word);
     row.append(el("span","chunk",word.onset),el("span",null,"+"),el("span","chunk",family.ending),el("span",null,"→"),el("span","chunk result",word.word));
-    host.append(row);
+    host.append(row,audioControls(word.word));
    }
    host.append(el("p","note","Written chunks alone do not teach pronunciation. Adults should model sounds, not pronounce letter names in place of phonemes. Exact sound production requires teacher review."));
    host.append(completeButton("🧩 We tried blending together"));
