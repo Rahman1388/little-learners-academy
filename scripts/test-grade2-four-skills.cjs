@@ -69,7 +69,7 @@ const modules=box.window.LLA_G2_FOUR_SKILLS;
   if(j===0){
    await writing.locator("input").fill("wrong words");
    await writing.locator("button.primary").click();
-   assert.match(await writing.locator(".feedback").innerText(),/Try again/);
+   assert.match(await writing.locator(".feedback").first().innerText(),/Try again/);
   }
   await writing.locator("input").fill(m.write.answer);
   await writing.locator("button.primary").click();
