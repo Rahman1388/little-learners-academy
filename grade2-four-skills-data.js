@@ -51,7 +51,7 @@ window.LLA_G2_FOUR_SKILLS = Object.freeze([
   {
     id:"meals",title:"What I eat",ar:"ماذا آكل",week:"Weeks 12–13 • Module 5",
     outcome:"Name meals and food; use there is / there are to describe amounts.",
-    listen:{script:"At breakfast, I eat dates and drink milk. At lunch, I eat rice and vegetables.",question:"What food was named for breakfast?",choices:["Dates","Rice","Carrots"],answer:0},
+    listen:{script:"At breakfast, there are dates on the plate and there is milk in a cup. At lunch, there is rice and there are carrots.",question:"What food was named for breakfast?",choices:["Dates","Rice","Carrots"],answer:0},
     speak:{prompt:"Pretend you are telling a friend about breakfast.",example:"For breakfast, I eat dates.",check:"Did the learner make a clear statement about a meal?"},
     read:{passage:"At the school picnic, Amal brings two apples and a sandwich. Her friend Ali brings water and dates. They wash their hands before eating and clean the table afterward.",question:"What does Ali bring?",choices:["Water and dates","Two apples","A kite"],answer:0},
     write:{prompt:"Type the sentence using the word clues:",clues:["There","are","two","apples"],answer:"There are two apples."},
