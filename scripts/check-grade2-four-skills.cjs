@@ -35,6 +35,35 @@ for(const m of modules){
  practiceCount+=4;
 }
 assert.equal(practiceCount,20);
+const expected=[
+ {id:"welcome",weeks:"Weeks 1–2",families:[]},
+ {id:"me",weeks:"Weeks 2–4",families:["-ing","-and"]},
+ {id:"people",weeks:"Weeks 4–6",families:["-all","-ack"]},
+ {id:"food",weeks:"Weeks 10–11",families:["-ain","-ink"]},
+ {id:"meals",weeks:"Weeks 12–13",families:["-ay","-ick"]}
+];
+let extra=0;
+for(const [i,m] of modules.entries()){
+ assert.equal(m.id,expected[i].id);
+ assert(m.week.startsWith(expected[i].weeks),"Incorrect calendar weeks for "+m.id);
+ const qs=m.phonics||[];
+ assert.deepEqual(Array.from(qs.map(x=>x.family)),expected[i].families);
+ for(const q of qs){
+  assert.equal(q.choices.length,3,"Phonics must have 3 choices");
+  assert.equal(new Set(q.choices).size,3);
+  assert(Number.isInteger(q.answer)&&q.answer>=0&&q.answer<3);
+  assert(q.choices[q.answer].toLowerCase().endsWith(q.family.slice(1)),"Wrong phonics answer for "+q.family);
+  assert.equal(q.choices.filter(c=>c.toLowerCase().endsWith(q.family.slice(1))).length,1,"Ambiguous phonics choices");
+  extra++;
+ }
+}
+assert.equal(extra,8);
+assert(html.includes('id="phonicsPractice"'));
+assert(code.includes("renderPhonics(module)"));
+assert(code.includes("No pronunciation was assessed."));
+assert(!code.includes("mark(module,\"phonics\")"),"Optional phonics must not change learning progress");
+assert(modules[2].write.answer.includes("has got"));
+assert(modules[4].listen.script.includes("there is")&&modules[4].listen.script.includes("there are"));
 assert(html.includes('src="./grade2-four-skills-data.js"'));
 assert(html.includes('src="./grade2-four-skills.js"'));
 assert(html.includes('id="skillCards"'));
@@ -42,4 +71,4 @@ assert(code.includes('not a secure test'));
 assert(!/https?:\/\/[^"'\s]+\.js/.test(html),"No external JS libraries should be used");
 assert(!/getUserMedia|SpeechRecognition|sendBeacon|\bfetch\s*\(/.test(code));
 assert(code.includes("lla-g2-four-skills-v1"));
-console.log("PASS: five Grade 2 modules, 20 four-skill practices, stable outcomes, correct answers, valid written clues, no voice capture");
+console.log("PASS: Grade 2 five module outcomes, 20 guided skills + 8 optional phonics, stable progress, correct answers, no voice capture");
