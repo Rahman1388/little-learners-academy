@@ -44,6 +44,9 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:4px solid #8a15
 .choice.correct{background:#d9f6e2;border-color:#16804d}
 .choice:disabled{cursor:default}
 .primary{background:#176b9d;border-color:#176b9d;color:white;margin-top:12px}
+.journey-actions{margin-top:16px;border-top:2px solid #d4e7ed;padding-top:12px}
+.journey-actions .primary{display:block;width:100%;text-align:center;font-size:clamp(16px,3vw,19px)}
+.journey-actions .note{margin:10px 0 0}
 details{background:#fff;border:2px solid #b3d8df;border-radius:14px;margin:14px 0;padding:7px 12px}
 details summary{display:flex;align-items:center;min-height:48px;cursor:pointer;font-weight:850}
 fieldset{border:0;padding:0;margin:0}
@@ -63,6 +66,7 @@ progress{width:100%;max-width:420px;height:19px;accent-color:#1b814c}
 <div class="eyebrow">🔤 GRADE 2 • MODULE 2 • OPTIONAL ADULT-GUIDED PHONICS</div>
 <h1>Word Family Adventure <span lang="ar" dir="rtl">مغامرة عائلات الكلمات</span></h1>
 <p>See → Hear → Blend → Read → Spell → Apply → Review</p>
+<p>Complete one guided activity, then tap <strong>Continue</strong> to move to the next step.</p>
 <p lang="ar" dir="rtl">أنشطة إضافية بإشراف ولي الأمر. لا تُعد اختبارًا للنطق أو إتقان القراءة.</p>
 <div id="progressText" role="status" aria-live="polite">0 / 14 practice steps completed in this visit</div>
 <progress id="progressBar" max="14" value="0" aria-label="Optional practice steps this visit"></progress>
@@ -72,10 +76,12 @@ progress{width:100%;max-width:420px;height:19px;accent-color:#1b814c}
 <div id="familyButtons" class="family-buttons" role="group" aria-label="Word family selection"></div>
 <h2>Learning journey • رحلة التعلم</h2>
 <div id="stepButtons" class="step-buttons" role="group" aria-label="Seven practice stages"></div>
+<p id="stageCounter" class="note" aria-live="polite">Stage 1 of 7 • -ing word family</p>
 <div class="lesson" aria-labelledby="stepHeading">
 <h2 id="stepHeading" tabindex="-1">See</h2>
 <div id="stepContent"></div>
 <p id="feedback" class="feedback" role="status" aria-live="polite"></p>
+<div class="journey-actions"><button id="continueStep" class="primary" type="button" hidden>Continue →</button><p id="journeySummary" class="note" role="status" aria-live="polite">Complete this activity with an adult to continue, or select a stage above.</p></div>
 </div>
 </section>
 <aside class="panel">
