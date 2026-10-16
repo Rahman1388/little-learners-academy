@@ -42,7 +42,7 @@ const modules=box.window.LLA_G2_FOUR_SKILLS;
   }
   await writing.locator("input").fill(m.write.answer);
   await writing.locator("button.primary").click();
-  assert.match(await writing.locator(".feedback").innerText(),/matches the model/);
+  assert.match(await writing.locator(".feedback").innerText(),/match the guided model sentence/);
   assert.match(await page.locator("#moduleCount").innerText(),/4 \/ 4/);
   await overflow();
  }
