@@ -197,6 +197,7 @@ jobs:
           node scripts/test-skip-count.cjs
           node scripts/test-array-garden.cjs
           node scripts/test-grade2-english.cjs
+          node scripts/test-grade2-four-skills.cjs
           node scripts/test-grade2-mixed.cjs
           node scripts/test-grade3-mixed.cjs
           node scripts/test-parent-report.cjs
