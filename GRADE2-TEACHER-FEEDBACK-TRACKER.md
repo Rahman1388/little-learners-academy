@@ -25,12 +25,16 @@ The development reference is the user-supplied Grade 2 Semester 1 overview (2026
 | P0 | Obtain Arabic-speaking primary educator review of each draft Arabic module title/instruction | Record exact activity IDs and approved wording | **HOLD — Arabic specialist review pending** |
 | P1 | Revise writing feedback so the app does **not** imply automatic checks of capitalization or punctuation | UI text plus updated mobile regression assertion | **DONE on development branch** |
 | P1 | Verify each activity's grade suitability and pedagogy, including reading length and spoken comprehension feasibility | Grade 2 teacher samples every module and files Accept/Revise/Hold | **PENDING** |
-| P1 | Test with mobile accessibility checks (keyboard, focus, screen reader labels, touch targets, no horizontal overflow) | 320/390/768px regression plus manual VoiceOver on iPhone | **AUTOMATED SCRIPT PRESENT; manual check pending** |
+| P1 | Test mobile accessibility (keyboard, focus, screen reader labels, touch targets, no horizontal overflow) | Selected-module heading is keyboard-focusable after module selection; 48px disclosure targets; 320/390/768px automated regression assertions; real iPhone Safari/VoiceOver still needed | **AUTOMATED CHECKS PASSED on 16 Oct 2026 commit `171ba65a`; manual review PENDING** |
 | P1 | Confirm adult-read listening exercises work pedagogically; do not label as independently scored listening or teacher-reviewed speech | Adult observer feedback and clear non-assessment copy | **DRAFT — review pending** |
 | P2 | Add optional, unscored phonics practice without changing saved progress | Eight original word-family checks mapped to overview p.17 plus five digraph and two silent-e checks based on p.2; specialist review still pending | **15 ITEMS IMPLEMENTED ON BRANCH; teacher validation PENDING** |
 | P2 | Strengthen Grade 2 reading comprehension with evidence-based follow-ups | Five original extra questions with adult evidence notes; never counted as mastery | **IMPLEMENTED ON BRANCH; teacher validation PENDING** |
 | P2 | Add independent sentence writing with privacy and honest evaluation limits | Five open-ended writing prompts with starters and adult checklist; text never saved or automatically graded | **IMPLEMENTED ON BRANCH; teacher validation PENDING** |
 | P2 | Expand breadth only after item-level review, not just by increasing question count | Approved learning objectives and reviewed questions | **NOT STARTED** |
+
+## Technical QA update — 16 October 2026
+
+On the isolated review branch, module changes now focus the newly selected lesson heading for keyboard and screen-reader users. Listening and bonus-reading disclosure controls have a minimum 48px tap height. The browser regression checks both behaviours; the Grade 2 four-skills and child-app security GitHub checks passed on commit `171ba65a`. This does **not** prove real iPhone usability, native Arabic quality, classroom appropriateness, specialist sign-off or readiness to merge. The pilot remains a **draft PR (#8)** and is not released into `main`.
 
 ## Safeguards
 
