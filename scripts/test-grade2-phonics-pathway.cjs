@@ -20,6 +20,8 @@ assert(html.includes('href="./teacher-feedback.html"'),"Teacher feedback route m
 assert(html.includes("details summary:focus-visible"),"Clue / adult detail keyboard focus style missing");
 assert(js.includes("Need a clue?")&&js.includes("My learning check-in:"),"Guided hints and reflection missing");
 assert(js.includes("The buttons below let you hear each full word again"),"Hear stage must support replay");
+assert(js.includes('addEventListener("visibilitychange"')&&js.includes("window.speechSynthesis.cancel()"),"Phone-interruption audio cleanup missing");
+assert(html.includes("Interrupted by a call?")&&html.includes("refreshing or reopening"),"Phone-interruption guidance missing");
 assert(html.includes("min-height:48px"),"Touchable adult-script summary missing");
 assert(html.includes('id="audioStatus"'),"Audio playback accessibility feedback missing");
 assert(js.includes("SpeechSynthesisUtterance")&&js.includes("speakWord"),"Device speech preview missing");
@@ -33,11 +35,12 @@ assert(html.includes('id="stageCounter"'),"Stage progress label missing");
  // Stub iPhone-like English speech locally. This tests taps, not real human audio quality.
  await page.addInitScript(()=>{
   window.__spokenWords=[];
+  window.__speechCancelCount=0;
   window.SpeechSynthesisUtterance=class {constructor(text){this.text=text;}};
   Object.defineProperty(window,"speechSynthesis",{
    configurable:true,
    value:{
-    cancel(){},
+    cancel(){window.__speechCancelCount++;},
     getVoices(){return [{lang:"en-GB",default:true,name:"Test English Voice"}];},
     speak(utterance){
      window.__spokenWords.push({word:utterance.text,lang:utterance.lang,rate:utterance.rate});
@@ -58,6 +61,23 @@ assert(html.includes('id="stageCounter"'),"Stage progress label missing");
   assert(size.scroll<=size.width+3,"Horizontal overflow: "+JSON.stringify(size));
  };
  await noOverflow();
+ // Simulate iOS app switching / an incoming phone call: stop audio, never
+ // discard on-page state, and require a fresh deliberate tap to replay.
+ await page.locator('#stepContent [data-action="speak-word"]').first().click();
+ const beforeInterruption=await page.evaluate(()=>window.__speechCancelCount);
+ await page.evaluate(()=>{
+  Object.defineProperty(document,"hidden",{configurable:true,value:true});
+  document.dispatchEvent(new Event("visibilitychange"));
+ });
+ assert.equal(await page.evaluate(()=>window.__speechCancelCount),beforeInterruption+1,"Backgrounding must cancel active synthesized speech");
+ assert.match(await page.locator("#audioStatus").innerText(),/Audio paused when the lesson moved to the background/);
+ assert.match(await page.locator("#progressText").innerText(),/0 \/ 14/);
+ assert.equal(await page.locator("#stepHeading").innerText(),"👀 See • -ing","Interruption must preserve current stage");
+ await page.evaluate(()=>Object.defineProperty(document,"hidden",{configurable:true,value:false}));
+ const beforeReplay=await page.evaluate(()=>window.__spokenWords.length);
+ await page.locator('#stepContent [data-action="speak-word"]').first().click();
+ assert.equal(await page.evaluate(()=>window.__spokenWords.length),beforeReplay+1,"Replay should be user-initiated after returning");
+ assert(await page.locator("#continueStep").isHidden(),"Interruption or playback must not complete practice");
  for(let family=0;family<2;family++){
   await page.locator("#familyButtons button").nth(family).click();
   assert(await page.locator("#stepHeading").evaluate(x=>document.activeElement===x),"Family selection must focus heading");
