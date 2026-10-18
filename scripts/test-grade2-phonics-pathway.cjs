@@ -138,7 +138,7 @@ assert(html.includes('id="stageCounter"'),"Stage progress label missing");
  assert.match(written,/ring \\(slow\\): needs improvement/);
  assert.match(written,/sing \\(normal\\): no sound/);
  assert(!written.includes("hand (normal)"),"Untested items should be omitted");
- assert.equal(await page.locator("#progressText").innerText().then(t=>t.match(/^14 \\/ 14/)!==null),true);
+ assert.match(await page.locator("#progressText").innerText(),/14 \/ 14/);
  assert.equal(await page.evaluate(()=>Object.keys(localStorage).length),0,"Adult QA must not persist any child observations");
  await page.reload({waitUntil:"domcontentloaded"});
  assert.equal(await page.locator("#review-ring-normal").inputValue(),"untested","Adult report must reset after refresh");
