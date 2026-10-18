@@ -138,6 +138,16 @@ function speakWord(word,slow){
   setAudioStatus("The device voice is unavailable. Ask an adult to say the word.");
  }
 }
+// Phone calls and app switching can interrupt browser speech. Do not attempt
+// to restart sound without a new tap; preserve all in-page lesson state.
+document.addEventListener("visibilitychange",()=>{
+ if(!document.hidden||!activeUtterance)return;
+ try{
+  if(typeof window.speechSynthesis!=="undefined")window.speechSynthesis.cancel();
+ }catch{}
+ activeUtterance=null;
+ setAudioStatus("Audio paused when the lesson moved to the background. When you return, tap Hear or Slow to replay. Your practice stays here while this page remains open.");
+});
 function audioControls(word){
  const controls=el("div","audio-actions");
  controls.setAttribute("role","group");
