@@ -18,6 +18,9 @@ assert(html.includes('id="stepHeading" tabindex="-1"'),"Focusable lesson heading
 assert(html.includes("min-height:48px"),"Touchable adult-script summary missing");
 assert(html.includes('id="familyProgress"'),"Missing seven-stage family progress");
 assert(html.includes(".sr-only")&&html.includes(".word-rime"),"Accessible highlighted word tiles missing");
+assert(html.includes('id="largeLetters"')&&html.includes('class="skip-link"'),"Large-letter and keyboard-skip aids missing");
+assert(js.includes('arabic.lang="ar"')&&js.includes('arabic.dir="rtl"'),"Arabic stage text must have a language tag");
+assert(!/sessionStorage\s*\.|localStorage\s*\.|document\.cookie/.test(js),"Optional phonics must not store learner display settings");
 assert(js.includes('dataset.action="next-step"'),"Next-step navigation missing");
 (async()=>{
  const browser=await chromium.launch({headless:true,args:["--no-sandbox"]});
@@ -28,8 +31,22 @@ assert(js.includes('dataset.action="next-step"'),"Next-step navigation missing")
  assert.equal(await page.locator('a[href="./grade2-phonics-pathway.html"]').count(),1,"Pilot must link phonics practice");
  await page.locator('a[href="./grade2-phonics-pathway.html"]').click();
  assert.match(page.url(),/grade2-phonics-pathway\.html/);
+ assert.equal(await page.locator('.skip-link').count(),1);
+ await page.keyboard.press("Tab");
+ assert(await page.locator(".skip-link").evaluate(el=>document.activeElement===el),"First keyboard tab should focus skip link");
+ const toggle=page.locator("#largeLetters");
+ assert.equal(await toggle.getAttribute("aria-pressed"),"false");
+ await toggle.click();
+ assert.equal(await toggle.getAttribute("aria-pressed"),"true");
+ assert.equal(await page.locator("html").getAttribute("data-large-letters"),"true");
+ assert.equal(await page.locator(".word-rime").count(),2,"Initial See stage should show two highlighted words");
+ await toggle.click();
+ assert.equal(await toggle.getAttribute("aria-pressed"),"false");
+ assert.equal(await page.locator("html").getAttribute("data-large-letters"),"false");
  assert.equal(await page.locator("#familyButtons button").count(),8);
  assert.equal(await page.locator("#stepButtons button").count(),7);
+ assert.equal(await page.locator("#stepButtons .stage-ar[lang='ar'][dir='rtl']").count(),7);
+ assert.equal(await page.locator("#stepButtons .stage-status").count(),7);
  assert.match(await page.locator("#familyButtons").innerText(),/M4 -ain/);
  assert.match(await page.locator("#familyButtons").innerText(),/M4 -ink/);
  assert.match(await page.locator("#familyButtons").innerText(),/M5 -ay/);
@@ -38,6 +55,16 @@ assert(js.includes('dataset.action="next-step"'),"Next-step navigation missing")
   const size=await page.evaluate(()=>({scroll:document.documentElement.scrollWidth,width:innerWidth}));
   assert(size.scroll<=size.width+3,"Horizontal overflow: "+JSON.stringify(size));
  };
+ await noOverflow();
+ // Larger letters must not push the page sideways on a narrow phone.
+ await page.locator("#largeLetters").click();
+ const activeFont=await page.locator(".visual .word").first().evaluate(e=>parseFloat(getComputedStyle(e).fontSize));
+ assert(activeFont>=36,"Enlarged word font should be at least 36px");
+ await noOverflow();
+ await page.setViewportSize({width:280,height:720});
+ await noOverflow();
+ await page.setViewportSize({width:320,height:720});
+ await page.locator("#largeLetters").click();
  await noOverflow();
  const readAnswers=[1,0,0,1,1,0,1,0];
  const spellAnswers=["sing","sand","wall","snack","rain","sink","play","kick"];
@@ -108,6 +135,7 @@ assert(js.includes('dataset.action="next-step"'),"Next-step navigation missing")
  assert.equal(touched.length,0,"Optional phonics path must not use localStorage");
  await page.reload({waitUntil:"domcontentloaded"});
  assert.match(await page.locator("#progressText").innerText(),/0 \/ 56/);
+ assert.equal(await page.locator("#largeLetters").getAttribute("aria-pressed"),"false","No saved display preference");
  assert.match(await page.locator("#familyProgress").innerText(),/0 \/ 7/);
  await page.setViewportSize({width:390,height:844});await noOverflow();
  await page.setViewportSize({width:768,height:1024});await noOverflow();
