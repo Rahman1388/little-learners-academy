@@ -68,6 +68,13 @@ A new optional **adult-only sound review panel** was merged into the Grade 2 Wor
 - The draft also stops active voice synthesis when the phone app enters the background (for example, on a call); it does not resume automatically. The 14 practice marks are temporary only while Safari keeps the page loaded; reload resets them, as disclosed.
 - **Important:** this checkpoint records a plan and linked development files, not a released feature. Check PR #13 workflow results, real iPhone/VoiceOver and educator feedback before any public merge. Continue without starting over or exposing private school PDFs.
 
+## 18 October 2026 — Repository privacy and backup safeguards
+- GitHub repository **is public**; source control is not a vault and not a verified independent backup. No child info, school PDFs, confidential teacher reviews, passwords, access tokens or backup archives belong there.
+- [PROJECT-SECURITY-AND-BACKUPS.md](https://github.com/Rahman1388/little-learners-academy/blob/feature/grade2-lesson-scaffolding-20261018/PROJECT-SECURITY-AND-BACKUPS.md) describes account security, GitHub branch rules, monthly independent backups and recovery. Backup is **recommended, not created**; GitHub `main` branch rulesets were checked and **none were configured**. The connector could not read protected-branch settings (403), so the owner must verify/change settings in GitHub.
+- [Draft PR #13](https://github.com/Rahman1388/little-learners-academy/pull/13) now contains `.gitignore` protections, `scripts/check-public-file-safety.cjs`, and Child App Security Gate integration, blocking common confidential document/archive/credential filenames in new tracked code. Filename rules do not detect hidden private content in legitimate files, or leaks in Git history.
+- **Latest draft commit:** `2d4770494`. All three automation workflows passed on 18 October 2026: `Validate app`, `Grade 2 four-skills pilot`, and `Child App Security Gate` (including the new filename safety check). Still **draft, not merged**, due to outstanding specialist/real-device approval.
+- Recovery priority: user should independently back up the repository on an encrypted second device/cloud (a ZIP of code omits full Git history); consider a Git mirror from a laptop for version history. GitHub Pages and the public main branch remain unchanged by this draft.
+
 ## Next action in the next chat
 
 1. Continue **[the Quality-First Foundation Plan](./FOUNDATION-QUALITY-ROADMAP.md)**, not bulk question production. Validate any new module against the machine-readable learning objectives and qualified teacher review.
