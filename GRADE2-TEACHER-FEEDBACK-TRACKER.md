@@ -63,3 +63,11 @@ Record feedback with page/question ID, evidence, correction owner and date. Afte
 
 **Teacher questions before release:** Are `ring/sing` and `hand/sand` developmentally suitable? Does the onset-rime demonstration reflect sound blending adequately? Are the reading and spelling prompts fair? Can a child use the lesson with adult support on a phone? Are all Arabic instructions appropriate? Do not claim mastery from correct written selections. The branch workflow includes a new browser regression, but a passing test is not an educator approval.
 
+
+
+## 18 October 2026 — phonics pathway expanded for Module 3
+
+- **Implemented on review branch:** The independent, adult-led `grade2-phonics-pathway.html` now covers **-ing/-and** (Module 2) and **-all/-ack** (Module 3) with **28 optional page-session steps** (seven per family). No mastery score or learner data collection is introduced. The existing core 20-progress scheme remains unchanged.
+- **Technical follow-up:** Updated `scripts/test-grade2-phonics-pathway.cjs` for the additional families, spellings, navigation and no-localStorage expectations. Report a pass only after the latest GitHub Actions run completes.
+- **Teacher re-review:** Are the examples `ball/wall` and `black/snack` suitable for Grade 2, including the `bl` and `sn` onset blends? Are the letter chunks pedagogically correct and family scripts accessible on small phones? Do the English and Arabic instructions need revisions? **Not yet signed off.**
+- **Next work:** Prioritize mobile iPhone/VoiceOver inspection and subject-specialist approval before further broadening the phonics pathway. Do not represent this as Qatar Ministry endorsement or a final production release.
