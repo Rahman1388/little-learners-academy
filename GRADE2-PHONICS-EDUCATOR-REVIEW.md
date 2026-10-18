@@ -73,3 +73,11 @@ Reviewers should **not send children's names, photos, voice recordings, or other
 6. Confirm there is no automatic voice playback, microphone prompt, grade/mastery score, account form, child text collection, or saved phonics attempt.
 
 **Status:** Only automated Chromium checks are available so far; do **not** mark Safari, VoiceOver, Arabic review or pupil usability as passed without independent evidence. Record each result as **Accept / Revise / Hold** with the module, family, step and proposed fix.
+
+## Module-linked reviewer navigation — 18 October 2026
+
+The draft review version now supports **direct module and family routes on a functioning branch/local preview**, making it easier to inspect one relevant phonics family at a time. From the Grade 2 core lesson page, select the module (2–5), find the two relevant family links in the phonics section, and use the **Back to Grade 2 Module** link after exploring the guided lesson.
+
+Example test routes (relative to a running reviewer-controlled site): `grade2-four-skills.html?module=food` → `grade2-phonics-pathway.html?family=ain` or `?family=ink` → back to `?module=food`. Other module IDs are `me` (2), `people` (3) and `meals` (5). These are **not yet public live preview links**; a GitHub source-file page cannot run this app.
+
+**Technical check passed:** [Actions #39148839350](https://github.com/Rahman1388/little-learners-academy/actions/runs/39148839350). Ask the teacher to confirm that family links and return navigation are intuitive on their actual device. Do not record any child identifiers; real-iPhone Safari/VoiceOver and bilingual specialist review remain **pending**.
