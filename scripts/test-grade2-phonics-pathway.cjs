@@ -8,7 +8,7 @@ const {chromium}=require("playwright");
 const html=fs.readFileSync("grade2-phonics-pathway.html","utf8");
 const js=fs.readFileSync("grade2-phonics-pathway.js","utf8");
 new (require("node:vm").Script)(js);
-for(const required of ["-ing","-and","-all","-ack","28 optional guided steps","grade2-phonics-pathway.js"]){
+for(const required of ["-ing","-and","-all","-ack","0 / 28 practice steps completed in this visit","grade2-phonics-pathway.js"]){
  assert(html.includes(required)||js.includes(required),"Missing content "+required);
 }
 for(const unsafe of [/\bfetch\s*\(/, /sendBeacon/, /getUserMedia/, /SpeechRecognition/, /localStorage\s*\.\s*setItem/, /innerHTML\s*=/]){
