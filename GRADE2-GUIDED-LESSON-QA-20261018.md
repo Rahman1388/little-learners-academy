@@ -20,6 +20,14 @@
 - Browser regression now requires both word buttons on See, **Hear**, Blend and Review, correct word / English TTS choice / slower rate and **no premature Continue** after sound playback.
 - These edits remain **unpublished in draft PR #13** until the required specialist and iPhone checks are satisfied.
 
+## Phone interruption handling — mobile continuity check
+
+- On iPhone and other browsers, an incoming call may move the lesson to the background. The draft now cancels an active synthesized word via the standard `visibilitychange` event; it never automatically speaks while the app is hidden or when returning.
+- The learner sees a gentle explanation about tapping **Hear** or **Slow** again. The current stage and 14 in-memory practice marks stay intact **only while the browser keeps the page loaded**. If Safari reloads or closes the page under memory pressure, visit-only progress still resets by design.
+- A Playwright simulation tests: play a word → background the page → audio cancel → current stage and progress unchanged → foreground → sound only on a new tap. This is not a substitute for real iPhone/Safari calls or actual audible speaker testing.
+- No persistent storage, voice uploads, microphone access, accounts or child data were added.
+- **Required manual acceptance:** on a real iPhone, start a word, switch apps or receive a call, come back, verify playback stopped, tap Hear and Slow again, and check stage progress and adult-feedback selections. Explicitly test Safari reload behavior and communicate it honestly.
+
 ## Automatic acceptance gates
 1. `node --check grade2-phonics-pathway.js`
 2. `node scripts/check-grade2-four-skills.cjs`
