@@ -280,6 +280,7 @@ function render(focus=false){
  const back=$("returnToModule");
  back.href="./grade2-four-skills.html?module="+moduleIds[family.module];
  back.textContent="← Back to Grade 2 Module "+family.module+" activities";
+ $("reviewLink").href="./grade2-educator-review.html?family="+family.id;
  for(const b of $("familyButtons").querySelectorAll("button"))
   b.setAttribute("aria-pressed",String(b.dataset.family===family.id));
  for(const b of $("stepButtons").querySelectorAll("button"))
