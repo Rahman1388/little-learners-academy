@@ -37,6 +37,20 @@ Suggested first human check: on an iPhone in Safari, open Word Family Adventure,
 
 - A parent tester reported that **ring** in the updated iPhone phonics activity sounded **clear** at both **normal** and **slow** speeds. This is a reported manual observation, not an independently recorded sound measurement or qualified English educator approval. The same parent tester subsequently reported that **sing** sounds **clear** at both **normal** and **slow** speeds on their iPhone. The same tester has now also reported that **hand** sounds **clear** at both **normal** and **slow** speeds on an iPhone. The remaining word **sand** has not yet been reported. No tester identity or child details are kept in this public note.
 
+## 18 October 2026 — child-friendly voice trial proposal (NOT a voice replacement)
+
+The owner proposed replacing the current adult-sounding English word audio with a **clearer, more child-friendly / youthful voice**, and requested national/international educational guidance. **Decision: evaluate alongside the existing voice; do not replace it yet.**
+
+- Current baseline: parent reported **ring, sing, hand** audible and clear at normal and slow speed on an iPhone; **sand** pending. These are parent observations, not teacher approval.
+- Qatar MOEHE foundation-stage policy prioritizes high-quality, developmentally appropriate Grade 1–2 learning and qualified teachers; the public policy consulted **does not prescribe child-voice narration**. https://www.edu.gov.qa/en/Content/EarlyLearning
+- Education Endowment Foundation highlights **explicit, systematic grapheme–phoneme modelling** rather than narrator age. https://educationendowmentfoundation.org.uk/education-evidence/teaching-learning-toolkit/phonics/
+- Reading Rockets emphasizes correct sound articulation without adding a spurious /uh/ to consonants, especially for blending. https://www.readingrockets.org/reading-101/reading-101-learning-modules/course-modules/phonological-and-phonemic-awareness/practice
+- A 2009 comparative study of two older synthesized speech technologies found child-style synthetic voices **less intelligible** than adult-style voices in its test conditions; results do not establish that modern youthful voices cannot be clear. https://pubmed.ncbi.nlm.nih.gov/19280420/
+
+**Proposal:** Build an **optional A/B preview** of the four words, with A = existing verified iPhone device voice (kept intact), B = a licensed, youthful, warm but phonemically precise English voice. Where iPhone's device TTS cannot guarantee the same voice on all phones, evaluate legally licensed, locally hosted pre-generated word clips only after cost/licensing and voice-quality review. Avoid recording real children's voices without appropriate permissions, and never use child voice cloning. Record normal and genuinely modelled slow audio separately if slowing harms consonants or vowels; do not simply pitch-shift a voice.
+
+**Acceptance gates:** an English phonics educator checks the -ing/-and onset/rime modelling, accent consistency and word clarity; a native Arabic-language teacher later reviews all Arabic (separate); adults test iPhone and tablet sound, replay, accessibility and offline use. Compare actual intelligibility first, child-friendliness second. Do not score child speech or claim educational endorsement. No cost commitment, recordings or public voice change are authorized by this proposal.
+
 ## Release policy
 
 Keep existing public activities and progress intact. Do not claim that all English or Arabic is reviewed, that children mastered a skill, that Qatar MOEHE endorsed the app, or that a device's synthesized phonemes are necessarily accurate. Do not automatically replace existing user-reviewed MP3 recordings based on the new phone-voice preview.
