@@ -35,7 +35,7 @@ Suggested first human check: on an iPhone in Safari, open Word Family Adventure,
 
 ## 18 October 2026 — first adult device-audio observation
 
-- A parent tester reported that **ring** in the updated iPhone phonics activity sounded **clear** at both **normal** and **slow** speeds. This is a reported manual observation, not an independently recorded sound measurement or qualified English educator approval. The tester has not yet reported findings for sing, hand, or sand. No tester identity or child details are kept in this public note.
+- A parent tester reported that **ring** in the updated iPhone phonics activity sounded **clear** at both **normal** and **slow** speeds. This is a reported manual observation, not an independently recorded sound measurement or qualified English educator approval. The same parent tester subsequently reported that **sing** sounds **clear** at both **normal** and **slow** speeds on their iPhone. Findings for **hand** and **sand** are still pending. No tester identity or child details are kept in this public note.
 
 ## Release policy
 
