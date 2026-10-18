@@ -16,6 +16,16 @@ window.LLA_SCHOOL_UPDATES=Object.freeze({
       audience:"Parents, teachers and students"
     },
     {
+      id:"exam-timetables",category:"exams",kind:"Official exam timetable directory",
+      title:"Qatar Ministry exam timetables — 2026–2027",
+      arabic:"جداول اختبارات وزارة التربية والتعليم — العام الدراسي ٢٠٢٦–٢٠٢٧",
+      summary:"Open the Ministry's Tests Timetable page, which lists 2026–2027 exam timetable notices. Check the correct grade, term and school, and any newer school circular. This is an official source link, not a live exam announcement.",
+      publisher:"Qatar Ministry of Education and Higher Education",
+      published:null,
+      url:"https://www.edu.gov.qa/en/Content/TestsTimetable",
+      audience:"Parents, teachers and students"
+    },
+    {
       id:"ministry-news",category:"qatar",kind:"Official newsroom",
       title:"Ministry of Education — official news",
       arabic:"أخبار وزارة التربية والتعليم والتعليم العالي",
