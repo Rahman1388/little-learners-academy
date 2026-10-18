@@ -1,0 +1,459 @@
+{
+  "schemaVersion": 1,
+  "project": "Little Learners Academy",
+  "purpose": "Traceability and quality control for supplementary pilot lessons; this file does not certify curriculum coverage.",
+  "reference": {
+    "title": "Qatar MOEHE Grade 2 English Semester 1 Overview",
+    "edition": "2026–2027",
+    "referenceUse": "Module themes and phonics pattern comparison only; topic mapping is not Ministry or specialist approval",
+    "originalSource": "User-supplied reference PDF, reviewed privately; not redistributed"
+  },
+  "scope": {
+    "grade": 2,
+    "subject": "English",
+    "semester": 1,
+    "pilot": true,
+    "officiallyApproved": false,
+    "approvedSkillCount": 0
+  },
+  "reviewPolicy": {
+    "allowStatus": [
+      "pending",
+      "revise",
+      "approved"
+    ],
+    "requiredApprovalEvidence": [
+      "reviewerRole",
+      "reviewDate",
+      "evidenceLink"
+    ],
+    "claimOnlyAfterIndependentReview": true,
+    "arabicLanguageReview": "pending",
+    "pronunciationEducatorReview": "pending",
+    "realDeviceAccessibilityReview": "pending"
+  },
+  "privacy": {
+    "accounts": false,
+    "childVoiceRecording": false,
+    "childNames": false,
+    "ads": false,
+    "storedIndependentWriting": false,
+    "phonicsCompletion": "in-page only",
+    "fourSkillsCompletion": "20 device-local boolean practice flags; not mastery"
+  },
+  "modules": [
+    {
+      "id": "welcome",
+      "title": "Welcome back!",
+      "week": "Weeks 1–2 • orientation and Module 1",
+      "outcome": "Use greetings, classroom words and short sentences.",
+      "sourcePages": "3–5",
+      "families": [],
+      "patterns": [
+        "sh",
+        "th"
+      ],
+      "grade": 2,
+      "subject": "English",
+      "sourceReference": "2026–2027 Semester 1 Overview, PDF pages 3–5",
+      "skills": [
+        {
+          "id": "g2-welcome-listen",
+          "type": "listen",
+          "practiceEvidence": "adult-read prompt with written choice",
+          "limitations": "adult guidance is needed; not an independent listening test",
+          "review": {
+            "status": "pending",
+            "reviewerRole": null,
+            "reviewDate": null,
+            "evidenceLink": null
+          }
+        },
+        {
+          "id": "g2-welcome-speak",
+          "type": "speak",
+          "practiceEvidence": "adult-observed fictional role play",
+          "limitations": "self-reported participation; the app does not record or score speech",
+          "review": {
+            "status": "pending",
+            "reviewerRole": null,
+            "reviewDate": null,
+            "evidenceLink": null
+          }
+        },
+        {
+          "id": "g2-welcome-read",
+          "type": "read",
+          "practiceEvidence": "original short passage with written comprehension choices",
+          "limitations": "not a reading-fluency diagnosis",
+          "review": {
+            "status": "pending",
+            "reviewerRole": null,
+            "reviewDate": null,
+            "evidenceLink": null
+          }
+        },
+        {
+          "id": "g2-welcome-write",
+          "type": "write",
+          "practiceEvidence": "guided written sentence plus optional unsaved original writing",
+          "limitations": "model-word matching only; not an automatic punctuation or handwriting assessment",
+          "review": {
+            "status": "pending",
+            "reviewerRole": null,
+            "reviewDate": null,
+            "evidenceLink": null
+          }
+        }
+      ],
+      "review": {
+        "status": "pending",
+        "reviewerRole": null,
+        "reviewDate": null,
+        "evidenceLink": null
+      }
+    },
+    {
+      "id": "me",
+      "title": "That's me!",
+      "week": "Weeks 2–4 • Module 2",
+      "outcome": "Name occupations and actions; describe ability using can or cannot.",
+      "sourcePages": "3, 5–7",
+      "families": [
+        "-ing",
+        "-and"
+      ],
+      "patterns": [
+        "ch"
+      ],
+      "grade": 2,
+      "subject": "English",
+      "sourceReference": "2026–2027 Semester 1 Overview, PDF pages 3, 5–7",
+      "skills": [
+        {
+          "id": "g2-me-listen",
+          "type": "listen",
+          "practiceEvidence": "adult-read prompt with written choice",
+          "limitations": "adult guidance is needed; not an independent listening test",
+          "review": {
+            "status": "pending",
+            "reviewerRole": null,
+            "reviewDate": null,
+            "evidenceLink": null
+          }
+        },
+        {
+          "id": "g2-me-speak",
+          "type": "speak",
+          "practiceEvidence": "adult-observed fictional role play",
+          "limitations": "self-reported participation; the app does not record or score speech",
+          "review": {
+            "status": "pending",
+            "reviewerRole": null,
+            "reviewDate": null,
+            "evidenceLink": null
+          }
+        },
+        {
+          "id": "g2-me-read",
+          "type": "read",
+          "practiceEvidence": "original short passage with written comprehension choices",
+          "limitations": "not a reading-fluency diagnosis",
+          "review": {
+            "status": "pending",
+            "reviewerRole": null,
+            "reviewDate": null,
+            "evidenceLink": null
+          }
+        },
+        {
+          "id": "g2-me-write",
+          "type": "write",
+          "practiceEvidence": "guided written sentence plus optional unsaved original writing",
+          "limitations": "model-word matching only; not an automatic punctuation or handwriting assessment",
+          "review": {
+            "status": "pending",
+            "reviewerRole": null,
+            "reviewDate": null,
+            "evidenceLink": null
+          }
+        }
+      ],
+      "review": {
+        "status": "pending",
+        "reviewerRole": null,
+        "reviewDate": null,
+        "evidenceLink": null
+      }
+    },
+    {
+      "id": "people",
+      "title": "About people",
+      "week": "Weeks 4–6 • Module 3",
+      "outcome": "Describe appearance, toys and possessions using have got / has got.",
+      "sourcePages": "3, 7–9",
+      "families": [
+        "-all",
+        "-ack"
+      ],
+      "patterns": [
+        "wh"
+      ],
+      "grade": 2,
+      "subject": "English",
+      "sourceReference": "2026–2027 Semester 1 Overview, PDF pages 3, 7–9",
+      "skills": [
+        {
+          "id": "g2-people-listen",
+          "type": "listen",
+          "practiceEvidence": "adult-read prompt with written choice",
+          "limitations": "adult guidance is needed; not an independent listening test",
+          "review": {
+            "status": "pending",
+            "reviewerRole": null,
+            "reviewDate": null,
+            "evidenceLink": null
+          }
+        },
+        {
+          "id": "g2-people-speak",
+          "type": "speak",
+          "practiceEvidence": "adult-observed fictional role play",
+          "limitations": "self-reported participation; the app does not record or score speech",
+          "review": {
+            "status": "pending",
+            "reviewerRole": null,
+            "reviewDate": null,
+            "evidenceLink": null
+          }
+        },
+        {
+          "id": "g2-people-read",
+          "type": "read",
+          "practiceEvidence": "original short passage with written comprehension choices",
+          "limitations": "not a reading-fluency diagnosis",
+          "review": {
+            "status": "pending",
+            "reviewerRole": null,
+            "reviewDate": null,
+            "evidenceLink": null
+          }
+        },
+        {
+          "id": "g2-people-write",
+          "type": "write",
+          "practiceEvidence": "guided written sentence plus optional unsaved original writing",
+          "limitations": "model-word matching only; not an automatic punctuation or handwriting assessment",
+          "review": {
+            "status": "pending",
+            "reviewerRole": null,
+            "reviewDate": null,
+            "evidenceLink": null
+          }
+        }
+      ],
+      "review": {
+        "status": "pending",
+        "reviewerRole": null,
+        "reviewDate": null,
+        "evidenceLink": null
+      }
+    },
+    {
+      "id": "food",
+      "title": "Food and drink",
+      "week": "Weeks 10–11 • Module 4",
+      "outcome": "Name food and drinks, express likes or dislikes, and practise polite requests.",
+      "sourcePages": "3, 11–12",
+      "families": [
+        "-ain",
+        "-ink"
+      ],
+      "patterns": [
+        "ph",
+        "silent-e"
+      ],
+      "grade": 2,
+      "subject": "English",
+      "sourceReference": "2026–2027 Semester 1 Overview, PDF pages 3, 11–12",
+      "skills": [
+        {
+          "id": "g2-food-listen",
+          "type": "listen",
+          "practiceEvidence": "adult-read prompt with written choice",
+          "limitations": "adult guidance is needed; not an independent listening test",
+          "review": {
+            "status": "pending",
+            "reviewerRole": null,
+            "reviewDate": null,
+            "evidenceLink": null
+          }
+        },
+        {
+          "id": "g2-food-speak",
+          "type": "speak",
+          "practiceEvidence": "adult-observed fictional role play",
+          "limitations": "self-reported participation; the app does not record or score speech",
+          "review": {
+            "status": "pending",
+            "reviewerRole": null,
+            "reviewDate": null,
+            "evidenceLink": null
+          }
+        },
+        {
+          "id": "g2-food-read",
+          "type": "read",
+          "practiceEvidence": "original short passage with written comprehension choices",
+          "limitations": "not a reading-fluency diagnosis",
+          "review": {
+            "status": "pending",
+            "reviewerRole": null,
+            "reviewDate": null,
+            "evidenceLink": null
+          }
+        },
+        {
+          "id": "g2-food-write",
+          "type": "write",
+          "practiceEvidence": "guided written sentence plus optional unsaved original writing",
+          "limitations": "model-word matching only; not an automatic punctuation or handwriting assessment",
+          "review": {
+            "status": "pending",
+            "reviewerRole": null,
+            "reviewDate": null,
+            "evidenceLink": null
+          }
+        }
+      ],
+      "review": {
+        "status": "pending",
+        "reviewerRole": null,
+        "reviewDate": null,
+        "evidenceLink": null
+      }
+    },
+    {
+      "id": "meals",
+      "title": "What I eat",
+      "week": "Weeks 12–13 • Module 5",
+      "outcome": "Name meals and food; use there is / there are to describe amounts.",
+      "sourcePages": "3, 13–14",
+      "families": [
+        "-ay",
+        "-ick"
+      ],
+      "patterns": [
+        "silent-e"
+      ],
+      "grade": 2,
+      "subject": "English",
+      "sourceReference": "2026–2027 Semester 1 Overview, PDF pages 3, 13–14",
+      "skills": [
+        {
+          "id": "g2-meals-listen",
+          "type": "listen",
+          "practiceEvidence": "adult-read prompt with written choice",
+          "limitations": "adult guidance is needed; not an independent listening test",
+          "review": {
+            "status": "pending",
+            "reviewerRole": null,
+            "reviewDate": null,
+            "evidenceLink": null
+          }
+        },
+        {
+          "id": "g2-meals-speak",
+          "type": "speak",
+          "practiceEvidence": "adult-observed fictional role play",
+          "limitations": "self-reported participation; the app does not record or score speech",
+          "review": {
+            "status": "pending",
+            "reviewerRole": null,
+            "reviewDate": null,
+            "evidenceLink": null
+          }
+        },
+        {
+          "id": "g2-meals-read",
+          "type": "read",
+          "practiceEvidence": "original short passage with written comprehension choices",
+          "limitations": "not a reading-fluency diagnosis",
+          "review": {
+            "status": "pending",
+            "reviewerRole": null,
+            "reviewDate": null,
+            "evidenceLink": null
+          }
+        },
+        {
+          "id": "g2-meals-write",
+          "type": "write",
+          "practiceEvidence": "guided written sentence plus optional unsaved original writing",
+          "limitations": "model-word matching only; not an automatic punctuation or handwriting assessment",
+          "review": {
+            "status": "pending",
+            "reviewerRole": null,
+            "reviewDate": null,
+            "evidenceLink": null
+          }
+        }
+      ],
+      "review": {
+        "status": "pending",
+        "reviewerRole": null,
+        "reviewDate": null,
+        "evidenceLink": null
+      }
+    }
+  ],
+  "phonicsPathway": {
+    "page": "grade2-phonics-pathway.html",
+    "sourceReference": "2026–2027 Semester 1 Overview, PDF page 17 (Module 2)",
+    "families": [
+      {
+        "id": "ing",
+        "pattern": "-ing",
+        "words": [
+          "ring",
+          "sing"
+        ]
+      },
+      {
+        "id": "and",
+        "pattern": "-and",
+        "words": [
+          "hand",
+          "sand"
+        ]
+      }
+    ],
+    "stages": [
+      "see",
+      "hear",
+      "blend",
+      "read",
+      "spell",
+      "apply",
+      "review"
+    ],
+    "skillCount": "2 families × 7 optional in-page stages; not scored tests",
+    "voice": "Optional phone-generated adult or available device voice; professional intelligibility checks pending",
+    "review": {
+      "status": "pending",
+      "reviewerRole": null,
+      "reviewDate": null,
+      "evidenceLink": null
+    }
+  },
+  "qualityGates": [
+    "source-linked objective",
+    "correct age level and examples",
+    "answer/key and explanation accuracy",
+    "phonics/accent educator review",
+    "native Arabic-language review",
+    "mobile usability and screen reader",
+    "local-only privacy and data minimization",
+    "school/Ministry approval must never be inferred from prototype tests"
+  ]
+}
