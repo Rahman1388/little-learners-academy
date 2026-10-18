@@ -34,7 +34,15 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:4px solid #8a15
 #stepHeading{margin:5px 0 15px}
 .visual{display:flex;align-items:center;justify-content:center;gap:15px;flex-wrap:wrap;background:white;border:2px solid #d4e7ed;border-radius:18px;padding:18px;margin:15px 0}
 .visual .picture{font-size:clamp(52px,9vw,76px);line-height:1.3}
-.visual .word{font-size:clamp(30px,7vw,45px);font-weight:900;letter-spacing:.04em}
+.visual .word{font-size:clamp(30px,7vw,45px);font-weight:900;letter-spacing:.04em;white-space:nowrap;max-width:100%}
+.word-start{color:#174b70}
+.word-rime{display:inline-block;color:#8a1538;background:#ffe7ab;border:2px solid #e4b75c;border-radius:11px;padding:2px 6px;margin-inline-start:2px}
+.sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.rime-key{border:2px dashed #c9ae64;border-radius:14px;background:#fff9e9;padding:10px 13px;font-weight:850}
+.family-progress{font-weight:800;color:#16523c;background:#e6f8ec;border:2px solid #9bceb0;border-radius:14px;padding:12px;margin-top:14px}
+.next-step{display:block;min-height:51px;margin-top:20px;border:3px solid #a45b17;border-radius:16px;background:#ffdc85;color:#463018;font-weight:900;font-size:18px;padding:12px 19px;cursor:pointer}
+.next-step:focus-visible{outline:4px solid #8a1538;outline-offset:3px}
+@media(max-width:360px){.visual{gap:7px;padding:12px}.visual .word{font-size:clamp(27px,7vw,33px)}.word-rime{padding:1px 3px}.chunk{font-size:24px;padding:11px 12px}}
 .chunks{display:flex;justify-content:center;gap:9px;align-items:center;flex-wrap:wrap;margin:18px auto}
 .chunk{padding:14px 19px;border:2px solid #8fbdd4;background:#fff;border-radius:16px;font-size:28px;font-weight:900}
 .result{background:#e1f5e7;border-color:#95caa3}
@@ -62,14 +70,16 @@ progress{width:100%;max-width:420px;height:19px;accent-color:#1b814c}
 <header class="hero">
 <div class="eyebrow">🔤 GRADE 2 • MODULES 2–5 • OPTIONAL ADULT-GUIDED PHONICS</div>
 <h1>Word Family Adventure <span lang="ar" dir="rtl">مغامرة عائلات الكلمات</span></h1>
-<p>See → Hear → Blend → Read → Spell → Apply → Review</p>
+<p>👀 See → 👂 Hear → 🧩 Blend → 📖 Read → ✏️ Spell → 🌱 Apply → ⭐ Review</p>
 <p lang="ar" dir="rtl">أنشطة إضافية بإشراف ولي الأمر. لا تُعد اختبارًا للنطق أو إتقان القراءة.</p>
 <div id="progressText" role="status" aria-live="polite">0 / 56 practice steps completed in this visit</div>
 <progress id="progressBar" max="56" value="0" aria-label="Optional practice steps this visit"></progress>
 </header>
 <section class="panel" aria-labelledby="familyTitle">
 <h2 id="familyTitle">Choose a word family • اختر عائلة الكلمات</h2>
+<p class="note">Choose a family and follow the seven stages. The highlighted letters show the same spelling pattern; an adult models the sounds.</p>
 <div id="familyButtons" class="family-buttons" role="group" aria-label="Word family selection"></div>
+<p id="familyProgress" class="family-progress">This family: 0 / 7 guided stages tried this visit • Not a test score</p>
 <h2>Learning journey • رحلة التعلم</h2>
 <div id="stepButtons" class="step-buttons" role="group" aria-label="Seven practice stages"></div>
 <div class="lesson" aria-labelledby="stepHeading">
@@ -81,6 +91,7 @@ progress{width:100%;max-width:420px;height:19px;accent-color:#1b814c}
 <aside class="panel">
 <h2>For adults • إرشادات للأهل</h2>
 <p>This is an <strong>original supplementary draft</strong> referencing the Qatar Grade 2 English Semester 1 2026–2027 overview (p.17): <strong>Module 2</strong> word families <strong>-ing</strong> and <strong>-and</strong>, and <strong>Module 3</strong> word families <strong>-all</strong> and <strong>-ack</strong>, and <strong>Module 4</strong> word families <strong>-ain</strong> and <strong>-ink</strong>, and <strong>Module 5</strong> word families <strong>-ay</strong> and <strong>-ick</strong>.</p>
+<p><strong>Visual learning:</strong> The yellow word ending is an on-screen spelling clue. It does not assess what a learner hears or pronounces. A new optional “Next” button appears after each guided stage is practised; children can still choose stages freely.</p>
 <p>Read the adult script aloud at a comfortable pace and let the learner listen without seeing your words. In blending, guide the learner through the starting sound and shared ending; when practising -ack, <strong>bl</strong> and <strong>sn</strong> are beginning consonant blends, while the -ain word <strong>train</strong> starts with the <strong>tr</strong> blend and the -ay word <strong>play</strong> begins with <strong>pl</strong>. The on-screen response checks spelling or recognition only; it does <strong>not</strong> assess oral blending, pronunciation, comprehension mastery or fluency.</p>
 <p>Keep the child supported and do not rush. Some children will need easier examples or multisensory support; please flag unsuitable words for educator review. The Arabic heading and directions need native-language educator approval before wider release.</p>
 <p class="note"><strong>Privacy:</strong> No accounts, ads, microphone, child names, tracking, typed-answer storage, or paid audio/API services. The 56 step indicators exist only in this open page, are unscored, and reset after refresh; the Grade 2 app's existing 20 progress flags are untouched. Official school endorsement and teacher validation are not claimed.</p>
