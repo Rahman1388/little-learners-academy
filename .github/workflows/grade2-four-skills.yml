@@ -13,7 +13,7 @@ on:
       - "scripts/test-grade2-phonics-pathway.cjs"
       - ".github/workflows/grade2-four-skills.yml"
   push:
-    branches: [main]
+    branches: [main, feature/grade2-four-skills-pilot-20261016]
     paths:
       - "grade2-four-skills.html"
       - "grade2-four-skills.js"
