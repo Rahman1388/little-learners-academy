@@ -50,6 +50,16 @@ A new optional **adult-only sound review panel** was merged into the Grade 2 Wor
 - Parent-confirmed clear word audio remains `ring`, `sing`, `hand` (normal and slow); `sand` is **still pending** manual listener report. A child-friendly voice remains an optional unapproved comparison, not an implemented replacement.
 - **Recovery hint:** pick up with draft PR #13, wait for qualified educator review of the lesson, and retain the live `main` app unchanged until ready.
 
+## 18 October 2026 — Further Grade 2 phonics lesson improvements (still draft)
+
+- **Feature branch:** `feature/grade2-lesson-scaffolding-20261018`, [draft PR #13](https://github.com/Rahman1388/little-learners-academy/pull/13), latest tested commit `b4b9621d3`.
+- Word Family Adventure's **Hear** stage now provides normal and slow word replay for **ring, sing, hand and sand**, reusing the existing on-device voice system. Listening does not complete a practice stage or assess children's pronunciation. The adult phonics demonstration is still required.
+- An adult-facing link opens the existing `teacher-feedback.html` in a separate tab for exact expert corrections; the form shares only if the reviewer chooses to copy or share it.
+- Previous draft enhancements remain: a child-readable learning goal, optional clues for reading/spelling/word meaning, a brief answer explanation and a reflection prompt. No activity counts, learner progress keys, child accounts or recordings were changed.
+- **All three latest draft-branch checks passed (18 October 2026):** Grade 2 Chromium UI regression, Validate app and Child App Security Gate. This is technical validation only. **Public deployment, qualified phonics review, iPhone/Safari real voice and VoiceOver manual checks are still pending. Do not claim approved or merge the draft automatically.**
+- Detailed acceptance and review script: [Grade 2 guided lesson QA](https://github.com/Rahman1388/little-learners-academy/blob/feature/grade2-lesson-scaffolding-20261018/GRADE2-GUIDED-LESSON-QA-20261018.md).
+- **Next user-side hearing check:** `sand` at normal and slow rates on a real iPhone in the *current public app* (the new Hear-stage controls are only in the unreleased draft). Parent reports ring, sing and hand clear at both rates; professional sign-off remains pending.
+
 ## Next action in the next chat
 
 1. Continue **[the Quality-First Foundation Plan](./FOUNDATION-QUALITY-ROADMAP.md)**, not bulk question production. Validate any new module against the machine-readable learning objectives and qualified teacher review.
