@@ -13,6 +13,13 @@
 - **No new unreviewed Arabic translations** have been added. Present child/adult English phrasing and existing Arabic copy still require qualified reviewers.
 - This is supplementary, adult-guided Grade 2 phonics practice, not a reading diagnosis, curriculum equivalence claim, or official approval.
 
+## 18 October continuation — Hear-stage replay and educator feedback route
+
+- The **Hear** step now offers optional Hear/Slow controls for each of the two focus words. The device's existing voice function is reused; the real adult phonics model remains necessary. Pressing a speaker never marks a practice step complete or assesses a child's speech.
+- In the adult-only quality panel, a teacher can open the existing [voluntary feedback form](./teacher-feedback.html) to share exact learning or pronunciation corrections manually. The site does not automatically send reviewer observations.
+- Browser regression now requires both word buttons on See, **Hear**, Blend and Review, correct word / English TTS choice / slower rate and **no premature Continue** after sound playback.
+- These edits remain **unpublished in draft PR #13** until the required specialist and iPhone checks are satisfied.
+
 ## Automatic acceptance gates
 1. `node --check grade2-phonics-pathway.js`
 2. `node scripts/check-grade2-four-skills.cjs`
@@ -23,7 +30,7 @@
 
 ## Adult/teacher manual review: still pending
 - **Phonics teacher:** Grade 2 suitability of "Today I can", clues, the `-ing`/`-and` examples and explanations. Decide **Accept / Revise / Hold** with module/skill reference and specific correction.
-- **Real iPhone/Safari:** Test Read wrong choice → open clue → correct choice → Continue; repeat Spell and Apply, both families. Report no overflow and no hidden or clipped buttons. This is not covered by Chromium.
+- **Real iPhone/Safari:** Test Hear word buttons for ring, sing, hand and sand in normal/slow speeds without accidentally finishing a stage; then Read wrong choice → open clue → correct choice → Continue; repeat Spell and Apply, both families. Report no overflow and no hidden or clipped buttons. This is not covered by Chromium.
 - **VoiceOver:** From family selection, tab/sweep through all stages; on Read/Spell/Apply verify "Need a clue?" is announced and its text becomes readable; verify success feedback and next-stage focus.
 - **Parent/child usability:** Observe with consent that hints support learning but do not prematurely reveal the answer or frustrate younger children. Do not record identifiers or student speech.
 - **Arabic reviewer:** Review all pre-existing Arabic text and any future Arabic versions before any wider release.
