@@ -51,7 +51,7 @@ form.addEventListener("submit",event=>{
   "Observation: "+note,
   "Suggested correction: "+(optional||"None provided"),
   "Source reference: Grade 2 Semester 1 Overview 2026-2027, p.17 (word families); p.2 (teaching methods)",
-  "Adult-authored, anonymous feedback. Not Ministry approval or formal student assessment."
+  "Adult-authored feedback. Remove identifying details before sharing. Not Ministry approval or formal student assessment."
  ];
  report.value=lines.join("\n");
  status.textContent="Private review prepared on this page. You may now copy it if you wish.";
