@@ -168,8 +168,9 @@ function adultDetails(host,title,script){
  box.append(summary,el("p",null,script));
  host.append(box);
 }
-function choose(host,question,choices,right){
+function choose(host,question,choices,right,hint,explanation){
  host.append(el("p",null,question));
+ if(hint)adultDetails(host,"💡 Need a clue?",hint);
  const list=el("div","choice-list");
  list.setAttribute("role","group");list.setAttribute("aria-label",question);
  choices.forEach((choice,i)=>{
@@ -179,11 +180,12 @@ function choose(host,question,choices,right){
    if(b.disabled)return;
    if(i!==right){
     b.disabled=true;b.classList.add("incorrect");
-    say("🌱 Not quite. Look or listen again and choose a different answer.","retry");
+    say("🌱 Not quite. Try the optional clue, then look or listen again and choose another answer.","retry");
     return;
    }
    for(const button of list.querySelectorAll("button"))button.disabled=true;
    b.classList.add("correct");mark();
+   if(explanation)say("✅ Practice noted for this visit. "+explanation+" This is not a score.","good");
   });
   list.append(b);
  });
@@ -225,7 +227,9 @@ function show(){
    break;
   }
   case "read":{
-   choose(host,family.read.question,family.read.choices,family.read.answer);
+   choose(host,family.read.question,family.read.choices,family.read.answer,
+    "Look at the last three letters. Find the word that ends in "+family.ending+". You can read the choices with an adult.",
+    "Words in this family share the ending "+family.pattern+".");
    host.append(el("p","note","Choosing a written word checks recognition; it does not check oral reading fluency."));
    break;
   }
@@ -246,15 +250,19 @@ function show(){
    button.addEventListener("click",check);
    input.addEventListener("keydown",event=>{if(event.key==="Enter")check();});
    host.append(label,input,button);
+   adultDetails(host,"💡 Need a clue?","Ask an adult to say the word slowly again. Listen for the first sound. Then remember that both words in this family end in "+family.ending+".");
    break;
   }
   case "apply":{
-   choose(host,family.apply.question,family.apply.choices,family.apply.answer);
+   choose(host,family.apply.question,family.apply.choices,family.apply.answer,
+    family.id==="ing"?"A ring is something a person can wear. Which sentence describes a possible place for it?":"A hand is part of your body. Which sentence gives a sensible description?",
+    family.id==="ing"?"The ring is worn on a finger.":"We can describe a hand as clean.");
    host.append(el("p","note","Talk with an adult about the meaning of the sentence. The app only checks the selected answer."));
    break;
   }
   case "review":{
    host.append(el("p",null,"Look at both words again. Tell an adult which ending is the same. If comfortable, read each word aloud."));
+   host.append(el("p",null,"My learning check-in: finish the sentence 'Both words end with ...'. Choose one word and use it in your own spoken sentence. If this is difficult, return to See or Blend with your adult. There is no pass or fail."));
    for(const word of family.words)addVisual(host,word);
    host.append(el("p","note","Adult checklist: identify shared letters; discuss word meaning; offer a sound model; note any difficulty for a teacher. Do not label this a passed oral reading test."));
    host.append(completeButton("⭐ We reviewed together"));
