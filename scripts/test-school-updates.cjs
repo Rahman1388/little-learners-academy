@@ -10,8 +10,14 @@ const dataset=fs.readFileSync("school-updates-data.js","utf8");
 new vm.Script(js);new vm.Script(dataset);
 const context={window:{}};vm.runInNewContext(dataset,context);
 const data=context.window.LLA_SCHOOL_UPDATES;
-assert.equal(data.notices.length,6);
+assert.equal(data.notices.length,7);
 assert.equal(data.editorialReviewDate,"2026-10-18");
+const examSource=data.notices.find(x=>x.id==="exam-timetables");
+assert(examSource,"The official academic-year exam timetable directory must be present");
+assert.equal(examSource.url,"https://www.edu.gov.qa/en/Content/TestsTimetable");
+assert.equal(examSource.category,"exams");
+assert.equal(examSource.published,null,"Do not invent a publication date for a continuously updated source page");
+assert.match(examSource.summary,/not a live exam announcement/i);
 for(const item of data.notices){
  const parsed=new URL(item.url);
  assert.equal(parsed.protocol,"https:","Only official HTTPS sources may be linked");
@@ -35,13 +41,13 @@ assert(fs.readFileSync("choose-grade.html","utf8").includes('href="./school-upda
  page.on("request",req=>{if(!req.url().startsWith(base+"/"))outbound.push(req.url())});
  await page.goto(base+"/school-updates.html",{waitUntil:"domcontentloaded"});
  await page.locator("#updatesCards .card").first().waitFor();
- assert.equal(await page.locator("#updatesCards .card").count(),6);
+ assert.equal(await page.locator("#updatesCards .card").count(),7);
  assert.match(await page.locator("#liveFeedStatus").innerText(),/not run successfully/i);
  assert.equal(await page.locator("#liveHeadlines .headline").count(),0);
  assert.equal(await page.locator("#reviewDate").getAttribute("datetime"),"2026-10-18");
  assert.match(await page.locator("#resultsStatus").innerText(),/not a live news feed/i);
  assert.equal(await page.locator("#filters button").count(),5);
- for(const [category,count] of [["qatar",2],["exams",1],["safety",1],["research",2],["all",6]]){
+ for(const [category,count] of [["qatar",2],["exams",2],["safety",1],["research",2],["all",7]]){
   const btn=page.locator('#filters button[data-category="'+category+'"]');
   await btn.click();
   assert.equal(await btn.getAttribute("aria-pressed"),"true","Filter pressed state");
