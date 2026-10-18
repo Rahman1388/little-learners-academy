@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; worker-src 'self'; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
+<meta name="theme-color" content="#e6f6ff">
+<meta name="description" content="A private, local-only educator review helper for the draft Qatar Grade 2 English word-family lessons.">
+<link rel="icon" href="./icon.svg" type="image/svg+xml">
+<title>Grade 2 Educator Review | Little Learners Academy</title>
+<style>
+:root{font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif;color:#17395d;background:#e6f6ff}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:linear-gradient(155deg,#def3ff,#fff5da 60%,#eaf5ff)}
+main{max-width:850px;margin:0 auto;padding:16px 14px 70px}
+h1{font-size:clamp(27px,6vw,40px);line-height:1.2;margin:8px 0}
+h2{font-size:clamp(21px,4vw,27px)}
+p{line-height:1.55}
+.hero,.panel{background:#ffffffed;border:3px solid white;box-shadow:0 4px 0 #bdd6e2;border-radius:22px;padding:clamp(16px,4vw,25px);margin:15px 0}
+.hero{background:linear-gradient(115deg,#fff1b6,#fff,#dff5ff)}
+.eyebrow{font-weight:850;color:#8a1538}
+.note{font-size:14px;color:#3d5b72}
+.warning{padding:12px;background:#fff5df;border:2px solid #d8b76c;border-radius:13px}
+.links{display:flex;flex-wrap:wrap;gap:10px}
+a,button,input,select,textarea{font:inherit}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:4px solid #8a1538;outline-offset:3px}
+.back,.go{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:11px 16px;border-radius:13px;background:#fff;color:#155c90;font-weight:850;text-decoration:none;border:2px solid #b4d5e7}
+.go{background:#e8f5ff;border-color:#87b9d2}
+.field{display:flex;flex-direction:column;gap:7px;margin:17px 0}
+.field label{font-weight:850}
+input,select,textarea{width:100%;min-height:49px;padding:12px;background:#fff;border:2px solid #8ebbcf;border-radius:12px;color:#17395d}
+textarea{min-height:104px;line-height:1.5;resize:vertical}
+textarea[readonly]{background:#f6fbff}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin:19px 0}
+button{cursor:pointer;border:2px solid #176b9d;border-radius:13px;padding:12px 17px;min-height:50px;font-weight:850;background:#176b9d;color:white}
+button.secondary{background:#fff;color:#155c90}
+.status{min-height:23px;font-weight:750}
+@media(max-width:360px){.actions button{width:100%}}
+</style>
+</head>
+<body><main>
+<nav class="links" aria-label="Grade 2 review navigation">
+<a class="back" href="./grade2-four-skills.html">← Grade 2 lessons</a>
+<a class="back" id="openLesson" href="./grade2-phonics-pathway.html?family=ing">🔤 Inspect selected word family</a>
+</nav>
+<header class="hero">
+<div class="eyebrow">📋 ADULT REVIEW • DRAFT • NOT AN OFFICIAL ASSESSMENT</div>
+<h1>Grade 2 English — Educator Review <span lang="ar" dir="rtl">مراجعة المعلم</span></h1>
+<p>Record an adult educator's specific observation about the original guided phonics pathway, one family and stage at a time. Choose <strong>Accept, Revise or Hold</strong> to help guide corrections.</p>
+<p class="warning"><strong>Privacy:</strong> Do not type any child's name, photo details, voice data, school identity or other personal information. This page does <strong>not save, send or submit</strong> reviews. Only an adult can decide whether and where to share the copied text.</p>
+</header>
+<section class="panel" aria-labelledby="formHeading">
+<h2 id="formHeading">1. Choose what to review</h2>
+<form id="reviewForm" autocomplete="off">
+<div class="field">
+<label for="family">Grade 2 module and word family</label>
+<select id="family" required>
+<option value="ing">Module 2 — -ing (ring / sing)</option>
+<option value="and">Module 2 — -and (hand / sand)</option>
+<option value="all">Module 3 — -all (ball / wall)</option>
+<option value="ack">Module 3 — -ack (black / snack)</option>
+<option value="ain">Module 4 — -ain (rain / train)</option>
+<option value="ink">Module 4 — -ink (pink / sink)</option>
+<option value="ay">Module 5 — -ay (day / play)</option>
+<option value="ick">Module 5 — -ick (sick / kick)</option>
+</select>
+</div>
+<div class="field">
+<label for="stage">Learning stage</label>
+<select id="stage" required>
+<option value="See">1. See — visual letters / pictures</option>
+<option value="Hear">2. Hear — adult-read words</option>
+<option value="Blend">3. Blend — letter chunks and sounds</option>
+<option value="Read">4. Read — written word recognition</option>
+<option value="Spell">5. Spell — adult-cued spelling</option>
+<option value="Apply">6. Apply — sentence meaning</option>
+<option value="Review">7. Review — recap with an adult</option>
+</select>
+</div>
+<div class="field">
+<label for="domain">What are you checking?</label>
+<select id="domain" required>
+<option value="Phonics and pronunciation model">English phonics and pronunciation model</option>
+<option value="Curriculum and grade suitability">Curriculum and Grade 2 suitability</option>
+<option value="Picture and word clarity">Picture and word clarity</option>
+<option value="Mobile and accessibility">Phone usability and accessibility</option>
+<option value="Arabic wording">Arabic wording (specialist review)</option>
+<option value="Child privacy and safety">Child privacy and safety</option>
+</select>
+</div>
+<div class="field">
+<label for="decision">Your decision</label>
+<select id="decision" required>
+<option value="">Choose a decision</option>
+<option value="Accept">Accept — suitable as drafted</option>
+<option value="Revise">Revise — correct before approval</option>
+<option value="Hold">Hold — do not publish before review</option>
+</select>
+</div>
+<div class="field">
+<label for="observation">Specific observation (adult-authored, no names)</label>
+<textarea id="observation" maxlength="500" placeholder="Example: The sink picture looks like a tap; please use a clearer picture." required></textarea>
+</div>
+<div class="field">
+<label for="suggestion">Suggested correction (optional)</label>
+<textarea id="suggestion" maxlength="300" placeholder="Suggest a clearer word, label or instruction."></textarea>
+</div>
+<p class="note">Curriculum reference: Qatar Grade 2 Semester 1 English Overview 2026–2027, p.17 (word-family sequences), p.2 (teaching-method guidance). The source reference does not mean an educator has approved these activities.</p>
+<div class="actions">
+<button type="submit">Prepare private feedback</button>
+<button type="reset" class="secondary">Clear fields</button>
+</div>
+</form>
+</section>
+<section class="panel" aria-labelledby="outputHeading">
+<h2 id="outputHeading">2. Copy your review if you choose</h2>
+<p>The prepared text stays on this screen only. It is never uploaded or stored, and disappears when the page is refreshed.</p>
+<div class="field">
+<label for="report">Anonymous review text</label>
+<textarea id="report" readonly placeholder="Complete the review above and select Prepare private feedback."></textarea>
+</div>
+<div class="actions">
+<button id="copyReport" type="button" class="secondary">Copy prepared feedback</button>
+</div>
+<p id="status" class="status" role="status" aria-live="polite"></p>
+</section>
+<aside class="panel">
+<h2>Before any public release</h2>
+<p>All eight word families and their seven steps still require Grade 2 English and native Arabic primary-educator review. Real-iPhone Safari/VoiceOver and child/adult usability checks are pending. This review helper is <strong>not</strong> a Ministry approval form, and pressing Accept does not approve the app automatically.</p>
+</aside>
+<script src="./grade2-educator-review.js"></script>
+</main></body></html>
