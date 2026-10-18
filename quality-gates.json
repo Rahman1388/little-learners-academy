@@ -1,0 +1,190 @@
+{
+  "schemaVersion": 1,
+  "asOf": "2026-10-18",
+  "project": "Little Learners Academy",
+  "pilot": "Grade 2 English Module 2 -ing/-and",
+  "purpose": "Development and reviewer checklist, NOT certification of standards, mastery, Ministry approval, or completed specialist evaluation.",
+  "approvedByMinistry": false,
+  "references": [
+    {
+      "id": "qatar-foundation",
+      "category": "Qatar official educational guidance",
+      "authority": "Qatar Ministry of Education and Higher Education",
+      "title": "Early Learning - Foundation Stage Grades 1 and 2",
+      "url": "https://www.edu.gov.qa/en/Content/EarlyLearning",
+      "application": "Age-appropriate foundation teaching; requires local teacher judgment"
+    },
+    {
+      "id": "qatar-curriculum",
+      "category": "Qatar official educational guidance",
+      "authority": "Qatar Ministry of Education and Higher Education",
+      "title": "Curriculum Section: national framework, standards and learning resources",
+      "url": "https://www.edu.gov.qa/en/Content/CurriculumSection",
+      "application": "Grade, subject, term, source page and intended objective mapping; NOT source permission or app approval"
+    },
+    {
+      "id": "phonics-eef",
+      "category": "Research synthesis and teaching guidance",
+      "authority": "Education Endowment Foundation",
+      "title": "Teaching and Learning Toolkit: Phonics",
+      "url": "https://educationendowmentfoundation.org.uk/education-evidence/teaching-learning-toolkit/phonics",
+      "application": "Explicit systematic grapheme-phoneme modeling matched to learner needs; comprehension taught separately"
+    },
+    {
+      "id": "udl-cast",
+      "category": "International instructional design guidance",
+      "authority": "CAST",
+      "title": "Universal Design for Learning Guidelines 3.0",
+      "url": "https://udlguidelines.cast.org/",
+      "application": "Engagement, representation and varied expression and interaction; not a curriculum certification"
+    },
+    {
+      "id": "wcag22-w3c",
+      "category": "Technical accessibility standard",
+      "authority": "W3C",
+      "title": "Web Content Accessibility Guidelines 2.2",
+      "url": "https://www.w3.org/TR/WCAG22/",
+      "application": "Design toward WCAG 2.2 AA; focus, reflow, visible labels and pointer target checks"
+    },
+    {
+      "id": "unesco-edtech",
+      "category": "International education technology guidance",
+      "authority": "UNESCO",
+      "title": "2023 Global Education Monitoring Report: Technology in education",
+      "url": "https://www.unesco.org/en/articles/global-education-monitoring-report-2023-technology-education-tool-whose-terms",
+      "application": "Learning benefit, equity, cost and human contact before feature expansion"
+    },
+    {
+      "id": "qatar-privacy-law",
+      "category": "Qatar law",
+      "authority": "Al Meezan Qatar Legal Portal",
+      "title": "Law No. 13 of 2016 on Personal Data Privacy Protection, Article 17",
+      "url": "https://www.almeezan.qa/LawArticles.aspx?LawArticleID=72903&LawID=7121&language=ar",
+      "application": "Child-directed-site privacy notice and parent rights; investigate if any personal data processing is proposed; seek qualified advice"
+    },
+    {
+      "id": "qatar-privacy-guidance",
+      "category": "Qatar regulator guidance",
+      "authority": "National Cyber Security Agency",
+      "title": "Guidance Hub for Regulated Entities (PDPPL)",
+      "url": "https://ncsa.gov.qa/en/pages/guidance-hub-for-regulated-entities",
+      "application": "Review Qatar privacy compliance responsibilities before any accounts, analytics or recordings"
+    },
+    {
+      "id": "unicef-ai",
+      "category": "International child-rights guidance",
+      "authority": "UNICEF",
+      "title": "Guidance on AI and children, version 3.0",
+      "url": "https://www.unicef.org/innocenti/reports/policy-guidance-ai-children",
+      "application": "Only relevant if later adding AI: safety, child privacy, transparency, inclusion, accountability"
+    }
+  ],
+  "domains": [
+    {
+      "id": "qatar-curriculum",
+      "reviewerRole": "Qatar Grade 2 English curriculum teacher",
+      "status": "pending",
+      "evidence": null,
+      "requirement": "Document objective, grade and term, original source PDF page, wording and assessment limitations",
+      "sourceIds": [
+        "qatar-foundation",
+        "qatar-curriculum"
+      ]
+    },
+    {
+      "id": "phonics-accuracy",
+      "reviewerRole": "Trained English phonics educator",
+      "status": "pending",
+      "evidence": null,
+      "requirement": "Review -ing/-and grapheme-phoneme models, vowel/consonant fidelity, full-word clarity and phonics sequence",
+      "sourceIds": [
+        "phonics-eef"
+      ]
+    },
+    {
+      "id": "arabic-quality",
+      "reviewerRole": "Qualified native Arabic-speaking educator",
+      "status": "pending",
+      "evidence": null,
+      "requirement": "Review every child-facing Arabic string, MSA vocabulary, RTL and cultural suitability; approval not inferred from translation",
+      "sourceIds": [
+        "qatar-foundation",
+        "udl-cast"
+      ]
+    },
+    {
+      "id": "pedagogy-inclusion",
+      "reviewerRole": "Primary years teaching and inclusion specialist",
+      "status": "pending",
+      "evidence": null,
+      "requirement": "Model before testing, graduated hints, no forced timers, varied ways to participate and age-appropriate feedback",
+      "sourceIds": [
+        "udl-cast",
+        "unesco-edtech"
+      ]
+    },
+    {
+      "id": "accessibility-mobile",
+      "reviewerRole": "Accessibility tester and adult iPhone/iPad testers",
+      "status": "pending",
+      "evidence": null,
+      "requirement": "Manual VoiceOver, hearing and normal/slow replay, 320/390/768px layouts, keyboard and interruption tests",
+      "sourceIds": [
+        "wcag22-w3c"
+      ]
+    },
+    {
+      "id": "child-data-safety",
+      "reviewerRole": "App security lead and Qatar privacy/legal adviser if applicable",
+      "status": "pending",
+      "evidence": null,
+      "requirement": "No child data uploads, unnecessary accounts or tracking; legal review before adding identifiable data, voice, photos or analytics",
+      "sourceIds": [
+        "qatar-privacy-law",
+        "qatar-privacy-guidance"
+      ]
+    },
+    {
+      "id": "teacher-parent-feedback",
+      "reviewerRole": "Independent teacher plus adult parent testers",
+      "status": "pending",
+      "evidence": null,
+      "requirement": "Record item-specific Accept/Revise/Hold, what to change, date, version and role; protect identities",
+      "sourceIds": [
+        "unesco-edtech",
+        "udl-cast"
+      ]
+    },
+    {
+      "id": "licensing-and-cultural-check",
+      "reviewerRole": "Content editor and Qatar cultural reviewer",
+      "status": "pending",
+      "evidence": null,
+      "requirement": "Use original/licensed images, books, voices and fonts; separately review Islamic/Qatar history material with specialists",
+      "sourceIds": [
+        "qatar-curriculum"
+      ]
+    }
+  ],
+  "technical": {
+    "manifestFile": "learning-quality-manifest.json",
+    "manifestScope": "Grade 2 English five-module pilot",
+    "expectedModules": 5,
+    "expectedPracticeFlags": 20,
+    "phonicsFamilies": [
+      "-ing",
+      "-and"
+    ],
+    "phonicsStages": 7,
+    "appIsSupplementary": true,
+    "automatedTestsAreNotTeacherSignOff": true
+  },
+  "releasePolicy": {
+    "current": "development-preview",
+    "requiresHumanReview": true,
+    "requiresRealIOSDeviceReview": true,
+    "requiresArabicSignoffBeforeClaimingArabicReviewed": true,
+    "requiresSourceTraceability": true,
+    "requiresSeparateOfficialApprovalForOfficialClaims": true
+  }
+}
