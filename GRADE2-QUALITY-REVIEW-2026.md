@@ -33,6 +33,10 @@ For each issue record: **page + module + skill + exact word/prompt + device + wh
 
 Suggested first human check: on an iPhone in Safari, open Word Family Adventure, choose **-ing** → See, tap **Hear ring** and **Slow**, then **Hear sing** and **Slow**. Record if each is audible and natural. Repeat for **-and**, then check that Continue moves to the next stage. A built-in phone voice is an optional *preview*, not a validated phonics voice model.
 
+## 18 October 2026 — first adult device-audio observation
+
+- A parent tester reported that **ring** in the updated iPhone phonics activity sounded **clear** at both **normal** and **slow** speeds. This is a reported manual observation, not an independently recorded sound measurement or qualified English educator approval. The tester has not yet reported findings for sing, hand, or sand. No tester identity or child details are kept in this public note.
+
 ## Release policy
 
 Keep existing public activities and progress intact. Do not claim that all English or Arabic is reviewed, that children mastered a skill, that Qatar MOEHE endorsed the app, or that a device's synthesized phonemes are necessarily accurate. Do not automatically replace existing user-reviewed MP3 recordings based on the new phone-voice preview.
