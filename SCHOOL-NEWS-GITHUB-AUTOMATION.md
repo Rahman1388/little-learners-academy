@@ -31,3 +31,12 @@
 **Automated engineering QA: PASS.** [GitHub Actions Grade 2 & school-news run #39152945539](https://github.com/Rahman1388/little-learners-academy/actions/runs/39152945539) checked code commit `9db9caed` and reported eight successful checks: QNA RSS parsing and trusted URL validation; 20-skill Grade 2 content and persistence; teacher-preview package; eight word-family phonics journey; private educator feedback; mobile preview navigation; and School Updates source tabs, snapshot freshness, stale/failure warnings and no emergency-alert claims.
 
 **Scope of verification:** The feed parser test used a deterministic synthetic RSS fixture, **not a live scheduled production update**. Live QNA access was separately checked during development, but GitHub's scheduled fetch has **not started on the review branch**. Until approved and merged into the default branch, the sample feed metadata remains deliberately uninitialized.
+
+## 19 October 2026 — official exam timetables shortcut (review branch only)
+
+- Verified the Qatar Ministry of Education and Higher Education [Tests Timetable directory](https://www.edu.gov.qa/en/Content/TestsTimetable), which currently includes a mid-first-semester timetable reference for academic year 2026–2027. The Ministry may update this page.
+- Added a separate bilingual source card in the adult-facing Exams & Calendar filter, with the official URL, a year label, and instructions to verify grade, term, school, and any newer circular. No dates were invented or copied; a source directory is not an individual verified exam timetable.
+- Updated scripts/test-school-updates.cjs to assert the source URL, cautionary copy, no invented publication date and the updated seven-card / two-exam-filter counts.
+- No live emergency notifications, automated Ministry scraping, personal data, curriculum approval claims or existing child progress changes. All work remains in draft PR #8, not GitHub Pages main.
+- Official references: [Ministry annual calendar](https://www.edu.gov.qa/en/Content/AnnualCalendar), [Ministry tests timetable](https://www.edu.gov.qa/en/Content/TestsTimetable), [QNA RSS directory](https://www.qna.org.qa/en/RSS-Feeds). The QNA scheduled update remains inactive on this draft branch.
+- Next release gates: automated QA, real iPhone layout review, Arabic educator review, and an explicit decision to release to main. Official school notices always take precedence.
