@@ -321,9 +321,9 @@ $("makeAudioReview").addEventListener("click",()=>{
   $("audioReviewOutput").value="";
   return;
  }
- $("audioReviewOutput").value="Little Learners Academy — adult device-voice feedback (not child assessment)\\n"+
-  "Grade 2 Word Family Adventure\\n"+observations.join("\\n")+
-  "\\nVoice quality requires an English educator's review. No child data recorded.";
+ $("audioReviewOutput").value="Little Learners Academy — adult device-voice feedback (not child assessment)\n"+
+  "Grade 2 Word Family Adventure\n"+observations.join("\n")+
+  "\nVoice quality requires an English educator's review. No child data recorded.";
  $("audioReviewFeedback").textContent="Feedback prepared locally. Copy the text into your message. Nothing has been sent.";
 });
 render();
