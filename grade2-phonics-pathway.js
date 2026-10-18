@@ -158,13 +158,19 @@ function addVisual(host,word){
  const card=el("div","visual");
  const picture=el("span","picture",word.picture);
  picture.setAttribute("role","img");picture.setAttribute("aria-label",word.label);
+ // Sighted children see a short context label; screen readers already receive
+ // the label on the picture and the full separate word text.
+ const pictureClue=el("span","picture-clue");
+ const caption=el("span","picture-caption",word.label);
+ caption.setAttribute("aria-hidden","true");
+ pictureClue.append(picture,caption);
  // Keep full words available to assistive technology, while visually contrasting
  // the changing start from the common spelling pattern. Do not imply sound testing.
  const letters=el("span","word");
  letters.setAttribute("aria-hidden","true");
  letters.append(el("span","word-start",word.onset),el("span","word-rime",family.ending));
  const accessibleWord=el("span","sr-only","Word: "+word.word);
- card.append(picture,letters,accessibleWord);
+ card.append(pictureClue,letters,accessibleWord);
  host.append(card);
 }
 function adultDetails(host,title,script){
