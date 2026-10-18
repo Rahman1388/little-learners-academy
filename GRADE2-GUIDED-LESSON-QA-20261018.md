@@ -1,0 +1,36 @@
+# Grade 2 Module 2 — guided-lesson depth pilot (18 October 2026)
+
+**Status:** Development branch only; pending automated validation, real-device usability checks, and educator sign-off. No Ministry/school approval is implied.
+
+## What changed (without increasing activity counts)
+- A child-friendly English **"Today I can"** learning goal appears before the seven-stage pathway; existing two -ing/-and word families, 14 visit-only practice stages, and 20 separate Grade 2 practice flags are unchanged.
+- Native `details` clues can be opened in the **Read, Spell, and Apply** steps. A wrong answer now encourages trying a clue and another attempt instead of simply repeating "not quite."
+- Success feedback connects the answer to either **the shared ending** or **word meaning**. The Review stage prompts an adult-guided reflection and spoken sentence. Neither is automatically graded.
+- Keyboard users receive a visible focus ring on expandable details. No sound recordings or account, telemetry, child name, or saved answer is introduced.
+
+## Scope and decisions
+- The existing optional device English Hear/Slow buttons remain untouched. Parent observations: **ring, sing, hand** reportedly clear on iPhone at both speeds; **sand** not yet checked. Child-friendly voice options remain uncommitted A/B review candidates.
+- **No new unreviewed Arabic translations** have been added. Present child/adult English phrasing and existing Arabic copy still require qualified reviewers.
+- This is supplementary, adult-guided Grade 2 phonics practice, not a reading diagnosis, curriculum equivalence claim, or official approval.
+
+## Automatic acceptance gates
+1. `node --check grade2-phonics-pathway.js`
+2. `node scripts/check-grade2-four-skills.cjs`
+3. `node scripts/check-learning-quality-manifest.cjs`
+4. `node scripts/test-grade2-phonics-pathway.cjs` on served files with Playwright Chromium
+5. Existing GitHub Validate App and Child App Security Gate pass on the PR.
+6. Confirm all fourteen stages, previous progress isolation, and privacy copy remain intact.
+
+## Adult/teacher manual review: still pending
+- **Phonics teacher:** Grade 2 suitability of "Today I can", clues, the `-ing`/`-and` examples and explanations. Decide **Accept / Revise / Hold** with module/skill reference and specific correction.
+- **Real iPhone/Safari:** Test Read wrong choice → open clue → correct choice → Continue; repeat Spell and Apply, both families. Report no overflow and no hidden or clipped buttons. This is not covered by Chromium.
+- **VoiceOver:** From family selection, tab/sweep through all stages; on Read/Spell/Apply verify "Need a clue?" is announced and its text becomes readable; verify success feedback and next-stage focus.
+- **Parent/child usability:** Observe with consent that hints support learning but do not prematurely reveal the answer or frustrate younger children. Do not record identifiers or student speech.
+- **Arabic reviewer:** Review all pre-existing Arabic text and any future Arabic versions before any wider release.
+
+## Remaining actions before public merge
+- Automated Grade 2 regression green on PR; check security status.
+- Human iPhone and VoiceOver pass; Grade 2 educator's correction list applied where needed.
+- Preserve existing public app and rollback option until explicit release decision.
+
+**Project links:** [Foundation Plan](./FOUNDATION-QUALITY-ROADMAP.md) · [Original phonics pilot](./grade2-phonics-pathway.html) · [Quality Review](./GRADE2-QUALITY-REVIEW-2026.md).
