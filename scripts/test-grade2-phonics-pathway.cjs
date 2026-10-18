@@ -16,8 +16,10 @@ for(const unsafe of [/\bfetch\s*\(/, /sendBeacon/, /getUserMedia/, /SpeechRecogn
 }
 assert(html.includes('id="stepHeading" tabindex="-1"'),"Focusable lesson heading missing");
 assert(html.includes("Today I can:")&&html.includes("there is no timer or score"),"Child learning goal and non-punitive pacing missing");
+assert(html.includes('href="./teacher-feedback.html"'),"Teacher feedback route missing");
 assert(html.includes("details summary:focus-visible"),"Clue / adult detail keyboard focus style missing");
 assert(js.includes("Need a clue?")&&js.includes("My learning check-in:"),"Guided hints and reflection missing");
+assert(js.includes("The buttons below let you hear each full word again"),"Hear stage must support replay");
 assert(html.includes("min-height:48px"),"Touchable adult-script summary missing");
 assert(html.includes('id="audioStatus"'),"Audio playback accessibility feedback missing");
 assert(js.includes("SpeechSynthesisUtterance")&&js.includes("speakWord"),"Device speech preview missing");
@@ -65,7 +67,7 @@ assert(html.includes('id="stageCounter"'),"Stage progress label missing");
    assert(await page.locator("#stepHeading").evaluate(x=>document.activeElement===x),"Stage selection must focus heading");
    assert.match(await page.locator("#stageCounter").innerText(),new RegExp("Stage "+(step+1)+" of 7"));
    assert(await page.locator("#continueStep").isHidden(),"New stage must not permit premature continue");
-   if([0,2,6].includes(step)){
+   if([0,1,2,6].includes(step)){
     assert.equal(await page.locator('#stepContent [data-action="speak-word"]').count(),2,"Each word has a normal-speed speaker");
     assert.equal(await page.locator('#stepContent [data-action="speak-slow"]').count(),2,"Each word has a slow-speed speaker");
     await page.locator('#stepContent [data-action="speak-word"]').first().click();
@@ -76,6 +78,7 @@ assert(html.includes('id="stageCounter"'),"Stage progress label missing");
     assert.equal(speech[0].lang,"en-GB");
     assert(speech[1].rate<speech[0].rate,"Slow playback must use a lower rate");
     assert.match(await page.locator("#audioStatus").innerText(),/Trying/);
+    assert(await page.locator("#continueStep").isHidden(),"Playing a word must not auto-complete a guided step");
    }
    switch(step){
     case 0:case 2:case 6:
