@@ -97,7 +97,10 @@ const STEPS=[
 ];
 const TOTAL=FAMILIES.length*STEPS.length;
 const done=new Set();
-let family=FAMILIES[0];
+// Accept only exact known family IDs from curriculum review links. Any other
+// value falls back to the first family without reflecting untrusted text.
+const requestedFamily=new URLSearchParams(window.location?.search||"").get("family");
+let family=FAMILIES.find(f=>f.id===requestedFamily)||FAMILIES[0];
 let step=STEPS[0];
 const $=id=>document.getElementById(id);
 // This prototype records *attempted practice*, never demonstrated mastery.
@@ -273,6 +276,10 @@ function show(){
  progress();
 }
 function render(focus=false){
+ const moduleIds={2:"me",3:"people",4:"food",5:"meals"};
+ const back=$("returnToModule");
+ back.href="./grade2-four-skills.html?module="+moduleIds[family.module];
+ back.textContent="← Back to Grade 2 Module "+family.module+" activities";
  for(const b of $("familyButtons").querySelectorAll("button"))
   b.setAttribute("aria-pressed",String(b.dataset.family===family.id));
  for(const b of $("stepButtons").querySelectorAll("button"))
