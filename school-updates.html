@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'none'; worker-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
+<meta name="theme-color" content="#e7f7ff">
+<meta name="description" content="Adult-facing links to official Qatar school announcements, examination calendars, emergency information and international education research. Not a live alert service.">
+<link rel="icon" type="image/svg+xml" href="./icon.svg">
+<title>School Updates & Official Sources | Little Learners Academy</title>
+<style>
+:root{font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif;color:#183b5a;background:#e8f6ff}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:linear-gradient(140deg,#d8efff,#fff4d8 56%,#f0eaff)}
+main{max-width:980px;margin:auto;padding:16px 14px 64px}
+a,button{font:inherit}
+a:focus-visible,button:focus-visible{outline:4px solid #8a1538;outline-offset:3px}
+.back{display:inline-flex;align-items:center;min-height:48px;padding:12px 17px;background:#fff;border:2px solid #c3dae6;border-radius:13px;color:#164d70;font-weight:850;text-decoration:none}
+.hero,.panel{border:3px solid white;border-radius:23px;background:#ffffffee;padding:clamp(16px,3vw,25px);box-shadow:0 4px 0 #bcd8e7;margin:15px 0}
+.hero{background:linear-gradient(110deg,#fff2b7,#fff,#e5f5ff)}
+.kicker{font-weight:900;color:#8a1538;font-size:14px}
+h1{font-size:clamp(28px,6vw,42px);margin:9px 0;line-height:1.2}h1 span{display:block;font-size:.55em;margin-top:10px}
+h2{font-size:clamp(21px,4vw,28px);margin:4px 0 10px}
+p{line-height:1.56}
+.note{font-size:14px;color:#48617a}
+.safety{background:#fff6e5;border:2px solid #c89445;border-radius:15px;padding:13px 15px}
+.safety strong{color:#784510}
+.filter-buttons{display:flex;gap:9px;flex-wrap:wrap}
+.filter-buttons button{min-height:48px;border:2px solid #9fc7d9;border-radius:14px;padding:11px 15px;background:#fff;color:#164d70;font-weight:850;cursor:pointer}
+.filter-buttons button[aria-pressed="true"]{background:#155d90;border-color:#155d90;color:#fff}
+.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:18px}
+.card{min-width:0;background:white;border:2px solid #d0e5ec;border-radius:18px;padding:17px}
+.card[data-category="safety"]{border-color:#bd8e55}
+.card h3{font-size:19px;line-height:1.35;margin:9px 0}
+.card p{margin:10px 0}
+.card .ar{display:block;font-size:15px;text-align:right;color:#456277;direction:rtl}
+.tag{font-size:12px;font-weight:850;display:inline-block;border:2px solid #cee3ed;border-radius:10px;padding:5px 9px;background:#f1f8ff}
+.card a{display:inline-flex;min-height:48px;align-items:center;text-decoration:underline;font-weight:850;color:#145b8b;padding:8px 1px;overflow-wrap:anywhere}
+.card small{display:block;color:#54677b;line-height:1.5}
+footer{color:#3a5b72;font-size:14px;line-height:1.6}
+@media(max-width:660px){.cards{grid-template-columns:1fr}.filter-buttons button{flex:1 1 135px}}
+</style>
+</head>
+<body><main>
+<a class="back" href="./index.html">← Academy home • الرئيسية</a>
+<header class="hero">
+<div class="kicker">📰 PARENTS & TEACHERS • OFFICIAL SOURCES FIRST</div>
+<h1>School Updates & Alerts <span lang="ar" dir="rtl">أخبار المدارس والتنبيهات</span></h1>
+<p>Find official links for Qatar school announcements, examinations, school safety information and trusted international education research.</p>
+<p class="note">Editorial source links last checked: <time id="reviewDate" datetime="2026-10-18">18 October 2026</time>. Links and selected summaries are manually maintained, <strong>not automatically updated or monitored</strong>. The original publisher is authoritative; this independent academy is not.</p>
+</header>
+<section class="panel" aria-labelledby="urgentTitle">
+<h2 id="urgentTitle">⚠️ Important: emergencies and school closures</h2>
+<div class="safety">
+<p><strong>This is not a live emergency-alert system.</strong> We cannot confirm whether schools are open or closed right now. For urgent school decisions, follow your school's direct official messages, the <a href="https://www.edu.gov.qa/en/News?newsType=gallery" target="_blank" rel="noopener noreferrer">Qatar Ministry of Education</a> and <a href="https://www.gco.gov.qa/en/media-centre/top-news/" target="_blank" rel="noopener noreferrer">Qatar Government Communications Office</a>. Follow official emergency instructions; never rely only on this page.</p>
+</div>
+</section>
+<section class="panel" aria-labelledby="updatesHeading">
+<h2 id="updatesHeading">Browse education information • تصفح أخبار التعليم</h2>
+<div id="filters" class="filter-buttons" role="group" aria-label="Filter official school sources">
+<button type="button" data-category="all" aria-pressed="true">All sources</button>
+<button type="button" data-category="qatar" aria-pressed="false">🇶🇦 Qatar news</button>
+<button type="button" data-category="exams" aria-pressed="false">📝 Exams & calendar</button>
+<button type="button" data-category="safety" aria-pressed="false">⚠️ Safety links</button>
+<button type="button" data-category="research" aria-pressed="false">🌍 Research</button>
+</div>
+<p id="resultsStatus" role="status" aria-live="polite" class="note"></p>
+<div id="updatesCards" class="cards"></div>
+</section>
+<aside class="panel">
+<h2>How we protect trust • معايير الموثوقية</h2>
+<p>Each entry identifies its publisher and provides a link to the source. Dated research keeps its publication date. Directory links are labelled as references—not breaking news. There are no push alerts, scraping, government affiliations, ads, accounts, student data, location collection or notifications from this page.</p>
+<p>Parents should confirm school-specific messages and examination dates with their own school. International research explains educational trends but does not establish Qatar school rules. This directory will be improved through periodic adult editorial review, with changes checked before they are displayed.</p>
+</aside>
+<footer>Little Learners Academy is an independent educational resource and is not affiliated with or endorsed by Qatar Ministry of Education, Hukoomi, UNESCO or OECD.</footer>
+<script src="./school-updates-data.js"></script>
+<script src="./school-updates.js"></script>
+</main></body></html>
