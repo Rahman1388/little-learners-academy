@@ -18,6 +18,13 @@
 - **Quality gates remain:** real-device iPhone/Safari/VoiceOver and parent/child usability checks; English-grade pedagogy and Arabic educator item-by-item review; human pronunciation assessment. No claim of Ministry, school, Arabic or teacher endorsement. Synthetic audio is not automatically certified; in the phonics preview an adult reads the script.
 - No accounts, ads, microphone, uploads, child names or new tracking were introduced. The optional 14-step phonics pathway uses in-page ephemeral state and does not change the existing Grade 2 English progress key.
 
+## 18 October 2026 — Grade 2 quality-review checkpoint
+
+- Created [GRADE2-QUALITY-REVIEW-2026.md](./GRADE2-QUALITY-REVIEW-2026.md) on `main` to keep the Grade 2 teacher-review priorities, five-module checks, Arabic-language review, pronunciation verification on a real iPhone, accessibility and release gates easy to find.
+- Earlier teacher feedback was on **three** sample Grade 2 English reading activities only. Later five-module practice and Module 2 -ing/-and pronunciation previews remain adult-guided **unapproved** supplementary content.
+- New Hear/Slow device-generated pronunciation previews were merged from PR #10 (commit `9b3dffd`, 16 October) and all GitHub Actions checks for that release (Grade 2, validation, child-security and public deployment) succeeded. **Real iPhone playback and educator voice review remain pending.**
+- No change to the app's gameplay, existing progress or child data in this 18 October documentation step. Continue by collecting targeted adult-reviewed pronunciation/educational feedback and correcting issues before expanding activities.
+
 ## Vision and non-negotiable requirements
 
 - A welcoming, colourful, high-quality, mobile- and tablet-first children's learning app, usable in Qatar and respecting Islamic ethics, Qatar cultural values and children's privacy.
