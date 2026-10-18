@@ -291,5 +291,40 @@ for(const s of STEPS){
  b.addEventListener("click",()=>{step=s;render(true);});
  $("stepButtons").append(b);
 }
+// Parent-only QA: do not persist observations or transmit information.
+const wordList=FAMILIES.flatMap(f=>f.words.map(w=>w.word));
+for(const word of wordList){
+ const card=el("div","audio-review-card");
+ card.append(el("strong",null,"🔊 "+word));
+ card.append(audioControls(word));
+ for(const mode of ["normal","slow"]){
+  const label=el("label",null,(mode==="normal"?"Normal":"Slow")+" voice");
+  const id="review-"+word+"-"+mode;
+  label.htmlFor=id;
+  const select=el("select");
+  select.id=id;
+  select.dataset.word=word;select.dataset.mode=mode;
+  for(const [value,name] of [["untested","Not checked"],["clear","Clear and natural"],["revise","Needs improvement"],["silent","No sound"]]){
+   const option=el("option",null,name);option.value=value;select.append(option);
+  }
+  card.append(label,select);
+ }
+ $("audioReviewGrid").append(card);
+}
+$("makeAudioReview").addEventListener("click",()=>{
+ const observations=Array.from($("audioReviewGrid").querySelectorAll("select"))
+  .filter(select=>select.value!=="untested")
+  .map(select=>select.dataset.word+" ("+select.dataset.mode+"): "+
+   ({clear:"clear and natural",revise:"needs improvement",silent:"no sound"})[select.value]);
+ if(observations.length===0){
+  $("audioReviewFeedback").textContent="Please check at least one word and speed before preparing feedback.";
+  $("audioReviewOutput").value="";
+  return;
+ }
+ $("audioReviewOutput").value="Little Learners Academy — adult device-voice feedback (not child assessment)\n"+
+  "Grade 2 Word Family Adventure\n"+observations.join("\n")+
+  "\nVoice quality requires an English educator's review. No child data recorded.";
+ $("audioReviewFeedback").textContent="Feedback prepared locally. Copy the text into your message. Nothing has been sent.";
+});
 render();
 })();

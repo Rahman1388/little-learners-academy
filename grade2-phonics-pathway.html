@@ -41,6 +41,12 @@ a:focus-visible,button:focus-visible,input:focus-visible{outline:4px solid #8a15
 .audio-actions button{min-height:50px;border:2px solid #a8cee0;border-radius:14px;background:#176b9d;color:white;padding:11px 16px;font-weight:850;cursor:pointer}
 .audio-actions button.slow-word{background:white;color:#174b70}
 .audio-actions button:focus-visible{outline:4px solid #8a1538;outline-offset:3px}
+.audio-review-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin:12px 0}
+.audio-review-card{border:2px solid #b8dce8;border-radius:16px;padding:14px;background:#f5fbff}
+.audio-review-card label{display:block;margin:10px 0 5px}
+.audio-review-card select{min-height:48px;width:100%;padding:8px;border:2px solid #78afc8;border-radius:12px;background:white;color:#17395d}
+.audio-review-output{width:100%;min-height:125px;padding:12px;border:2px solid #78afc8;border-radius:12px;resize:vertical;font:inherit}
+#audioReviewFeedback{min-height:22px}
 .chunks{display:flex;justify-content:center;gap:9px;align-items:center;flex-wrap:wrap;margin:18px auto}
 .chunk{padding:14px 19px;border:2px solid #8fbdd4;background:#fff;border-radius:16px;font-size:28px;font-weight:900}
 .result{background:#e1f5e7;border-color:#95caa3}
@@ -92,6 +98,16 @@ progress{width:100%;max-width:420px;height:19px;accent-color:#1b814c}
 <div class="journey-actions"><button id="continueStep" class="primary" type="button" hidden>Continue →</button><p id="journeySummary" class="note" role="status" aria-live="polite">Complete this activity with an adult to continue, or select a stage above.</p></div>
 </div>
 </section>
+<aside class="panel">
+<h2>Adult audio quality check • مراجعة جودة النطق</h2>
+<p>Parents and teachers: listen to each word in normal and slow modes. Mark whether the <strong>device voice</strong> sounds clear, needs correction or has no sound. This is feedback about the app, <strong>not a test of the child</strong>.</p>
+<div id="audioReviewGrid" class="audio-review-grid" aria-label="Adult-only word pronunciation review"></div>
+<button id="makeAudioReview" type="button" class="primary">📝 Prepare feedback for developer</button>
+<label for="audioReviewOutput">Feedback text • نص الملاحظات</label>
+<textarea id="audioReviewOutput" class="audio-review-output" readonly placeholder="Choose your observations, then prepare the feedback text. Nothing is sent automatically."></textarea>
+<p id="audioReviewFeedback" class="note" role="status" aria-live="polite">Your selections remain on this page only and reset on refresh. No audio or child information is collected.</p>
+<p class="note">To share feedback, select and copy the text above into a message. Please do not add child names or recordings.</p>
+</aside>
 <aside class="panel">
 <h2>For adults • إرشادات للأهل</h2>
 <p>This is an <strong>original supplementary draft</strong> referencing Module 2 letter families <strong>-ing</strong> and <strong>-and</strong> in the Qatar Grade 2 English Semester 1 2026–2027 overview (p.17).</p>
