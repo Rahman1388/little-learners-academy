@@ -50,7 +50,7 @@ for(const unsafe of [/\bfetch\s*\(/, /XMLHttpRequest/, /sendBeacon/, /localStora
  await page.locator("#suggestion").fill("Show a basin with a faucet.");
  await page.locator('#reviewForm button[type="submit"]').click();
  const prepared=await page.locator("#report").inputValue();
- for(const phrase of ["Module: 4","Word family: -ink","Stage: Spell","Decision: Revise","The sink picture looks like a tap.","Show a basin with a faucet.","Adult-authored, anonymous feedback"]){
+ for(const phrase of ["Module: 4","Word family: -ink","Stage: Spell","Decision: Revise","The sink picture looks like a tap.","Show a basin with a faucet.","Adult-authored feedback. Remove identifying details before sharing."]){
   assert(prepared.includes(phrase),"Missing report field: "+phrase);
  }
  assert.equal(await page.evaluate(()=>window.__copiedReview),undefined,"Report must not be auto-copied");
