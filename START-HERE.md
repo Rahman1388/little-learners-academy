@@ -24,6 +24,10 @@
 - All five modules and Arabic instructions remain subject to specialist review. Real-device iPhone playback, VoiceOver, English phonics clarity and parent-child usability still need human checks.
 - Keep the public pilot labelled supplementary/parent-teacher preview. Do not claim school, Ministry or teacher certification; do not collect student identities, microphone recordings, or add ads.
 
+## 18 October 2026 — advanced parent pronunciation feedback (PR #11)
+
+A new optional **adult-only sound review panel** was merged into the Grade 2 Word Family Adventure (commit `ee2029d`). For ring, sing, hand and sand, adults can play device-voice Hear/Slow, mark each as **clear**, **needs improvement**, or **no sound**, and prepare locally generated written feedback to copy into a chat. Nothing is uploaded or stored, and no child is assessed. All three pre-merge gates — Grade 2 browser QA, app validation and child security — passed. **Confirm the latest Pages deployment separately before telling the user the new panel is live.** This feature is a practical feedback collection interface, not evidence that English pronunciation passed educator review.
+
 ## Next action in the next chat
 
 1. Ask specifically whether iPhone **Hear** and **Slow** playback sounds clear for **ring/sing**, and then **hand/sand**. Do not reinterpret “Checked” as acceptance.
