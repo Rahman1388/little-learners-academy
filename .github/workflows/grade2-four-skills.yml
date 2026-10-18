@@ -24,6 +24,11 @@ on:
       - "index.html"
       - "choose-grade.html"
       - "scripts/test-school-updates.cjs"
+      - "scripts/refresh-school-news.cjs"
+      - "scripts/test-refresh-school-news.cjs"
+      - "scripts/fixtures/qna-schools-sample.xml"
+      - "school-live-news.json"
+      - ".github/workflows/school-news-refresh.yml"
       - ".github/workflows/grade2-four-skills.yml"
   push:
     branches: [main, feature/grade2-four-skills-pilot-20261016]
@@ -49,6 +54,11 @@ on:
       - "index.html"
       - "choose-grade.html"
       - "scripts/test-school-updates.cjs"
+      - "scripts/refresh-school-news.cjs"
+      - "scripts/test-refresh-school-news.cjs"
+      - "scripts/fixtures/qna-schools-sample.xml"
+      - "school-live-news.json"
+      - ".github/workflows/school-news-refresh.yml"
       - ".github/workflows/grade2-four-skills.yml"
   workflow_dispatch:
 
@@ -76,6 +86,9 @@ jobs:
           node --check school-updates.js
           node --check school-updates-data.js
           node --check scripts/test-school-updates.cjs
+          node --check scripts/refresh-school-news.cjs
+          node --check scripts/test-refresh-school-news.cjs
+          node scripts/test-refresh-school-news.cjs
           node scripts/check-grade2-four-skills.cjs
       - name: Build isolated teacher-preview package
         run: node scripts/build-grade2-teacher-preview.cjs
