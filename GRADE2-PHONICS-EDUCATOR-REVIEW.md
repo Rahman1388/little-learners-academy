@@ -58,3 +58,18 @@ Reviewers should **not send children's names, photos, voice recordings, or other
 5. Continue keeping the new phonics path on its **separate review branch**, not `main`, until appropriate sign-off.
 
 **Current development inventory:** 8 optional word families × 7 adult-guided stages = **56 visit-only steps**; separate from **20 saved guided English-skill completion flags** and **15 other optional recognition questions**.
+
+## Phone-accessibility review addendum — 18 October 2026
+
+**Development changes on the review branch (not deployed to the public app):** A temporary `Aa • Larger letters` toggle, a keyboard skip-to-current-stage link, underlined as well as highlighted word endings, individually language-tagged Arabic stage names, and short visible captions beneath picture clues. The settings and attempts are not saved. The draft Arabic words still **require a native-speaking primary educator's confirmation**.
+
+**Real iPhone Safari/VoiceOver inspection — NOT YET DONE.** In a controlled branch preview (not the GitHub raw-source page), an adult tester should:
+
+1. Activate and deactivate **Larger letters**. Confirm that `aria-pressed` is reflected by VoiceOver, the words remain legible, and no text or buttons run off the screen. Refresh: the display choice and the 56 session-only indicators should reset.
+2. Navigate with VoiceOver through the eight word-family buttons, then the seven bilingual stages. Confirm stage names and Arabic phrasing are understandable; VoiceOver pronunciation, reading order, and focus must be judged by a human Arabic-speaking reviewer.
+3. Use the keyboard skip link and the **Next** button; confirm focus lands on the current stage heading and children can still choose any stage.
+4. Check the visible **picture captions** against the emoji clue and target word. Give special attention to **sink**, **sick**, and the blends in **black/snack/train/play**. The caption is intentionally hidden from screen readers because the emoji already has a spoken label; check that this behaves as intended.
+5. At enlarged Safari text settings or zoom and portrait orientation, verify that word chunks, captions, choices, and spelling inputs remain readable without sideways scrolling. Try mistaken answers, adult-reading disclosure, and the final Review stage.
+6. Confirm there is no automatic voice playback, microphone prompt, grade/mastery score, account form, child text collection, or saved phonics attempt.
+
+**Status:** Only automated Chromium checks are available so far; do **not** mark Safari, VoiceOver, Arabic review or pupil usability as passed without independent evidence. Record each result as **Accept / Revise / Hold** with the module, family, step and proposed fix.
