@@ -1,4 +1,4 @@
-/* Grade 2 Modules 2–4 supplementary phonics. All examples are original.
+/* Grade 2 Modules 2–5 supplementary phonics. All examples are original.
  * Adult-led hearing and blending require human observation. No audio/child data are collected.
  * No stored state: attempts reset when the page closes or reloads.
  */
@@ -64,6 +64,26 @@ const FAMILIES=[
   read:{question:"Which word belongs to the -ink word family?",choices:["pink","wall","train"],answer:0},
   spell:{word:"sink",adult:"Say 'sink' clearly without displaying the letters for the child."},
   apply:{question:"Which sentence uses 'sink' correctly?",choices:["A sink flies like a bird.","I wash my hands at the sink.","A sink is a school bag."],answer:1}
+ },
+ {
+  id:"ay",module:5,pattern:"-ay",ending:"ay",words:[
+   {word:"day",onset:"d",picture:"☀️",label:"A sunny day"},
+   {word:"play",onset:"pl",picture:"🛝",label:"Playing in a playground"}
+  ],
+  adult:"Read 'day' and 'play' slowly and naturally, with the same ending sound. The word 'play' starts with the two-consonant blend pl. Show the shared letters only after the child has listened.",
+  read:{question:"Which word belongs to the -ay family?",choices:["wall","day","rain"],answer:1},
+  spell:{word:"play",adult:"Say the word 'play' clearly, without allowing the child to see this script or the written word."},
+  apply:{question:"Which sentence uses 'play' correctly?",choices:["We play with our friends at the park.","Play is a type of fruit.","A play is a school pencil."],answer:0}
+ },
+ {
+  id:"ick",module:5,pattern:"-ick",ending:"ick",words:[
+   {word:"sick",onset:"s",picture:"🤒",label:"Feeling unwell"},
+   {word:"kick",onset:"k",picture:"⚽",label:"Kicking a football"}
+  ],
+  adult:"Read 'sick' and 'kick' naturally. Help the learner hear the shared ending, then identify the -ick letters in both words. Use a gentle action model for 'kick'.",
+  read:{question:"Which word belongs to the -ick family?",choices:["kick","black","train"],answer:0},
+  spell:{word:"kick",adult:"Say the word 'kick' clearly, without letting the child read it first."},
+  apply:{question:"Which sentence uses 'kick' correctly?",choices:["I kick the football gently in the park.","I kick a book to read it.","A kick is a kind of vegetable."],answer:0}
  }
 ];
 const STEPS=[
