@@ -18,6 +18,7 @@ assert(html.includes('id="stepHeading" tabindex="-1"'),"Focusable lesson heading
 assert(html.includes("min-height:48px"),"Touchable adult-script summary missing");
 assert(html.includes('id="familyProgress"'),"Missing seven-stage family progress");
 assert(html.includes(".sr-only")&&html.includes(".word-rime"),"Accessible highlighted word tiles missing");
+assert(html.includes(".picture-caption"),"Visible word picture labels missing");
 assert(html.includes('id="largeLetters"')&&html.includes('class="skip-link"'),"Large-letter and keyboard-skip aids missing");
 assert(js.includes('arabic.lang="ar"')&&js.includes('arabic.dir="rtl"'),"Arabic stage text must have a language tag");
 assert(!/sessionStorage\s*\.|localStorage\s*\.|document\.cookie/.test(js),"Optional phonics must not store learner display settings");
@@ -81,6 +82,10 @@ assert(js.includes('dataset.action="next-step"'),"Next-step navigation missing")
      if(step===0){
       const tiles=page.locator(".visual");
       assert.equal(await tiles.count(),2);
+      assert.equal(await page.locator(".visual .picture-caption").count(),2,"Two visible picture captions required");
+      assert.equal(await page.locator(".visual .picture-caption[aria-hidden='true']").count(),2,"Captions must not duplicate the screen reader's picture labels");
+      assert(await page.locator(".visual .picture-caption").first().isVisible(),"Picture clues must be visible");
+      if(family===5)assert.match((await page.locator(".visual .picture-caption").allTextContents()).join(" "),/sink/,"Ambiguous sink illustration needs a caption");
       assert.deepEqual(await page.locator(".visual .sr-only").allTextContents(),wordExamples[family].map(w=>"Word: "+w));
       assert.equal(await page.locator(".visual .word-rime").count(),2);
       assert.equal(await page.locator(".visual .word-start").count(),2);
