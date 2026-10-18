@@ -63,10 +63,10 @@ assert(html.includes('id="stageCounter"'),"Stage progress label missing");
    assert.match(await page.locator("#stageCounter").innerText(),new RegExp("Stage "+(step+1)+" of 7"));
    assert(await page.locator("#continueStep").isHidden(),"New stage must not permit premature continue");
    if([0,2,6].includes(step)){
-    assert.equal(await page.locator('[data-action="speak-word"]').count(),2,"Each word has a normal-speed speaker");
-    assert.equal(await page.locator('[data-action="speak-slow"]').count(),2,"Each word has a slow-speed speaker");
-    await page.locator('[data-action="speak-word"]').first().click();
-    await page.locator('[data-action="speak-slow"]').first().click();
+    assert.equal(await page.locator('#stepContent [data-action="speak-word"]').count(),2,"Each word has a normal-speed speaker");
+    assert.equal(await page.locator('#stepContent [data-action="speak-slow"]').count(),2,"Each word has a slow-speed speaker");
+    await page.locator('#stepContent [data-action="speak-word"]').first().click();
+    await page.locator('#stepContent [data-action="speak-slow"]').first().click();
     const speech=await page.evaluate(()=>window.__spokenWords.slice(-2));
     assert.equal(speech[0].word,family===0?"ring":"hand");
     assert.equal(speech[1].word,speech[0].word);
