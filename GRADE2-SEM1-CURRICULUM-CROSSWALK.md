@@ -53,3 +53,12 @@ This is **14 optional guided steps** across two families, **not 14 additional sc
 
 **Technical checks:** a new Playwright test exercises every stage for both families, correct/incorrect responses, focus after navigation, small-screen overflow, and lack of local-storage writes. GitHub Actions must pass for the relevant commit before reporting technical verification. Real-device Safari/VoiceOver, real student/adult usability, developmental progression and pronunciation review are outstanding.
 
+
+
+## Module 3 word-family pathway expansion — 18 October 2026
+
+The optional original `grade2-phonics-pathway.html` and its JavaScript now cover **Modules 2 and 3**: **-ing / -and / -all / -ack**, directly matching the phonological progression on the 2026–2027 Semester 1 overview PDF p.17. The Module 3 practice uses the original examples **ball, wall, black, snack**, with 7 stages per family (See, Hear, Blend, Read, Spell, Apply, Review). For **black** and **snack**, the beginnings **bl** and **sn** are consonant blends; adults should model individual sounds and whole words, not claim this draft is a complete phonics curriculum.
+
+The optional journey now has **4 families × 7 stages = 28** page-session-only practice steps. They do **not** add to or modify the existing 20 saved core-activity flags or 15 additional recognition questions, and they are not a fluency or pronunciation score. Original data, illustrations and text are used; no student recordings, names, paid services or typed answers are saved.
+
+Development check: the existing Playwright script was expanded to cover all four families, choices, spelling, focus, small-screen layouts and browser-storage boundaries. Automated verification should be read from GitHub Actions for the **actual latest commit**. Teacher review of word choice, consonant blends, decoding accuracy, Arabic instructions and adult support is still required before promoting to public course material.
