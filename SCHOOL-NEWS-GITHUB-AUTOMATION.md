@@ -25,3 +25,9 @@
 - **International research:** selected UNESCO/OECD source references are **editorially maintained, not a live research feed**. Automatic research-feed integration requires separate reliable source and licensing/relevance verification.
 - **Site release:** still requires specialist educational/Arabic review and owner authorisation; the scheduled workflow has repository `contents: write` permissions specifically to publish generated news JSON after release. Ensure the repository allows GitHub Actions bot commits, review the workflow permissions, and confirm GitHub Pages rebuilds as expected.
 - **Floot:** Do not develop or publish the separate Floot news experiment further. Its existing project is not the source of truth. This decision does **not delete** any Floot project.
+
+## Verification record — 18 October 2026
+
+**Automated engineering QA: PASS.** [GitHub Actions Grade 2 & school-news run #39152945539](https://github.com/Rahman1388/little-learners-academy/actions/runs/39152945539) checked code commit `9db9caed` and reported eight successful checks: QNA RSS parsing and trusted URL validation; 20-skill Grade 2 content and persistence; teacher-preview package; eight word-family phonics journey; private educator feedback; mobile preview navigation; and School Updates source tabs, snapshot freshness, stale/failure warnings and no emergency-alert claims.
+
+**Scope of verification:** The feed parser test used a deterministic synthetic RSS fixture, **not a live scheduled production update**. Live QNA access was separately checked during development, but GitHub's scheduled fetch has **not started on the review branch**. Until approved and merged into the default branch, the sample feed metadata remains deliberately uninitialized.
