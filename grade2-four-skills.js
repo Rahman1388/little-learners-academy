@@ -196,6 +196,18 @@ function renderPhonics(module){
  const panel=el("section","phonics-panel");
  panel.append(el("h3",null,"🔤 Word families, digraphs & silent e • أنماط الكلمات"));
  panel.append(el("p","note","Extra written-letter practice: read words aloud with an adult. These checks are not pronunciation tests, mastery scores, or saved progress."));
+ if(families.length){
+  const pathwayLinks=el("nav","family-journey-links");
+  pathwayLinks.setAttribute("aria-label","Guided word-family stages for this module");
+  pathwayLinks.append(el("p","note","Explore this module's word families with an adult • Seven guided steps per family"));
+  for(const q of families){
+   const wordFamily=q.family.slice(1);
+   const link=el("a","family-journey-link","🔤 Practice "+q.family+" • 7 guided steps");
+   link.href="./grade2-phonics-pathway.html?family="+encodeURIComponent(wordFamily);
+   pathwayLinks.append(link);
+  }
+  panel.append(pathwayLinks);
+ }
  const area=el("div","phonics-questions");
  for(const item of questions){
   const isFamily=item.kind==="family";
@@ -247,5 +259,7 @@ for(const [i,module] of MODULES.entries()){
  b.addEventListener("click",()=>renderModule(module,true));
  $("moduleButtons").append(b);
 }
-renderModule(MODULES[0]);
+// Allow reviewed, curriculum-matched module links. Only known module IDs are accepted.
+const requestedModule=new URLSearchParams(window.location?.search||"").get("module");
+renderModule(MODULES.find(m=>m.id===requestedModule)||MODULES[0]);
 })();
