@@ -121,3 +121,10 @@ Record feedback with page/question ID, evidence, correction owner and date. Afte
 - **Human privacy check essential:** The form warns not to include children's names or identifying details. **Text is not automatically anonymized.** Reviewers inspect it before any copying/sharing. This is not connected to an official Ministry approval process, and selecting Accept cannot certify the app.
 - **Technical QA: PASS.** The original workflow [#39149823910](https://github.com/Rahman1388/little-learners-academy/actions/runs/39149823910) passed the Grade 2 core and phonics suites plus the new review-form browser tests. The privacy-clarified implementation was rechecked successfully in [Actions run #39149950890](https://github.com/Rahman1388/little-learners-academy/actions/runs/39149950890) at tested code commit `416543f8be`. Logs confirm the unchanged original 20-skill tests, eight-family/56-step phonics suite, mobile layout, and reviewer form's explicit clipboard action, safe family links and no browser-storage/upload behavior.
 - **Outstanding:** Real teacher responses have not yet been received; no evidence of Grade 2 teacher acceptance, Arabic specialist sign-off or iPhone Safari/VoiceOver manual review. Do **not merge or deploy the draft to `main`** as an approved Qatar curriculum.
+
+## Owner test clarification — 18 October 2026
+
+- The project owner confirmed they **checked GitHub** only. This is **not** a report of testing the review package or learning activities on an actual iPhone.
+- Previous successful GitHub Actions runs verify the automated scenarios on configured test browsers; there is **no user-confirmed iPhone Safari or VoiceOver pass**.
+- The generated `grade2-teacher-preview` ZIP is a downloadable Actions artifact, **not an operational hosted mobile URL**. iPhone usability verification remains **PENDING** until an appropriately controlled live preview is available and tested by an adult.
+- Do not mark the app, Arabic content, spoken pronunciation, or teacher feedback as manually validated based solely on the GitHub results.
