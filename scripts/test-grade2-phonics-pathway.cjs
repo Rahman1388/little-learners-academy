@@ -144,6 +144,22 @@ assert(js.includes('dataset.action="next-step"'),"Next-step navigation missing")
  assert.match(await page.locator("#familyProgress").innerText(),/0 \/ 7/);
  await page.setViewportSize({width:390,height:844});await noOverflow();
  await page.setViewportSize({width:768,height:1024});await noOverflow();
+ const linkedRoutes=[
+  ["ing","me",2],
+  ["all","people",3],
+  ["ain","food",4],
+  ["ick","meals",5]
+ ];
+ for(const [id,moduleId,moduleNumber] of linkedRoutes){
+  await page.goto(base+"/grade2-phonics-pathway.html?family="+id,{waitUntil:"domcontentloaded"});
+  assert.match(await page.locator("#stepHeading").innerText(),new RegExp("Module "+moduleNumber+".*-"+id));
+  assert.equal(await page.locator("#returnToModule").getAttribute("href"),"./grade2-four-skills.html?module="+moduleId);
+  await page.locator("#returnToModule").click();
+  assert.match(await page.locator("#selectedModuleTitle").innerText(),new RegExp("Module "+moduleNumber+":"));
+ }
+ await page.goto(base+"/grade2-phonics-pathway.html?family=unsupported",{waitUntil:"domcontentloaded"});
+ assert.match(await page.locator("#stepHeading").innerText(),/Module 2.*-ing/);
+ assert.equal(await page.locator("#returnToModule").getAttribute("href"),"./grade2-four-skills.html?module=me");
  assert.deepEqual(errors,[]);
  await browser.close();
  console.log("PASS: 8 Grade 2 word families, 56 transient steps, highlighted & accessible word endings, guided next navigation, retries and mobile widths");
