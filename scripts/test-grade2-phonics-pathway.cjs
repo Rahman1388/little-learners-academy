@@ -155,6 +155,7 @@ assert(js.includes('dataset.action="next-step"'),"Next-step navigation missing")
   assert.match(await page.locator("#stepHeading").innerText(),new RegExp("Module "+moduleNumber+".*-"+id));
   assert.equal(await page.locator("#returnToModule").getAttribute("href"),"./grade2-four-skills.html?module="+moduleId);
   await page.locator("#returnToModule").click();
+  await page.waitForFunction(num=>document.getElementById("selectedModuleTitle")?.textContent?.startsWith("Module "+num+":"),moduleNumber);
   assert.match(await page.locator("#selectedModuleTitle").innerText(),new RegExp("Module "+moduleNumber+":"));
  }
  await page.goto(base+"/grade2-phonics-pathway.html?family=unsupported",{waitUntil:"domcontentloaded"});
