@@ -1,4 +1,4 @@
-/* Grade 2 Module 2 supplementary phonics. All examples are original.
+/* Grade 2 Modules 2–4 supplementary phonics. All examples are original.
  * Adult-led hearing and blending require human observation. No audio/child data are collected.
  * No stored state: attempts reset when the page closes or reloads.
  */
@@ -44,6 +44,26 @@ const FAMILIES=[
   read:{question:"Which word belongs to the -ack family?",choices:["hand","black","ball"],answer:1},
   spell:{word:"snack",adult:"Say 'snack' clearly without letting the learner read this script."},
   apply:{question:"Which sentence uses 'snack' correctly?",choices:["A snack is a blue car.","I eat a snack after school.","A snack writes on paper."],answer:1}
+ },
+ {
+  id:"ain",module:4,pattern:"-ain",ending:"ain",words:[
+   {word:"rain",onset:"r",picture:"🌧️",label:"Rain falling"},
+   {word:"train",onset:"tr",picture:"🚆",label:"A train"}
+  ],
+  adult:"Say 'rain' and 'train' naturally. Point out their shared ending only after listening. For 'train', model the two starting consonant sounds in the tr blend, then the rest of the word.",
+  read:{question:"Which word belongs to the -ain word family?",choices:["drink","train","hand"],answer:1},
+  spell:{word:"rain",adult:"Say the word 'rain' without displaying the letters for the child."},
+  apply:{question:"Which sentence uses 'rain' correctly?",choices:["Rain is a classroom chair.","Rain falls from clouds.","Rain is a pencil."],answer:1}
+ },
+ {
+  id:"ink",module:4,pattern:"-ink",ending:"ink",words:[
+   {word:"pink",onset:"p",picture:"🩷",label:"Pink colour"},
+   {word:"sink",onset:"s",picture:"🚰",label:"Water tap above a sink"}
+  ],
+  adult:"Read 'pink' and 'sink' clearly. Ask whether their final sounds match. Point to the same written ending only after listening.",
+  read:{question:"Which word belongs to the -ink word family?",choices:["pink","wall","train"],answer:0},
+  spell:{word:"sink",adult:"Say 'sink' clearly without displaying the letters for the child."},
+  apply:{question:"Which sentence uses 'sink' correctly?",choices:["A sink flies like a bird.","I wash my hands at the sink.","A sink is a school bag."],answer:1}
  }
 ];
 const STEPS=[
