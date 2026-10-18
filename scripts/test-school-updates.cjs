@@ -19,11 +19,11 @@ for(const item of data.notices){
  assert(["qatar","exams","safety","research"].includes(item.category));
  assert(item.kind&&item.publisher&&item.summary&&item.title);
 }
-for(const forbidden of [/\bfetch\s*\(/,/XMLHttpRequest/,/sendBeacon/,/localStorage/,/sessionStorage/,/getUserMedia/,/Notification\s*\(/,/innerHTML\s*=/]){
+for(const forbidden of [/XMLHttpRequest/,/sendBeacon/,/localStorage/,/sessionStorage/,/getUserMedia/,/Notification\s*\(/,/innerHTML\s*=/]){
  assert(!forbidden.test(js),"No background surveillance or storage in the update centre: "+forbidden);
 }
 assert(html.includes("This is not a live emergency-alert system"),"Never imply live emergencies");
-assert(html.includes("connect-src 'none'"),"News page must avoid external API requests");
+assert(html.includes("connect-src 'self'"),"News page may fetch only our same-origin snapshot");
 assert(fs.readFileSync("index.html","utf8").includes('href="./school-updates.html"'),"Main app menu needs source link");
 assert(fs.readFileSync("choose-grade.html","utf8").includes('href="./school-updates.html"'),"Grade parent view needs news link");
 (async()=>{
@@ -36,6 +36,8 @@ assert(fs.readFileSync("choose-grade.html","utf8").includes('href="./school-upda
  await page.goto(base+"/school-updates.html",{waitUntil:"domcontentloaded"});
  await page.locator("#updatesCards .card").first().waitFor();
  assert.equal(await page.locator("#updatesCards .card").count(),6);
+ assert.match(await page.locator("#liveFeedStatus").innerText(),/not run successfully/i);
+ assert.equal(await page.locator("#liveHeadlines .headline").count(),0);
  assert.equal(await page.locator("#reviewDate").getAttribute("datetime"),"2026-10-18");
  assert.match(await page.locator("#resultsStatus").innerText(),/not a live news feed/i);
  assert.equal(await page.locator("#filters button").count(),5);
@@ -52,6 +54,29 @@ assert(fs.readFileSync("choose-grade.html","utf8").includes('href="./school-upda
   }
  }
  assert.equal(await page.locator("#updatesCards time").count(),2,"Only dated international research must show publication dates");
+ // The dashboard must distinguish a fresh editorial snapshot, a stale one,
+ // and a failed retrieval. None is treated as emergency or exam instruction.
+ const headlineUrl="https://qna.org.qa/en/News-Area/News/2026-10/18/school-news-example";
+ const snapshot={schema:1,lastSuccessfulFetch:new Date().toISOString(),headlines:[
+  {title:"Qatar Education Students Join a Learning Forum",url:headlineUrl,publishedAt:new Date().toISOString()},
+  {title:"School update from an untrusted website",url:"https://qna.org.qa.evil.example/en/News-Area/News/2026-10/18/fake",publishedAt:new Date().toISOString()}
+ ]};
+ await page.route("**/school-live-news.json",route=>route.fulfill({status:200,contentType:"application/json",body:JSON.stringify(snapshot)}));
+ await page.reload({waitUntil:"domcontentloaded"});
+ await page.locator("#liveHeadlines .headline").first().waitFor();
+ assert.equal(await page.locator("#liveHeadlines .headline").count(),1,"Reject forged/unofficial headline links");
+ assert.match(await page.locator("#liveFeedStatus").innerText(),/Latest stored news snapshot/);
+ assert.equal(await page.locator("#liveHeadlines .headline a").getAttribute("href"),headlineUrl);
+ assert.match(await page.locator("#liveHeadlines .headline a").getAttribute("rel"),/noopener noreferrer/);
+ snapshot.lastSuccessfulFetch=new Date(Date.now()-36*60*60*1000).toISOString();
+ await page.reload({waitUntil:"domcontentloaded"});
+ await page.waitForFunction(()=>document.querySelector("#liveFeedStatus")?.textContent?.includes("older than 12 hours"));
+ assert.match(await page.locator("#liveFeedStatus").innerText(),/older than 12 hours/);
+ await page.unroute("**/school-live-news.json");
+ await page.route("**/school-live-news.json",route=>route.fulfill({status:503,body:"unavailable"}));
+ await page.reload({waitUntil:"domcontentloaded"});
+ await page.waitForFunction(()=>document.querySelector("#liveFeedStatus")?.textContent?.includes("snapshot unavailable"));
+ assert.match(await page.locator("#liveFeedStatus").innerText(),/snapshot unavailable/);
  const noOverflow=async()=>{
   const s=await page.evaluate(()=>({scroll:document.documentElement.scrollWidth,viewport:innerWidth}));
   assert(s.scroll<=s.viewport+3,"School updates overflow "+JSON.stringify(s));
@@ -62,5 +87,5 @@ assert(fs.readFileSync("choose-grade.html","utf8").includes('href="./school-upda
  assert.deepEqual(outbound,[],"Opening news page must never fetch outside the app without user clicks");
  assert.deepEqual(errors,[]);
  await browser.close();
- console.log("PASS: Qatar official school news, exam calendar, safety source and research menus; accessible filters, dated sources, mobile widths, zero tracking or live-alert claims");
+ console.log("PASS: Qatar official sources, periodically refreshed QNA headline snapshots, stale/failure warnings, mobile filters and no emergency-alert claims");
 })().catch(e=>{console.error(e.stack||e);process.exit(1)});
