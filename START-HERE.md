@@ -42,6 +42,14 @@ A new optional **adult-only sound review panel** was merged into the Grade 2 Wor
 - **Technical validation and deployment of the foundation changes must be verified from GitHub Actions.** A passing content script does not establish any school or Ministry approval or replace human teacher review.
 - Confirmed user-reported iPhone adult listening: **ring, sing and hand all clear** at normal and slow speeds; **sand pending**. A child-friendly voice is a future comparative trial, not an authorized replacement of working English audio.
 
+## 18 October 2026 — Draft quality lesson PR #13 (not released)
+
+- An optional quality-first lesson enhancement was built on the dedicated branch `feature/grade2-lesson-scaffolding-20261018`. [Draft PR #13](https://github.com/Rahman1388/little-learners-academy/pull/13) adds a child-facing English learning goal, optional hints for Read/Spell/Apply, explanation after successful written choices, a spoken reflection prompt and keyboard focus styling. It **does not** increase counts, change audio, alter existing progress or add stored child data.
+- **All three automated draft-PR workflows passed on 18 October 2026:** Grade 2 four-skills mobile Chromium regression, Validate app, and Child App Security Gate. This is technical validation, **not** confirmation of pronunciation accuracy, teacher approval, or real iPhone Safari/VoiceOver behavior.
+- **Keep this PR as a draft; do not merge publicly** until a Grade 2 English/phonics educator reviews wording and pedagogy, an adult verifies it on iPhone and with VoiceOver, and requested corrections are made. Review evidence/questions are in [the draft branch QA checklist](https://github.com/Rahman1388/little-learners-academy/blob/feature/grade2-lesson-scaffolding-20261018/GRADE2-GUIDED-LESSON-QA-20261018.md).
+- Parent-confirmed clear word audio remains `ring`, `sing`, `hand` (normal and slow); `sand` is **still pending** manual listener report. A child-friendly voice remains an optional unapproved comparison, not an implemented replacement.
+- **Recovery hint:** pick up with draft PR #13, wait for qualified educator review of the lesson, and retain the live `main` app unchanged until ready.
+
 ## Next action in the next chat
 
 1. Continue **[the Quality-First Foundation Plan](./FOUNDATION-QUALITY-ROADMAP.md)**, not bulk question production. Validate any new module against the machine-readable learning objectives and qualified teacher review.
