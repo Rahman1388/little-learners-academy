@@ -54,6 +54,8 @@ jobs:
           node scripts/check-school-pathways.cjs
           node --check scripts/check-learning-quality-manifest.cjs
           node scripts/check-learning-quality-manifest.cjs
+          node --check scripts/check-quality-gates.cjs
+          node scripts/check-quality-gates.cjs
           node --check grade2-pilot-data.js
           node --check grade2-pilot.js
           node --check grade2-english-data.js
