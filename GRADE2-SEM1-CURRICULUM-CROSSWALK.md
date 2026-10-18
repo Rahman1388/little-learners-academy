@@ -62,3 +62,11 @@ The optional original `grade2-phonics-pathway.html` and its JavaScript now cover
 The optional journey now has **4 families × 7 stages = 28** page-session-only practice steps. They do **not** add to or modify the existing 20 saved core-activity flags or 15 additional recognition questions, and they are not a fluency or pronunciation score. Original data, illustrations and text are used; no student recordings, names, paid services or typed answers are saved.
 
 Development check: the existing Playwright script was expanded to cover all four families, choices, spelling, focus, small-screen layouts and browser-storage boundaries. Automated verification should be read from GitHub Actions for the **actual latest commit**. Teacher review of word choice, consonant blends, decoding accuracy, Arabic instructions and adult support is still required before promoting to public course material.
+
+## Module 4 guided phonics expansion — 18 October 2026
+
+The draft phonics adventure on the review branch has been expanded to **Module 4: Food and drink** and its source-specified **-ain / -ink** word families (Grade 2 English Semester 1 2026–2027 Overview PDF, p.17). The guided practice uses original examples **rain/train** and **pink/sink**, with a parent reading words aloud. The onset **tr** in *train* is a consonant blend, requiring a natural adult sound model and careful teacher review.
+
+Current optional pathway total: **six families × seven stages = 42 practice steps**, covering Module 2 (**-ing/-and**), Module 3 (**-all/-ack**) and Module 4 (**-ain/-ink**). This is separate from both the **20** saved four-skill practice flags and the **15** optional letter-recognition choices on the main Grade 2 pilot. Stage indications exist only during the open browser session; no child text, recordings, accounts or payments are collected.
+
+The browser regression was updated to cover all six family branches, word/sentence selections, spelling retries, keyboard focus, narrow-screen layout, and zero local-storage writes. **Automated result pending for this code revision until GitHub Actions completes.** Grade 2 English and Arabic teacher validation, real-device iPhone/Safari VoiceOver review and pronunciation quality review remain pending; do not merge to production as an approved course.
