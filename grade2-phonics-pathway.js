@@ -6,7 +6,7 @@
 "use strict";
 const FAMILIES=[
  {
-  id:"ing",pattern:"-ing",ending:"ing",words:[
+  id:"ing",module:2,pattern:"-ing",ending:"ing",words:[
    {word:"ring",onset:"r",picture:"💍",label:"A ring"},
    {word:"sing",onset:"s",picture:"🎵",label:"Singing a song"}
   ],
@@ -16,7 +16,7 @@ const FAMILIES=[
   apply:{question:"Which sentence uses 'ring' correctly?",choices:["The ring grows in the garden.","The ring is on my finger.","The ring is my school bus."],answer:1}
  },
  {
-  id:"and",pattern:"-and",ending:"and",words:[
+  id:"and",module:2,pattern:"-and",ending:"and",words:[
    {word:"hand",onset:"h",picture:"✋",label:"A hand"},
    {word:"sand",onset:"s",picture:"🏖️",label:"Sand on a beach"}
   ],
@@ -24,6 +24,26 @@ const FAMILIES=[
   read:{question:"Which word belongs to the -and family?",choices:["hand","sing","king"],answer:0},
   spell:{word:"sand",adult:"Say the word 'sand' without letting the child read this script."},
   apply:{question:"Which sentence uses 'hand' correctly?",choices:["My hand is a sandwich.","My hand is clean.","My hand is a bicycle."],answer:1}
+ },
+ {
+  id:"all",module:3,pattern:"-all",ending:"all",words:[
+   {word:"ball",onset:"b",picture:"⚽",label:"A ball"},
+   {word:"wall",onset:"w",picture:"🧱",label:"A brick wall"}
+  ],
+  adult:"Read 'ball' and 'wall' aloud. Give the child time to hear the shared ending. Point to the letters only after the listening attempt.",
+  read:{question:"Which word belongs to the -all family?",choices:["wall","snack","ring"],answer:0},
+  spell:{word:"wall",adult:"Say 'wall' clearly without letting the learner see this script."},
+  apply:{question:"Which sentence uses 'ball' correctly?",choices:["The ball is a drink.","We play with a ball in the park.","The ball writes a letter."],answer:1}
+ },
+ {
+  id:"ack",module:3,pattern:"-ack",ending:"ack",words:[
+   {word:"black",onset:"bl",picture:"⚫",label:"The colour black"},
+   {word:"snack",onset:"sn",picture:"🍎",label:"An apple as a snack"}
+  ],
+  adult:"Read 'black' and 'snack' slowly. The words start with two-letter blends (bl and sn). Model their sounds as well as the ending, and pronounce the whole words naturally.",
+  read:{question:"Which word belongs to the -ack family?",choices:["hand","black","ball"],answer:1},
+  spell:{word:"snack",adult:"Say 'snack' clearly without letting the learner read this script."},
+  apply:{question:"Which sentence uses 'snack' correctly?",choices:["A snack is a blue car.","I eat a snack after school.","A snack writes on paper."],answer:1}
  }
 ];
 const STEPS=[
@@ -35,6 +55,7 @@ const STEPS=[
  {id:"apply",label:"🌱 Apply",ar:"استخدم"},
  {id:"review",label:"⭐ Review",ar:"راجع"}
 ];
+const TOTAL=FAMILIES.length*STEPS.length;
 const done=new Set();
 let family=FAMILIES[0];
 let step=STEPS[0];
@@ -53,7 +74,8 @@ function say(message,kind=""){
 function key(){return family.id+"-"+step.id}
 function progress(){
  const total=done.size;
- $("progressText").textContent=total+" / 14 optional guided steps practised this visit (not a score)";
+ $("progressText").textContent=total+" / "+TOTAL+" optional guided steps practised this visit (not a score)";
+ $("progressBar").max=TOTAL;
  $("progressBar").value=total;
  for(const b of $("stepButtons").querySelectorAll("button")){
   const finished=done.has(family.id+"-"+b.dataset.step);
@@ -108,7 +130,7 @@ function choose(host,question,choices,right){
 function show(){
  const host=$("stepContent");host.replaceChildren();
  say("");
- $("stepHeading").textContent=step.label+" • "+family.pattern;
+ $("stepHeading").textContent="Module "+family.module+" • "+step.label+" • "+family.pattern;
  switch(step.id){
   case "see":{
    host.append(el("p",null,"Look carefully at these two words. What letters do they share at the end?"));
@@ -184,7 +206,7 @@ function render(focus=false){
  if(focus)$("stepHeading").focus();
 }
 for(const f of FAMILIES){
- const b=el("button",null,"🔤 "+f.pattern);
+ const b=el("button",null,"🔤 M"+f.module+" "+f.pattern);
  b.type="button";b.dataset.family=f.id;b.setAttribute("aria-pressed","false");
  b.addEventListener("click",()=>{family=f;step=STEPS[0];render(true);});
  $("familyButtons").append(b);
