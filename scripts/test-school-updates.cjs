@@ -10,7 +10,7 @@ const dataset=fs.readFileSync("school-updates-data.js","utf8");
 new vm.Script(js);new vm.Script(dataset);
 const context={window:{}};vm.runInNewContext(dataset,context);
 const data=context.window.LLA_SCHOOL_UPDATES;
-assert.equal(data.notices.length,7);
+assert.equal(data.notices.length,8);
 assert.equal(data.editorialReviewDate,"2026-10-19");
 const examSource=data.notices.find(x=>x.id==="exam-timetables");
 assert(examSource,"The official academic-year exam timetable directory must be present");
@@ -29,6 +29,9 @@ for(const forbidden of [/XMLHttpRequest/,/sendBeacon/,/localStorage/,/sessionSto
  assert(!forbidden.test(js),"No background surveillance or storage in the update centre: "+forbidden);
 }
 assert(html.includes("This is not a live emergency-alert system"),"Never imply live emergencies");
+assert(html.includes("هذه الصفحة ليست نظامًا للتنبيهات الطارئة المباشرة"),"Arabic emergency disclaimer must be prominent");
+assert(html.includes('lang="ar" dir="rtl"'),"Display Arabic safety text with correct language/direction");
+assert(data.notices.some(n=>n.id==="ministry-notifications"&&n.url==="https://www.edu.gov.qa/en/Home/Notification"),"Include official Ministry notifications source");
 assert(html.includes("connect-src 'self'"),"News page may fetch only our same-origin snapshot");
 assert(fs.readFileSync("index.html","utf8").includes('href="./school-updates.html"'),"Main app menu needs source link");
 assert(fs.readFileSync("choose-grade.html","utf8").includes('href="./school-updates.html"'),"Grade parent view needs news link");
@@ -41,13 +44,13 @@ assert(fs.readFileSync("choose-grade.html","utf8").includes('href="./school-upda
  page.on("request",req=>{if(!req.url().startsWith(base+"/"))outbound.push(req.url())});
  await page.goto(base+"/school-updates.html",{waitUntil:"domcontentloaded"});
  await page.locator("#updatesCards .card").first().waitFor();
- assert.equal(await page.locator("#updatesCards .card").count(),7);
+ assert.equal(await page.locator("#updatesCards .card").count(),8);
  assert.match(await page.locator("#liveFeedStatus").innerText(),/not run successfully/i);
  assert.equal(await page.locator("#liveHeadlines .headline").count(),0);
  assert.equal(await page.locator("#reviewDate").getAttribute("datetime"),"2026-10-19");
  assert.match(await page.locator("#resultsStatus").innerText(),/not a live news feed/i);
  assert.equal(await page.locator("#filters button").count(),5);
- for(const [category,count] of [["qatar",2],["exams",2],["safety",1],["research",2],["all",7]]){
+ for(const [category,count] of [["qatar",3],["exams",2],["safety",1],["research",2],["all",8]]){
   const btn=page.locator('#filters button[data-category="'+category+'"]');
   await btn.click();
   assert.equal(await btn.getAttribute("aria-pressed"),"true","Filter pressed state");

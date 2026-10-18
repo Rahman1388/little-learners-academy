@@ -23,3 +23,7 @@ OECD: https://www.oecd.org/en/publications/2026/09/education-at-a-glance-2026_3b
 - Real QNA RSS access to be checked in the optional diagnostic job; successful fixture tests alone cannot prove production feed compatibility.
 - Scheduled GitHub Actions news publishing cannot run from this unmerged feature branch, because scheduled workflows run on default branch only. The workflow itself has a main-branch guard.
 - Pending: technical checks, iOS Safari/VoiceOver, Arabic specialist, official notification terms and copyright review, owner release approval and school-specific verification process.
+
+## Additional linguistic and official notice controls (19 October)
+- Added the Ministry's official announcements directory at https://www.edu.gov.qa/en/Home/Notification, as a source link rather than an alert stream.
+- Added a prominent Arabic warning that the module must not be relied on for immediate emergency/closure or exam changes, plus automated assertions that the disclaimer remains present. This draft Arabic safety message still requires native professional review.

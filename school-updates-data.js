@@ -36,6 +36,16 @@ window.LLA_SCHOOL_UPDATES=Object.freeze({
       audience:"Parents and teachers"
     },
     {
+      id:"ministry-notifications",category:"qatar",kind:"Official Ministry announcements",
+      title:"Qatar Ministry of Education — announcements directory",
+      arabic:"الإشعارات الرسمية لوزارة التربية والتعليم والتعليم العالي",
+      summary:"Check the Ministry's official announcements directly for newly published notices. This is a source directory, not a real-time warning service; confirm school-specific decisions with your school.",
+      publisher:"Qatar Ministry of Education and Higher Education",
+      published:null,
+      url:"https://www.edu.gov.qa/en/Home/Notification",
+      audience:"Parents, school staff and teachers"
+    },
+    {
       id:"gov-news",category:"qatar",kind:"Official government portal",
       title:"Qatar government news — Hukoomi",
       arabic:"أخبار حكومة قطر",
