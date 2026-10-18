@@ -60,6 +60,14 @@ A new optional **adult-only sound review panel** was merged into the Grade 2 Wor
 - Detailed acceptance and review script: [Grade 2 guided lesson QA](https://github.com/Rahman1388/little-learners-academy/blob/feature/grade2-lesson-scaffolding-20261018/GRADE2-GUIDED-LESSON-QA-20261018.md).
 - **Next user-side hearing check:** `sand` at normal and slow rates on a real iPhone in the *current public app* (the new Hear-stage controls are only in the unreleased draft). Parent reports ring, sing and hand clear at both rates; professional sign-off remains pending.
 
+## 18 October 2026 — Continuous national and international quality loop (DRAFT, NOT RELEASED)
+
+- Owner requested **every change** be checked against Qatar national/Grade 1–6 curriculum, age-suitable educational objectives, researched teaching practices, qualified English/Arabic specialist views, family and child usability, WCAG accessibility, licensing, Qatar cultural values and child privacy.
+- This request was recorded as an ongoing development gate in [draft PR #13](https://github.com/Rahman1388/little-learners-academy/pull/13): [quality standard](https://github.com/Rahman1388/little-learners-academy/blob/feature/grade2-lesson-scaffolding-20261018/DEVELOPMENT-QUALITY-STANDARD.md), [eight-domain review registry](https://github.com/Rahman1388/little-learners-academy/blob/feature/grade2-lesson-scaffolding-20261018/quality-gates.json), and a CI integrity checker.
+- Official-source references include Qatar MOEHE Early Learning/Foundation Stage and Curriculum Section, Qatar Personal Data Privacy Protection Law Art. 17 and regulator advice; international **guidance** includes EEF phonics, CAST UDL 3.0, W3C WCAG 2.2 and UNESCO's education-technology report. No school/Ministry, phonics/Arabic specialist, WCAG or legal certification is claimed. Teacher and Arabic QA remains **pending**.
+- The draft also stops active voice synthesis when the phone app enters the background (for example, on a call); it does not resume automatically. The 14 practice marks are temporary only while Safari keeps the page loaded; reload resets them, as disclosed.
+- **Important:** this checkpoint records a plan and linked development files, not a released feature. Check PR #13 workflow results, real iPhone/VoiceOver and educator feedback before any public merge. Continue without starting over or exposing private school PDFs.
+
 ## Next action in the next chat
 
 1. Continue **[the Quality-First Foundation Plan](./FOUNDATION-QUALITY-ROADMAP.md)**, not bulk question production. Validate any new module against the machine-readable learning objectives and qualified teacher review.
