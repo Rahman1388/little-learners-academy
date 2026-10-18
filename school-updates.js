@@ -75,4 +75,57 @@ filters.addEventListener("click",event=>{
  render(b.dataset.category);
 });
 render("all");
+// Browser fetch stays on our GitHub-hosted JSON snapshot; it never calls QNA.
+const live=document.getElementById("liveHeadlines");
+const liveStatus=document.getElementById("liveFeedStatus");
+function validQnaArticle(url){
+ try{
+  const u=new URL(url);
+  return u.protocol==="https:"&&u.hostname==="qna.org.qa"&&!u.username&&!u.password&&
+    u.pathname.startsWith("/en/News-Area/News/20")&&!u.hash;
+ }catch{return false}
+}
+function formatDateTime(date){
+ return date.toLocaleString("en-GB",{timeZone:"Asia/Qatar",day:"numeric",month:"short",year:"numeric",hour:"2-digit",minute:"2-digit"})+" Qatar time";
+}
+async function loadHeadlines(){
+ try{
+  const response=await fetch("./school-live-news.json",{cache:"no-store"});
+  if(!response.ok)throw Error("Feed snapshot unavailable");
+  const data=await response.json();
+  if(data.schema!==1||!Array.isArray(data.headlines)||data.headlines.length>12)throw Error("Unexpected feed data");
+  const last=new Date(data.lastSuccessfulFetch);
+  const validTime=typeof data.lastSuccessfulFetch==="string"&&Number.isFinite(+last);
+  if(!validTime){
+   liveStatus.textContent="Automatic news updates have not run successfully for this preview. Follow the original sources below.";
+   return;
+  }
+  const age=Date.now()-(+last);
+  const stale=age<0||age>12*60*60*1000;
+  liveStatus.classList.toggle("stale",stale);
+  liveStatus.textContent=(stale?"⚠️ News snapshot is older than 12 hours. Do not treat it as current.":"Latest stored news snapshot")+" • Retrieved: "+formatDateTime(last)+" • Scheduled updates are periodic, not instant.";
+  const seen=new Set();
+  for(const item of data.headlines){
+   if(!item||typeof item.title!=="string"||item.title.length<12||item.title.length>220||!validQnaArticle(item.url)||seen.has(item.url))continue;
+   const published=new Date(item.publishedAt);
+   if(!Number.isFinite(+published)||+published>Date.now()+6*60*60*1000)continue;
+   seen.add(item.url);
+   const article=el("article","headline");
+   const category=el("small",null,"Qatar News Agency • General education reporting");
+   const heading=el("h3",null,item.title);
+   const date=el("time",null,"Published "+formatDateTime(published));
+   date.dateTime=published.toISOString();
+   const meta=el("small");meta.append(date);
+   const a=el("a",null,"Read original QNA article ↗");
+   a.href=item.url;a.target="_blank";a.rel="noopener noreferrer";
+   article.append(category,heading,meta,a);live.append(article);
+  }
+  if(!seen.size){
+   live.append(el("p","note","No matching education-related QNA headlines were available in the last feed snapshot. This does not mean there are no official school announcements."));
+  }
+ }catch{
+  liveStatus.textContent="Automatic news snapshot unavailable. Check official sources directly; this page cannot confirm current announcements.";
+ }
+}
+loadHeadlines();
 })();
