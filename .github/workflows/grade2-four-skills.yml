@@ -8,9 +8,12 @@ on:
       - "grade2-four-skills-data.js"
       - "grade2-phonics-pathway.html"
       - "grade2-phonics-pathway.js"
+      - "grade2-educator-review.html"
+      - "grade2-educator-review.js"
       - "scripts/test-grade2-four-skills.cjs"
       - "scripts/check-grade2-four-skills.cjs"
       - "scripts/test-grade2-phonics-pathway.cjs"
+      - "scripts/test-grade2-educator-review.cjs"
       - ".github/workflows/grade2-four-skills.yml"
   push:
     branches: [main, feature/grade2-four-skills-pilot-20261016]
@@ -20,9 +23,12 @@ on:
       - "grade2-four-skills-data.js"
       - "grade2-phonics-pathway.html"
       - "grade2-phonics-pathway.js"
+      - "grade2-educator-review.html"
+      - "grade2-educator-review.js"
       - "scripts/test-grade2-four-skills.cjs"
       - "scripts/check-grade2-four-skills.cjs"
       - "scripts/test-grade2-phonics-pathway.cjs"
+      - "scripts/test-grade2-educator-review.cjs"
       - ".github/workflows/grade2-four-skills.yml"
   workflow_dispatch:
 
@@ -43,6 +49,8 @@ jobs:
           node --check grade2-four-skills.js
           node --check grade2-four-skills-data.js
           node --check grade2-phonics-pathway.js
+          node --check grade2-educator-review.js
+          node --check scripts/test-grade2-educator-review.cjs
           node scripts/check-grade2-four-skills.cjs
       - name: Install Chromium for mobile and tablet test
         run: |
@@ -57,3 +65,4 @@ jobs:
           done
           node scripts/test-grade2-four-skills.cjs
           node scripts/test-grade2-phonics-pathway.cjs
+          node scripts/test-grade2-educator-review.cjs
