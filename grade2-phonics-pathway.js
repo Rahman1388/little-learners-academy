@@ -100,6 +100,8 @@ const done=new Set();
 let family=FAMILIES[0];
 let step=STEPS[0];
 const $=id=>document.getElementById(id);
+// This prototype records *attempted practice*, never demonstrated mastery.
+const DONE_PER_FAMILY=STEPS.length;
 function el(tag,cls,text){
  const n=document.createElement(tag);
  if(cls)n.className=cls;
@@ -117,6 +119,8 @@ function progress(){
  $("progressText").textContent=total+" / "+TOTAL+" optional guided steps practised this visit (not a score)";
  $("progressBar").max=TOTAL;
  $("progressBar").value=total;
+ const familyCount=STEPS.filter(s=>done.has(family.id+"-"+s.id)).length;
+ $("familyProgress").textContent="This family: "+familyCount+" / "+DONE_PER_FAMILY+" guided stages tried this visit • Not a test score";
  for(const b of $("stepButtons").querySelectorAll("button")){
   const finished=done.has(family.id+"-"+b.dataset.step);
   b.classList.toggle("done",finished);
@@ -126,6 +130,16 @@ function progress(){
 function mark(){
  done.add(key());progress();
  say("✅ Practice noted for this visit. This is not a pronunciation or reading assessment.","good");
+ const nextIndex=STEPS.indexOf(step)+1;
+ const host=$("stepContent");
+ // A friendly forward path without skipping practice or storing personal information.
+ if(nextIndex<STEPS.length&&!host.querySelector(".next-step")){
+  const b=el("button","next-step","Next: "+STEPS[nextIndex].label+" →");
+  b.type="button";
+  b.dataset.action="next-step";
+  b.addEventListener("click",()=>{step=STEPS[nextIndex];render(true);});
+  host.append(b);
+ }
 }
 function completeButton(text){
  const b=el("button","primary",text);
@@ -137,7 +151,13 @@ function addVisual(host,word){
  const card=el("div","visual");
  const picture=el("span","picture",word.picture);
  picture.setAttribute("role","img");picture.setAttribute("aria-label",word.label);
- card.append(picture,el("span","word",word.word));
+ // Keep full words available to assistive technology, while visually contrasting
+ // the changing start from the common spelling pattern. Do not imply sound testing.
+ const letters=el("span","word");
+ letters.setAttribute("aria-hidden","true");
+ letters.append(el("span","word-start",word.onset),el("span","word-rime",family.ending));
+ const accessibleWord=el("span","sr-only","Word: "+word.word);
+ card.append(picture,letters,accessibleWord);
  host.append(card);
 }
 function adultDetails(host,title,script){
@@ -173,7 +193,8 @@ function show(){
  $("stepHeading").textContent="Module "+family.module+" • "+step.label+" • "+family.pattern;
  switch(step.id){
   case "see":{
-   host.append(el("p",null,"Look carefully at these two words. What letters do they share at the end?"));
+   host.append(el("p",null,"Look at the coloured endings. Can you find the letters both words share?"));
+   host.append(el("p","rime-key","Start letters + shared ending • بداية الكلمة + النهاية المشتركة"));
    for(const word of family.words)addVisual(host,word);
    host.append(el("p","note","An adult may point to the letters. Pictures are visual clues, not proof that a child can read the words."));
    host.append(completeButton("👀 We explored the words"));
@@ -191,7 +212,7 @@ function show(){
    for(const word of family.words){
     const row=el("div","chunks");
     row.setAttribute("aria-label",word.onset+" plus "+family.ending+" makes "+word.word);
-    row.append(el("span","chunk",word.onset),el("span",null,"+"),el("span","chunk",family.ending),el("span",null,"→"),el("span","chunk result",word.word));
+    row.append(el("span","chunk",word.onset),el("span",null,"+"),el("span","chunk ending",family.ending),el("span",null,"→"),el("span","chunk result",word.word));
     host.append(row);
    }
    host.append(el("p","note","Written chunks alone do not teach pronunciation. Adults should model sounds, not pronounce letter names in place of phonemes. Exact sound production requires teacher review."));
@@ -229,6 +250,7 @@ function show(){
   }
   case "review":{
    host.append(el("p",null,"Look at both words again. Tell an adult which ending is the same. If comfortable, read each word aloud."));
+   host.append(el("p","rime-key","The coloured letters show the shared written ending, not a pronunciation score."));
    for(const word of family.words)addVisual(host,word);
    host.append(el("p","note","Adult checklist: identify shared letters; discuss word meaning; offer a sound model; note any difficulty for a teacher. Do not label this a passed oral reading test."));
    host.append(completeButton("⭐ We reviewed together"));
