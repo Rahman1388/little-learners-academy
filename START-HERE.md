@@ -28,6 +28,13 @@
 
 A new optional **adult-only sound review panel** was merged into the Grade 2 Word Family Adventure (commit `ee2029d`). For ring, sing, hand and sand, adults can play device-voice Hear/Slow, mark each as **clear**, **needs improvement**, or **no sound**, and prepare locally generated written feedback to copy into a chat. Nothing is uploaded or stored, and no child is assessed. All three pre-merge gates — Grade 2 browser QA, app validation and child security — passed. **Confirm the latest Pages deployment separately before telling the user the new panel is live.** This feature is a practical feedback collection interface, not evidence that English pronunciation passed educator review.
 
+## 18 October 2026 — Ministry inquiry sent (user-reported)
+
+- Project owner reported **sending an initial email inquiry** to Qatar's Ministry of Education and Higher Education (MOEHE), asking about the process for review/evaluation of an **independent educational app**. The draft included the main public app URL and the Grade 2 Word Family Adventure sample URL.
+- **Status: Awaiting a response.** No Ministry evaluation, receipt confirmation, appointment, approval, accreditation, endorsement or formal audit has been reported; do not imply any of these occurred. We have not accessed or independently verified the user's sent mailbox.
+- **Next actions:** Keep any response privately, identify correct Ministry department and official requirements, then prepare a professional application overview, privacy safeguards, curriculum crosswalk and teacher-review evidence as requested. If no reply after roughly **7–10 working days**, consider a courteous follow-up or the official Ministry contact channels. The owner should not publish officials' private correspondence without permission.
+- Product voice decision: retain previously verified adult device audio as baseline, and **consider but do not yet deploy** a teacher-reviewed child-friendly/youthful voice comparison. Parent reported clear iPhone playback of ring, sing and hand at normal and slow rates; sand was not yet reported.
+
 ## Next action in the next chat
 
 1. Ask specifically whether iPhone **Hear** and **Slow** playback sounds clear for **ring/sing**, and then **hand/sand**. Do not reinterpret “Checked” as acceptance.
