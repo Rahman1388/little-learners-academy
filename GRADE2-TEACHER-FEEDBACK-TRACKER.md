@@ -1,5 +1,5 @@
 # Grade 2 English — teacher-feedback improvement tracker
-_Last updated: 16 October 2026 | Internal quality review; not an official endorsement_
+_Last updated: 18 October 2026 | Internal quality review; not an official endorsement_
 
 ## Review scope and evidence
 
@@ -92,3 +92,11 @@ Record feedback with page/question ID, evidence, correction owner and date. Afte
 - **Technical browser verification PASSED:** [GitHub Actions Grade 2 pilot run #39133241851](https://github.com/Rahman1388/little-learners-academy/actions/runs/39133241851), tested implementation commit `27195d201`, reports passing static checks, 20-skill regression, and eight-family browser regression. Logs explicitly verify highlighted word endings, accessible full-word alternatives, next-stage focus, retries and mobile 320/390/768px widths. These results **do not** substitute for manual Safari/VoiceOver or teacher review.
 - **Teacher-ready checklist created:** [GRADE2-PHONICS-EDUCATOR-REVIEW.md](GRADE2-PHONICS-EDUCATOR-REVIEW.md) lists **each family, original words, educational questions, Arabic, accessibility and privacy criteria**, plus an anonymous Accept/Revise/Hold format. Share only with appropriate adult reviewers; don't request identifiable child feedback.
 - **Pending release gates:** Grade 2 phonics pedagogy review, native Arabic text approval, real child usability/adult-guided listening review, iPhone Safari/VoiceOver and enlarged-text inspection. No official endorsement claimed. Public app **unchanged**.
+
+
+## 18 October 2026 — enlarged word displays, clearer clues, bilingual stages
+
+- **Saved on separate development branch:** A temporary **Aa • Larger letters** control with a pressed/unpressed state, underlined highlighted word endings, a keyboard skip link, and draft Arabic stage names tagged `lang=ar` and `dir=rtl`. The word pictures now have **visible captions** as well as separate full-word screen-reader text. A child can follow the existing seven-stage Next button without any score or personal-data collection.
+- **Automated browser QA: PASSED.** [Grade 2 four-skills pilot CI run #39144517828](https://github.com/Rahman1388/little-learners-academy/actions/runs/39144517828) passed at tested code commit `78e6b9fc` on 18 October 2026. It included all **eight word families and 56 transient phonics stages**, the original 20 guided activity flags, the temporary letter-size toggle, skip navigation, visible picture captions, word-family labels, narrow phone widths and no extra local-storage writes.
+- **Prepared for human QA:** [GRADE2-PHONICS-EDUCATOR-REVIEW.md](GRADE2-PHONICS-EDUCATOR-REVIEW.md) now includes explicit real-iPhone Safari/VoiceOver, Arabic-label, larger-type, picture-meaning and child-guided spelling checks. **No specialist or real iPhone results have been recorded yet.** Technical browser tests do not establish WCAG conformance, Ministry approval or phonics learning outcomes.
+- **Preservation:** No public release or main-branch merge, no changed core progress keys, no microphones or recorded speech, no paid API. Parents still model spoken sounds; pronunciation remains unverified.
