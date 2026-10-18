@@ -28,6 +28,15 @@
 - No persistent storage, voice uploads, microphone access, accounts or child data were added.
 - **Required manual acceptance:** on a real iPhone, start a word, switch apps or receive a call, come back, verify playback stopped, tap Hear and Slow again, and check stage progress and adult-feedback selections. Explicitly test Safari reload behavior and communicate it honestly.
 
+## Continuous national/international/expert quality loop
+
+The owner requested a standing review of **all** development decisions against Qatar curriculum, national/international teaching and accessibility standards, and qualified specialist feedback. Added:
+- [Internal quality standard](./DEVELOPMENT-QUALITY-STANDARD.md) with linked Qatar MOEHE, EEF, CAST, W3C, UNESCO, Qatar law/NCSA and optional future UNICEF AI guidance.
+- [Machine-readable QA registry](./quality-gates.json) with **eight required review areas** and transparent `pending` statuses; a reviewer acceptance needs role, date, evidence and reviewed version.
+- `scripts/check-quality-gates.cjs`, now run from `.github/workflows/validate.yml`. This safeguards metadata and discourages unverified claims but **does not replace official expert reviews**.
+
+The pilot is *not* endorsed by Qatar MOEHE or certified to WCAG 2.2. The app must not call adult-only clarity observations an English phonics teacher's approval. All school-specific user PDFs remain private and out of public repository.
+
 ## Automatic acceptance gates
 1. `node --check grade2-phonics-pathway.js`
 2. `node scripts/check-grade2-four-skills.cjs`
