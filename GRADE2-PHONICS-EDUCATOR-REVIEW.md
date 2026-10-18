@@ -74,6 +74,12 @@ Reviewers should **not send children's names, photos, voice recordings, or other
 
 **Status:** Only automated Chromium checks are available so far; do **not** mark Safari, VoiceOver, Arabic review or pupil usability as passed without independent evidence. Record each result as **Accept / Revise / Hold** with the module, family, step and proposed fix.
 
+## Separate preview ZIP for adult reviewers — 18 October 2026
+
+The project now generates the **`grade2-teacher-preview` GitHub Actions artifact**, with a review landing page and all dependent lesson JavaScript included. On a computer, extract the package and serve the extracted files through a trusted local server; see [Grade 2 teacher-preview setup](GRADE2-TEACHER-PREVIEW-GUIDE.md).
+
+**Verified:** [GitHub Actions run #39150972772](https://github.com/Rahman1388/little-learners-academy/actions/runs/39150972772) passed packaged browser tests on code commit `ea675ac1d`. It is not a public teacher link, and the ZIP is accessible through a public-source repository, so do not include real learner data. Teacher/Arabic approvals and manual iPhone browser and screen-reader tests are still outstanding.
+
 ## Module-linked reviewer navigation — 18 October 2026
 
 The draft review version now supports **direct module and family routes on a functioning branch/local preview**, making it easier to inspect one relevant phonics family at a time. From the Grade 2 core lesson page, select the module (2–5), find the two relevant family links in the phonics section, and use the **Back to Grade 2 Module** link after exploring the guided lesson.
