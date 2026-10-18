@@ -208,9 +208,14 @@ function show(){
    break;
   }
   case "hear":{
-   host.append(el("p",null,"Ask an adult to read both words aloud. Listen for their similar ending."));
+   host.append(el("p",null,"Listen while an adult says both words. Can you hear the same ending? The buttons below let you hear each full word again at normal or slow speed."));
    adultDetails(host,"👩‍🏫 Adult only: show reading script",family.adult);
-   host.append(el("p","note","This hearing stage is adult-led. The optional speaker buttons elsewhere play a device-generated voice preview, not a validated listening or pronunciation assessment."));
+   for(const word of family.words){
+    const row=el("div","visual");
+    row.append(el("strong",null,"Listen: "+word.word),audioControls(word.word));
+    host.append(row);
+   }
+   host.append(el("p","note","The speaker is an optional device-generated word preview. An adult should model the sounds and ask what is alike. Hearing a word or tapping a speaker does not count as completed practice or prove pronunciation accuracy."));
    host.append(completeButton("👂 We listened with an adult"));
    break;
   }
