@@ -102,6 +102,13 @@ let step=STEPS[0];
 const $=id=>document.getElementById(id);
 // This prototype records *attempted practice*, never demonstrated mastery.
 const DONE_PER_FAMILY=STEPS.length;
+// A temporary display preference only: never stored, uploaded or used as a reading score.
+const largeLettersButton=$("largeLetters");
+largeLettersButton.addEventListener("click",()=>{
+ const large=document.documentElement.dataset.largeLetters!=="true";
+ document.documentElement.dataset.largeLetters=String(large);
+ largeLettersButton.setAttribute("aria-pressed",String(large));
+});
 function el(tag,cls,text){
  const n=document.createElement(tag);
  if(cls)n.className=cls;
@@ -124,7 +131,7 @@ function progress(){
  for(const b of $("stepButtons").querySelectorAll("button")){
   const finished=done.has(family.id+"-"+b.dataset.step);
   b.classList.toggle("done",finished);
-  b.querySelector("span").textContent=finished?"✓ Practised":"Try this";
+  b.querySelector(".stage-status").textContent=finished?"✓ Practised":"Try this";
  }
 }
 function mark(){
@@ -276,7 +283,10 @@ for(const f of FAMILIES){
 for(const s of STEPS){
  const b=el("button",null,s.label);
  b.type="button";b.dataset.step=s.id;b.setAttribute("aria-pressed","false");
- b.append(el("span",null,"Try this"));
+ const status=el("span","stage-status","Try this");
+ const arabic=el("span","stage-ar",s.ar);
+ arabic.lang="ar";arabic.dir="rtl";
+ b.append(status,arabic);
  b.addEventListener("click",()=>{step=s;render(true);});
  $("stepButtons").append(b);
 }
