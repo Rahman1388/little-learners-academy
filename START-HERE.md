@@ -35,12 +35,20 @@ A new optional **adult-only sound review panel** was merged into the Grade 2 Wor
 - **Next actions:** Keep any response privately, identify correct Ministry department and official requirements, then prepare a professional application overview, privacy safeguards, curriculum crosswalk and teacher-review evidence as requested. If no reply after roughly **7–10 working days**, consider a courteous follow-up or the official Ministry contact channels. The owner should not publish officials' private correspondence without permission.
 - Product voice decision: retain previously verified adult device audio as baseline, and **consider but do not yet deploy** a teacher-reviewed child-friendly/youthful voice comparison. Parent reported clear iPhone playback of ring, sing and hand at normal and slow rates; sand was not yet reported.
 
+## 18 October 2026 — quality-first foundation stage
+
+- The owner decided to strengthen **educational quality, curriculum structure, teaching depth, accessibility, bilingual review and reliable platform practices before adding large numbers of lessons or activities**.
+- [Quality-First Foundation Plan](./FOUNDATION-QUALITY-ROADMAP.md) now defines eight quality foundations and phased release criteria. [Grade 2 Quality Manifest](./learning-quality-manifest.json) traces five modules, 20 skill practice flags and two phonics word families; `scripts/check-learning-quality-manifest.cjs` checks that the documentation continues to match the actual app.
+- **Technical validation and deployment of the foundation changes must be verified from GitHub Actions.** A passing content script does not establish any school or Ministry approval or replace human teacher review.
+- Confirmed user-reported iPhone adult listening: **ring, sing and hand all clear** at normal and slow speeds; **sand pending**. A child-friendly voice is a future comparative trial, not an authorized replacement of working English audio.
+
 ## Next action in the next chat
 
-1. Ask specifically whether iPhone **Hear** and **Slow** playback sounds clear for **ring/sing**, and then **hand/sand**. Do not reinterpret “Checked” as acceptance.
-2. Log issues by activity, word, mode and device. Correct issues carefully without altering existing child progress.
-3. Obtain module-by-module Grade 2 teacher acceptance and Arabic educator review; document Accept / Revise / Hold.
-4. Verify mobile accessibility on real Safari/iPhone and expand quality-reviewed activities later, while preserving cost and child-safety priorities.
+1. Continue **[the Quality-First Foundation Plan](./FOUNDATION-QUALITY-ROADMAP.md)**, not bulk question production. Validate any new module against the machine-readable learning objectives and qualified teacher review.
+2. Parent found ring, sing, hand clear at two speeds on iPhone. **Only sand** still awaits adult sound testing; no phonics educator has signed off on the four words.
+3. Invite a Grade 2 English teacher to assess each of five Semester 1 modules; engage a native Arabic-language educator to review every relevant Arabic instruction. Log Accept / Revise / Hold and correction evidence.
+4. Conduct real-device iPhone/Safari and VoiceOver tests, preserve existing progress, and check release workflows after updates.
+5. **Ministry inquiry already sent (as reported by owner)**; await official response and use the requested process. No official approval has been received.
 
 ## Source of truth
 
