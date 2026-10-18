@@ -20,8 +20,10 @@ for(const r of gates.references){
  assert(typeof r.id==="string"&&r.id.length>2&&!referenceIds.has(r.id),"Duplicate or absent reference ID");
  referenceIds.add(r.id);
  assert(/^https:\/\//.test(r.url),"Reference must use HTTPS: "+r.id);
- for(const key of ["category","authority","title","application"])
-  assert(typeof r[key]==="string"&&r[key].length>8,"Incomplete source metadata: "+r.id+" "+key);
+ for(const key of ["category","authority","title","application"]){
+  const minLength=key==="authority"?2:8; // Valid organizations include CAST and W3C.
+  assert(typeof r[key]==="string"&&r[key].trim().length>=minLength,"Incomplete source metadata: "+r.id+" "+key);
+ }
 }
 assert(referenceIds.has("qatar-foundation")&&referenceIds.has("qatar-curriculum"),"Qatar official guidance is required");
 assert(referenceIds.has("qatar-privacy-law"),"Qatar child privacy must be considered");
