@@ -15,6 +15,9 @@ for(const unsafe of [/\bfetch\s*\(/, /sendBeacon/, /getUserMedia/, /SpeechRecogn
  assert(!unsafe.test(js),"Disallowed JS feature: "+unsafe);
 }
 assert(html.includes('id="stepHeading" tabindex="-1"'),"Focusable lesson heading missing");
+assert(html.includes("Today I can:")&&html.includes("there is no timer or score"),"Child learning goal and non-punitive pacing missing");
+assert(html.includes("details summary:focus-visible"),"Clue / adult detail keyboard focus style missing");
+assert(js.includes("Need a clue?")&&js.includes("My learning check-in:"),"Guided hints and reflection missing");
 assert(html.includes("min-height:48px"),"Touchable adult-script summary missing");
 assert(html.includes('id="audioStatus"'),"Audio playback accessibility feedback missing");
 assert(js.includes("SpeechSynthesisUtterance")&&js.includes("speakWord"),"Device speech preview missing");
@@ -76,6 +79,7 @@ assert(html.includes('id="stageCounter"'),"Stage progress label missing");
    }
    switch(step){
     case 0:case 2:case 6:
+     if(step===6)assert.match(await page.locator("#stepContent").innerText(),/My learning check-in:/);
      await page.locator('[data-action="complete"]').click();break;
     case 1:
      assert.equal(await page.locator("details").evaluate(x=>x.open),false,"Adult script starts closed");
@@ -88,6 +92,9 @@ assert(html.includes('id="stageCounter"'),"Stage progress label missing");
      const wrong=(answer+1)%3;
      await page.locator('[data-answer="'+wrong+'"]').click();
      assert.match(await page.locator("#feedback").innerText(),/Not quite/);
+     assert.equal(await page.locator('#stepContent details summary').count(),1,"Recognition and meaning tasks offer a clue");
+     await page.locator('#stepContent details summary').click();
+     assert.equal(await page.locator('#stepContent details').evaluate(x=>x.open),true,"Clue must open without changing progress");
      assert(await page.locator("#continueStep").isHidden(),"Wrong answer must not unlock continue");
      await page.locator('[data-answer="'+answer+'"]').click();
      break;
@@ -97,6 +104,9 @@ assert(html.includes('id="stageCounter"'),"Stage progress label missing");
      await input.fill("wrong");
      await page.locator('[data-action="check-spelling"]').click();
      assert.match(await page.locator("#feedback").innerText(),/Try again/);
+     assert.equal(await page.locator('#stepContent details').count(),2,"Spelling must offer an adult script and a separate clue");
+     await page.locator('#stepContent details').last().locator('summary').click();
+     assert.equal(await page.locator('#stepContent details').last().evaluate(x=>x.open),true);
      await input.fill(family===0?"sing":"sand");
      await page.locator('[data-action="check-spelling"]').click();
      break;
