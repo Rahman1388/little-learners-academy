@@ -8,6 +8,14 @@
 - [Grade 2 Four English Skills](https://rahman1388.github.io/little-learners-academy/grade2-four-skills.html)
 - [Grade 2 Word Family Adventure](https://rahman1388.github.io/little-learners-academy/grade2-phonics-pathway.html)
 
+## 19 October 2026 — Watch → Connect → Try progression added to visual preview
+
+- In [Draft PR #16](https://github.com/Rahman1388/little-learners-academy/pull/16), the original silent, captioned **43 = 4 tens + 3 ones** visual story and color-coded concept map now lead to an independent practice question on **64 = 6 tens + 4 ones**. Wrong examples **46** and **60** trigger constructive feedback, with optional hint and Try Again.
+- Full English and **unverified draft Arabic** practice labels and feedback are available. Changing language retains in-session feedback and the optional hint. This is one unapproved teaching prototype; **not** an extra audited activity, full lesson or mastery claim.
+- **Development QA passed:** bilingual Chromium story/practice testing, child security and application validation. Human maths educator, Arabic language specialist, real iPhone/VoiceOver and age suitability checks remain outstanding.
+- The owner-authorized SEBT static review copy was synchronized to `review/visual-story.html` and `review/grade2-visual-story.js` on `main`. The existing [adult learning preview hub](https://rahman1388.github.io/little-learners-academy/review/learning-previews.html) now describes the additional Try stage. Its public smoke test is separate from development QA. Confirm GitHub Pages publication before telling reviewers it has updated.
+- Keep [PR #16](https://github.com/Rahman1388/little-learners-academy/pull/16) **unmerged**, and leave normal child-facing navigation and prior progress unchanged.
+
 ## 19 October 2026 — Public SEBT lesson review hub (review-only, owner-authorized)
 
 - **Public review hub:** https://rahman1388.github.io/little-learners-academy/review/learning-previews.html — a mobile-friendly adult/educator review index.
