@@ -56,3 +56,37 @@ English and Arabic keyword searches on 19 October 2026 did not surface a clearly
 **Continue evaluating Fikrola as the lead, with Nuqtino as the reserve, but commit to neither yet.** Given very close Fikra-sector activity and available Nuqta apps, neither is “clear” without official records. Do not change GitHub repository name, public review URLs, code identifiers, Apple/Google registrations, logos or existing public child pages until name, spelling, legal safety and owner approval are settled.
 
 **Evidence status:** Public website/store examples inspected; government process guidance verified; formal mark results, available domains, direct reserved store titles and Arabic-native speaker review **not obtained**.
+
+## Addendum — Pearl / Lulwa name combinations (owner's Arabic suggestion, 19 October 2026)
+
+The owner suggested **لولوۃ** for exploration *in combination* with an educational descriptor. **Do not silently normalize the user's spelling**: Qatar/GCC standard Arabic commonly uses **لؤلؤة** for “a pearl” and **لولوة** as the Gulf feminine given name, often transliterated **Lulwa / Lulwah / Lolwa**. The submitted **لولوۃ** has a different terminal character and may reflect Urdu orthography. Ask the owner whether the intended primary name is the **common noun Pearl (لؤلؤة)** or the **Gulf name Lulwa (لولوة)** before committing to a public brand. Sources: https://www.thenationalnews.com/arts-culture/2026/01/02/learn-arabic-lulua-lulu-pearl/ and https://en.wiktionary.org/wiki/%D9%84%D9%88%D9%84%D9%88%D8%A9 .
+
+### Search-verified overlap
+
+- Existing Gulf/Arabic educational **Loloapp — تطبيق لولو للأطفال**, Google Play: https://play.google.com/store/apps/details?id=com.lolo.lolo ; this is a direct competitor in Arabic interactive child education, not merely a personal name.
+- **LooLoo Kids: Learning Academy**, Google Play: https://play.google.com/store/apps/details?id=com.devgame.looloo.kids.learning.toddlers.games (children's educational games; significant search-term similarity to a plain Lulu/LooLoo education name).
+- **Lulwa: Catch The Bus**, Google Play https://play.google.com/store/apps/details?id=com.PGStudios.LulwaCatchTheBus and Apple https://apps.apple.com/us/app/lulwa-catch-the-bus/id6795934770 (family-oriented game; name **Lulwa** visibly used in app listings). This is **not** the proposed learning app.
+- **KidsLuLu** worksheets and children's learning: https://kidslulu.com/ ; plain English “Lulu Kids” would be extremely crowded.
+- **مدارس لؤلؤة العلم**, existing school website https://luluat-alelm.com/ar (teaches primary ages and beyond); and **مدرسة لؤلؤة المعرفة للتعليم الخاص**, school indexed at https://www.findglocal.com/LY/Tarabulus-al-Gharb/528340034020181/%D9%85%D8%AF%D8%B1%D8%B3%D8%A9-%D9%84%D8%A4%D9%84%D8%A4%D8%A9-%D8%A7%D9%84%D9%85%D8%B9%D8%B1%D9%81%D8%A9-%D9%84%D9%84%D8%AA%D8%B9%D9%84%D9%8A%D9%85-%D8%A7%D9%84%D8%AE%D8%A7%D8%B5 . The respective phrases **Pearl of Knowledge / لؤلؤة المعرفة** and **Pearl of Learning / لؤلؤة العلم** are **not recommended** for distinctiveness.
+- **LuLu Hypermarket** is a strong regionally familiar non-education brand: https://gcc.luluhypermarket.com/en-qa/aboutus . This is NOT evidence of a same-class conflict, but it increases commercial noise for the standalone string Lulu.
+
+### Newly coined / composite shortlist (NOT CLEARED)
+
+| Working name (Latin) | Draft Arabic positioning | Educational fit | Search status |
+|---|---|---|---|
+| **Lulwa LearnLab** | **لولوة ليرن لاب** or **مختبر لولوة للتعلّم** | **Best new provisional combination:** blends familiar Gulf pearl-name with experiential learning; can cover English, Arabic, maths, visual science, grades 1–6 | No clear exact educational product surfaced in sample indexed searches. **NOT** official store, domain or trademark clearance. Linguistic review needed for acceptable Arabic product rendering. |
+| **Lulwa Quest** | **مغامرات لولوة** | Most playful; suitable for interactive activities and stories | No clear exact educational app surfaced in sample indexed searches; all further checks pending. |
+| **Lulwa Learning World** | **عالم لولوة للتعلّم** | Broad multi-subject name | Descriptive and longer; search distinctiveness and trademark pending. |
+| **PearlSteps Kids** | **خطوات اللؤلؤ** | Pearls and growth metaphor | Creative concept only; name/Arabic naturalness and all clearance pending. |
+| **Lulwa + Fikrola** | **لولوة فكرولا** | Could evoke Pearl + Thinking | Unwieldy two coined brands; **do not recommend** as app-store product name before extensive user testing. |
+
+Preliminary search returned no obvious **exact** children's learning product for **Lulwa LearnLab** or **Lulwa Quest**, among indexed results examined. This is **not** proof of legal availability or that search engines index every app. One or more spelling variations/near-phonetic matches could still be material.
+
+### Required checks before final selection
+1. Ask the owner if the word **لولوۃ** intends **لؤلؤة (pearl)** or **لولوة (Lulwa)**; the two are culturally related but distinct brand names. Ask Gulf Arabic speaker to advise native spelling and transliteration.
+2. Trademark similarity & registered/intent-to-use filings in **Qatar, Saudi Arabia, UAE**; classes 9/41 and possibly 42; compare **LULU / LOLO / LOLWA / LULWA / LULUA** and Arabic variants. Check rights of any especially well-established competitor; do not assert infringement without qualified advice.
+3. Direct storefront and developer-console name availability checks for **Lulwa LearnLab**, **Lulwa Quest**, and Arabic variants; no store title reservation done.
+4. RDAP/domain/username checks for **lwlwalearnlab** versus **lulwalearnlab** and major .com/.app/.qa domains; **no registration or availability proven**.
+5. Test parents of Grades 1–6 for pronunciation, gender inclusivity, spelling recall and relevance across all 6 grades.
+
+**Decision:** Add **Lulwa LearnLab** as a new *creative frontrunner within the pearl-naming direction*. It has not displaced Fikrola as the broader candidate pending owner clarification, native-speaker review, official clearance and app-store verification. **Do not rename the app or any live links now.**
