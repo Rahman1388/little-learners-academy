@@ -13,6 +13,14 @@ Updated: 20 October 2026
 - `scripts/test-mobile-staging.cjs` verifies the staged files with automated Chromium mobile-browser simulations. **Not a real iPhone Safari, VoiceOver, or curriculum validation.**
 - GitHub Actions builds and uploads **academy-mobile-staging-preview** ZIP, but does **not deploy it**; no site URL is available from the staging package alone.
 
+## Verified GitHub mobile staging build — 20 October 2026
+
+**Engineering PASS:** [Actions run #39344159272](https://github.com/Rahman1388/little-learners-academy/actions/runs/39344159272), source commit `7ae4afcb077fb9accbcc9885dde1d8dc9df2699d`. Automated tests included six watermarked HTML routes, both original Grade 2 lesson/phonics flows, teacher review, Qatar official-source directory, brand preferences, and viewport widths from 280 px to 1024 px.
+
+**Downloadable archive:** Actions artifact `academy-mobile-staging-preview` (55,493 bytes), GitHub expiration 26 October 2026 at 23:52 UTC; archive also successfully passed ZIP integrity verification after download. **The ZIP is not a live iPhone link.** It has no hosted URL, access-restriction system, registered brand, live QNA alerts or teacher accreditation.
+
+**Publishing is deliberately blocked pending owner choice between a public-but-unlisted GitHub Pages staging link and an access-restricted review mechanism.** Standard personal GitHub Pages is publicly accessible even with `noindex` and `robots.txt`; the exact visibility decision should be confirmed explicitly, not inferred from general agreement to continuing development.
+
 ## Why a separate repository is needed
 GitHub Pages normally allows one project site per repository. The current repository already hosts the public app; deploying a review branch to the same Pages site could replace it. Use a separate repository such as `little-learners-review-staging` **only after the owner explicitly authorizes a PUBLIC, unlisted-but-accessible review link**. A public Pages site is not password protected. GitHub Enterprise Cloud organizational Pages can restrict access, but that is not appropriate to assume for a personal account.
 Official reference: https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages
