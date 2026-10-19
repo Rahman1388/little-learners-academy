@@ -16,6 +16,12 @@ const files=[
  ["grade2-phonics-pathway.js","grade2-phonics-pathway.js"],
  ["grade2-educator-review.html","grade2-educator-review.html"],
  ["grade2-educator-review.js","grade2-educator-review.js"],
+ ["school-updates.html","school-updates.html"],
+ ["school-updates.js","school-updates.js"],
+ ["school-updates-data.js","school-updates-data.js"],
+ ["school-live-news.json","school-live-news.json"],
+ ["academy-brand-review.html","academy-brand-review.html"],
+ ["academy-brand-review.js","academy-brand-review.js"],
  ["icon.svg","icon.svg"],
  ["GRADE2-PHONICS-EDUCATOR-REVIEW.md","EDUCATOR-REVIEW-GUIDE.md"],
  ["GRADE2-TEACHER-PREVIEW-GUIDE.md","START-HERE.md"]
@@ -41,15 +47,24 @@ for(const fileName of fileNames){
  for(const resource of localResources){
   assert(fileNames.has(resource),fileName+" references unbundled local asset: "+resource);
  }
- assert(!/https?:\/\//.test(html),"Preview HTML cannot embed external hosts: "+fileName);
+ const externalAssets=Array.from(html.matchAll(/<(?:script|img|iframe|link)\\b[^>]*\\b(?:src|href)="(https?:\\/\\/[^"]+)"/gi),m=>m[1]);
+ assert.equal(externalAssets.length,0,fileName+" cannot embed externally hosted scripts, images, frames, or styles");
+ // Only the adult news directory may contain outbound official-source anchor links.
+ const externalAnchors=Array.from(html.matchAll(/<a\\b[^>]*\\bhref="(https?:\\/\\/[^"]+)"/gi),m=>m[1]);
+ if(fileName!=="school-updates.html")assert.equal(externalAnchors.length,0,fileName+" has unapproved outbound links");
+ else for(const url of externalAnchors){
+  const parsed=new URL(url.replace(/&amp;/g,"&"));
+  const allow=new Set(["www.edu.gov.qa","edu.gov.qa","www.gco.gov.qa","hukoomi.gov.qa","qna.org.qa"]);
+  assert(parsed.protocol==="https:"&&allow.has(parsed.hostname)&&!parsed.username&&!parsed.password,"Unapproved news external link: "+url);
+ }
 }
 const manifest={
- purpose:"Adult educator review-only preview, not ministry approved or publicly deployed",
+ purpose:"Adult educator and parent review-only preview, not ministry approved or publicly deployed",
  builtFrom:"feature/grade2-four-skills-pilot-20261016",
  files:Array.from(fileNames).sort(),
  automaticSubmission:false,
  adultReadAudioOnly:true,
- notes:"Open on a controlled local/static server. Do not upload student data or treat this as a published school product."
+ notes:"Open on a controlled local/static server. Adult source-directory links can open official external pages when clicked. No live news updater or student upload. Do not treat as a published school product."
 };
 fs.writeFileSync(path.join(folder,"PREVIEW-MANIFEST.json"),JSON.stringify(manifest,null,2)+"\n","utf8");
 console.log("PASS: created self-contained Grade 2 teacher-review static package with "+files.length+" source assets; not deployed");
