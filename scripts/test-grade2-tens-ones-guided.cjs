@@ -5,7 +5,12 @@ const fs=require("node:fs");
 const {chromium}=require("playwright");
 const html=fs.readFileSync("grade2-tens-ones-guided.html","utf8");
 const js=fs.readFileSync("grade2-tens-ones-guided.js","utf8");
+const translations=fs.readFileSync("grade2-tens-ones-i18n.js","utf8");
 new (require("node:vm").Script)(js);
+new (require("node:vm").Script)(translations);
+assert(html.includes('src="./grade2-tens-ones-i18n.js"'),"Bilingual lessons must load translation strings");
+assert(html.includes('id="languageAr"')&&html.includes('id="languageEn"'),"Both language choices must exist");
+assert(translations.includes("عُدَّ القضبان")&&translations.includes("٧٦"),"Arabic teaching stages and number explanation must be available");
 assert(html.includes('id="stepHeading" tabindex="-1"'),"Accessible stage heading");
 assert(html.includes('aria-live="polite"'),"Need polite screen reader feedback");
 assert(html.includes("Not a test or official school lesson"),"Explicit pilot status");
@@ -42,6 +47,21 @@ for(const forbidden of [/\bfetch\s*\(/,/sendBeacon/,/XMLHttpRequest/,/localStora
  await page.locator('#answerGrid button[data-choice="52"]').click();
  assert.match(await page.locator("#feedback").innerText(),/50 \+ 2 = 52/);
  assert(await page.locator("#nextButton").isVisible());
+ // Change the language mid-lesson: completed answer must remain completed in this session.
+ await page.locator("#languageAr").click();
+ assert.equal(await page.locator("html").getAttribute("lang"),"ar");
+ assert.equal(await page.locator("html").getAttribute("dir"),"rtl");
+ assert.equal(await page.locator("#languageAr").getAttribute("aria-pressed"),"true");
+ assert.match(await page.locator("#stepHeading").innerText(),/لنكوّن عددًا/);
+ assert.equal(await page.locator("#nextButton").isVisible(),true,"Language switch must retain completion");
+ assert.equal(await page.locator('#answerGrid button[data-choice="52"]').isDisabled(),true);
+ assert.match(await page.locator("#feedback").innerText(),/٥٠/);
+ await page.locator("#hintButton").click();
+ assert.match(await page.locator("#hintBox").innerText(),/خمس مجموعات/);
+ await page.locator("#languageEn").click();
+ assert.equal(await page.locator("html").getAttribute("lang"),"en");
+ assert.equal(await page.locator("html").getAttribute("dir"),"ltr");
+ assert.match(await page.locator("#feedback").innerText(),/50 \+ 2 = 52/);
  await page.locator("#nextButton").click();
  assert.match(await page.locator("#stepHeading").innerText(),/Your turn/);
  assert.equal(await page.locator(".rod").count(),7);
@@ -59,12 +79,33 @@ for(const forbidden of [/\bfetch\s*\(/,/sendBeacon/,/XMLHttpRequest/,/localStora
  assert.match(await page.locator("#stepHeading").innerText(),/practised tens and ones/);
  assert(await page.locator("#restartButton").isVisible());
  assert(await page.locator("#nextButton").isHidden());
+ // Full draft Arabic session, including prompts, hint, correction, reflection and retry.
+ await page.locator("#languageAr").click();
+ assert.match(await page.locator("#stepHeading").innerText(),/تدرّبت على العشرات/);
+ await page.locator("#restartButton").click();
+ assert.match(await page.locator("#stageProgress").innerText(),/الخطوة 1 من ٤/);
+ assert.match(await page.locator("#modelExplanation").innerText(),/٣٠/);
+ assert.match(await page.locator("#placeVisual").getAttribute("aria-label"),/مجموعات من عشرة/);
+ await page.locator("#nextButton").click();
+ await page.locator('#answerGrid button[data-choice="25"]').click();
+ assert.match(await page.locator("#feedback").innerText(),/ليست الإجابة الصحيحة/);
+ await page.locator('#answerGrid button[data-choice="52"]').click();
+ assert.match(await page.locator("#feedback").innerText(),/٥٢/);
+ await page.locator("#nextButton").click();
+ await page.locator('#answerGrid button[data-choice="76"]').click();
+ await page.locator("#nextButton").click();
+ assert.match(await page.locator("#reflection").innerText(),/سبع عشرات/);
+ await page.locator("#nextButton").click();
+ assert.match(await page.locator("#stageProgress").innerText(),/لا تُمنح درجات/);
  assert.equal(await page.evaluate(()=>Object.keys(localStorage).length),0);
  assert.equal(await page.evaluate(()=>Object.keys(sessionStorage).length),0);
- for(const width of [280,320,390,768,1024]){
-  await page.setViewportSize({width,height:850});
-  const bounds=await page.evaluate(()=>({scroll:document.documentElement.scrollWidth,viewport:innerWidth}));
-  assert(bounds.scroll<=bounds.viewport+3,"Horizontal scrolling at "+width+"px: "+JSON.stringify(bounds));
+ for(const locale of ["ar","en"]){
+  await page.locator(locale==="ar"?"#languageAr":"#languageEn").click();
+  for(const width of [280,320,390,768,1024]){
+   await page.setViewportSize({width,height:850});
+   const bounds=await page.evaluate(()=>({scroll:document.documentElement.scrollWidth,viewport:innerWidth}));
+   assert(bounds.scroll<=bounds.viewport+3,"Horizontal scrolling at "+width+"px ("+locale+"): "+JSON.stringify(bounds));
+  }
  }
  await page.locator("#restartButton").click();
  assert.match(await page.locator("#stageProgress").innerText(),/Step 1 of 4/);
@@ -72,5 +113,5 @@ for(const forbidden of [/\bfetch\s*\(/,/sendBeacon/,/XMLHttpRequest/,/localStora
  assert.deepEqual(errors,[]);
  assert.deepEqual(thirdParty,[],"No non-app requests");
  await browser.close();
- console.log("PASS: teach-first Grade 2 place-value model, retries, reflection, local-only privacy, focus and 280–1024px layouts");
+ console.log("PASS: Grade 2 model, retry, reflection, EN/AR session-safe switch, Arabic text, privacy, focus and bilingual 280–1024px layouts");
 })().catch(e=>{console.error(e.stack||e);process.exitCode=1;});
