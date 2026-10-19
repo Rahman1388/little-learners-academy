@@ -28,7 +28,7 @@
 ## Vision and non-negotiable requirements
 
 - A welcoming, colourful, high-quality, mobile- and tablet-first children's learning app, usable in Qatar and respecting Islamic ethics, Qatar cultural values and children's privacy.
-- Goal: progress from Grade 1 foundations toward a **Grade 1–6** international-standard supplementary activity platform with **more than 100 activities**, eventually broad curriculum-relevant depth for each grade/major subject. Do **not** present pilots as complete grade curricula.
+- Owner-confirmed long-term goal (19 October 2026): **600 structured lessons and at least 2,400 distinct, meaningful interactive practice activities** across Grades 1–6; working distribution **100 lessons and 400 activities per grade**. This replaces the earlier 100+ activity ambition. Treat all figures as *future targets*, not existing content or evidence of curriculum approval. Plan in phases with review gates, rather than chasing arbitrary additional volume. Do **not** present pilots as complete grade curricula.
 - English and Arabic support, picture-based, clear teacher/parent guidance, encouraging feedback, safe badges and achievements, short playful activities, pronunciation practice using both female-style and male-style English voice profiles; accessibility and large touch targets.
 - Parents should be able to see learning goals, progress and practical next steps; no need for the owner to write code or use a laptop to maintain the project.
 - Start with free/open-source tools; avoid unnecessary ongoing expenses. Longer-term sustainable financing/business is of interest, but child learning and trust come first.
