@@ -18,6 +18,8 @@ on:
       - "GRADE2-TEACHER-PREVIEW-GUIDE.md"
       - "scripts/build-grade2-teacher-preview.cjs"
       - "scripts/test-grade2-teacher-preview.cjs"
+      - "scripts/build-mobile-staging.cjs"
+      - "scripts/test-mobile-staging.cjs"
       - "academy-brand-review.html"
       - "academy-brand-review.js"
       - "GRADE2-TEACHER-PREVIEW-GUIDE.md"
@@ -51,6 +53,8 @@ on:
       - "GRADE2-TEACHER-PREVIEW-GUIDE.md"
       - "scripts/build-grade2-teacher-preview.cjs"
       - "scripts/test-grade2-teacher-preview.cjs"
+      - "scripts/build-mobile-staging.cjs"
+      - "scripts/test-mobile-staging.cjs"
       - "academy-brand-review.html"
       - "academy-brand-review.js"
       - "GRADE2-TEACHER-PREVIEW-GUIDE.md"
@@ -88,6 +92,8 @@ jobs:
           node --check grade2-educator-review.js
           node --check scripts/test-grade2-educator-review.cjs
           node --check scripts/build-grade2-teacher-preview.cjs
+          node --check scripts/build-mobile-staging.cjs
+          node --check scripts/test-mobile-staging.cjs
           node --check scripts/test-grade2-teacher-preview.cjs
           node --check academy-brand-review.js
           node --check school-updates.js
@@ -99,6 +105,8 @@ jobs:
           node scripts/check-grade2-four-skills.cjs
       - name: Build isolated teacher-preview package
         run: node scripts/build-grade2-teacher-preview.cjs
+      - name: Build mobile staging artifact without deployment
+        run: node scripts/build-mobile-staging.cjs
       - name: Install Chromium for mobile and tablet test
         run: |
           npm install --no-save playwright@1.56.1
@@ -114,6 +122,7 @@ jobs:
           node scripts/test-grade2-phonics-pathway.cjs
           node scripts/test-grade2-educator-review.cjs
           node scripts/test-grade2-teacher-preview.cjs
+          node scripts/test-mobile-staging.cjs
           node scripts/test-school-updates.cjs
       - name: Save downloadable teacher-preview package (not a hosted website)
         uses: actions/upload-artifact@v4
@@ -121,4 +130,12 @@ jobs:
           name: grade2-teacher-preview
           path: grade2-teacher-preview-package/
           retention-days: 7
+          if-no-files-found: error
+      - name: Save downloadable mobile staging build (not hosted)
+        uses: actions/upload-artifact@v4
+        with:
+          name: academy-mobile-staging-preview
+          path: academy-mobile-staging-package/
+          retention-days: 7
+          include-hidden-files: true
           if-no-files-found: error
