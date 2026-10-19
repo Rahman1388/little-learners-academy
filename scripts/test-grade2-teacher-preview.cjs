@@ -58,7 +58,7 @@ const base=origin+"/grade2-teacher-preview-package";
  assert.match(await page.locator("h1").innerText(),/Review Hub/);
  await page.locator('a[href="./school-updates.html"]').click();
  await page.locator("#updatesCards .card").first().waitFor();
- assert.equal(await page.locator("#updatesCards .card").count(),6,"Official reference directory remains complete in review ZIP");
+ assert.equal(await page.locator("#updatesCards .card").count(),7,"All seven current official-source references must remain in review ZIP");
  assert.match(await page.locator("#liveFeedStatus").innerText(),/not run successfully/i,"Uninitialized snapshot must not claim live headlines");
  assert.equal(await page.locator("#liveHeadlines .headline").count(),0);
  assert.equal(await page.locator("#filters button").count(),5,"All adult source filters remain functional");
