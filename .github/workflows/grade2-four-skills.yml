@@ -18,6 +18,9 @@ on:
       - "GRADE2-TEACHER-PREVIEW-GUIDE.md"
       - "scripts/build-grade2-teacher-preview.cjs"
       - "scripts/test-grade2-teacher-preview.cjs"
+      - "academy-brand-review.html"
+      - "academy-brand-review.js"
+      - "GRADE2-TEACHER-PREVIEW-GUIDE.md"
       - "school-updates.html"
       - "school-updates.js"
       - "school-updates-data.js"
@@ -48,6 +51,9 @@ on:
       - "GRADE2-TEACHER-PREVIEW-GUIDE.md"
       - "scripts/build-grade2-teacher-preview.cjs"
       - "scripts/test-grade2-teacher-preview.cjs"
+      - "academy-brand-review.html"
+      - "academy-brand-review.js"
+      - "GRADE2-TEACHER-PREVIEW-GUIDE.md"
       - "school-updates.html"
       - "school-updates.js"
       - "school-updates-data.js"
@@ -83,6 +89,7 @@ jobs:
           node --check scripts/test-grade2-educator-review.cjs
           node --check scripts/build-grade2-teacher-preview.cjs
           node --check scripts/test-grade2-teacher-preview.cjs
+          node --check academy-brand-review.js
           node --check school-updates.js
           node --check school-updates-data.js
           node --check scripts/test-school-updates.cjs
