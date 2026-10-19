@@ -1,6 +1,6 @@
 # START HERE — Little Learners Academy
 
-**Checkpoint:** 18 October 2026. **Owner's project:** bilingual, Qatar-focused, child-safe Grades 1–6 supplementary learning app. This document is a quick way to resume after lost chat context; it is not an export of ChatGPT transcripts.
+**Checkpoint:** 19 October 2026. **Owner's project:** bilingual, Qatar-focused, child-safe Grades 1–6 supplementary learning app. This document is a quick way to resume after lost chat context; it is not an export of ChatGPT transcripts.
 
 ## Public app and links
 
@@ -11,8 +11,9 @@
 ## 19 October 2026 — Teaching-first Grade 2 Mathematics preview (DRAFT)
 
 - **Development draft:** [PR #15 — Tens & Ones Explorer](https://github.com/Rahman1388/little-learners-academy/pull/15). Newly developed on `feature/grade2-tens-ones-lesson-20261019`; **not merged, publicly linked, or teacher-approved**.
-- The original, session-only English-language lesson teaches a worked base-ten model (34), guided try (52), independent practice (76) with hints/retries and non-recorded verbal/pointing reflection. The Arabic title is provisional; complete translation and expert review remain pending.
-- **Automated checks on commit `4f95939`: PASS** for [interactive/mobile browser review](https://github.com/Rahman1388/little-learners-academy/actions/runs/39187091765), [app validation](https://github.com/Rahman1388/little-learners-academy/actions/runs/39187091773), and [child security](https://github.com/Rahman1388/little-learners-academy/actions/runs/39187091805). These checks do not prove curriculum suitability or real-device accessibility.
+- The original, session-only lesson teaches a worked base-ten model (34), guided try (52), independent practice (76) with hints/retries and non-recorded verbal/pointing reflection. A full **draft Arabic translation** (goals, all teaching stages, corrective messages, hints and parent instructions) and English/العربية switch are prepared; it is not yet reviewed by a qualified Arabic educator.
+- **Automated checks on commit `b5eb926`: PASS** for [English/Arabic interactive and mobile browser review](https://github.com/Rahman1388/little-learners-academy/actions/runs/39188800243), [application validation](https://github.com/Rahman1388/little-learners-academy/actions/runs/39188800252), and [child security](https://github.com/Rahman1388/little-learners-academy/actions/runs/39188800258). Passing tests do not prove curriculum suitability or real-device accessibility.
+- **Reviewer handoff ready:** [Grade 2 maths and Arabic educator review sheet](https://github.com/Rahman1388/little-learners-academy/blob/feature/grade2-tens-ones-lesson-20261019/GRADE2-TENS-ONES-TEACHER-REVIEW.md) and [iPhone/iPad VoiceOver manual review plan](https://github.com/Rahman1388/little-learners-academy/blob/feature/grade2-tens-ones-lesson-20261019/GRADE2-TENS-ONES-IPHONE-TEST.md). These are prepared checklists, not completed human sign-offs.
 - **No new counted activities** have been added to the audited 451-question baseline. No child data is collected, and previous lesson audio, progress and existing activity pages remain unchanged.
 - **Next release gates:** primary mathematics teacher's review of grade/curriculum suitability; qualified Arabic reviewer; actual iPhone/VoiceOver and tablet usability; owner decision before any public release.
 
