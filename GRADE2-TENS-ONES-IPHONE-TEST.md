@@ -17,6 +17,8 @@
 - [ ] Confirm text is right-to-left and arithmetic numbers display in order. Fluent Arabic educator checks the translation and VoiceOver pronunciation.
 - [ ] Switch back to English; current stage remains unchanged.
 - [ ] Independent stage shows 7 tens and 6 ones. Wrong **67** displays correction; correct **76** unlocks Next. Repeat in Arabic.
+- [ ] New **Build the Number** stage: start with zero sticks/dots, attempt to check early and receive correction, add four tens and three ones to make **43**, confirm controls are keyboard/touch accessible and the number readout is announced by VoiceOver.
+- [ ] Change English / العربية mid-build: the four ten-sticks and three dots should remain unchanged. Check the original feedback is translated, then verify successful check unlocks Continue. Confirm subtract buttons never produce negative counts.
 - [ ] Reflection asks for verbal or pointing explanation; no microphone permission or recording request.
 - [ ] Completion offers replay but does not claim school success or mastery.
 - [ ] Rotate, zoom, change system text size; check legibility, focus and contrast.
