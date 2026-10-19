@@ -8,6 +8,13 @@
 - [Grade 2 Four English Skills](https://rahman1388.github.io/little-learners-academy/grade2-four-skills.html)
 - [Grade 2 Word Family Adventure](https://rahman1388.github.io/little-learners-academy/grade2-phonics-pathway.html)
 
+## 19 October 2026 — Luma Learn Academy brand candidate — high collision concern
+
+- Owner requested adding **Luma Learn Academy** / **لوما لیرن اکیدمی** to potential app brand names, and a deep preliminary check. **Candidate has NOT replaced Little Learners Academy** as the working app name.
+- The [brand investigation dossier](BRAND-NAME-RESEARCH-2026-10-19.md#addendum--luma-learn-academy--لوما-لیرن-اکیدمی-owner-request-19-october-2026) records close existing uses: **Luma Learn** tutoring, **Luma Learning Academy** children's school, **Luma Kids World** bilingual UAE App Store children's app, **Luma** UAE learning flashcards, **Luma** bilingual coding academy, and Google Play language-learning app **Luma**. The candidate has **high preliminary brand-confusion concern**; not recommended for final naming yet.
+- Arabic Gulf-standard rendering for language review could be **لوما ليرن أكاديمي** (phonetic) or **أكاديمية لوما للتعلّم** (adapted), preserving owner's original written candidate. Qualified native Arabic review outstanding.
+- **No verified Qatar, Saudi, UAE, WIPO trademark records or domain availability; no official legal clearance**. The user has not asked to rename public app/repository/preview and none has occurred. Continue existing development.
+
 ## 19 October 2026 — Independent -ing Word Family visual-phonics prototype (DRAFT)
 
 - Continued English learning while **app naming remains deferred**. An original, bilingual Grade 2 pronunciation and spelling **Watch → Connect → Try** feature is now saved as [Draft PR #17](https://github.com/Rahman1388/little-learners-academy/pull/17), branch `feature/grade2-ing-visual-phonics-review-20261019`.
