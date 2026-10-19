@@ -1,0 +1,42 @@
+name: Refresh official school news headlines
+
+# GitHub scheduled workflows run only from the repository's DEFAULT branch.
+# This review-branch file is NOT an active schedule until separately approved/merged.
+on:
+  schedule:
+    - cron: "17 */6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: school-news-refresh
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    # Never push from the unapproved feature branch or a pull request.
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Download verified QNA education headlines
+        run: node scripts/refresh-school-news.cjs
+      - name: Commit only generated headline JSON if refreshed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- school-live-news.json
+          if git diff --cached --quiet; then
+            echo "No content changed"
+            exit 0
+          fi
+          git commit -m "chore: update QNA education headline snapshot"
+          git push
