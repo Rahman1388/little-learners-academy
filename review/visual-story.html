@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'none'; worker-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
+<meta name="theme-color" content="#eaf6ff">
+<meta name="description" content="Original short visual lesson prototype for Grade 2 tens and ones; bilingual captions and interactive color-coded concept map.">
+<link rel="icon" href="../icon.svg" type="image/svg+xml">
+<title>REVIEW PREVIEW — Tens &amp; Ones Visual Story — Little Learners Academy</title>
+<style>
+:root{font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif;color:#183853;background:#eaf6ff}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:linear-gradient(140deg,#dcedff,#fff2d0 55%,#edebff)}
+main{max-width:860px;margin:auto;padding:14px 13px 60px}
+h1{font-size:clamp(27px,5.5vw,39px);line-height:1.15;margin:8px 0}
+h2{font-size:clamp(22px,4.5vw,28px);margin:9px 0}
+p{line-height:1.55}
+a,button{font:inherit}
+a:focus-visible,button:focus-visible{outline:4px solid #8a1538;outline-offset:3px}
+.card{border:3px solid #fff;background:#fffffff0;border-radius:23px;padding:clamp(15px,3vw,25px);margin:14px 0;box-shadow:0 4px 0 #bbd8e7}
+.hero{background:linear-gradient(115deg,#fff2bd,#fff,#e7f5ff)}
+.notice{background:#fff4d8;border:2px solid #d9b977;border-radius:14px;padding:12px;font-size:14px}
+.eyebrow{font-size:13px;font-weight:900;color:#824363}
+.toprow{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:9px}
+.back,.toolbar button,.actions button{min-height:48px;min-width:64px;display:inline-flex;justify-content:center;align-items:center;padding:11px 13px;border-radius:14px;border:2px solid #8bbacf;background:#fff;color:#154d70;font-weight:850;text-decoration:none;cursor:pointer}
+.toolbar{display:flex;gap:8px;flex-wrap:wrap}
+.toolbar button[aria-pressed="true"]{background:#155f88;color:#fff;border-color:#155f88}
+.actions{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.actions button.primary{background:#155f88;color:#fff;border-color:#155f88}
+.actions button:disabled{opacity:.5;cursor:default}
+.legend{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0;font-weight:750}
+.legend span{display:inline-flex;align-items:center;gap:5px;padding:8px 11px;background:#fff;border:2px solid #d6e7ed;border-radius:13px}
+.legend b{width:18px;height:18px;display:inline-block;border-radius:5px}
+.tenSwatch{background:#126e9f}.oneSwatch{background:#f3b831}
+.screen{background:linear-gradient(140deg,#e8f7ff,#fffaf0);border:3px solid #c3deec;border-radius:22px;padding:clamp(14px,3vw,24px);min-height:260px;margin:12px 0}
+#stepCounter{color:#12587a;font-weight:850}
+#caption{font-size:clamp(19px,3.8vw,24px);font-weight:850;line-height:1.4;min-height:56px}
+.manipulatives{display:flex;justify-content:center;align-items:flex-end;gap:16px;flex-wrap:wrap;min-height:145px;margin:17px 0}
+.rods,.dots{display:flex;justify-content:center;align-items:center;gap:8px;flex-wrap:wrap;max-width:310px}
+.rod{width:23px;height:104px;border:2px solid #124667;border-radius:7px;background:repeating-linear-gradient(to bottom,#1474a8 0,#1474a8 8px,#f3fbff 8px,#f3fbff 10px)}
+.dot{height:28px;width:28px;background:#f3c04e;border:2px solid #805a10;border-radius:50%}
+.equation{display:block;text-align:center;background:#fff;border:2px solid #d1e1eb;padding:12px;border-radius:14px;font-size:clamp(23px,4vw,30px);font-weight:900}
+.map{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;align-items:stretch;margin:18px 0}
+.map .center{grid-column:1/-1;text-align:center;background:#f5f3ff;border:3px solid #7456b1;color:#3d2670;border-radius:22px;padding:17px;font-size:clamp(22px,5vw,30px);font-weight:900}
+.branch{border-radius:19px;padding:16px;border:3px solid #9ebdcc;background:#fff;font-weight:850;text-align:center;min-width:0;overflow-wrap:anywhere}
+.branch strong{font-size:clamp(18px,3.6vw,24px);display:block;margin:6px 0}
+.branch.blue{background:#dff2ff;border-color:#367eac}.branch.gold{background:#fff0c4;border-color:#b78316}
+.map .result{grid-column:1/-1;background:#e2f7e4;border-color:#478959}
+#mapIntro{font-weight:800}
+.note{color:#435f76;font-size:14px}
+#screenDescription{margin:7px 0 0}
+.progressbar{background:#d7e9f4;height:13px;border-radius:999px;overflow:hidden;margin:15px 0}
+.progressbar span{display:block;height:100%;width:20%;background:#187aaa;transition:width .35s ease}
+[hidden]{display:none!important}
+@media(max-width:420px){.map{grid-template-columns:1fr}.map .center,.map .result{grid-column:1}.manipulatives{gap:9px}.rod{height:94px;width:21px}.toolbar button{min-width:86px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body><main>
+<aside role="note" style="background:#fff0c5;border:3px solid #a66a27;border-radius:15px;padding:14px 16px;margin:10px 0 18px;line-height:1.5"><strong>⚠ PUBLIC REVIEW PREVIEW — NOT A RELEASED CHILDREN'S LESSON</strong><p style="margin:6px 0">For the project owner, SEBT technical team and adult/educator reviewers. English and Arabic teaching text, accessibility and Qatar curriculum suitability are <strong>not yet professionally approved</strong>. Do not use this as certified classroom instruction. This is a public webpage: do not submit children's names or private feedback.</p><a href="./learning-previews.html">← Review overview</a> &nbsp; · &nbsp; <a href="./tens-ones.html">Other lesson preview</a> &nbsp; · &nbsp; <a href="https://github.com/Rahman1388/little-learners-academy/pull/16">Draft development PR #16</a></aside>
+<div class="toprow">
+ <a class="back" href="../grade2-pilot.html" id="backLink">← Grade 2 Maths</a>
+ <div class="toolbar" role="group" aria-label="Language • اللغة">
+ <button type="button" id="englishButton" lang="en" aria-pressed="true">English</button>
+ <button type="button" id="arabicButton" lang="ar" aria-pressed="false">العربية</button>
+ </div>
+</div>
+<header class="card hero">
+ <div class="eyebrow" id="pilotBadge">ORIGINAL VISUAL MICRO-LESSON • ADULT / EDUCATOR PREVIEW</div>
+ <h1 id="pageTitle">The Number 43 — a visual story</h1>
+ <p id="goal">Watch how tens and ones make a two-digit number, then connect the idea with a colorful learning map.</p>
+ <p class="notice" id="disclaimer">Draft supplementary learning preview. Arabic wording and Grade 2 curriculum alignment require educator review. This is a captioned animation, not a filmed or voiced video. No recording or tracking.</p>
+</header>
+<section class="card" id="storyPanel" aria-labelledby="storyHeading">
+ <h2 id="storyHeading">🎬 Watch and explore</h2>
+ <p id="playerHelp" class="note">Choose Play for an optional guided slideshow, or use Next and Back at your own pace. Nothing starts automatically.</p>
+ <div class="legend" aria-label="Visual key" id="legend">
+  <span><b class="tenSwatch" aria-hidden="true"></b><span id="tensLabel">Blue = tens</span></span>
+  <span><b class="oneSwatch" aria-hidden="true"></b><span id="onesLabel">Gold = ones</span></span>
+ </div>
+ <div class="screen" id="visualScreen">
+  <p id="stepCounter" aria-live="off">Part 1 of 5</p>
+  <h2 id="stepTitle" tabindex="-1">One ten-stick</h2>
+  <div class="manipulatives" id="model" role="img" aria-label="One blue tens stick represents ten ones.">
+   <div class="rods" id="rods" aria-hidden="true"></div>
+   <div class="dots" id="dots" aria-hidden="true"></div>
+  </div>
+  <p class="equation" id="equation" aria-label="10">10</p>
+  <p id="caption" role="status" aria-live="polite" aria-atomic="true">A blue stick stands for ten.</p>
+ </div>
+ <div class="progressbar" aria-hidden="true"><span id="progressFill"></span></div>
+ <div class="actions" role="group" aria-label="Visual story playback">
+  <button type="button" id="previousButton">← Back</button>
+  <button type="button" id="playButton" class="primary" aria-pressed="false">▶ Play</button>
+  <button type="button" id="nextButton">Next →</button>
+  <button type="button" id="replayButton">↻ Replay</button>
+ </div>
+</section>
+<section class="card" aria-labelledby="mapHeading">
+ <h2 id="mapHeading">🌈 Connect the idea</h2>
+ <p id="mapIntro">Our original color-coded concept map links the central number to its tens, ones and total. Color is always accompanied by words and numbers.</p>
+ <div class="map" id="conceptMap" role="group" aria-label="43 is four tens and three ones">
+  <div class="center" id="mapCenter">43</div>
+  <div class="branch blue"><span id="mapTensTitle">Tens</span><strong id="mapTensValue">4 × 10 = 40</strong></div>
+  <div class="branch gold"><span id="mapOnesTitle">Ones</span><strong id="mapOnesValue">3 × 1 = 3</strong></div>
+  <div class="branch result"><span id="mapTogether">Together</span><strong id="mapTotal">40 + 3 = 43</strong></div>
+ </div>
+ <p class="note" id="mapNote">Adult discussion: Ask the child to point to the two branches and tell you why the digits 4 and 3 have different values. This is practice, not an automatic assessment.</p>
+</section>
+<aside class="card">
+ <h2 id="parentHeading">For parents and teachers</h2>
+ <p id="parentText">Use the captioned story to introduce tens and ones. Pause to count the sticks and dots, then ask a child to explain the map. Human review is required before classroom release, and children must be able to learn without color or motion.</p>
+</aside>
+<script src="./grade2-visual-story.js"></script>
+</main></body></html>
