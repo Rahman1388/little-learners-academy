@@ -17,6 +17,20 @@ The public Grade 1 foundation and limited Grades 2–6 subject pilots **already 
 
 **Expansion gates:** 50 quality-reviewed structured lessons → 150 → 300 → 600, while building distinct activities at an age-appropriate pace. Gate each phase on educator subject review, qualified Arabic review, clear child-facing audio, Qatar-school curriculum mapping where applicable, child safety and privacy, accessibility, iPhone/tablet usability and passing automated content/security checks. This is an independent supplementary platform; no government or school certification is implied.
 
+## Independent regional competitor strategy (owner decision, 19 October 2026)
+
+**Positioning:** Little Learners Academy will remain an **independent** child-focused supplementary education platform. The long-term commercial/educational ambition is to compete on quality, accessibility and local relevance with established international learning platforms, **without affiliation, endorsement, imitation of proprietary content, or unsupported superiority claims**.
+
+**Geographic rollout sequence:** (1) **Qatar first**: verify bilingual foundational lessons and child safety with appropriate local educators and parents; (2) **Saudi Arabia**: adapt subject terminology, age/grade pathway, curriculum sources, cultural examples, legal/privacy rules and local Arabic usage with qualified local reviewers; (3) **United Arab Emirates**: separately map lessons to intended school systems and language needs and obtain UAE-specific teacher, accessibility, licensing and privacy reviews. **No school or Ministry recognition is presumed.**
+
+**Common product foundation:** Preserve one maintainable core for visual maths, phonics, assessment feedback, parent guidance, accessibility and offline-friendly design. Adapt region-specific curricula only through reviewed metadata and lesson variants. Do not assume a single GCC curriculum or a universal grade-equivalence mapping.
+
+**Product target remains 600 structured lessons and 2,400+ meaningful interactive activities overall** across Grades 1–6; do not silently triple these totals for the three countries. Regional translations/localisations must not inflate the count of genuinely distinct educational activities.
+
+**Evidence-led competitive benchmarks:** Independent educator acceptance per objective, natural English/Arabic copy, real iPhone/Android/VoiceOver tests, learning effectiveness in supervised pilots, reliability, privacy, accessibility and family satisfaction. Activity totals alone cannot establish parity with Khan Academy Kids or any other provider.
+
+**Immediate next gate:** Finish review of the draft Grade 2 Tens & Ones Explorer in PR #15, including qualified Arabic review, curriculum suitability and human device testing, before broadening release scope.
+
 ## Eight foundations to establish
 
 | Foundation | What an established platform needs | Present position / gap | Minimum acceptance evidence |
