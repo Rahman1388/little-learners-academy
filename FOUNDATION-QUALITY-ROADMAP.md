@@ -7,6 +7,14 @@ Our goal is an excellent **mobile-first, bilingual supplementary learning experi
 
 The public Grade 1 foundation and limited Grades 2–6 subject pilots **already exist**. Preserve them. Do not rebuild from scratch, delete saved local progress, or claim a complete school syllabus.
 
+## Brand identity and app-store clearance (owner decision, 19 October 2026)
+
+- **Preferred international product name:** **Little Learners Academy**; short brand **LLA**; slogan **Learn • Explore • Grow**. Keep the same educational product identity for Qatar, Saudi Arabia and the UAE, with localized English/Arabic store descriptions. The user approved this name as the intended eventual Apple App Store and Google Play title.
+- **Store title feasibility:** “Little Learners Academy” fits the 30-character title limit reported by Apple and Google Play, but it is **not yet registered or guaranteed available** on either store; the app is currently a web project and store accounts/builds are not launched.
+- **Name-distinctiveness caveat:** public web search on 19 October 2026 identified pre-existing businesses using the exact phrase *Little Learners Academy*, including operating educational centres in Australia and the United States. This does not resolve trademark ownership or applicable classes/jurisdictions. **Before paid marketing, logo trademark filing, app-store submission or permanent legal registration**, obtain qualified clearance in Qatar, Saudi Arabia and the UAE, and check exact titles, look-alikes, domains, store records and trademark classes. Revisit the display name with the owner if it poses unacceptable conflicts.
+- **App Store Optimization (ASO):** Keep the core name consistent; write truthful, distinctive bilingual descriptions about actual released lessons, and use accurate screenshots and educational outcomes. Do not claim Google/Apple rankings, government endorsement, Khan Academy affiliation, 600 delivered lessons or 2,400+ live activities. Metadata optimization helps discoverability but cannot promise ranking or legal rights.
+- **Source references:** Apple developer App information: https://developer.apple.com/help/app-store-connect/reference/app-information/app-information ; Google Play developer Metadata: https://support.google.com/googleplay/android-developer/answer/9898842 ; Apple product-page guidance: https://developer.apple.com/app-store/product-page/ .
+
 ## Approved long-term scope (owner decision, 19 October 2026)
 
 **Primary planning target: at least 2,400 meaningful interactive practice activities** spanning Grades 1–6. The companion instructional target is **600 structured lessons**. Use an initial planning allowance of **100 lessons plus 400 activities per grade** (six grades × 100 = 600 lessons; six grades × 400 = 2,400 activities). This is a manageable long-term scope, not a deadline or promise that every grade is currently complete.
