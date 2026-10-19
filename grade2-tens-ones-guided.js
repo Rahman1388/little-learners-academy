@@ -1,86 +1,102 @@
-/* Little Learners Academy — Grade 2 tens and ones guided REVIEW lesson.
- * No data storage, tracking, network calls or student voice capture.
- * A session-only teaching model, not a diagnostic score or curriculum certificate.
+/* Grade 2 tens and ones bilingual review lesson. Draft Arabic requires qualified review.
+ * No child storage, tracking, network calls, microphones, AI or automatic mastery score.
  */
 (()=>{
 "use strict";
 const $=id=>document.getElementById(id);
+const dictionary=window.LLA_TENS_ONES_I18N;
+if(!dictionary||!dictionary.en||!dictionary.ar)throw Error("Tens and ones language content missing");
 const lessons=[
- {id:"model",title:"Look at tens and ones",instruction:"One blue stick is a group of ten. Each gold dot is one. Count the sticks and the dots.",tens:3,ones:4},
- {id:"guided",title:"Let's build a number together",instruction:"Count the tens sticks and ones dots. Which two-digit number do they make?",tens:5,ones:2,choices:[25,52,57],answer:52,
-  clue:"Start with the tens: five groups of ten make 50. Add two single ones.",
-  explanation:"Correct: 5 tens are 50 and 2 ones are 2. So 50 + 2 = 52."},
- {id:"independent",title:"Your turn: read the model",instruction:"Try independently. Which number do these tens and ones show?",tens:7,ones:6,choices:[67,70,76],answer:76,
-  clue:"Count the blue sticks by tens, then add the gold ones dots. You can ask an adult for help.",
-  explanation:"Well done: 7 tens are 70 and 6 ones are 6. So 70 + 6 = 76."},
- {id:"reflect",title:"Explain what you discovered",instruction:"Tell an adult or point to the model: Why does 76 have a 7 in the tens place and a 6 in the ones place?",tens:7,ones:6},
- {id:"complete",title:"You practised tens and ones!",instruction:"You have explored two-digit numbers. You can practise again or return to Grade 2 maths.",tens:7,ones:6}
+ {id:"model",tens:3,ones:4},
+ {id:"guided",tens:5,ones:2,choices:[25,52,57],answer:52},
+ {id:"independent",tens:7,ones:6,choices:[67,70,76],answer:76},
+ {id:"reflect",tens:7,ones:6},
+ {id:"complete",tens:7,ones:6}
 ];
-let step=0,answered=false;
-const make=(tag,cls,text)=>{
- const e=document.createElement(tag);
- if(cls)e.className=cls;
- if(text!==undefined)e.textContent=text;
- return e;
+let step=0,answered=false,language="en";
+const t=()=>dictionary[language];
+const make=(tag,cls,value)=>{
+ const node=document.createElement(tag);
+ if(cls)node.className=cls;
+ if(value!==undefined)node.textContent=value;
+ return node;
 };
-function feedback(text,kind=""){
- const e=$("feedback");e.textContent=text;e.className=kind;
+function feedback(value,kind=""){
+ const element=$("feedback");element.textContent=value;element.className=kind;
 }
-function draw(tens,ones,showModel){
+function draw(tens,ones,model){
  const rows=$("visualRows");
  rows.replaceChildren();
- const sticks=make("div");
- sticks.className="visualRows";
+ const sticks=make("div","visualRows");
  sticks.setAttribute("aria-hidden","true");
  for(let i=0;i<tens;i++)sticks.append(make("span","rod"));
  const dots=make("div","ones");
  dots.setAttribute("aria-hidden","true");
  for(let i=0;i<ones;i++)dots.append(make("span","dot"));
  rows.append(sticks,dots);
- $("placeVisual").setAttribute("aria-label",tens+" groups of ten and "+ones+" single ones");
- $("visualCaption").textContent=showModel
-  ?tens+" tens + "+ones+" ones = "+(tens*10+ones)
-  :"Count the blue groups of ten and the single gold dots.";
+ $("placeVisual").setAttribute("aria-label",t().visual(tens,ones));
+ $("visualCaption").textContent=model?t().captionModel(tens,ones):t().captionTry;
 }
-function render(shouldFocus=true){
- const lesson=lessons[step];
- answered=false;
- $("stageProgress").textContent=step<4?"Step "+(step+1)+" of 4 • "+({model:"See",guided:"Guided try",independent:"Independent practice",reflect:"Explain"}[lesson.id]):"Teaching practice completed • No score awarded";
- $("stepHeading").textContent=lesson.title;
- $("instruction").textContent=lesson.instruction;
+function translateShell(){
+ const text=t();
+ document.documentElement.lang=language;
+ document.documentElement.dir=language==="ar"?"rtl":"ltr";
+ $("languageEn").setAttribute("aria-pressed",String(language==="en"));
+ $("languageAr").setAttribute("aria-pressed",String(language==="ar"));
+ $("backLink").textContent=text.back;
+ $("pilotBadge").textContent=text.badge;
+ $("pageHeading").textContent=text.heading;
+ $("goalLabel").textContent=text.goalLabel;
+ $("goalText").textContent=text.goal;
+ $("warningText").textContent=text.warning;
+ $("parentHeading").textContent=text.parentHeading;
+ $("parentText").textContent=text.parentText;
+ $("parentNote").textContent=text.parentNote;
+ $("answerGrid").setAttribute("aria-label",text.answerLabel);
+ $("lessonPanel").setAttribute("aria-label",language==="ar"?"درس تفاعلي عن العشرات والآحاد":"Interactive tens and ones lesson");
+}
+function render(preserveAnswered=false,focusHeading=true){
+ if(!preserveAnswered)answered=false;
+ const lesson=lessons[step],s=t(),words=s.lessons[lesson.id];
+ translateShell();
+ $("stageProgress").textContent=step<4?s.progress(step+1)+s.stageLabels[step]:s.finished;
+ $("stepHeading").textContent=words.title;
+ $("instruction").textContent=words.instruction;
  draw(lesson.tens,lesson.ones,lesson.id==="model");
- const explanation=$("modelExplanation"),answers=$("answerGrid"),hint=$("hintButton"),hintBox=$("hintBox");
- explanation.hidden=lesson.id!=="model";
- explanation.textContent="Three tens make 30. Four single ones make 4. So 30 + 4 = 34. The first digit tells us the tens; the second digit tells us the ones.";
- answers.replaceChildren();
- answers.hidden=!lesson.choices;
+ const model=$("modelExplanation"),answerGrid=$("answerGrid"),hint=$("hintButton"),hintBox=$("hintBox");
+ model.hidden=lesson.id!=="model";
+ model.textContent=s.explanation;
+ answerGrid.replaceChildren();
+ answerGrid.hidden=!lesson.choices;
  if(lesson.choices){
-  for(const n of lesson.choices){
-   const b=make("button",null,String(n));
-   b.type="button";b.dataset.choice=String(n);
-   b.addEventListener("click",()=>choose(n));
-   answers.append(b);
+  for(const value of lesson.choices){
+   const b=make("button",null,String(value));
+   b.type="button";b.dataset.choice=String(value);
+   b.disabled=answered;
+   if(answered&&value===lesson.answer)b.classList.add("correct");
+   b.addEventListener("click",()=>choose(value));
+   answerGrid.append(b);
   }
  }
  hint.hidden=!lesson.choices;
  hint.setAttribute("aria-expanded","false");
- hintBox.hidden=true;hintBox.textContent=lesson.clue||"";
+ hint.textContent=s.showHint;
+ hintBox.hidden=true;hintBox.textContent=words.clue||"";
  $("reflection").hidden=lesson.id!=="reflect";
- $("reflection").textContent="💬 Example: I see 7 groups of ten and 6 ones. Seven tens are 70, plus 6 is 76. Children may use their own words; this example is not an automatically scored answer.";
+ $("reflection").textContent=s.reflection;
  $("restartButton").hidden=lesson.id!=="complete";
- $("nextButton").hidden=lesson.id==="complete"||!!lesson.choices;
- $("nextButton").textContent=lesson.id==="model"?"I've seen the model →":lesson.id==="reflect"?"Finish this practice →":"Continue →";
- feedback(lesson.id==="model"?"Start by looking at the model with an adult."
-  :lesson.choices?"Choose a number. Wrong answers are an opportunity to try again."
-  :lesson.id==="reflect"?"Take your time. Say or point to your explanation; nothing is recorded."
-  :"Practice finished. This is not a school assessment or evidence of mastery.");
- if(shouldFocus)$("stepHeading").focus();
+ $("restartButton").textContent=s.restart;
+ $("nextButton").hidden=lesson.id==="complete"||!!lesson.choices&&!answered;
+ $("nextButton").textContent=lesson.id==="model"?s.nextModel:lesson.id==="reflect"?s.nextReflect:s.next;
+ if(answered&&lesson.choices)feedback(words.explanation+s.feedbackCorrectSuffix,"good");
+ else feedback(lesson.id==="model"?s.feedbackModel:lesson.choices?s.feedbackQuestion:lesson.id==="reflect"?s.feedbackReflect:s.feedbackDone);
+ if(focusHeading)$("stepHeading").focus();
 }
 function choose(value){
  const lesson=lessons[step];
  if(!lesson.choices||answered)return;
  if(value!==lesson.answer){
-  feedback("Not quite yet. The first digit counts groups of TEN; the second counts single ones. Try another answer.","try");
+  feedback(t().feedbackWrong,"try");
   return;
  }
  answered=true;
@@ -88,20 +104,29 @@ function choose(value){
   b.disabled=true;
   if(b.dataset.choice===String(value))b.classList.add("correct");
  }
- feedback(lesson.explanation+" You can move to the next step.","good");
+ feedback(t().lessons[lesson.id].explanation+t().feedbackCorrectSuffix,"good");
  $("nextButton").hidden=false;
- $("nextButton").textContent="Continue →";
+ $("nextButton").textContent=t().next;
 }
+function changeLanguage(target){
+ if(!dictionary[target]||target===language)return;
+ language=target;
+ // Preserve the step and whether the child solved it. No identity or score is saved.
+ render(true,false);
+}
+$("languageEn").addEventListener("click",()=>changeLanguage("en"));
+$("languageAr").addEventListener("click",()=>changeLanguage("ar"));
 $("hintButton").addEventListener("click",()=>{
- const hintBox=$("hintBox"),open=hintBox.hidden;
- hintBox.hidden=!open;
+ const box=$("hintBox"),open=box.hidden;
+ box.hidden=!open;
  $("hintButton").setAttribute("aria-expanded",String(open));
- $("hintButton").textContent=open?"Hide the clue":"💡 Show a helpful clue";
+ $("hintButton").textContent=open?t().hideHint:t().showHint;
 });
 $("nextButton").addEventListener("click",()=>{
  if(step===4||((step===1||step===2)&&!answered))return;
- step++;render();
+ step++;
+ render(false,true);
 });
-$("restartButton").addEventListener("click",()=>{step=0;render()});
-render(false);
+$("restartButton").addEventListener("click",()=>{step=0;render(false,true)});
+render(false,false);
 })();
