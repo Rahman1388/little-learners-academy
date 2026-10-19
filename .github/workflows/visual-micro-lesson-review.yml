@@ -1,0 +1,40 @@
+name: Visual micro-lesson safety and browser review
+on:
+  pull_request:
+    paths:
+      - "grade2-visual-story.*"
+      - "scripts/test-visual-micro-lesson.cjs"
+      - "VISUAL-MICRO-LESSON-REVIEW.md"
+      - ".github/workflows/visual-micro-lesson-review.yml"
+  push:
+    branches: [feature/visual-micro-lesson-review-20261019]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify-visual-story:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Check script and test syntax
+        run: |
+          node --check grade2-visual-story.js
+          node --check scripts/test-visual-micro-lesson.cjs
+      - name: Install Chromium for responsive bilingual test
+        run: |
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Serve static review prototype and run browser tests
+        run: |
+          python3 -m http.server 8765 --bind 127.0.0.1 >/tmp/visual-lesson.log 2>&1 &
+          for i in $(seq 1 20); do
+            if curl -fsS http://127.0.0.1:8765/grade2-visual-story.html >/dev/null; then break; fi
+            sleep 1
+          done
+          node scripts/test-visual-micro-lesson.cjs
