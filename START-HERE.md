@@ -8,6 +8,14 @@
 - [Grade 2 Four English Skills](https://rahman1388.github.io/little-learners-academy/grade2-four-skills.html)
 - [Grade 2 Word Family Adventure](https://rahman1388.github.io/little-learners-academy/grade2-phonics-pathway.html)
 
+## 19 October 2026 — Teaching-first Grade 2 Mathematics preview (DRAFT)
+
+- **Development draft:** [PR #15 — Tens & Ones Explorer](https://github.com/Rahman1388/little-learners-academy/pull/15). Newly developed on `feature/grade2-tens-ones-lesson-20261019`; **not merged, publicly linked, or teacher-approved**.
+- The original, session-only English-language lesson teaches a worked base-ten model (34), guided try (52), independent practice (76) with hints/retries and non-recorded verbal/pointing reflection. The Arabic title is provisional; complete translation and expert review remain pending.
+- **Automated checks on commit `4f95939`: PASS** for [interactive/mobile browser review](https://github.com/Rahman1388/little-learners-academy/actions/runs/39187091765), [app validation](https://github.com/Rahman1388/little-learners-academy/actions/runs/39187091773), and [child security](https://github.com/Rahman1388/little-learners-academy/actions/runs/39187091805). These checks do not prove curriculum suitability or real-device accessibility.
+- **No new counted activities** have been added to the audited 451-question baseline. No child data is collected, and previous lesson audio, progress and existing activity pages remain unchanged.
+- **Next release gates:** primary mathematics teacher's review of grade/curriculum suitability; qualified Arabic reviewer; actual iPhone/VoiceOver and tablet usability; owner decision before any public release.
+
 ## Completed up to 18 October
 
 - Original Grade 2 four-skills pilot: five themed modules × listening/speaking/reading/writing = 20 guided practice flags. Additional optional written phonics, reading follow-ups and private writing prompts; not a complete syllabus or proof of mastery.
