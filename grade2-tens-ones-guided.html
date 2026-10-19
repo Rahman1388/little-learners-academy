@@ -18,6 +18,14 @@ h2{font-size:clamp(22px,5vw,29px);line-height:1.25;margin:7px 0}
 p{line-height:1.5}
 a,button{font:inherit}
 a:focus-visible,button:focus-visible{outline:4px solid #8a1538;outline-offset:3px}
+.languageBar{display:flex;justify-content:flex-end;flex-wrap:wrap;gap:10px;margin:12px 0}
+.languageBar button{min-width:108px;min-height:48px;border:2px solid #85b8d2;border-radius:13px;background:#fff;color:#174e71;padding:10px 15px;font-weight:850;cursor:pointer}
+.languageBar button[aria-pressed="true"]{background:#155f8b;color:#fff;border-color:#155f8b}
+html[dir="rtl"] body{text-align:right}
+html[dir="rtl"] .languageBar{justify-content:flex-start}
+html[dir="rtl"] .back{direction:rtl}
+html[dir="rtl"] .visual,html[dir="rtl"] .answerGrid{direction:ltr}
+html[dir="rtl"] .visual .groupLabel{direction:rtl}
 .back,.action{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:12px 17px;border-radius:15px;font-weight:800}
 .back{color:#17577b;background:#fff;border:2px solid #b5d5e2;text-decoration:none}
 .panel{background:#fffffff2;border:3px solid white;border-radius:23px;padding:clamp(15px,3vw,26px);margin:15px 0;box-shadow:0 4px 0 #bfd9e5}
@@ -50,14 +58,18 @@ a:focus-visible,button:focus-visible{outline:4px solid #8a1538;outline-offset:3p
 </style>
 </head>
 <body><main>
-<a class="back" href="./grade2-pilot.html">← Grade 2 Maths • رياضيات الصف الثاني</a>
+<nav class="languageBar" role="group" aria-label="Lesson language • لغة الدرس">
+<button id="languageEn" type="button" lang="en" aria-pressed="true">English</button>
+<button id="languageAr" type="button" lang="ar" aria-pressed="false">العربية</button>
+</nav>
+<a class="back" id="backLink" href="./grade2-pilot.html">← Grade 2 Maths • رياضيات الصف الثاني</a>
 <header class="panel hero">
-<div class="eyebrow">🧮 ADULT-GUIDED TEACHING PILOT • FOR EDUCATOR REVIEW</div>
-<h1>Tens &amp; Ones Explorer <span lang="ar" dir="rtl">العشرات والآحاد</span></h1>
-<p><strong>Today's learning goal:</strong> Build a two-digit number using groups of ten and single ones, then explain what each digit means.</p>
-<p class="warn"><strong>Not a test or official school lesson.</strong> This is an original, supplementary Grade 2 teaching prototype. Arabic wording, age suitability and curriculum alignment require qualified review. No scores, accounts, recordings, timers or progress storage.</p>
+<div class="eyebrow" id="pilotBadge">🧮 ADULT-GUIDED TEACHING PILOT • FOR EDUCATOR REVIEW</div>
+<h1 id="pageHeading">Tens &amp; Ones Explorer</h1>
+<p><strong id="goalLabel">Today's learning goal:</strong> <span id="goalText">Build a two-digit number using groups of ten and single ones, then explain what each digit means.</span></p>
+<p class="warn" id="warningText">Not a test or official school lesson. This is an original, supplementary Grade 2 teaching prototype. Arabic wording, age suitability and curriculum alignment require qualified review. No scores, accounts, recordings, timers or progress storage.</p>
 </header>
-<section class="panel" aria-label="Interactive tens and ones lesson">
+<section class="panel" aria-label="Interactive tens and ones lesson" id="lessonPanel">
 <p id="stageProgress" role="status" aria-live="polite">Step 1 of 4 • Watch a model</p>
 <h2 id="stepHeading" tabindex="-1">Look at tens and ones</h2>
 <p id="instruction">A ten-stick stands for ten. Each small dot stands for one.</p>
@@ -77,10 +89,11 @@ a:focus-visible,button:focus-visible{outline:4px solid #8a1538;outline-offset:3p
 </div>
 </section>
 <aside class="panel">
-<h2>👨‍👩‍👧 A note for parents and teachers</h2>
-<p>Ask the child to touch or count one ten-stick as ten, then count the single dots. After the last practice question, encourage an explanation in their own words. Do not mark a child as having mastered place value just because they completed these screens.</p>
-<p class="note">This lesson does not connect to external services or save answers. The illustrated tens are schematic teaching models, not physical manipulatives. Please confirm developmental suitability, accessibility and draft bilingual labels with an educator before release.</p>
+<h2 id="parentHeading">👨‍👩‍👧 A note for parents and teachers</h2>
+<p id="parentText">Ask the child to touch or count one ten-stick as ten, then count the single dots. After the last practice question, encourage an explanation in their own words. Do not mark a child as having mastered place value just because they completed these screens.</p>
+<p class="note" id="parentNote">This lesson does not connect to external services or save answers. The illustrated tens are schematic teaching models, not physical manipulatives. Please confirm developmental suitability, accessibility and draft bilingual labels with an educator before release.</p>
 </aside>
+<script src="./grade2-tens-ones-i18n.js"></script>
 <script src="./grade2-tens-ones-guided.js"></script>
 </main></body>
 </html>
