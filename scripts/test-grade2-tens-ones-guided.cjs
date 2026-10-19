@@ -93,7 +93,7 @@ for(const forbidden of [/\bfetch\s*\(/,/sendBeacon/,/XMLHttpRequest/,/localStora
  assert.match(await page.locator("#stepHeading").innerText(),/كوّن العدد بنفسك/);
  assert.equal(await page.locator(".rod").count(),4);
  assert.equal(await page.locator(".dot").count(),3);
- assert.match(await page.locator("#buildCount").innerText(),/4 عشرات و3 آحاد = 43/);
+ assert.match(await page.locator("#buildCount").innerText(),/٤ عشرات و٣ آحاد = ٤٣/);
  await page.locator("#checkBuild").click();
  assert.match(await page.locator("#feedback").innerText(),/٤٣/);
  assert(await page.locator("#nextButton").isVisible(),"Correct built number should unlock Continue");
@@ -127,7 +127,7 @@ for(const forbidden of [/\bfetch\s*\(/,/sendBeacon/,/XMLHttpRequest/,/localStora
  assert(await page.locator("#nextButton").isHidden(),"Arabic builder should be mandatory");
  for(let i=0;i<4;i++)await page.locator('[data-builder="add-ten"]').click();
  for(let i=0;i<3;i++)await page.locator('[data-builder="add-one"]').click();
- assert.match(await page.locator("#buildCount").innerText(),/4 عشرات و3 آحاد/);
+ assert.match(await page.locator("#buildCount").innerText(),/٤ عشرات و٣ آحاد/);
  await page.locator("#checkBuild").click();
  assert.match(await page.locator("#feedback").innerText(),/٤٣/);
  await page.locator("#nextButton").click();
