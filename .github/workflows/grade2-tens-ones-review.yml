@@ -3,9 +3,12 @@ on:
   pull_request:
     paths:
       - "grade2-tens-ones-guided.*"
+      - "grade2-tens-ones-i18n.js"
       - "scripts/test-grade2-tens-ones-guided.cjs"
       - ".github/workflows/grade2-tens-ones-review.yml"
       - "GRADE2-TENS-ONES-REVIEW.md"
+      - "GRADE2-TENS-ONES-TEACHER-REVIEW.md"
+      - "GRADE2-TENS-ONES-IPHONE-TEST.md"
   push:
     branches: [feature/grade2-tens-ones-lesson-20261019]
   workflow_dispatch:
@@ -24,6 +27,7 @@ jobs:
           node-version: "22"
       - name: Check syntax
         run: |
+          node --check grade2-tens-ones-i18n.js
           node --check grade2-tens-ones-guided.js
           node --check scripts/test-grade2-tens-ones-guided.cjs
       - name: Install browser test runtime
