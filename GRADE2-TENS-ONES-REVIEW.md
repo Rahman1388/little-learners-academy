@@ -5,7 +5,7 @@
 ## Built
 - Page: grade2-tens-ones-guided.html and script: grade2-tens-ones-guided.js.
 - **Learning objective:** Represent a two-digit number as tens and ones and explain the meaning of its digits.
-- Worked model: 34 as three tens sticks and four single ones; guided practice: 52; independent practice: 76; reflection: explain 76.
+- Worked model: **34** as three tens sticks and four single ones; guided multiple-choice practice: **52**; independent reading practice: **76**; **hands-on build-43 stage** where the learner adds/removes ten-sticks and single ones with immediate descriptive feedback; reflection: explain 76. Five instructional stages including the new builder (the end screen is not counted as a lesson).
 - Visual models with accessibility descriptions, polite screen reader status, keyboard focus between steps, retry without punishment, optional clue, no timer or score.
 - No account, child data, microphone, generated AI text, network calls, external fonts, or browser storage. No changes to Grade 2 saved progress.
 - English original teaching text and a **full draft Arabic translation** are now available using a non-tracking English / العربية language switch. Labels, goal, worked example, stage instructions, hint, right/wrong feedback, reflection and adult notes have all been localized. Arabic remains unverified and requires qualified sign-off.
