@@ -1,0 +1,44 @@
+name: Grade 2 tens and ones teaching review
+on:
+  pull_request:
+    paths:
+      - "grade2-tens-ones-guided.*"
+      - "grade2-tens-ones-i18n.js"
+      - "scripts/test-grade2-tens-ones-guided.cjs"
+      - ".github/workflows/grade2-tens-ones-review.yml"
+      - "GRADE2-TENS-ONES-REVIEW.md"
+      - "GRADE2-TENS-ONES-TEACHER-REVIEW.md"
+      - "GRADE2-TENS-ONES-IPHONE-TEST.md"
+  push:
+    branches: [feature/grade2-tens-ones-lesson-20261019]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  guided-maths-review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Check syntax
+        run: |
+          node --check grade2-tens-ones-i18n.js
+          node --check grade2-tens-ones-guided.js
+          node --check scripts/test-grade2-tens-ones-guided.cjs
+      - name: Install browser test runtime
+        run: |
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Run privacy and interactive math lesson tests
+        run: |
+          python3 -m http.server 8765 --bind 127.0.0.1 >/tmp/guided-maths.log 2>&1 &
+          for i in $(seq 1 20); do
+            if curl -fsS http://127.0.0.1:8765/grade2-tens-ones-guided.html >/dev/null; then break; fi
+            sleep 1
+          done
+          node scripts/test-grade2-tens-ones-guided.cjs
