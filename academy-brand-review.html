@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'none'; worker-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'none'">
+<meta name="theme-color" content="#eaf6ff">
+<title>Adult Brand Review | Little Learners Academy</title>
+<style>
+:root{font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif;color:#193b58;background:#eaf6ff}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:linear-gradient(145deg,#dcefff,#fff7da 58%,#f3e7ff)}
+main{max-width:980px;padding:18px 14px 72px;margin:auto}
+a,button,select,textarea{font:inherit}
+a:focus-visible,button:focus-visible,select:focus-visible,textarea:focus-visible{outline:4px solid #8a1538;outline-offset:3px}
+.back{display:inline-block;background:#fff;border:2px solid #bdd7e4;color:#145176;border-radius:13px;padding:12px 16px;text-decoration:none;font-weight:800}
+.hero,.panel{background:#ffffffec;border:3px solid white;border-radius:22px;box-shadow:0 4px 0 #bdd7e4;margin:16px 0;padding:clamp(17px,3vw,25px)}
+.hero{background:linear-gradient(110deg,#fff0bc,#fff,#e2f4ff)}
+.kicker{font-weight:900;color:#8a1538;font-size:13px}
+h1{font-size:clamp(26px,6vw,40px);line-height:1.2;margin:8px 0}
+h2{font-size:clamp(20px,4vw,27px);margin:0 0 10px}
+p{line-height:1.58}
+.warning{background:#fff6dc;border:2px solid #cca966;border-radius:14px;padding:13px;line-height:1.5}
+.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px;margin-top:16px}
+.candidate{min-width:0;background:#fff;border:2px solid #c6dbe5;border-radius:17px;padding:16px}
+.candidate h3{font-size:21px;margin:8px 0}
+.candidate .ar{display:block;direction:rtl;text-align:right;font-size:20px;color:#45637d}
+.candidate p{font-size:14px}
+.tag{font-size:12px;font-weight:900;background:#eaf5fc;padding:5px 8px;border-radius:8px}
+fieldset{border:2px solid #cedfe8;border-radius:15px;padding:13px;margin:14px 0}
+legend{font-weight:850;padding:2px 6px}
+.score-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+label{font-weight:750;display:block}
+select,textarea{display:block;width:100%;padding:12px;border-radius:12px;border:2px solid #9dbed2;background:white;color:#123d60;margin-top:6px;min-height:48px}
+textarea{min-height:118px;resize:vertical;line-height:1.5}
+button{min-height:48px;background:#155f91;color:white;border:0;border-radius:13px;padding:12px 18px;font-weight:850;cursor:pointer}
+button.secondary{background:white;border:2px solid #155f91;color:#155f91}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+small,.muted{color:#51687a}
+@media(max-width:620px){.cards,.score-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body><main>
+<a class="back" href="./index.html">← Review hub • مركز المراجعة</a>
+<header class="hero">
+<div class="kicker">ADULT BRAND COMPARISON • NOT AN APP NAME CHANGE</div>
+<h1>🌱 Choosing our future academy name</h1>
+<p lang="ar" dir="rtl">مقارنة أسماء الأكاديمية المقترحة — للبالغين فقط</p>
+<p>We are comparing pronunciation, bilingual clarity and memorability. No candidate is trademark-cleared, confirmed available as a domain, Ministry-approved or selected for release.</p>
+</header>
+<div class="warning"><strong>No purchase or registration yet.</strong> This form is for adult feedback only. Name similarity, trademark, domains, app-store listings and Arabic spellings need independent verification. Do not enter children's personal information.</div>
+<section class="panel" aria-labelledby="namesHeading">
+<h2 id="namesHeading">Our shortlisted directions</h2>
+<div class="cards">
+<article class="candidate"><span class="tag">Original coined candidate</span><h3>Fikralia</h3><span class="ar" lang="ar">فكراليا</span><p>Inspired by Arabic <strong>فكر</strong> (thought). Adjacent existing Fikra educational brands mean a similarity review is essential.</p></article>
+<article class="candidate"><span class="tag">Original coined candidate</span><h3>Basmiva</h3><span class="ar" lang="ar">بسميفا</span><p>Inspired by a smile (بسمة). Existing Basma education services create potential similarity concerns.</p></article>
+<article class="candidate"><span class="tag">Original coined candidate</span><h3>Qirivio</h3><span class="ar" lang="ar">قيريفيو</span><p>A reading-inspired international-sounding name. Check ease of pronunciation and clarity with native Arabic speakers.</p></article>
+<article class="candidate"><span class="tag">Previously considered</span><h3>NabtaNova</h3><span class="ar" lang="ar">نبتة نوفا</span><p>Inspired by a growing plant. The Nabta name is used in educational markets; exact and phonetic clearance remains pending.</p></article>
+</div>
+</section>
+<section class="panel" aria-labelledby="reviewHeading">
+<h2 id="reviewHeading">Adult reviewer feedback</h2>
+<p class="muted">Select one candidate, then evaluate how the name works for children, parents, teachers and our future bilingual learning app. Scores express preferences, <strong>not legal availability or SEO demand</strong>.</p>
+<form id="brandReview">
+<label for="candidateChoice">Which name are you reviewing?</label>
+<select id="candidateChoice" required>
+<option value="">Choose a proposed name</option>
+<option>Fikralia</option><option>Basmiva</option><option>Qirivio</option><option>NabtaNova</option>
+<option value="None / propose alternative">None — I suggest another name</option>
+</select>
+<fieldset>
+<legend>Rate these qualities from 1 (poor) to 5 (excellent)</legend>
+<div class="score-grid">
+<label for="englishPron">Easy for English-speaking children to say
+<select id="englishPron" required></select></label>
+<label for="arabicPron">Easy for Arabic-speaking children to say
+<select id="arabicPron" required></select></label>
+<label for="meaning">Arabic meaning and cultural suitability
+<select id="meaning" required></select></label>
+<label for="memory">Memorable for parents and teachers
+<select id="memory" required></select></label>
+<label for="future">Suitable for a Grades 1–6 international app
+<select id="future" required></select></label>
+</div>
+</fieldset>
+<label for="reviewNotes">Suggestions or alternative spellings (adult observations only)</label>
+<textarea id="reviewNotes" maxlength="1200" placeholder="Example: My child can say the name clearly. Please ask an Arabic language specialist about the spelling."></textarea>
+<div class="actions"><button type="submit">Prepare review summary</button><button type="button" class="secondary" id="clearReview">Clear form</button></div>
+</form>
+<div id="reportPanel" hidden>
+<h3>Summary — check before sharing</h3>
+<p class="muted">Your review remains on this device until you explicitly copy it. This page does not upload or save feedback.</p>
+<label for="report">Copy-ready adult review</label>
+<textarea id="report" readonly rows="9"></textarea>
+<div class="actions"><button type="button" id="copyReview">Copy review text</button></div>
+<p id="copyStatus" role="status" aria-live="polite"></p>
+</div>
+</section>
+<aside class="panel"><h2>What comes after adult feedback?</h2>
+<p>We still need a national trademark and trade-name check, live domain availability, app-store checks, and native Arabic language review. Even a top-scoring name should not be registered until those steps are complete.</p>
+<p class="muted">Independent learning app development preview; no association with Qatar Ministry of Education or approval of a commercial school.</p></aside>
+<script src="./academy-brand-review.js"></script>
+</main></body></html>
