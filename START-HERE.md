@@ -17,6 +17,13 @@
 - **No new counted activities** have been added to the audited 451-question baseline. No child data is collected, and previous lesson audio, progress and existing activity pages remain unchanged.
 - **Next release gates:** primary mathematics teacher's review of grade/curriculum suitability; qualified Arabic reviewer; actual iPhone/VoiceOver and tablet usability; owner decision before any public release.
 
+## 19 October 2026 — Hands-on bilingual place-value progression (DRAFT)
+
+- Added a **Build the Number 43** stage to the Grade 2 Tens & Ones Explorer in [draft PR #15](https://github.com/Rahman1388/little-learners-academy/pull/15): after seeing 34, guided choice 52 and independent choice 76, a child adds/removes ten-sticks and one-dots to make four tens and three ones. Friendly feedback, hints and next-step control remain score-free.
+- The learner can change between **English and draft Arabic** without losing the partially constructed number. Local-only session: no accounts, microphone, remote requests or saved child data. This is one additional guided stage within a single **unapproved teaching lesson**, **not** a newly audited activity or completed school curriculum.
+- **Latest code commit:** `75285128`. Automated verification passed: [guided maths interactive browser/RTL/mobile](https://github.com/Rahman1388/little-learners-academy/actions/runs/39190180682), [application validation](https://github.com/Rahman1388/little-learners-academy/actions/runs/39190180744), and [child security](https://github.com/Rahman1388/little-learners-academy/actions/runs/39190180672).
+- **Release gates remain pending:** Grade 2 maths educator evaluation, qualified Arabic language review, manual iPhone Safari/VoiceOver and tablet testing, and owner approval. No public main-app link, Ministry/school certification or real-device sign-off is claimed. Continue from [maths/Arabic teacher checklist](https://github.com/Rahman1388/little-learners-academy/blob/feature/grade2-tens-ones-lesson-20261019/GRADE2-TENS-ONES-TEACHER-REVIEW.md) and [iPhone/iPad test plan](https://github.com/Rahman1388/little-learners-academy/blob/feature/grade2-tens-ones-lesson-20261019/GRADE2-TENS-ONES-IPHONE-TEST.md).
+
 ## Completed up to 18 October
 
 - Original Grade 2 four-skills pilot: five themed modules × listening/speaking/reading/writing = 20 guided practice flags. Additional optional written phonics, reading follow-ups and private writing prompts; not a complete syllabus or proof of mastery.
