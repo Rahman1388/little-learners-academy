@@ -8,6 +8,15 @@
 - [Grade 2 Four English Skills](https://rahman1388.github.io/little-learners-academy/grade2-four-skills.html)
 - [Grade 2 Word Family Adventure](https://rahman1388.github.io/little-learners-academy/grade2-phonics-pathway.html)
 
+## 19 October 2026 — Public SEBT lesson review hub (review-only, owner-authorized)
+
+- **Public review hub:** https://rahman1388.github.io/little-learners-academy/review/learning-previews.html — a mobile-friendly adult/educator review index.
+- **Review A: bilingual, hands-on Tens & Ones Explorer:** https://rahman1388.github.io/little-learners-academy/review/tens-ones.html — a static copy of [unmerged draft PR #15](https://github.com/Rahman1388/little-learners-academy/pull/15); see original teacher/iPhone QA checklist. Can explain and build the number 43.
+- **Review B: bilingual visual story and original color map:** https://rahman1388.github.io/little-learners-academy/review/visual-story.html — a static copy of [unmerged draft PR #16](https://github.com/Rahman1388/little-learners-academy/pull/16). A user-initiated silent slideshow rather than recorded video or teacher-certified instruction.
+- The project owner explicitly requested **shareable public preview URLs for SEBT**. These exist under `review/` on `main`, not in ordinary child-facing navigation. They are publicly accessible copies, **not private links**; do not put learner names, personal feedback, or confidential school records on them.
+- Each review page has conspicuous **unapproved / review-only** wording, noindex metadata and no tracking. Source-branch changes do **not** automatically update public static snapshots; keep preview copies synchronized after future corrections and rerun tests.
+- [Adult review preview Chromium smoke test](https://github.com/Rahman1388/little-learners-academy/actions/workflows/review-learning-previews.yml) passed for hub navigation, both bilingual interactive flows, play/pause, mobile widths and privacy on preview code at commit `75c2575`. Child-security and app validation also passed. **Confirm GitHub Pages deployment succeeded before promising that the public URLs have propagated.** No specialist Arabic, curriculum, real iPhone or Ministry review has been completed.
+
 ## 19 October 2026 — Teaching-first Grade 2 Mathematics preview (DRAFT)
 
 - **Development draft:** [PR #15 — Tens & Ones Explorer](https://github.com/Rahman1388/little-learners-academy/pull/15). Newly developed on `feature/grade2-tens-ones-lesson-20261019`; **not merged, publicly linked, or teacher-approved**.
