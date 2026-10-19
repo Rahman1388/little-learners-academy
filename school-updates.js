@@ -9,6 +9,8 @@ const cards=document.getElementById("updatesCards");
 const status=document.getElementById("resultsStatus");
 const filters=document.getElementById("filters");
 const dateNode=document.getElementById("reviewDate");
+const editorialStatus=document.getElementById("editorialStatus");
+const emailLink=document.getElementById("shareByEmail");
 const categories=new Set(["qatar","exams","safety","research"]);
 const allowedHosts=new Set([
  "www.edu.gov.qa","edu.gov.qa","hukoomi.gov.qa","www.gco.gov.qa",
@@ -36,6 +38,24 @@ const verifiedDate=showDate(data.editorialReviewDate);
 if(verifiedDate){
  dateNode.dateTime=data.editorialReviewDate;
  dateNode.textContent=verifiedDate.toLocaleDateString("en-GB",{day:"numeric",month:"long",year:"numeric",timeZone:"UTC"});
+}
+// The editorial date covers the links directory, not breaking news.
+if(editorialStatus){
+ const ageDays=verifiedDate?Math.floor((Date.now()-verifiedDate.getTime())/86400000):Infinity;
+ const needsReview=!Number.isFinite(ageDays)||ageDays<0||ageDays>30;
+ editorialStatus.classList.toggle("stale",needsReview);
+ editorialStatus.textContent=needsReview
+  ?"⚠️ Directory review is overdue or its date is invalid. Links may have changed; check each original publisher before relying on it."
+  :"Directory links were editorially checked recently. This does not verify today's school notices; consult original publishers.";
+}
+// Draft an email using the exact page the reviewer is visiting, including /review/ previews.
+// Browsers, not this site, handle email delivery; no student data or tracking is transmitted.
+if(emailLink){
+ const pageUrl=new URL(location.href);
+ pageUrl.hash="";pageUrl.search="";
+ emailLink.href="mailto:?subject="+encodeURIComponent("Little Learners Academy - School Updates review")+
+   "&body="+encodeURIComponent("Please review this adult-facing school information page:\n"+pageUrl.href+
+   "\n\nThis is not an official Ministry notice or a live emergency-alert service.");
 }
 function render(category){
  const valid=categories.has(category)||category==="all"?category:"all";
@@ -101,6 +121,12 @@ async function loadHeadlines(){
    return;
   }
   const age=Date.now()-(+last);
+  // Future-dated fetches cannot certify freshness. Small clock skew is tolerated.
+  if(age<-(5*60*1000)){
+   liveStatus.classList.add("stale");
+   liveStatus.textContent="⚠️ News snapshot has an invalid future retrieval time. Headlines are hidden; check official sources directly.";
+   return;
+  }
   const stale=age<0||age>12*60*60*1000;
   liveStatus.classList.toggle("stale",stale);
   if(age>7*24*60*60*1000){
