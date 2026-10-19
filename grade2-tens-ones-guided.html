@@ -52,6 +52,13 @@ html[dir="rtl"] .visual .groupLabel{direction:rtl}
 #feedback.good{background:#e7f9eb}#feedback.try{background:#fff3e7}
 #hintBox{padding:13px 15px;background:#fff6db;border-radius:14px;margin-top:12px;line-height:1.55}
 #reflection{padding:14px;background:#ecf8f2;border-radius:14px}
+.builder{border:2px solid #a7cfe0;background:#f7fcff;border-radius:17px;padding:14px;margin:16px 0}
+.builder p{margin:8px 0 12px}
+.build-controls{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:12px 0}
+.build-controls button,.check-build{min-height:52px;border:2px solid #82b6d1;background:#fff;color:#175278;border-radius:13px;padding:10px;font-weight:850;cursor:pointer}
+.build-controls button:disabled,.check-build:disabled{opacity:.6;cursor:default}
+.check-build{background:#175e88;color:#fff;border-color:#175e88;width:100%}
+@media(max-width:380px){.build-controls{grid-template-columns:1fr}}
 [hidden]{display:none!important}
 @media(max-width:400px){.answerGrid{grid-template-columns:1fr}.rod{width:24px;height:96px}.visualRows{gap:8px}}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important;transition:none!important}}
@@ -79,6 +86,17 @@ html[dir="rtl"] .visual .groupLabel{direction:rtl}
 </div>
 <div id="modelExplanation" class="model" hidden></div>
 <div id="answerGrid" class="answerGrid" role="group" aria-label="Choose the number" hidden></div>
+<div id="buildPanel" class="builder" hidden>
+  <p id="buildTarget"></p>
+  <p id="buildCount" role="status" aria-live="polite" aria-atomic="true"></p>
+  <div class="build-controls" id="buildControls" role="group" aria-label="Build a number with tens and ones">
+    <button type="button" data-builder="add-ten">+1 ten</button>
+    <button type="button" data-builder="remove-ten">−1 ten</button>
+    <button type="button" data-builder="add-one">+1 one</button>
+    <button type="button" data-builder="remove-one">−1 one</button>
+  </div>
+  <button type="button" id="checkBuild" class="check-build">Check my number</button>
+</div>
 <div id="feedback" role="status" aria-live="polite" aria-atomic="true">Look carefully. You can take as long as you need.</div>
 <div id="hintBox" hidden></div>
 <div id="reflection" hidden></div>
