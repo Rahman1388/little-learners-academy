@@ -48,7 +48,7 @@ for(const bad of [/\bfetch\s*\(/,/XMLHttpRequest/,/sendBeacon/,/localStorage/,/s
  assert.equal(await page.locator("html").getAttribute("lang"),"ar");
  assert.equal(await page.locator("html").getAttribute("dir"),"rtl");
  assert.match(await page.locator("#sceneCaption").innerText(),/ring وsing/);
- assert.match(await page.locator("#tryPrompt").innerText(),/king/);
+ assert.match(await page.locator("#tryPrompt").innerText(),/عائلة -ing/);
  assert.equal(await page.locator("#practiceChoices button").count(),3);
  await page.locator('[data-choice="sand"]').click();
  assert.match(await page.locator("#tryFeedback").innerText(),/sand وhand/);
@@ -95,4 +95,4 @@ for(const bad of [/\bfetch\s*\(/,/XMLHttpRequest/,/sendBeacon/,/localStorage/,/s
  assert.deepEqual(errors,[],"Unexpected JavaScript errors");
  await browser.close();
  console.log("PASS: Grade 2 phonics bilingual story, optional pronunciation, independent practice, accessibility and privacy.");
-})().catch(e=>{console.error(e.stack||e);process.exitCode=1});
+})().catch(e=>{console.error(e.stack||e);process.exit(1)});
