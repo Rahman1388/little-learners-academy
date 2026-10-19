@@ -47,10 +47,10 @@ for(const fileName of fileNames){
  for(const resource of localResources){
   assert(fileNames.has(resource),fileName+" references unbundled local asset: "+resource);
  }
- const externalAssets=Array.from(html.matchAll(/<(?:script|img|iframe|link)\\b[^>]*\\b(?:src|href)="(https?:\\/\\/[^"]+)"/gi),m=>m[1]);
+ const externalAssets=Array.from(html.matchAll(/<(?:script|img|iframe|link)\b[^>]*\b(?:src|href)="(https?:[^"]+)"/gi),m=>m[1]);
  assert.equal(externalAssets.length,0,fileName+" cannot embed externally hosted scripts, images, frames, or styles");
  // Only the adult news directory may contain outbound official-source anchor links.
- const externalAnchors=Array.from(html.matchAll(/<a\\b[^>]*\\bhref="(https?:\\/\\/[^"]+)"/gi),m=>m[1]);
+ const externalAnchors=Array.from(html.matchAll(/<a\b[^>]*\bhref="(https?:[^"]+)"/gi),m=>m[1]);
  if(fileName!=="school-updates.html")assert.equal(externalAnchors.length,0,fileName+" has unapproved outbound links");
  else for(const url of externalAnchors){
   const parsed=new URL(url.replace(/&amp;/g,"&"));
