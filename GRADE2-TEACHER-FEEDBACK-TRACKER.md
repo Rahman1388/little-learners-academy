@@ -128,3 +128,12 @@ Record feedback with page/question ID, evidence, correction owner and date. Afte
 - Previous successful GitHub Actions runs verify the automated scenarios on configured test browsers; there is **no user-confirmed iPhone Safari or VoiceOver pass**.
 - The generated `grade2-teacher-preview` ZIP is a downloadable Actions artifact, **not an operational hosted mobile URL**. iPhone usability verification remains **PENDING** until an appropriately controlled live preview is available and tested by an adult.
 - Do not mark the app, Arabic content, spoken pronunciation, or teacher feedback as manually validated based solely on the GitHub results.
+
+## Five-section adult review ZIP — verified engineering milestone (20 October 2026)
+
+- **PASS — GitHub Actions run #39342921108** (commit `38df8ea6672ce923704854e146d35835e9c4bc55`), https://github.com/Rahman1388/little-learners-academy/actions/runs/39342921108 .
+- Build generated 17 self-contained HTML/JS/JSON/SVG/guide source assets plus one `PREVIEW-MANIFEST.json` (18 ZIP entries). The downloaded archive was also checked for ZIP integrity.
+- **Five-area review hub:** Grade 2 four-skills (five modules), phonics (eight word families), adult educator feedback, seven official-reference entries and uninitialized QNA headline snapshot, and **adult-only bilingual brand candidate preference review** (Fikralia, Basmiva, Qirivio, NabtaNova). All remain review-only.
+- Automated Playwright checked packaged relative navigation, teacher feedback, school-directory availability, headline honesty, basic reviewer scoring, no external automatic requests, and selected mobile browser widths.
+- **NOT VERIFIED BY THIS RESULT:** a working hosted public/iPhone preview, real physical iPhone Safari, VoiceOver/manual accessibility, teacher content approval, Arabic specialist accuracy, legal trademark/registered trade-name/domain availability or live emergency news.
+- **Do not merge to or publish over `main`** until the human approval gates are complete and the owner explicitly authorizes release.
