@@ -33,6 +33,10 @@ jobs:
           node scripts/check-app-security.cjs
       - name: Check app files for secrets and unsafe constructs
         run: node scripts/prepublish-security-audit.cjs
+      - name: Guard against publishing private source documents and credentials
+        run: |
+          node --check scripts/check-public-file-safety.cjs
+          node scripts/check-public-file-safety.cjs
       - name: Verify that child safety and privacy notices exist
         run: |
           test -s privacy.html

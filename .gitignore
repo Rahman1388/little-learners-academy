@@ -147,3 +147,30 @@ vite.config.ts.timestamp-*
 
 # Turbo Repo
 .turbo
+
+# PRIVATE OWNER MATERIALS — never put school sources or child/reviewer data in a public repo
+private/
+confidential/
+restricted/
+school-documents/
+school-files/
+student-data/
+learner-data/
+pupil-data/
+teacher-feedback-private/
+backups/
+# Personal school files and exported feedback: require an explicit privacy review before any publication
+*.pdf
+*.docx
+*.xlsx
+*.pptx
+*.csv
+*.sqlite
+*.db
+*.pem
+*.key
+*.p12
+*.pfx
+*.zip
+*.7z
+# .gitignore does not protect files already tracked or placed in Git history.
