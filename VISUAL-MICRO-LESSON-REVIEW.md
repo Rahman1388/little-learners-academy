@@ -10,6 +10,14 @@ A reproducible, original educational **video-style micro-lesson** and a simple c
 - **Not yet an encoded MP4/video file**, not a voice-over, not an unmoderated video feed. The child controls when playback begins; a scene changes every four seconds only during a user-initiated Play session. Stopping after the fifth part is automatic. There are no sound-effects, flashed images, advertisements, analytics, external media services, AI chat, identity, child uploads, child voice or browser storage.
 - Purposefully separate from Draft PR #15's interactive math lesson and the public app. No links on the live app, no changes to Grade 2 existing progress, no additions to the 451-question inventory, and no claim of a newly completed full lesson or an existing library of videos.
 
+## Incremental teaching progression — Watch → Connect → Try (19 October 2026)
+
+- A separate, original, bilingual **independent transfer-practice question** now follows the visual story and color map: after seeing `43 = 4 tens + 3 ones`, the child identifies which tens/ones model makes **64**.
+- Three visible choices: `4 tens + 6 ones` (46), `6 tens + 4 ones` (64; correct) and `6 tens + 0 ones` (60). Optional hint, specific non-punitive correction, correct-answer explanation and Try Again are available.
+- All choices, hint and feedback are translated into **draft Arabic**; changing language preserves current in-session answer state and optional clue. No score, mastery claim, local storage, user identity or network call is introduced.
+- This is an *additional practice step within one existing unapproved visual lesson*, **not an additional reviewed lesson or newly counted inventory activity**.
+- Mobile Chromium regression now checks wrong → clue → Arabic feedback → correct answer → English feedback → retry; human iPhone/VoiceOver, qualified maths/Arabic educator and pacing reviews still required.
+
 ## Educational context and sources to review
 - CAST UDL 3.0: use multiple representations but pair graphic/animation with text equivalents and accessible navigation: https://udlguidelines.cast.org/representation/language-symbols/multiple-media/ and https://udlguidelines.cast.org/representation/perception/ways-perceive-information/
 - EEF digital technology guidance: focus on learning goals rather than novelty: https://educationendowmentfoundation.org.uk/education-evidence/guidance-reports/digital
