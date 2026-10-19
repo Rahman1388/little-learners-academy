@@ -1,0 +1,76 @@
+/* Reproducible browser QA for Grade 2 tens/ones; interaction, not educational approval. */
+"use strict";
+const assert=require("node:assert/strict");
+const fs=require("node:fs");
+const {chromium}=require("playwright");
+const html=fs.readFileSync("grade2-tens-ones-guided.html","utf8");
+const js=fs.readFileSync("grade2-tens-ones-guided.js","utf8");
+new (require("node:vm").Script)(js);
+assert(html.includes('id="stepHeading" tabindex="-1"'),"Accessible stage heading");
+assert(html.includes('aria-live="polite"'),"Need polite screen reader feedback");
+assert(html.includes("Not a test or official school lesson"),"Explicit pilot status");
+assert(html.includes("connect-src 'none'"),"Block external data traffic");
+for(const forbidden of [/\bfetch\s*\(/,/sendBeacon/,/XMLHttpRequest/,/localStorage/,/sessionStorage/,/getUserMedia/,/MediaRecorder/,/SpeechRecognition/,/innerHTML\s*=/]){
+ assert(!forbidden.test(js),"No remote calls/storage/recordings or HTML injection: "+forbidden);
+}
+(async()=>{
+ const browser=await chromium.launch({headless:true,args:["--no-sandbox"]});
+ const page=await browser.newPage({viewport:{width:320,height:720},isMobile:true,hasTouch:true,serviceWorkers:"block"});
+ const base=process.env.TEST_URL||"http://127.0.0.1:8765";
+ const errors=[],thirdParty=[];
+ page.on("pageerror",e=>errors.push(e.message));
+ page.on("request",req=>{if(!req.url().startsWith(base+"/"))thirdParty.push(req.url())});
+ await page.goto(base+"/grade2-tens-ones-guided.html",{waitUntil:"domcontentloaded"});
+ assert.match(await page.locator("#stageProgress").innerText(),/Step 1 of 4/);
+ assert.match(await page.locator("#stepHeading").innerText(),/Look at tens and ones/);
+ assert.equal(await page.locator(".rod").count(),3);
+ assert.equal(await page.locator(".dot").count(),4);
+ assert.match(await page.locator("#modelExplanation").innerText(),/30 \+ 4 = 34/);
+ assert(await page.locator("#answerGrid").isHidden(),"Model must precede question");
+ await page.locator("#nextButton").click();
+ assert.match(await page.locator("#stepHeading").innerText(),/build a number together/);
+ assert(await page.locator("#stepHeading").evaluate(e=>document.activeElement===e),"Heading should receive stage-transition focus");
+ assert.equal(await page.locator(".rod").count(),5);
+ assert.equal(await page.locator(".dot").count(),2);
+ assert(await page.locator("#nextButton").isHidden(),"Cannot skip answer");
+ await page.locator("#hintButton").click();
+ assert.equal(await page.locator("#hintButton").getAttribute("aria-expanded"),"true");
+ assert.match(await page.locator("#hintBox").innerText(),/five groups of ten/);
+ await page.locator('#answerGrid button[data-choice="25"]').click();
+ assert.match(await page.locator("#feedback").innerText(),/Not quite yet/);
+ assert(await page.locator("#nextButton").isHidden());
+ await page.locator('#answerGrid button[data-choice="52"]').click();
+ assert.match(await page.locator("#feedback").innerText(),/50 \+ 2 = 52/);
+ assert(await page.locator("#nextButton").isVisible());
+ await page.locator("#nextButton").click();
+ assert.match(await page.locator("#stepHeading").innerText(),/Your turn/);
+ assert.equal(await page.locator(".rod").count(),7);
+ assert.equal(await page.locator(".dot").count(),6);
+ assert(await page.locator("#nextButton").isHidden());
+ await page.locator('#answerGrid button[data-choice="67"]').click();
+ assert.match(await page.locator("#feedback").innerText(),/first digit counts groups of TEN/);
+ await page.locator('#answerGrid button[data-choice="76"]').click();
+ assert.match(await page.locator("#feedback").innerText(),/70 \+ 6 = 76/);
+ await page.locator("#nextButton").click();
+ assert.match(await page.locator("#stepHeading").innerText(),/Explain what you discovered/);
+ assert(await page.locator("#reflection").isVisible());
+ assert.match(await page.locator("#feedback").innerText(),/nothing is recorded/);
+ await page.locator("#nextButton").click();
+ assert.match(await page.locator("#stepHeading").innerText(),/practised tens and ones/);
+ assert(await page.locator("#restartButton").isVisible());
+ assert(await page.locator("#nextButton").isHidden());
+ assert.equal(await page.evaluate(()=>Object.keys(localStorage).length),0);
+ assert.equal(await page.evaluate(()=>Object.keys(sessionStorage).length),0);
+ for(const width of [280,320,390,768,1024]){
+  await page.setViewportSize({width,height:850});
+  const bounds=await page.evaluate(()=>({scroll:document.documentElement.scrollWidth,viewport:innerWidth}));
+  assert(bounds.scroll<=bounds.viewport+3,"Horizontal scrolling at "+width+"px: "+JSON.stringify(bounds));
+ }
+ await page.locator("#restartButton").click();
+ assert.match(await page.locator("#stageProgress").innerText(),/Step 1 of 4/);
+ assert.equal(await page.locator(".rod").count(),3);
+ assert.deepEqual(errors,[]);
+ assert.deepEqual(thirdParty,[],"No non-app requests");
+ await browser.close();
+ console.log("PASS: teach-first Grade 2 place-value model, retries, reflection, local-only privacy, focus and 280–1024px layouts");
+})().catch(e=>{console.error(e.stack||e);process.exitCode=1;});
