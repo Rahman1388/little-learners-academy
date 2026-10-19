@@ -59,6 +59,33 @@ for(const bad of [/\bfetch\s*\(/,/XMLHttpRequest/,/sendBeacon/,/localStorage/,/s
  await page.locator("#replayButton").click();
  assert.equal(await page.locator("#stepCounter").innerText(),"Part 1 of 5");
  assert.equal(await page.locator("#rods .rod").count(),1);
+ // The Watch → Connect → Try path must teach transfer, not just replay the same 43.
+ assert.match(await page.locator("#practicePrompt").innerText(),/new number 64/);
+ assert.equal(await page.locator("#practiceChoices button").count(),3);
+ assert.match(await page.locator("#practiceFeedback").innerText(),/Look at both digits/);
+ await page.locator('[data-practice-choice="reversed"]').click();
+ assert.match(await page.locator("#practiceFeedback").innerText(),/Four tens and six ones would be 46/);
+ assert(await page.locator('[data-practice-choice="correct"]').isEnabled(),"Wrong answer should not lock independent practice");
+ await page.locator("#practiceHintButton").click();
+ assert.equal(await page.locator("#practiceHintButton").getAttribute("aria-expanded"),"true");
+ assert.match(await page.locator("#practiceHint").innerText(),/groups of ten/);
+ await page.locator("#arabicButton").click();
+ assert.match(await page.locator("#practiceHeading").innerText(),/حان دورك/);
+ assert.match(await page.locator("#practicePrompt").innerText(),/العدد الجديد ٦٤/);
+ assert.match(await page.locator("#practiceFeedback").innerText(),/العدد ٤٦/);
+ assert.match(await page.locator("#practiceHint").innerText(),/الرقم ٦/);
+ await page.locator('[data-practice-choice="correct"]').click();
+ assert.match(await page.locator("#practiceFeedback").innerText(),/٦٠ \+ ٤ = ٦٤/);
+ assert(await page.locator("#practiceChoices button").first().isDisabled(),"Correct answer disables changes until reset");
+ await page.locator("#englishButton").click();
+ assert.match(await page.locator("#practiceFeedback").innerText(),/60 \+ 4 = 64/);
+ await page.locator("#practiceAgainButton").click();
+ assert.match(await page.locator("#practiceFeedback").innerText(),/Look at both digits/);
+ assert(await page.locator("#practiceHint").isHidden(),"Retry should reset previous hints");
+ assert(await page.locator("#practiceChoices button").first().isEnabled());
+ assert(await page.locator("#practiceHeading").evaluate(e=>document.activeElement===e),"Practice reset should focus heading");
+ await page.locator('[data-practice-choice="missing"]').click();
+ assert.match(await page.locator("#practiceFeedback").innerText(),/six tens and no ones would be 60/);
  for(const language of ["en","ar"]){
   await page.locator(language==="ar"?"#arabicButton":"#englishButton").click();
   for(const width of [280,320,390,768,1024]){
@@ -72,5 +99,5 @@ for(const bad of [/\bfetch\s*\(/,/XMLHttpRequest/,/sendBeacon/,/localStorage/,/s
  assert.deepEqual(errors,[],"No browser errors");
  assert.deepEqual(outside,[],"No third-party web requests");
  await browser.close();
- console.log("PASS: original storyboard, opt-in play/pause, bilingual captions, color-coded accessible map, responsive RTL, privacy");
+ console.log("PASS: Watch/Connect/Try visual story, bilingual wrong/hint/retry practice, opt-in playback, responsive RTL and privacy");
 })().catch(error=>{console.error(error.stack||error);process.exitCode=1});
