@@ -8,6 +8,14 @@
 - [Grade 2 Four English Skills](https://rahman1388.github.io/little-learners-academy/grade2-four-skills.html)
 - [Grade 2 Word Family Adventure](https://rahman1388.github.io/little-learners-academy/grade2-phonics-pathway.html)
 
+## 19 October 2026 — Independent -ing Word Family visual-phonics prototype (DRAFT)
+
+- Continued English learning while **app naming remains deferred**. An original, bilingual Grade 2 pronunciation and spelling **Watch → Connect → Try** feature is now saved as [Draft PR #17](https://github.com/Rahman1388/little-learners-academy/pull/17), branch `feature/grade2-ing-visual-phonics-review-20261019`.
+- **Watch** visual word building: `r + ing = ring`, `s + ing = sing`; **Connect** with an original color-linked word family map; **Try** by choosing the new `king` from `sand` and `hand`, with optional clue and retry. All child-facing instructions and corrective feedback have English and **draft, unverified Arabic** versions.
+- English whole-word audio is **optional on-device speech synthesis** triggered by tap; not previously approved recorded child speech or verified phoneme recording. Quality, availability and offline operation cannot be assumed on iPhone/Android; an adult should model words.
+- Zero account/microphone/recorded child speech/tracking/scores/saved state. Focus and mobile RTL accessibility considered. Original [educator review checklist](https://github.com/Rahman1388/little-learners-academy/blob/feature/grade2-ing-visual-phonics-review-20261019/GRADE2-ING-VISUAL-TEACHER-REVIEW.md) describes human teaching, native Arabic, real iPhone and sound-quality gates.
+- The new files are **draft only**, no live children-facing app or new public SEBT page and no counted official lesson or activity. The broader application validation and child-security check passed at first PR head; review the newest GitHub Actions status for the dedicated phonics browser test before making a QA claim. Do not merge without owner approval.
+
 ## 19 October 2026 — Deeper Fikrola / Nuqtino name clearance investigation
 
 - [Preliminary bilingual app-brand research dossier](BRAND-NAME-RESEARCH-2026-10-19.md), including specific Apple/Google Play names around **Fikra / Fekra** and **Nuqta**, Qatar/SA/UAE official verification links, proposed classes 9/41/42, and uncompleted domain/legal checks.
