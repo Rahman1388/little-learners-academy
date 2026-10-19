@@ -26,6 +26,17 @@ const copy={
   mapOnesTitle:"Ones",
   mapTogether:"Together",
   mapNote:"Adult discussion: Ask the child to point to the two branches and tell you why the digits 4 and 3 have different values. This is practice, not an automatic assessment.",
+  practiceHeading:"✏️ Now you try!",
+  practicePrompt:"You have learned 43. Which groups of tens and ones make the new number 64?",
+  practiceLabel:"Choose the groups that make 64",
+  practiceChoices:{reversed:"4 tens and 6 ones",correct:"6 tens and 4 ones",missing:"6 tens and 0 ones"},
+  practiceFeedback:{
+   ready:"Look at both digits. Remember what tens and ones mean.",
+   wrong:"Not quite. Four tens and six ones would be 46; six tens and no ones would be 60. Look at 64 again and try another answer.",
+   correct:"Well done! Six tens make 60, and four ones make 4. 60 + 4 = 64. This is practice, not a mastery score."
+  },
+  practiceHint:"The 6 in 64 tells us how many groups of ten. The 4 tells us how many single ones.",
+  practiceShowHint:"💡 Show a clue",practiceHideHint:"Hide clue",practiceAgain:"↻ Try again",
   parentHeading:"For parents and teachers",
   parentText:"Use the captioned story to introduce tens and ones. Pause to count the sticks and dots, then ask a child to explain the map. Human review is required before classroom release, and children must be able to learn without color or motion.",
   stages:[
@@ -57,6 +68,17 @@ const copy={
   mapOnesTitle:"الآحاد",
   mapTogether:"المجموع",
   mapNote:"إرشاد للبالغين: اطلب من الطفل الإشارة إلى فرعي الخريطة وشرح سبب اختلاف القيمة المكانية للرقمين ٤ و٣. هذه ممارسة وليست اختبارًا تلقائيًا.",
+  practiceHeading:"✏️ حان دورك!",
+  practicePrompt:"تعلّمتَ العدد ٤٣. أيّ مجموعات من العشرات والآحاد تكوّن العدد الجديد ٦٤؟",
+  practiceLabel:"اختر المجموعات التي تكوّن العدد ٦٤",
+  practiceChoices:{reversed:"٤ عشرات و٦ آحاد",correct:"٦ عشرات و٤ آحاد",missing:"٦ عشرات وصفر آحاد"},
+  practiceFeedback:{
+   ready:"انظر إلى الرقمين، وتذكّر معنى العشرات والآحاد.",
+   wrong:"ليست الإجابة الصحيحة بعد. أربع عشرات وستة آحاد تكوّن العدد ٤٦، وستّ عشرات دون آحاد تكوّن العدد ٦٠. انظر إلى العدد ٦٤ وحاول مرة أخرى.",
+   correct:"أحسنت! ستّ عشرات تساوي ٦٠، وأربعة آحاد تساوي ٤. إذن ٦٠ + ٤ = ٦٤. هذا تدريب وليس اختبار إتقان."
+  },
+  practiceHint:"الرقم ٦ في العدد ٦٤ يبيّن عدد مجموعات العشرة، والرقم ٤ يبيّن عدد الآحاد المنفردة.",
+  practiceShowHint:"💡 إظهار مساعدة",practiceHideHint:"إخفاء المساعدة",practiceAgain:"↻ التدرّب مرة أخرى",
   parentHeading:"لأولياء الأمور والمعلّمين",
   parentText:"استخدم القصة المصحوبة بنصوص لشرح العشرات والآحاد. أوقف العرض لعدّ القضبان والدوائر، ثم اطلب من الطفل شرح الخريطة. لا يزال هذا المحتوى بحاجة إلى مراجعة تربوية قبل استخدامه في الصف. ويجب أن يفهم الطفل الفكرة حتى دون الاعتماد على الألوان أو الحركة.",
   stages:[
@@ -70,6 +92,7 @@ const copy={
 };
 const scenes=[{tens:1,ones:0},{tens:4,ones:0},{tens:4,ones:3},{tens:4,ones:3},{tens:4,ones:3}];
 let locale="en",step=0,interval=null;
+let practiceState="ready",practiceHintOpen=false;
 const text=()=>copy[locale];
 function applyLocale(){
  const t=text();
@@ -95,7 +118,40 @@ function applyLocale(){
  $("replayButton").textContent=t.replay;
  $("playButton").textContent=interval?t.pause:t.play;
  $("playButton").setAttribute("aria-pressed",String(!!interval));
+ renderPractice();
 }
+function renderPractice(){
+ const t=text();
+ $("practiceHeading").textContent=t.practiceHeading;
+ $("practicePrompt").textContent=t.practicePrompt;
+ $("practiceChoices").setAttribute("aria-label",t.practiceLabel);
+ for(const button of $("practiceChoices").querySelectorAll("button[data-practice-choice]")){
+  const answer=button.dataset.practiceChoice;
+  button.textContent=t.practiceChoices[answer];
+  button.disabled=practiceState==="correct";
+  button.classList.toggle("correct",practiceState==="correct"&&answer==="correct");
+ }
+ $("practiceFeedback").textContent=t.practiceFeedback[practiceState];
+ $("practiceFeedback").className="practiceFeedback"+(practiceState==="wrong"?" try":practiceState==="correct"?" good":"");
+ $("practiceHint").textContent=t.practiceHint;
+ $("practiceHint").hidden=!practiceHintOpen;
+ $("practiceHintButton").setAttribute("aria-expanded",String(practiceHintOpen));
+ $("practiceHintButton").textContent=practiceHintOpen?t.practiceHideHint:t.practiceShowHint;
+ $("practiceAgainButton").textContent=t.practiceAgain;
+}
+$("practiceChoices").addEventListener("click",event=>{
+ const button=event.target.closest("button[data-practice-choice]");
+ if(!button||!$("practiceChoices").contains(button)||practiceState==="correct")return;
+ practiceState=button.dataset.practiceChoice==="correct"?"correct":"wrong";
+ renderPractice();
+});
+$("practiceHintButton").addEventListener("click",()=>{
+ practiceHintOpen=!practiceHintOpen;renderPractice();
+});
+$("practiceAgainButton").addEventListener("click",()=>{
+ practiceState="ready";practiceHintOpen=false;renderPractice();
+ $("practiceHeading").focus();
+});
 function draw(){
  const s=scenes[step],t=text();
  $("rods").replaceChildren();
