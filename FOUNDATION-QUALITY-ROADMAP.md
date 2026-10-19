@@ -7,6 +7,16 @@ Our goal is an excellent **mobile-first, bilingual supplementary learning experi
 
 The public Grade 1 foundation and limited Grades 2–6 subject pilots **already exist**. Preserve them. Do not rebuild from scratch, delete saved local progress, or claim a complete school syllabus.
 
+## Approved long-term scope (owner decision, 19 October 2026)
+
+**Primary planning target: at least 2,400 meaningful interactive practice activities** spanning Grades 1–6. The companion instructional target is **600 structured lessons**. Use an initial planning allowance of **100 lessons plus 400 activities per grade** (six grades × 100 = 600 lessons; six grades × 400 = 2,400 activities). This is a manageable long-term scope, not a deadline or promise that every grade is currently complete.
+
+**Definition of a counted lesson:** one coherent learning objective with an explanation/model, accessible guided attempt, constructive feedback, independent or applied practice, and a review/check. **Definition of a counted activity:** a distinct age-appropriate playable practice task with a stable ID, subject/grade/skill mapping and verified learning purpose; a repeated quiz in a mixed challenge, an animation, or a cosmetic variant is not a new activity. Interactive activities and full lessons remain different units. Preserve a per-grade quality manifest and automated duplicate/count validation.
+
+**Baseline (October 2026):** the existing independently audited inventory lists **451 distinct short multiple-choice questions** and **six separately tracked Grade 6 writing prompts**. Further games, guided phonics stages and visual models exist, but must be classified and deduplicated before counting them toward the 2,400-activity target. Do not present a misleading completion percentage or equate question counts with lessons.
+
+**Expansion gates:** 50 quality-reviewed structured lessons → 150 → 300 → 600, while building distinct activities at an age-appropriate pace. Gate each phase on educator subject review, qualified Arabic review, clear child-facing audio, Qatar-school curriculum mapping where applicable, child safety and privacy, accessibility, iPhone/tablet usability and passing automated content/security checks. This is an independent supplementary platform; no government or school certification is implied.
+
 ## Eight foundations to establish
 
 | Foundation | What an established platform needs | Present position / gap | Minimum acceptance evidence |
