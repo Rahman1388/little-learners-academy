@@ -26,6 +26,14 @@ The first full preview build and packaged browser regression **PASSED** on code 
 The automation checked all original Grade 2 core practice tests, eight word-family/56-step phonics checks, private feedback behavior, and the packaged landing page and links on a local test server. This is engineering evidence only: **actual iPhone Safari/VoiceOver, teacher approval and Arabic specialist approval remain pending**.
 
 
+## Latest expanded review ZIP — confirmed successful 20 October 2026
+
+GitHub Actions **PASSED** after the five-area expansion: [run #39342921108](https://github.com/Rahman1388/little-learners-academy/actions/runs/39342921108), commit `38df8ea6672ce923704854e146d35835e9c4bc55`. CI validated the Grade 2 lessons, phonics navigation, private educator form, full five-section adult review hub and official-school-source sections. The ZIP build contains **17 source assets plus its generated manifest**, and its artifact name is **`grade2-teacher-preview`**.
+
+[**View the GitHub Actions artifact page**](https://github.com/Rahman1388/little-learners-academy/actions/runs/39342921108). Under **Artifacts** choose `grade2-teacher-preview`; GitHub account login may be required. GitHub recorded its expiration as **26 October 2026, 23:40 UTC**, after which a new successful run can recreate it.
+
+This is a **downloadable ZIP archive, not a hosted iPhone Safari URL**. CI used Playwright/Chromium emulated mobile viewports on a Linux runner; **no real iPhone Safari/VoiceOver, teacher acceptance or Arabic-professional signoff has happened**. ZIP contents include the adult School Updates directory, **not live fetched emergency news**. Adult brand preference scores do **not** establish trademark or domain availability.
+
 ## Expanded adult review hub — development milestone 20 October 2026
 
 A new **five-area landing page** bundles Grade 2 modules, the 56-step phonics journey, an educator-feedback form, Qatar official-school-information links and a bilingual brand review helper. All are review-only. The domain/name candidates are **not** cleared; the QNA snapshot starts without a fabricated retrieval date.
