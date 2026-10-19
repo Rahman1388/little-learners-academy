@@ -63,6 +63,23 @@ for(const file of ["review/grade2-tens-ones-i18n.js","review/grade2-tens-ones-gu
  assert.equal(await page.locator("#playButton").getAttribute("aria-pressed"),"true");
  await page.locator("#playButton").click();
  assert.equal(await page.locator("#playButton").getAttribute("aria-pressed"),"false");
+ // Verify newly synchronized Watch → Connect → Try transfer practice on the actual review snapshot.
+ assert.match(await page.locator("#practicePrompt").innerText(),/العدد الجديد ٦٤/);
+ await page.locator('[data-practice-choice="reversed"]').click();
+ assert.match(await page.locator("#practiceFeedback").innerText(),/العدد ٤٦/);
+ await page.locator("#practiceHintButton").click();
+ assert.equal(await page.locator("#practiceHintButton").getAttribute("aria-expanded"),"true");
+ await page.locator("#englishButton").click();
+ assert.match(await page.locator("#practiceFeedback").innerText(),/Four tens and six ones would be 46/);
+ assert.match(await page.locator("#practiceHint").innerText(),/groups of ten/);
+ await page.locator('[data-practice-choice="correct"]').click();
+ assert.match(await page.locator("#practiceFeedback").innerText(),/60 \+ 4 = 64/);
+ assert(await page.locator('#practiceChoices button[data-practice-choice="reversed"]').isDisabled());
+ await page.locator("#arabicButton").click();
+ assert.match(await page.locator("#practiceFeedback").innerText(),/٦٠ \+ ٤ = ٦٤/);
+ await page.locator("#practiceAgainButton").click();
+ assert(await page.locator("#practiceChoices button").first().isEnabled());
+ assert(await page.locator("#practiceHint").isHidden());
  for(const width of [320,390,768]){
   await page.setViewportSize({width,height:850});
   const d=await page.evaluate(()=>({viewport:innerWidth,scroll:document.documentElement.scrollWidth}));
@@ -72,5 +89,5 @@ for(const file of ["review/grade2-tens-ones-i18n.js","review/grade2-tens-ones-gu
  assert.deepEqual(external,[],"Unexpected external requests");
  assert.equal(await page.evaluate(()=>Object.keys(localStorage).length),0,"No local student data");
  await browser.close();
- console.log("PASS: public preview hub, isolated bilingual lessons, interactive maths builder, opt-in visual playback, privacy and layout.");
+ console.log("PASS: public preview hub, bilingual maths builder, visual transfer-practice hints and retry, opt-in playback, privacy and layout.");
 })().catch(e=>{console.error(e.stack||e);process.exitCode=1});
