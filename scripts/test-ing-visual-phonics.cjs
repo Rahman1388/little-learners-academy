@@ -14,6 +14,15 @@ for(const bad of [/\bfetch\s*\(/,/XMLHttpRequest/,/sendBeacon/,/localStorage/,/s
 (async()=>{
  const browser=await chromium.launch({headless:true,args:["--no-sandbox"]});
  const page=await browser.newPage({viewport:{width:320,height:780},isMobile:true,hasTouch:true,serviceWorkers:"block"});
+ page.setDefaultTimeout(12000);
+ // Headless browsers do not provide a reliable physical voice. Simulate the
+ // browser speech API to test button wiring only, NEVER audio quality.
+ await page.addInitScript(()=>{
+  class FakeUtterance{constructor(word){this.text=word;this.lang="en-GB";this.rate=1}}
+  const fakeSpeech={cancel(){},getVoices(){return [{lang:"en-GB",default:true}]},speak(u){if(typeof u.onstart==="function")u.onstart()}};
+  Object.defineProperty(window,"SpeechSynthesisUtterance",{value:FakeUtterance,configurable:true});
+  Object.defineProperty(window,"speechSynthesis",{value:fakeSpeech,configurable:true});
+ });
  const base=process.env.TEST_URL||"http://127.0.0.1:8765";
  const errors=[],external=[];
  page.on("pageerror",e=>errors.push(e.message));
