@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en" dir="ltr"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; media-src 'self'; connect-src 'none'; worker-src 'none'; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
+<meta name="theme-color" content="#e8f6ff">
+<link rel="icon" type="image/svg+xml" href="./icon.svg">
+<meta name="description" content="Review-only bilingual Grade 2 -ing English phonics visual story with English device speech and independent word-family practice.">
+<title>REVIEW DRAFT — -ing Word Family Visual Story | Little Learners Academy</title>
+<style>
+:root{font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif;color:#163c5c;background:#ecf7ff}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:linear-gradient(145deg,#e0f4ff,#fff2cf 58%,#efe8ff)}
+main{max-width:850px;margin:0 auto;padding:14px 13px 60px}h1{font-size:clamp(27px,5vw,39px);line-height:1.2}h2{font-size:clamp(22px,4vw,27px)}
+p{line-height:1.55}a,button{font:inherit}a:focus-visible,button:focus-visible{outline:4px solid #8a1538;outline-offset:3px}
+.card{background:#fffffff0;border:3px solid white;border-radius:22px;padding:clamp(16px,3vw,25px);box-shadow:0 4px 0 #b8d9e9;margin:14px 0}
+.hero{background:linear-gradient(110deg,#fff1b8,#fff,#e6f8ff)}
+.eyebrow{font-weight:900;font-size:13px;color:#8a1538}
+.notice{background:#fff2d4;border:2px solid #bb8746;border-radius:13px;padding:13px;font-size:14px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.back,.toolbar button,.controls button,.soundControls button,.practice button{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:11px 14px;background:white;color:#154d71;border:2px solid #a3cddd;border-radius:13px;font-weight:850;cursor:pointer;text-decoration:none}
+.toolbar,.controls,.soundControls{display:flex;gap:9px;flex-wrap:wrap}
+.toolbar button[aria-pressed="true"]{background:#155e88;color:white;border-color:#155e88}
+.controls button.primary{background:#155e88;border-color:#155e88;color:#fff}
+button:disabled{opacity:.53;cursor:default}
+.story{background:linear-gradient(140deg,#eaf7ff,#fffbea);border:3px solid #b9d9eb;border-radius:22px;padding:18px;margin:14px 0}
+#sceneCounter{font-size:14px;font-weight:900;color:#155c83}
+.wordArea{display:grid;grid-template-columns:85px 1fr;align-items:center;gap:12px;min-height:150px;margin:13px 0}
+.picture{font-size:65px;text-align:center}
+.letterBox{background:#fff;border-radius:16px;padding:12px;min-width:0;text-align:center;border:2px solid #d9e8ed}
+.letters{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:6px;direction:ltr;font-size:clamp(34px,8vw,66px);font-weight:900;line-height:1.2}
+.onset{color:#1b668c;background:#def3ff;border:2px solid #5ca3c5;border-radius:12px;padding:4px 12px}
+.rime{color:#87530b;background:#ffefb7;border:2px solid #b98c23;border-radius:12px;padding:4px 12px}
+.equals{color:#536777;font-size:clamp(23px,5vw,34px)}
+.whole{color:#194d2a;background:#e3f8e8;border:2px solid #6ca785;border-radius:12px;padding:4px 12px}
+.wordArea .label{font-size:15px;font-weight:750;margin:10px 0 0;color:#3f5a70}
+#sceneCaption{font-size:clamp(18px,3.2vw,23px);font-weight:800;min-height:60px}
+.progress{height:12px;background:#d5e7ef;border-radius:90px;overflow:hidden;margin:15px 0}.progress span{display:block;background:#1b7db0;width:33.333%;height:100%;transition:width .2s}
+.soundControls{margin:14px 0}.soundControls button{background:#f1fcff}
+#audioStatus{font-size:14px;min-height:22px;color:#3b5e74}
+.map{display:grid;grid-template-columns:1fr 1fr;gap:12px;direction:ltr;max-width:600px;margin:auto}
+.map .center{grid-column:1 / -1;border:3px solid #9677bd;border-radius:18px;background:#eee6ff;padding:16px;text-align:center;font-weight:900;font-size:28px}
+.map .node{border:3px solid #8fb7c8;border-radius:18px;padding:15px;text-align:center;background:white;min-width:0}
+.map .node:nth-child(2){background:#def4ff}.map .node:nth-child(3){background:#fff3d8}
+.map strong{display:block;font-size:27px;direction:ltr}
+.map p{margin:6px 0;font-size:15px}
+.practiceChoices{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:15px 0}
+.practiceChoices button{font-size:clamp(19px,4vw,24px);min-height:68px}
+.practiceChoices button.correct{border-color:#26865a;background:#dcf8e9}
+.feedback{background:#edf6fb;padding:14px;border-radius:14px;font-weight:800;min-height:54px}
+.feedback.wrong{background:#fff2d5}.feedback.correct{background:#ddf8e6}
+.help{background:#fff3ca;border-radius:12px;padding:13px}
+.small{font-size:14px;color:#476177}
+[hidden]{display:none!important}
+@media(max-width:370px){.wordArea{grid-template-columns:1fr}.picture{font-size:52px}.practiceChoices{grid-template-columns:1fr}.letters{font-size:34px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important}}
+</style></head><body><main>
+<div class="top">
+<a class="back" id="backLink" href="./grade2-phonics-pathway.html">← Grade 2 Word Families</a>
+<div class="toolbar" role="group" aria-label="Choose lesson language"><button id="enButton" type="button" lang="en" aria-pressed="true">English</button><button id="arButton" type="button" lang="ar" aria-pressed="false">العربية</button></div>
+</div>
+<header class="card hero">
+<p class="eyebrow" id="reviewTag">ORIGINAL PHONICS VISUAL STORY • ADULT / EDUCATOR DRAFT</p>
+<h1 id="pageTitle">Meet the -ing word family!</h1>
+<p id="pageGoal">Watch how a first letter joins the shared -ing ending. Then find a new word in the same family.</p>
+<p class="notice" id="warning">Review-only teaching prototype. English device speech is optional and may be unavailable or sound unnatural; this is NOT a child-recorded voice or approved phoneme recording. Draft Arabic text and phonics sequence need expert review. No child accounts or recorded responses.</p>
+</header>
+<section class="card" aria-labelledby="watchHeading">
+<h2 id="watchHeading">🎬 Watch and blend</h2>
+<p class="small" id="playerHelp">Nothing plays automatically. Tap Next to explore, or Play to move through a short captioned story.</p>
+<div class="story" id="storyRegion">
+<p id="sceneCounter">Part 1 of 3</p><h2 id="sceneHeading" tabindex="-1">A ring</h2>
+<div class="wordArea" id="wordArea" role="img" aria-label="A ring: r plus ing makes ring">
+<div class="picture" id="picture" aria-hidden="true">💍</div>
+<div class="letterBox">
+<div class="letters"><span class="onset" id="onset" dir="ltr">r</span><span class="equals">+</span><span class="rime">ing</span><span class="equals">=</span><span class="whole" id="whole" dir="ltr">ring</span></div>
+<p class="label" id="letterLabel">First letter + shared ending = word</p>
+</div></div>
+<p id="sceneCaption" role="status" aria-live="polite" aria-atomic="true">Say “ring”. Watch the letter r join -ing.</p>
+</div>
+<div class="progress" aria-hidden="true"><span id="progressFill"></span></div>
+<div class="controls" role="group" aria-label="Story controls">
+<button type="button" id="previousButton" disabled>← Back</button>
+<button type="button" id="playButton" class="primary" aria-pressed="false">▶ Play</button>
+<button type="button" id="nextButton">Next →</button>
+<button type="button" id="replayButton">↻ Replay</button>
+</div>
+<div class="soundControls" role="group" aria-label="Listen to whole English word">
+<button type="button" id="hearButton">🔊 Hear “ring”</button>
+<button type="button" id="slowButton">🐢 Hear slowly</button>
+<button type="button" id="stopVoiceButton">■ Stop voice</button>
+</div>
+<p id="audioStatus" role="status" aria-live="polite">Optional: uses the English voice provided by your device. Ask an adult if the audio is not clear.</p>
+</section>
+<section class="card" aria-labelledby="mapHeading">
+<h2 id="mapHeading">🌈 Connect the words</h2>
+<p id="mapIntro">Both words share the same final letters. Read each complete word naturally; matching letters do not replace listening to clear pronunciation.</p>
+<div class="map" role="group" id="wordMap" aria-label="ing joins r for ring and s for sing">
+<div class="center" dir="ltr">-ing</div>
+<div class="node"><strong dir="ltr">r + ing = ring</strong><p id="mapRing">💍 A ring</p></div>
+<div class="node"><strong dir="ltr">s + ing = sing</strong><p id="mapSing">🎵 Singing</p></div>
+</div>
+</section>
+<section class="card practice" aria-labelledby="tryHeading">
+<h2 id="tryHeading" tabindex="-1">✏️ Now you try!</h2>
+<p id="tryPrompt">We learned ring and sing. Which NEW word also belongs to the -ing family?</p>
+<div class="practiceChoices" id="practiceChoices" role="group" aria-label="Choose the word ending in ing">
+<button type="button" data-choice="sand" dir="ltr">sand</button>
+<button type="button" data-choice="king" dir="ltr">king</button>
+<button type="button" data-choice="hand" dir="ltr">hand</button>
+</div>
+<p id="tryFeedback" class="feedback" role="status" aria-live="polite" aria-atomic="true">Look carefully at the final letters in each word.</p>
+<div class="controls">
+<button type="button" id="hintButton" aria-controls="hintContent" aria-expanded="false">💡 Show a clue</button>
+<button type="button" id="retryButton">↻ Try again</button>
+</div>
+<p class="help" id="hintContent" hidden>Look for the final three letters: i - n - g.</p>
+</section>
+<aside class="card">
+<h2 id="adultHeading">For parents and teachers</h2>
+<p id="adultHelp">Please model the whole words “ring”, “sing” and “king” with natural pronunciation and give the child time to listen. This demo highlights the spelling pattern; it does not measure spoken reading, and mobile speech synthesis quality is not guaranteed.</p>
+</aside>
+<script src="./grade2-ing-visual-phonics.js"></script>
+</main></body></html>
