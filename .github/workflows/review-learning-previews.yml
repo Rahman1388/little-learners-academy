@@ -1,0 +1,40 @@
+name: Adult learning review preview smoke test
+on:
+  push:
+    branches: [main]
+    paths:
+      - "review/learning-previews.html"
+      - "review/tens-ones.html"
+      - "review/visual-story.html"
+      - "review/grade2-tens-ones-i18n.js"
+      - "review/grade2-tens-ones-guided.js"
+      - "review/grade2-visual-story.js"
+      - "scripts/test-review-learning-previews.cjs"
+      - ".github/workflows/review-learning-previews.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  smoke-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Install Chromium browser test runner
+        run: |
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Check deployed-review source locally
+        run: |
+          node --check scripts/test-review-learning-previews.cjs
+          python3 -m http.server 8765 --bind 127.0.0.1 >/tmp/preview-review.log 2>&1 &
+          for i in $(seq 1 20); do
+            if curl -fsS http://127.0.0.1:8765/review/learning-previews.html >/dev/null; then break; fi
+            sleep 1
+          done
+          node scripts/test-review-learning-previews.cjs
