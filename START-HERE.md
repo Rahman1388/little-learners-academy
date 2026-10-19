@@ -8,6 +8,11 @@
 - [Grade 2 Four English Skills](https://rahman1388.github.io/little-learners-academy/grade2-four-skills.html)
 - [Grade 2 Word Family Adventure](https://rahman1388.github.io/little-learners-academy/grade2-phonics-pathway.html)
 
+## 19 October 2026 — Deeper Fikrola / Nuqtino name clearance investigation
+
+- [Preliminary bilingual app-brand research dossier](BRAND-NAME-RESEARCH-2026-10-19.md), including specific Apple/Google Play names around **Fikra / Fekra** and **Nuqta**, Qatar/SA/UAE official verification links, proposed classes 9/41/42, and uncompleted domain/legal checks.
+- **Decision:** No permanent new brand yet. **Fikrola (فكرولا)** is the leading *creative hypothesis*, **Nuqtino (نقطينو)** the reserve. Both are unverified for national trademarks, domains, app-store titles and fluent Gulf-Arabic comprehension. Avoid logo/URL/production renaming until owner sign-off and legal checks.
+
 ## 19 October 2026 — Preferred app-store name and discoverability
 
 - Owner confirmed **Little Learners Academy (LLA)** as the preferred international brand and future Apple/Google store title, with the slogan **Learn • Explore • Grow**. No Apple or Google app-store launch or approval has taken place.
