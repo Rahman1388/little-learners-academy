@@ -10,10 +10,12 @@ const lessons=[
  {id:"model",tens:3,ones:4},
  {id:"guided",tens:5,ones:2,choices:[25,52,57],answer:52},
  {id:"independent",tens:7,ones:6,choices:[67,70,76],answer:76},
+ {id:"build",tens:0,ones:0,answer:43},
  {id:"reflect",tens:7,ones:6},
  {id:"complete",tens:7,ones:6}
 ];
 let step=0,answered=false,language="en";
+const builder={tens:0,ones:0};
 const t=()=>dictionary[language];
 const make=(tag,cls,value)=>{
  const node=document.createElement(tag);
@@ -53,16 +55,24 @@ function translateShell(){
  $("parentText").textContent=text.parentText;
  $("parentNote").textContent=text.parentNote;
  $("answerGrid").setAttribute("aria-label",text.answerLabel);
+ $("buildTarget").textContent=text.buildTarget;
+ $("buildControls").setAttribute("aria-label",text.buildControlsLabel);
+ for(const button of $("buildControls").querySelectorAll("button")){
+  button.textContent=text.buildActions[button.dataset.builder];
+ }
+ $("checkBuild").textContent=text.buildCheck;
  $("lessonPanel").setAttribute("aria-label",language==="ar"?"درس تفاعلي عن العشرات والآحاد":"Interactive tens and ones lesson");
 }
 function render(preserveAnswered=false,focusHeading=true){
  if(!preserveAnswered)answered=false;
  const lesson=lessons[step],s=t(),words=s.lessons[lesson.id];
  translateShell();
- $("stageProgress").textContent=step<4?s.progress(step+1)+s.stageLabels[step]:s.finished;
+ $("stageProgress").textContent=step<5?s.progress(step+1)+s.stageLabels[step]:s.finished;
  $("stepHeading").textContent=words.title;
  $("instruction").textContent=words.instruction;
- draw(lesson.tens,lesson.ones,lesson.id==="model");
+ draw(lesson.id==="build"?builder.tens:lesson.tens,lesson.id==="build"?builder.ones:lesson.ones,lesson.id==="model");
+ $("buildPanel").hidden=lesson.id!=="build";
+ if(lesson.id==="build")updateBuildDisplay();
  const model=$("modelExplanation"),answerGrid=$("answerGrid"),hint=$("hintButton"),hintBox=$("hintBox");
  model.hidden=lesson.id!=="model";
  model.textContent=s.explanation;
@@ -78,7 +88,7 @@ function render(preserveAnswered=false,focusHeading=true){
    answerGrid.append(b);
   }
  }
- hint.hidden=!lesson.choices;
+ hint.hidden=!lesson.choices&&lesson.id!=="build";
  hint.setAttribute("aria-expanded","false");
  hint.textContent=s.showHint;
  hintBox.hidden=true;hintBox.textContent=words.clue||"";
@@ -86,10 +96,10 @@ function render(preserveAnswered=false,focusHeading=true){
  $("reflection").textContent=s.reflection;
  $("restartButton").hidden=lesson.id!=="complete";
  $("restartButton").textContent=s.restart;
- $("nextButton").hidden=lesson.id==="complete"||!!lesson.choices&&!answered;
+ $("nextButton").hidden=lesson.id==="complete"||!!lesson.choices&&!answered||lesson.id==="build"&&!answered;
  $("nextButton").textContent=lesson.id==="model"?s.nextModel:lesson.id==="reflect"?s.nextReflect:s.next;
- if(answered&&lesson.choices)feedback(words.explanation+s.feedbackCorrectSuffix,"good");
- else feedback(lesson.id==="model"?s.feedbackModel:lesson.choices?s.feedbackQuestion:lesson.id==="reflect"?s.feedbackReflect:s.feedbackDone);
+ if(answered&&(lesson.choices||lesson.id==="build"))feedback((lesson.id==="build"?s.buildCorrect:words.explanation)+s.feedbackCorrectSuffix,"good");
+ else feedback(lesson.id==="model"?s.feedbackModel:lesson.choices?s.feedbackQuestion:lesson.id==="build"?s.buildFeedback:lesson.id==="reflect"?s.feedbackReflect:s.feedbackDone);
  if(focusHeading)$("stepHeading").focus();
 }
 function choose(value){
@@ -108,6 +118,38 @@ function choose(value){
  $("nextButton").hidden=false;
  $("nextButton").textContent=t().next;
 }
+function updateBuildDisplay(){
+ const s=t();
+ $("buildCount").textContent=s.buildCount(builder.tens,builder.ones);
+ draw(builder.tens,builder.ones,false);
+ $("checkBuild").disabled=answered;
+ for(const b of $("buildControls").querySelectorAll("button")){
+  const action=b.dataset.builder;
+  b.disabled=answered||(action==="add-ten"&&builder.tens>=9)||(action==="remove-ten"&&builder.tens<=0)||
+   (action==="add-one"&&builder.ones>=9)||(action==="remove-one"&&builder.ones<=0);
+ }
+}
+$("buildControls").addEventListener("click",event=>{
+ const button=event.target.closest("button[data-builder]");
+ if(!button||!$("buildControls").contains(button)||lessons[step].id!=="build"||answered)return;
+ switch(button.dataset.builder){
+  case "add-ten":builder.tens=Math.min(9,builder.tens+1);break;
+  case "remove-ten":builder.tens=Math.max(0,builder.tens-1);break;
+  case "add-one":builder.ones=Math.min(9,builder.ones+1);break;
+  case "remove-one":builder.ones=Math.max(0,builder.ones-1);break;
+  default:return;
+ }
+ updateBuildDisplay();
+});
+$("checkBuild").addEventListener("click",()=>{
+ if(lessons[step].id!=="build"||answered)return;
+ if(builder.tens!==4||builder.ones!==3){
+  feedback(t().buildWrong(builder.tens,builder.ones),"try");return;
+ }
+ answered=true;updateBuildDisplay();
+ feedback(t().buildCorrect+t().feedbackCorrectSuffix,"good");
+ $("nextButton").hidden=false;
+});
 function changeLanguage(target){
  if(!dictionary[target]||target===language)return;
  language=target;
@@ -123,10 +165,11 @@ $("hintButton").addEventListener("click",()=>{
  $("hintButton").textContent=open?t().hideHint:t().showHint;
 });
 $("nextButton").addEventListener("click",()=>{
- if(step===4||((step===1||step===2)&&!answered))return;
+ if(step===5||((step===1||step===2||step===3)&&!answered))return;
  step++;
+ if(lessons[step].id==="build"){builder.tens=0;builder.ones=0;}
  render(false,true);
 });
-$("restartButton").addEventListener("click",()=>{step=0;render(false,true)});
+$("restartButton").addEventListener("click",()=>{step=0;builder.tens=0;builder.ones=0;render(false,true)});
 render(false,false);
 })();
