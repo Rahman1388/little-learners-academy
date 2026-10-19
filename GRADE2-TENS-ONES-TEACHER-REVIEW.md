@@ -9,6 +9,7 @@
 - Worked model: **3 tens + 4 ones = 34**.
 - Guided try: **5 tens + 2 ones = 52**, with optional scaffolding.
 - Independent try: **7 tens + 6 ones = 76**, with friendly correction.
+- Build-it-yourself step: construct **43** from 4 ten-sticks and 3 one-dots using add/remove controls. Wrong totals invite revision; completion is not mastery evidence.
 - Explain/reflection: Child describes why 76 has 7 tens and 6 ones. No recording or automated oral-language grading.
 - Intended learner: Grade 2 supplementary mathematics. **Curriculum alignment not yet established**; compare with the specific school's authorized grade/term learning outcomes. Avoid treating US 2.NBT.A references as automatic Qatar MOEHE approval.
 
