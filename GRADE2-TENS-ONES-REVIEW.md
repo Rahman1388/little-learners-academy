@@ -8,13 +8,15 @@
 - Worked model: 34 as three tens sticks and four single ones; guided practice: 52; independent practice: 76; reflection: explain 76.
 - Visual models with accessibility descriptions, polite screen reader status, keyboard focus between steps, retry without punishment, optional clue, no timer or score.
 - No account, child data, microphone, generated AI text, network calls, external fonts, or browser storage. No changes to Grade 2 saved progress.
-- English lesson text is original. The bilingual title is provisional and does not constitute full Arabic-language support.
+- English original teaching text and a **full draft Arabic translation** are now available using a non-tracking English / العربية language switch. Labels, goal, worked example, stage instructions, hint, right/wrong feedback, reflection and adult notes have all been localized. Arabic remains unverified and requires qualified sign-off.
+- Switching languages retains the current teaching stage and whether a correct answer was completed in the current session. Nothing is stored in browser or cloud.
+- [Maths and Arabic educator review checklist](./GRADE2-TENS-ONES-TEACHER-REVIEW.md) and [real iPhone/VoiceOver test plan](./GRADE2-TENS-ONES-IPHONE-TEST.md) are prepared. Human decisions and real-device tests remain pending.
 
 ## Pending human checks
 - **Qatar Grade 2 mapping:** Maths teacher confirms lesson objective and age suitability with school-provided plan; the existing Grade 2 readiness pilot mentions 2.NBT.A and English primary maths overlap, not formal Qatar curriculum approval.
 - **Pedagogy:** Primary teacher checks tens-stick visual, misconceptions, model, explanation, independent practice and reflection.
-- **Arabic:** Qualified teacher must review a complete lesson translation (not yet supplied) and RTL usability.
-- **Accessibility:** Real iPhone Safari/VoiceOver, tablet, Android, keyboard and reflow review; Chromium smoke test is not a WCAG certification.
+- **Arabic:** A complete draft translation is supplied but **qualified Arabic teacher sign-off remains pending**, including child language, RTL, mathematics, screen-reader behavior and cultural suitability.
+- **Accessibility:** Real iPhone Safari/VoiceOver, tablet, Android, keyboard and reflow review; automated EN/AR Chromium layout checks are not a WCAG certification.
 - **Culture, privacy and licensing:** Human review before public release; do not put child identities or private school materials on GitHub.
 - **Release:** A documented Accept / Revise / Hold for the exact version, issue fixes and tests, then explicit owner approval before merge.
 
