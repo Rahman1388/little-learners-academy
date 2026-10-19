@@ -51,10 +51,21 @@ a:focus-visible,button:focus-visible{outline:4px solid #8a1538;outline-offset:3p
 #mapIntro{font-weight:800}
 .note{color:#435f76;font-size:14px}
 #screenDescription{margin:7px 0 0}
+.practiceChoices{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:14px 0}
+.practiceChoices button{min-height:66px;padding:12px 8px;border:3px solid #a6cadb;border-radius:15px;background:#fff;color:#174d70;font-size:clamp(16px,2.8vw,19px);font-weight:850;cursor:pointer;overflow-wrap:anywhere}
+.practiceChoices button.correct{background:#def8e7;border-color:#32895c}
+.practiceChoices button:disabled{opacity:1;cursor:default}
+.practiceActions{display:flex;gap:10px;flex-wrap:wrap}
+.practiceActions button{min-height:48px;border:2px solid #85b7ce;border-radius:12px;background:#fff;color:#16547a;font:inherit;font-weight:800;padding:10px 14px;cursor:pointer}
+.practiceActions button[aria-expanded="true"]{background:#e9f3ff}
+.practiceHint{background:#fff2c9;border-radius:12px;padding:12px;margin:12px 0}
+.practiceFeedback{min-height:56px;padding:13px;background:#eaf5fc;border-radius:13px;line-height:1.55;font-weight:750;margin:12px 0}
+.practiceFeedback.good{background:#def8e7}
+.practiceFeedback.try{background:#fff2da}
 .progressbar{background:#d7e9f4;height:13px;border-radius:999px;overflow:hidden;margin:15px 0}
 .progressbar span{display:block;height:100%;width:20%;background:#187aaa;transition:width .35s ease}
 [hidden]{display:none!important}
-@media(max-width:420px){.map{grid-template-columns:1fr}.map .center,.map .result{grid-column:1}.manipulatives{gap:9px}.rod{height:94px;width:21px}.toolbar button{min-width:86px}}
+@media(max-width:420px){.practiceChoices{grid-template-columns:1fr}.map{grid-template-columns:1fr}.map .center,.map .result{grid-column:1}.manipulatives{gap:9px}.rod{height:94px;width:21px}.toolbar button{min-width:86px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 </style>
 </head>
@@ -108,6 +119,21 @@ a:focus-visible,button:focus-visible{outline:4px solid #8a1538;outline-offset:3p
   <div class="branch result"><span id="mapTogether">Together</span><strong id="mapTotal">40 + 3 = 43</strong></div>
  </div>
  <p class="note" id="mapNote">Adult discussion: Ask the child to point to the two branches and tell you why the digits 4 and 3 have different values. This is practice, not an automatic assessment.</p>
+</section>
+<section class="card" id="practicePanel" aria-labelledby="practiceHeading">
+ <h2 id="practiceHeading" tabindex="-1">✏️ Now you try!</h2>
+ <p id="practicePrompt">You have learned 43. Which groups of tens and ones make the new number 64?</p>
+ <div id="practiceChoices" class="practiceChoices" role="group" aria-label="Choose the groups that make 64">
+  <button type="button" data-practice-choice="reversed">4 tens and 6 ones</button>
+  <button type="button" data-practice-choice="correct">6 tens and 4 ones</button>
+  <button type="button" data-practice-choice="missing">6 tens and 0 ones</button>
+ </div>
+ <p id="practiceFeedback" class="practiceFeedback" role="status" aria-live="polite" aria-atomic="true">Look at both digits. Remember what tens and ones mean.</p>
+ <div class="practiceActions">
+  <button type="button" id="practiceHintButton" aria-expanded="false" aria-controls="practiceHint">💡 Show a clue</button>
+  <button type="button" id="practiceAgainButton">↻ Try again</button>
+ </div>
+ <p id="practiceHint" class="practiceHint" hidden>In 64, the 6 belongs in the tens place and the 4 belongs in the ones place.</p>
 </section>
 <aside class="card">
  <h2 id="parentHeading">For parents and teachers</h2>
