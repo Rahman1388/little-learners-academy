@@ -48,6 +48,11 @@ assert(fs.readFileSync("choose-grade.html","utf8").includes('href="./school-upda
  assert.match(await page.locator("#liveFeedStatus").innerText(),/not run successfully/i);
  assert.equal(await page.locator("#liveHeadlines .headline").count(),0);
  assert.equal(await page.locator("#reviewDate").getAttribute("datetime"),"2026-10-19");
+ assert.match(await page.locator("#editorialStatus").innerText(),/Directory|directory/);
+ const shareHref=await page.locator("#shareByEmail").getAttribute("href");
+ const shareUrl=new URL(shareHref);
+ assert.equal(shareUrl.protocol,"mailto:","iPhone sharing should open an email draft");
+ assert.match(shareUrl.searchParams.get("body"),/\/school-updates\.html/,"Email must share the actual visited review page");
  assert.match(await page.locator("#resultsStatus").innerText(),/not a live news feed/i);
  assert.equal(await page.locator("#filters button").count(),5);
  for(const [category,count] of [["qatar",3],["exams",2],["safety",1],["research",2],["all",8]]){
@@ -77,6 +82,10 @@ assert(fs.readFileSync("choose-grade.html","utf8").includes('href="./school-upda
  assert.match(await page.locator("#liveFeedStatus").innerText(),/Latest stored news snapshot/);
  assert.equal(await page.locator("#liveHeadlines .headline a").getAttribute("href"),headlineUrl);
  assert.match(await page.locator("#liveHeadlines .headline a").getAttribute("rel"),/noopener noreferrer/);
+ snapshot.lastSuccessfulFetch=new Date(Date.now()+60*60*1000).toISOString();
+ await page.reload({waitUntil:"domcontentloaded"});
+ await page.waitForFunction(()=>document.querySelector("#liveFeedStatus")?.textContent?.includes("invalid future retrieval time"));
+ assert.equal(await page.locator("#liveHeadlines .headline").count(),0,"Do not display headlines from a future-dated retrieval");
  snapshot.lastSuccessfulFetch=new Date(Date.now()-36*60*60*1000).toISOString();
  await page.reload({waitUntil:"domcontentloaded"});
  await page.waitForFunction(()=>document.querySelector("#liveFeedStatus")?.textContent?.includes("older than 12 hours"));
