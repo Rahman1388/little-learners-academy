@@ -91,3 +91,46 @@ Preliminary search returned no obvious **exact** children's learning product for
 5. Test parents of Grades 1–6 for pronunciation, gender inclusivity, spelling recall and relevance across all 6 grades.
 
 **Decision:** Add **Lulwa LearnLab** as a new *creative frontrunner within the pearl-naming direction*. It has not displaced Fikrola as the broader candidate pending owner clarification, native-speaker review, official clearance and app-store verification. **Do not rename the app or any live links now.**
+
+
+## Addendum — Luma Learn Academy / لوما لیرن اکیدمی (owner request, 19 October 2026)
+
+**Owner's exact candidate:** Luma Learn Academy; Arabic typed exactly as **لوما لیرن اکیدمی**. **Added to the shortlist, NOT selected, approved, legally cleared, reserved or deployed.**
+
+### Bilingual writing review
+
+The spelling supplied uses **ی** and **ک** characters familiar in Urdu/Persian writing. For Qatar, Saudi Arabia and UAE, two **unverified draft** Arabic options for native-speaking educators to consider:
+
+- **لوما ليرن أكاديمي** — transliteration that retains the English word "Learn" and the academy brand format.
+- **أكاديمية لوما للتعلّم** — natural Arabic-style rendering ("Luma Academy for Learning"), *not* an exact transliteration.
+
+Check meaning, readability, marketing clarity and trademark equivalences in both languages. Do not silently replace or publish the owner's Arabic spelling.
+
+### Search findings with direct links
+
+These are **verified public web/business/app references**, NOT national trademark register results:
+
+1. **Luma Learn — educational tutor and teacher/parent support** (https://www.lumalearn.ai/). Very close **two leading words** "Luma Learn" and strongly overlapping education services, even though based in Africa. Material potential search, identity and legal due-diligence concern.
+2. **Luma Learning Academy — children's school/academy** (https://www.learnwithluma.org/). This is a particularly close **three-word construction**, with only "Learn" versus "Learning" difference. Material business identity and trademark similarity concern; the site's geographic registration/right status has not been verified.
+3. **Luma Kids World — UAE Apple App Store listing** (https://apps.apple.com/ae/app/luma-kids-world/id6811638855). It describes bilingual **English–Arabic** children's picture questions, activities and coloring. Direct audience, country and feature overlap. Store listing is independently visible but no registered trademark or wider app-store country coverage is confirmed.
+4. **Luma — bilingual Arabic/English coding, AI and robotics academy** (https://www.lumacademy.org/). Public site says it serves children from age six, overlapping primary age and bilingual learning, although curriculum differs.
+5. **Luma — UAE learning flashcards and child products** (https://luma.ae/ar/collections/flash-cards-page). The business sells Arabic and English alphabet/numbers, animals, shapes and colors learning products, including Emirates and Saudi flash cards, creating particularly strong **Gulf educational product** overlap.
+6. **Luma — Google Play language-learning app** (https://play.google.com/store/apps/details?id=com.studio11.luma). Broader education-app name overlap; the app is not necessarily for children.
+
+**Full exact string "Luma Learn Academy":** sample public indexed searches did not identify an independently verifiable educational app using this exact entire phrase. **This DOES NOT establish legal availability, uniqueness, exclusive rights, or unused Apple/Google store title.** Adding the descriptive third word "Academy" does not automatically remove name conflict with an existing "Luma Learn" brand.
+
+### Preliminary decision
+
+**HIGH PUBLIC-WEB COLLISION / SEARCH CONFUSION CONCERN. My recommendation: NOT SUITABLE TO FINALIZE OR INVEST IN AT THIS STAGE.** This is a business/naming risk judgment, **not legal advice or a legal ruling of infringement.** Compared with truly coined distinctive candidates, the Luma root looks crowded in our exact subject and geography. Keep the candidate on file because the owner requested it, but it is currently a **lower-priority reserve**, not the lead launch suggestion.
+
+### Clearance tasks not completed
+
+- **Qatar:** Search specific Latin/Arabic registered trade names interactively at https://www.moci.gov.qa/en/trade-search (trade names ≠ trademarks); also search national trademark records. No candidate-level registry query retrieved or cleared.
+- **Saudi Arabia:** free SAIP registered-trademark database (https://www.saip.gov.sa/en/services/trademarks/trademark1); distinguish from SAIP's *separate fee-based trademark-search service* (https://www.saip.gov.sa/ar/services/trademarks/%20trademark-بحث-عن-علامة-تجارية). No candidate-level register results obtained.
+- **UAE:** Ministry of Economy & Tourism non-government trademark inquiry https://www.moet.gov.ae/en/w/trademark-inquiry ; the official page lists **AED 350**. No inquiry paid/submitted and no registration status verified.
+- **International:** WIPO Global Brand Database https://branddb.wipo.int/ ; WIPO expressly advises checking national offices too and disallows robotic queries, so no automated database clearance claimed: https://www.wipo.int/en/web/global-brand-database/faqs_branddb .
+- **Classes and spellings:** professionally evaluate classes **9** (downloadable apps), **41** (education) and potentially **42** (hosted education software), plus LUMA, LUMA LEARN, LUMA LEARNING, LUMI, LOOMA, LOMA, لوما, ليرن, أكاديمي, أكاديمية, and similar transliterations; ownership, dates and rights need legal counsel.
+- **Domains & social handles:** do not treat lack of a search result as availability. Check authoritative RDAP https://lookup.icann.org/en and approved .qa registrar for candidates before registration; no registration check has been completed.
+- **App stores:** confirm exact titles and similar apps in QA/SA/UAE storefronts and developer-console ability to reserve a display name. Indexed listing results do not provide exhaustive availability.
+
+**Product-safety decision:** Continue the project under the working name **Little Learners Academy** until owner personally selects and clears an alternative. **No GitHub repository, working app, live preview, code ID, user data, registered mark or app store is renamed as part of this naming research.**
