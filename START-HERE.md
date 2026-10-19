@@ -8,6 +8,13 @@
 - [Grade 2 Four English Skills](https://rahman1388.github.io/little-learners-academy/grade2-four-skills.html)
 - [Grade 2 Word Family Adventure](https://rahman1388.github.io/little-learners-academy/grade2-phonics-pathway.html)
 
+## 19 October 2026 — Preferred app-store name and discoverability
+
+- Owner confirmed **Little Learners Academy (LLA)** as the preferred international brand and future Apple/Google store title, with the slogan **Learn • Explore • Grow**. No Apple or Google app-store launch or approval has taken place.
+- The title fits current 30-character Apple/Google store name limits. App Store Optimization should use accurate bilingual descriptions, real feature screenshots and strong reviews when available; a name alone **does not guarantee rankings**.
+- **Important:** the exact phrase already appears in international childcare/education business names. Conduct Qatar/Saudi/UAE trademark and app-store availability clearance before committing to formal registration or paid promotion; keep the core brand provisional for legal purposes until checked.
+- Detailed decision: [Foundation Quality Roadmap](FOUNDATION-QUALITY-ROADMAP.md#brand-identity-and-app-store-clearance-owner-decision-19-october-2026).
+
 ## 19 October 2026 — Watch → Connect → Try progression added to visual preview
 
 - In [Draft PR #16](https://github.com/Rahman1388/little-learners-academy/pull/16), the original silent, captioned **43 = 4 tens + 3 ones** visual story and color-coded concept map now lead to an independent practice question on **64 = 6 tens + 4 ones**. Wrong examples **46** and **60** trigger constructive feedback, with optional hint and Try Again.
