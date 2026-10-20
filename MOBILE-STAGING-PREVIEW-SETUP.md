@@ -50,3 +50,14 @@ The owner chose a PUBLIC adult-only GitHub Pages preview. Create `Rahman1388/lit
 
 ## Additional gates
 Native Arabic speaker review, Grade 2 teacher review, real device Safari + VoiceOver testing, source-news disclaimer check, no accidental student-data collection, proposed name clearance and domain registration are still pending.
+
+## Live staging repository — sources uploaded 21 October 2026
+
+**Repository confirmed created and populated:** https://github.com/Rahman1388/Little-learners-review-staging (GitHub owner username currently `Rahman1388`; repo capitalization reflects the actual user's selection).
+
+**Separate staging `main` source commit:** `1bace5fd574f037f3be5e2dc360f5c0b20c37f06`, 22 files including `index.html`, six adult review HTML pages, Grade 2 and phonics scripts, educator feedback, original government directory links, uninitialized QNA snapshot, adult bilingual brand-score helper, `.nojekyll`, `robots.txt`, `STAGING-MANIFEST.json` and review guides. Staging `index.html` confirmed to have 5 review links, visible public-preview notice and `noindex`.
+
+**Not yet confirmed hosted:** GitHub Pages requires owner to open separate staging repo **Settings → Pages → Build and deployment → Deploy from a branch → main → /(root) → Save**. Connected GitHub tools cannot configure Pages. Do not invent or publicize a functional mobile URL until deployment completes and URL is verified from GitHub.
+
+**Identity plan:** The owner wishes to choose a distinctive, professional Academy brand and rename both repositories **later**. Keep existing names now, avoiding broken Pages URLs or unnecessary migrations. Legal, domain, Arabic, educator and physical iPhone review pending. Source/production Academy `main` was not touched during the transfer.
+
