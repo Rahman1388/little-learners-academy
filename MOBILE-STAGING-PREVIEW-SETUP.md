@@ -37,8 +37,16 @@ Pages visibility reference: https://docs.github.com/en/enterprise-cloud@latest/p
 ## If the owner needs RESTRICTED review access
 Do **not** deploy via normal personal-account GitHub Pages. Use GitHub-hosted downloadable artifacts for authorized reviewers, or select an access-controlled alternative only after discussing security and cost. No feature is called private without actual enforcement. A web-visible login form embedded in static HTML without a real backend **does not protect** it.
 
-## Pending owner decision
-Choose **public, unlisted-style GitHub Pages link for adults** or **access-restricted preview**. The public choice needs a separate repository and a manual GitHub Pages setup step, since available GitHub tools cannot create or configure a new repository or its Pages settings. The preparation work on the source review branch is safe and does not authorize publishing.
+## Owner authorization received — 20 October 2026
+
+The owner explicitly approved **preparing a separate publicly accessible GitHub Pages staging website for ADULT review**, provided the existing published Little Learning Academy website and its `main` branch remain unchanged. This approval resolves the earlier choice of public vs restricted hosting. No authorization was given to overwrite the existing project or to make Ministry approval claims.
+
+**Blocking account step:** The staging repository `Rahman1388/little-learners-review-staging` does **not** yet exist (GitHub returned 404 when checked). The connected GitHub actions can create/edit files in an existing repo but **cannot create repositories or set Pages publishing settings**. The owner must create the new public repo in their GitHub account through https://github.com/new, named `little-learners-review-staging`, with **Add README** enabled to initialize `main`, then send its actual repository link. Never claim a live link before this happens.
+
+After creation and access confirmation, use the already tested `academy-mobile-staging-package` assets to upload source text files to the **new repository only**, keeping `index.html` at its root. An administrator must then use **Settings → Pages → Deploy from a branch → main → /(root) → Save**, verify GitHub's real Pages URL and test it on an actual iPhone. All content remains public and unapproved. Publishing from a branch may take several minutes.
+
+## Repo creation and Pages settings — owner action needed
+The owner chose a PUBLIC adult-only GitHub Pages preview. Create `Rahman1388/little-learners-review-staging` and initialize it with a README; then upload validated assets to this new repository and configure its Pages settings. No preview is published until this is done.
 
 ## Additional gates
 Native Arabic speaker review, Grade 2 teacher review, real device Safari + VoiceOver testing, source-news disclaimer check, no accidental student-data collection, proposed name clearance and domain registration are still pending.
