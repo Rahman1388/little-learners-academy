@@ -1,11 +1,22 @@
 # Little Learners Academy — Project Continuity & Handover
 
-**Updated:** 13 October 2026  
+**Updated:** 3 November 2026  
 **Owner's project:** Little Learners Academy / أكاديمية المتعلمين الصغار  
 **Source of truth:** https://github.com/Rahman1388/little-learners-academy  
 **Live Progressive Web App:** https://rahman1388.github.io/little-learners-academy/
 
 > This file exists to keep an independently readable project history and next-step plan even when an earlier ChatGPT conversation cannot easily be found. **It is a summary, not an export of the chat transcripts.** Changes after this date should update this document.
+
+## 3 November 2026 — Saved "Update Little Learning Academy" milestone
+
+**Named project folder:** [updates/2026-11-03-update-little-learning-academy/](./updates/2026-11-03-update-little-learning-academy/README.md)
+
+- Added a standalone supplementary **Grade 6 Visual Ratio Explorer** with **24 original** multiple-choice practice problems in equivalent-ratio tables, double number lines, unit rates and percent grids, each with an optional hint and a worked explanation. This is **not** a certified Grade 6 curriculum or 24 full lessons.
+- Updated the Grade 6 chooser and home resources, offline PWA shell and lesson audit. The audited inventory now reports **475 distinct MCQ practice questions** (Grade 1: 151, Grade 2: 66, Grade 3: 54, Grade 4: 60, Grade 5: 60, Grade 6: 84). Six guided Grade 6 writing prompts and reused interactive review models are tracked separately.
+- New progress key `lla-g6-ratio-v1` is device-local and isolated; **no existing stars, progress, C/D bus voice choices, Arabic recordings, or child data were changed**.
+- Updated numerical-model validation and phone/tablet browser regression checks. All check conclusions must be verified after the final release; passing an automated check is **not** human educator approval.
+- Original mathematical teaching scenarios broadly overlap published US Common Core Grade 6 ratios and England Year 6 ratio/proportion. Qatar school mapping, Arabic wording, human pronunciation, and child accessibility reviews remain pending.
+- Recovery: GitHub `main` remains the authoritative project source; use the dated update folder to find the current milestone rather than reconstructing the app from chat snippets.
 
 ## 16 October 2026 — Public Grade 2 English previews and guided phonics navigation
 
