@@ -110,7 +110,7 @@ const fs=require("node:fs");
  assert.equal(await page.getByText("20,000+ skills",{exact:true}).count(),1,"International IXL count is out of date");
  assert.equal(await page.getByText("1,500+ maths skills",{exact:true}).count(),1,"Prodigy comparison card is missing");
  assert.equal(await page.locator("#qualityNext .track").count(),4,"The benchmark needs actionable next steps");
- for(const [grade,count] of [[1,151],[2,66],[3,54],[4,60],[5,60],[6,60]]){
+ for(const [grade,count] of [[1,151],[2,66],[3,54],[4,60],[5,60],[6,84]]){
    assert.equal(await page.locator('[data-audit-grade="'+grade+'"]').textContent(),String(count));
  }
  await assertMobile();
