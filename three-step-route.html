@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; media-src 'self'; connect-src 'self'; font-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
+<meta name="theme-color" content="#bff4e2"><meta name="description" content="Simple three-step Grade 1–6 supplementary learning route for mathematics, English and science.">
+<title>My 3-Step Learning Route • Little Learners Academy</title>
+<link rel="icon" href="./icon.svg" type="image/svg+xml">
+<style>
+:root{font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif;color:#173e63}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:linear-gradient(135deg,#c3f2ff,#fff5d5 52%,#eddbff)}
+main{max-width:820px;margin:auto;padding:14px 14px 50px}
+a,button,select{font:inherit}
+button{cursor:pointer}
+a:focus-visible,button:focus-visible,select:focus-visible{outline:4px solid #8a1538;outline-offset:4px}
+.back{display:inline-flex;align-items:center;min-height:48px;color:#16466b;background:white;font-weight:900;padding:12px 16px;border-radius:16px;text-decoration:none}
+.hero,.selectPanel,.lesson,.end,.family{background:#fffdfc;border:4px solid white;border-radius:27px;margin:16px 0;padding:clamp(16px,3vw,24px);box-shadow:0 5px #b6dce7}
+.hero{text-align:center;background:linear-gradient(120deg,#fff3bf,#fff,#e4fbef)}
+h1{font-size:clamp(29px,6vw,43px);line-height:1.2;margin:9px 0}
+h1 span{display:block;font-size:.65em;margin-top:8px}
+h2{font-size:clamp(22px,4vw,28px);margin:5px 0 11px}
+p{line-height:1.55}
+.eyebrow{color:#8a1538;font-size:13px;font-weight:950}
+#gradePicker{border:2px solid #8bcfd7;border-radius:16px;background:white;color:#173e63;padding:13px;min-height:54px;width:100%;font-weight:900;font-size:18px;margin:10px 0}
+.note{font-size:13px;color:#526b7e}
+.progress{background:#fff1bf;border-radius:16px;padding:14px;margin:14px 0;font-weight:950}
+.bar{height:15px;border-radius:15px;background:#e6edf4;overflow:hidden}
+.bar span{display:block;width:0;height:100%;background:#36aa7e;transition:width .15s}
+.route{display:grid;gap:14px}
+.lesson{margin:0;border:3px solid #d1e8ed;box-shadow:none}
+.lesson.tried{border-color:#65b993;background:#eaffef}
+.headerRow{display:flex;gap:12px;align-items:center}
+.emoji{font-size:40px;flex-shrink:0}
+.lesson h3{font-size:21px;margin:0 0 4px}
+.ar{font-size:17px;direction:rtl}
+.tag{font-size:12px;font-weight:900;color:#72540c}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.actions a,.actions button{min-height:51px;border-radius:15px;padding:12px 14px;display:inline-flex;justify-content:center;align-items:center;text-decoration:none;font-weight:900;border:0}
+.launch{background:#087ca8;color:white}
+.triedButton{background:#eaf8ff;color:#164d74;border:2px solid #a0d0df!important}
+.tried .triedButton{background:#deffe8;color:#165739;border-color:#5eac86!important}
+.celebrate{background:#e8ffdf;border-radius:18px;padding:16px;font-weight:900}
+.family{font-size:13px}
+[hidden]{display:none!important}
+@media(max-width:440px){.actions a,.actions button{width:100%}}
+@media(prefers-reduced-motion:reduce){.bar span{transition:none}}
+</style></head><body><main>
+<a class="back" href="./choose-grade.html">← Choose My Grade • اختر صفّي</a>
+<header class="hero">
+<div class="eyebrow">🌈 LEARNING PATH • مسار التعلّم</div>
+<h1>🗺️ My 3-Step Learning Route <span lang="ar" dir="rtl">مسار التعلّم في ثلاث خطوات</span></h1>
+<p>One maths idea, one English activity and one science discovery. Three small steps can make a lovely practice session!</p>
+<p lang="ar" dir="rtl">نشاط رياضيات، ونشاط لغة إنجليزية، واكتشاف علمي. اختر صفّك وابدأ!</p>
+</header>
+<section class="selectPanel">
+<h2>🎒 Choose your grade <span lang="ar" dir="rtl">اختر صفّك الدراسي</span></h2>
+<label for="gradePicker">My learning level • مستواي الدراسي</label>
+<select id="gradePicker">
+<option value="1">🌱 Grade 1 • الصف الأول</option>
+<option value="2">🌿 Grade 2 • الصف الثاني</option>
+<option value="3">🌼 Grade 3 • الصف الثالث</option>
+<option value="4">🌳 Grade 4 • الصف الرابع</option>
+<option value="5">🌻 Grade 5 • الصف الخامس</option>
+<option value="6">🌟 Grade 6 • الصف السادس</option>
+</select>
+<p class="note" id="levelNote"></p>
+<div class="progress" id="routeProgress" role="status" aria-live="polite">0 / 3 steps tried • ٠ من ٣</div>
+<div class="bar" role="progressbar" aria-label="Three-step learning route completion" aria-valuemin="0" aria-valuemax="3" aria-valuenow="0" id="routeBar"><span id="routeFill"></span></div>
+</section>
+<section aria-labelledby="routeTitle">
+<h2 id="routeTitle">🚀 Today's three steps <span lang="ar" dir="rtl">خطوات اليوم الثلاث</span></h2>
+<div class="route" id="routeSteps"></div>
+</section>
+<section class="end">
+<div id="finishMessage" class="celebrate" role="status" aria-live="polite" hidden>🎉 Three activities tried! Great effort. You can practise again any time. • أحسنت!</div>
+<p><a class="back" href="./activity-library.html">🎮 Explore 151 Grade 1 mini-challenges • أنشطة الصف الأول</a></p>
+<p><a class="back" href="./international-benchmark.html">🌍 Compare international learning apps • مقارنة التطبيقات</a></p>
+</section>
+<aside class="family"><h2>👨‍👩‍👧 For families &amp; teachers • للأهل والمعلمين</h2>
+<p>This is a <strong>suggested practice route</strong>, not an assessment. Tap “I tried this” after a child has attempted an activity. A check mark means <strong>tried, not mastered</strong>. Grade 1 includes broader foundational practice; Grades 2–6 link to limited subject pilots requiring teacher and Arabic-language review, not official Qatar curricula.</p>
+<p>Choosing a grade and marking steps stores only simple checkmarks on <strong>this device</strong>; there is no account, child name, recording, timer or score upload. You may switch grades at any time. The current approved voice settings are untouched.</p>
+</aside>
+</main><script src="./three-step-route.js?v=route-1"></script></body></html>
