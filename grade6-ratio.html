@@ -1,0 +1,81 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; media-src 'self'; connect-src 'self'; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
+<meta name="theme-color" content="#dcf8f1"><link rel="icon" href="./icon.svg" type="image/svg+xml">
+<meta name="description" content="24 original Grade 6 ratio and percentage practice models: tables, double number lines, unit rates and hundred grids.">
+<title>Grade 6 Ratio Explorer • Little Learners Academy</title>
+<style>
+:root{font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif;color:#17405b}*{box-sizing:border-box}
+body{margin:0;background:linear-gradient(140deg,#d4f7fb,#fff5ce 60%,#f3e8ff);min-height:100vh}
+main{max-width:920px;margin:auto;padding:15px 14px 55px}a,button{font:inherit}button{cursor:pointer}
+a:focus-visible,button:focus-visible{outline:4px solid #8a1538;outline-offset:3px}
+.back{display:inline-flex;background:white;color:#185574;text-decoration:none;border-radius:16px;padding:12px 17px;font-weight:850;min-height:48px;align-items:center}
+.hero,.intro,.game,.review{background:#fffd;border:4px solid white;border-radius:27px;padding:clamp(16px,3.5vw,25px);margin:16px 0;box-shadow:0 5px #b6dcdf}
+.hero{text-align:center;background:linear-gradient(120deg,#e6fff2,#fff,#fff0c5)}
+h1{font-size:clamp(27px,5vw,42px);margin:10px 0;line-height:1.22}h1 span{display:block;font-size:.65em;margin-top:6px}
+h2{font-size:clamp(21px,3.8vw,27px);margin:4px 0 10px}p{line-height:1.55}
+.eyebrow{color:#8a1538;font-weight:950;font-size:13px}.small{font-size:13px;color:#546a78}
+.progress{font-weight:900;padding:14px;background:#fff0bb;border-radius:16px}
+.meter{margin:11px 0;height:14px;border-radius:20px;overflow:hidden;background:#dae8e9}
+.meter span{height:100%;display:block;background:#2aa77c;width:0}
+.topicGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.topic{min-height:122px;text-align:left;background:white;color:#144663;border:3px solid #bde3df;border-radius:18px;padding:15px;display:flex;flex-direction:column;justify-content:center;gap:6px}
+.topic strong{font-size:20px}.topic small{font-size:13px}.topic.complete{background:#e6ffeb;border-color:#55b78a}
+.problem{background:#eaf9ff;border-radius:19px;padding:18px;margin:16px 0}
+.problem strong{font-size:clamp(20px,3.8vw,28px);display:block;line-height:1.38}
+.ar{font-size:17px;direction:rtl;text-align:right;line-height:1.75;margin-top:8px}
+.model{background:#fff;border:2px solid #c9e6e8;border-radius:18px;padding:13px;overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:220px;text-align:center}
+th,td{border:2px solid #c5dfe0;padding:9px 7px;min-width:0}
+th{background:#e6f6fa}
+td.unknown{background:#ffea9f;color:#743c12;font-weight:950;font-size:24px}
+.lineRow{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:5px;margin-top:8px}
+.linePair{border-top:5px solid #19a18e;text-align:center;padding:12px 3px 6px;position:relative;font-weight:850;font-size:14px}
+.linePair:before{content:"";position:absolute;top:-11px;left:50%;width:3px;height:18px;background:#176b62}
+.linePair .unknown{color:#9a4c00;background:#fff2b1;border-radius:8px}
+.hundred{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));max-width:280px;gap:2px;margin:12px auto}
+.hundred span{aspect-ratio:1;background:#e2edf3;border:1px solid #c2d4d9;border-radius:2px}
+.hundred span.marked{background:#36b98c}
+.answers{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px;margin:13px 0}
+.answers button{min-height:68px;padding:10px;border-radius:18px;border:3px solid #a1d3dd;background:white;color:#154c6a;font-size:clamp(18px,3vw,24px);font-weight:950;overflow-wrap:anywhere}
+.answers button.good{border-color:#38a671;background:#d8ffec}.answers button.bad{border-color:#d99764;background:#fff1d6}
+.answers button:disabled{opacity:1;cursor:default}
+.feedback{padding:15px;background:#fff4cb;border-radius:15px;font-weight:850;min-height:60px;margin:13px 0}
+.feedback.correct{background:#defce9}.feedback.retry{background:#fff1e2}
+.explanation{background:#e5fff0;border:2px solid #87c5ab;padding:15px;border-radius:16px;margin:12px 0;line-height:1.7}
+.controls{display:flex;gap:10px;flex-wrap:wrap;margin-top:15px}
+.controls button{padding:13px 17px;min-height:50px;border:0;border-radius:16px;color:white;background:#087f9f;font-weight:900}
+.controls button.secondary{background:#e7f5fc;color:#14506b;border:2px solid #b1dbe3}
+[hidden]{display:none!important}
+@media(max-width:550px){.topicGrid{grid-template-columns:1fr}.answers{grid-template-columns:1fr}.answers button{min-height:55px}.linePair{font-size:12px;padding:12px 1px 5px}}
+</style></head>
+<body><main>
+<a class="back" href="./choose-grade.html#grade6">← Grade 6 • الصف السادس</a>
+<header class="hero">
+<div class="eyebrow">🧮 GRADE 6 • SUPPLEMENTARY MATHS PILOT</div>
+<h1>⚖️ Ratio Explorer <span lang="ar" dir="rtl">مستكشف النسب</span></h1>
+<p>See the pattern. Find the multiplier. Explain your answer. • شاهد النمط، ثم اكتشف العلاقة واشرح الإجابة.</p>
+<div class="progress" id="ratioProgress" role="status" aria-live="polite">0 / 24 practice problems explored</div>
+<div class="meter" aria-hidden="true"><span id="ratioMeter"></span></div>
+<p class="small">24 original worked problems in four topics. Practice is not a test of mastery or a certified Qatar Grade 6 syllabus.</p>
+</header>
+<section class="intro" id="introPanel"><h2>Choose a topic • اختر موضوعاً</h2>
+<p>Each topic has six activities and a picture or number model. No timer or penalties. • ستة أنشطة في كل موضوع، دون مؤقت.</p>
+<div class="topicGrid" id="ratioTopics"></div></section>
+<section class="game" id="ratioGame" hidden>
+<div class="controls"><button type="button" class="secondary" id="backTopics">← Topics • المواضيع</button><span id="topicName" class="eyebrow"></span></div>
+<h2 id="ratioTitle" style="margin-top:18px"></h2>
+<div class="problem"><strong id="ratioQuestion"></strong><div id="ratioArabic" class="ar" lang="ar" dir="rtl"></div></div>
+<div class="model" id="ratioModel" aria-label="Interactive mathematics model"></div>
+<h2 style="margin-top:19px">Choose an answer • اختر الإجابة</h2><div class="answers" id="ratioAnswers"></div>
+<div class="feedback" id="ratioFeedback" role="status" aria-live="polite">Try an answer. • جرب إجابة.</div>
+<div class="explanation" id="ratioExplanation" hidden></div>
+<div class="controls"><button type="button" class="secondary" id="ratioHint">💡 Hint • مساعدة</button>
+<button type="button" id="ratioNext" hidden>Next problem ➜ • التالي</button></div>
+</section>
+<aside class="review"><strong>👨‍👩‍👧 Parent and educator note • للأهل والمعلمين</strong>
+<p>Ratio tables, double number lines, unit rates and percent models are introduced with worked explanations. Skills broadly overlap US Grade 6 ratio standards and England Year 6 ratio/proportion topics. Standards differ by school and country. The draft Arabic wording and mathematics examples still require independent educator review; please do not treat them as school-approved lessons.</p>
+<p class="small">Answers and practice progress stay on this device under a separate key. No login, student name, voice recording, personal data upload, advertising, or third-party analytics. Existing Grade 1–6 activities and pronunciation are unchanged.</p>
+</aside>
+<script src="./grade6-ratio-data.js?v=nov03"></script><script src="./grade6-ratio.js?v=nov03"></script>
+</main></body></html>
