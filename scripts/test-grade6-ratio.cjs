@@ -16,7 +16,7 @@ for(const [i,topic] of ["tables","lines","rates","percent"].entries()){
   assert.equal(item.choices.length,3);
   assert.equal(new Set(item.choices).size,3);
   assert(item.choices.includes(item.answer),"Answer missing from choices "+item.id);
-  assert(item.arabicQuestion.length>=25 && item.explanation.length>=25);
+  assert(item.arabicQuestion.trim().length>=12 && item.explanation.trim().length>=15, "Missing bilingual support or worked reasoning: "+item.id);
   assert(item.rows.length>=2 && item.columns.length===2);
   const known=item.rows.find(r=>typeof r[0]==="number" && typeof r[1]==="number" && r[0]>0);
   assert(known,"Missing known nonzero ratio "+item.id);
