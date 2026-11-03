@@ -53,7 +53,7 @@ const P=[
 ["Sports medals","ميداليات الرياضة","What is 60% of 50 sports medals?","ما ٦٠٪ من ٥٠ ميدالية رياضية؟",30,20,35,"60% = 6 tenths, so 50 ÷ 10 × 6 = 30.",60],
 ["Recycled bottles","العبوات المعاد تدويرها","What is 10% of 240 recyclable bottles?","ما ١٠٪ من ٢٤٠ عبوة قابلة للتدوير؟",24,20,40,"10% is one tenth. 240 ÷ 10 = 24.",10]
 ];
-P.forEach(x=>add("percent",x[0],x[1],x[2],x[3],x[4],x[5],x[6],x[7],["Rate per 100","Quantity"],[[100,x[8]],[x[4],"?"]],x[8]));
+P.forEach(x=>add("percent",x[0],x[1],x[2],x[3],x[4],x[5],x[6],x[7],["Percent (%)","Objects"],[[100,x[4]*100/x[8]],[x[8],"?"]],x[8]));
 if(Q.length!==24||new Set(Q.map(x=>x.question)).size!==24)throw Error("Ratio Explorer must contain 24 distinct problems.");
 window.LLA_G6_RATIO=Object.freeze(Q);
 })();
