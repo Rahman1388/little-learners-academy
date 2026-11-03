@@ -20,6 +20,7 @@ const specs=[
  {grade:5,subject:"English reading",file:"grade5-reading-data.js",global:"LLA_GRADE5_READING",select:"questions",expected:18},
  {grade:5,subject:"Science",file:"grade5-science-data.js",global:"LLA_GRADE5_SCIENCE",select:"questions",expected:18},
  {grade:6,subject:"Mathematics",file:"grade6-math-data.js",global:"LLA_GRADE6_MATH",expected:24},
+ {grade:6,subject:"Ratio reasoning models",file:"grade6-ratio-data.js",global:"LLA_G6_RATIO",expected:24},
  {grade:6,subject:"English reading",file:"grade6-reading-data.js",global:"LLA_GRADE6_READING",select:"questions",expected:18},
  {grade:6,subject:"Science",file:"grade6-science-data.js",global:"LLA_GRADE6_SCIENCE",select:"questions",expected:18}
 ];
@@ -51,9 +52,9 @@ for(const spec of specs){
  byGrade.set(spec.grade,(byGrade.get(spec.grade)||0)+records.length);
  rows.push({grade:spec.grade,subject:spec.subject,count:records.length});
 }
-const expected=[151,66,54,60,60,60];
+const expected=[151,66,54,60,60,84];
 for(let grade=1;grade<=6;grade++)assert.equal(byGrade.get(grade),expected[grade-1],"Grade "+grade+" count changed");
-assert.equal(seen.size,451,"Distinct question total changed");
+assert.equal(seen.size,475,"Distinct question total changed");
 const writing=readWriting();
 function readWriting(){
  const window={};
@@ -74,7 +75,7 @@ for(let grade=1;grade<=6;grade++){
  const pattern=new RegExp('<td data-audit-grade="'+grade+'">'+count+'</td>');
  assert.match(benchmark,pattern,"Published benchmark count is out of sync for Grade "+grade);
 }
-assert.ok(benchmark.includes('<strong data-audit-total="451">451 distinct short questions</strong>'),"Benchmark total is out of sync");
+assert.ok(benchmark.includes('<strong data-audit-total="475">475 distinct short questions</strong>'),"Benchmark total is out of sync");
 assert.ok(benchmark.includes('<strong data-audit-writing="6">6 guided writing prompts</strong>'),"Writing prompt total is out of sync");
 console.log("Verified unique practice question inventory across Grades 1-6:");
 for(let grade=1;grade<=6;grade++)console.log(" Grade "+grade+": "+byGrade.get(grade)+" distinct questions");
