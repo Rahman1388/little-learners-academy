@@ -39,6 +39,7 @@ jobs:
           node --check scripts/test-parent-report.cjs
           node --check foundation-check.js
           node --check practice-path.js
+          node --check three-step-route.js
           node --check maths-thinking.js
           node --check number-line-trail.js
           node --check skip-count-rocket.js
@@ -137,6 +138,8 @@ jobs:
           test -f foundation-check.js
           test -f practice-path.html
           test -f practice-path.js
+          test -f three-step-route.html
+          test -f three-step-route.js
           test -f learning-passport.html
           test -f learning-passport.js
           test -f drawing-studio.html
