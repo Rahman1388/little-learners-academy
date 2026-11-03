@@ -1481,6 +1481,39 @@ const fs=require("node:fs");
  await page.setViewportSize({width:768,height:1024});
  await assertMobile();
  await page.setViewportSize({width:390,height:844});
+ // November 2026: Grade 6 Ratio Explorer visual models and private progress.
+ await goto("grade6-ratio.html");
+ await page.locator("#ratioTopics .topic").first().waitFor({state:"visible"});
+ assert.equal(await page.locator("#ratioTopics .topic").count(),4);
+ await assertMobile();
+ const allRatio=await page.evaluate(()=>window.LLA_G6_RATIO.map(q=>({topic:q.topic,id:q.id,answer:q.answer})));
+ assert.equal(allRatio.length,24);
+ for(const topic of ["tables","lines","rates","percent"]){
+  await page.locator('#ratioTopics .topic[data-topic="'+topic+'"]').click();
+  assert.equal(await page.locator("#ratioGame").isVisible(),true);
+  const target=allRatio.find(q=>q.topic===topic);
+  assert(target,"Missing topic "+topic);
+  if(topic==="tables"){
+   await page.locator('#ratioAnswers button:not([data-value="'+target.answer+'"])').first().click();
+   assert.match(await page.locator("#ratioFeedback").textContent(),/Not yet/);
+   await page.locator("#ratioHint").click();
+   assert.match(await page.locator("#ratioFeedback").textContent(),/multiplier/);
+  }
+  if(topic==="percent")assert.equal(await page.locator(".hundred span").count(),100);
+  if(topic==="lines")assert.equal(await page.locator(".lineRow").count(),2);
+  await page.locator('#ratioAnswers button[data-value="'+target.answer+'"]').click();
+  assert.equal(await page.locator("#ratioExplanation").isVisible(),true);
+  assert.equal(await page.locator("#ratioNext").isVisible(),true);
+  await page.locator("#backTopics").click();
+ }
+ assert.match(await page.locator("#ratioProgress").textContent(),/4 \/ 24/);
+ const ratioKey=await page.evaluate(()=>JSON.parse(localStorage.getItem("lla-g6-ratio-v1")));
+ assert.equal(Object.keys(ratioKey).filter(x=>ratioKey[x]).length,4);
+ await page.reload({waitUntil:"domcontentloaded"});
+ assert.match(await page.locator("#ratioProgress").textContent(),/4 \/ 24/);
+ await page.setViewportSize({width:768,height:1024});await assertMobile();
+ await page.setViewportSize({width:320,height:700});await assertMobile();
+ await page.setViewportSize({width:390,height:844});
  await goto("voice-test.html");
  await page.locator("audio").first().waitFor();
  const numPlayers=await page.locator("audio").count();
