@@ -105,7 +105,7 @@ const fs=require("node:fs");
  // Benchmark count is verified on phone and tablet; writing is separate.
  await goto("international-benchmark.html");
  await page.locator("#ourInventory").waitFor({state:"visible"});
- assert.equal(await page.locator("[data-audit-total]").textContent(),"451 distinct short questions");
+ assert.equal(await page.locator("[data-audit-total]").textContent(),"475 distinct short questions");
  assert.equal(await page.locator("[data-audit-writing]").textContent(),"6 guided writing prompts");
  assert.equal(await page.getByText("20,000+ skills",{exact:true}).count(),1,"International IXL count is out of date");
  assert.equal(await page.getByText("1,500+ maths skills",{exact:true}).count(),1,"Prodigy comparison card is missing");
