@@ -1,0 +1,81 @@
+:root{font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif;color:#17474a;background:#e4f6ee}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;min-height:100vh;background:linear-gradient(160deg,#c9efe9 0%,#eef9ee 44%,#fff5d7 100%)}
+.wrap{width:min(900px,100%);margin:auto;padding:14px 13px 50px}
+button,a{font:inherit}button{cursor:pointer}
+button:focus-visible,a:focus-visible{outline:4px solid #8a1538;outline-offset:3px}
+.back{display:inline-flex;align-items:center;min-height:49px;padding:12px 16px;background:white;color:#174b63;border-radius:15px;text-decoration:none;font-weight:850}
+.hero,.panel,.note{background:#fffc;border:3px solid #fff;border-radius:27px;padding:clamp(16px,4vw,29px);margin:16px 0;box-shadow:0 6px 0 #b8ddce}
+.hero{position:relative;overflow:hidden;text-align:center;background:linear-gradient(155deg,#edfffc,#fcffdf 65%,#e1f9fb)}
+.eyebrow{font-weight:900;letter-spacing:.04em;color:#246d59;font-size:13px}
+.sky{position:relative;display:flex;align-items:center;justify-content:space-around;min-height:125px;margin-top:8px;border-radius:21px;background:linear-gradient(180deg,#cceefe,#e8fcf0 65%,#c4ebbf);overflow:hidden}
+.sky span{display:inline-block;font-size:clamp(43px,10vw,72px);line-height:1.5}
+.sky .sun{transform:translateY(-17px)}.sky .palm{align-self:end}.sky .cloud{transform:translateY(-25px)}
+h1{font-size:clamp(28px,6vw,44px);margin:18px 0 10px;line-height:1.2}
+h1 span,h2 span{display:block;font-size:.7em;margin-top:7px}
+h2{font-size:clamp(23px,4.5vw,29px);margin:5px 0 12px;line-height:1.24}
+p{line-height:1.55}.level{background:#e5f6e9;border-radius:18px;font-size:14px;padding:10px 12px;font-weight:850}
+.habitats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px;margin:17px 0}
+.habitat{display:flex;flex-direction:column;align-items:center;gap:8px;border:3px solid #a6d6b9;background:#f2fff4;border-radius:20px;min-height:205px;padding:15px 9px;color:#174d4c;text-align:center;touch-action:manipulation}
+.habitat[data-id="desert"]{background:linear-gradient(155deg,#fff7d9,#fff9ee)}
+.habitat[data-id="coast"]{background:linear-gradient(155deg,#d9f4ff,#eefcff)}
+.habitat[data-id="garden"]{background:linear-gradient(155deg,#dcf9d9,#f7ffe7)}
+.habitat .art{font-size:clamp(30px,5vw,42px);line-height:1.5;min-height:60px}
+.habitat strong{font-size:19px}.habitat .arabic{font-size:19px}
+.habitat small{font-size:13px;line-height:1.4}
+.habitat .complete{display:block;margin-top:auto;border-radius:15px;background:white;padding:6px 10px;font-size:13px;font-weight:850}
+.small{font-size:13px;color:#3b6462}.toolbar{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.counter{font-size:15px;font-weight:900;background:#e5f8ed;padding:10px 13px;border-radius:15px;font-variant-numeric:tabular-nums}
+.progressTrack{height:13px;background:#d8e9dc;border-radius:20px;margin:17px 0;overflow:hidden}
+.progressTrack span{display:block;background:#35866c;width:0;height:100%;transition:width .2s}
+.play{text-align:center}.scene{font-size:35px;border-radius:20px;padding:12px;background:linear-gradient(135deg,#f2fbcf,#d3f4ff);margin:14px 0}
+.picture{font-size:clamp(65px,14vw,100px);line-height:1.3;margin:12px 0}
+.word{font-size:clamp(24px,5vw,30px);font-weight:950;line-height:1.35}
+.word.arabic{font-size:26px;margin:4px 0 20px}
+.questionArabic{font-weight:800;font-size:clamp(19px,4vw,23px);margin:8px 0 20px}
+.choices{display:grid;grid-template-columns:1fr;gap:12px;max-width:650px;margin:0 auto 16px}
+.choice{min-height:67px;border:3px solid #9bd2c9;border-radius:18px;background:white;color:#174b52;font-weight:900;padding:11px 15px;text-align:center;touch-action:manipulation}
+.choice span{display:block;margin-top:4px;font-size:19px}
+.choice:disabled{opacity:1}.choice.wrong{background:#fff0de;border-color:#b47b54}.choice.correct{background:#d9ffe4;border-color:#3d9d72}
+.feedback{min-height:78px;background:#fff7db;border-radius:18px;padding:14px;font-weight:850;line-height:1.65;margin:10px 0 18px;white-space:pre-line}
+.feedback.good{background:#e1ffe7}.feedback.try{background:#fff0de}
+.primary,.secondary{border:2px solid #1b756c;border-radius:17px;padding:12px 18px;min-height:51px;font-weight:900;background:#197970;color:#fff}
+.secondary{border-color:#9bcfc6;background:#fff;color:#155b54}
+#nextMission{display:block;margin:16px auto 3px}
+.finish{text-align:center;background:#efffeb}.finishScene{font-size:59px;margin:10px}
+.finishActions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:20px 0 5px}
+.note{font-size:13px;color:#385e61}.note strong{color:#1b5256}.note p{margin-bottom:9px}
+@media(max-width:690px){.habitats{grid-template-columns:1fr}.habitat{min-height:142px}.habitat .art{font-size:43px;min-height:0}}
+@media(prefers-reduced-motion:reduce){.progressTrack span{transition:none}}
+
+/* Four-stage discovery route and bilingual observation cards. */
+.learningSteps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:18px 0}
+.learningSteps div{background:#e7faf2;border:2px solid #b0dbc5;border-radius:16px;padding:12px 5px;text-align:center;min-width:0}
+.learningSteps strong,.learningSteps span{display:block;font-size:clamp(13px,2.5vw,17px);line-height:1.35}
+.learningSteps span{margin-top:4px;color:#2b5d59}
+.skillTag{display:inline-block;background:#e4f4ef;border:1px solid #b1d8c6;border-radius:999px;padding:8px 14px;font-size:14px;font-weight:800;margin:8px 0}
+.observeCard{border:2px solid #c9debb;border-radius:21px;background:linear-gradient(140deg,#fffde4,#f1ffe8);padding:14px;margin:10px 0 18px;text-align:start}
+.observeCard h3{font-size:21px;margin:2px 0 10px}
+.observeCard h3 span{font-size:17px;display:block;margin-top:4px}
+.observeCard p{margin:9px 0;font-size:clamp(16px,3.5vw,19px)}
+.hintArea{margin:18px auto;max-width:650px}
+.hintPanel{border:2px dashed #78b8a3;background:#f1fff7;border-radius:18px;padding:13px 16px;margin:10px 0;text-align:start}
+.hintPanel p{margin:7px 0;font-size:17px}
+.missionAction{max-width:650px;margin:18px auto 14px;background:#e4fff0;border:3px solid #87c6a1;border-radius:22px;padding:17px;text-align:start}
+.missionAction h3{margin:3px 0 12px;font-size:21px;line-height:1.3}
+.missionAction h3 span{display:block;font-size:17px;margin-top:6px}
+.missionAction p{font-size:17px;line-height:1.55;margin:9px 0}
+.adultBar{margin-top:18px;border-top:1px solid #cce9da;padding-top:18px}
+.adultView{margin-top:15px;background:#eff9ff;border:2px solid #b3d9e6;border-radius:22px;padding:clamp(13px,3vw,20px)}
+.adultView h3{font-size:24px;margin:0 0 12px}.adultView h3 span{display:block;font-size:18px;margin-top:5px}
+.adultList{padding-left:20px;line-height:1.6}
+.adultList li{padding:7px 0;border-bottom:1px solid #cfe4ed}.adultList li span{display:block}
+.adultView label{display:block;font-weight:850;margin:15px 0 7px}
+.parentReport{width:100%;resize:vertical;border:2px solid #95c8d4;border-radius:15px;padding:13px;font:14px/1.55 ui-monospace,monospace;background:white;color:#194657}
+#adultView a{color:#124f84;text-decoration:underline}
+.scene[data-place="desert"]{background:linear-gradient(145deg,#fff8d8,#f3ddb0)}
+.scene[data-place="coast"]{background:linear-gradient(145deg,#d4f4ff,#bfeae8)}
+.scene[data-place="garden"]{background:linear-gradient(145deg,#d8f9d3,#e9ffd8)}
+@media(max-width:620px){.learningSteps{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.learningSteps div{padding:10px 7px}.adultView{padding:12px}.observeCard{padding:13px}}
+@media print{body{background:white}.back,.adultBar button,.finishActions,.hero .sky,.play{display:none!important}.panel,.note{box-shadow:none;border:1px solid #bbb}#adultView{display:block!important}.habitats{display:none!important}#parentReport{min-height:160px}}

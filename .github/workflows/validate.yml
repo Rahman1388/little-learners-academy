@@ -30,6 +30,10 @@ jobs:
           node --check curriculum.js
           node --check sw.js
           node --check science-sort.js
+          node --check nature-explorer-data.js
+          node --check nature-explorer.js
+          node --check scripts/test-nature-explorer.cjs
+          node scripts/test-nature-explorer.cjs
           node --check phonics-adventure.js
           node --check sound-detective.js
           node --check activity-data.js
@@ -159,6 +163,11 @@ jobs:
           test -f array-garden.html
           test -f array-garden.js
           test -f scripts/test-array-garden.cjs
+          test -f nature-explorer.html
+          test -f nature-explorer.css
+          test -f nature-explorer-data.js
+          test -f nature-explorer.js
+          test -f scripts/test-nature-explorer.cjs
           test -f activity-library.html
           test -f activity-data.js
           test -f activity-library.js
@@ -244,6 +253,8 @@ jobs:
           grep -q 'sound-detective.js' phonics-adventure.html
           grep -q 'soundDetective' phonics-adventure.html
           grep -q 'serviceWorker' app.js
+          grep -q 'nature-explorer.html' index.html
+          grep -q 'nature-explorer.js' nature-explorer.html
           grep -q 'activity-library.html' index.html
           grep -q 'parent-report.html' index.html
           grep -q 'parent-report.html' parent-progress.html
