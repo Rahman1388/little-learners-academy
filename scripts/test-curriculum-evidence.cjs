@@ -16,7 +16,7 @@ assert.equal(register.items.length,6,"Six concept-web crosswalk records");
 assert.equal(register.sources.length,10,"Ten independently discoverable evidence source references");
 assert.equal(register.expertLeads.length,4,"Four potential contacts, not endorsers");
 assert.equal(register.releaseGates.length,7,"Complete release-gate criteria");
-const safeDomains=new Set(["edu.gov.qa","privateschoolssearch.edu.gov.qa","cambridgeinternational.org","www.cambridgeinternational.org","gov.uk","www.gov.uk","educationendowmentfoundation.org.uk","apiv3.educationendowmentfoundation.org.uk","unicef.org","www.unicef.org"]);
+const safeDomains=new Set(["edu.gov.qa","www.edu.gov.qa","privateschoolssearch.edu.gov.qa","cambridgeinternational.org","www.cambridgeinternational.org","gov.uk","www.gov.uk","educationendowmentfoundation.org.uk","apiv3.educationendowmentfoundation.org.uk","unicef.org","www.unicef.org"]);
 const references=new Map();
 for(const s of register.sources){
  assert(!references.has(s.id),"Duplicate source ID");
