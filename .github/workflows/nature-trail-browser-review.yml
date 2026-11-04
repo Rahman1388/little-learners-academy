@@ -1,0 +1,51 @@
+name: Nature Trail browser review
+on:
+  pull_request:
+    paths:
+      - 'nature-trail.html'
+      - 'nature-trail.js'
+      - 'nature-trail-data.js'
+      - 'nature-spotter.html'
+      - 'nature-spotter.js'
+      - 'nature-spotter-data.js'
+      - 'scripts/test-nature-trail-browser.cjs'
+      - 'scripts/test-nature-spotter-browser.cjs'
+      - 'scripts/test-nature-spotter.cjs'
+      - '.github/workflows/nature-trail-browser-review.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  nature-trail-mobile:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Install Chromium browser test dependency
+        run: |
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Check syntax and original content
+        run: |
+          node --check nature-trail.js
+          node --check nature-trail-data.js
+          node --check scripts/test-nature-trail-browser.cjs
+          node --check nature-spotter-data.js
+          node --check nature-spotter.js
+          node --check scripts/test-nature-spotter-browser.cjs
+          node scripts/test-nature-trail.cjs
+          node scripts/test-nature-spotter.cjs
+      - name: Exercise bilingual mobile and tablet interactions
+        run: |
+          python3 -m http.server 8765 --bind 127.0.0.1 > /tmp/nature-server.log 2>&1 &
+          server_pid=$!
+          trap 'kill "$server_pid" 2>/dev/null || true' EXIT
+          sleep 2
+          curl --fail --silent http://127.0.0.1:8765/nature-trail.html > /dev/null
+          TEST_URL=http://127.0.0.1:8765 node scripts/test-nature-trail-browser.cjs
+          TEST_URL=http://127.0.0.1:8765 node scripts/test-nature-spotter-browser.cjs
