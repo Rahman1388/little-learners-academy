@@ -89,3 +89,16 @@ Education Endowment Foundation reviews show that providing constructive home-lea
 https://educationendowmentfoundation.org.uk/education-evidence/teaching-learning-toolkit/parental-engagement
 
 These are design inspirations, not evidence that Little Learners Academy itself raises attainment.
+
+
+## 4 November: Look & Compare — bilingual, child-led pilot extension (NOT RELEASED)
+
+A child can choose **two distinct objects from the same Qatar nature scene**, then consider one similarity and one difference with an adult. This is an observation and thinking prompt, **not a scored assessment or a pronunciation exercise**. It builds upon the existing 12 Nature Spotter objects; **no new objects or questions have been added to the published 475-question inventory**.
+
+The compare panel has English and draft Arabic instructions side by side, large tappable controls, the two selected objects visible together, and a scene-specific family discussion prompt about caring for habitats. A duplicate selection is blocked; clearing comparison does not erase observations. Switching scenery, starting over, or reloading clears the session-only comparison. The existing private, printable Family Discovery Card optionally recaps the pair only after two different objects have been selected; it still does not claim mastery.
+
+**Safety and permissions:** no microphone, audio, voice synthesis, personal account, camera, device location, web request, storage, student names or ads. This is a quiet parent-guided activity. Existing voice files and the parent-report system are unchanged.
+
+**New verification:** the Node content-checking test asserts all comparison controls and reset/duplicate guards exist. The Chromium mobile test checks selection, duplicate prevention, side-by-side display, bilingual prompts, clearing/reset, optional printable recap and widths from 320px to 768px. Automated passes do not replace human educational, Arabic-language, accessibility or real-device testing.
+
+**Human review still needed:** a qualified primary educator should confirm age-appropriate prompts and whether the activity encourages meaningful comparison rather than rote repetition. A native Arabic educator should review the draft translation. A child with a parent should try selecting, comparing and stopping after one object on actual iPhone and Android devices before release. Do not merge or publish without the owner's approval.
