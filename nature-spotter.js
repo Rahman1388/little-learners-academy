@@ -10,6 +10,12 @@ const LOOK={
 const arabicDigits=value=>String(value).replace(/[0-9]/g,v=>"٠١٢٣٤٥٦٧٨٩"[Number(v)]);
 let sceneIndex=0,activeItem=null;
 const noticed=new Set();
+const compareItems=[];
+const CARE={
+ mangrove:{en:"3. How can we watch this habitat without disturbing plants or wildlife?",ar:"٣. كيف نراقب هذا الموطن دون إزعاج النباتات أو الحيوانات؟"},
+ desert:{en:"3. How can a family explore the desert safely and leave no litter?",ar:"٣. كيف تستكشف الأسرة الصحراء بأمان دون ترك نفايات؟"},
+ coast:{en:"3. How can we enjoy the beach while protecting marine life?",ar:"٣. كيف نستمتع بالشاطئ مع حماية الحياة البحرية؟"}
+};
 function makeEl(tag,className,value){
  const e=document.createElement(tag);
  if(className)e.className=className;
@@ -19,9 +25,48 @@ function makeEl(tag,className,value){
 function arabic(tag,value){
  const e=makeEl(tag,"arabic",value);e.lang="ar";e.dir="rtl";return e;
 }
+function updateCompare(){
+ const add=$("addCompare"),clear=$("clearCompare");
+ const canAdd=!!activeItem&&compareItems.length<2&&!compareItems.some(item=>item.id===activeItem.id);
+ add.disabled=!canAdd;
+ add.textContent=canAdd
+  ?"🌿 Add "+activeItem.en+" • أضف "+activeItem.ar
+  :compareItems.length===2
+    ?"🌟 Two pictures ready • صورتان جاهزتان"
+    :"🌿 Choose a different picture • اختر صورة مختلفة";
+ clear.disabled=compareItems.length===0;
+ const n=compareItems.length;
+ $("compareStatus").textContent=n+" of 2 pictures chosen • "+arabicDigits(n)+" من ٢"+
+   (n===2?" • Ready to talk together! • حان وقت الحديث!":n===1?" • Choose another picture • اختر صورة أخرى":"");
+ const pair=$("comparePair");
+ pair.replaceChildren();
+ compareItems.forEach(item=>{
+  const card=makeEl("div","compareThing");
+  const pic=makeEl("div","emoji",item.icon);pic.setAttribute("aria-hidden","true");
+  card.append(pic,makeEl("strong","english",item.en),arabic("span",item.ar));
+  pair.append(card);
+ });
+ pair.hidden=n===0;
+ $("compareGuide").hidden=n!==2;
+ const care=CARE[SCENES[sceneIndex].id];
+ $("compareCareEn").textContent=care.en;
+ $("compareCareAr").textContent=care.ar;
+}
+function addCompare(){
+ if(!activeItem||compareItems.length===2||compareItems.some(item=>item.id===activeItem.id))return;
+ compareItems.push(activeItem);
+ $("familyCard").hidden=true;
+ updateCompare();
+ if(compareItems.length===2)$("compareGuide").focus();
+}
+function clearCompare(){
+ compareItems.length=0;
+ $("familyCard").hidden=true;
+ updateCompare();
+}
 function setScene(index){
  if(!Number.isInteger(index)||index<0||index>=SCENES.length)return;
- sceneIndex=index;activeItem=null;noticed.clear();
+ sceneIndex=index;activeItem=null;noticed.clear();compareItems.length=0;
  const scene=SCENES[index],decor=LOOK[scene.id];
  $("familyCard").hidden=true;
  $("landscape").dataset.scene=scene.id;
@@ -46,11 +91,11 @@ function setScene(index){
    const talk=makeEl("div","question");
    talk.append(makeEl("strong","", "💬 Talk together • تحدّثوا معًا"),makeEl("p","",item.prompt),arabic("span",item.promptAr));
    box.append(talk);
-   progress();
+   progress();updateCompare();
   });
   grid.append(btn);
  });
- resetDisplay();
+ resetDisplay();updateCompare();
 }
 function progress(){
  const n=noticed.size;
@@ -75,6 +120,15 @@ function showCard(){
   li.append(makeEl("strong","",item.icon+" "+item.en),arabic("span"," — "+item.ar));
   list.append(li);
  });
+ const recap=$("cardCompare");
+ if(compareItems.length===2){
+  recap.hidden=false;
+  recap.textContent="🔎 We compared "+compareItems[0].en+" and "+compareItems[1].en+
+    " • قارنّا بين "+compareItems[0].ar+" و"+compareItems[1].ar+
+    ". We discussed similarities and differences together • ناقشنا أوجه الشبه والاختلاف.";
+ }else{
+  recap.hidden=true;recap.textContent="";
+ }
  const next=selected[selected.length-1];
  $("cardNext").textContent="🌱 Next time, talk together: "+next.prompt;
  $("cardNextAr").textContent=next.promptAr;
@@ -94,6 +148,8 @@ function setUp(){
   $("sceneChoices").append(btn);
  });
  $("showCard").addEventListener("click",showCard);
+ $("addCompare").addEventListener("click",addCompare);
+ $("clearCompare").addEventListener("click",clearCompare);
  $("reset").addEventListener("click",()=>{setScene(sceneIndex);$("sceneHeading").focus()});
  $("closeCard").addEventListener("click",()=>{$("familyCard").hidden=true;$("sceneHeading").focus()});
  $("printCard").addEventListener("click",()=>{if(!$("familyCard").hidden)window.print()});
