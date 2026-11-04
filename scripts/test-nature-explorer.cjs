@@ -20,7 +20,7 @@ for(const h of habitats){
  const questions=new Set();
  for(const m of h.missions){
   total++;
-  for(const field of ["emoji","word","wordAr","q","arQ","why","arWhy"])
+  for(const field of ["emoji","word","wordAr","q","arQ","why","arWhy","skill","observe","arObserve","hint","arHint","act","arAct"])
    assert(typeof m[field]==="string"&&m[field].trim().length>=1,h.id+" missing "+field);
   assert(!questions.has(m.q),h.id+" has a duplicated question");questions.add(m.q);
   assert.equal(m.choices.length,3,"Three choices per mission");
@@ -35,7 +35,9 @@ for(const h of habitats){
 assert.equal(total,18);
 for(const s of ["id=\"habitatView\"","id=\"playView\"","id=\"finishView\"",
  "id=\"answerChoices\"","id=\"answerFeedback\"","id=\"nextMission\"","id=\"backHabitats\"",
- "id=\"overallStatus\"","lang=\"ar\"","aria-live=\"polite\"","script-src 'self'",
+ "id=\"overallStatus\"","id=\"adultView\"","id=\"parentReport\"","id=\"adultToggle\"",
+ "id=\"observeEnglish\"","id=\"observeArabic\"","id=\"hintToggle\"","id=\"hintPanel\"",
+ "id=\"missionAction\"","id=\"actionArabic\"","id=\"actionEnglish\"","lang=\"ar\"","aria-live=\"polite\"","script-src 'self'",
  "nature-explorer-data.js","nature-explorer.js","nature-explorer.css"])
  assert(html.includes(s),"Missing accessible feature: "+s);
 for(const m of gameSource.matchAll(/\$\("([^"]+)"\)/g))
@@ -55,4 +57,55 @@ assert(index.includes('href="./nature-explorer.html"'),"Nature Explorer must be 
 for(const path of ["nature-explorer.html","nature-explorer.css","nature-explorer-data.js","nature-explorer.js"])
  assert(sw.includes('./'+path),"Offline PWA manifest missing: "+path);
 assert(workflow.includes("node scripts/test-nature-explorer.cjs"),"Run nature tests in CI");
-console.log("PASS: 18 bilingual nature missions, safe answer keys, no speech capture, phone layout, local progress and app integration.");
+// Exercise real controller behavior with a minimal fake DOM, including resume, hint, correct answer and private report.
+class FakeNode{
+ constructor(tag="div"){this.tagName=tag;this.hidden=false;this.children=[];this.dataset={};this.style={};this.attrs={};this.events={};this.textContent="";this.value="";this.disabled=false;this.classes=new Set();this.classList={add:x=>this.classes.add(x)};}
+ addEventListener(type,fn){this.events[type]=fn;}
+ setAttribute(key,value){this.attrs[key]=String(value);}
+ getAttribute(key){return this.attrs[key];}
+ append(...xs){this.children.push(...xs);}
+ replaceChildren(...xs){this.children=[...xs];}
+ querySelectorAll(selector){assert.equal(selector,"button");return this.children.filter(x=>x.tagName==="button");}
+ click(){if(!this.disabled)this.events.click?.();}
+ focus(){this.focused=true;}
+ select(){this.selected=true;}
+}
+const nodes=new Map();
+for(const item of html.matchAll(/<([a-z]+)\b[^>]*\bid="([^"]+)"[^>]*>/gi)){
+ const n=new FakeNode(item[1].toLowerCase());
+ n.hidden=/\shidden(?:\s|>|=)/.test(item[0]);
+ nodes.set(item[2],n);
+}
+const document={
+ getElementById:id=>nodes.get(id)||null,
+ createElement:tag=>new FakeNode(tag),
+ createTextNode:text=>({textContent:text})
+};
+const key="lla-nature-explorer-v1",store=new Map([[key,JSON.stringify(["desert:0"])]]);
+const localStorage={getItem:k=>store.has(k)?store.get(k):null,setItem:(k,v)=>store.set(k,String(v))};
+vm.runInNewContext(gameSource,{window:{LLA_NATURE_DATA:context.window.LLA_NATURE_DATA,print:()=>{}},document,localStorage});
+const node=id=>{assert(nodes.has(id),"Unknown fake DOM "+id);return nodes.get(id)};
+assert.equal(node("habitatCards").children.length,3,"Three places must appear");
+node("habitatCards").children[0].click();
+assert.equal(node("wordEnglish").textContent,"Water","Return to first unfinished mission");
+assert(node("hintPanel").hidden,"Hint starts hidden");
+node("hintToggle").click();
+assert.equal(node("hintPanel").hidden,false,"Bilingual hint opens");
+assert(node("hintArabic").textContent.length>1);
+const answer=data=>Number(data.dataset.choice);
+let buttons=node("answerChoices").children;
+const target=habitats[0].missions[1].answer;
+buttons.find(b=>answer(b)!==target).click();
+assert(node("answerFeedback").textContent.includes("حاول"),"Wrong attempt gets supportive bilingual guidance");
+assert.equal(node("hintPanel").hidden,false,"Wrong answer reveals hint");
+buttons.find(b=>answer(b)===target).click();
+assert.equal(node("missionAction").hidden,false,"Correct answer unlocks nature care action");
+assert(node("actionArabic").textContent.length>5,"Arabic action supplied");
+assert.equal(JSON.parse(store.get(key)).length,2,"Only completed IDs are saved; initial completion retained");
+assert.equal(store.size,1,"Never collect another local storage field");
+node("backHabitats").click();
+node("adultToggle").click();
+assert.equal(node("adultView").hidden,false,"Adult summary opens");
+assert(node("parentReport").value.includes("Water / ماء"),"Adult notes show bilingual words");
+assert(!/child name|student name/i.test(node("parentReport").value.split("\n").slice(0,5).join(" ")),"No personal data fields in report");
+console.log("PASS: 18 bilingual four-stage nature missions, hints, safe feedback, private report, runtime resume, offline integration and accessibility.");
