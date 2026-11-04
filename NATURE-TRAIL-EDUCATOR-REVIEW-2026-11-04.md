@@ -61,3 +61,31 @@ Ask the child: **“Why might a small fish be safer among mangrove roots?”**
 Arabic draft: **«لماذا قد تكون السمكة الصغيرة أكثر أمانًا بين جذور القرم؟»**
 
 Keep short sessions enjoyable. A child who wants to stop after one question has made a meaningful choice.
+
+
+## 4 November: Look • Tap • Discover + Family Discovery Card (DRAFT extension)
+
+The Nature Trail review branch also contains a new optional nature observation activity:
+- `nature-spotter.html`, `nature-spotter.js`, and `nature-spotter-data.js`. Three selectable Qatar-inspired environments (mangroves, desert, coast) with four original labelled discovery objects each. These 12 interactive observation cards are **not** scored MCQs, graded learning outcomes or additional audited public questions.
+- Children choose a scene and tap a picture to see English + **draft Arabic** object names, a short science fact, and a question to discuss with an adult. Parents can reveal a **Family Discovery Card** listing objects the learner explored and one follow-up conversation; they may print it with their own device. The report claims **observed/tapped**, never mastered.
+- No student name, location, microphone, phonics synthesis, recordings, account, storage, server calls, analytics or child-targeted advertising. The recap exists only in the current browser page; there is no automatic upload or saved file.
+- New source audit `scripts/test-nature-spotter.cjs` and mobile browser check `scripts/test-nature-spotter-browser.cjs` run through the PR's automation. These validate only code, source presence, basic bilingual coverage and interactions, not teaching effectiveness.
+
+### Educational effect: what we will check with families (NOT proven yet)
+- [ ] A qualified local primary-science teacher checks each observation fact and intended grade suitability.
+- [ ] Fluent Arabic educator improves vocabulary, pronunciation guidance and bilingual explanation consistency.
+- [ ] A qualified English-language educator and an Arabic native speaker evaluate actual recorded sound samples before introducing any new child-facing pronunciation. For now, all Nature Spotter cards are intentionally **silent**.
+- [ ] Parent can find a scene, guide a four-card activity and understand the observation-based recap without confusing it with school marks.
+- [ ] Children can safely stop at one object, ask questions freely and return to offline play. Observe whether any labels, lengthy passages or animations confuse or bore them.
+- [ ] Children using screen readers get descriptive names, meaningful focus, appropriate contrast and full keyboard access. Audit real iPhone Safari/VoiceOver and Android TalkBack.
+- [ ] Parents give consent to participate in **optional**, anonymous, small-scale usability sessions outside of the app; do not collect or publish real children's information.
+- [ ] After specialist checks and parent consent, compare **usefulness**, clarity and comprehension in a small supervised pilot. Avoid claiming an educational "revolution", superiority or rank without independent outcome evidence.
+
+### Why a family card?
+Qatar MOEHE Foundation Stage Early Learning guidance values play, practical application and parent involvement:
+https://www.edu.gov.qa/en/Content/EarlyLearning
+
+Education Endowment Foundation reviews show that providing constructive home-learning activities and specific ways for parents to support learning is more meaningful than generic messages:
+https://educationendowmentfoundation.org.uk/education-evidence/teaching-learning-toolkit/parental-engagement
+
+These are design inspirations, not evidence that Little Learners Academy itself raises attainment.
