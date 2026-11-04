@@ -7,6 +7,14 @@
 
 > This file exists to keep an independently readable project history and next-step plan even when an earlier ChatGPT conversation cannot easily be found. **It is a summary, not an export of the chat transcripts.** Changes after this date should update this document.
 
+## 4 November 2026 — Nature-friendly child-chosen learning, bilingual audio quality gate and app-store plan (draft)
+
+- New draft development branch `feature/choose-your-adventure-20261104` adds **Puzzle Explorer**, **Story Seeker**, **Nature Detective** and a one-or-three activity choice to existing Grade 1–6 route. Three real grade-appropriate links are merely reordered, never duplicated; every step offers a parent-child discussion prompt. A single attempt can be a valid, pressure-free stopping point.
+- Gentle garden-themed static visuals introduced on that route, with high contrast, no autoplaying music or synthetic new voices. Existing settings and approved bus C/D alternatives are left untouched.
+- New automated audit `scripts/check-bilingual-audio-assets.cjs` validates presence of 18 core English/Arabic MP3s, wired into PR CI, **not** phonetic accuracy. Qualified English and Arabic pronunciation reviews and real-device listening are still mandatory.
+- Permanent quality file: [BILINGUAL-AUDIO-NATURE-QUALITY-2026-11-04.md](BILINGUAL-AUDIO-NATURE-QUALITY-2026-11-04.md). Practical store checklist: [APP-STORE-LAUNCH-READINESS-2026-11-04.md](APP-STORE-LAUNCH-READINESS-2026-11-04.md).
+- These are proposed changes only, **not yet merged/live or submitted to Apple/Google**. Children/privacy, Arabic accuracy, English phonics, real phone tests, platform signing and accounts remain release gates.
+
 ## 3 November 2026 — Saved "Update Little Learning Academy" milestone
 
 **Named project folder:** [updates/2026-11-03-update-little-learning-academy/](./updates/2026-11-03-update-little-learning-academy/README.md)
