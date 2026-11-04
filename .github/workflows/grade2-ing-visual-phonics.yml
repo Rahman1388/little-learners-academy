@@ -1,0 +1,40 @@
+name: Grade 2 -ing visual phonics browser review
+on:
+  pull_request:
+    paths:
+      - "grade2-ing-visual-phonics.*"
+      - "scripts/test-ing-visual-phonics.cjs"
+      - "GRADE2-ING-VISUAL-TEACHER-REVIEW.md"
+      - ".github/workflows/grade2-ing-visual-phonics.yml"
+  push:
+    branches: [feature/grade2-ing-visual-phonics-review-20261019]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Verify JavaScript syntax
+        run: |
+          node --check grade2-ing-visual-phonics.js
+          node --check scripts/test-ing-visual-phonics.cjs
+      - name: Install Chromium
+        run: |
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Serve prototype and run browser checks
+        run: |
+          python3 -m http.server 8765 --bind 127.0.0.1 >/tmp/phonics-review.log 2>&1 &
+          for i in $(seq 1 20); do
+            if curl -fsS http://127.0.0.1:8765/grade2-ing-visual-phonics.html >/dev/null; then break; fi
+            sleep 1
+          done
+          node scripts/test-ing-visual-phonics.cjs
