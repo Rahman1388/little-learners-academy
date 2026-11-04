@@ -7,7 +7,13 @@
 <style>
 :root{font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif;color:#173e63}
 *{box-sizing:border-box}
-body{margin:0;min-height:100vh;background:linear-gradient(135deg,#c3f2ff,#fff5d5 52%,#eddbff)}
+body{margin:0;min-height:100vh;background:radial-gradient(circle at 88% 8%,#fff7d1 0 6%,transparent 7%),radial-gradient(ellipse at 8% 44%,#d5f6e3 0 18%,transparent 35%),linear-gradient(155deg,#d3f4ff 0%,#f4ffe9 45%,#ffefd9 100%);background-attachment:fixed}
+.hero{position:relative;overflow:hidden}
+.hero:before,.hero:after{position:absolute;pointer-events:none;opacity:.55;font-size:clamp(31px,6vw,52px)}
+.hero:before{content:"🌿";left:12px;top:12px}
+.hero:after{content:"🌼";right:13px;bottom:10px}
+@media(max-width:480px){.hero:before,.hero:after{opacity:.25}}
+
 main{max-width:820px;margin:auto;padding:14px 14px 50px}
 a,button,select{font:inherit}
 button{cursor:pointer}
@@ -43,12 +49,25 @@ p{line-height:1.55}
 [hidden]{display:none!important}
 @media(max-width:440px){.actions a,.actions button{width:100%}}
 @media(prefers-reduced-motion:reduce){.bar span{transition:none}}
+
+.themeGrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:15px 0}
+.themeButton{border:3px solid #a5d1df;border-radius:19px;min-height:106px;background:#fff;color:#184a6b;padding:10px;cursor:pointer;font-weight:900;font-size:17px}
+.themeButton[aria-pressed="true"]{background:#e1fbec;border-color:#208456;box-shadow:0 3px 0 #a1d7b6}
+.themeButton span{display:block;font-size:28px;margin-bottom:5px}
+.themeButton small{display:block;font-size:13px;font-weight:750;margin-top:4px;line-height:1.4}
+.modeButtons{display:flex;flex-wrap:wrap;gap:10px}
+.modeButtons button{min-height:51px;flex:1;border:2px solid #a5ccda;background:white;color:#175176;border-radius:15px;padding:10px;font-weight:900}
+.modeButtons button[aria-pressed="true"]{background:#0c6e86;color:#fff;border-color:#0c6e86}
+.talk{background:#fff6d9;border-left:5px solid #dda335;border-radius:12px;padding:12px;margin-top:12px;font-size:15px;line-height:1.5}
+.talk span{display:block;margin-top:5px;direction:rtl;text-align:right}
+#sessionNote{background:#e9f7ff;padding:11px 14px;border-radius:12px}
+@media(max-width:510px){.themeGrid{grid-template-columns:1fr}.themeButton{min-height:72px;text-align:left}.themeButton span{display:inline;margin-right:8px}}
 </style></head><body><main>
 <a class="back" href="./choose-grade.html">← Choose My Grade • اختر صفّي</a>
 <header class="hero">
 <div class="eyebrow">🌈 LEARNING PATH • مسار التعلّم</div>
-<h1>🗺️ My 3-Step Learning Route <span lang="ar" dir="rtl">مسار التعلّم في ثلاث خطوات</span></h1>
-<p>One maths idea, one English activity and one science discovery. Three small steps can make a lovely practice session!</p>
+<h1>🌈 My Learning Adventure <span lang="ar" dir="rtl">مسار التعلّم في ثلاث خطوات</span></h1>
+<p>Choose a friendly adventure: maths, English and science. Try one step or all three, at your own pace.</p>
 <p lang="ar" dir="rtl">نشاط رياضيات، ونشاط لغة إنجليزية، واكتشاف علمي. اختر صفّك وابدأ!</p>
 </header>
 <section class="selectPanel">
@@ -66,17 +85,34 @@ p{line-height:1.55}
 <div class="progress" id="routeProgress" role="status" aria-live="polite">0 / 3 steps tried • ٠ من ٣</div>
 <div class="bar" role="progressbar" aria-label="Three-step learning route completion" aria-valuemin="0" aria-valuemax="3" aria-valuenow="0" id="routeBar"><span id="routeFill"></span></div>
 </section>
+<section class="selectPanel" aria-labelledby="choiceTitle">
+<h2 id="choiceTitle">🎭 Choose your adventure <span lang="ar" dir="rtl">اختر مغامرتك</span></h2>
+<p>What would you like to discover first? Every path visits the same three learning subjects in a different order.</p>
+<p lang="ar" dir="rtl">ماذا تحب أن تستكشف أولاً؟ جميع المسارات تحتوي على المواد الثلاث بالترتيب الذي تختاره.</p>
+<div class="themeGrid" id="themeChoices" role="group" aria-label="Choose a learning adventure">
+<button class="themeButton" type="button" data-theme="numbers" aria-pressed="true"><span aria-hidden="true">🧩</span> Puzzle Explorer <small lang="ar" dir="rtl">مستكشف الألغاز</small></button>
+<button class="themeButton" type="button" data-theme="stories" aria-pressed="false"><span aria-hidden="true">📚</span> Story Seeker <small lang="ar" dir="rtl">محب القصص</small></button>
+<button class="themeButton" type="button" data-theme="nature" aria-pressed="false"><span aria-hidden="true">🌱</span> Nature Detective <small lang="ar" dir="rtl">مستكشف الطبيعة</small></button>
+</div>
+<h2>⏳ My pace <span lang="ar" dir="rtl">سرعتي الخاصة</span></h2>
+<p>One small activity is enough, or explore all three. No countdown, pressure, or streak to lose.</p>
+<div class="modeButtons" id="paceChoices" role="group" aria-label="Choose one or three activities">
+<button type="button" data-pace="one" aria-pressed="false">🌼 Just one • نشاط واحد</button>
+<button type="button" data-pace="three" aria-pressed="true">🌈 Explore all three • ثلاثة أنشطة</button>
+</div>
+<p id="sessionNote" role="status" aria-live="polite">Choose a path, then enjoy the learning steps below. • اختر المسار وابدأ.</p>
+</section>
 <section aria-labelledby="routeTitle">
-<h2 id="routeTitle">🚀 Today's three steps <span lang="ar" dir="rtl">خطوات اليوم الثلاث</span></h2>
+<h2 id="routeTitle">🚀 Your learning adventure <span lang="ar" dir="rtl">خطوات اليوم الثلاث</span></h2>
 <div class="route" id="routeSteps"></div>
 </section>
-<section class="end">
+<section class="end"><p>💚 <strong>A calm stop is a good stop.</strong> Enjoy a stretch, a chat, or a real-world discovery together. No daily streaks or penalties. <span lang="ar" dir="rtl">يمكنك أخذ استراحة في أي وقت دون خسارة نقاط أو مكافآت.</span></p>
 <div id="finishMessage" class="celebrate" role="status" aria-live="polite" hidden>🎉 Three activities tried! Great effort. You can practise again any time. • أحسنت!</div>
 <p><a class="back" href="./activity-library.html">🎮 Explore 151 Grade 1 mini-challenges • أنشطة الصف الأول</a></p>
 <p><a class="back" href="./international-benchmark.html">🌍 Compare international learning apps • مقارنة التطبيقات</a></p>
 </section>
 <aside class="family"><h2>👨‍👩‍👧 For families &amp; teachers • للأهل والمعلمين</h2>
-<p>This is a <strong>suggested practice route</strong>, not an assessment. Tap “I tried this” after a child has attempted an activity. A check mark means <strong>tried, not mastered</strong>. Grade 1 includes broader foundational practice; Grades 2–6 link to limited subject pilots requiring teacher and Arabic-language review, not official Qatar curricula.</p>
+<p>This is a <strong>suggested practice route</strong>, not an assessment. Adventure choices only reorder the same three existing activities and do not create new questions or content. Tap “I tried this” after a child has attempted an activity. A check mark means <strong>tried, not mastered</strong>. Grade 1 includes broader foundational practice; Grades 2–6 link to limited subject pilots requiring teacher and Arabic-language review, not official Qatar curricula.</p>
 <p>Choosing a grade and marking steps stores only simple checkmarks on <strong>this device</strong>; there is no account, child name, recording, timer or score upload. You may switch grades at any time. The current approved voice settings are untouched.</p>
 </aside>
 </main><script src="./three-step-route.js?v=route-1"></script></body></html>

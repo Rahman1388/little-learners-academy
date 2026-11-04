@@ -43,6 +43,22 @@
     {icon:"🔬",title:"Grade 6 science discovery",arabic:"العلوم للصف السادس",focus:"Think about ecosystems, electricity and water",url:"./grade6-science.html"}
    ]}
  };
+ const THEMES={
+  numbers:{order:[0,1,2],heading:"🧩 Puzzle Explorer • مستكشف الألغاز"},
+  stories:{order:[1,2,0],heading:"📚 Story Seeker • محب القصص"},
+  nature:{order:[2,0,1],heading:"🌱 Nature Detective • مستكشف الطبيعة"}
+ };
+ // Three adult-led discussion prompts for each of the existing subjects in
+ // the route. These are family conversations, not scored or curriculum-approved items.
+ const TALK={
+  "1":[["How can you show the answer with your fingers?","كيف تُظهر الإجابة بأصابعك؟"],["Can you tell a tiny story using one new word?","هل يمكنك تأليف قصة قصيرة باستخدام كلمة جديدة؟"],["Can you spot something like this around your home?","هل تلاحظ شيئًا مشابهًا في منزلك؟"]],
+  "2":[["Can you build this number using tens and ones?","هل يمكنك تكوين هذا العدد من العشرات والآحاد؟"],["What happened first in the story?","ماذا حدث أولاً في القصة؟"],["How would you safely check this idea at home?","كيف يمكنك التحقق من هذه الفكرة بأمان في المنزل؟"]],
+  "3":[["Can you explain your method with a drawing?","هل يمكنك شرح طريقتك برسم؟"],["Which part of the text helped you answer?","أي جزء من النص ساعدك على الإجابة؟"],["Where could you notice this in nature?","أين يمكنك ملاحظة ذلك في الطبيعة؟"]],
+  "4":[["Can you solve this another way?","هل يمكنك حل المسألة بطريقة أخرى؟"],["Which words in the story support your answer?","ما الكلمات في القصة التي تدعم إجابتك؟"],["What could you observe without changing anything?","ماذا يمكنك أن تلاحظ دون تغيير أي شيء؟"]],
+  "5":[["Which step was hardest and how did you work it out?","ما الخطوة الأصعب وكيف توصلت إلى الحل؟"],["Can you summarise the idea in one sentence?","هل يمكنك تلخيص الفكرة في جملة واحدة؟"],["What would make a fair comparison?","كيف نجري مقارنة عادلة؟"]],
+  "6":[["Can you show why your answer makes sense?","هل يمكنك توضيح سبب صحة إجابتك؟"],["What evidence from the passage supports your answer?","ما الدليل من النص الذي يدعم إجابتك؟"],["How might you test this claim safely?","كيف يمكنك اختبار هذه الفكرة بأمان؟"]]
+ };
+ let activeTheme="numbers",oneStep=false;
  const load=k=>{try{return JSON.parse(localStorage.getItem(k)||"null")}catch{return null}};
  const save=(k,value)=>{try{localStorage.setItem(k,JSON.stringify(value))}catch{/* The route remains usable without storage. */}};
  const raw=load(SAVE_KEY);
@@ -63,8 +79,18 @@
   $("#routeProgress").textContent="🌟 "+n+" / 3 steps tried • "+n+" من ٣ خطوات مجرّبة";
   $("#routeFill").style.width=(n/3*100)+"%";
   $("#routeBar").setAttribute("aria-valuenow",String(n));
-  $("#finishMessage").hidden=n!==3;
+  const activeIndex=THEMES[activeTheme].order[0];
+  const isOneDone=m[activeIndex]===true;
+  $("#finishMessage").hidden=oneStep?!isOneDone:n!==3;
+  $("#finishMessage").textContent=oneStep
+   ?"🌼 Wonderful effort! One activity is enough for today. Enjoy a real-world discovery or a rest. • أحسنت! نشاط واحد يكفي اليوم."
+   :"🎉 Three activities tried! Great effort. You can practise again any time. • أحسنت!";
   $("#levelNote").textContent=ROUTES[grade].status+" Tried does not mean mastered. • التجربة ليست إتقاناً";
+  $("#sessionNote").textContent=(oneStep
+    ?"🌼 One small activity is enough! The other steps remain available. "
+    :"🌈 Explore in your own time. No countdown and no daily streaks. ")+
+    "This is supplementary practice, not a school score. • تدريب إضافي بلا ضغط.";
+  $("#routeTitle").textContent=THEMES[activeTheme].heading;
  }
  function render(){
   const grade=$("#gradePicker").value;
@@ -72,7 +98,9 @@
   const m=marks(grade);
   const list=$("#routeSteps");
   list.replaceChildren();
-  ROUTES[grade].steps.forEach((step,i)=>{
+  const order=oneStep?THEMES[activeTheme].order.slice(0,1):THEMES[activeTheme].order;
+  order.forEach(i=>{
+   const step=ROUTES[grade].steps[i];
    const article=document.createElement("article");
    article.className="lesson"+(m[i]?" tried":"");
    article.dataset.step=String(i);
@@ -96,7 +124,12 @@
     button.textContent=old[i]?"↩ Mark not tried • لم أجرب":"✅ I tried this • جربت هذا";
     updateStatus();
    });
-   actions.append(link,button);article.append(row,goal,notice,actions);list.append(article);
+   const talkPrompt=TALK[grade][i];
+   const talk=document.createElement("p");talk.className="talk";
+   talk.textContent="💬 Talk together: "+talkPrompt[0];
+   const talkAr=document.createElement("span");talkAr.lang="ar";talkAr.dir="rtl";talkAr.textContent=talkPrompt[1];
+   talk.append(talkAr);
+   actions.append(link,button);article.append(row,goal,talk,notice,actions);list.append(article);
   });
   updateStatus();
  }
@@ -106,6 +139,24 @@
   if(!ROUTES[grade])return;
   try{localStorage.setItem(GRADE_KEY,grade)}catch{}
   render();
+ });
+ document.querySelectorAll("#themeChoices [data-theme]").forEach(button=>{
+  button.addEventListener("click",()=>{
+   const chosen=button.dataset.theme;
+   if(!Object.prototype.hasOwnProperty.call(THEMES,chosen))return;
+   activeTheme=chosen;
+   document.querySelectorAll("#themeChoices [data-theme]").forEach(b=>b.setAttribute("aria-pressed",String(b===button)));
+   render();
+  });
+ });
+ document.querySelectorAll("#paceChoices [data-pace]").forEach(button=>{
+  button.addEventListener("click",()=>{
+   const chosen=button.dataset.pace;
+   if(chosen!=="one"&&chosen!=="three")return;
+   oneStep=chosen==="one";
+   document.querySelectorAll("#paceChoices [data-pace]").forEach(b=>b.setAttribute("aria-pressed",String(b===button)));
+   render();
+  });
  });
  render();
 })();

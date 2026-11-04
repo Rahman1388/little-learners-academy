@@ -75,6 +75,30 @@ const fs=require("node:fs");
  assert.equal(await page.locator("#routeSteps .lesson").count(),3);
  assert.match(await page.locator("#levelNote").textContent(),/limited supplementary/i);
  assert.equal(await page.locator("#routeSteps .launch").first().getAttribute("href"),"./grade5-math.html");
+ // Optional child-led adventure themes reorder existing URLs but never invent content.
+ assert.equal(await page.locator('#themeChoices button[aria-pressed="true"]').count(),1);
+ assert.equal(await page.locator('#routeSteps .talk').count(),3,"Every step should offer family dialogue");
+ await page.locator('#themeChoices button[data-theme="stories"]').click();
+ assert.equal(await page.locator('#routeSteps .launch').first().getAttribute("href"),"./grade5-reading.html");
+ assert.equal(await page.locator('#themeChoices button[data-theme="stories"]').getAttribute("aria-pressed"),"true");
+ await page.locator('#themeChoices button[data-theme="nature"]').click();
+ assert.equal(await page.locator('#routeSteps .launch').first().getAttribute("href"),"./grade5-science.html");
+ await page.locator('#paceChoices button[data-pace="one"]').click();
+ assert.equal(await page.locator("#routeSteps .lesson").count(),1,"One-step mode should show one activity");
+ assert.match(await page.locator("#sessionNote").textContent(),/One small activity/);
+ await page.locator('#routeSteps .lesson[data-step="2"] .triedButton').click();
+ assert.equal(await page.locator("#finishMessage").isVisible(),true,"One completed activity should have a pleasant stopping point");
+ assert.match(await page.locator("#finishMessage").textContent(),/One activity is enough/);
+ await page.locator('#routeSteps .lesson[data-step="2"] .triedButton').click();
+ assert.equal(await page.locator("#finishMessage").isVisible(),false,"One-step finish should clear when undone");
+
+ await page.locator('#paceChoices button[data-pace="three"]').click();
+ assert.equal(await page.locator("#routeSteps .lesson").count(),3);
+ await page.locator('#themeChoices button[data-theme="numbers"]').click();
+ assert.equal(await page.locator("#routeSteps .launch").first().getAttribute("href"),"./grade5-math.html");
+ assert.equal(await page.locator("#routeSteps .talk").count(),3);
+ await assertMobile();
+
  assert.match(await page.locator("#routeProgress").textContent(),/0 \/ 3/);
  const beforeRouteStars=await page.evaluate(()=>localStorage.getItem("lla-progress-v2"));
  await page.locator('#routeSteps .lesson[data-step="0"] .triedButton').click();

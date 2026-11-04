@@ -112,6 +112,8 @@ jobs:
           node --check drawing-studio.js
           node --check scripts/check-app-security.cjs
           node scripts/check-app-security.cjs
+          node --check scripts/check-bilingual-audio-assets.cjs
+          node scripts/check-bilingual-audio-assets.cjs
           node --check scripts/audit-activity-inventory.cjs
           node scripts/audit-activity-inventory.cjs
 
