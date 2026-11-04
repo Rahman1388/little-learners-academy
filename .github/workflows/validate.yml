@@ -64,6 +64,10 @@ jobs:
           node --check grade2-mixed-quest.js
           node --check grade3-preview-data.js
           node --check grade3-preview.js
+          node --check grade3-fraction-bridge-data.js
+          node --check grade3-fraction-bridge.js
+          node --check scripts/test-grade3-fraction-bridge.cjs
+          node scripts/test-grade3-fraction-bridge.cjs
           node --check grade3-english-data.js
           node --check grade3-english.js
           node --check grade3-science-data.js
@@ -169,6 +173,10 @@ jobs:
           test -f grade2-pilot.html
           test -f grade3-preview.html
           test -f grade3-preview-data.js
+          test -f grade3-fraction-bridge.html
+          test -f grade3-fraction-bridge-data.js
+          test -f grade3-fraction-bridge.js
+          test -f scripts/test-grade3-fraction-bridge.cjs
           test -f grade3-preview.js
           test -f grade3-english.html
           test -f grade3-english-data.js
