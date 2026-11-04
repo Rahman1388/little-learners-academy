@@ -35,6 +35,11 @@ h1 span{display:block;font-size:.6em;line-height:1.35}
 .status{border-radius:13px;padding:13px;background:#e8f8ff;font-weight:900}
 .summary button{border:0;background:#0a7eaf;color:#fff;font-weight:900;border-radius:15px;padding:12px 15px;min-height:49px;cursor:pointer}
 .summary pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#eff8ff;padding:13px;border-radius:14px;font:13px/1.5 ui-monospace,monospace;max-height:260px;overflow:auto}
+.shortcuts{display:flex;gap:9px;flex-wrap:wrap;margin-top:15px}
+.shortcuts a{display:inline-flex;align-items:center;min-height:48px;padding:10px 13px;background:#f2fcff;color:#125575;border:2px solid #aed9e5;border-radius:13px;text-decoration:none;font-weight:850}
+.shortcuts a:focus-visible,.retry:focus-visible,#showWholeLesson:focus-visible{outline:4px solid #8a1538;outline-offset:3px}
+.retry,#showWholeLesson{border:2px solid #a8d7e2;border-radius:13px;background:#f0faff;color:#174d69;padding:9px 13px;min-height:46px;font:inherit;font-weight:850;cursor:pointer}
+.retry[hidden],#showWholeLesson[hidden]{display:none}
 @media(max-width:570px){.samples{grid-template-columns:1fr}.sample{padding:14px}}
 </style></head>
 <body><main><a class="back" href="./index.html">← Home • الرئيسية</a>
@@ -43,8 +48,17 @@ h1 span{display:block;font-size:.6em;line-height:1.35}
 <p>Review recordings for <strong>all 52 existing lesson items</strong> in English and Arabic. Select any lesson, tap to listen, and mark exactly which speaker and word sounds unclear.</p>
 <p lang="ar" dir="rtl">اختر الدرس واستمع للكلمات. حدّد الصوت غير الواضح لإصلاحه قبل استخدامه لتعليم النطق.</p>
 <div class="flag">⚠️ <strong>Adult review only.</strong> These recordings are synthetic, not verified native human recordings. English female/male and Arabic male/female candidates are shown for comparison. <strong>The Arabic female voice is not enabled in children's lessons.</strong> Phoneme sounds and word pronunciations require qualified native-speaker and phonics-educator approval before release.</div>
+<nav class="shortcuts" aria-label="Priority audio checks • فحص الأصوات ذات الأولوية">
+<a href="./pronunciation-review.html?lesson=patterns&amp;item=0">🔴 Red • أحمر</a>
+<a href="./pronunciation-review.html?lesson=patterns&amp;item=1">🟡 Yellow • أصفر</a>
+<a href="./pronunciation-review.html?lesson=phonics&amp;item=2">☀️ Sun • شمس</a>
+<a href="./pronunciation-review.html?lesson=phonics&amp;item=3">🚌 Bus • حافلة</a>
+<a href="./sound-help.html">🔧 Audio help • مساعدة الصوت</a>
+</nav>
+<p class="mini">Start with a priority word, compare both languages and voice styles, or choose any lesson below. This is adult listening feedback, not phonics certification.</p>
 </header>
 <section class="tools"><div class="full"><label for="lessonSelect">Choose a lesson • اختر الدرس</label><select id="lessonSelect" aria-label="Choose a curriculum lesson"></select></div>
+<button id="showWholeLesson" type="button" aria-controls="cards" hidden>↔ Review all words in this lesson • عرض جميع الكلمات</button>
 <div class="status" id="reviewCount" role="status" aria-live="polite">No recordings reviewed yet.</div></section>
 <section id="cards" aria-label="Four-voice pronunciation review cards"></section>
 <section class="summary"><h2>📋 Share Your Pronunciation Findings <span lang="ar" dir="rtl">شارك ملاحظاتك</span></h2>
@@ -63,7 +77,7 @@ const sections=window.LLA_CURRICULUM.subjects.flatMap(s=>s.lessons.map(l=>({
  id:l.id,subject:s.title,subjectId:s.id,title:l.title,ar:l.ar,items:l.items
 })));
 const load=()=>{try{const o=JSON.parse(localStorage.getItem(KEY)||"{}");return o&&typeof o==="object"&&!Array.isArray(o)?o:{}}catch{return {}}};
-const checks=load();let active=null;
+const checks=load();let active=null,focusIndex=null;
 function filename(section,i,lang,voice){
  if(section.id==="phonics"){
   if(lang==="en"&&i===3){
@@ -105,11 +119,27 @@ function reviewCard(section,i){
   const title=document.createElement("h3");title.textContent=(lang==="en"?"🇬🇧 English":"🇶🇦 Arabic")+" "+(voice==="girl"?"female-style":"male-style")+(lang==="ar"&&voice==="girl"?" • REVIEW ONLY":"");
   const p=document.createElement("audio");p.controls=true;p.preload="none";
   p.src=filename(section,i,lang,voice);
-  p.setAttribute("aria-label","Listen to "+item[1]+", "+lang+" "+voice);
+  p.setAttribute("aria-label","Listen to "+(lang==="ar"?item[2]:item[1])+", "+(lang==="ar"?"Arabic":"English")+" "+(voice==="girl"?"female-style":"male-style")+" review recording");
   p.addEventListener("playing",()=>{if(active&&active!==p)active.pause();active=p});
   const note=document.createElement("div");note.className="note";
   note.textContent=lang==="ar"&&voice==="girl"?"Arabic female sample not approved for lessons":"Listen to the original voice without speed effects";
-  p.addEventListener("error",()=>{note.textContent="Audio failed to load • تعذر تشغيل التسجيل"});
+  const retry=document.createElement("button");retry.type="button";retry.className="retry";
+  retry.textContent="↻ Retry audio • إعادة المحاولة";retry.hidden=true;
+  p.addEventListener("error",()=>{
+    note.textContent="This recording did not load. Check your connection, tap Retry, or mark Missing if the problem continues. • تعذر تحميل الصوت؛ حاول مرة أخرى أو اختر «مفقود»";
+    retry.hidden=false;
+  });
+  p.addEventListener("canplay",()=>{
+    retry.hidden=true;
+    note.textContent=lang==="ar"&&voice==="girl"?"Arabic female candidate: adult review only":"Listen to the original recording at normal speed";
+  });
+  retry.addEventListener("click",()=>{
+    retry.hidden=true;
+    note.textContent="Trying this recording again… • إعادة المحاولة";
+    const url=new URL(p.src,location.href);
+    url.searchParams.set("retry",String(Date.now()));
+    p.src=url.href;p.load();
+  });
   const buttons=document.createElement("div");buttons.className="rate";
   for(const [value,label] of [["clear","✅ Clear"],["unclear","❌ Unclear"],["wrong","⚠️ Wrong word"],["missing","🔇 Missing"]]){
    const b=document.createElement("button");b.type="button";b.dataset.rating=value;
@@ -120,7 +150,7 @@ function reviewCard(section,i){
    });
    buttons.append(b);
   }
-  sample.append(title,p,note,buttons);samples.append(sample);
+  sample.append(title,p,note,retry,buttons);samples.append(sample);
  }
  card.append(head,samples);return card;
 }
@@ -128,11 +158,12 @@ function render(){
  if(active){active.pause();active=null}
  const lesson=sections.find(x=>x.id===$("#lessonSelect").value)||sections[0];
  $("#cards").replaceChildren();
- const focus=Number(params.get("item"));
- const focused=params.has("item")&&Number.isInteger(focus)&&focus>=0&&focus<lesson.items.length&&lesson.id===requested;
+ const focused=focusIndex!==null&&lesson.id===requested;
+ const focus=focusIndex;
+ $("#showWholeLesson").hidden=!focused;
  if(focused){
   const info=document.createElement("p");info.setAttribute("role","status");info.className="flag";
-  info.textContent="🔎 Focused word review. Compare Arabic female-style and male-style recordings below. These are unapproved candidates; do not use them to teach phonics until checked by a qualified Arabic speaker. • مراجعة الكلمة المحددة";
+  info.textContent="🔎 Focused word review. Compare English and Arabic voice candidates. Synthetic word recordings are not verified phonemes or approved for pronunciation teaching. • مراجعة الكلمة المحددة";
   $("#cards").append(info);
  }
  lesson.items.forEach((_,i)=>{if(!focused||i===focus)$("#cards").append(reviewCard(lesson,i))});
@@ -144,8 +175,12 @@ for(const lesson of sections){
 }
 const params=new URLSearchParams(location.search);
 const requested=params.get("lesson");
-$("#lessonSelect").value=sections.some(s=>s.id===requested)?requested:"patterns";
-$("#lessonSelect").addEventListener("change",render);
+const requestedSection=sections.find(s=>s.id===requested);
+const indexText=params.get("item"),index=Number(indexText);
+if(indexText!==null&&requestedSection&&Number.isInteger(index)&&index>=0&&index<requestedSection.items.length)focusIndex=index;
+$("#lessonSelect").value=requestedSection?requested:"patterns";
+$("#lessonSelect").addEventListener("change",()=>{focusIndex=null;render()});
+$("#showWholeLesson").addEventListener("click",()=>{focusIndex=null;render()});
 $("#copyReport").addEventListener("click",async()=>{
  const report=readReport();
  try{await navigator.clipboard.writeText(report);$("#copyStatus").textContent="✅ Copied! Paste the report into our chat. • تم النسخ"}
