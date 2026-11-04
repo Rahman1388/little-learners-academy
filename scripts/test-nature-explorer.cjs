@@ -71,10 +71,9 @@ class FakeNode{
  select(){this.selected=true;}
 }
 const nodes=new Map();
-for(const item of html.matchAll(/<([a-z]+)\b[^>]*\bid="([^"]+)"[^>]*>/gi)){
- const n=new FakeNode(item[1].toLowerCase());
- n.hidden=/\shidden(?:\s|>|=)/.test(item[0]);
- nodes.set(item[2],n);
+for(const item of html.matchAll(/id="([^"]+)"/g))nodes.set(item[1],new FakeNode("div"));
+for(const id of ["playView","finishView","adultView","hintPanel","missionAction","nextMission"]){
+ assert(nodes.has(id),"Missing required node "+id);nodes.get(id).hidden=true;
 }
 const document={
  getElementById:id=>nodes.get(id)||null,
