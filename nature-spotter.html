@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#daeee4">
+<meta name="description" content="Parent-guided bilingual discovery scenes about Qatar's coast, desert and mangroves.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; media-src 'self'; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
+<link rel="icon" href="./icon.svg" type="image/svg+xml">
+<title>Look • Tap • Discover — Nature Spotter | Little Learners Academy</title>
+<style>
+:root{font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif;color:#20495a}
+*{box-sizing:border-box}
+body{margin:0;background:linear-gradient(155deg,#dcf5e1,#dff1ff 50%,#fff3d4);min-height:100vh}
+main{max-width:920px;margin:0 auto;padding:14px 14px 65px}
+button,a{font:inherit}button{cursor:pointer}
+button:focus-visible,a:focus-visible{outline:4px solid #8a1538;outline-offset:3px}
+.back{display:inline-flex;align-items:center;padding:13px 18px;min-height:52px;color:#17516b;background:white;text-decoration:none;font-weight:900;border-radius:16px}
+.hero,.panel,.note{background:#fffffff5;border:3px solid white;border-radius:26px;padding:clamp(16px,3vw,25px);box-shadow:0 5px #b8d9d0;margin:17px 0}
+.hero{text-align:center;background:linear-gradient(120deg,#fff2c7,#ffffff,#d5f7e8)}
+.kicker{font-size:12px;font-weight:950;color:#8a1538}
+h1{font-size:clamp(28px,6vw,45px);line-height:1.15;margin:9px 0}
+h1 span{display:block;font-size:.62em;margin-top:9px}
+h2{font-size:clamp(22px,4.5vw,29px);margin:7px 0 12px}
+p{line-height:1.6}
+.ar{font-size:17px;direction:rtl;text-align:right}
+.pill{display:inline-block;background:#e9fce9;padding:10px 14px;border-radius:18px;font-size:13px;font-weight:800}
+.sceneButtons{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px}
+.sceneButtons button{background:white;border:3px solid #a6d5cd;border-radius:18px;padding:12px;min-height:105px;color:#1a475c;font-weight:900}
+.sceneButtons button[aria-pressed="true"]{background:#dcf9ea;border-color:#247b61}
+.sceneButtons .emoji{display:block;font-size:32px;margin-bottom:5px}
+.sceneButtons .arabic{display:block;font-size:15px;direction:rtl;margin-top:4px}
+.landscape{position:relative;min-height:160px;background:linear-gradient(#bfeaff,#e9fbef 58%,#9cd2ac);border:3px solid #89c1a5;border-radius:21px;overflow:hidden;padding:18px;text-align:center;display:flex;justify-content:center;align-items:center}
+.landscape::before{content:"";position:absolute;inset:auto -12% -68px;height:130px;background:#74b69e;border-radius:50% 50% 0 0}
+.landscape::after{content:"";position:absolute;inset:auto 30% -70px;height:130px;background:#acd8ae;border-radius:50% 50% 0 0}
+.landscape[data-scene="desert"]{background:linear-gradient(#cfebff,#fff6da 57%,#f1cc96);border-color:#e5bd86}
+.landscape[data-scene="desert"]::before{background:#e8b87e}.landscape[data-scene="desert"]::after{background:#f7d4a2}
+.landscape[data-scene="coast"]{background:linear-gradient(#caeeff,#eafff4 54%,#8ecbdf);border-color:#8cc3da}
+.landscape[data-scene="coast"]::before{background:#78bdd1}.landscape[data-scene="coast"]::after{background:#a3d7dc}
+.landscape .sceneImage{font-size:clamp(52px,8vw,76px);position:relative;z-index:1;line-height:1.3}
+.objects{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:14px 0}
+.objects button{background:#fff;color:#16495b;border:3px solid #b5d6d5;border-radius:18px;min-height:133px;padding:15px 12px;font-weight:900}
+.objects button[aria-pressed="true"]{background:#e5fff1;border-color:#2a8568}
+.objects .emoji{display:block;font-size:38px;line-height:1.3}
+.objects .label{display:block;font-size:19px;margin-top:5px}
+.objects .arabic{display:block;font-size:16px;margin-top:4px;direction:rtl}
+#discovery{background:#e9f8ff;border:2px solid #b5d9e7;border-radius:17px;min-height:146px;padding:16px;line-height:1.6}
+#discovery .big{font-size:25px;font-weight:950}
+#discovery .arabic{font-size:17px;direction:rtl;text-align:right;display:block;margin-top:7px}
+#discovery .question{font-weight:800;background:#fff7dd;border-radius:12px;padding:11px;margin-top:14px}
+#discovery .question span{display:block;font-weight:700}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0}
+.actions button{border:2px solid #126e8a;border-radius:15px;background:#126e8a;color:white;padding:12px 16px;min-height:52px;font-weight:900}
+.actions button.secondary{background:#eff9ff;color:#19546b;border-color:#a9cfdb}
+#discoveryCount{background:#fff4d6;padding:10px 12px;border-radius:15px;font-weight:900}
+#familyCard{border:3px solid #acd6b5;border-radius:23px;padding:18px;background:#f1ffed}
+#familyCard h2{margin-top:0}
+#familyCard p{line-height:1.55}
+#familyCard ul{padding-left:21px}
+#familyCard li{margin:7px 0}
+#cardNote{font-size:13px}
+details summary{font-weight:900;cursor:pointer;min-height:48px}
+.note{font-size:14px}
+[hidden]{display:none!important}
+@media(max-width:500px){.sceneButtons{grid-template-columns:1fr}.sceneButtons button{min-height:70px;text-align:left}.sceneButtons .emoji{display:inline;margin-right:10px}.objects{grid-template-columns:1fr}.objects button{min-height:86px;display:grid;grid-template-columns:60px 1fr;text-align:left;align-items:center}.objects .emoji{grid-row:span 2}.objects .label{margin:0}.objects .arabic{text-align:left;margin:0}.actions button{flex:1}}
+@media print{body{background:white}main>*:not(#familyCard){display:none!important}#familyCard{display:block!important;border:2px solid #333;box-shadow:none}#familyCard .actions{display:none!important}}
+</style>
+</head><body><main>
+<a class="back" href="./nature-trail.html">← Nature Trail • رحلة الطبيعة</a>
+<header class="hero">
+<div class="kicker">🇶🇦 ORIGINAL PARENT-SUPERVISED REVIEW PILOT</div>
+<h1>🔎 Look • Tap • Discover <span lang="ar" dir="rtl">انظر • اضغط • اكتشف</span></h1>
+<p>Find nature's wonders in three friendly places. Tap what interests you and talk about it together.</p>
+<p class="ar" lang="ar">اكتشف روائع الطبيعة في ثلاثة أماكن. اضغط على ما يثير اهتمامك وتحدّث عنه مع أسرتك.</p>
+<span class="pill">🌿 No timer • No pressure • No audio • دون مؤقّت أو أصوات</span>
+</header>
+<section class="panel">
+<h2>🌍 Choose a place <span lang="ar" dir="rtl">اختر مكانًا</span></h2>
+<div class="sceneButtons" id="sceneChoices" role="group" aria-label="Choose a nature scene"></div>
+</section>
+<section class="panel">
+<h2 id="sceneHeading" tabindex="-1">🌿 Mangrove habitat</h2>
+<div class="landscape" id="landscape" data-scene="mangrove" role="img" aria-label="Illustrated mangrove habitat"><div id="landscapeImage" class="sceneImage" aria-hidden="true">🌳 🌊 🐦</div></div>
+<p>Tap a picture below to discover something new. • <span lang="ar" dir="rtl">اضغط على صورة أدناه لتكتشف شيئًا جديدًا.</span></p>
+<div id="objects" class="objects" role="group" aria-label="Choose a plant, animal or natural feature"></div>
+<p id="discoveryCount" role="status" aria-live="polite">0 of 4 things noticed • ٠ من ٤</p>
+<div id="discovery" role="status" aria-live="polite">
+<div class="big">👆 Choose what interests you!</div>
+<span class="arabic" lang="ar">اختر ما يثير اهتمامك!</span>
+</div>
+<div class="actions">
+<button id="showCard" type="button" class="secondary">👪 My Family Discovery Card • بطاقة اكتشاف الأسرة</button>
+<button id="reset" type="button" class="secondary">↺ Start this scene again • ابدأ من جديد</button>
+</div>
+</section>
+<section id="familyCard" hidden aria-label="Parent family learning recap">
+<h2 tabindex="-1" id="cardTitle">🌼 Our Family Discovery Card <span lang="ar" dir="rtl">بطاقة اكتشاف الأسرة</span></h2>
+<p>We explored <strong id="cardScene"></strong>. We tapped <strong id="cardCount"></strong> nature objects. These are things we <strong>looked at</strong>, not a claim of mastery.</p>
+<p lang="ar" dir="rtl">استكشفنا البيئة وتعرّفنا على بعض العناصر. هذه ملاحظة للتعلّم وليست شهادة إتقان.</p>
+<ul id="cardList"></ul>
+<p id="cardNext"></p>
+<p lang="ar" dir="rtl" id="cardNextAr"></p>
+<p id="cardNote">💚 Try a short conversation at home. Nothing is uploaded, recorded or saved by this activity. Print or save this recap using your own device if you wish.</p>
+<div class="actions">
+<button type="button" id="printCard">🖨️ Print / Save with my device • طباعة</button>
+<button type="button" id="closeCard" class="secondary">← Continue exploring • متابعة الاستكشاف</button>
+</div>
+</section>
+<section class="note"><details><summary>👨‍👩‍👧 Parent safety, sound and curriculum notes • إرشادات الأهل</summary>
+<p>These twelve original picture-and-fact cards are optional guided observations, not scored quiz questions or official Qatar curriculum lessons. They are NOT counted in the published 475-question audit. English and Arabic word meanings need native-speaking educator review. For correct phonics, parents should model pronunciation; no synthetic or unverified child voices are played in this prototype.</p>
+<p>Enjoy plants or nature photos from home. Do not enter tidal mud, approach wildlife, collect animals or disturb nests. The child may stop after one object and still enjoy the activity.</p>
+<p>No accounts, names, location, child voice, audio, analytics, third-party APIs or saved progress. Parent recaps exist only on the current page; printing is controlled by the device owner. Tests and specialist review must precede publication.</p>
+</details></section>
+<script src="./nature-spotter-data.js"></script><script src="./nature-spotter.js"></script>
+</main></body></html>
