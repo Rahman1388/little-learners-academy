@@ -67,17 +67,28 @@ const assert=require("node:assert/strict");
  await mobile();
  await goto("international-benchmark.html");
  assert.match(await page.locator("body").textContent(),/4,000\+/);
- assert((await page.locator('a[href="https://www.khanacademy.org/kids/pricing"]').count())>=1,"Missing Khan Academy official reference");
+ assert((await page.locator('a[data-parent-exit-url="https://www.khanacademy.org/kids/pricing"]').count())>=1,"Missing Khan Academy official reference");
  // Verify the benchmark is genuinely Gulf + international, not Khan-only.
- assert((await page.locator('a[href="https://www.edu.gov.qa/en/Content/EarlyLearning"]').count())>=1,"Missing official Qatar foundation-stage reference");
- assert.equal(await page.locator('a[href="https://www.alefeducation.com/ar/products/abjadiyat"]').count(),1,"Missing UAE Arabic-learning reference");
- assert.equal(await page.locator('a[href="https://madrasa.org/who?lang=en"]').count(),1,"Missing UAE Arabic science/maths platform");
- assert.equal(await page.locator('a[href="https://madrasatibeta.moe.gov.sa/books?Language=2"]').count(),1,"Missing Saudi Grade 1–6 curriculum reference");
- assert((await page.locator('a[href="https://www.ixl.com/"]').count())>=1,"Missing current official IXL skills reference");
- assert.equal(await page.locator('a[href="https://support.splashlearn.com/hc/en-us/articles/12275062512658-What-is-SplashLearn"]').count(),1,"Missing official SplashLearn comparison");
- assert.equal(await page.locator('a[href="https://www.abcmouse.com/learn/program/math-learning-program-online"]').count(),1,"Missing official ABCmouse activity count");
+ assert((await page.locator('a[data-parent-exit-url="https://www.edu.gov.qa/en/Content/EarlyLearning"]').count())>=1,"Missing official Qatar foundation-stage reference");
+ assert.equal(await page.locator('a[data-parent-exit-url="https://www.alefeducation.com/ar/products/abjadiyat"]').count(),1,"Missing UAE Arabic-learning reference");
+ assert.equal(await page.locator('a[data-parent-exit-url="https://madrasa.org/who?lang=en"]').count(),1,"Missing UAE Arabic science/maths platform");
+ assert.equal(await page.locator('a[data-parent-exit-url="https://madrasatibeta.moe.gov.sa/books?Language=2"]').count(),1,"Missing Saudi Grade 1–6 curriculum reference");
+ assert((await page.locator('a[data-parent-exit-url="https://www.ixl.com/"]').count())>=1,"Missing current official IXL skills reference");
+ assert.equal(await page.locator('a[data-parent-exit-url="https://support.splashlearn.com/hc/en-us/articles/12275062512658-What-is-SplashLearn"]').count(),1,"Missing official SplashLearn comparison");
+ assert.equal(await page.locator('a[data-parent-exit-url="https://www.abcmouse.com/learn/program/math-learning-program-online"]').count(),1,"Missing official ABCmouse activity count");
  assert.match(await page.locator("body").textContent(),/limited playable pilot questions/i,"Grade 2–6 pilots should not be presented as full curricula");
  assert.match(await page.locator("#gulfSources").textContent(),/not proof/i,"Curriculum approval limitations must stay visible");
+
+ // External references stay in the app until an adult completes the bilingual checkpoint.
+ await page.locator('a[data-parent-exit-url="https://www.khanacademy.org/kids/pricing"]').first().click();
+ assert.equal(await page.locator("#llaParentExitOverlay").isVisible(),true,"Parent checkpoint must open");
+ await page.locator("#llaExitAnswer").fill("0");
+ await page.locator('#llaExitForm button[type="submit"]').click();
+ assert.equal(await page.locator("#llaParentExitOverlay").isVisible(),true,"Wrong answer must not navigate");
+ assert.match(await page.locator("#llaExitFeedback").textContent(),/try again/i);
+ await page.locator("#llaExitStay").click();
+ assert.equal(await page.locator("#llaParentExitOverlay").isVisible(),false,"Stay button must close checkpoint");
+ assert.match(page.url(),/international-benchmark\.html/,"Child must remain in app");
  await mobile();
  await goto("grades-roadmap.html");
  assert.equal(await page.locator('a[href="./international-benchmark.html"]').count(),1);

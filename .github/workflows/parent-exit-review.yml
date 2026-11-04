@@ -1,0 +1,42 @@
+name: Review parent-assisted external exits
+on:
+  pull_request:
+    paths:
+      - "parent-exit-gate.js"
+      - "parent-exit-gate.css"
+      - "curriculum-compass.html"
+      - "international-benchmark.html"
+      - "quality-and-standards.html"
+      - "school-pathways.html"
+      - "school-pathways.js"
+      - "scripts/test-parent-exit-browser.cjs"
+      - "scripts/test-parent-exit-gate.cjs"
+      - ".github/workflows/parent-exit-review.yml"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Install browser
+        run: |
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Serve local site
+        run: |
+          python3 -m http.server 8765 --bind 127.0.0.1 >/tmp/lla-parent-exit-http.log 2>&1 &
+          for i in $(seq 1 20); do
+            curl -fsS http://127.0.0.1:8765/international-benchmark.html >/dev/null && break
+            sleep 1
+          done
+      - name: Test parent gate in mobile Chromium
+        run: |
+          node --check scripts/test-parent-exit-browser.cjs
+          node scripts/test-parent-exit-gate.cjs
+          node scripts/test-parent-exit-browser.cjs

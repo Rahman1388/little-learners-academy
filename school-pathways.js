@@ -63,8 +63,8 @@ function render(){
  $("#referenceLinks").replaceChildren();
  const refs=data.sources[system.value]||[];
  refs.forEach(ref=>{
-  const a=document.createElement("a");a.href=ref.url;
-  a.target="_blank";a.rel="noopener noreferrer";
+  const a=document.createElement("a");a.href="#parent-exit";a.dataset.parentExitUrl=ref.url;
+  a.rel="noopener noreferrer";
   a.textContent=ref.label+" ↗";$("#referenceLinks").append(a);
  });
  $("#referenceIntro").textContent="Published reference sources for "+(system.value==="qatar"?"Qatar":system.value==="british"?"England":"US maths and English")+":";
