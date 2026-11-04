@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#d8f4e4">
+<meta name="robots" content="noindex,nofollow">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'none'; media-src 'self'; font-src 'self'; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
+<meta name="description" content="Adult-review visual learning prototype: six bilingual colour-coded concept maps with connection questions and family discussion.">
+<link rel="icon" type="image/svg+xml" href="./icon.svg">
+<link rel="stylesheet" href="./visual-learning-garden.css">
+<title>Visual Learning Garden • حديقة التعلم البصري | Little Learners Academy</title>
+<script defer src="./visual-learning-garden-data.js"></script>
+<script defer src="./visual-learning-garden.js"></script>
+</head>
+<body>
+<main class="wrap">
+<a class="back" href="./index.html">← Academy Home <span lang="ar" dir="rtl">• الرئيسية</span></a>
+<header class="hero">
+<div class="suncloud" aria-hidden="true">☀️ 🌿 🦋 🌼</div>
+<p class="eyebrow">🌱 ORIGINAL ADULT-REVIEW PILOT • نموذج تجريبي لمراجعة الكبار</p>
+<h1>Visual Learning Garden <span lang="ar" dir="rtl">حديقة التعلم البصري</span></h1>
+<p>See colourful ideas, connect what they mean, answer a question, then explain the idea to someone you trust.</p>
+<p class="arabic" lang="ar" dir="rtl">شاهد أفكارًا ملوّنة، واربط بينها، وأجب عن سؤال، ثم اشرح الفكرة لشخص تثق به.</p>
+<p class="notice">English and Arabic are shown together. <strong>No automatic voice:</strong> pronunciation must be reviewed by qualified speakers before adding audio. This is supplementary practice, not an official Qatar curriculum, graded assessment or a measure of mastery.</p>
+<p class="arabic note" lang="ar" dir="rtl">تظهر اللغتان معًا. لا يتضمن هذا النموذج صوتًا آليًا. وهو نشاط إثرائي غير معتمد كمنهج رسمي أو اختبار إتقان.</p>
+</header>
+<section class="panel" id="picker">
+<h2>Choose your learning world <span lang="ar" dir="rtl">اختر عالم التعلّم</span></h2>
+<p>Three learning steps: <strong>👀 Discover → 🧠 Connect → 🗣️ Explain</strong></p>
+<p class="arabic" lang="ar" dir="rtl">ثلاث خطوات: استكشف ← اربط الأفكار ← اشرح.</p>
+<div class="bandLegend" aria-label="Age and grade band labels">
+<span>🌱 Grades 1–2 • الصفان ١–٢</span><span>🌿 Grades 3–4 • الصفان ٣–٤</span><span>🌳 Grades 5–6 • الصفان ٥–٦</span>
+</div>
+<div id="mapCards" class="mapCards"></div>
+<p id="overallProgress" class="progressLine" aria-live="polite">Six concept maps to explore.</p>
+<button id="adultToggle" type="button" class="secondary" aria-expanded="false" aria-controls="adultPanel">👨‍👩‍👧 Family learning notes • ملاحظات الأسرة</button>
+<section id="adultPanel" class="adultPanel" hidden aria-labelledby="adultTitle">
+<h3 id="adultTitle">Private family summary <span lang="ar" dir="rtl">ملخص خاص للأسرة</span></h3>
+<p>Only completed map IDs are saved on this device. Participation does not mean mastery. No child name, voice, answers, attempt counts or dates are stored or sent.</p>
+<label for="adultNotes">Printable / copyable notes • ملاحظات قابلة للنسخ</label>
+<textarea id="adultNotes" rows="10" readonly></textarea>
+<div class="actions"><button id="copyNotes" type="button" class="secondary">📋 Copy notes • نسخ الملاحظات</button><button id="printNotes" type="button" class="secondary">🖨️ Print • طباعة</button></div>
+<p id="copyStatus" role="status" aria-live="polite"></p>
+</section>
+</section>
+<section class="panel play" id="play" hidden aria-labelledby="mapTitle">
+<div class="toolbar"><button id="backToPicker" type="button" class="secondary">← Other worlds • عوالم أخرى</button><span id="mapBand" class="bandTag"></span></div>
+<div class="conceptSky" aria-hidden="true">☁️ ☀️ 🦋</div>
+<h2 id="mapTitle" tabindex="-1">Explore a concept map</h2>
+<p id="mapTopic" class="mapTopic"></p>
+<div class="conceptWeb">
+<div class="centerIdea"><span id="mapIcon" aria-hidden="true">🌱</span><strong id="centerEnglish"></strong><span class="arabic" id="centerArabic" lang="ar" dir="rtl"></span></div>
+<p class="webPrompt">👀 Tap each colourful leaf to discover a connection. <span lang="ar" dir="rtl">المس كل ورقة ملوّنة لتكتشف رابطًا.</span></p>
+<div id="petals" class="petals" role="group" aria-label="Four bilingual concept leaves"></div>
+</div>
+<div class="fact" id="factPanel" role="status" aria-live="polite">
+<p id="factEnglish">Select a leaf to discover its meaning.</p>
+<p id="factArabic" lang="ar" dir="rtl">اختر ورقة لتكتشف معناها.</p>
+</div>
+<p id="leafCount" class="progressLine" aria-live="polite">0 / 4 leaves explored.</p>
+<section id="challenge" class="challenge" hidden aria-labelledby="questionTitle">
+<div class="stepBadge">🧠 STEP TWO • الخطوة الثانية</div>
+<h3 id="questionTitle">Connect the ideas • اربط الأفكار</h3>
+<p id="questionEnglish" tabindex="-1"></p>
+<p id="questionArabic" lang="ar" dir="rtl"></p>
+<div id="choices" class="choices" role="group" aria-label="Answer choices"></div>
+<p id="answerFeedback" role="status" aria-live="polite"></p>
+</section>
+<section id="reflection" class="reflection" hidden aria-labelledby="reflectionTitle">
+<div class="stepBadge">🗣️ STEP THREE • الخطوة الثالثة</div>
+<h3 id="reflectionTitle">Explain it together • اشرحها معًا</h3>
+<p id="explainEnglish"></p><p id="explainArabic" lang="ar" dir="rtl"></p>
+<p class="talk"><strong>Talk, draw or point with a family member:</strong> <span id="talkEnglish"></span></p>
+<p class="arabic talk" lang="ar" dir="rtl"><strong>تحدّث أو ارسم أو أشر مع أحد أفراد الأسرة:</strong> <span id="talkArabic"></span></p>
+<button id="markDone" type="button" class="primary">🌟 I explored this map • استكشفت هذه الخريطة</button>
+<p class="note">Marking this means practice only, not proof of mastery. • إكمال النشاط لا يعني إتقان المهارة.</p>
+</section>
+</section>
+</main>
+</body>
+</html>
