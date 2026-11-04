@@ -73,6 +73,10 @@ jobs:
           node --check nature-trail.js
           node --check scripts/test-nature-trail.cjs
           node scripts/test-nature-trail.cjs
+          node --check nature-spotter-data.js
+          node --check nature-spotter.js
+          node --check scripts/test-nature-spotter.cjs
+          node scripts/test-nature-spotter.cjs
           node --check grade4-reading-data.js
           node --check grade4-reading.js
           node --check grade4-science-data.js
@@ -176,6 +180,11 @@ jobs:
           test -f nature-trail-data.js
           test -f nature-trail.js
           test -f scripts/test-nature-trail.cjs
+          test -f nature-spotter.html
+          test -f nature-spotter-data.js
+          test -f nature-spotter.js
+          test -f scripts/test-nature-spotter.cjs
+          test -f scripts/test-nature-spotter-browser.cjs
           test -f grade3-preview-data.js
           test -f grade3-preview.js
           test -f grade3-english.html
