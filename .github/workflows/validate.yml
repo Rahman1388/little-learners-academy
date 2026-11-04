@@ -69,6 +69,10 @@ jobs:
           node --check grade3-science-data.js
           node --check grade3-science.js
           node --check grade3-mixed-quest.js
+          node --check nature-trail-data.js
+          node --check nature-trail.js
+          node --check scripts/test-nature-trail.cjs
+          node scripts/test-nature-trail.cjs
           node --check grade4-reading-data.js
           node --check grade4-reading.js
           node --check grade4-science-data.js
@@ -168,6 +172,10 @@ jobs:
           test -f maths-thinking.js
           test -f grade2-pilot.html
           test -f grade3-preview.html
+          test -f nature-trail.html
+          test -f nature-trail-data.js
+          test -f nature-trail.js
+          test -f scripts/test-nature-trail.cjs
           test -f grade3-preview-data.js
           test -f grade3-preview.js
           test -f grade3-english.html
