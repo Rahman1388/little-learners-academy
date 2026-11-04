@@ -46,6 +46,23 @@ button:disabled{cursor:not-allowed;opacity:.65}
 .centerIdea{max-width:520px;margin:8px auto 16px;background:#fffefa;border-radius:100px;border:4px solid #f0c86c;min-height:126px;padding:16px 20px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:4px;box-shadow:0 4px 0 #e6daa5}
 .centerIdea>span:first-child{font-size:35px}.centerIdea strong{font-size:clamp(17px,3.4vw,22px)}
 .centerIdea .arabic{color:#5b4c18}
+
+/* The models use actual quantities and equally sized regions, not misleading decorative emojis. */
+.visualModel{max-width:680px;margin:15px auto 20px;border:2px solid #a4cfc0;border-radius:20px;background:#fffdf4;padding:15px;text-align:center}
+.modelCaption{display:flex;flex-direction:column;gap:4px;color:#294d43}
+.modelArabic{direction:rtl;line-height:1.6}
+.tenGroups{display:flex;flex-wrap:wrap;justify-content:center;gap:11px;margin:15px auto}
+.tenGroup{display:grid;grid-template-columns:repeat(5,14px);grid-template-rows:repeat(2,14px);gap:4px;padding:10px;border:2px solid #478276;border-radius:12px;background:#e2f5e8}
+.modelDot{display:block;width:14px;height:14px;border-radius:50%;background:#237b61;box-shadow:0 1px 1px #155644}
+.onesGroup{display:flex;justify-content:center;gap:12px;margin:9px auto}
+.onesGroup .modelDot{background:#c16a2b}
+.modelSum{font-weight:850;font-size:17px;color:#24534c;margin:12px 0 3px}
+.fractionParts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));max-width:330px;height:106px;margin:18px auto 8px;border:3px solid #316b5b;border-radius:8px;overflow:hidden}
+.fractionPart{border-right:3px solid #316b5b}
+.fractionPart:last-child{border-right:0}
+.fractionPart.shaded{background:repeating-linear-gradient(45deg,#92d6a4 0 12px,#75c38e 12px 24px)}
+.fractionPart.empty{background:#fff}
+@media(max-width:360px){.tenGroup{grid-template-columns:repeat(5,12px);grid-template-rows:repeat(2,12px);gap:3px;padding:7px}.tenGroups{gap:5px}.modelDot{width:12px;height:12px}.fractionParts{height:84px}}
 .webPrompt{text-align:center;font-size:15px;font-weight:700;color:#2f625b}
 .petals{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;max-width:680px;margin:17px auto 9px}
 .petal{border-radius:30px 13px 30px 13px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;min-height:113px;font-weight:850;transition:transform .17s ease;border-width:3px}
