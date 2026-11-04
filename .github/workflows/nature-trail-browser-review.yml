@@ -5,7 +5,12 @@ on:
       - 'nature-trail.html'
       - 'nature-trail.js'
       - 'nature-trail-data.js'
+      - 'nature-spotter.html'
+      - 'nature-spotter.js'
+      - 'nature-spotter-data.js'
       - 'scripts/test-nature-trail-browser.cjs'
+      - 'scripts/test-nature-spotter-browser.cjs'
+      - 'scripts/test-nature-spotter.cjs'
       - '.github/workflows/nature-trail-browser-review.yml'
   workflow_dispatch:
 permissions:
@@ -30,7 +35,11 @@ jobs:
           node --check nature-trail.js
           node --check nature-trail-data.js
           node --check scripts/test-nature-trail-browser.cjs
+          node --check nature-spotter-data.js
+          node --check nature-spotter.js
+          node --check scripts/test-nature-spotter-browser.cjs
           node scripts/test-nature-trail.cjs
+          node scripts/test-nature-spotter.cjs
       - name: Exercise bilingual mobile and tablet interactions
         run: |
           python3 -m http.server 8765 --bind 127.0.0.1 > /tmp/nature-server.log 2>&1 &
@@ -39,3 +48,4 @@ jobs:
           sleep 2
           curl --fail --silent http://127.0.0.1:8765/nature-trail.html > /dev/null
           TEST_URL=http://127.0.0.1:8765 node scripts/test-nature-trail-browser.cjs
+          TEST_URL=http://127.0.0.1:8765 node scripts/test-nature-spotter-browser.cjs
