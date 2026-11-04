@@ -72,6 +72,11 @@
       const active=[...dialog.querySelectorAll("input,button")].filter(el=>!el.disabled);
       if(!active.length)return;
       const first=active[0],last=active[active.length-1];
+      if(document.activeElement===overlay.querySelector("#llaExitTitle")){
+        event.preventDefault();
+        (event.shiftKey?last:first).focus();
+        return;
+      }
       if(event.shiftKey&&document.activeElement===first){event.preventDefault();last.focus();}
       else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();first.focus();}
     });
