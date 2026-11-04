@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#c9efe0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; media-src 'self'; connect-src 'self'; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
+<meta name="description" content="18 interactive English and Arabic nature missions in a desert, coastal and garden world. Supplementary early-primary practice.">
+<link rel="icon" href="./icon.svg">
+<link rel="stylesheet" href="./nature-explorer.css">
+<title>Nature Explorer • مستكشف الطبيعة • Little Learners Academy</title>
+</head>
+<body>
+<main class="wrap">
+<a class="back" href="./index.html">← Home • الرئيسية</a>
+<header class="hero">
+ <div class="eyebrow">🇶🇦 QATAR-INSPIRED NATURE DISCOVERY • استكشاف الطبيعة</div>
+ <div class="sky" aria-hidden="true"><span class="sun">☀️</span><span class="cloud">☁️</span><span class="palm">🌴</span><span class="bird">🦋</span></div>
+ <h1>🌿 Nature Explorer <span lang="ar" dir="rtl">مستكشف الطبيعة</span></h1>
+ <p>Look, think and choose in two languages. Explore desert, coast and garden habitats through <strong>18 friendly missions</strong>.</p>
+ <p lang="ar" dir="rtl">انظر وفكّر واختر باللغتين الإنجليزية والعربية. اكتشف الصحراء والساحل والحديقة عبر ١٨ مهمة ممتعة.</p>
+ <p class="level">🌱 Supplementary Grades 1–2 practice • نشاط إثرائي للصفين الأول والثاني</p>
+</header>
+<section class="panel" id="habitatView" aria-label="Choose a nature habitat">
+ <h2>Choose your nature world <span lang="ar" dir="rtl">اختر عالم الطبيعة</span></h2>
+ <p>Each place has six short missions. Learn at your own pace. • لكل مكان ست مهام قصيرة.</p>
+ <div id="habitatCards" class="habitats"></div>
+ <p class="small" id="overallStatus" role="status" aria-live="polite">Your adventure starts here.</p>
+</section>
+<section class="panel play" id="playView" hidden aria-label="Bilingual nature mission">
+ <div class="toolbar">
+  <button type="button" id="backHabitats" class="secondary">← Choose a place • اختر مكانًا</button>
+  <span id="missionCount" class="counter" aria-live="polite">1 / 6</span>
+ </div>
+ <div class="progressTrack" aria-hidden="true"><span id="progressFill"></span></div>
+ <div class="scene" id="sceneEmoji" aria-hidden="true">🐪 ☀️ 🌴</div>
+ <div class="eyebrow" id="habitatLabel">Desert • الصحراء</div>
+ <div class="picture" id="pictureEmoji" aria-hidden="true">🐪</div>
+ <div class="word" id="wordEnglish">Camel</div>
+ <div class="word arabic" id="wordArabic" lang="ar" dir="rtl">جمل</div>
+ <h2 id="questionEnglish">Which choice is correct?</h2>
+ <p class="questionArabic" id="questionArabic" lang="ar" dir="rtl">ما الاختيار الصحيح؟</p>
+ <div id="answerChoices" class="choices" role="group" aria-label="Choose one answer • اختر إجابة"></div>
+ <div id="answerFeedback" class="feedback" role="status" aria-live="polite">Choose a picture or word • اختر صورة أو كلمة</div>
+ <button type="button" id="nextMission" class="primary" hidden>Next mission • المهمة التالية →</button>
+</section>
+<section class="panel finish" id="finishView" hidden aria-label="Habitat completed">
+ <div class="finishScene" aria-hidden="true">🌟 🦋 🌿</div>
+ <h2>Wonderful exploring! <span lang="ar" dir="rtl">أحسنت الاستكشاف!</span></h2>
+ <p>You completed all six missions in this habitat. Every curious question helps us learn!</p>
+ <p lang="ar" dir="rtl">أكملت المهام الست في هذا المكان. كل سؤال جديد يساعدنا على التعلّم!</p>
+ <div class="finishActions">
+  <button type="button" class="primary" id="playAgain">🔁 Review this habitat • راجع هذا المكان</button>
+  <button type="button" class="secondary" id="chooseAgain">🗺️ Choose another place • اختر مكانًا آخر</button>
+ </div>
+</section>
+<aside class="note">
+ <strong>For parents and educators • للأهل والمعلمين</strong>
+ <p>These questions introduce simple science, observation, habitats and care for nature. They are <strong>supplementary activities</strong>, not an official Qatar curriculum or a mastery test. Arabic wording and scientific content await teacher review.</p>
+ <p>No child names, microphone, camera, voice recording, advertisements, analytics or third-party requests are used. Only completed mission IDs are saved on this device. This first version intentionally has no spoken phonics or automatic sound because English and Arabic recordings still require qualified pronunciation review.</p>
+</aside>
+</main>
+<script src="./nature-explorer-data.js"></script>
+<script src="./nature-explorer.js"></script>
+</body>
+</html>
