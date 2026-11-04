@@ -52,6 +52,25 @@ p{line-height:1.6}
 .actions button{border:2px solid #126e8a;border-radius:15px;background:#126e8a;color:white;padding:12px 16px;min-height:52px;font-weight:900}
 .actions button.secondary{background:#eff9ff;color:#19546b;border-color:#a9cfdb}
 #discoveryCount{background:#fff4d6;padding:10px 12px;border-radius:15px;font-weight:900}
+.compareLab{background:linear-gradient(145deg,#f2fff2,#effaff);border:3px solid #b5dbbd;border-radius:22px;padding:clamp(15px,3vw,22px);margin:17px 0}
+.compareLab h3{font-size:clamp(20px,4vw,25px);margin:0 0 8px}
+.compareLab p{margin:8px 0;line-height:1.55}
+.compareButtons{display:flex;gap:9px;flex-wrap:wrap;margin:14px 0}
+.compareButtons button{min-height:52px;flex:1;min-width:180px;background:#0b706a;color:#fff;border:2px solid #0b706a;border-radius:15px;padding:12px;font-weight:900}
+.compareButtons button.secondary{background:#fff;color:#215d5a;border-color:#9cc8c2}
+.compareButtons button:disabled{opacity:.62;cursor:default}
+.comparePair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px;margin:14px 0}
+.compareThing{background:white;border:2px solid #9ac8bb;border-radius:18px;padding:15px;text-align:center;min-width:0}
+.compareThing .emoji{font-size:42px;line-height:1.4}
+.compareThing .english{display:block;font-size:20px;font-weight:900}
+.compareThing .arabic{display:block;font-size:17px;font-weight:800;direction:rtl;margin-top:6px}
+.compareGuide{background:#fff9e8;border-radius:16px;border:2px solid #efd6a3;padding:15px;margin-top:11px}
+.compareGuide strong{display:block}
+.compareGuide p{margin:10px 0 4px}
+.compareGuide [lang="ar"]{display:block;direction:rtl;text-align:right;margin-bottom:10px}
+#compareStatus{font-weight:850;color:#1c605c;min-height:28px}
+#cardCompare{background:#e8f8ea;border-radius:14px;padding:11px}
+@media(max-width:500px){.comparePair{gap:8px}.compareThing{padding:9px}.compareThing .english{font-size:17px}.compareButtons button{min-width:100%}}
 #familyCard{border:3px solid #acd6b5;border-radius:23px;padding:18px;background:#f1ffed}
 #familyCard h2{margin-top:0}
 #familyCard p{line-height:1.55}
@@ -87,6 +106,25 @@ details summary{font-weight:900;cursor:pointer;min-height:48px}
 <div class="big">👆 Choose what interests you!</div>
 <span class="arabic" lang="ar">اختر ما يثير اهتمامك!</span>
 </div>
+<section id="compareLab" class="compareLab" aria-labelledby="compareHeading">
+<h3 id="compareHeading">🔎 Look &amp; Compare <span lang="ar" dir="rtl">انظر وقارن</span></h3>
+<p>Choose two different pictures from this place. Then look for one similarity and one difference together. No score or timer.</p>
+<p class="ar" lang="ar">اختر صورتين مختلفتين من هذا المكان، ثم ابحث عن وجه شبه واختلاف مع أسرتك. لا درجات ولا مؤقّت.</p>
+<div class="compareButtons">
+<button id="addCompare" type="button" disabled>🌿 Choose a picture first • اختر صورة أولًا</button>
+<button id="clearCompare" type="button" class="secondary" disabled>↺ Clear comparison • امسح المقارنة</button>
+</div>
+<p id="compareStatus" role="status" aria-live="polite">0 of 2 chosen • ٠ من ٢</p>
+<div id="comparePair" class="comparePair" role="group" aria-label="Two discoveries chosen for comparison" hidden></div>
+<div id="compareGuide" class="compareGuide" hidden tabindex="-1" aria-label="Family observation prompts">
+<strong>💬 Talk together • تحدّثوا معًا</strong>
+<p>1. What is one thing these two have in common?</p>
+<span lang="ar" dir="rtl">١. ما وجه الشبه بين هذين الشيئين؟</span>
+<p>2. What is one thing that makes them different?</p>
+<span lang="ar" dir="rtl">٢. ما الفرق بينهما؟</span>
+<p id="compareCareEn"></p><span id="compareCareAr" lang="ar" dir="rtl"></span>
+</div>
+</section>
 <div class="actions">
 <button id="showCard" type="button" class="secondary">👪 My Family Discovery Card • بطاقة اكتشاف الأسرة</button>
 <button id="reset" type="button" class="secondary">↺ Start this scene again • ابدأ من جديد</button>
@@ -97,6 +135,7 @@ details summary{font-weight:900;cursor:pointer;min-height:48px}
 <p>We explored <strong id="cardScene"></strong>. We tapped <strong id="cardCount"></strong> nature objects. These are things we <strong>looked at</strong>, not a claim of mastery.</p>
 <p lang="ar" dir="rtl">استكشفنا البيئة وتعرّفنا على بعض العناصر. هذه ملاحظة للتعلّم وليست شهادة إتقان.</p>
 <ul id="cardList"></ul>
+<p id="cardCompare" hidden></p>
 <p id="cardNext"></p>
 <p lang="ar" dir="rtl" id="cardNextAr"></p>
 <p id="cardNote">💚 Try a short conversation at home. Nothing is uploaded, recorded or saved by this activity. Print or save this recap using your own device if you wish.</p>
