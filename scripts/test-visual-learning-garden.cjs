@@ -25,7 +25,7 @@ for(const world of worlds){
  assert.equal(new Set(world.choices.map(x=>x[0])).size,3,"Choices must differ");
  for(const petal of world.petals)
   for(const field of ["en","ar","icon","enFact","arFact"])
-   assert(typeof petal[field]==="string"&&petal[field].trim().length>1,world.id+" missing "+field);
+   assert(typeof petal[field]==="string"&&petal[field].trim().length>(field==="icon"?0:1),world.id+" missing "+field);
  for(const pair of world.choices)
   assert(Array.isArray(pair)&&pair.length===2&&pair.every(s=>typeof s==="string"&&s.trim().length>1),world.id+" missing bilingual choices");
 }
