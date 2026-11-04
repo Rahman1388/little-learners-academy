@@ -281,6 +281,17 @@ jobs:
           python3 -m py_compile scripts/check_audio_assets.py
           python3 scripts/check_audio_assets.py
           python3 scripts/audit_curriculum_audio.py
+          python3 -m py_compile scripts/build_pronunciation_review_pack.py scripts/test_pronunciation_review_pack.py
+          python3 scripts/build_pronunciation_review_pack.py
+          python3 scripts/test_pronunciation_review_pack.py
+
+      - name: Upload pending educator checklist (no child data)
+        uses: actions/upload-artifact@v4
+        with:
+          name: grade1-bilingual-educator-audio-checklist
+          path: build/pronunciation-review/
+          if-no-files-found: error
+          retention-days: 21
 
       - name: Report validation failure as GitHub issue
         if: failure() && github.event_name == 'push'

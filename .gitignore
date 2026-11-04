@@ -147,3 +147,6 @@ vite.config.ts.timestamp-*
 
 # Turbo Repo
 .turbo
+
+# Generated educator-only listening checklist (no reviewed private data in Git)
+build/pronunciation-review/
