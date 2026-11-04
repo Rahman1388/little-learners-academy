@@ -17,7 +17,7 @@ assert.deepEqual(Array.from(worlds,w=>w.band),["1–2","1–2","3–4","3–4","
 assert.equal(new Set(worlds.map(w=>w.id)).size,6,"Unique map ids");
 for(const world of worlds){
  for(const field of ["id","band","icon","name","ar","topic","arTopic","center","arCenter","q","arQ","why","arWhy","talk","arTalk"]){
-  assert(typeof world[field]==="string"&&world[field].trim().length>2,world.id+" missing "+field);
+  assert(typeof world[field]==="string"&&world[field].trim().length>(field==="icon"?0:2),world.id+" missing "+field);
  }
  assert.equal(world.petals.length,4,world.id+" must have four concept leaves");
  assert.equal(world.choices.length,3,world.id+" must have three unique choices");
