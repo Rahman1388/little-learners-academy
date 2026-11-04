@@ -7,6 +7,13 @@
 
 > This file exists to keep an independently readable project history and next-step plan even when an earlier ChatGPT conversation cannot easily be found. **It is a summary, not an export of the chat transcripts.** Changes after this date should update this document.
 
+## 4 November 2026 — Grade 3 Fraction Garden (development draft, PR #18)
+
+- [Draft PR #18](https://github.com/Rahman1388/little-learners-academy/pull/18) proposes a bilingual, model-based Grade 3 Fraction Garden: a two-quarters warm-up and 12 unscored-in-school practice questions (four reading, four comparisons, four equivalence checks) with hints, explanations and retries.
+- New source files: `grade3-fraction-bridge.html`, `grade3-fraction-bridge-data.js`, `grade3-fraction-bridge.js`. Arithmetic/source-security testing: `scripts/test-grade3-fraction-bridge.cjs`; educator/iPhone review sheet: `GRADE3-FRACTION-BRIDGE-REVIEW.md`.
+- The **475-question released inventory is not increased** by this draft. The PR also fixes three outdated 451 references in the international benchmark page without changing question data.
+- No approved child voice recordings, microphones, student data, network calls or local persistence. Draft Arabic, curriculum, accessibility, real-device and child-usability sign-offs are outstanding. Do not merge or claim this is live before owner approval and checks.
+
 ## 3 November 2026 — Saved "Update Little Learning Academy" milestone
 
 **Named project folder:** [updates/2026-11-03-update-little-learning-academy/](./updates/2026-11-03-update-little-learning-academy/README.md)
