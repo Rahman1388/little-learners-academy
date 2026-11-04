@@ -93,7 +93,8 @@ function readReport(){
  const lines=keys.map(k=>{
   const bits=k.split("|"),section=sections.find(x=>x.id===bits[0]);
   const word=section?.items[Number(bits[1])];
-  return (section?.title||bits[0])+" / "+(word?.[1]||"item "+bits[1])+
+  return (section?.title||bits[0])+" [lesson:"+bits[0]+", item:"+bits[1]+"] / "+
+  (word?.[1]||"item "+bits[1])+" • "+(word?.[2]||"Arabic label unavailable")+
   " / "+(bits[2]==="en"?"English":"Arabic")+" "+(bits[3]==="girl"?"female-style":"male-style")+
   ": "+checks[k];
  });
@@ -120,8 +121,9 @@ function reviewCard(section,i){
   const p=document.createElement("audio");p.controls=true;p.preload="none";
   p.src=filename(section,i,lang,voice);
   p.setAttribute("aria-label","Listen to "+(lang==="ar"?item[2]:item[1])+", "+(lang==="ar"?"Arabic":"English")+" "+(voice==="girl"?"female-style":"male-style")+" review recording");
-  p.addEventListener("playing",()=>{if(active&&active!==p)active.pause();active=p});
-  const note=document.createElement("div");note.className="note";
+  let played=false;
+  p.addEventListener("playing",()=>{played=true;if(active&&active!==p)active.pause();active=p});
+  const note=document.createElement("div");note.className="note";note.setAttribute("role","status");note.setAttribute("aria-live","polite");
   note.textContent=lang==="ar"&&voice==="girl"?"Arabic female sample not approved for lessons":"Listen to the original voice without speed effects";
   const retry=document.createElement("button");retry.type="button";retry.className="retry";
   retry.textContent="↻ Retry audio • إعادة المحاولة";retry.hidden=true;
@@ -145,6 +147,10 @@ function reviewCard(section,i){
    const b=document.createElement("button");b.type="button";b.dataset.rating=value;
    b.textContent=label;b.setAttribute("aria-pressed",String(checks[id]===value));
    b.addEventListener("click",()=>{
+    if(value==="clear"&&!played){
+      note.textContent="Play and listen to this recording before marking Clear. • استمع إلى التسجيل أولاً قبل اختيار واضح";
+      return;
+    }
     checks[id]=value;try{localStorage.setItem(KEY,JSON.stringify(checks))}catch{}
     buttons.querySelectorAll("button").forEach(btn=>btn.setAttribute("aria-pressed",String(btn===b)));status();
    });
