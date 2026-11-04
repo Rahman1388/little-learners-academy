@@ -1,0 +1,92 @@
+:root{font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif;color:#183e40;background:#e9f6e9}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:radial-gradient(ellipse at 8% 8%,#fff2b9,transparent 45%),linear-gradient(150deg,#e0f7ed,#e5f7ff 56%,#fff5d8);min-height:100vh}
+.wrap{width:min(940px,100%);margin:auto;padding:16px 14px 76px}
+h1{font-size:clamp(30px,6vw,48px);line-height:1.15;margin:9px 0 14px}
+h2{font-size:clamp(23px,5vw,32px);line-height:1.3;margin:9px 0 16px}
+h3{font-size:clamp(20px,4vw,25px);margin:8px 0}
+p{line-height:1.55}
+a,button,textarea{font:inherit}
+a:focus-visible,button:focus-visible,textarea:focus-visible,[tabindex="-1"]:focus-visible{outline:4px solid #8a1538;outline-offset:4px}
+button{cursor:pointer}
+button:disabled{cursor:not-allowed;opacity:.65}
+.back{display:inline-flex;gap:6px;align-items:center;min-height:50px;padding:10px 16px;border-radius:16px;background:#fff;color:#155d5c;font-weight:800;text-decoration:none;border:2px solid #b5d9d8}
+.hero,.panel{margin:16px 0;border-radius:26px;background:#fffefa;border:2px solid #c7e6d3;box-shadow:0 5px 0 #b8dbc9;padding:clamp(17px,4vw,30px)}
+.hero{text-align:center;background:linear-gradient(125deg,#fef5cb 0%,#fff 46%,#e1f6ef 100%)}
+.hero h1 span{display:block;font-size:.77em;color:#245f5a;margin-top:6px}
+.suncloud{font-size:clamp(32px,7vw,52px);letter-spacing:9px}
+.eyebrow{color:#8a1538;font-weight:850;font-size:13px;letter-spacing:.5px}
+.arabic{font-size:1.07em;line-height:1.65}
+.notice{border:2px solid #e2ca76;background:#fff8db;border-radius:16px;padding:14px;text-align:left;color:#654714}
+.note{font-size:14px;color:#405b59}
+.bandLegend{display:flex;gap:10px;flex-wrap:wrap;font-size:14px;color:#21564e;margin:18px 0}
+.bandLegend span{background:#eff8ed;padding:9px 12px;border-radius:30px;border:1px solid #b6ddc3;font-weight:750}
+.mapCards{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:14px}
+.mapCard{min-height:166px;background:#f2fbf7;border:2px solid #a7d5c3;border-radius:23px;padding:17px;display:flex;flex-direction:column;align-items:flex-start;text-align:left;gap:4px;color:#164c42;box-shadow:0 4px 0 #c2e4d5}
+.mapCard strong{font-size:21px}
+.mapCard .arName{font-size:19px;direction:rtl;text-align:left}
+.mapCard .emoji{font-size:39px}
+.mapCard .meta{color:#315c5c;font-size:14px}
+.mapCard .completion{margin-top:auto;font-weight:800;color:#14573f}
+.mapCard:hover{transform:translateY(-2px);background:#e5f9ee}
+.progressLine{font-weight:800;border-radius:13px;padding:12px;background:#edf7f5;color:#155b53}
+.primary,.secondary,.petal,.choice{min-height:54px;padding:13px 16px;border:2px solid #9fd4c4;border-radius:16px;font-weight:800;color:#14594c;background:#fff}
+.primary{background:#15785d;color:white;border-color:#12674e;box-shadow:0 4px 0 #b9dfbf}
+.secondary:hover,.petal:hover,.choice:hover{background:#def8e5}
+.primary:hover{background:#115a48}
+.adultPanel{margin-top:16px;border-top:2px dashed #c6dbcd;padding-top:15px}
+.adultPanel textarea{display:block;width:100%;min-height:190px;resize:vertical;margin:10px 0;border:2px solid #abcfc3;border-radius:14px;padding:12px;background:#f8fffb;color:#1d4541;font-size:14px}
+.actions{display:flex;flex-wrap:wrap;gap:9px}
+.toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.bandTag{border-radius:30px;padding:9px 12px;background:#fdf2c5;font-weight:800;color:#6b4e12}
+.conceptSky{height:70px;text-align:center;font-size:35px;background:linear-gradient(180deg,#dbf3ff,#ecf9f4);border-radius:20px 20px 50% 50%;margin:13px 0}
+.mapTopic{font-weight:800;color:#42675c}
+.conceptWeb{border:2px solid #c4e7d1;border-radius:26px;background:radial-gradient(circle at center,#fff8cb 0,#edfae9 44%,#e0f4f5 100%);padding:16px}
+.centerIdea{max-width:520px;margin:8px auto 16px;background:#fffefa;border-radius:100px;border:4px solid #f0c86c;min-height:126px;padding:16px 20px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:4px;box-shadow:0 4px 0 #e6daa5}
+.centerIdea>span:first-child{font-size:35px}.centerIdea strong{font-size:clamp(17px,3.4vw,22px)}
+.centerIdea .arabic{color:#5b4c18}
+
+/* The models use actual quantities and equally sized regions, not misleading decorative emojis. */
+.visualModel{max-width:680px;margin:15px auto 20px;border:2px solid #a4cfc0;border-radius:20px;background:#fffdf4;padding:15px;text-align:center}
+.modelCaption{display:flex;flex-direction:column;gap:4px;color:#294d43}
+.modelArabic{direction:rtl;line-height:1.6}
+.tenGroups{display:flex;flex-wrap:wrap;justify-content:center;gap:11px;margin:15px auto}
+.tenGroup{display:grid;grid-template-columns:repeat(5,14px);grid-template-rows:repeat(2,14px);gap:4px;padding:10px;border:2px solid #478276;border-radius:12px;background:#e2f5e8}
+.modelDot{display:block;width:14px;height:14px;border-radius:50%;background:#237b61;box-shadow:0 1px 1px #155644}
+.onesGroup{display:flex;justify-content:center;gap:12px;margin:9px auto}
+.onesGroup .modelDot{background:#c16a2b}
+.modelSum{font-weight:850;font-size:17px;color:#24534c;margin:12px 0 3px}
+.fractionParts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));max-width:330px;height:106px;margin:18px auto 8px;border:3px solid #316b5b;border-radius:8px;overflow:hidden}
+.fractionPart{border-right:3px solid #316b5b}
+.fractionPart:last-child{border-right:0}
+.fractionPart.shaded{background:repeating-linear-gradient(45deg,#92d6a4 0 12px,#75c38e 12px 24px)}
+.fractionPart.empty{background:#fff}
+@media(max-width:360px){.tenGroup{grid-template-columns:repeat(5,12px);grid-template-rows:repeat(2,12px);gap:3px;padding:7px}.tenGroups{gap:5px}.modelDot{width:12px;height:12px}.fractionParts{height:84px}}
+.webPrompt{text-align:center;font-size:15px;font-weight:700;color:#2f625b}
+.petals{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;max-width:680px;margin:17px auto 9px}
+.petal{border-radius:30px 13px 30px 13px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;min-height:113px;font-weight:850;transition:transform .17s ease;border-width:3px}
+.petal .leafEmoji{font-size:28px}
+.petal .leafAr{font-weight:700;direction:rtl;line-height:1.4}
+.petal[aria-pressed="true"]{border-color:#17543d;box-shadow:0 0 0 3px #fff inset,0 0 0 2px #17543d;background:#fff}
+.petal.rose{background:#ffe8ec;border-color:#de9caf}.petal.sun{background:#fff3bc;border-color:#dfc064}
+.petal.leaf{background:#def4d3;border-color:#9dc58d}.petal.sky{background:#e0f1ff;border-color:#a2ccea}
+.petal:hover{transform:scale(1.02)}
+.fact{margin:14px 0;border-left:6px solid #489e76;border-radius:14px;background:#edf9f1;padding:12px 17px;min-height:112px}
+.fact p{margin:6px 0}
+.challenge,.reflection{margin-top:18px;padding:18px;border:2px solid #badbd9;background:#f4fbff;border-radius:22px}
+.stepBadge{font-size:13px;font-weight:850;letter-spacing:.3px;color:#8a1538}
+#questionEnglish{font-weight:800;font-size:20px}
+.choices{display:grid;gap:10px}
+.choice{display:flex;align-items:center;justify-content:space-between;gap:15px;text-align:left}
+.choice .arChoice{text-align:right;direction:rtl;line-height:1.6}
+.choice.wrong{background:#fff2da;border-color:#dcb178}
+.choice.correct{background:#d5f3de;border-color:#398c62}
+#answerFeedback{font-weight:750;white-space:pre-line}
+.reflection{background:linear-gradient(140deg,#ecffe6,#fff9d7)}
+.talk{border:2px dashed #a7c792;border-radius:16px;padding:13px;background:#fff}
+[hidden]{display:none!important}
+@media(max-width:540px){.hero,.panel{padding:16px}.mapCards{grid-template-columns:1fr}.mapCard{min-height:134px}.petals{gap:9px}.petal{padding:9px 6px;min-height:114px;font-size:15px}.choice{flex-direction:column;align-items:flex-start}.choice .arChoice{text-align:left}.centerIdea{border-radius:32px}.conceptWeb{padding:10px}.toolbar{align-items:stretch}.toolbar button{flex:1}}
+@media(max-width:360px){.petals{gap:7px}.petal{font-size:14px;padding:8px 4px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.petal,.mapCard{transition:none}.petal:hover,.mapCard:hover{transform:none}}
+@media print{body{background:white}.back,.hero,.play,.mapCards,#adultToggle,.actions{display:none!important}.panel{border:0;box-shadow:none}.adultPanel{display:block!important}textarea{height:auto!important}}

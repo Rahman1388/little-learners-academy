@@ -114,6 +114,10 @@ jobs:
           node scripts/check-app-security.cjs
           node --check scripts/audit-activity-inventory.cjs
           node scripts/audit-activity-inventory.cjs
+          node --check visual-learning-garden-data.js
+          node --check visual-learning-garden.js
+          node --check scripts/test-visual-learning-garden.cjs
+          node scripts/test-visual-learning-garden.cjs
 
       - name: Verify required PWA files
         run: |
@@ -134,6 +138,11 @@ jobs:
           test -f scripts/check-learning-quality-manifest.cjs
           test -f manifest.webmanifest
           test -f sw.js
+          test -f visual-learning-garden.html
+          test -f visual-learning-garden.css
+          test -f visual-learning-garden-data.js
+          test -f visual-learning-garden.js
+          test -f scripts/test-visual-learning-garden.cjs
           test -f phonics-adventure.html
           test -f phonics-adventure.css
           test -f phonics-adventure.js
