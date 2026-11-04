@@ -7,6 +7,15 @@
 
 > This file exists to keep an independently readable project history and next-step plan even when an earlier ChatGPT conversation cannot easily be found. **It is a summary, not an export of the chat transcripts.** Changes after this date should update this document.
 
+## 4 November 2026 — Qatar Nature Discovery Trail (DRAFT, review only)
+
+- Development branch `feature/qatar-nature-discovery-20261104` adds a calm, nature-inspired **Qatar Science Trail**: `nature-trail.html`, `nature-trail-data.js`, `nature-trail.js`.
+- 12 **original draft** bilingual science questions, 4 each for Grade bands 1–2, 3–4, and 5–6. Uses original CSS gardens, desert, coast and Al Thakhira mangrove scenes, hints, retries, and parent-child reflections.
+- No new audio is introduced: bilingual phonics/native quality is a **human review gate**, not a synthetic-voice claim. Approved bus C/D selections unchanged.
+- Separate `scripts/test-nature-trail.cjs` and PR validation + mobile-browser regression tests verify answer keys and basic safety. Real iPhone/Android, English phonics, Gulf Arabic and Qatar curriculum approval still required.
+- Current public question audit remains **475**. Draft 12 are not counted, cached or linked in normal child-facing navigation.
+- Evidence, rollout and teacher review checklist: [Nature Trail Educator Review](NATURE-TRAIL-EDUCATOR-REVIEW-2026-11-04.md). Wait for owner sign-off before merging/publishing.
+
 ## 3 November 2026 — Saved "Update Little Learning Academy" milestone
 
 **Named project folder:** [updates/2026-11-03-update-little-learning-academy/](./updates/2026-11-03-update-little-learning-academy/README.md)
