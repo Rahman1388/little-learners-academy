@@ -24,7 +24,7 @@ for(const [id,item,label] of priorities){
   assert(fs.existsSync(src),"Priority review audio is missing: "+src);
  }
 }
-const inline=Array.from(html.matchAll(/<script(?:\\s[^>]*)?>([\\s\\S]*?)<\\/script>/g))
+const inline=Array.from(html.matchAll(/<script(?:\s[^>]*)?>([\s\S]*?)<\/script>/g))
  .map(x=>x[1]).filter(Boolean);
 assert.equal(inline.length,1,"Expected one local inline review controller");
 new vm.Script(inline[0],{filename:"pronunciation-review.inline.js"});
@@ -34,7 +34,7 @@ for(const text of ["id=\"showWholeLesson\"","id=\"lessonSelect\"","id=\"copyRepo
  "focusIndex=null;render()","url.searchParams.set(\"retry\""]){
  assert(html.includes(text),"Missing review/error-recovery feature: "+text);
 }
-assert(!/fetch\\s*\\(|XMLHttpRequest|sendBeacon|WebSocket|MediaRecorder|speechRecognition/i.test(inline[0]),
+assert(!/fetch\s*\(|XMLHttpRequest|sendBeacon|WebSocket|MediaRecorder|speechRecognition/i.test(inline[0]),
  "Review page must not collect child speech or transmit feedback");
 assert(html.includes("Adult review only"),"Human educator status is required");
 assert(html.includes("listener ratings only; no native-speaker educator approval"),
