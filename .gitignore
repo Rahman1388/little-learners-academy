@@ -147,3 +147,6 @@ vite.config.ts.timestamp-*
 
 # Turbo Repo
 .turbo
+
+# Local, review-only native asset staging; never commit generated child app bundles
+native-build/
