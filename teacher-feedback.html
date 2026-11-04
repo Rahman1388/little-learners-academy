@@ -44,6 +44,16 @@ button.critical{background:#fff1ec;color:#7d3631;border:2px solid #ecc5b9}
 #preview{min-height:160px;white-space:pre-wrap;overflow-wrap:anywhere;display:none}
 #preview[aria-hidden="false"]{display:block}
 .smalltext{font-size:13px}
+
+.quickStart{background:linear-gradient(135deg,#f1fff1,#f0fbff);border:3px solid #b5d7c6}
+.assignmentGrid{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:end}
+.assignmentGrid .field{min-width:0}
+.assignmentGrid button{width:100%}
+#assignmentOpen{display:inline-flex;padding:12px 15px;border-radius:15px;background:#fff;border:2px solid #97cdb5;color:#185f62;text-decoration:none;font-weight:800;min-height:52px;align-items:center;overflow-wrap:anywhere}
+#assignmentOpen[hidden]{display:none!important}
+#assignmentNotes{margin:12px 0 4px;padding:14px;background:#fff;border:2px solid #c4e1d8;border-radius:17px;line-height:1.6}
+#assignmentNotes[hidden]{display:none!important}
+@media(max-width:630px){.assignmentGrid{grid-template-columns:1fr}}
 @media(max-width:630px){.grid,.ratings{grid-template-columns:1fr}.actions button{width:100%}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 @media print{body{background:white}header,section,footer{box-shadow:none;border:1px solid #ccdce3}.back,.actions{display:none}}
@@ -59,6 +69,27 @@ button.critical{background:#fff1ec;color:#7d3631;border:2px solid #ecc5b9}
 <div class="links"><a href="./index.html">🏠 Open learning app</a><a href="./choose-grade.html">📚 Choose a grade</a><a href="./educator-review-kit.html">📋 Reviewer guidance</a></div>
 <p class="subtle">This is an independent supplementary learning pilot, not a school-endorsed or Ministry-approved assessment.</p>
 </header>
+<section class="quickStart" aria-labelledby="quickStartTitle">
+<h2 id="quickStartTitle">🌱 Quick start for educators <span lang="ar" dir="rtl">بدء المراجعة للمعلمين</span></h2>
+<p>Select a small, specific sample to review. This opens a <strong>currently published</strong> lesson or adult audio-review page, and optionally prepares its page title in the private feedback form below.</p>
+<p class="subtle" lang="ar" dir="rtl">اختر مجموعة صغيرة من الأنشطة للمراجعة. يمكنك فتح الصفحة وتعبئة بياناتها في نموذج الملاحظات دون إرسال أي معلومات تلقائيًا.</p>
+<div class="assignmentGrid">
+<div class="field"><label for="reviewAssignment">Review focus • مجال المراجعة</label>
+<select id="reviewAssignment">
+<option value="">Choose a review sample • اختر عينة</option>
+<option value="grade1">📖 Grade 1 — early reading activities</option>
+<option value="grade2">📘 Grade 2 — English learning pilot</option>
+<option value="phonics">🎧 English phonics — adult listening review</option>
+<option value="arabic">🗣️ Arabic &amp; English colours — adult listening review</option>
+<option value="science">🔬 Grade 2 — science learning pilot</option>
+<option value="accessibility">📱 Navigation — mobile accessibility review</option>
+</select></div>
+<button id="useAssignment" type="button" disabled>Prepare form • جهّز النموذج</button>
+</div>
+<p id="assignmentNotes" role="status" aria-live="polite" hidden></p>
+<a id="assignmentOpen" href="./" target="_blank" rel="noopener noreferrer" hidden>▶ Open review lesson • افتح النشاط</a>
+<p class="subtle">All suggested pages are existing public pilots. Only evaluate the exact examples you check; a sample does not certify an entire grade or native pronunciation. No accounts, student information, or automatic feedback uploads.</p>
+</section>
 <section>
 <h2>1. Tell us what you reviewed</h2>
 <form id="teacherReview" autocomplete="off" novalidate>
