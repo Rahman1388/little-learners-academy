@@ -86,6 +86,12 @@ const fs=require("node:fs");
  await page.locator('#paceChoices button[data-pace="one"]').click();
  assert.equal(await page.locator("#routeSteps .lesson").count(),1,"One-step mode should show one activity");
  assert.match(await page.locator("#sessionNote").textContent(),/One small activity/);
+ await page.locator('#routeSteps .lesson[data-step="2"] .triedButton').click();
+ assert.equal(await page.locator("#finishMessage").isVisible(),true,"One completed activity should have a pleasant stopping point");
+ assert.match(await page.locator("#finishMessage").textContent(),/One activity is enough/);
+ await page.locator('#routeSteps .lesson[data-step="2"] .triedButton').click();
+ assert.equal(await page.locator("#finishMessage").isVisible(),false,"One-step finish should clear when undone");
+
  await page.locator('#paceChoices button[data-pace="three"]').click();
  assert.equal(await page.locator("#routeSteps .lesson").count(),3);
  await page.locator('#themeChoices button[data-theme="numbers"]').click();
