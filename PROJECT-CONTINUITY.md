@@ -14,6 +14,9 @@
 - No new audio is introduced: bilingual phonics/native quality is a **human review gate**, not a synthetic-voice claim. Approved bus C/D selections unchanged.
 - Separate `scripts/test-nature-trail.cjs` and PR validation + mobile-browser regression tests verify answer keys and basic safety. Real iPhone/Android, English phonics, Gulf Arabic and Qatar curriculum approval still required.
 - Current public question audit remains **475**. Draft 12 are not counted, cached or linked in normal child-facing navigation.
+- Complementary **Look • Tap • Discover** module has 3 interactive nature settings × 4 bilingual labelled observation objects (12 non-quiz cards). A private, device-printable Family Discovery Card reports only tapped objects and offers a parent-child conversation prompt. New source/browser tests are included; no child data or new voices are saved.
+- Educational impact and parent delight should be evaluated with native Arabic/English language teachers, Qatar science educators, and consenting supervised parent–child testers rather than assumed from visual novelty.
+
 - Evidence, rollout and teacher review checklist: [Nature Trail Educator Review](NATURE-TRAIL-EDUCATOR-REVIEW-2026-11-04.md). Wait for owner sign-off before merging/publishing.
 
 ## 3 November 2026 — Saved "Update Little Learning Academy" milestone
