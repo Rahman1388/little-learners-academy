@@ -1,0 +1,15 @@
+/* Original supplementary Grade 3 fractions pilot; Arabic is draft, not educator-approved. */
+window.LLA_G3_FRACTION_BRIDGE = Object.freeze([
+ {id:"read-01",kind:"read",left:[1,3],options:["1/3","2/3","1/2"],answer:"1/3",explanationEn:"One of three equal parts is shaded: one third (1/3).",explanationAr:"جزء واحد من ثلاثة أجزاء متساوية ملوّن: ثلث (١/٣)."},
+ {id:"read-02",kind:"read",left:[3,4],options:["1/4","3/4","3/3"],answer:"3/4",explanationEn:"Three of four equal parts are shaded: three quarters (3/4).",explanationAr:"ثلاثة أجزاء من أربعة أجزاء متساوية ملوّنة: ثلاثة أرباع (٣/٤)."},
+ {id:"read-03",kind:"read",left:[2,5],options:["2/4","3/5","2/5"],answer:"2/5",explanationEn:"Two of five equal parts are shaded: two fifths (2/5).",explanationAr:"جزآن من خمسة أجزاء متساوية ملوّنان: خمسان (٢/٥)."},
+ {id:"read-04",kind:"read",left:[5,6],options:["5/5","5/6","1/6"],answer:"5/6",explanationEn:"Five of six equal parts are shaded: five sixths (5/6).",explanationAr:"خمسة أجزاء من ستة أجزاء متساوية ملوّنة: خمسة أسداس (٥/٦)."},
+ {id:"compare-01",kind:"compare",left:[1,4],right:[3,4],answer:"right",explanationEn:"The wholes and fourths are equal-sized. Three fourths is greater than one fourth.",explanationAr:"الكلّان متساويان والأرباع متساوية. ثلاثة أرباع أكبر من ربع واحد."},
+ {id:"compare-02",kind:"compare",left:[4,5],right:[2,5],answer:"left",explanationEn:"Four fifths covers more of the same-sized whole than two fifths.",explanationAr:"أربعة أخماس تغطي مساحة أكبر من خُمسين في الكلّ المتساوي."},
+ {id:"compare-03",kind:"compare",left:[3,6],right:[3,6],answer:"equal",explanationEn:"Both bars shade three of six equal parts, so the amounts are equal.",explanationAr:"في كل شريط ثلاثة أجزاء ملوّنة من ستة أجزاء متساوية، لذا الكسران متساويان."},
+ {id:"compare-04",kind:"compare",left:[2,3],right:[1,3],answer:"left",explanationEn:"Two thirds is greater than one third when both wholes are the same size.",explanationAr:"ثلثان أكبر من ثلث واحد عندما يكون الكلّان بالحجم نفسه."},
+ {id:"equivalent-01",kind:"equivalent",left:[1,2],right:[2,4],answer:"same",explanationEn:"One half and two quarters cover the same share of an equal-sized whole.",explanationAr:"النصف والربعان يمثلان المساحة نفسها عندما يتساوى حجم الكلّ."},
+ {id:"equivalent-02",kind:"equivalent",left:[1,3],right:[3,6],answer:"different",explanationEn:"One third is smaller than three sixths (one half). The shaded lengths differ.",explanationAr:"الثلث أصغر من ثلاثة أسداس (النصف). طول الجزء الملوّن مختلف."},
+ {id:"equivalent-03",kind:"equivalent",left:[2,4],right:[3,6],answer:"same",explanationEn:"Two quarters and three sixths each cover one half of the same-sized whole.",explanationAr:"ربعان وثلاثة أسداس يمثلان نصف الكلّ المتساوي في الحجم."},
+ {id:"equivalent-04",kind:"equivalent",left:[3,6],right:[2,3],answer:"different",explanationEn:"Three sixths is one half, whereas two thirds is larger than one half.",explanationAr:"ثلاثة أسداس تساوي النصف، أمّا الثلثان فهما أكبر من النصف."}
+]);
