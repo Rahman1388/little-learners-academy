@@ -15,6 +15,13 @@ for(const unsafe of [/\bfetch\s*\(/, /sendBeacon/, /getUserMedia/, /SpeechRecogn
  assert(!unsafe.test(js),"Disallowed JS feature: "+unsafe);
 }
 assert(html.includes('id="stepHeading" tabindex="-1"'),"Focusable lesson heading missing");
+assert(html.includes("Today I can:")&&html.includes("there is no timer or score"),"Child learning goal and non-punitive pacing missing");
+assert(html.includes('href="./teacher-feedback.html"'),"Teacher feedback route missing");
+assert(html.includes("details summary:focus-visible"),"Clue / adult detail keyboard focus style missing");
+assert(js.includes("Need a clue?")&&js.includes("My learning check-in:"),"Guided hints and reflection missing");
+assert(js.includes("The buttons below let you hear each full word again"),"Hear stage must support replay");
+assert(js.includes('addEventListener("visibilitychange"')&&js.includes("window.speechSynthesis.cancel()"),"Phone-interruption audio cleanup missing");
+assert(html.includes("Interrupted by a call?")&&html.includes("refreshing or reopening"),"Phone-interruption guidance missing");
 assert(html.includes("min-height:48px"),"Touchable adult-script summary missing");
 assert(html.includes('id="audioStatus"'),"Audio playback accessibility feedback missing");
 assert(js.includes("SpeechSynthesisUtterance")&&js.includes("speakWord"),"Device speech preview missing");
@@ -28,11 +35,12 @@ assert(html.includes('id="stageCounter"'),"Stage progress label missing");
  // Stub iPhone-like English speech locally. This tests taps, not real human audio quality.
  await page.addInitScript(()=>{
   window.__spokenWords=[];
+  window.__speechCancelCount=0;
   window.SpeechSynthesisUtterance=class {constructor(text){this.text=text;}};
   Object.defineProperty(window,"speechSynthesis",{
    configurable:true,
    value:{
-    cancel(){},
+    cancel(){window.__speechCancelCount++;},
     getVoices(){return [{lang:"en-GB",default:true,name:"Test English Voice"}];},
     speak(utterance){
      window.__spokenWords.push({word:utterance.text,lang:utterance.lang,rate:utterance.rate});
@@ -53,6 +61,23 @@ assert(html.includes('id="stageCounter"'),"Stage progress label missing");
   assert(size.scroll<=size.width+3,"Horizontal overflow: "+JSON.stringify(size));
  };
  await noOverflow();
+ // Simulate iOS app switching / an incoming phone call: stop audio, never
+ // discard on-page state, and require a fresh deliberate tap to replay.
+ await page.locator('#stepContent [data-action="speak-word"]').first().click();
+ const beforeInterruption=await page.evaluate(()=>window.__speechCancelCount);
+ await page.evaluate(()=>{
+  Object.defineProperty(document,"hidden",{configurable:true,value:true});
+  document.dispatchEvent(new Event("visibilitychange"));
+ });
+ assert.equal(await page.evaluate(()=>window.__speechCancelCount),beforeInterruption+1,"Backgrounding must cancel active synthesized speech");
+ assert.match(await page.locator("#audioStatus").innerText(),/Audio paused when the lesson moved to the background/);
+ assert.match(await page.locator("#progressText").innerText(),/0 \/ 14/);
+ assert.equal(await page.locator("#stepHeading").innerText(),"👀 See • -ing","Interruption must preserve current stage");
+ await page.evaluate(()=>Object.defineProperty(document,"hidden",{configurable:true,value:false}));
+ const beforeReplay=await page.evaluate(()=>window.__spokenWords.length);
+ await page.locator('#stepContent [data-action="speak-word"]').first().click();
+ assert.equal(await page.evaluate(()=>window.__spokenWords.length),beforeReplay+1,"Replay should be user-initiated after returning");
+ assert(await page.locator("#continueStep").isHidden(),"Interruption or playback must not complete practice");
  for(let family=0;family<2;family++){
   await page.locator("#familyButtons button").nth(family).click();
   assert(await page.locator("#stepHeading").evaluate(x=>document.activeElement===x),"Family selection must focus heading");
@@ -62,7 +87,7 @@ assert(html.includes('id="stageCounter"'),"Stage progress label missing");
    assert(await page.locator("#stepHeading").evaluate(x=>document.activeElement===x),"Stage selection must focus heading");
    assert.match(await page.locator("#stageCounter").innerText(),new RegExp("Stage "+(step+1)+" of 7"));
    assert(await page.locator("#continueStep").isHidden(),"New stage must not permit premature continue");
-   if([0,2,6].includes(step)){
+   if([0,1,2,6].includes(step)){
     assert.equal(await page.locator('#stepContent [data-action="speak-word"]').count(),2,"Each word has a normal-speed speaker");
     assert.equal(await page.locator('#stepContent [data-action="speak-slow"]').count(),2,"Each word has a slow-speed speaker");
     await page.locator('#stepContent [data-action="speak-word"]').first().click();
@@ -73,9 +98,11 @@ assert(html.includes('id="stageCounter"'),"Stage progress label missing");
     assert.equal(speech[0].lang,"en-GB");
     assert(speech[1].rate<speech[0].rate,"Slow playback must use a lower rate");
     assert.match(await page.locator("#audioStatus").innerText(),/Trying/);
+    assert(await page.locator("#continueStep").isHidden(),"Playing a word must not auto-complete a guided step");
    }
    switch(step){
     case 0:case 2:case 6:
+     if(step===6)assert.match(await page.locator("#stepContent").innerText(),/My learning check-in:/);
      await page.locator('[data-action="complete"]').click();break;
     case 1:
      assert.equal(await page.locator("details").evaluate(x=>x.open),false,"Adult script starts closed");
@@ -88,6 +115,9 @@ assert(html.includes('id="stageCounter"'),"Stage progress label missing");
      const wrong=(answer+1)%3;
      await page.locator('[data-answer="'+wrong+'"]').click();
      assert.match(await page.locator("#feedback").innerText(),/Not quite/);
+     assert.equal(await page.locator('#stepContent details summary').count(),1,"Recognition and meaning tasks offer a clue");
+     await page.locator('#stepContent details summary').click();
+     assert.equal(await page.locator('#stepContent details').evaluate(x=>x.open),true,"Clue must open without changing progress");
      assert(await page.locator("#continueStep").isHidden(),"Wrong answer must not unlock continue");
      await page.locator('[data-answer="'+answer+'"]').click();
      break;
@@ -97,6 +127,9 @@ assert(html.includes('id="stageCounter"'),"Stage progress label missing");
      await input.fill("wrong");
      await page.locator('[data-action="check-spelling"]').click();
      assert.match(await page.locator("#feedback").innerText(),/Try again/);
+     assert.equal(await page.locator('#stepContent details').count(),2,"Spelling must offer an adult script and a separate clue");
+     await page.locator('#stepContent details').last().locator('summary').click();
+     assert.equal(await page.locator('#stepContent details').last().evaluate(x=>x.open),true);
      await input.fill(family===0?"sing":"sand");
      await page.locator('[data-action="check-spelling"]').click();
      break;
