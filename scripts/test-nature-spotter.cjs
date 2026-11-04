@@ -30,8 +30,10 @@ assert(!/https?:\/\//.test(html),"External URLs require separate child-safety re
 assert(!/localStorage|sessionStorage|indexedDB|fetch\s*\(|XMLHttpRequest|SpeechSynthesis|speechSynthesis|getUserMedia|MediaRecorder|sendBeacon/.test(js),"No child data capture, storage, or unreviewed voice");
 assert(!/\binnerHTML\b/.test(js),"Unsafe HTML composition");
 assert(!/<audio\b|<video\b|autoplay/i.test(html),"Unexpected media");
-for(const id of ["sceneChoices","sceneHeading","landscape","landscapeImage","objects","discoveryCount","discovery","showCard","reset","familyCard","cardScene","cardCount","cardList","cardNext","cardNextAr","cardTitle","printCard","closeCard"]){
+for(const id of ["sceneChoices","sceneHeading","landscape","landscapeImage","objects","discoveryCount","discovery","compareLab","addCompare","clearCompare","compareStatus","comparePair","compareGuide","compareCareEn","compareCareAr","showCard","reset","familyCard","cardScene","cardCount","cardList","cardCompare","cardNext","cardNextAr","cardTitle","printCard","closeCard"]){
  assert(html.includes('id="'+id+'"'),"Missing element "+id);
 }
 assert(html.includes("@media print"),"Parent card must be printable");
-console.log("PASS: 12 original bilingual Nature Spotter cards, private session-only parent recap, no unreviewed audio or storage.");
+assert(js.includes("compareItems.length=0"),"Changing scenes must reset the comparison");
+assert(js.includes("compareItems.some(item=>item.id===activeItem.id)"),"Duplicate comparison selection must be blocked");
+console.log("PASS: 12 original bilingual Nature Spotter cards, private two-object comparison, parent recap, no unreviewed audio or storage.");
