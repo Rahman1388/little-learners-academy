@@ -24,8 +24,29 @@
 <section class="panel" id="habitatView" aria-label="Choose a nature habitat">
  <h2>Choose your nature world <span lang="ar" dir="rtl">اختر عالم الطبيعة</span></h2>
  <p>Each place has six short missions. Learn at your own pace. • لكل مكان ست مهام قصيرة.</p>
+ <div class="learningSteps" aria-label="Four friendly learning steps">
+   <div><strong>👀 Observe</strong><span lang="ar" dir="rtl">لاحظ</span></div>
+   <div><strong>💡 Think</strong><span lang="ar" dir="rtl">فكّر</span></div>
+   <div><strong>📖 Explain</strong><span lang="ar" dir="rtl">اشرح</span></div>
+   <div><strong>🌱 Care</strong><span lang="ar" dir="rtl">اعتنِ</span></div>
+ </div>
  <div id="habitatCards" class="habitats"></div>
  <p class="small" id="overallStatus" role="status" aria-live="polite">Your adventure starts here.</p>
+ <div class="adultBar"><button type="button" class="secondary" id="adultToggle" aria-expanded="false" aria-controls="adultView">👨‍👩‍👧 Parent & teacher progress • متابعة الأهل والمعلمين</button></div>
+ <section class="adultView" id="adultView" hidden aria-label="Parent and teacher summary">
+  <h3>Learning journey review <span lang="ar" dir="rtl">ملخص رحلة التعلّم</span></h3>
+  <p>View completed missions on this device. Completion reflects participation, <strong>not a mastery grade</strong>. Nothing is sent automatically.</p>
+  <p lang="ar" dir="rtl">اطّلع على المهام المكتملة على هذا الجهاز. إكمال المهمة ليس درجة إتقان، ولا تُرسل البيانات تلقائيًا.</p>
+  <ul id="adultList" class="adultList"></ul>
+  <label for="parentReport">Shareable learning notes • ملاحظات التعلم القابلة للنسخ</label>
+  <textarea id="parentReport" class="parentReport" rows="9" readonly aria-label="Progress summary with no child names"></textarea>
+  <div class="finishActions">
+   <button type="button" class="secondary" id="copySummary">📋 Copy notes • نسخ الملاحظات</button>
+   <button type="button" class="secondary" id="printSummary">🖨️ Print • طباعة</button>
+  </div>
+  <p id="copySummaryStatus" role="status" aria-live="polite" class="small"></p>
+  <p class="small"><a href="./teacher-feedback.html">Educator feedback • ملاحظات المعلمين</a> · No child names, scores or recordings are included.</p>
+ </section>
 </section>
 <section class="panel play" id="playView" hidden aria-label="Bilingual nature mission">
  <div class="toolbar">
@@ -35,13 +56,30 @@
  <div class="progressTrack" aria-hidden="true"><span id="progressFill"></span></div>
  <div class="scene" id="sceneEmoji" aria-hidden="true">🐪 ☀️ 🌴</div>
  <div class="eyebrow" id="habitatLabel">Desert • الصحراء</div>
+ <div class="skillTag" id="skillTag">Habitats • المواطن الطبيعية</div>
+ <div class="observeCard" aria-labelledby="observeTitle">
+  <h3 id="observeTitle">👀 Look & notice <span lang="ar" dir="rtl">انظر ولاحظ</span></h3>
+  <p id="observeEnglish">What can you observe?</p>
+  <p id="observeArabic" lang="ar" dir="rtl">ماذا تلاحظ؟</p>
+ </div>
  <div class="picture" id="pictureEmoji" aria-hidden="true">🐪</div>
  <div class="word" id="wordEnglish">Camel</div>
  <div class="word arabic" id="wordArabic" lang="ar" dir="rtl">جمل</div>
- <h2 id="questionEnglish">Which choice is correct?</h2>
+ <h2 id="questionEnglish" tabindex="-1">Which choice is correct?</h2>
  <p class="questionArabic" id="questionArabic" lang="ar" dir="rtl">ما الاختيار الصحيح؟</p>
+ <div class="hintArea">
+  <button type="button" class="secondary" id="hintToggle" aria-expanded="false" aria-controls="hintPanel">💡 Need a hint? • هل تحتاج إلى تلميح؟</button>
+  <div id="hintPanel" class="hintPanel" hidden role="status" aria-live="polite">
+   <p id="hintEnglish"></p><p id="hintArabic" lang="ar" dir="rtl"></p>
+  </div>
+ </div>
  <div id="answerChoices" class="choices" role="group" aria-label="Choose one answer • اختر إجابة"></div>
  <div id="answerFeedback" class="feedback" role="status" aria-live="polite">Choose a picture or word • اختر صورة أو كلمة</div>
+ <div id="missionAction" class="missionAction" hidden>
+  <h3>🌱 Try a safe nature mission with an adult <span lang="ar" dir="rtl">جرب مهمة آمنة في الطبيعة مع شخص بالغ</span></h3>
+  <p id="actionEnglish"></p><p id="actionArabic" lang="ar" dir="rtl"></p>
+  <p class="small">Optional activity, never requires touching wildlife or sharing photos. • نشاط اختياري دون لمس الحيوانات البرية أو مشاركة الصور.</p>
+ </div>
  <button type="button" id="nextMission" class="primary" hidden>Next mission • المهمة التالية →</button>
 </section>
 <section class="panel finish" id="finishView" hidden aria-label="Habitat completed">
@@ -57,7 +95,7 @@
 <aside class="note">
  <strong>For parents and educators • للأهل والمعلمين</strong>
  <p>These questions introduce simple science, observation, habitats and care for nature. They are <strong>supplementary activities</strong>, not an official Qatar curriculum or a mastery test. Arabic wording and scientific content await teacher review.</p>
- <p>No child names, microphone, camera, voice recording, advertisements, analytics or third-party requests are used. Only completed mission IDs are saved on this device. This first version intentionally has no spoken phonics or automatic sound because English and Arabic recordings still require qualified pronunciation review.</p>
+ <p>No child names, microphone, camera, voice recording, advertisements, analytics or third-party requests are used. Only completed mission IDs are saved on this device. Parent summaries are generated on demand and are not sent anywhere. This version intentionally has no spoken phonics or automatic sound because English and Arabic recordings still require qualified pronunciation review.</p>
 </aside>
 </main>
 <script src="./nature-explorer-data.js"></script>
