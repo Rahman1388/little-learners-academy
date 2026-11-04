@@ -79,7 +79,12 @@
   $("#routeProgress").textContent="🌟 "+n+" / 3 steps tried • "+n+" من ٣ خطوات مجرّبة";
   $("#routeFill").style.width=(n/3*100)+"%";
   $("#routeBar").setAttribute("aria-valuenow",String(n));
-  $("#finishMessage").hidden=n!==3;
+  const activeIndex=THEMES[activeTheme].order[0];
+  const isOneDone=m[activeIndex]===true;
+  $("#finishMessage").hidden=oneStep?!isOneDone:n!==3;
+  $("#finishMessage").textContent=oneStep
+   ?"🌼 Wonderful effort! One activity is enough for today. Enjoy a real-world discovery or a rest. • أحسنت! نشاط واحد يكفي اليوم."
+   :"🎉 Three activities tried! Great effort. You can practise again any time. • أحسنت!";
   $("#levelNote").textContent=ROUTES[grade].status+" Tried does not mean mastered. • التجربة ليست إتقاناً";
   $("#sessionNote").textContent=(oneStep
     ?"🌼 One small activity is enough! The other steps remain available. "
