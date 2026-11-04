@@ -55,6 +55,8 @@ jobs:
           node scripts/check-school-pathways.cjs
           node --check scripts/check-learning-quality-manifest.cjs
           node scripts/check-learning-quality-manifest.cjs
+          node --check scripts/test-curriculum-evidence.cjs
+          node scripts/test-curriculum-evidence.cjs
           node --check grade2-pilot-data.js
           node --check grade2-pilot.js
           node --check grade2-english-data.js
@@ -131,6 +133,10 @@ jobs:
           test -f school-pathways.js
           test -f scripts/check-school-pathways.cjs
           test -f learning-quality-manifest.json
+          test -f review/curriculum-evidence-register.json
+          test -f review/curriculum-review-desk.html
+          test -f review/CURRICULUM-QUALITY-RESEARCH-2026-11-04.md
+          test -f scripts/test-curriculum-evidence.cjs
           test -f scripts/check-learning-quality-manifest.cjs
           test -f manifest.webmanifest
           test -f sw.js

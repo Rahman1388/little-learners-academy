@@ -1,0 +1,303 @@
+{
+  "schemaVersion": 1,
+  "reviewedResearchDate": "2026-11-04",
+  "project": "Little Learners Academy",
+  "purpose": "Evidence register and reviewer outreach. NO curriculum endorsement, approval or accredited lessons are established.",
+  "artifactStatus": "adult-review-only",
+  "origin": {
+    "repository": "Rahman1388/little-learners-academy",
+    "draftPullRequest": "https://github.com/Rahman1388/little-learners-academy/pull/28",
+    "notOnProduction": true
+  },
+  "sourceRules": {
+    "qatarGradeEquivalenceNotAssumed": true,
+    "nationalGradeStandardsVerified": false,
+    "qatarFrameworkPublication": "historical; must check current grade textbooks and standard docs",
+    "specialistAgreementConfirmed": false,
+    "childDataCollected": false,
+    "aiChildChatEnabled": false,
+    "officiallyCertified": false
+  },
+  "sources": [
+    {
+      "id": "qatar-framework",
+      "kind": "national-principles",
+      "title": "Qatar National Curriculum General Framework (historical public edition)",
+      "url": "https://privateschoolssearch.edu.gov.qa/Documents/Publications/CurriculumStandards/GeneralFrameworkNationalEducation.pdf?csf=1&e=PfpExd",
+      "scope": "Broad national curriculum principles and quality criteria; not a current Grade 1-6 objective list"
+    },
+    {
+      "id": "qatar-early",
+      "kind": "national-foundation",
+      "title": "MOEHE Early Learning / Foundation Stage",
+      "url": "https://www.edu.gov.qa/en/Content/EarlyLearning",
+      "scope": "Grades 1 and 2 and active foundation teaching; not individual lesson approval"
+    },
+    {
+      "id": "qatar-digital",
+      "kind": "national-edtech",
+      "title": "MOEHE E-Learning and Digital Solutions",
+      "url": "https://www.edu.gov.qa/en/Content/ELearing",
+      "scope": "Interactive e-learning, creativity and 21st-century skills"
+    },
+    {
+      "id": "cambridge-primary",
+      "kind": "international-framework",
+      "title": "Cambridge Primary curriculum overview",
+      "url": "https://www.cambridgeinternational.org/programmes-and-qualifications/cambridge-primary/curriculum/",
+      "scope": "Broad subject/competency comparison, not access to private school-specific progression"
+    },
+    {
+      "id": "england-english",
+      "kind": "international-grade-guidance",
+      "title": "England English primary programmes of study",
+      "url": "https://www.gov.uk/government/publications/national-curriculum-in-england-english-programmes-of-study/national-curriculum-in-england-english-programmes-of-study",
+      "scope": "Year 1-6 reading and comprehension examples; Year and Qatar Grade are not automatically equivalent"
+    },
+    {
+      "id": "england-maths",
+      "kind": "international-grade-guidance",
+      "title": "England Mathematics programmes of study",
+      "url": "https://www.gov.uk/government/publications/national-curriculum-in-england-mathematics-programmes-of-study/national-curriculum-in-england-mathematics-programmes-of-study",
+      "scope": "Years 1-6 number place value and fractions; non-Qatar school requirement"
+    },
+    {
+      "id": "england-science",
+      "kind": "international-grade-guidance",
+      "title": "England Science programmes of study",
+      "url": "https://www.gov.uk/government/publications/national-curriculum-in-england-science-programmes-of-study/national-curriculum-in-england-science-programmes-of-study",
+      "scope": "Year 2 habitats and Years 3-6 working scientifically examples"
+    },
+    {
+      "id": "eef-feedback",
+      "kind": "research",
+      "title": "EEF Feedback evidence synthesis",
+      "url": "https://educationendowmentfoundation.org.uk/education-evidence/teaching-learning-toolkit/feedback",
+      "scope": "Useful pedagogy principles; does not certify this project or guarantee outcomes"
+    },
+    {
+      "id": "eef-metacognition",
+      "kind": "research",
+      "title": "EEF Metacognition and Self-Regulated Learning guidance, second edition 2025",
+      "url": "https://apiv3.educationendowmentfoundation.org.uk/education-evidence/guidance-reports/metacognition",
+      "scope": "Model, self-explain and reflect; not grade alignment"
+    },
+    {
+      "id": "unicef-ai",
+      "kind": "child-safety",
+      "title": "UNICEF Guidance on AI and Children (version 3.0, 2025)",
+      "url": "https://www.unicef.org/innocenti/reports/policy-guidance-ai-children",
+      "scope": "Child rights, privacy, explainability, safety and inclusion"
+    }
+  ],
+  "items": [
+    {
+      "id": "story",
+      "title": "Story Garden",
+      "gradeBand": "1-2",
+      "subject": "English reading",
+      "objective": "Identify a story character, setting, problem and ending; explain a setting with an example.",
+      "nationalContext": "Qatar foundation-language and communication goals are broadly relevant, but exact Qatar Grade 1-2 outcome not verified.",
+      "internationalSourceIds": [
+        "england-english",
+        "cambridge-primary"
+      ],
+      "internationalTopic": "Year 1-2 reading comprehension, stories and discussion",
+      "risk": "Not a complete reading scheme; English phonics requires separate sequenced instruction.",
+      "location": "feature branch PR #28; adult review staging only",
+      "comparisonStatus": "thematic-overlap-only",
+      "qatarGradeStandard": "not-yet-verified",
+      "contentReview": "pending",
+      "nativeArabicReview": "pending",
+      "englishPronunciationReview": "not-applicable-no-new-audio",
+      "realDeviceReview": "pending",
+      "ownerReleaseApproval": false
+    },
+    {
+      "id": "tens",
+      "title": "Number Tree",
+      "gradeBand": "1-2",
+      "subject": "Mathematics",
+      "objective": "Represent 34 as three groups of ten and four ones using accurate dot models.",
+      "nationalContext": "General numeracy and practical learning principles; exact school-unit sequence requires Qatar textbook and teacher check.",
+      "internationalSourceIds": [
+        "england-maths",
+        "cambridge-primary"
+      ],
+      "internationalTopic": "England Year 2: two-digit place value; concrete objects and pictures",
+      "risk": "Verify accessibility of dot groupings and digits and do not confuse UK Year 2 with Qatar Grade 2.",
+      "location": "feature branch PR #28; adult review staging only",
+      "comparisonStatus": "thematic-overlap-only",
+      "qatarGradeStandard": "not-yet-verified",
+      "contentReview": "pending",
+      "nativeArabicReview": "pending",
+      "englishPronunciationReview": "not-applicable-no-new-audio",
+      "realDeviceReview": "pending",
+      "ownerReleaseApproval": false
+    },
+    {
+      "id": "fractions",
+      "title": "Fraction Flowers",
+      "gradeBand": "3-4",
+      "subject": "Mathematics",
+      "objective": "Interpret 3/4 as three of four equal-sized parts and identify numerator and denominator.",
+      "nationalContext": "General numeracy principles; current Qatar Grade 3-4 textbook objectives need independent mapping.",
+      "internationalSourceIds": [
+        "england-maths",
+        "cambridge-primary"
+      ],
+      "internationalTopic": "England Year 3-4: fractions as equal parts and common diagram representations",
+      "risk": "Require visual equality, native Arabic maths review, multiple model types and conceptual transfer.",
+      "location": "feature branch PR #28; adult review staging only",
+      "comparisonStatus": "thematic-overlap-only",
+      "qatarGradeStandard": "not-yet-verified",
+      "contentReview": "pending",
+      "nativeArabicReview": "pending",
+      "englishPronunciationReview": "not-applicable-no-new-audio",
+      "realDeviceReview": "pending",
+      "ownerReleaseApproval": false
+    },
+    {
+      "id": "ecosystem",
+      "title": "Living World",
+      "gradeBand": "3-4",
+      "subject": "Science",
+      "objective": "Describe links among sunlight, plants and selected animals, without claiming all food chains are identical.",
+      "nationalContext": "Qatar national framework supports environment, scientific observation and sustainability, but exact grade objective is pending.",
+      "internationalSourceIds": [
+        "england-science",
+        "cambridge-primary"
+      ],
+      "internationalTopic": "England Year 2 habitats/food chains and KS2 living things; thematic overlap only",
+      "risk": "Current demonstration is a conceptual web, not a complete or precise food-chain diagram; avoid implying every insect pollinates every plant.",
+      "location": "feature branch PR #28; adult review staging only",
+      "comparisonStatus": "thematic-overlap-only",
+      "qatarGradeStandard": "not-yet-verified",
+      "contentReview": "pending",
+      "nativeArabicReview": "pending",
+      "englishPronunciationReview": "not-applicable-no-new-audio",
+      "realDeviceReview": "pending",
+      "ownerReleaseApproval": false
+    },
+    {
+      "id": "test",
+      "title": "Fair Test Lab",
+      "gradeBand": "5-6",
+      "subject": "Science inquiry",
+      "objective": "Identify one independent variable and keep relevant comparison conditions the same.",
+      "nationalContext": "Framework supports investigation, collecting evidence and reasoning; Qatar syllabus document verification outstanding.",
+      "internationalSourceIds": [
+        "england-science",
+        "cambridge-primary"
+      ],
+      "internationalTopic": "England Years 5-6 working scientifically, including recognizing and controlling variables",
+      "risk": "Adult supervision for any future experiments; this draft uses safe thought questions only.",
+      "location": "feature branch PR #28; adult review staging only",
+      "comparisonStatus": "thematic-overlap-only",
+      "qatarGradeStandard": "not-yet-verified",
+      "contentReview": "pending",
+      "nativeArabicReview": "pending",
+      "englishPronunciationReview": "not-applicable-no-new-audio",
+      "realDeviceReview": "pending",
+      "ownerReleaseApproval": false
+    },
+    {
+      "id": "evidence",
+      "title": "Evidence Detective",
+      "gradeBand": "5-6",
+      "subject": "Reading and digital literacy",
+      "objective": "Distinguish a claim from supporting evidence and select an original trustworthy source.",
+      "nationalContext": "General critical thinking, inquiry, digital citizenship and language principles are relevant; exact Qatar grade objective unverified.",
+      "internationalSourceIds": [
+        "england-english",
+        "eef-metacognition",
+        "unicef-ai"
+      ],
+      "internationalTopic": "Upper-primary explanation, evidence evaluation and child-centred digital literacy",
+      "risk": "Human-reviewed source examples and careful handling of misinformation needed before adding live links or AI responses.",
+      "location": "feature branch PR #28; adult review staging only",
+      "comparisonStatus": "thematic-overlap-only",
+      "qatarGradeStandard": "not-yet-verified",
+      "contentReview": "pending",
+      "nativeArabicReview": "pending",
+      "englishPronunciationReview": "not-applicable-no-new-audio",
+      "realDeviceReview": "pending",
+      "ownerReleaseApproval": false
+    }
+  ],
+  "expertLeads": [
+    {
+      "id": "edi",
+      "name": "Education Development Institute, Qatar Foundation",
+      "specialism": "Bilingual curriculum, local context, inclusive pedagogy and virtual workshop contact",
+      "url": "https://edi.qa/school-support-consultancy/",
+      "contactUrl": "https://edi.qa/contact-us/",
+      "email": "eventspd@qf.org.qa",
+      "relationship": "potential outreach only; no review agreement"
+    },
+    {
+      "id": "qu",
+      "name": "Qatar University College of Education",
+      "specialism": "Curriculum, instruction and assessment research, early childhood and teacher development",
+      "url": "https://www.qu.edu.qa/en-us/Colleges/education/Pages/contact.aspx",
+      "contactUrl": "https://www.qu.edu.qa/en-us/Colleges/education/Pages/contact.aspx",
+      "email": "dean-edu@qu.edu.qa",
+      "relationship": "potential academic review introduction only"
+    },
+    {
+      "id": "edutech",
+      "name": "Edutech Consultancy Qatar",
+      "specialism": "EdTech evaluation, teacher professional development and education technology",
+      "url": "https://edutechconsultancy.com/",
+      "contactUrl": "https://edutechconsultancy.com/contact-us-2/",
+      "email": "info@edutechconsultancy.com",
+      "relationship": "potential independent review/tech consultation only"
+    },
+    {
+      "id": "ilm",
+      "name": "ILM Education Consultants",
+      "specialism": "Curriculum leadership, professional development and online teaching specialists",
+      "url": "https://ilmeducationconsultants.com/our-consultants/",
+      "contactUrl": "https://ilmeducationconsultants.com/contact-us/",
+      "email": "info@ilmeducationconsultants.com",
+      "relationship": "potential consultant referral only"
+    }
+  ],
+  "releaseGates": [
+    {
+      "id": "qatar-grade-objective",
+      "reviewerRole": "Qatar curriculum primary specialist",
+      "status": "pending"
+    },
+    {
+      "id": "native-arabic",
+      "reviewerRole": "Native Arabic educator for each phrase and choice",
+      "status": "pending"
+    },
+    {
+      "id": "english-phonics",
+      "reviewerRole": "Qualified English phonics educator for future audio",
+      "status": "pending"
+    },
+    {
+      "id": "pedagogical-evaluation",
+      "reviewerRole": "Primary stage subject teacher or academic specialist",
+      "status": "pending"
+    },
+    {
+      "id": "accessibility-usability",
+      "reviewerRole": "Parent-child and accessibility real-device testers",
+      "status": "pending"
+    },
+    {
+      "id": "privacy-security",
+      "reviewerRole": "Child-safety/privacy reviewer; technical security gate",
+      "status": "pending"
+    },
+    {
+      "id": "owner-approval",
+      "reviewerRole": "App owner",
+      "status": "pending"
+    }
+  ]
+}

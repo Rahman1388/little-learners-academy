@@ -1,11 +1,20 @@
 # Little Learners Academy — Project Continuity & Handover
 
-**Updated:** 3 November 2026  
+**Updated:** 4 November 2026 (includes draft branch research; main app unchanged)  
 **Owner's project:** Little Learners Academy / أكاديمية المتعلمين الصغار  
 **Source of truth:** https://github.com/Rahman1388/little-learners-academy  
 **Live Progressive Web App:** https://rahman1388.github.io/little-learners-academy/
 
 > This file exists to keep an independently readable project history and next-step plan even when an earlier ChatGPT conversation cannot easily be found. **It is a summary, not an export of the chat transcripts.** Changes after this date should update this document.
+
+## 4 November 2026 — Evidence-based Qatar curriculum research and reviewer discovery (DRAFT ONLY)
+
+- Established a separate **curriculum-evidence-gate** branch independent of ongoing feature PRs to avoid shipping unaudited work to the main public app.
+- New `review/curriculum-evidence-register.json` maps **six proposed Visual Learning Garden concept webs** against **10 public official/research sources**, describing broad Qatar principles and specific *international thematic overlap* while marking every exact Qatar grade-level outcome **not yet verified**. The six webs belong to unfinished PR #28/staging, not `main`.
+- The research record documents the older public Qatar National Curriculum General Framework and the Ministry's current foundation/e-learning priorities. No historical framework is treated as a definitive 2026–27 grade textbook.
+- Identified **four potential Qatar educational research/consultancy contacts** (Qatar Foundation EDI, Qatar University College of Education, Edutech Consultancy and ILM); their public institutional emails are recorded. **No professional has been hired, agreed to review or endorsed the app**, and no cost or free service is guaranteed.
+- Added a static bilingual **adult review desk** and long-form research handoff, and seven explicit unresolved release gates for subject accuracy, native Arabic, English phonics, pedagogy, accessibility, child privacy and owner approval. Added deterministic GitHub CI test to enforce traceable sources and guard against false certification claims.
+- Work remains separate until owner review. No existing question count, phonics audio, C/D bus voice choices, device-local progress, live child navigation, app-store binaries or child records are changed.
 
 ## 3 November 2026 — Saved "Update Little Learning Academy" milestone
 
