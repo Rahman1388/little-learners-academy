@@ -35,7 +35,7 @@ for(const text of ["id=\"showWholeLesson\"","id=\"lessonSelect\"","id=\"copyRepo
  assert(html.includes(text),"Missing review/error-recovery feature: "+text);
 }
 // Review export must uniquely identify the bilingual word and original clip.
-for(const code of ['word?.[1]||"item "+bits[1]','word?.[2]||"Arabic label unavailable"','"[lesson:"+bits[0]+", item:"+bits[1]+"]','note.setAttribute("aria-live","polite")','let played=false','played=true','if(value==="clear"&&!played)']){
+for(const code of ['word?.[1]||"item "+bits[1]','word?.[2]||"Arabic label unavailable"','" [lesson:"+bits[0]+", item:"+bits[1]+"]','note.setAttribute("aria-live","polite")','let played=false','played=true','if(value==="clear"&&!played)']){
  assert(html.includes(code),"Bilingual export or listen-before-Clear protection missing: "+code);
 }
 assert(!/fetch\s*\(|XMLHttpRequest|sendBeacon|WebSocket|MediaRecorder|speechRecognition/i.test(inline[0]),
