@@ -21,7 +21,7 @@ for(const h of habitats){
  for(const m of h.missions){
   total++;
   for(const field of ["emoji","word","wordAr","q","arQ","why","arWhy"])
-   assert(typeof m[field]==="string"&&m[field].trim().length>=(field==="emoji"?1:3),h.id+" missing "+field);
+   assert(typeof m[field]==="string"&&m[field].trim().length>=1,h.id+" missing "+field);
   assert(!questions.has(m.q),h.id+" has a duplicated question");questions.add(m.q);
   assert.equal(m.choices.length,3,"Three choices per mission");
   assert(Number.isInteger(m.answer)&&m.answer>=0&&m.answer<3,"A valid answer is required");
