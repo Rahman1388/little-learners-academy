@@ -1,0 +1,33 @@
+name: Prepare native web assets (review only)
+
+on:
+  pull_request:
+    paths:
+      - "scripts/prepare-store-assets.cjs"
+      - "scripts/test-store-assets.cjs"
+      - ".github/workflows/store-assets-review.yml"
+      - ".gitignore"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  stage:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Prepare a local review-only web asset tree
+        run: node scripts/prepare-store-assets.cjs
+      - name: Verify necessary learning assets
+        run: node scripts/test-store-assets.cjs
+      - name: Confirm developer files and credentials are not packaged
+        run: |
+          test ! -e native-build/www/.git
+          test ! -e native-build/www/.github
+          test ! -e native-build/www/scripts
+          test ! -e native-build/www/README.md
+          echo "Asset staging complete. NOT a signed/ready IPA or AAB."
