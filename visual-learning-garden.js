@@ -44,6 +44,48 @@ function renderCards(){
  });
  $("overallProgress").textContent=done.size+" / "+worlds.length+" concept maps practised on this device • "+done.size+" من "+worlds.length+" خرائط تمت ممارستها";
 }
+function renderVisualModel(world){
+ const model=$("visualModel");
+ model.replaceChildren();
+ model.hidden=!(world.id==="tens"||world.id==="fractions");
+ if(model.hidden)return;
+ function make(tag,cls,value){
+  const node=document.createElement(tag);
+  node.className=cls;
+  if(value!==undefined)node.textContent=value;
+  return node;
+ }
+ const caption=make("div","modelCaption");
+ const english=make("strong","",world.id==="tens"?"See 3 groups of ten and 4 ones.":"See 3 shaded parts out of 4 equal parts.");
+ const arabic=arNode(world.id==="tens"?"شاهد ثلاث مجموعات من عشرة وأربعة آحاد.":"شاهد ثلاثة أجزاء ملوّنة من أربعة أجزاء متساوية.","modelArabic");
+ caption.append(english,arabic);
+ model.append(caption);
+ if(world.id==="tens"){
+  model.setAttribute("aria-label","34 is three groups of ten dots, plus four individual dots. العدد ٣٤ يتكون من ثلاث مجموعات من عشرة وأربعة آحاد.");
+  const groups=make("div","tenGroups");
+  for(let i=0;i<3;i++){
+   const group=make("div","tenGroup");
+   group.setAttribute("aria-hidden","true");
+   for(let j=0;j<10;j++)group.append(make("span","modelDot"));
+   groups.append(group);
+  }
+  const ones=make("div","onesGroup");
+  ones.setAttribute("aria-hidden","true");
+  for(let i=0;i<4;i++)ones.append(make("span","modelDot single"));
+  const label=make("p","modelSum","10 + 10 + 10 + 1 + 1 + 1 + 1 = 34");
+  model.append(groups,ones,label);
+ }else{
+  model.setAttribute("aria-label","A whole rectangle divided into four equal quarters; three shaded, one unshaded. مستطيل مقسم إلى أربعة أرباع متساوية؛ ثلاثة مظللة وواحد غير مظلل.");
+  const fraction=make("div","fractionParts");
+  for(let i=0;i<4;i++){
+   const cell=make("div",i<3?"fractionPart shaded":"fractionPart empty");
+   cell.setAttribute("aria-hidden","true");
+   fraction.append(cell);
+  }
+  const label=make("p","modelSum","3 / 4  •  ثلاثة أرباع");
+  model.append(fraction,label);
+ }
+}
 function startMap(i){
  if(!Number.isInteger(i)||i<0||i>=worlds.length)return;
  current=i;seen=new Set();solved=false;
@@ -55,6 +97,7 @@ function startMap(i){
  $("mapIcon").textContent=world.icon;
  $("centerEnglish").textContent=world.center;
  $("centerArabic").textContent=world.arCenter;
+ renderVisualModel(world);
  $("factEnglish").textContent="Touch a leaf to discover its meaning.";
  $("factArabic").textContent="المس ورقة لتكتشف معناها.";
  $("challenge").hidden=true;$("reflection").hidden=true;
