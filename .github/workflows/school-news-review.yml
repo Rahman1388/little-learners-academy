@@ -1,0 +1,54 @@
+name: School Updates safety and usability review
+on:
+  push:
+    branches: [feature/school-updates-safety-review-20261019]
+  pull_request:
+    paths:
+      - "school-updates*"
+      - "school-live-news.json"
+      - "scripts/refresh-school-news.cjs"
+      - "scripts/test-refresh-school-news.cjs"
+      - "scripts/test-school-updates.cjs"
+      - "scripts/fixtures/qna-schools-sample.xml"
+      - ".github/workflows/school-news-*.yml"
+      - "index.html"
+      - "choose-grade.html"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  school-news-review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 14
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Offline static and RSS safety checks
+        run: |
+          node --check school-updates.js
+          node --check school-updates-data.js
+          node --check scripts/refresh-school-news.cjs
+          node --check scripts/test-school-updates.cjs
+          node --check scripts/test-refresh-school-news.cjs
+          node scripts/test-refresh-school-news.cjs
+      - name: Install browser runtime
+        run: |
+          npm install --no-save playwright@1.56.1
+          npx playwright install --with-deps chromium
+      - name: Parent-facing mobile and desktop testing
+        run: |
+          python3 -m http.server 8765 --bind 127.0.0.1 >/tmp/school-news-test.log 2>&1 &
+          for i in $(seq 1 20); do
+            if curl -fsS http://127.0.0.1:8765/school-updates.html >/dev/null; then break; fi
+            sleep 1
+          done
+          node scripts/test-school-updates.cjs
+      - name: Diagnose official live RSS feed compatibility without publishing
+        continue-on-error: true
+        run: |
+          node scripts/refresh-school-news.cjs
+          node -e "const x=require('./school-live-news.json');console.log('Live fetch timestamp:',x.lastSuccessfulFetch,'Filtered stories:',x.headlines.length)"
