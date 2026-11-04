@@ -156,6 +156,12 @@ on:
       - "scripts/test-mobile-ui.cjs"
       - "scripts/test-pronunciation-review.cjs"
       - ".github/workflows/test-mobile-ui.yml"
+  pull_request:
+    paths:
+      - "three-step-route.html"
+      - "three-step-route.js"
+      - "scripts/test-mobile-ui.cjs"
+      - ".github/workflows/test-mobile-ui.yml"
   workflow_dispatch:
 
 permissions:
