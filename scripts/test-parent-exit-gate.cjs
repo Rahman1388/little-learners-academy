@@ -13,7 +13,7 @@ for(const page of pages){
  if(page!=="school-pathways.html"){
    assert(/data-parent-exit-url=["']https:\/\//.test(html),page+": no protected external links");
  }
- const csp=html.match(/<meta[^>]+http-equiv=["']Content-Security-Policy["'][^>]+content=["']([^"']+)["']/i);
+ const csp=html.match(/<meta\s+http-equiv="Content-Security-Policy"\s+content="([^"]+)"/i);
  assert(csp&&csp[1].includes("script-src 'self'"),page+": gate script blocked by CSP");
 }
 const schoolJs=fs.readFileSync(path.join(root,"school-pathways.js"),"utf8");
