@@ -1,11 +1,21 @@
 # Little Learners Academy — Project Continuity & Handover
 
-**Updated:** 3 November 2026  
+**Updated:** 8 November 2026  
 **Owner's project:** Little Learners Academy / أكاديمية المتعلمين الصغار  
 **Source of truth:** https://github.com/Rahman1388/little-learners-academy  
 **Live Progressive Web App:** https://rahman1388.github.io/little-learners-academy/
 
 > This file exists to keep an independently readable project history and next-step plan even when an earlier ChatGPT conversation cannot easily be found. **It is a summary, not an export of the chat transcripts.** Changes after this date should update this document.
+
+## 8 November 2026 — Saved project checkpoint (current entry point)
+
+**Latest dated project update:** [updates/2026-11-08-little-learners-academy/README.md](./updates/2026-11-08-little-learners-academy/README.md).
+
+- On review, published `main` was the successful **3 November 2026** Grade 6 Ratio Explorer release with **475 audited distinct short MCQ practice questions**, plus **six separately tracked guided writing prompts**. Grades 1–6 remain supplementary pilots, not a certified curriculum.
+- The **4 November** developments were still **draft pull requests, not public releases**: [#26 pronunciation priority review + retry](https://github.com/Rahman1388/little-learners-academy/pull/26); [#27 Qatar Nature Explorer](https://github.com/Rahman1388/little-learners-academy/pull/27); [#28 Visual Learning Garden](https://github.com/Rahman1388/little-learners-academy/pull/28); [#29 curriculum evidence/review desk](https://github.com/Rahman1388/little-learners-academy/pull/29), plus earlier unmerged educator, audio and native packaging review drafts.
+- Latest observed #26–#28 branch validation/security runs were successful; **#29 latest observed app validation failed**, even though its child-security check succeeded. All still require appropriate human quality review and owner approval before any merge.
+- Preserve clear English/Arabic pronunciation goals, native-speaker and phonics review gates, live `bus` C/D voice preferences, all existing pages and local learning progress, and no collection of children's personal data. **No claims of ministry approval or App Store/Google Play submission.**
+- This is a GitHub **project-file checkpoint** and the new recovery entry point, not a restore/export of ChatGPT messages and **not a child-facing code release**. Follow the linked update for next-step gates and re-check live GitHub state before any modifications.
 
 ## 3 November 2026 — Saved "Update Little Learning Academy" milestone
 
