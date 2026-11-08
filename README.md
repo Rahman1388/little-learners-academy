@@ -4,6 +4,8 @@
 
 An independent bilingual English–Arabic learning platform for primary-school children.
 
+**8 November 2026 saved project checkpoint:** [Latest Little Learners Academy project update](updates/2026-11-08-little-learners-academy/README.md). Records the published 475-question pilot, November 4 draft improvements, real testing and review gaps, and next integration steps; **no new child-facing features released by this documentation update**.
+
 **3 November 2026 saved version:** [Update Little Learning Academy — project milestone](updates/2026-11-03-update-little-learning-academy/README.md). Added 24 Grade 6 visual ratio problems; independent inventory now tracks 475 distinct short MCQ questions across Grades 1–6, with six writing prompts separate. No claim of Ministry or school approval.
 
 **Project history & continuation guide:** [PROJECT-CONTINUITY.md](PROJECT-CONTINUITY.md) — current features, owner requirements, audio decisions, curriculum status, testing and next steps. Use this document when earlier conversations are hard to find.
