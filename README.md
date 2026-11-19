@@ -8,7 +8,7 @@ An independent bilingual English–Arabic learning platform for primary-school c
 
 **3 November 2026 saved version:** [Update Little Learning Academy — project milestone](updates/2026-11-03-update-little-learning-academy/README.md). Added 24 Grade 6 visual ratio problems; independent inventory now tracks 475 distinct short MCQ questions across Grades 1–6, with six writing prompts separate. No claim of Ministry or school approval.
 
-**Project history & continuation guide:** [PROJECT-CONTINUITY.md](PROJECT-CONTINUITY.md) — current features, owner requirements, audio decisions, curriculum status, testing and next steps. Use this document when earlier conversations are hard to find.
+**International comparison and quality-first next steps (19 November 2026):** [Grade 1–6 benchmark and release priorities](review/INTERNATIONAL-APP-BENCHMARK-2026-11-19.md). Compares publisher-reported activity counts with our independently audited 475-question pilot; records learning-depth and human-review gates. This is planning documentation, not a child-facing app update.\n\n**Project history & continuation guide:** [PROJECT-CONTINUITY.md](PROJECT-CONTINUITY.md) — current features, owner requirements, audio decisions, curriculum status, testing and next steps. Use this document when earlier conversations are hard to find.
 
 ## Current Grade 1 foundation
 - Child-friendly bilingual dashboard
