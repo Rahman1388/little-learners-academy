@@ -296,7 +296,7 @@
     },
     {
       "id": "owner-approval",
-      "reviewerRole": "App owner",
+      "reviewerRole": "App owner responsible for final publication approval",
       "status": "pending"
     }
   ]
