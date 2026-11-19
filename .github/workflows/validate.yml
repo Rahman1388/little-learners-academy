@@ -271,10 +271,17 @@ jobs:
       - name: Check Grade 5 maths pilot answer keys and explanations
         run: node scripts/check-grade5-content.cjs
 
-      - name: Install audio inspector
+      - name: Ensure audio inspector is available
         run: |
-          sudo apt-get update -qq
-          sudo apt-get install -y -qq ffmpeg
+          if command -v ffprobe >/dev/null 2>&1; then
+            echo "ffprobe is already available; no package download needed."
+          else
+            # Ubuntu package mirrors occasionally rate-limit temporary GitHub runners.
+            sudo apt-get -o Acquire::Retries=5 update -qq
+            sudo DEBIAN_FRONTEND=noninteractive apt-get -o Acquire::Retries=5 -o Acquire::https::Timeout=60 install -y -qq ffmpeg
+          fi
+          command -v ffprobe
+          ffprobe -version | head -n 1
 
       - name: Check both languages' recorded audio
         run: |
